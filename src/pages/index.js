@@ -5,6 +5,7 @@ import Head from "next/head";
 const { publicRuntimeConfig } = getConfig();
 
 // @layout
+import NavbarTop from "@layouts/Navbar/NavbarTop";
 import Header from "@layouts/Header";
 import StartSpeakers from "@layouts/Speakers/start";
 import EndSpeakers from "@layouts/Speakers/end";
@@ -61,6 +62,9 @@ const App = () => {
           content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
         />
       </Head>
+
+      {/* @navbar-top */}
+      <NavbarTop />
 
       <main className="ca2024Main ca2024MainMandatory approved overflow-x-hidden">
         {/* @header */}

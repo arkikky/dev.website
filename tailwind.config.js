@@ -111,7 +111,10 @@ module.exports = {
     },
   },
   plugins: [
-    // Variant
+    require("preline/plugin"),
+    require("tailwind-scrollbar-hide"),
+
+    // @variant
     ({ addVariant }) => {
       addVariant("hocus", ["&:hover", "&:focus"]);
       addVariant("supports-grid", "@supports (display: grid)");

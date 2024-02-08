@@ -8,6 +8,9 @@ const { publicRuntimeConfig } = getConfig();
 // @css-style (Global)
 import "@styles/globals.css";
 
+// @components
+import SuccessedModal from "@components/UI/Modals/Success";
+
 // @head
 const isHead = () => {
   <Head>
@@ -38,20 +41,18 @@ const isHead = () => {
 export default function App({ Component, pageProps }) {
   // @layouts wihtout (Navbar & Footer)
   if (Component.getLayout) {
-    // @preline (Add Plugins)
-    // useEffect(() => {
-    //   import("preline");
-    //   return () => {
-    //     undefined;
-    //   };
-    // }, []);
-
     return Component.getLayout(
       <>
         {/* @head */}
         {isHead()}
 
         <Component {...pageProps} />
+
+        {/* @modal */}
+        <SuccessedModal />
+
+        {/* @backdrop (modal) */}
+        <div id="bckdrpModalActve"></div>
       </>
     );
   }
@@ -61,6 +62,12 @@ export default function App({ Component, pageProps }) {
       {isHead()}
 
       <Component {...pageProps} />
+
+      {/* @modal */}
+      <SuccessedModal />
+
+      {/* @backdrop (modal) */}
+      <div id="bckdrpModalActve"></div>
     </>
   );
 }
