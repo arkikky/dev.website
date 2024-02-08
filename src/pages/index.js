@@ -1,8 +1,12 @@
+import React, { useState } from "react";
 import getConfig from "next/config";
 import Head from "next/head";
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
+
+// @lib
+import { getFetchUrl, getFetch } from "@lib/controller/API";
 
 // @layout
 import NavbarTop from "@layouts/Navbar/NavbarTop";
@@ -10,11 +14,14 @@ import Header from "@layouts/Header";
 import StartSpeakers from "@layouts/Speakers/start";
 import EndSpeakers from "@layouts/Speakers/end";
 import StartPartners from "@layouts/Partners/start";
+import Partners from "@layouts/Partners";
 import FAQ from "@layouts/FAQ";
 import FooterBanner from "@layouts/Banner/FooterBanner";
 import Footer from "@layouts/Footer";
 
-const App = () => {
+const App = ({ ipAddress, sponsorPartner }) => {
+  const [isSponsorPartner, setSponsorPartner] = useState(sponsorPartner);
+
   return (
     <>
       {/* @head */}
@@ -85,7 +92,10 @@ const App = () => {
         {/* @partners (Start) */}
         <StartPartners />
 
-        <section className="snap-start snap-always h-auto min-h-fixScreen">
+        {/* @partners */}
+        <Partners {...isSponsorPartner} />
+
+        <div className="snap-start snap-always h-auto min-h-fixScreen">
           {/* @faq */}
           <FAQ />
 
@@ -94,10 +104,45 @@ const App = () => {
 
           {/* @footer */}
           <Footer />
-        </section>
+        </div>
       </main>
     </>
   );
 };
 
 export default App;
+
+export const getStaticProps = async () => {
+  const isIpAddress = await getFetchUrl(
+    `https://ipinfo.io/json?token=135855871d1f46`
+  );
+
+  // const gCa2024Speaker = await getFetch(
+  //   `/speaker-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
+  // );
+
+  const isSponsorPartner = await getFetch(
+    `/sponsor-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
+  );
+
+  // const gCa2024SocialMentions = await getFetch(
+  //   `/people-says?populate=*&pagination[pageSize]=100`
+  // );
+
+  try {
+    return {
+      props: {
+        ipAddress: isIpAddress || [],
+        // speaker: gCa2024Speaker || [],
+        sponsorPartner: isSponsorPartner || [],
+        // socialMentions: gCa2024SocialMentions || [],
+      },
+
+      revalidate: 3600,
+    };
+  } catch (err) {
+    return {
+      notFound: true,
+    };
+  }
+};
