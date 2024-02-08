@@ -38,7 +38,7 @@ const FooterBanner = () => {
 
             {/* @content */}
             <div className="flex flex-col items-start justify-start relative w-full max-w-[697px] z-10">
-              <h2 className="text-white font-staraExtraBold text-[32px] sm:text-[58px] xl:text-[80px] leading-[35px] sm:leading-[74px] xl:leading-[90px] uppercase">
+              <h2 className="text-white font-staraBold text-[32px] sm:text-[58px] xl:text-[80px] leading-[35px] sm:leading-[74px] xl:leading-[90px] uppercase">
                 Join Asia's Immersive Web3 Festival
               </h2>
               <div className="flex flex-col mt-4 sm:mt-8 w-full sm:w-max">
