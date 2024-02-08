@@ -1,17 +1,15 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 
 const Header = () => {
-  const isVideo = useRef(null);
+  // useEffect(() => {
+  //   if (isVideo.current) {
+  //     isVideo.current.play();
+  //   }
 
-  useEffect(() => {
-    if (isVideo.current) {
-      isVideo.current.play();
-    }
-
-    return () => {
-      undefined;
-    };
-  }, []);
+  //   return () => {
+  //     undefined;
+  //   };
+  // }, []);
 
   return (
     <>
@@ -28,13 +26,14 @@ const Header = () => {
         </div> */}
 
         <div className="ca2024BgVideo absolute inset-y-0 inset-x-0 pointer-events-none z-px">
-          <video
+          awdawda
+          {/* <video
             ref={isVideo}
             id="ca2024VideoHeaderApp"
             className="aspect-video object-cover object-center h-full w-full"
           >
             <source src={"/assets/video/ca2024HeroApp.mp4"} type="video/mp4" />
-          </video>
+          </video> */}
         </div>
       </header>
     </>
