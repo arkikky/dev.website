@@ -37,9 +37,9 @@ const NavbarTop = () => {
       <section className="fixed top-4 bottom-auto inset-x-0 z-sm mix-blend-difference">
         <Container>
           <div className="flex flex-row items-start justify-between">
-            <Link className="block relative mt-3 w-max" href={"/"}>
+            <Link className="block relative mt-2 w-max" href={"/"}>
               <Image
-                className="aspect-auto my-auto mx-auto h-auto w-[120px] sm:w-32"
+                className="my-auto mx-auto h-auto w-[120px] sm:w-32"
                 src={"/assets/images/ca2024-BrandWhite.svg"}
                 alt={`${publicRuntimeConfig.siteAppName} (Primary Brand Logo)`}
                 height={24}
