@@ -63,8 +63,8 @@ const App = () => {
         {/* @header */}
         {/* <Header /> */}
 
-        <section className="bg-red-500 snap-start snap-always h-full min-h-fixScreen">
-          {process.env.NEXT_PUBLIC_AUTHOR}
+        <section className="snap-start snap-always h-fixScreen min-h-fixScreen">
+          <h1>awdawdaw</h1>
         </section>
         <section className="bg-blue-500 snap-start snap-always h-full min-h-fixScreen">
           {process.env.NEXT_PUBLIC_AUTHOR}
