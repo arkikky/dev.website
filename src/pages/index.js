@@ -15,15 +15,15 @@ import { getFetchUrl, getFetch } from "@lib/controller/API";
 // import Container from "@components/Container";
 
 // @layouts
-import NavbarTop from "@layouts/Navbar/NavbarTop";
-import Navbar from "@layouts/Navbar/Navbar";
+// import NavbarTop from "@layouts/Navbar/NavbarTop";
+// import Navbar from "@layouts/Navbar/Navbar";
 const Header = dynamic(() => import("@layouts/Header"));
 // import ChartInsights from "@layouts2024/ChartInsights";
 // import ChartInsightStart from "@layouts2024/ChartInsights/start";
-const ChartInsightStart = dynamic(() => import("@layouts/ChartInsights/start"));
+// const ChartInsightStart = dynamic(() => import("@layouts/ChartInsights/start"));
 
-import SpeakersStart from "@layouts/Speakers/start";
-const DefaultSpeakers = dynamic(() => import("@layouts/Speakers/default"));
+// import SpeakersStart from "@layouts/Speakers/start";
+// const DefaultSpeakers = dynamic(() => import("@layouts/Speakers/default"));
 // import SpeakersNext from "@layouts/Speakers/next";
 // import PartnersStart from "@layouts/Partners/start";
 // import DefaultPartners from "@layouts/Partners/default";
@@ -40,10 +40,10 @@ import NewsletterModal from "@layouts/Modal/Newsletter";
 
 const Home = (props) => {
   const isMain = useRef(null);
-  const [isIpAddress, setIpAddress] = useState(props.ipAddress);
-  const [isSpeaker, setSpeaker] = useState(props.speaker);
-  const [isSponsorPartner, setSponsorPartner] = useState(props.sponsorPartner);
-  const [isSocialMentions, setSocialMentions] = useState(props.socialMentions);
+  // const [isIpAddress, setIpAddress] = useState(props.ipAddress);
+  // const [isSpeaker, setSpeaker] = useState(props.speaker);
+  // const [isSponsorPartner, setSponsorPartner] = useState(props.sponsorPartner);
+  // const [isSocialMentions, setSocialMentions] = useState(props.socialMentions);
 
   // @preline (Add Plugins)
   useEffect(() => {
@@ -145,7 +145,7 @@ const Home = (props) => {
         </section> */}
 
         {/* @speakers (start) */}
-        <SpeakersStart />
+        {/* <SpeakersStart /> */}
 
         {/* @speakers (default) */}
         {/* <DefaultSpeakers {...isSpeaker} /> */}
@@ -173,20 +173,20 @@ const Home = (props) => {
 
         {/* @group */}
         {/* <div className="snap-always snap-start relative"> */}
-          {/* @faq (default) */}
-          {/* <DefaultFAQ /> */}
+        {/* @faq (default) */}
+        {/* <DefaultFAQ /> */}
 
-          {/* @banner-footer */}
-          {/* <BannerFooter /> */}
+        {/* @banner-footer */}
+        {/* <BannerFooter /> */}
 
-          {/* @footer */}
-          {/* <Footer /> */}
+        {/* @footer */}
+        {/* <Footer /> */}
         {/* </div> */}
       </div>
 
       {/* @modal */}
-      <SpeakersModal {...isSpeaker} />
-      <NewsletterModal ipAddress={isIpAddress} />
+      {/* <SpeakersModal {...isSpeaker} />
+      <NewsletterModal ipAddress={isIpAddress} /> */}
 
       {/* @backdrop (modal) */}
       <div id="bckdrpModalActve"></div>
@@ -199,25 +199,25 @@ export default Home;
 export const getStaticProps = async () => {
   const gIpAddress = await getFetchUrl(`https://ipinfo.io/json`);
 
-  const gCa2024Speaker = await getFetch(
-    `/speaker-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
-  );
+  // const gCa2024Speaker = await getFetch(
+  //   `/speaker-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
+  // );
 
-  const gCa2024SponsorPartner = await getFetch(
-    `/sponsor-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
-  );
+  // const gCa2024SponsorPartner = await getFetch(
+  //   `/sponsor-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
+  // );
 
-  const gCa2024SocialMentions = await getFetch(
-    `/people-says?populate=*&pagination[pageSize]=100`
-  );
+  // const gCa2024SocialMentions = await getFetch(
+  //   `/people-says?populate=*&pagination[pageSize]=100`
+  // );
 
   try {
     return {
       props: {
         ipAddress: gIpAddress || [],
-        speaker: gCa2024Speaker || [],
-        sponsorPartner: gCa2024SponsorPartner || [],
-        socialMentions: gCa2024SocialMentions || [],
+        // speaker: gCa2024Speaker || [],
+        // sponsorPartner: gCa2024SponsorPartner || [],
+        // socialMentions: gCa2024SocialMentions || [],
       },
 
       revalidate: 3600,

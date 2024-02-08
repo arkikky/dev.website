@@ -283,11 +283,6 @@
   resolved "https://registry.yarnpkg.com/@preline/overlay/-/overlay-1.3.0.tgz#4b506a0d4a4c6d00156360007d04961a32370f49"
   integrity sha512-OgzJ0nyxG7rCbckl/M9p5h3O+UC11Pnz2L7m7AchGZRFinVnGy60RU/mlOGdFJUwaIzIMRwtz2xm77ybt1ipmQ==
 
-"@preline/select@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@preline/select/-/select-2.0.2.tgz#3a8b79a6000c8242820937cb21818e7a96b8ef98"
-  integrity sha512-4gHxX4a6W5yyh058lDts3A8uuijM54aNhF/4J0peKFiKjcicsQoFbVFYurk9zIgpHOIzDzH9KVsQjjjLlF/A/Q==
-
 "@splidejs/react-splide@^0.7.12":
   version "0.7.12"
   resolved "https://registry.yarnpkg.com/@splidejs/react-splide/-/react-splide-0.7.12.tgz#c7efe231bbbb6812da64689178b6c871269baff5"
@@ -1598,11 +1593,6 @@ react-hook-form@^7.50.0:
   version "7.50.0"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.50.0.tgz#379802d85c7b78e0056229c53607946d34f99a36"
   integrity sha512-AOhuzM3RdP09ZCnq+Z0yvKGHK25yiOX5phwxjV9L7U6HMla10ezkBnvQ+Pk4GTuDfsC5P2zza3k8mawFwFLVuQ==
-
-react-intersection-observer@^9.5.3:
-  version "9.5.3"
-  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-9.5.3.tgz#f47a31ed3a0359cbbfdb91a53d7470ac2ab7b3c7"
-  integrity sha512-NJzagSdUPS5rPhaLsHXYeJbsvdpbJwL6yCHtMk91hc0ufQ2BnXis+0QQ9NBh6n9n+Q3OyjR6OQLShYbaNBkThQ==
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
