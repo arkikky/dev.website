@@ -17,7 +17,7 @@ const Partners = ({ data }) => {
 
         <Container className="overflow-hidden relative pt-[140px] sm:pt-[174px] z-[5]">
           <div className="ca2024PartnersContentTitle flex flex-col items-start sm:items-center justify-start sm:justify-center pr-11 sm:pr-0 opacity-1 transition duration-[1.2s] ease-out">
-            <h2 className="text-black-900 font-staraExtraBold text-[32px] sm:text-[58px] lg:text-[80px] leading-[35px] sm:leading-[74px] lg:leading-[90px] uppercase">
+            <h2 className="text-black-900 font-staraExtraBold text-[32px] sm:text-[58px] lg:text-[80px] xl:text-[72px] 2xl:text-[80px] leading-[40px] sm:leading-[74px] lg:leading-[90px] xl:leading-[86px] 2xl:leading-[90px] uppercase">
               Previous Partners
             </h2>
           </div>

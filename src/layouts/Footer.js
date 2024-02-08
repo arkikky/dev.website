@@ -33,13 +33,20 @@ const Footer = () => {
                       Travel
                     </h2>
                     <ul className="pl-0 mt-6">
-                      <li className="group mb-4 last:mb-0">
-                        <Link
-                          className="flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
-                          href=""
+                      <li className="group hs-tooltip [--trigger:hover] [--placement:right] mb-4 last:mb-0">
+                        <button
+                          type="button"
+                          aria-label="menuFlightDeals"
+                          className="hs-tooltip-toggle flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
                         >
                           Flight Deals
-                        </Link>
+                          <span
+                            className="hs-tooltip-content bg-black-900/20 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            role="tooltip"
+                          >
+                            Comming Soon
+                          </span>
+                        </button>
                       </li>
                       <li className="group mb-4 last:mb-0">
                         <Link
@@ -222,13 +229,26 @@ const Footer = () => {
                       Others
                     </h2>
                     <ul className="pl-0 mt-6">
-                      <li className="group mb-4 last:mb-0">
-                        <Link
+                      <li className="group hs-tooltip [--trigger:hover] [--placement:right] mb-4 last:mb-0">
+                        {/* <Link
                           className="flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
                           href=""
                         >
                           Terms & Conditions
-                        </Link>
+                        </Link> */}
+                        <button
+                          type="button"
+                          aria-label="menuTermsConditions"
+                          className="hs-tooltip-toggle flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
+                        >
+                          Terms & Conditions
+                          <span
+                            className="hs-tooltip-content bg-black-900/20 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            role="tooltip"
+                          >
+                            Comming Soon
+                          </span>
+                        </button>
                       </li>
                       <li className="group mb-4 last:mb-0">
                         <Link

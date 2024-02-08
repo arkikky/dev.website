@@ -36,7 +36,7 @@ const EndSpeakers = () => {
         {/* @content */}
         <Container className=" relative z-[5]">
           <div className="ca2024EndSpeakersContent flex flex-col items-center justify-center text-start sm:text-center w-full mx-auto max-w-full sm:max-w-[555px] lg:max-w-max opacity-1 transition duration-[1.4s] ease-out">
-            <h2 className="text-white font-staraExtraBold text-[32px] sm:text-[58px] lg:text-[80px] xl:text-[62px] 2xl:text-[80px] leading-[40px] sm:leading-[74px] lg:leading-[90px] xl:leading-[70px] 2xl:leading-[90px] uppercase px-0 lg:px-7 xl:px-0">
+            <h2 className="text-white font-staraExtraBold text-[32px] sm:text-[58px] lg:text-[80px] xl:text-[72px] 2xl:text-[80px] leading-[40px] sm:leading-[74px] lg:leading-[90px] xl:leading-[86px] 2xl:leading-[90px] uppercase px-0 lg:px-7 xl:px-0">
               2024 speakers will be announced very soon!
             </h2>
             <div className="flex flex-col mt-4 w-full sm:w-max">

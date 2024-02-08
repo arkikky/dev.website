@@ -35,14 +35,14 @@ export default function App({ Component, pageProps }) {
           />
 
           <meta name="author" content={publicRuntimeConfig.author} />
-          <link rel="mask-icon" href="/favicon.svg" color="#DEE813" />
-          <meta name="msapplication-TileColor" content="#DEE813" />
-          <meta name="theme-color" content="#DEE813" />
-          <meta name="msapplication-navbutton-color" content="#DEE813" />
+          <link rel="mask-icon" href="/favicon.svg" color="#0000000" />
+          <meta name="msapplication-TileColor" content="#0000000" />
+          <meta name="theme-color" content="#0000000" />
+          <meta name="msapplication-navbutton-color" content="#0000000" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta
             name="apple-mobile-web-app-status-bar-style"
-            content="#DEE813"
+            content="#0000000"
           />
           <link rel="manifest" href="/manifest.json" />
         </Head>
@@ -75,12 +75,12 @@ export default function App({ Component, pageProps }) {
         />
 
         <meta name="author" content={publicRuntimeConfig.author} />
-        <link rel="mask-icon" href="/favicon.svg" color="#2458F4" />
-        <meta name="msapplication-TileColor" content="#2458F4" />
-        <meta name="theme-color" content="#2458F4" />
-        <meta name="msapplication-navbutton-color" content="#2458F4" />
+        <link rel="mask-icon" href="/favicon.svg" color="#000000" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="msapplication-navbutton-color" content="#000000" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="#2458F4" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#000000" />
         <link rel="manifest" href="/manifest.json" />
       </Head>
 

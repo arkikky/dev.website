@@ -25,8 +25,8 @@ const FAQ = () => {
 
         <Container className="relative z-[5]">
           <div id="ca2024FAQ" className="relative">
-            <div className="ca2024FaqTitle flex flex-col text-center px-8 opacity-1 transition duration-[0.8s] ease-out">
-              <h2 className="text-black-900 font-staraExtraBold text-[32px] sm:text-[58px] lg:text-[80px] leading-[35px] sm:leading-[74px] lg:leading-[90px] uppercase">
+            <div className="ca2024FaqTitle flex flex-col text-center mx-auto px-8 w-full max-w-[1022px] opacity-1 transition duration-[0.8s] ease-out">
+              <h2 className="text-black-900 font-staraExtraBold text-[32px] sm:text-[58px] lg:text-[80px] xl:text-[72px] 2xl:text-[80px] leading-[40px] sm:leading-[74px] lg:leading-[90px] xl:leading-[86px] 2xl:leading-[90px] uppercase">
                 Let's answer some of your questions
               </h2>
             </div>

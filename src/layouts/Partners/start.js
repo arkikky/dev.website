@@ -57,7 +57,7 @@ const StartPartners = () => {
 
         <Container className=" relative opacity-1 z-[5]">
           <div className="ca2024SldePartnersNextContent flex flex-col items-center justify-center text-start opacity-1 transition duration-[1.3s] ease-in-out">
-            <h2 className="text-black-900 font-staraExtraBold text-[32px] sm:text-[58px] lg:text-[80px] xl:text-[62px] 2xl:text-[80px] leading-[40px] sm:leading-[74px] lg:leading-[90px] xl:leading-[70px] 2xl:leading-[90px] uppercase">
+            <h2 className="text-black-900 font-staraExtraBold text-[32px] sm:text-[58px] lg:text-[80px] xl:text-[72px] 2xl:text-[80px] leading-[40px] sm:leading-[74px] lg:leading-[90px] xl:leading-[86px] 2xl:leading-[90px] uppercase">
               Showcase your innovations in Asia's emerging markets where
               adoption happens
             </h2>
