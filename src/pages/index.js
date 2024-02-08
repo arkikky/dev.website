@@ -15,7 +15,7 @@ import { getFetchUrl, getFetch } from "@lib/controller/API";
 // import Container from "@components/Container";
 
 // @layouts
-// import NavbarTop from "@layouts/Navbar/NavbarTop";
+import NavbarTop from "@layouts/Navbar/NavbarTop";
 // import Navbar from "@layouts/Navbar/Navbar";
 const Header = dynamic(() => import("@layouts/Header"));
 // import ChartInsights from "@layouts2024/ChartInsights";
@@ -35,8 +35,8 @@ const Header = dynamic(() => import("@layouts/Header"));
 // import DefaultFAQ from "@layouts/FAQ/default";
 // import BannerFooter from "@layouts/Banner/BannerFooter";
 // import Footer from "@layouts/Footer";
-import SpeakersModal from "@layouts/Modal/Speakers";
-import NewsletterModal from "@layouts/Modal/Newsletter";
+// import SpeakersModal from "@layouts/Modal/Speakers";
+// import NewsletterModal from "@layouts/Modal/Newsletter";
 
 const Home = (props) => {
   const isMain = useRef(null);
@@ -124,7 +124,7 @@ const Home = (props) => {
       </Head>
 
       {/* @navbar (top) */}
-      <NavbarTop />
+      {/* <NavbarTop /> */}
 
       {/* @navbar (bottom) */}
       {/* <Navbar /> */}
