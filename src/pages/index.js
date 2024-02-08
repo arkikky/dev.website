@@ -6,8 +6,9 @@ const { publicRuntimeConfig } = getConfig();
 
 // @layout
 import Header from "@layouts/Header";
+import Footer from "@layouts/Footer";
 
-const App = (props) => {
+const App = () => {
   return (
     <>
       {/* @head */}
@@ -71,8 +72,13 @@ const App = (props) => {
         <section className="bg-green-500 snap-start snap-always h-full min-h-fixScreen">
           {process.env.NEXT_PUBLIC_AUTHOR}
         </section>
-        <section className="bg-gray-500 snap-start snap-always h-full min-h-fixScreen">
-          {process.env.NEXT_PUBLIC_AUTHOR}
+        <section className="snap-start snap-always h-auto min-h-fixScreen">
+          {/* @footer */}
+          <Footer />
+          {/* @footer */}
+          <Footer />
+          {/* @footer */}
+          <Footer />
         </section>
       </main>
     </>

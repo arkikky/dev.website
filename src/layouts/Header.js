@@ -8,10 +8,12 @@ const Header = () => {
       isVideo.current.play();
     }
 
+    console.log(isVideo);
+
     return () => {
       undefined;
     };
-  }, []);
+  }, [isVideo]);
 
   return (
     <>
@@ -32,8 +34,8 @@ const Header = () => {
             ref={isVideo}
             id="ca2024VideoHeaderApp"
             __idm_id__="true"
-            preload="auto"
             className="aspect-video object-cover object-center h-full w-full"
+            preload="auto"
             muted
             autoPlay
             loop

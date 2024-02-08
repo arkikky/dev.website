@@ -1,10 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* @tailwind-css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* @fonts */
+@import url("./fonts");
+
 html,
 body {
+  @apply bg-white;
+  @apply font-bevietnamPro;
   @apply overflow-y-hidden;
+}
+
+a {
+  @apply outline-none focus-visible:outline-none;
 }
 
 /* main */
