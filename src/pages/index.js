@@ -9,6 +9,8 @@ import NavbarTop from "@layouts/Navbar/NavbarTop";
 import Header from "@layouts/Header";
 import StartSpeakers from "@layouts/Speakers/start";
 import EndSpeakers from "@layouts/Speakers/end";
+import StartPartners from "@layouts/Partners/start";
+import FAQ from "@layouts/FAQ";
 import FooterBanner from "@layouts/Banner/FooterBanner";
 import Footer from "@layouts/Footer";
 
@@ -80,7 +82,13 @@ const App = () => {
         {/* @speakers (End) */}
         <EndSpeakers />
 
+        {/* @partners (Start) */}
+        <StartPartners />
+
         <section className="snap-start snap-always h-auto min-h-fixScreen">
+          {/* @faq */}
+          <FAQ />
+
           {/* @footer (banner) */}
           <FooterBanner />
 

@@ -12,15 +12,16 @@ const SuccessedModal = () => {
   return (
     <>
       <button
-        id="mdlBtnSuccessed"
-        // className="mdlBtnSuccessed toolsApp bg-transparent hidden flex-col items-center justify-center cursor-pointer rounded-[10px] outline-none fixed top-full bottom-0 left-auto right-0 h-8 w-8 opacity-0 invisible z-10"
-        className="toolsApp bg-blue-500 flex flex-col items-center justify-center cursor-pointer rounded-[10px] outline-none fixed top-40 bottom-auto left-auto right-0 h-8 w-8 z-100"
-        aria-labelledby="Modal Successed"
-        data-hs-overlay="#mdlSuccessed"
+        id="mdlBtnSuccess"
+        // className="mdlBtnSuccess toolsApp bg-transparent hidden flex-col items-center justify-center cursor-pointer rounded-[10px] outline-none fixed top-full bottom-0 left-auto right-0 h-8 w-8 opacity-0 invisible z-10"
+        className="mdlBtnSuccess bg-blue-500 flex flex-col items-center justify-center cursor-pointer rounded-[10px] outline-none fixed top-40 bottom-auto left-auto right-0 h-8 w-8 z-100"
+        aria-label="Success Modal"
+        aria-labelledby="Success Modal"
+        data-hs-overlay="#mdlSuccess"
       ></button>
 
       <div
-        id="mdlSuccessed"
+        id="mdlSuccess"
         className="hs-overlay [--body-scroll:true] bg-black-900/[0.33] hidden fixed top-0 left-0 overflow-x-hidden overflow-y-auto h-full w-full z-[9999] opacity-0 hs-overlay-open:opacity-100 transition-all hs-overlay-open:duration-300"
         data-hs-overlay-backdrop-container="#bckdrpModalActve"
       >
@@ -28,8 +29,8 @@ const SuccessedModal = () => {
           <div className="bg-white flex flex-col rounded-xl sm:rounded-[18px] text-center relative py-8 sm:py-14 px-7 sm:px-12">
             <button
               className="hs-dropdown-toggle outline-none absolute top-4.5 bottom-auto left-auto right-4"
-              aria-labelledby="mdlSuccessed"
-              data-hs-overlay="#mdlSuccessed"
+              aria-labelledby="mdlSuccess"
+              data-hs-overlay="#mdlSuccess"
             >
               <svg
                 className="h-4 w-4"
@@ -47,10 +48,10 @@ const SuccessedModal = () => {
               <span className="text-black-900 text-[64px] sm:text-[72px] leading-[80px]">
                 🎉
               </span>
-              <h2 className="text-black-900 font-figtree text-xl sm:text-2xl font-semibold uppercase mt-2 sm:mt-4 mx-auto max-w-[313px]">
+              <h2 className="text-black-900 font-staraBold text-xl sm:text-2xl font-semibold uppercase mt-2 sm:mt-4 mx-auto max-w-[313px]">
                 You're on the list!
               </h2>
-              <p className="text-black-900 font-figtree text-base sm:text-lg font-medium mt-4 px-0 sm:px-7">
+              <p className="text-black-900 font-bevietnamPro text-base sm:text-lg font-light mt-4 px-0">
                 Thank you for your interest for Coinfest Asia 2024. You will be
                 the first to receive news and updates—including for the upcoming
                 Coinfest Asia 2024.
