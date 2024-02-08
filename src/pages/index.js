@@ -60,9 +60,18 @@ const App = (props) => {
 
       <main className="ca2024Main ca2024MainMandatory approved overflow-x-hidden">
         {/* @header */}
-        <Header />
+        {/* <Header /> */}
 
-        <section className=" snap-start snap-always h-full min-h-fixScreen">
+        <section className="bg-red-500 snap-start snap-always h-full min-h-fixScreen">
+          {process.env.NEXT_PUBLIC_AUTHOR}
+        </section>
+        <section className="bg-blue-500 snap-start snap-always h-full min-h-fixScreen">
+          {process.env.NEXT_PUBLIC_AUTHOR}
+        </section>
+        <section className="bg-green-500 snap-start snap-always h-full min-h-fixScreen">
+          {process.env.NEXT_PUBLIC_AUTHOR}
+        </section>
+        <section className="bg-gray-500 snap-start snap-always h-full min-h-fixScreen">
           {process.env.NEXT_PUBLIC_AUTHOR}
         </section>
       </main>
