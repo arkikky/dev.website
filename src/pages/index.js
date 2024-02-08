@@ -7,6 +7,7 @@ const { publicRuntimeConfig } = getConfig();
 // @layout
 import Header from "@layouts/Header";
 import StartSpeakers from "@layouts/Speakers/start";
+import EndSpeakers from "@layouts/Speakers/end";
 import FooterBanner from "@layouts/Banner/FooterBanner";
 import Footer from "@layouts/Footer";
 
@@ -68,15 +69,12 @@ const App = () => {
         <section className="snap-start snap-always h-fixScreen min-h-fixScreen">
           <h1>awdawdaw</h1>
         </section>
-        <section className="bg-blue-500 snap-start snap-always h-full min-h-fixScreen">
-          {process.env.NEXT_PUBLIC_AUTHOR}
-        </section>
-        <section className="bg-green-500 snap-start snap-always h-full min-h-fixScreen">
-          {process.env.NEXT_PUBLIC_AUTHOR}
-        </section>
 
         {/* @speakers (Start) */}
         <StartSpeakers />
+
+        {/* @speakers (End) */}
+        <EndSpeakers />
 
         <section className="snap-start snap-always h-auto min-h-fixScreen">
           {/* @footer (banner) */}

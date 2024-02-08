@@ -13,7 +13,7 @@ const FooterBanner = () => {
             {/* @background */}
             <div className="rounded-2xl sm:rounded-[35px] overflow-hidden absolute inset-y-0 inset-x-0 z-px">
               <Image
-                className="object-center object-cover mx-auto h-auto w-full z-[5]"
+                className="object-center object-cover mx-auto h-full sm:h-auto w-full z-[5]"
                 src={"/assets/images/backdrop/ca2024BgLine.jpg"}
                 alt={`Coinfest Asia 2024 (Banner Footer)`}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
@@ -38,7 +38,7 @@ const FooterBanner = () => {
 
             {/* @content */}
             <div className="flex flex-col items-start justify-start relative w-full max-w-[697px] z-10">
-              <h2 className="text-white font-staraBold text-[32px] sm:text-[58px] xl:text-[80px] leading-[35px] sm:leading-[74px] xl:leading-[90px] uppercase">
+              <h2 className="text-white font-staraExtraBold text-[32px] sm:text-[58px] xl:text-[80px] leading-[35px] sm:leading-[74px] xl:leading-[90px] uppercase">
                 Join Asia's Immersive Web3 Festival
               </h2>
               <div className="flex flex-col mt-4 sm:mt-8 w-full sm:w-max">
