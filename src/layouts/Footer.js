@@ -29,7 +29,7 @@ const Footer = () => {
               <div className="supports-grid:grid grid-cols-4 sm:grid-cols-12 lg:grid-cols-12 gap-y-8 gap-x-6 mt-8 sm:mt-15">
                 <div className="col-span-full sm:col-span-4 lg:col-span-4 xl:col-span-2">
                   <div className="flex flex-col">
-                    <h2 className="text-black-900 font-bevietnamPro text-base font-bold capitalize">
+                    <h2 className="text-black-900 font-bevietnamPro text-base font-semibold capitalize">
                       Travel
                     </h2>
                     <ul className="pl-0 mt-6">
@@ -62,7 +62,7 @@ const Footer = () => {
                 </div>
                 <div className="col-span-full sm:col-span-4 lg:col-span-4 xl:col-span-2">
                   <div className="flex flex-col">
-                    <h2 className="text-black-900 font-bevietnamPro text-base font-bold capitalize">
+                    <h2 className="text-black-900 font-bevietnamPro text-base font-semibold capitalize">
                       Coinfest asia
                     </h2>
                     <ul className="pl-0 mt-6">
@@ -95,7 +95,7 @@ const Footer = () => {
                 </div>
                 <div className="col-span-full sm:col-span-4 lg:col-span-4 xl:col-span-2">
                   <div className="flex flex-col">
-                    <h2 className="text-black-900 font-bevietnamPro text-base font-bold capitalize">
+                    <h2 className="text-black-900 font-bevietnamPro text-base font-semibold capitalize">
                       Coinfest week
                     </h2>
                     <ul className="pl-0 mt-6">
@@ -128,7 +128,7 @@ const Footer = () => {
                 </div>
                 <div className="col-span-full sm:col-span-4 lg:col-span-4 xl:col-span-2">
                   <div className="flex flex-col">
-                    <h2 className="text-black-900 font-bevietnamPro text-base font-bold capitalize">
+                    <h2 className="text-black-900 font-bevietnamPro text-base font-semibold capitalize">
                       Partnership
                     </h2>
                     <ul className="pl-0 mt-6">
@@ -173,7 +173,7 @@ const Footer = () => {
                 </div>
                 <div className="col-span-full sm:col-span-4 lg:col-span-4 xl:col-span-2">
                   <div className="flex flex-col">
-                    <h2 className="text-black-900 font-bevietnamPro text-base font-bold capitalize">
+                    <h2 className="text-black-900 font-bevietnamPro text-base font-semibold capitalize">
                       Previous Events
                     </h2>
                     <ul className="pl-0 mt-6">
@@ -218,7 +218,7 @@ const Footer = () => {
                 </div>
                 <div className="col-span-full sm:col-span-4 lg:col-span-4 xl:col-span-2">
                   <div className="flex flex-col">
-                    <h2 className="text-black-900 font-bevietnamPro text-base font-bold capitalize">
+                    <h2 className="text-black-900 font-bevietnamPro text-base font-semibold capitalize">
                       Others
                     </h2>
                     <ul className="pl-0 mt-6">

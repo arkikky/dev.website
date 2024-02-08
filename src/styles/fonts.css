@@ -5,7 +5,7 @@
   @font-face {
     font-family: "Stara SemiBold";
     src: local("Stara SemiBold"),
-      url("/2024/assets/fonts/ca2024Stara-SemiBold.otf") format("opentype");
+      url("/assets/fonts/ca2024Stara-SemiBold.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -14,7 +14,7 @@
   @font-face {
     font-family: "Stara Bold";
     src: local("Stara Bold"),
-      url("/2024/assets/fonts/ca2024Stara-Bold.otf") format("opentype");
+      url("/assets/fonts/ca2024Stara-Bold.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -23,7 +23,7 @@
   @font-face {
     font-family: "Stara ExtraBold";
     src: local("Stara ExtraBold"),
-      url("/2024/assets/fonts/ca2024Stara-ExtraBold.otf") format("opentype");
+      url("/assets/fonts/ca2024Stara-ExtraBold.otf") format("opentype");
     font-weight: normal;
     font-style: normal;
     font-display: swap;

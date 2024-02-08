@@ -6,6 +6,7 @@ const { publicRuntimeConfig } = getConfig();
 
 // @layout
 import Header from "@layouts/Header";
+import FooterBanner from "@layouts/Banner/FooterBanner";
 import Footer from "@layouts/Footer";
 
 const App = () => {
@@ -73,10 +74,9 @@ const App = () => {
           {process.env.NEXT_PUBLIC_AUTHOR}
         </section>
         <section className="snap-start snap-always h-auto min-h-fixScreen">
-          {/* @footer */}
-          <Footer />
-          {/* @footer */}
-          <Footer />
+          {/* @footer (banner) */}
+          <FooterBanner />
+
           {/* @footer */}
           <Footer />
         </section>
