@@ -8,7 +8,7 @@ import Container from "@components/Container";
 const EndSpeakers = () => {
   return (
     <>
-      <section className="ca2024EndSpeakers snap-always snap-center flex flex-col items-center justify-center overflow-hidden relative h-svh min-h-svh">
+      <section className="ca2024EndSpeakers snap-start snap-always flex flex-col items-center justify-center overflow-hidden relative h-full min-h-svh xl:min-h-screen">
         <div className="ca2024SwipeUp absolute inset-y-0 inset-x-0 opacity-1 z-px transition duration-[1s] ease-out">
           <Image
             className="object-center object-cover mx-auto h-full sm:h-auto w-full z-10"

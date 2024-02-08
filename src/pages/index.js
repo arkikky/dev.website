@@ -75,9 +75,9 @@ const App = ({ ipAddress, sponsorPartner }) => {
       {/* @navbar-top */}
       <NavbarTop />
 
-      <main className="ca2024Main ca2024MainMandatory approved overflow-x-hidden">
+      <main className="ca2024Main ca2024MainMandatory approved overflow-x-hidden pt-0">
         {/* @header */}
-        {/* <Header /> */}
+        <Header />
 
         {/* @speakers (Start) */}
         <StartSpeakers />
@@ -91,7 +91,7 @@ const App = ({ ipAddress, sponsorPartner }) => {
         {/* @partners */}
         <Partners {...isSponsorPartner} />
 
-        <div className="snap-start snap-always h-auto min-h-fixScreen">
+        <div className="snap-start snap-normal h-auto min-h-full">
           {/* @faq */}
           <FAQ />
 

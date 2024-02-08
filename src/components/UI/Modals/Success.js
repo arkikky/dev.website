@@ -48,7 +48,7 @@ const SuccessedModal = () => {
               <span className="text-black-900 text-[64px] sm:text-[72px] leading-[80px]">
                 🎉
               </span>
-              <h2 className="text-black-900 font-staraBold text-xl sm:text-2xl font-semibold uppercase mt-2 sm:mt-4 mx-auto max-w-[313px]">
+              <h2 className="text-black-900 font-bevietnamPro text-xl sm:text-2xl font-semibold uppercase mt-2 sm:mt-4 mx-auto max-w-[313px]">
                 You're on the list!
               </h2>
               <p className="text-black-900 font-bevietnamPro text-base sm:text-lg font-light mt-4 px-0">

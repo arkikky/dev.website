@@ -7,7 +7,7 @@ import Container from "@components/Container";
 const StartSpeakers = () => {
   return (
     <>
-      <section className="ca2024StartSpeaker snap-center snap-always flex flex-col items-center justify-center overflow-hidden relative h-svh min-h-svh">
+      <section className="ca2024StartSpeaker snap-start snap-always flex flex-col items-center justify-center overflow-hidden relative h-full min-h-svh xl:min-h-screen">
         {/* @background (backdrop) */}
         <div className="ca2024SpeakersStartBackdrop absolute inset-y-0 inset-x-0 z-px">
           <Image

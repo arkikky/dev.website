@@ -68,7 +68,6 @@ module.exports = {
         19: "72px",
         22: "86px",
         34: "136px",
-        fixScreen: "100svh",
         fill: "-webkit-fill-available",
       },
       zIndex: {

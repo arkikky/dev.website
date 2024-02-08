@@ -8,7 +8,6 @@
 /* @fonts */
 @import url("./fonts");
 
-html,
 body {
   @apply bg-white;
   @apply font-bevietnamPro;
@@ -21,7 +20,8 @@ a {
 
 /* main */
 .ca2024Main.ca2024MainMandatory {
-  @apply overflow-y-auto snap-y snap-mandatory;
+  @apply overflow-scroll;
+  @apply snap-y snap-mandatory;
   @apply relative;
-  @apply h-fixScreen;
+  @apply h-screen;
 }

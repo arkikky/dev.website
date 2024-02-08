@@ -7,7 +7,7 @@ import Container from "@components/Container";
 const StartPartners = () => {
   return (
     <>
-      <section className="ca2024StartPartners snap-always snap-start flex flex-col items-center justify-center overflow-hidden relative h-svh min-h-svh transition duration-[1s] ease-in-out">
+      <section className="ca2024StartPartners snap-always snap-start flex flex-col items-center justify-center overflow-hidden relative h-svh sm:h-screen min-h-svh sm:min-h-screen transition duration-[1s] ease-in-out">
         {/* <div className="ca2024OpenBackdrop absolute inset-y-0 inset-x-0 opacity-1 z-[2] transition duration-[1s] ease-out">
           <Image
             className="ca2024BgRotate-Backdrop object-center object-cover mx-auto h-full sm:h-auto w-full z-10"
