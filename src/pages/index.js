@@ -77,11 +77,7 @@ const App = ({ ipAddress, sponsorPartner }) => {
 
       <main className="ca2024Main ca2024MainMandatory approved overflow-x-hidden">
         {/* @header */}
-        {/* <Header /> */}
-
-        <section className="snap-start snap-always h-fixScreen min-h-fixScreen">
-          <h1>awdawdaw</h1>
-        </section>
+        <Header />
 
         {/* @speakers (Start) */}
         <StartSpeakers />
