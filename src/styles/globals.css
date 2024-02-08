@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  @apply overflow-y-hidden;
+}
+
+/* main */
+.ca2024Main.ca2024MainMandatory {
+  @apply overflow-y-auto snap-y snap-mandatory;
+  @apply relative;
+  @apply h-fixScreen;
+}
