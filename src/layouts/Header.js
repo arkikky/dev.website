@@ -8,12 +8,10 @@ const Header = () => {
       isVideo.current.play();
     }
 
-    console.log(isVideo);
-
     return () => {
       undefined;
     };
-  }, [isVideo]);
+  }, []);
 
   return (
     <>
@@ -33,13 +31,7 @@ const Header = () => {
           <video
             ref={isVideo}
             id="ca2024VideoHeaderApp"
-            __idm_id__="true"
             className="aspect-video object-cover object-center h-full w-full"
-            preload="auto"
-            muted
-            autoPlay
-            loop
-            playsInline
           >
             <source src={"/assets/video/ca2024HeroApp.mp4"} type="video/mp4" />
           </video>
