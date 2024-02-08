@@ -77,7 +77,7 @@ const App = ({ ipAddress, sponsorPartner }) => {
 
       <main className="ca2024Main ca2024MainMandatory approved overflow-x-hidden">
         {/* @header */}
-        <Header />
+        {/* <Header /> */}
 
         {/* @speakers (Start) */}
         <StartSpeakers />
