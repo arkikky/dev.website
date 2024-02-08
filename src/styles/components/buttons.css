@@ -1,0 +1,14 @@
+.ca2024BtnOverflay {
+  @apply relative;
+}
+
+.ca2024BtnOverflay {
+  @apply bg-[url("/2024/assets/images/backdrop/ca2024BtnOverflay.png")];
+  @apply bg-center object-cover object-center;
+}
+
+.ca2024BtnOverflayColor {
+  @apply bg-[url("/2024/assets/images/backdrop/ca2024BtnOverflay.png")];
+  @apply bg-center object-cover object-right;
+  @apply bg-blend-multiply;
+}

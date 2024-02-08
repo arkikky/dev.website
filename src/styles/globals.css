@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* @tailwind-css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @fonts */
+@import url("./fonts");
+
+body {
+  @apply bg-white;
+  @apply text-black-900 font-bevietnamPro text-base font-medium;
+  @apply overflow-x-hidden;
+  @apply h-full;
+}
+
+a {
+  @apply outline-none focus-visible:outline-none;
+}
+
+input:valid {
+  @apply bg-white focus-visible:bg-white;
+}
+
+/* @input-number */
+@import "react-phone-number-input/style.css";
+
+/* @buttons */
+@import url("./components/buttons");
+
+/* @backdrop */
+@import url("./components/backdrop");
+
+/* @markdown */
+@import url("./components/markdown");
+
+/* @splide */
+@import url("./components/splide");
+
+/* @menu */
+@import url("./components/menu");
+
+/* @benefit */
+@import url("./components/card");
+
+/* @main */
+.ca2024Main {
+  @apply relative;
+}
+
+.ca2024Main.approved {
+  @apply overflow-y-auto snap-y snap-mandatory;
+  @apply relative;
+  @apply h-[100svh];
+}
+
+.ca2024Section {
+  @apply h-full min-h-[100svh];
+}
+
+.ca2024SectionAuto {
+  @apply h-auto min-h-[auto];
+}
+.ca2024SectionAutoScreen {
+  @apply h-[100svh] min-h-[auto];
+}
+
+/* Section */
+.ca2024BgRotate-Backdrop {
+  transform: rotateX(180deg);
+}
+
+/* Mansonry */
+.caMnsry {
+  @apply relative;
+  @apply columns-1 sm:columns-2 lg:columns-3 [&>div:not(:first-child)]:mt-4;
+}
+
+.ca2024ScrolldownIcns {
+  border: 2px solid #ffffff;
+  @apply rounded-full;
+  @apply mx-auto;
+  @apply h-6 w-4;
+}
+
+.ca2024ScrolldownIcns .ca2024ScrolldownIcns-Indiktr {
+  @apply flex;
+  @apply bg-white rounded-full;
+  @apply mt-1.5 mx-auto;
+  @apply h-1 w-1;
+}
+
+/* @group-box */
+.ca2024GrpBxShadow::before {
+  @apply content-[''];
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(0, 0, 0, 0.42) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  @apply absolute -inset-y-[70px] -inset-x-[70px];
+  @apply opacity-[0.7] blur-[10px];
+  @apply -z-px;
+}
+
+/* @phone-format */
+.PhoneInputCountry {
+  @apply pr-2;
+}
+
+.PhoneInputCountrySelectArrow {
+  @apply !hidden;
+}
+
+.PhoneInputInput {
+  @apply border-l border-solid border-gray-300;
+  @apply focus-visible:outline-none;
+  @apply pl-2;
+}
+
+.PhoneInputCountryIcon.PhoneInputCountryIcon--border {
+  @apply rounded-sm;
+  @apply overflow-hidden;
+}
+
+/* Select */
+.css-t3ipsp-control,
+.css-13cymwt-control {
+  @apply !rounded-lg;
+  @apply !border border-solid !border-[#E3E3E3];
+  @apply !min-h-[62px];
+}

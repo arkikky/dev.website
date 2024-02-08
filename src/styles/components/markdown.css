@@ -1,0 +1,20 @@
+/* Article Markdown Desc */
+.artcleMarkdown p {
+  @apply text-black-900 font-bevietnamPro font-normal;
+  @apply mt-4 first:mt-0;
+}
+
+.artcleMarkdown img {
+  @apply object-cover object-center rounded;
+}
+
+.artcleMarkdown strong,
+.artcleMarkdown span,
+.artcleMarkdown a {
+  @apply text-secondary2024 font-normal;
+}
+
+.artcleMarkdown strong,
+.artcleMarkdown a {
+  @apply hocus:underline;
+}
