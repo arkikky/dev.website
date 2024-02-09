@@ -10,6 +10,7 @@ import { getFetchUrl, getFetch } from "@lib/controller/API";
 
 // @layout
 import NavbarTop from "@layouts/Navbar/NavbarTop";
+import Navbar from "@layouts/Navbar/NavbarBottom";
 import Header from "@layouts/Header";
 import StartSpeakers from "@layouts/Speakers/start";
 import Speakers from "@layouts/Speakers";
@@ -75,23 +76,26 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
         />
       </Head>
 
-      {/* @navbar-top */}
+      {/* @navbar (top) */}
       <NavbarTop />
+
+      {/* @navbar (bottom) */}
+      <Navbar />
 
       <main className="ca2024Main ca2024MainMandatory approved overflow-x-hidden pt-0">
         {/* @header */}
         <Header />
 
-        {/* @speakers (Start) */}
+        {/* @speakers (start) */}
         <StartSpeakers />
 
         {/* @speakers */}
         <Speakers {...isSpeakers} />
 
-        {/* @speakers (End) */}
+        {/* @speakers (end) */}
         <EndSpeakers />
 
-        {/* @partners (Start) */}
+        {/* @partners (start) */}
         <StartPartners />
 
         {/* @partners */}
@@ -150,4 +154,8 @@ export const getStaticProps = async () => {
       notFound: true,
     };
   }
+};
+
+App.getLayout = function PageLayout(page) {
+  return <>{page}</>;
 };

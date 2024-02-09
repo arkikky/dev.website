@@ -25,3 +25,6 @@ a {
   @apply relative;
   @apply h-screen;
 }
+
+/* @menu */
+@import url("./components/menu");
