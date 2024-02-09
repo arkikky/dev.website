@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 // @lib
-// import { getExplode, getImplode } from "@lib/utils/splitArray";
+import { setJoinString } from "@lib/utils/splitArray";
 
 const SpeakersCard = ({ attributes }) => {
   const isImages = attributes
@@ -15,15 +15,6 @@ const SpeakersCard = ({ attributes }) => {
     ? process.env.NEXT_PUBLIC_UPLOAD +
       attributes.logoCompany.data.attributes.url
     : "";
-
-  // const rsArray = getExplode(" ", isName);
-
-  // const joinString = (data) => {
-  //   const rsString = getImplode("", rsArray);
-
-  //   return rsString;
-  // };
-
   return (
     <>
       <div className="group group-hover:cursor-pointer flex flex-col items-center justify-center overflow-hidden px-0">
@@ -67,11 +58,14 @@ const SpeakersCard = ({ attributes }) => {
           </div>
 
           {/* @btn (modal) */}
-          {/* <button
-            id={`mdlBtnSpeakers${joinString(isName)}`}
+          <button
+            role="button"
+            id={`mdlBtnSpeakers${setJoinString(" ", "", isName)}`}
+            type="button"
             className="mdlBtnSpeakers flex flex-col items-center justify-center rounded-xl bg-white opacity-0 group-hover:opacity-100 absolute top-3 sm:top-4 bottom-auto left-auto right-3 sm:right-4 h-10 w-10 z-10 transition-all duration-300 ease-in-out"
+            aria-label={`${isName} - (Modal Speakers)`}
             aria-labelledby={`${isName} - (Modal Speakers)`}
-            data-hs-overlay={`#mdlSpeakers${joinString(isName)}`}
+            data-hs-overlay={`#mdlSpeakers${setJoinString(" ", "", isName)}`}
           >
             <svg
               className="h-6 w-6"
@@ -84,7 +78,7 @@ const SpeakersCard = ({ attributes }) => {
                 fill="black"
               />
             </svg>
-          </button> */}
+          </button>
         </div>
 
         {/* @content */}
