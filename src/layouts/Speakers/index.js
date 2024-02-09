@@ -11,7 +11,7 @@ const Speakers = ({ data }) => {
 
   return (
     <>
-      <section className="ca2024SectionAuto ca2024SldeSpeaker snap-always snap-start flex flex-col items-center justify-center overflow-hidden relative">
+      <section className="ca2024SectionAuto ca2024SldeSpeaker snap-always snap-start flex flex-col items-center justify-center overflow-hidden relative h-full">
         <div className="ca2024SldeSpeakersPointTop bg-transparent absolute top-10 bottom-auto inset-x-0 h-14 w-full select-none pointer-events-none z-px"></div>
 
         <Container className="overflow-hidden relative z-[5]">

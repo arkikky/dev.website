@@ -18,7 +18,7 @@ const DefaultTicket = () => {
 
   return (
     <>
-      <section className="ca2024SldeTicket bg-secondary2024 snap-always snap-start flex flex-col items-center justify-center overflow-hidden relative h-auto small:h-full min-h-[auto] small:min-h-screen">
+      <section className="ca2024SldeTicket bg-secondary2024 snap-always snap-start flex flex-col items-center justify-center overflow-hidden relative h-full min-h-svh xl:min-h-screen">
         <div className="ca2024SldeTicketsPointTop bg-transparent absolute top-10 bottom-auto inset-x-0 h-14 w-full select-none pointer-events-none z-px"></div>
 
         {/* @background (backdrop) */}
