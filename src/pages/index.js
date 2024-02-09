@@ -12,6 +12,7 @@ import { getFetchUrl, getFetch } from "@lib/controller/API";
 import NavbarTop from "@layouts/Navbar/NavbarTop";
 import Header from "@layouts/Header";
 import StartSpeakers from "@layouts/Speakers/start";
+import Speakers from "@layouts/Speakers";
 import EndSpeakers from "@layouts/Speakers/end";
 import StartPartners from "@layouts/Partners/start";
 import Partners from "@layouts/Partners";
@@ -20,7 +21,8 @@ import FAQ from "@layouts/FAQ";
 import FooterBanner from "@layouts/Banner/FooterBanner";
 import Footer from "@layouts/Footer";
 
-const App = ({ ipAddress, sponsorPartner }) => {
+const App = ({ ipAddress, speaker, sponsorPartner }) => {
+  const [isSpeakers, setSpeakers] = useState(speaker);
   const [isSponsorPartner, setSponsorPartner] = useState(sponsorPartner);
 
   return (
@@ -83,6 +85,9 @@ const App = ({ ipAddress, sponsorPartner }) => {
         {/* @speakers (Start) */}
         <StartSpeakers />
 
+        {/* @speakers */}
+        <Speakers {...isSpeakers} />
+
         {/* @speakers (End) */}
         <EndSpeakers />
 
@@ -117,9 +122,9 @@ export const getStaticProps = async () => {
     `https://ipinfo.io/json?token=135855871d1f46`
   );
 
-  // const gCa2024Speaker = await getFetch(
-  //   `/speaker-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
-  // );
+  const isSpeaker = await getFetch(
+    `/speaker-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
+  );
 
   const isSponsorPartner = await getFetch(
     `/sponsor-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
@@ -133,7 +138,7 @@ export const getStaticProps = async () => {
     return {
       props: {
         ipAddress: isIpAddress || [],
-        // speaker: gCa2024Speaker || [],
+        speaker: isSpeaker || [],
         sponsorPartner: isSponsorPartner || [],
         // socialMentions: gCa2024SocialMentions || [],
       },
