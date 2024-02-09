@@ -61,7 +61,6 @@ const SpeakersCard = ({ attributes }) => {
           <button
             role="button"
             id={`mdlBtnSpeakers${setJoinString(" ", "", isName)}`}
-            type="button"
             className="mdlBtnSpeakers flex flex-col items-center justify-center rounded-xl bg-white opacity-0 group-hover:opacity-100 absolute top-3 sm:top-4 bottom-auto left-auto right-3 sm:right-4 h-10 w-10 z-10 transition-all duration-300 ease-in-out"
             aria-label={`${isName} - (Modal Speakers)`}
             aria-labelledby={`${isName} - (Modal Speakers)`}

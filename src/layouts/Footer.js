@@ -12,7 +12,7 @@ import Container from "@components/Container";
 const Footer = () => {
   return (
     <>
-      <footer className="ca2024Footer flex flex-col items-end justify-end overflow-hidden relative pt-12 sm:pt-17 pb-[168px] sm:pb-[168px]">
+      <footer className="ca2024Footer flex flex-col items-end justify-end overflow-hidden relative pt-12 sm:pt-17 pb-[130px] sm:pb-[168px]">
         <Container>
           <div className="flex flex-col">
             <div className="flex flex-col">

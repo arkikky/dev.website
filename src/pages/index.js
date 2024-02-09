@@ -95,8 +95,8 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
         {/* @speakers (end) */}
         <EndSpeakers />
 
-        {/* @partners (start) */}
-        <StartPartners />
+        {/* @partners (start - on hold) */}
+        {/* <StartPartners /> */}
 
         {/* @partners */}
         <Partners {...isSponsorPartner} />
@@ -104,7 +104,7 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
         {/* @tickets */}
         <Tickets />
 
-        <div className="snap-start snap-normal h-auto min-h-full">
+        <div className="snap-start snap-always h-auto min-h-full">
           {/* @faq */}
           <FAQ />
 
