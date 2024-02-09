@@ -41,14 +41,44 @@ const Footer = () => {
                         >
                           Flight Deals
                           <span
-                            className="hs-tooltip-content bg-black-900/20 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
                             role="tooltip"
                           >
-                            Comming Soon
+                            Coming Soon
                           </span>
                         </button>
                       </li>
-                      <li className="group mb-4 last:mb-0">
+                      <li className="group hs-tooltip [--trigger:hover] [--placement:right] mb-4 last:mb-0">
+                        <button
+                          type="button"
+                          aria-label="menuAccomodationDeals"
+                          className="hs-tooltip-toggle flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
+                        >
+                          Accomodation Deals
+                          <span
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            role="tooltip"
+                          >
+                            Coming Soon
+                          </span>
+                        </button>
+                      </li>
+                      <li className="group hs-tooltip [--trigger:hover] [--placement:right] mb-4 last:mb-0">
+                        <button
+                          type="button"
+                          aria-label="menuGuide"
+                          className="hs-tooltip-toggle flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
+                        >
+                          Guide
+                          <span
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            role="tooltip"
+                          >
+                            Coming Soon
+                          </span>
+                        </button>
+                      </li>
+                      {/* <li className="group mb-4 last:mb-0">
                         <Link
                           className="flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
                           href=""
@@ -63,7 +93,7 @@ const Footer = () => {
                         >
                           Guide
                         </Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>
@@ -73,7 +103,7 @@ const Footer = () => {
                       Coinfest asia
                     </h2>
                     <ul className="pl-0 mt-6">
-                      <li className="group mb-4 last:mb-0">
+                      {/* <li className="group mb-4 last:mb-0">
                         <Link
                           className="flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
                           href=""
@@ -96,6 +126,51 @@ const Footer = () => {
                         >
                           Speakers
                         </Link>
+                      </li> */}
+                      <li className="group hs-tooltip [--trigger:hover] [--placement:right] mb-4 last:mb-0">
+                        <button
+                          type="button"
+                          aria-label="menuTicket"
+                          className="hs-tooltip-toggle flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
+                        >
+                          Ticket
+                          <span
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            role="tooltip"
+                          >
+                            Coming Soon
+                          </span>
+                        </button>
+                      </li>
+                      <li className="group hs-tooltip [--trigger:hover] [--placement:right] mb-4 last:mb-0">
+                        <button
+                          type="button"
+                          aria-label="menuVenue"
+                          className="hs-tooltip-toggle flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
+                        >
+                          Venue
+                          <span
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            role="tooltip"
+                          >
+                            Coming Soon
+                          </span>
+                        </button>
+                      </li>
+                      <li className="group hs-tooltip [--trigger:hover] [--placement:right] mb-4 last:mb-0">
+                        <button
+                          type="button"
+                          aria-label="menuSpeakers"
+                          className="hs-tooltip-toggle flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
+                        >
+                          Speakers
+                          <span
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            role="tooltip"
+                          >
+                            Coming Soon
+                          </span>
+                        </button>
                       </li>
                     </ul>
                   </div>
@@ -106,7 +181,7 @@ const Footer = () => {
                       Coinfest week
                     </h2>
                     <ul className="pl-0 mt-6">
-                      <li className="group mb-4 last:mb-0">
+                      {/* <li className="group mb-4 last:mb-0">
                         <Link
                           className="flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
                           href=""
@@ -129,6 +204,51 @@ const Footer = () => {
                         >
                           Co-host a side event
                         </Link>
+                      </li> */}
+                      <li className="group hs-tooltip [--trigger:hover] [--placement:right] mb-4 last:mb-0">
+                        <button
+                          type="button"
+                          aria-label="menuMap"
+                          className="hs-tooltip-toggle flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
+                        >
+                          Map
+                          <span
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            role="tooltip"
+                          >
+                            Coming Soon
+                          </span>
+                        </button>
+                      </li>
+                      <li className="group hs-tooltip [--trigger:hover] [--placement:right] mb-4 last:mb-0">
+                        <button
+                          type="button"
+                          aria-label="menuSubmitEvent"
+                          className="hs-tooltip-toggle flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
+                        >
+                          Submit side event
+                          <span
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            role="tooltip"
+                          >
+                            Coming Soon
+                          </span>
+                        </button>
+                      </li>
+                      <li className="group hs-tooltip [--trigger:hover] [--placement:right] mb-4 last:mb-0">
+                        <button
+                          type="button"
+                          aria-label="menuCoHostEvent"
+                          className="hs-tooltip-toggle flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
+                        >
+                          Co-host a side event
+                          <span
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            role="tooltip"
+                          >
+                            Coming Soon
+                          </span>
+                        </button>
                       </li>
                     </ul>
                   </div>
@@ -143,8 +263,6 @@ const Footer = () => {
                         <Link
                           className="flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
                           href="/get-involved/speakers"
-                          target="_blank"
-                          rel="noopener noreferrer"
                         >
                           Speakers
                         </Link>
@@ -153,8 +271,6 @@ const Footer = () => {
                         <Link
                           className="flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
                           href="/get-involved/sponsorship"
-                          target="_blank"
-                          rel="noopener noreferrer"
                         >
                           Sponsorship Inquiry
                         </Link>
@@ -162,7 +278,7 @@ const Footer = () => {
                       <li className="group mb-4 last:mb-0">
                         <Link
                           className="flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
-                          href=""
+                          href="/get-involved/media-partners"
                         >
                           Media Contact
                         </Link>
@@ -170,7 +286,7 @@ const Footer = () => {
                       <li className="group mb-4 last:mb-0">
                         <Link
                           className="flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
-                          href=""
+                          href="/get-involved/community"
                         >
                           Communities Contact
                         </Link>
@@ -230,12 +346,6 @@ const Footer = () => {
                     </h2>
                     <ul className="pl-0 mt-6">
                       <li className="group hs-tooltip [--trigger:hover] [--placement:right] mb-4 last:mb-0">
-                        {/* <Link
-                          className="flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
-                          href=""
-                        >
-                          Terms & Conditions
-                        </Link> */}
                         <button
                           type="button"
                           aria-label="menuTermsConditions"
@@ -243,12 +353,65 @@ const Footer = () => {
                         >
                           Terms & Conditions
                           <span
-                            className="hs-tooltip-content bg-black-900/20 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
                             role="tooltip"
                           >
-                            Comming Soon
+                            Coming Soon
                           </span>
                         </button>
+                      </li>
+                      <li className="group hs-tooltip [--trigger:hover] [--placement:right] mb-4 last:mb-0">
+                        <button
+                          type="button"
+                          aria-label="menuPrivacyPolicy"
+                          className="hs-tooltip-toggle flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
+                        >
+                          Privacy Policy
+                          <span
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            role="tooltip"
+                          >
+                            Coming Soon
+                          </span>
+                        </button>
+                      </li>
+                      <li className="group hs-tooltip [--trigger:hover] [--placement:right] mb-4 last:mb-0">
+                        <button
+                          type="button"
+                          aria-label="menuNewsletter"
+                          className="hs-tooltip-toggle flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
+                        >
+                          Newsletter
+                          <span
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            role="tooltip"
+                          >
+                            Coming Soon
+                          </span>
+                        </button>
+                      </li>
+                      <li className="group hs-tooltip [--trigger:hover] [--placement:right] mb-4 last:mb-0">
+                        <button
+                          type="button"
+                          aria-label="menuGallery"
+                          className="hs-tooltip-toggle flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
+                        >
+                          Gallery
+                          <span
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            role="tooltip"
+                          >
+                            Coming Soon
+                          </span>
+                        </button>
+                      </li>
+                      {/* <li>
+                        <Link
+                          className="flex flex-row items-center text-black-900 font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none"
+                          href=""
+                        >
+                          Terms & Conditions
+                        </Link>
                       </li>
                       <li className="group mb-4 last:mb-0">
                         <Link
@@ -273,7 +436,7 @@ const Footer = () => {
                         >
                           Gallery
                         </Link>
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>

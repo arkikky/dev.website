@@ -15,6 +15,7 @@ import StartSpeakers from "@layouts/Speakers/start";
 import EndSpeakers from "@layouts/Speakers/end";
 import StartPartners from "@layouts/Partners/start";
 import Partners from "@layouts/Partners";
+import Tickets from "@layouts/Tickets";
 import FAQ from "@layouts/FAQ";
 import FooterBanner from "@layouts/Banner/FooterBanner";
 import Footer from "@layouts/Footer";
@@ -90,6 +91,9 @@ const App = ({ ipAddress, sponsorPartner }) => {
 
         {/* @partners */}
         <Partners {...isSponsorPartner} />
+
+        {/* @tickets */}
+        <Tickets />
 
         <div className="snap-start snap-normal h-auto min-h-full">
           {/* @faq */}
