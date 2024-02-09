@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="snap-start snap-always relative h-svh sm:h-screen min-h-svh sm:min-h-screen z-[5]">
+      <header className="snap-start snap-always relative h-svh xl:h-screen min-h-svh xl:min-h-screen z-[5]">
         {/* <div className="flex flex-col items-center justify-center absolute top-auto bottom-28 sm:bottom-[142px] inset-0 mx-auto w-max z-[2]">
           <div className="bg-white/50 rounded-[10px] flex flex-col items-center justify-center h-10 w-10">
             <div className="ca2024ScrolldownIcns">

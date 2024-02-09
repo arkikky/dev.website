@@ -22,7 +22,7 @@ const Partners = ({ data }) => {
             </h2>
           </div>
 
-          <div className="ca2024PartnersContent flex flex-col overflow-hidden relative pb-[202px] mt-8 sm:mt-11 opacity-1 transition duration-[1s] ease-out">
+          <div className="ca2024PartnersContent flex flex-col overflow-hidden relative pb-[262px] mt-8 sm:mt-11 opacity-1 transition duration-[1s] ease-out">
             <div className="supports-grid:grid grid-cols-4 sm:grid-cols-12 lg:grid-cols-12 gap-y-2 gap-x-2 relative">
               {isSponsorPartner?.map((gtRslt, i) => (
                 <div className="col-span-2 sm:col-span-4 lg:col-span-3" key={i}>
