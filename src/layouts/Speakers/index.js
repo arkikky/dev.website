@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import SpeakersModal from "src/components/UI/Modals/Speakers";
 // @components
 import Container from "@components/Container";
+import SpeakersModal from "src/components/UI/Modals/Speakers";
 
 // @components
 import SpeakersCard from "@components/UI/Card/SpeakersCard";
@@ -26,14 +26,12 @@ const Speakers = ({ data }) => {
             <div className="ca2024SldeSpeakerContent opacity-1 relative transition duration-[2.2s] ease-out">
               <div className="supports-grid:grid grid-cols-4 sm:grid-cols-12 lg:grid-cols-12 gap-y-4 sm:gap-y-6 lg:gap-y-10 gap-x-4 sm:gap-x-6 lg:gap-x-10 mt-8 sm:mt-11 relative">
                 {isSpeakers?.map((gtRslt, i) => (
-                  <>
-                    <div
-                      className="col-span-2 sm:col-span-4 lg:col-span-3"
-                      key={i}
-                    >
-                      <SpeakersCard {...gtRslt} />
-                    </div>
-                  </>
+                  <div
+                    className="col-span-2 sm:col-span-4 lg:col-span-3"
+                    key={i}
+                  >
+                    <SpeakersCard {...gtRslt} />
+                  </div>
                 ))}
               </div>
             </div>
@@ -42,8 +40,10 @@ const Speakers = ({ data }) => {
       </section>
 
       {/* @modal (speakers) */}
-      {isSpeakers?.map((gtRslt, i) => (
-        <SpeakersModal {...gtRslt} key={i} />
+      {isSpeakers?.map((gtRslt, a) => (
+        <div key={a}>
+          <SpeakersModal {...gtRslt} />
+        </div>
       ))}
     </>
   );

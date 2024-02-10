@@ -8,9 +8,6 @@ const { publicRuntimeConfig } = getConfig();
 // @lib
 import { getFetchUrl, getFetch } from "@lib/controller/API";
 
-import { MyContextProvider } from "src/context/MyContext";
-import ChildComponent from "src/components/ChildComponent";
-
 // @layout
 import NavbarTop from "@layouts/Navbar/NavbarTop";
 import Navbar from "@layouts/Navbar/NavbarBottom";
@@ -18,7 +15,7 @@ import Header from "@layouts/Header";
 import StartSpeakers from "@layouts/Speakers/start";
 import Speakers from "@layouts/Speakers";
 import EndSpeakers from "@layouts/Speakers/end";
-import StartPartners from "@layouts/Partners/start";
+// import StartPartners from "@layouts/Partners/start";
 import Partners from "@layouts/Partners";
 import Tickets from "@layouts/Tickets";
 import FAQ from "@layouts/FAQ";
@@ -82,10 +79,10 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
       {/* @navbar (top) */}
       <NavbarTop />
 
-      <main className="ca2024Main ca2024MainMandatory approved overflow-x-hidden pt-0">
-        {/* @navbar (bottom) */}
-        <Navbar />
+      {/* @navbar (bottom) */}
+      <Navbar />
 
+      <main className="ca2024Main ca2024MainMandatory approved overflow-x-hidden pt-0">
         {/* @header */}
         <Header />
 
@@ -97,12 +94,6 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
 
         {/* @speakers (end) */}
         <EndSpeakers />
-
-        {/* <div className="snap-start snap-always h-auto min-h-full">
-          <MyContextProvider>
-            <ChildComponent />
-          </MyContextProvider>
-        </div> */}
 
         {/* @partners (start - on hold) */}
         {/* <StartPartners /> */}

@@ -4,20 +4,20 @@ import Image from "next/image";
 // @lib
 import { setJoinString } from "@lib/utils/splitArray";
 
-const SpeakersModal = ({ data, attributes }) => {
+const SpeakersModal = ({ attributes }) => {
   const isImages = attributes
     ? process.env.NEXT_PUBLIC_UPLOAD +
       attributes.profilePicture.data.attributes.url
     : "/2024/assets/images/speakers/ca2024Speakers-YukiKamimoto.png";
   const isName = attributes ? attributes.name : "Yuki Kamimoto";
   const isTags = attributes ? attributes.position : "CEO, Coindesk Japan";
-  // const isShortBio = attributes
-  //   ? attributes.shortBio
-  //   : "Jeth Soetoyo is the co-founder and CEO of Figma. Dylan studied computer science and mathematics at Brown University where he and his co-founder, Evan Wallace, first started experimenting with design tools built on (and for) the web. With funding from a Thiel fellowship, they began Figma. Prior to Figma, Dylan interned at O'Reilly Media, LinkedIn, and Flipboard.";
-  // const isBrand = attributes
-  //   ? process.env.NEXT_PUBLIC_UPLOAD +
-  //     attributes.logoCompany.data.attributes.url
-  //   : "";
+  const isShortBio = attributes
+    ? attributes.shortBio
+    : "Jeth Soetoyo is the co-founder and CEO of Figma. Dylan studied computer science and mathematics at Brown University where he and his co-founder, Evan Wallace, first started experimenting with design tools built on (and for) the web. With funding from a Thiel fellowship, they began Figma. Prior to Figma, Dylan interned at O'Reilly Media, LinkedIn, and Flipboard.";
+  const isBrand = attributes
+    ? process.env.NEXT_PUBLIC_UPLOAD +
+      attributes.logoCompany.data.attributes.url
+    : "";
 
   return (
     <>
@@ -88,7 +88,7 @@ const SpeakersModal = ({ data, attributes }) => {
                     </span>
                   ) : null}
                 </div>
-                {/* {isShortBio ? (
+                {isShortBio ? (
                   <>
                     <div className="flex flex-col mt-4 sm:mt-6">
                       <span className="text-black-900 font-bevietnamPro text-base sm:text-lg font-normal">
@@ -99,8 +99,8 @@ const SpeakersModal = ({ data, attributes }) => {
                       </p>
                     </div>
                   </>
-                ) : null} */}
-                {/* {isBrand ? (
+                ) : null}
+                {isBrand ? (
                   <div className="flex flex-col items-start justify-start mt-6 sm:mt-8 max-w-max z-10">
                     <Image
                       className="my-auto h-auto w-auto min-h-[36px] max-h-[65px]"
@@ -117,7 +117,7 @@ const SpeakersModal = ({ data, attributes }) => {
                       quality="87"
                     />
                   </div>
-                ) : null} */}
+                ) : null}
               </div>
             </div>
           </div>
