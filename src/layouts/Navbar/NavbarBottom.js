@@ -116,7 +116,7 @@ const NavbarBottom = () => {
               </Link>
               {router.pathname === "/" ? (
                 <button
-                  id="mdlBtnNewsletter"
+                  // id="mdlBtnNewsletter"
                   className={`mdlBtnNewsletter ca2024BgOverflay inline-flex items-center justify-center rounded-[14px] text-black-900 font-bevietnamPro text-xs sm:text-base font-semibold relative outline-none focus-visible:outline-none py-4 px-3 sm:px-6 mr-3 last:mr-0`}
                   aria-label="Modal Email Newsletter (Navbar)"
                   aria-labelledby="Modal Email Newsletter (Navbar)"
