@@ -48,7 +48,7 @@ const DefaultTicket = () => {
 
         {/* @content */}
         <Container className="overflow-hidden relative z-[5]">
-          <div className="flex flex-col overflow-hidden relative pt-[144px] pb-[232px] sm:pb-[172px]">
+          <div className="flex flex-col overflow-hidden relative pt-[144px] pb-[292px] sm:pb-[172px]">
             <div className="ca2024SldeTicketContentTitle flex flex-col items-start justify-start opacity-1 transition duration-[1.2s] ease-out">
               <h2 className="text-white font-staraExtraBold text-[44px] sm:text-[58px] lg:text-[80px] leading-[52px] sm:leading-[74px] lg:leading-[90px] text-start uppercase w-ful max-w-full sm:max-w-[445px] lg:max-w-[677px]">
                 Tickets Coming Soon

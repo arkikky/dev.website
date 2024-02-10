@@ -8,6 +8,7 @@ import { SubmitForm } from "@lib/controller/HubSpot";
 const NewsletterModal = ({ ipAddress }) => {
   const [isIpAddress, setIpAddress] = useState(ipAddress || []);
   const {
+    watch,
     register,
     formState: { errors },
     handleSubmit,
@@ -111,7 +112,11 @@ const NewsletterModal = ({ ipAddress }) => {
                     <input
                       type="text"
                       id="inputFirstname"
-                      className={`form-input bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4`}
+                      className={`form-input bg-white rounded-lg border border-solid ${
+                        errors.firstname
+                          ? "!border-red-500 !ring-red-500"
+                          : "border-[#E3E3E3] !ring-0"
+                      } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4`}
                       name="firstname"
                       placeholder="Michael"
                       {...register("firstname", {
@@ -143,8 +148,7 @@ const NewsletterModal = ({ ipAddress }) => {
                   </div>
                   <div>
                     <button
-                      type="submit"
-                      className={`form-input bg-secondary flex flex-col items-center justify-center rounded-[14px] text-white font-bevietnamPro text-base font-normal outline-none focus-visible:outline-none py-4 w-full transition duration-[0.3] ease-in-out`}
+                      className={`bg-secondary flex flex-col items-center justify-center rounded-[14px] text-white font-bevietnamPro text-base font-normal outline-none focus-visible:outline-none py-4 w-full transition duration-[0.3] ease-in-out`}
                       aria-label="Submit (Newsletter)"
                       aria-labelledby="Submit (Newsletter)"
                     >
