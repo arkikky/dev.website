@@ -15,8 +15,8 @@ const SuccessedModal = () => {
         id="mdlBtnSuccess"
         className="mdlBtnSuccess toolsApp bg-transparent hidden flex-col items-center justify-center cursor-pointer rounded-[10px] outline-none fixed top-full bottom-0 left-auto right-0 h-8 w-8 opacity-0 invisible z-10"
         // className="mdlBtnSuccess bg-blue-500 flex flex-col items-center justify-center cursor-pointer rounded-[10px] outline-none fixed top-40 bottom-auto left-auto right-0 h-8 w-8 z-100"
-        aria-label="Success Modal"
-        aria-labelledby="Success Modal"
+        aria-label="Modal (Success)"
+        aria-labelledby="Modal (Success)"
         data-hs-overlay="#mdlSuccess"
       ></button>
 

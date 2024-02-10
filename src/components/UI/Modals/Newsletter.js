@@ -7,13 +7,7 @@ import { SubmitForm } from "@lib/controller/HubSpot";
 
 const NewsletterModal = ({ ipAddress }) => {
   const [isIpAddress, setIpAddress] = useState(ipAddress || []);
-  const [isForm, setForm] = useState({
-    firstname: "",
-    lastname: "",
-  });
-
   const {
-    watch,
     register,
     formState: { errors },
     handleSubmit,
@@ -24,10 +18,9 @@ const NewsletterModal = ({ ipAddress }) => {
 
   // @submit
   const hndleOnSubmit = async (data) => {
-    // const btnNewsletter = document.querySelector(".mdlBtnNewsletter");
-    // const btnSuccessNewsletter = document.querySelector(
-    //   "#mdlBtnSuccessNewsletter.mdlBtnSuccessNewsletter"
-    // );
+    const btnSuccessModal = document.querySelector(
+      "#mdlBtnSuccess.mdlBtnSuccess"
+    );
 
     const isConfig = {
       fields: [
@@ -48,17 +41,13 @@ const NewsletterModal = ({ ipAddress }) => {
     };
 
     const isKey = "9d5f70c2-2dc2-4f55-a8e4-791b0cc37642";
-    console.log(isConfig);
 
-    // const rs = await SubmitForm(isConfig, isKey);
+    const rs = await SubmitForm(isConfig, isKey);
 
-    // if (rs === true) {
-    //   setFirstname("");
-    //   setEmail("");
-
-    //   btnNewsletter.click();
-    //   btnSuccessNewsletter.click();
-    // }
+    if (rs === true) {
+      reset();
+      btnSuccessModal.click();
+    }
   };
 
   return (
@@ -125,9 +114,6 @@ const NewsletterModal = ({ ipAddress }) => {
                       className={`form-input bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4`}
                       name="firstname"
                       placeholder="Michael"
-                      // onChange={(e) =>
-                      //   setForm({ ...isForm, firstname: e.target.value })
-                      // }
                       {...register("firstname", {
                         required: true,
                         maxLength: 50,
@@ -149,22 +135,15 @@ const NewsletterModal = ({ ipAddress }) => {
                       className="form-input bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal lowercase py-5 px-4"
                       name="email"
                       placeholder="michaelzhao@company.com"
-                      // onChange={(e) =>
-                      //   setForm({ ...isForm, lastname: e.target.value })
-                      // }
-                      // required
                       {...register("email", {
                         required: true,
                         maxLength: 50,
                       })}
                     />
                   </div>
-                  <input
-                    type="checkbox"
-                    className="form-checkbox rounded text-pink-500"
-                  />
                   <div>
                     <button
+                      type="submit"
                       className={`bg-secondary flex flex-col items-center justify-center rounded-[14px] text-white font-bevietnamPro text-base font-normal outline-none focus-visible:outline-none py-4 w-full transition duration-[0.3] ease-in-out`}
                       aria-label="Submit (Newsletter)"
                       aria-labelledby="Submit (Newsletter)"
