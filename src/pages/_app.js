@@ -24,8 +24,8 @@ export default function App({ Component, pageProps }) {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <link rel="shortcut icon" type="image/x-icon" href="/favicon.svg" />
-          <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+          <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
           <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
           <link
@@ -35,7 +35,7 @@ export default function App({ Component, pageProps }) {
           />
 
           <meta name="author" content={publicRuntimeConfig.author} />
-          <link rel="mask-icon" href="/favicon.svg" color="#0000000" />
+          <link rel="mask-icon" href="/favicon.ico" color="#0000000" />
           <meta name="msapplication-TileColor" content="#0000000" />
           <meta name="theme-color" content="#0000000" />
           <meta name="msapplication-navbutton-color" content="#0000000" />
@@ -64,8 +64,8 @@ export default function App({ Component, pageProps }) {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.svg" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
         <link
@@ -75,7 +75,7 @@ export default function App({ Component, pageProps }) {
         />
 
         <meta name="author" content={publicRuntimeConfig.author} />
-        <link rel="mask-icon" href="/favicon.svg" color="#000000" />
+        <link rel="mask-icon" href="/favicon.ico" color="#000000" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta name="theme-color" content="#000000" />
         <meta name="msapplication-navbutton-color" content="#000000" />
@@ -94,4 +94,3 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
-

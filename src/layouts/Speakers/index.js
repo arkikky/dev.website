@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // @components
 import Container from "@components/Container";
-import SpeakersModal from "src/components/UI/Modals/Speakers";
+import SpeakersModal from "@components/UI/Modals/Speakers";
 
 // @components
 import SpeakersCard from "@components/UI/Card/SpeakersCard";

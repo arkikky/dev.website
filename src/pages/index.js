@@ -8,6 +8,9 @@ const { publicRuntimeConfig } = getConfig();
 // @lib
 import { getFetchUrl, getFetch } from "@lib/controller/API";
 
+// @components
+import NewsletterModal from "@components/UI/Modals/Newsletter";
+
 // @layout
 import NavbarTop from "@layouts/Navbar/NavbarTop";
 import Navbar from "@layouts/Navbar/NavbarBottom";
@@ -23,6 +26,7 @@ import FooterBanner from "@layouts/Banner/FooterBanner";
 import Footer from "@layouts/Footer";
 
 const App = ({ ipAddress, speaker, sponsorPartner }) => {
+  const [isIpAddress, setIpAddress] = useState(ipAddress);
   const [isSpeakers, setSpeakers] = useState(speaker);
   const [isSponsorPartner, setSponsorPartner] = useState(sponsorPartner);
 
@@ -115,6 +119,9 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
           <Footer />
         </div>
       </main>
+
+      {/* @modal */}
+      <NewsletterModal ipAddress={isIpAddress} />
     </>
   );
 };

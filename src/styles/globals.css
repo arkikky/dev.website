@@ -28,3 +28,6 @@ a {
 
 /* @menu */
 @import url("./components/menu");
+
+/* @button */
+@import url("./components/buttons");
