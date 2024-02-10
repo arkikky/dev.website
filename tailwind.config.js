@@ -111,7 +111,9 @@ module.exports = {
   },
   plugins: [
     require("preline/plugin"),
-    require("@tailwindcss/forms"),
+    require("@tailwindcss/forms")({
+      strategy: "base", // only generate global styles
+    }),
     require("tailwind-scrollbar-hide"),
 
     // @variant

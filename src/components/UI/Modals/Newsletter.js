@@ -159,6 +159,7 @@ const NewsletterModal = ({ ipAddress }) => {
                       })}
                     />
                   </div>
+                  <input type="checkbox" class="rounded text-pink-500" />
                   <div>
                     <button
                       className={`bg-secondary flex flex-col items-center justify-center rounded-[14px] text-white font-bevietnamPro text-base font-normal outline-none focus-visible:outline-none py-4 w-full transition duration-[0.3] ease-in-out`}
