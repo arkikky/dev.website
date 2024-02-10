@@ -4,6 +4,8 @@ import Image from "next/image";
 // @lib
 import { setJoinString } from "@lib/utils/splitArray";
 
+import SpeakersModal from "../Modals/Speakers";
+
 const SpeakersCard = ({ attributes }) => {
   const isImages = attributes
     ? process.env.NEXT_PUBLIC_UPLOAD +
