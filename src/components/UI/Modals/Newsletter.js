@@ -122,7 +122,7 @@ const NewsletterModal = ({ ipAddress }) => {
                     <input
                       type="text"
                       id="inputFirstname"
-                      className={`bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4`}
+                      className={`form-input bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4`}
                       name="firstname"
                       placeholder="Michael"
                       // onChange={(e) =>
@@ -146,7 +146,7 @@ const NewsletterModal = ({ ipAddress }) => {
                     <input
                       type="email"
                       id="inputEmail"
-                      className="bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal lowercase py-5 px-4"
+                      className="form-input bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal lowercase py-5 px-4"
                       name="email"
                       placeholder="michaelzhao@company.com"
                       // onChange={(e) =>
@@ -159,7 +159,10 @@ const NewsletterModal = ({ ipAddress }) => {
                       })}
                     />
                   </div>
-                  <input type="checkbox" class="rounded text-pink-500" />
+                  <input
+                    type="checkbox"
+                    className="form-checkbox rounded text-pink-500"
+                  />
                   <div>
                     <button
                       className={`bg-secondary flex flex-col items-center justify-center rounded-[14px] text-white font-bevietnamPro text-base font-normal outline-none focus-visible:outline-none py-4 w-full transition duration-[0.3] ease-in-out`}
