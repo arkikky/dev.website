@@ -144,7 +144,7 @@ const NewsletterModal = ({ ipAddress }) => {
                   <div>
                     <button
                       type="submit"
-                      className={`bg-secondary flex flex-col items-center justify-center rounded-[14px] text-white font-bevietnamPro text-base font-normal outline-none focus-visible:outline-none py-4 w-full transition duration-[0.3] ease-in-out`}
+                      className={`form-input bg-secondary flex flex-col items-center justify-center rounded-[14px] text-white font-bevietnamPro text-base font-normal outline-none focus-visible:outline-none py-4 w-full transition duration-[0.3] ease-in-out`}
                       aria-label="Submit (Newsletter)"
                       aria-labelledby="Submit (Newsletter)"
                     >

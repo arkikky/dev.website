@@ -19,13 +19,13 @@ const SpeakersCard = ({ attributes }) => {
     : "";
   return (
     <>
-      <div className="group group-hover:cursor-pointer flex flex-col items-center justify-center overflow-hidden px-0">
-        <div className="flex flex-col items-center justify-center mb-2 min-h-[46px] max-w-max z-10">
+      <div className="group group-hover:cursor-pointer flex flex-col items-center justify-center relative overflow-hidden pt-12 px-0">
+        <div className="flex flex-col items-center justify-center absolute top-0 bottom-auto inset-x-0 mx-auto max-w-max z-[2]">
           <Image
-            className="my-auto mx-auto h-auto w-auto min-h-[36px] max-h-[55px]"
+            className="my-auto mx-auto h-auto w-auto min-h-[36px] max-h-[40px]"
             src={isBrand}
-            alt={`(${isName} - Brand Speakers Card)`}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+            alt={`(${isName} - Brand Speakers)`}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 280vw, 280vw"
             height={58}
             width={270}
             quality="87"
