@@ -117,7 +117,7 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
         <Partners {...isSponsorPartner} />
 
         {/* @get-involved */}
-        <GetInvolved />
+        {/* <GetInvolved /> */}
 
         {/* @tickets */}
         <Tickets />
