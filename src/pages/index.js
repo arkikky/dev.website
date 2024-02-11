@@ -30,15 +30,15 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
   const [isSpeakers, setSpeakers] = useState(speaker);
   const [isSponsorPartner, setSponsorPartner] = useState(sponsorPartner);
 
-  useEffect(() => {
-    const intBody = document.body;
+  // useEffect(() => {
+  //   const intBody = document.body;
 
-    intBody.classList.add("overflow-y-hidden");
+  //   intBody.classList.add("overflow-y-hidden");
 
-    return () => {
-      intBody.classList.remove("overflow-y-hidden");
-    };
-  }, []);
+  //   return () => {
+  //     intBody.classList.remove("overflow-y-hidden");
+  //   };
+  // }, []);
 
   return (
     <>
@@ -98,57 +98,59 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
 
       <main className="ca2024Main ca2024MainMandatory approved overflow-x-hidden pt-0">
         {/* @header */}
-        <Header />
+        {/* <Header /> */}
 
         {/* @speakers (start) */}
-        <StartSpeakers />
+        {/* <StartSpeakers /> */}
 
         {/* @speakers */}
-        <Speakers {...isSpeakers} />
+        {/* <Speakers {...isSpeakers} /> */}
 
         {/* @speakers (end) */}
-        <EndSpeakers />
+        {/* <EndSpeakers /> */}
 
         {/* @partners (start - on hold) */}
         {/* <StartPartners /> */}
 
         {/* @partners */}
-        <Partners {...isSponsorPartner} />
+        {/* <Partners {...isSponsorPartner} /> */}
 
         {/* @tickets */}
-        <Tickets />
+        {/* <Tickets /> */}
 
-        <div className="snap-start snap-always px-32 h-auto min-h-[auto]">
-          <div className="flex flex-col mb-4 last:mb-0">
-            <label
-              htmlFor="inputFirstname"
-              className="text-black-900 font-bevietnamPro text-base font-normal text-start mb-2"
-            >
-              First name <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="inputFirstname"
-              className={`form-input bg-white rounded-lg border border-solid text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4`}
-              name="firstname"
-              placeholder="Michael"
-            />
-          </div>
+        <div className="snap-start snap-always pt-32 px-32 h-auto min-h-[auto]">
+          <form method="POST" className="flex flex-col w-full">
+            <div className="flex flex-col mb-4 last:mb-0">
+              <label
+                htmlFor="inputFirstname"
+                className="text-black-900 font-bevietnamPro text-base font-normal text-start mb-2"
+              >
+                First name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="inputFirstname"
+                className={`form-input bg-white rounded-lg border border-solid text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4`}
+                name="firstname"
+                placeholder="Michael"
+              />
+            </div>
+          </form>
         </div>
         <div className="snap-start snap-always h-auto min-h-full">
           {/* @faq */}
-          <FAQ />
+          {/* <FAQ /> */}
 
           {/* @footer (banner) */}
-          <FooterBanner />
+          {/* <FooterBanner /> */}
 
           {/* @footer */}
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </main>
 
       {/* @modal */}
-      <NewsletterModal ipAddress={isIpAddress} />
+      {/* <NewsletterModal ipAddress={isIpAddress} /> */}
     </>
   );
 };
