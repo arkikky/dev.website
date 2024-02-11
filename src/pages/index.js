@@ -119,6 +119,15 @@ export default function Home() {
 
       <div className="pt-32 px-4 sm:px-32 h-auto min-h-[auto] w-full">
         <form method="POST" className="flex flex-col w-full">
+          <div className="flex flex-col relative w-full">
+            <input
+              className="inline-flex border-none text-black-900 placeholder:text-black-900 font-figtree text-xl font-normal py-4 px-4 w-full"
+              type="email"
+              name="icnEmail"
+              placeholder="mymail@example.com"
+              required
+            />
+          </div>
           <div className="flex flex-col mb-4 last:mb-0 w-full">
             <label
               htmlFor="inputFirstname"
