@@ -77,7 +77,7 @@ const GetInvolved = () => {
 
       {/* @main */}
       <PartnershipLayouts>
-        <div className="flex flex-col space-y-4 pb-[84px]">
+        <div className="flex flex-col space-y-4 pb-[94px]">
           <GetInvolvedCard
             page={true}
             url="/sponsorship"

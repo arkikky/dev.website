@@ -20,6 +20,7 @@ import Speakers from "@layouts/Speakers";
 import EndSpeakers from "@layouts/Speakers/end";
 // import StartPartners from "@layouts/Partners/start";
 import Partners from "@layouts/Partners";
+import GetInvolved from "@layouts/GetInvolved";
 import Tickets from "@layouts/Tickets";
 import FAQ from "@layouts/FAQ";
 import FooterBanner from "@layouts/Banner/FooterBanner";
@@ -114,6 +115,9 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
 
         {/* @partners */}
         <Partners {...isSponsorPartner} />
+
+        {/* @get-involved */}
+        <GetInvolved />
 
         {/* @tickets */}
         <Tickets />

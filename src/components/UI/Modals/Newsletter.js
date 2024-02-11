@@ -115,7 +115,7 @@ const NewsletterModal = ({ ipAddress }) => {
                       id="inputFirstname"
                       className={`form-input bg-white rounded-lg border border-solid ${
                         errors.firstname ? "border-red-500" : "border-[#E3E3E3]"
-                      } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base font-normal capitalize py-5 px-4 w-full`}
+                      } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4 w-full`}
                       name="firstname"
                       placeholder="Michael"
                       {...register("firstname", {
@@ -137,7 +137,7 @@ const NewsletterModal = ({ ipAddress }) => {
                       id="inputEmail"
                       className={`form-input bg-white rounded-lg border border-solid ${
                         errors.email ? "border-red-500" : "border-[#E3E3E3]"
-                      } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base font-normal lowercase py-5 px-4 w-full`}
+                      } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal lowercase py-5 px-4 w-full`}
                       name="email"
                       placeholder="michaelzhao@company.com"
                       {...register("email", {
