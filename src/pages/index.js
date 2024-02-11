@@ -138,7 +138,7 @@ export default function Home() {
             <input
               type="text"
               id="inputFirstname"
-              className={`form-input inline-flex bg-white rounded-lg border border-solid text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4 w-full`}
+              className={`inline-flex bg-white rounded-lg border border-solid text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4 w-full`}
               name="firstname"
               placeholder="Michael"
             />
@@ -153,7 +153,7 @@ export default function Home() {
             <input
               type="text"
               id="inputFirstname"
-              className={`form-input inline-flex bg-white rounded-lg border border-solid text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4 w-full`}
+              className={`inline-flex bg-white rounded-lg border border-solid text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4 w-full`}
               name="firstname"
               placeholder="Michael"
             />
