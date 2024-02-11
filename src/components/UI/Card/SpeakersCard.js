@@ -78,7 +78,7 @@ const SpeakersCard = ({ attributes }) => {
         </div>
 
         {/* @content */}
-        <div className="bg-[#F6F6F6] flex flex-col items-start justify-start rounded-xl mt-4 py-4 px-4 h-full min-h-[84px] max-h-[84px] w-full">
+        <div className="bg-[#F6F6F6] flex flex-col items-start justify-start rounded-xl mt-4 py-2 sm:py-4 px-2 sm:px-4 h-full min-h-[84px] max-h-[84px] w-full">
           <h3 className="text-black-900 font-bevietnamPro text-sm sm:text-base font-semibold">
             {isName}
           </h3>
