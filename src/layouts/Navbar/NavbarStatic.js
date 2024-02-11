@@ -57,7 +57,7 @@ const NavbarBottom = () => {
 
   return (
     <>
-      <nav
+      <navbar
         className={`ca2024Navbar fixed bottom-4 inset-x-0 mx-auto h-auto sm:h-[100px] transition-all duration-300 ease-out z-xl`}
       >
         <Container className="h-full">
@@ -103,7 +103,7 @@ const NavbarBottom = () => {
             </div>
           </div>
         </Container>
-      </nav>
+      </navbar>
 
       {/* @nav-mobile */}
       <MobileMenuNavbar menu={isMenu} />

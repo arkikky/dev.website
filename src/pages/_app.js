@@ -11,6 +11,9 @@ import "@styles/globals.css";
 // @components
 import SuccessedModal from "@components/UI/Modals/Success";
 
+// @layouts
+import Layouts from "@layouts/Layouts";
+
 export default function App({ Component, pageProps }) {
   // @layouts wihtout (Navbar & Footer)
   if (Component.getLayout) {
@@ -44,6 +47,7 @@ export default function App({ Component, pageProps }) {
           <link rel="manifest" href="/manifest.json" />
         </Head>
 
+        {/* @main */}
         <Component {...pageProps} />
 
         {/* @modal */}
@@ -81,7 +85,10 @@ export default function App({ Component, pageProps }) {
         <link rel="manifest" href="/manifest.json" />
       </Head>
 
-      <Component {...pageProps} />
+      {/* @main */}
+      <Layouts>
+        <Component {...pageProps} />
+      </Layouts>
 
       {/* @modal */}
       <SuccessedModal />

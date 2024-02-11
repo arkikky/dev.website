@@ -13,7 +13,7 @@ import NewsletterModal from "@components/UI/Modals/Newsletter";
 
 // @layout
 import NavbarTop from "@layouts/Navbar/NavbarTop";
-import Navbar from "@layouts/Navbar/NavbarBottom";
+import NavbarStatic from "@layouts/Navbar/NavbarStatic";
 import Header from "@layouts/Header";
 import StartSpeakers from "@layouts/Speakers/start";
 import Speakers from "@layouts/Speakers";
@@ -90,13 +90,13 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
         />
       </Head>
 
-      {/* @navbar (top) */}
-      <NavbarTop />
-
-      {/* @navbar (bottom) */}
-      <Navbar />
-
       <main className="ca2024Main ca2024MainMandatory approved overflow-x-hidden pt-0">
+        {/* @navbar (top) */}
+        <NavbarTop />
+
+        {/* @navbar (bottom) */}
+        <NavbarStatic />
+
         {/* @header */}
         <Header />
 
