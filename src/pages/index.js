@@ -91,13 +91,13 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
         />
       </Head>
 
-      <main className="ca2024Main ca2024MainMandatory approved overflow-x-hidden pt-0">
-        {/* @navbar (top) */}
-        <NavbarTop />
+      {/* @navbar (top) */}
+      <NavbarTop />
 
-        {/* @navbar (bottom) */}
-        <NavbarStatic />
+      {/* @navbar (bottom) */}
+      <NavbarStatic />
 
+      <main className="ca2024Main ca2024MainMandatory approved pt-0 w-full">
         {/* @header */}
         <Header />
 

@@ -11,6 +11,7 @@
 body {
   @apply bg-white;
   @apply font-bevietnamPro;
+  @apply overflow-x-hidden;
 }
 
 a {
@@ -19,7 +20,7 @@ a {
 
 /* main */
 .ca2024Main.ca2024MainMandatory {
-  @apply overflow-scroll;
+  @apply overflow-x-hidden overflow-y-auto;
   @apply snap-y snap-mandatory;
   @apply relative;
   @apply h-screen;
