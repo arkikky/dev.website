@@ -122,7 +122,7 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
         {/* @tickets */}
         <Tickets />
 
-        <div className="snap-start snap-always h-auto">
+        <div className="snap-start snap-always h-auto min-h-full">
           {/* @faq */}
           <FAQ />
 
