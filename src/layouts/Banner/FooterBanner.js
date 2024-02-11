@@ -43,9 +43,10 @@ const FooterBanner = () => {
               </h2>
               <div className="flex flex-col mt-4 sm:mt-8 w-full sm:w-max">
                 <button
-                  id="mdlBtnBnnrFootr"
+                  id="mdlBtnBnnrFootrNewsletter"
                   className="mdlBtnNewsletter bg-primary inline-flex items-center justify-center rounded-[14px] text-black-900 font-bevietnamPro text-sm sm:text-xl font-medium relative outline-none focus-visible:outline-none py-4 sm:py-7 px-3 sm:px-6 w-full max-w-max"
-                  aria-labelledby="Modal (Banner Footer)"
+                  aria-label="Modal Email Newsletter (Banner Footer)"
+                  aria-labelledby="Modal Email Newsletter (Banner Footer)"
                   data-hs-overlay="#mdlNewsletter"
                 >
                   Tickets Coming Soon

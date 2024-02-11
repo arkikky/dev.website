@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import getConfig from "next/config";
 import Head from "next/head";
 
@@ -29,6 +29,16 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
   const [isIpAddress, setIpAddress] = useState(ipAddress);
   const [isSpeakers, setSpeakers] = useState(speaker);
   const [isSponsorPartner, setSponsorPartner] = useState(sponsorPartner);
+
+  useEffect(() => {
+    const intBody = document.body;
+
+    intBody.classList.add("overflow-y-hidden");
+
+    return () => {
+      intBody.classList.remove("overflow-y-hidden");
+    };
+  }, []);
 
   return (
     <>
