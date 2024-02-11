@@ -10,11 +10,15 @@ const NewsletterModal = ({ ipAddress }) => {
   const {
     watch,
     register,
-    formState: { errors },
+    formState: { errors, isValid },
     handleSubmit,
     reset,
   } = useForm({
     mode: "all",
+    defaultValues: {
+      firstname: "",
+      email: "",
+    },
   });
 
   // @submit
@@ -27,11 +31,11 @@ const NewsletterModal = ({ ipAddress }) => {
       fields: [
         {
           name: "firstname",
-          value: data.firstname,
+          value: data.firstname !== "" ? data.firstname : "",
         },
         {
           name: "email",
-          value: data.lastname,
+          value: data.email !== "" ? data.email : "",
         },
       ],
       context: {
@@ -104,18 +108,13 @@ const NewsletterModal = ({ ipAddress }) => {
                       htmlFor="inputFirstname"
                       className="text-black-900 font-bevietnamPro text-base font-normal text-start mb-2"
                     >
-                      First name{" "}
-                      {errors.firstname && (
-                        <span className="text-red-500">*</span>
-                      )}
+                      First name <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
                       id="inputFirstname"
                       className={`form-input bg-white rounded-lg border border-solid ${
-                        errors.firstname
-                          ? "!border-red-500 !ring-red-500"
-                          : "border-[#E3E3E3] !ring-0"
+                        errors.firstname ? "border-red-500" : "border-[#E3E3E3]"
                       } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4`}
                       name="firstname"
                       placeholder="Michael"
@@ -131,13 +130,14 @@ const NewsletterModal = ({ ipAddress }) => {
                       htmlFor="inputEmail"
                       className="text-black-900 font-bevietnamPro text-base font-normal text-start mb-2"
                     >
-                      Email{" "}
-                      {errors.email && <span className="text-red-500">*</span>}
+                      Email <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="email"
                       id="inputEmail"
-                      className="form-input bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal lowercase py-5 px-4"
+                      className={`form-input bg-white rounded-lg border border-solid ${
+                        errors.email ? "border-red-500" : "border-[#E3E3E3]"
+                      } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal lowercase py-5 px-4`}
                       name="email"
                       placeholder="michaelzhao@company.com"
                       {...register("email", {
