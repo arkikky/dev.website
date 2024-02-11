@@ -12,7 +12,28 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "8px",
+          sm: "0px",
+        },
+        screens: {
+          xs: "423px",
+          sm: "640px",
+          md: "722px",
+          lg: "960px",
+          xl: "1242px",
+          "2xl": "1377px",
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    // Variant
+    ({ addVariant }) => {
+      addVariant("hocus", ["&:hover", "&:focus"]);
+      addVariant("supports-grid", "@supports (display: grid)");
+    },
+  ],
 };
