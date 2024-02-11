@@ -68,6 +68,32 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <div className="bg-red-400 py-10 px-10">
+        <form
+          id="icnSubsribeForm"
+          className="flex felx-col relative mt-6 lg:mt-0 w-full"
+          method="POST"
+        >
+          <div className="flex flex-col sm:flex-row relative w-full">
+            <input
+              id="icnEmailSubscrbie"
+              className="inline-flex border-none text-black-900 placeholder:text-black-900 font-figtree text-xl font-normal py-4 px-4 w-full"
+              type="email"
+              name="icnEmail"
+              placeholder="mymail@example.com"
+              required
+            />
+            <button
+              id="icnSubmitEmailSubscribe"
+              type="submit"
+              aria-label="ICN Submit Email Subscribe"
+              className="inline-flex flex-col items-center justify-center rounded-none sm:rounded-tr-3xl bg-black-900 text-white font-figtree text-base font-medium leading-inherit uppercase outline-none   focus-visible:outline-none py-4 px-[50px] w-full sm:w-max"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
 
       <div className="pt-32 px-4 sm:px-32 h-auto min-h-[auto] w-full">
         <form method="POST" className="flex flex-col w-full">
