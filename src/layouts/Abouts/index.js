@@ -1,0 +1,73 @@
+import React from "react";
+import Image from "next/image";
+
+// @components
+import Container from "@components/Container";
+
+const Abouts = () => {
+  return (
+    <>
+      <div className="ca2024AboutsStart bg-white flex flex-col items-center justify-center relative h-svh xl:h-screen min-h-svh xl:min-h-screen">
+        {/* @background (backdrop) */}
+        <div className="ca2024SpeakersBackdrop absolute inset-y-0 inset-x-0 z-px">
+          <Image
+            className="object-center object-cover mx-auto h-full w-full z-10"
+            src={"/assets/images/backdrop/ca2024BgLineWhite.jpg"}
+            alt={`Coinfest Asia 2024 (Background Abouts Backdrop)`}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+            height={1350}
+            width={2160}
+            quality="87"
+          />
+        </div>
+
+        {/* @itemsLeft (backdrop) */}
+        {/* <div className="ca2024AboutsItemsLeft bg-transparent absolute bottom-auto -top-[120px] sm:-top-[163px] lg:-top-[197px] right-auto left-2 sm:left-[18%] lg:left-[17%] xl:left-[14%] select-none pointer-events-none z-px opacity-1 transition duration-[1.4s] delay-[0.3s] ease-in-out">
+          <Image
+            className="object-center object-cover mx-auto h-auto w-[241px] sm:w-[323px] lg:w-[415px] xl:w-[383px] z-10"
+            src={"/assets/images/backdrop/ca2024PointItems-DiamondBlue.png"}
+            alt={`Coinfest Asia 2024 (ChartInsight Items - Right)`}
+            height={1112}
+            width={620}
+            quality="87"
+          />
+        </div>
+
+        <div className="ca2024AboutsItemsLeft bg-transparent absolute top-auto -bottom-[120px] sm:-bottom-[163px] lg:-bottom-[197px] right-auto left-2 sm:left-[18%] lg:left-[17%] xl:left-[25%] select-none pointer-events-none z-px opacity-1 transition duration-[1.4s] delay-[0.3s] ease-in-out">
+          <Image
+            className="object-center object-cover mx-auto h-auto w-[341px] sm:w-[463px] lg:w-[555px] xl:w-[523px] z-10"
+            src={"/assets/images/backdrop/ca2024PointItems-FlowerBlue.png"}
+            alt={`Coinfest Asia 2024 (ChartInsight Items - Right)`}
+            height={690}
+            width={818}
+            quality="87"
+          />
+        </div> */}
+
+        {/* @itemsRight (backdrop) */}
+        {/* <div className="ca2024AboutsItemsRight bg-transparent absolute top-auto bottom-[39%] sm:bottom-[35%] lg:bottom-[41%] xl:bottom-[21%] left-auto -right-24 sm:-right-32 lg:-right-24 xl:right-5 select-none pointer-events-none z-px opacity-1 transition duration-[1.2s] ease-in-out">
+          <Image
+            className="object-center object-cover mx-auto h-auto w-[231px] sm:w-[315px] lg:w-[385px] z-10"
+            src={"/assets/images/backdrop/ca2024PointItems-BitcoinRed.png"}
+            alt={`Coinfest Asia 2024 (ChartInsight Items - Right)`}
+            height={1044}
+            width={859}
+            quality="87"
+          />
+        </div> */}
+
+        {/* @content */}
+        <Container className="ca2024AboutsStartContent relative opacity-1 z-[5] transition-all duration-300 ease-out">
+          <div className="flex flex-col items-center justify-center text-start">
+            <h1 className="text-black-900 font-staraExtraBold text-[32px] sm:text-[58px] lg:text-[80px] xl:text-[72px] 2xl:text-[80px] leading-[40px] sm:leading-[74px] lg:leading-[90px] xl:leading-[86px] 2xl:leading-[90px] uppercase">
+              Coinfest immerses you directly into adoption, innovation, and
+              emerging markets in Asia
+            </h1>
+          </div>
+        </Container>
+      </div>
+    </>
+  );
+};
+
+export default Abouts;

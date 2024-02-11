@@ -15,6 +15,7 @@ import NewsletterModal from "@components/UI/Modals/Newsletter";
 import NavbarTop from "@layouts/Navbar/NavbarTop";
 import NavbarStatic from "@layouts/Navbar/NavbarStatic";
 import Header from "@layouts/Header";
+import Abouts from "@layouts/Abouts";
 import StartSpeakers from "@layouts/Speakers/start";
 import Speakers from "@layouts/Speakers";
 import EndSpeakers from "@layouts/Speakers/end";
@@ -101,6 +102,9 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
       <main className="ca2024Main ca2024MainMandatory approved pt-0 w-full">
         {/* @header */}
         <Header />
+        <div className="snap-start snap-always h-auto min-h-[auto]">
+          <Abouts />
+        </div>
 
         {/* @speakers (start) */}
         <StartSpeakers />
@@ -126,7 +130,7 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
         {/* @tickets */}
         <Tickets />
 
-        <div className="snap-start snap-always h-auto min-h-full max-h-full">
+        <div className="snap-start snap-always h-auto min-h-[auto]">
           {/* @faq */}
           <FAQ />
 
