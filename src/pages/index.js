@@ -118,7 +118,7 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
         {/* @tickets */}
         {/* <Tickets /> */}
 
-        <div className="snap-start snap-always pt-32 px-32 h-auto min-h-[auto]">
+        <div className="flex flex-col pt-32 px-4 sm:px-32">
           <form method="POST" className="flex flex-col w-full">
             <div className="flex flex-col mb-4 last:mb-0">
               <label
@@ -129,9 +129,22 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
               </label>
               <input
                 type="text"
-                id="inputFirstname"
                 className={`form-input bg-white rounded-lg border border-solid text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4`}
                 name="firstname"
+                placeholder="Michael"
+              />
+            </div>
+            <div className="flex flex-col mb-4 last:mb-0">
+              <label
+                htmlFor="inputFirstname"
+                className="text-black-900 font-bevietnamPro text-base font-normal text-start mb-2"
+              >
+                First name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                className={`form-input bg-white rounded-lg border border-solid text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4`}
+                name="awd"
                 placeholder="Michael"
               />
             </div>
