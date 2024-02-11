@@ -33,6 +33,7 @@ const PeopleSaying = ({ attributes }) => {
                 className="object-cover object-center rounded-full overflow-hidden h-10 w-10"
                 src={getPicture}
                 alt={`Coinfest Asia 2024 by Coinvestasi (${getName} - Social Mentions)`}
+                loading="lazy"
                 height={128}
                 width={128}
                 quality="87"
