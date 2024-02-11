@@ -24,7 +24,7 @@ const SpeakersCard = ({ attributes }) => {
           <Image
             className="my-auto mx-auto h-auto w-auto min-h-[36px] max-h-[40px]"
             src={isBrand}
-            alt={`(${isName} - Brand Speakers)`}
+            alt={`(${isName} - Brand Speakers Card)`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 280vw, 280vw"
             height={58}
             width={270}
