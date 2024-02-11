@@ -9,13 +9,7 @@ export default function Home() {
       <div className="bg-gray-400">
         <div className="container">
           <div className="supports-grid:grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-12 gap-x-6 border-x border-solid border-black-900 relative py-6 sm:py-15 px-4 sm:px-8">
-            <div className="col-span-full lg:col-span-6">
-              <h2 className="text-black-900 font-figtree text-2xl font-bold uppercase">
-                Join +6,000 readers who get weekly insights to the Indonesian
-                crypto market
-              </h2>
-            </div>
-            <div className="col-span-full lg:col-span-6 flex flex-col items-center justify-center">
+            <div className="col-span-full flex flex-col items-center justify-center">
               <form
                 id="icnSubsribeForm"
                 className="flex felx-col relative mt-6 lg:mt-0 w-full"
@@ -24,7 +18,7 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row relative w-full">
                   <input
                     id="icnEmailSubscrbie"
-                    className="inline-flex border-none text-black-900 placeholder:text-black-900 font-figtree text-xl font-normal py-4 px-4 w-fill"
+                    className="inline-flex border-none text-black-900 placeholder:text-black-900 font-figtree text-xl font-normal py-4 px-4 w-full"
                     type="email"
                     name="icnEmail"
                     placeholder="mymail@example.com"
@@ -41,6 +35,36 @@ export default function Home() {
                 </div>
               </form>
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-green-400">
+        <div className="supports-grid:grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-12 gap-x-6 border-x border-solid border-black-900 relative py-6 sm:py-15 px-4 sm:px-8">
+          <div className="col-span-full flex flex-col items-center justify-center">
+            <form
+              id="icnSubsribeForm"
+              className="flex felx-col relative mt-6 lg:mt-0 w-full"
+              method="POST"
+            >
+              <div className="flex flex-col sm:flex-row relative w-full">
+                <input
+                  id="icnEmailSubscrbie"
+                  className="inline-flex border-none text-black-900 placeholder:text-black-900 font-figtree text-xl font-normal py-4 px-4 w-full"
+                  type="email"
+                  name="icnEmail"
+                  placeholder="mymail@example.com"
+                  required
+                />
+                <button
+                  id="icnSubmitEmailSubscribe"
+                  type="submit"
+                  aria-label="ICN Submit Email Subscribe"
+                  className="inline-flex flex-col items-center justify-center rounded-none sm:rounded-tr-3xl bg-black-900 text-white font-figtree text-base font-medium leading-inherit uppercase outline-none   focus-visible:outline-none py-4 px-[50px] w-full sm:w-max"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
