@@ -3,15 +3,15 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "hub.coinvestasi.com",
-        port: "",
-        pathname: "/**",
-      },
-    ],
-    formats: ["image/webp", "image/avif"],
+    // remotePatterns: [
+    //   {
+    //     protocol: "https",
+    //     hostname: "hub.coinvestasi.com",
+    //     port: "",
+    //     pathname: "/**",
+    //   },
+    // ],
+    formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
@@ -25,15 +25,8 @@ const nextConfig = {
     author: process.env.NEXT_PUBLIC_AUTHOR,
     tags: process.env.NEXT_PUBLIC_TAGS,
     version: process.env.NEXT_PUBLIC_SITE_APP_VERSION,
-  },
-  async redirects() {
-    return [
-      {
-        source: "/deck",
-        destination: "https://hubs.ly/Q02hGy2g0",
-        permanent: true,
-      },
-    ];
+
+    api: process.env.NEXT_PUBLIC_API,
   },
 };
 

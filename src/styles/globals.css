@@ -1,36 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-/* @tailwind-css */
+/* @tailwindcss */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* @fonts */
-@import url("./fonts");
-
-html {
-  @apply h-full w-full;
-}
-
 body {
   @apply bg-white;
-  @apply font-bevietnamPro;
 }
-
-a {
-  @apply outline-none focus-visible:outline-none;
-}
-
-/* main */
-.ca2024Main.ca2024MainMandatory {
-  /* @apply overflow-scroll; */
-  /* @apply snap-y snap-mandatory; */
-  @apply relative;
-  /* @apply h-screen; */
-}
-
-/* @menu */
-@import url("./components/menu");
-
-/* @button */
-@import url("./components/buttons");
