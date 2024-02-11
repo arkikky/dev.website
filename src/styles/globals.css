@@ -24,10 +24,10 @@ a {
 
 /* main */
 .ca2024Main.ca2024MainMandatory {
-  /* @apply overflow-scroll; */
-  /* @apply snap-y snap-mandatory; */
+  @apply overflow-scroll;
+  @apply snap-y snap-mandatory;
   @apply relative;
-  /* @apply h-screen; */
+  @apply h-screen;
 }
 
 /* @menu */
