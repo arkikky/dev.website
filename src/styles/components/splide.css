@@ -1,0 +1,20 @@
+/* @splide */
+.splide.ca2024Grid .splide__track .splide__list {
+  @apply supports-grid:grid-cols-none sm:supports-grid:!grid sm:grid-cols-12 gap-0 sm:gap-y-4 lg:gap-y-6 sm:gap-x-4 lg:gap-x-6;
+}
+
+.splide.ca2024Grid .splide__track .splide__list .splide__slide {
+  @apply col-span-2 sm:col-span-4;
+  @apply w-full;
+}
+
+/* @splide mansory */
+.splide.caSpldeMnsry
+  .splide__track
+  .splide__slide--clone
+  .caMasonryGrid
+  .caMasonryGrid_Column {
+  @media (max-width: theme("screens.sm")) {
+    width: 100% !important;
+  }
+}

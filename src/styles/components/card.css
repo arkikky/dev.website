@@ -1,0 +1,28 @@
+/* Benefit (Card) */
+.ca2024CrdBenefit {
+  @apply text-white;
+}
+
+.ca2024CrdBenefit::before {
+  @apply content-[''];
+  @apply bg-[url('/assets/images/backdrop/ca2024Benefit-default.png')];
+  @apply bg-cover bg-center object-cover object-center;
+  @apply absolute inset-y-0 inset-x-0;
+  @apply z-px;
+}
+
+.ca2024CrdBenefitItems:nth-child(even) .ca2024CrdBenefit {
+  @apply text-black-900;
+}
+
+.ca2024CrdBenefitItems:nth-child(even) .ca2024CrdBenefit::before {
+  @apply bg-[url('/assets/images/backdrop/ca2024Benefit-2x.png')];
+}
+
+.ca2024CrdBenefitItems:nth-child(3n) .ca2024CrdBenefit {
+  @apply text-black-900;
+}
+
+.ca2024CrdBenefitItems:nth-child(3n) .ca2024CrdBenefit::before {
+  @apply bg-[url('/assets/images/backdrop/ca2024Benefit-3x.png')];
+}

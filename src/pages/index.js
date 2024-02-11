@@ -17,6 +17,7 @@ import NavbarStatic from "@layouts/Navbar/NavbarStatic";
 import Header from "@layouts/Header";
 import Abouts from "@layouts/Abouts";
 import ChartInsight from "@layouts/ChartInsight";
+import Benefit from "@layouts/Benefit";
 import StartSpeakers from "@layouts/Speakers/start";
 import Speakers from "@layouts/Speakers";
 import EndSpeakers from "@layouts/Speakers/end";
@@ -110,6 +111,9 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
 
           {/* @chart-insight */}
           <ChartInsight />
+
+          {/* @benefit */}
+          <Benefit />
         </div>
 
         {/* @speakers (start) */}

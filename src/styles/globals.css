@@ -49,3 +49,9 @@ a {
 
 /* @button */
 @import url("./components/buttons");
+
+/* @card */
+@import url("./components/card");
+
+/* @splide */
+@import url("./components/splide");
