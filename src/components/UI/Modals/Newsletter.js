@@ -47,12 +47,12 @@ const NewsletterModal = ({ ipAddress }) => {
 
     const isKey = "9d5f70c2-2dc2-4f55-a8e4-791b0cc37642";
 
-    // const rs = await SubmitForm(isConfig, isKey);
+    const rs = await SubmitForm(isConfig, isKey);
 
-    // if (rs === true) {
-    reset();
-    btnSuccessModal.click();
-    // }
+    if (rs === true) {
+      reset();
+      btnSuccessModal.click();
+    }
   };
 
   return (
