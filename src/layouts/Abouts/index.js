@@ -24,7 +24,7 @@ const Abouts = () => {
         {/* @items-left (backdrop) */}
         <div className="ca2024AboutsItemsLeft bg-transparent absolute bottom-auto -top-[120px] sm:-top-[163px] lg:-top-[197px] right-auto left-2 sm:left-[18%] lg:left-[17%] xl:left-[14%] select-none pointer-events-none z-px opacity-1 transition duration-[1.4s] delay-[0.3s] ease-in-out">
           <Image
-            className="object-center object-cover mx-auto h-auto w-[241px] sm:w-[323px] lg:w-[415px] xl:w-[383px] z-10"
+            className="object-center object-cover mx-auto h-auto w-[211px] sm:w-[323px] lg:w-[415px] xl:w-[383px] z-10"
             src={"/assets/images/backdrop/ca2024DiamondBlue.png"}
             alt={`Coinfest Asia 2024 (Diamond Blue - Right)`}
             height={870}
@@ -35,7 +35,7 @@ const Abouts = () => {
 
         <div className="ca2024AboutsItemsLeft bg-transparent absolute top-auto -bottom-[120px] sm:-bottom-[163px] lg:-bottom-[197px] right-auto left-2 sm:left-[18%] lg:left-[17%] xl:left-[25%] select-none pointer-events-none z-px opacity-1 transition duration-[1.4s] delay-[0.3s] ease-in-out">
           <Image
-            className="object-center object-cover mx-auto h-auto w-[341px] sm:w-[463px] lg:w-[555px] xl:w-[523px] z-10"
+            className="object-center object-cover mx-auto h-auto w-[301px] sm:w-[463px] lg:w-[555px] xl:w-[523px] z-10"
             src={"/assets/images/backdrop/ca2024FlowerBlue.png"}
             alt={`Coinfest Asia 2024 (Flower Blue - About)`}
             height={690}
@@ -47,7 +47,7 @@ const Abouts = () => {
         {/* @items-right (backdrop) */}
         <div className="ca2024AboutsItemsRight bg-transparent absolute top-auto bottom-[39%] sm:bottom-[35%] lg:bottom-[41%] xl:bottom-[21%] left-auto -right-24 sm:-right-32 lg:-right-24 xl:right-5 select-none pointer-events-none z-px opacity-1 transition duration-[1.2s] ease-in-out">
           <Image
-            className="object-center object-cover mx-auto h-auto w-[231px] sm:w-[315px] lg:w-[385px] z-10"
+            className="object-center object-cover mx-auto h-auto w-[211px] sm:w-[315px] lg:w-[385px] z-10"
             src={"/assets/images/backdrop/ca2024BitcoinRedItems.png"}
             alt={`Coinfest Asia 2024 (Bitcoin Red Items - About)`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
