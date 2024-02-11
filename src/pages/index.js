@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <main>
-      <div className="snap-start snap-always pt-32 px-10 sm:px-32 h-auto min-h-[auto]">
+      <div className="pt-32 px-4 sm:px-32 h-auto min-h-[auto]">
         <form method="POST" className="flex flex-col w-full">
           <div className="flex flex-col mb-4 last:mb-0">
             <label
