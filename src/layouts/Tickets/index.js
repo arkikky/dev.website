@@ -1,12 +1,10 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 
 // @components
 import Container from "@components/Container";
 
 const DefaultTicket = () => {
-  const mdlBtnNewsletter = useRef(null);
-
   // @preline (Add Plugins)
   useEffect(() => {
     import("preline");
@@ -91,10 +89,10 @@ const DefaultTicket = () => {
             {/* @Modal (Newsletter) */}
             <div className="flex flex-col items-center justify-center mt-10">
               <button
-                ref={mdlBtnNewsletter}
-                id="mdlBtnNewsletter"
+                id="mdlBtnTicketNewsletter"
                 className="mdlBtnNewsletter bg-primary inline-flex items-center justify-center rounded-[14px] text-black-900 font-bevietnamPro text-sm sm:text-xl font-medium relative outline-none focus-visible:outline-none py-4 px-6 w-full max-w-max"
-                aria-labelledby="Modal Email Newsletter"
+                aria-label="Modal Email Newsletter (Ticket)"
+                aria-labelledby="Modal Email Newsletter (Ticket)"
                 data-hs-overlay="#mdlNewsletter"
               >
                 Secure your spots
