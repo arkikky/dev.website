@@ -11,7 +11,6 @@ export default function Home() {
           <div className="supports-grid:grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-12 gap-x-6 border-x border-solid border-black-900 relative py-6 sm:py-15 px-4 sm:px-8">
             <div className="col-span-full flex flex-col items-center justify-center">
               <form
-                id="icnSubsribeForm"
                 className="flex felx-col relative mt-6 lg:mt-0 w-full"
                 method="POST"
               >
@@ -42,7 +41,6 @@ export default function Home() {
         <div className="supports-grid:grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-12 gap-x-6 border-x border-solid border-black-900 relative py-6 sm:py-15 px-4 sm:px-8">
           <div className="col-span-full flex flex-col items-center justify-center">
             <form
-              id="icnSubsribeForm"
               className="flex felx-col relative mt-6 lg:mt-0 w-full"
               method="POST"
             >
@@ -70,7 +68,6 @@ export default function Home() {
       </div>
       <div className="bg-red-400 py-10 px-10">
         <form
-          id="icnSubsribeForm"
           className="flex felx-col relative mt-6 lg:mt-0 w-full"
           method="POST"
         >
@@ -95,11 +92,10 @@ export default function Home() {
         </form>
       </div>
       <form
-        id="icnSubsribeForm"
-        className="flex felx-col relative mt-6 lg:mt-0 w-full"
+        className="bg-blue-400 flex flex-col relative mt-6 py-10 lg:mt-0 w-full"
         method="POST"
       >
-        <div className="flex flex-col sm:flex-row relative w-full">
+        <div className="flex flex-col relative w-full">
           <input
             id="icnEmailSubscrbie"
             className="inline-flex border-none text-black-900 placeholder:text-black-900 font-figtree text-xl font-normal py-4 px-4 w-full"
@@ -108,11 +104,13 @@ export default function Home() {
             placeholder="mymail@example.com"
             required
           />
+        </div>
+        <div className="flex flex-col mt-10 relative w-full">
           <button
             id="icnSubmitEmailSubscribe"
             type="submit"
             aria-label="ICN Submit Email Subscribe"
-            className="inline-flex flex-col items-center justify-center rounded-none sm:rounded-tr-3xl bg-black-900 text-white font-figtree text-base font-medium leading-inherit uppercase outline-none   focus-visible:outline-none py-4 px-[50px] w-full sm:w-max"
+            className="inline-flex flex-col items-center justify-center rounded-none sm:rounded-tr-3xl bg-black-900 text-white font-figtree text-base font-medium leading-inherit uppercase outline-none   focus-visible:outline-none py-4 px-[50px] w-full"
           >
             Submit
           </button>
