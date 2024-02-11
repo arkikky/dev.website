@@ -120,6 +120,12 @@ export default function Home() {
       <div className="pt-32 px-4 sm:px-32 h-auto min-h-[auto] w-full">
         <form method="POST" className="flex flex-col w-full">
           <div className="flex flex-col relative w-full">
+            <label
+              htmlFor="inputFirstname"
+              className="text-black-900 font-bevietnamPro text-base font-normal text-start mb-2"
+            >
+              First name <span className="text-red-500">*</span>
+            </label>
             <input
               className="inline-flex border-none text-black-900 placeholder:text-black-900 font-figtree text-xl font-normal py-4 px-4 w-full"
               type="email"
@@ -129,12 +135,6 @@ export default function Home() {
             />
           </div>
           <div className="flex flex-col mb-4 last:mb-0 w-full">
-            <label
-              htmlFor="inputFirstname"
-              className="text-black-900 font-bevietnamPro text-base font-normal text-start mb-2"
-            >
-              First name <span className="text-red-500">*</span>
-            </label>
             <input
               type="text"
               id="inputFirstname"
