@@ -134,11 +134,26 @@ export default function Home() {
               required
             />
           </div>
+          <div className="flex flex-col relative w-full">
+            <label
+              htmlFor="inputFirstname"
+              className="text-black-900 font-bevietnamPro text-base font-normal text-start mb-2"
+            >
+              First name <span className="text-red-500">*</span>
+            </label>
+            <input
+              className="inline-flex border-none text-black-900 placeholder:text-black-900 font-bevietnamPro text-xl font-normal py-5 px-4 w-full"
+              type="email"
+              name="icnEmail"
+              placeholder="mymail@example.com"
+              required
+            />
+          </div>
           <div className="flex flex-col mb-4 last:mb-0 w-full">
             <input
               type="text"
               id="inputFirstname"
-              className={`inline-flex bg-white rounded-lg border border-solid text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4 w-full`}
+              className={`inline-flex bg-white rounded-lg border border-solid text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base font-normal capitalize py-5 px-4 w-full`}
               name="firstname"
               placeholder="Michael"
             />
