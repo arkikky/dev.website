@@ -81,7 +81,7 @@ const GetInvolved = () => {
           <GetInvolvedCard
             page={true}
             url="/sponsorship"
-            btnColor="bg-secondary2024"
+            btnColor="bg-secondary"
             title="Sponsors"
             shortDesc="Demonstrate your innovations and solutions in a seamless & measurable manner."
           />
@@ -94,7 +94,7 @@ const GetInvolved = () => {
           />
           {/* <GetInvolvedCard
                 url=""
-                btnColor="bg-secondary2024"
+                btnColor="bg-secondary"
                 title="Co-host a Side Event"
                 shortDesc="Strategically position your brand to meet attendees that align with your goals."
               /> */}
@@ -107,7 +107,7 @@ const GetInvolved = () => {
           <GetInvolvedCard
             page={true}
             url="/community"
-            btnColor="bg-secondary2024"
+            btnColor="bg-secondary"
             title="Partner as a Community"
             shortDesc="Connect with leading Web3 industry players, aspiring startups, and communities from 65+ countries."
           />

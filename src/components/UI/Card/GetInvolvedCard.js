@@ -30,7 +30,7 @@ const GetInvolvedCard = ({
         </p>
         {page === true ? (
           <Link
-            className={`${btnColor} ca2024BtnOverflayColor inline-flex items-center justify-center rounded-full ${
+            className={`${btnColor} ca2024BgOverflayColor inline-flex items-center justify-center rounded-full ${
               btnColor === "bg-[#FFC600]"
                 ? "text-black-900"
                 : btnColor === "bg-[#6AF0E4]"
@@ -43,7 +43,7 @@ const GetInvolvedCard = ({
           </Link>
         ) : (
           <Link
-            className={`${btnColor} ca2024BtnOverflayColor inline-flex items-center justify-center rounded-full ${
+            className={`${btnColor} ca2024BgOverflayColor inline-flex items-center justify-center rounded-full ${
               btnColor === "bg-[#FFC600]"
                 ? "text-black-900"
                 : btnColor === "bg-[#6AF0E4]"

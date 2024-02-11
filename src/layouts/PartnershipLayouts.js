@@ -19,11 +19,7 @@ const PartnershipLayouts = ({
 
       <main className="bg-[#F8EAD7] flex flex-col relative">
         <section className="inline-flex flex-col xl:flex-row flex-grow relative h-auto w-full">
-          {/* {router.pathname !== "/" && router.pathname !== "/get-involved" ? (
-           
-          ) : null} */}
-
-          <div className="flex-1 bg-secondary2024 flex flex-col h-auto w-full xl:w-min xl:min-w-[600px] 2xl:min-w-max xl:max-w-[600px] 2xl:max-w-none">
+          <div className="flex-1 bg-secondary flex flex-col h-auto w-full xl:w-min xl:min-w-[600px] 2xl:min-w-max xl:max-w-[600px] 2xl:max-w-none">
             <div className="relative xl:sticky top-0 h-full sm:h-full min-h-[424px] sm:min-h-[527px] xl:min-h-screen max-h-[424px] sm:max-h-[527px] xl:max-h-screen w-full">
               <div className="overflow-hidden absolute inset-y-0 inset-x-0 h-full z-px">
                 <Image
@@ -31,8 +27,8 @@ const PartnershipLayouts = ({
                   src={"/assets/images/backdrop/ca2024BgPotrait.png"}
                   alt={`Coinfest Asia 2024 (GetInvolved Background Potrait)`}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                  height={900}
-                  width={600}
+                  height={1350}
+                  width={900}
                   loading="lazy"
                   quality="87"
                 />
@@ -49,8 +45,8 @@ const PartnershipLayouts = ({
                     className="object-center object-cover mx-auto h-auto w-[137px] sm:w-[187px]"
                     src={"/assets/images/backdrop/ca2024LeafTreeLeft-Small.png"}
                     alt={`Coinfest Asia 2024 (GetInvolved Leaf Tree Items - Left)`}
-                    height={1389}
-                    width={1073}
+                    height={244}
+                    width={374}
                     quality="87"
                   />
                 </div>
@@ -62,19 +58,20 @@ const PartnershipLayouts = ({
                       "/assets/images/backdrop/ca2024LeafTreeRight-Small.png"
                     }
                     alt={`Coinfest Asia 2024 (GetInvolved Leaf Tree Items - Right)`}
-                    height={1389}
-                    width={1073}
+                    height={250}
+                    width={576}
                     quality="87"
                   />
                 </div>
 
+                {/* @backdrop (statue - items) */}
                 <div className="flex bg-transparent absolute top-auto -bottom-[103px] sm:-bottom-[225px] -left-11 sm:-left-[175px] right-auto select-none pointer-events-none z-[5] opacity-1 transition duration-[1s] ease-out">
                   <Image
                     className="object-center object-cover mx-auto h-auto w-[241px] sm:w-[475px]"
-                    src={"/assets/images/backdrop/ca2024GetInvolvedLeft.png"}
-                    alt={`Coinfest Asia 2024 (GetInvolved Items - Left)`}
-                    height={1389}
-                    width={1073}
+                    src={"/assets/images/backdrop/ca2024StatueLeft.png"}
+                    alt={`Coinfest Asia 2024 (Statue Items - Left)`}
+                    height={1556}
+                    width={1224}
                     quality="87"
                   />
                 </div>
@@ -82,10 +79,10 @@ const PartnershipLayouts = ({
                 <div className="flex bg-transparent absolute top-auto -bottom-[88px] sm:-bottom-[154px] left-auto -right-11 sm:-right-[120px] select-none pointer-events-none z-[5] opacity-1 transition duration-[1s] ease-out">
                   <Image
                     className="object-center object-cover mx-auto h-auto w-[311px] sm:w-[525px] lg:w-[575px] z-10"
-                    src={"/assets/images/backdrop/ca2024BannerFooter.png"}
-                    alt={`Coinfest Asia 2024 (Partners Points Items - Right)`}
-                    height={1365}
-                    width={1053}
+                    src={"/assets/images/backdrop/ca2024FooterBanner.png"}
+                    alt={`Coinfest Asia 2024 (Statue Items - Right)`}
+                    height={976}
+                    width={753}
                     quality="87"
                   />
                 </div>
