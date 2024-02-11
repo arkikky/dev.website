@@ -92,7 +92,7 @@ export default function Home() {
         </form>
       </div>
       <form
-        className="bg-blue-400 flex flex-col relative mt-6 py-10 lg:mt-0 w-full"
+        className="bg-blue-400 flex flex-col relative mt-6 py-10 px-10 lg:mt-0 w-full"
         method="POST"
       >
         <div className="flex flex-col relative w-full">
