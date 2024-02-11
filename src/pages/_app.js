@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
         />
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
@@ -22,6 +22,7 @@ export default function App({ Component, pageProps }) {
           href="https://fonts.gstatic.com"
           crossOrigin="true"
         />
+        <title>DEV</title>
 
         <meta name="author" content={"publicRuntimeConfig.author"} />
         <link rel="mask-icon" href="/favicon.ico" color="#0000000" />
