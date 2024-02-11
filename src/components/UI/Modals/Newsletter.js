@@ -148,9 +148,12 @@ const NewsletterModal = ({ ipAddress }) => {
                   </div>
                   <div>
                     <button
-                      className={`bg-secondary flex flex-col items-center justify-center rounded-[14px] text-white font-bevietnamPro text-base font-normal outline-none focus-visible:outline-none py-4 w-full transition duration-[0.3] ease-in-out`}
+                      className={`${
+                        !isValid ? "bg-[#9A9A9A]" : "bg-secondary"
+                      } flex flex-col items-center justify-center rounded-[14px] text-white font-bevietnamPro text-base font-normal outline-none focus-visible:outline-none py-4 w-full transition duration-[0.3] ease-in-out`}
                       aria-label="Submit (Newsletter)"
                       aria-labelledby="Submit (Newsletter)"
+                      disabled={!isValid}
                     >
                       Sign Up
                     </button>
