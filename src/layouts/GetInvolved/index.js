@@ -9,7 +9,7 @@ import BoxGetInvolved from "@components/UI/Card/BoxGetInvolved";
 const GetInvolved = () => {
   return (
     <>
-      <section className="ca2024GetInvolved bg-secondary snap-always snap-start flex flex-col items-center justify-center relative h-auto min-h-[auto]">
+      <section className="ca2024GetInvolved bg-secondary snap-always snap-start flex flex-col items-center justify-center relative h-auto min-h-full">
         <div className="ca2024GetInvolvedPointTop bg-transparent absolute top-10 bottom-auto inset-x-0 h-14 w-full select-none pointer-events-none z-px transition duration-[0.8s] ease-linear"></div>
 
         {/* @background (backdrop) */}
@@ -51,9 +51,9 @@ const GetInvolved = () => {
 
         {/* @content */}
         <Container className="overflow-hidden relative z-[20]">
-          <div className="ca2024GetInvolvedContent flex flex-col overflow-hidden relative pt-[144px] pb-[298px] xl:pb-[252px] opacity-1 transition duration-[1s] ease-out">
-            <div className="ca2024GetInvolvedTitle flex flex-col text-start sm:text-center px-0 sm:px-32 xl:px-0 opacity-1 transition duration-[1.2s] ease-out">
-              <h2 className="text-white font-staraExtraBold text-[58px] sm:text-[58px] lg:text-[80px] leading-[62px] sm:leading-[74px] lg:leading-[90px] uppercase w-full max-w-[243px] xs:max-w-full">
+          <div className="ca2024GetInvolvedContent flex flex-col overflow-hidden relative pt-[194px] pb-[298px] xl:pb-[322px] opacity-1 transition duration-[1s] ease-out">
+            <div className="ca2024GetInvolvedTitle flex flex-col px-0 sm:px-32 xl:px-0 opacity-1 transition duration-[1.2s] ease-out">
+              <h2 className="text-white font-staraExtraBold text-[44px] sm:text-[58px] lg:text-[80px] leading-[52px] sm:leading-[74px] lg:leading-[90px] text-start sm:text-center uppercase w-full max-w-[243px] xs:max-w-full">
                 Get involved for 2024
               </h2>
             </div>

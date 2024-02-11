@@ -21,6 +21,7 @@ import EndSpeakers from "@layouts/Speakers/end";
 // import StartPartners from "@layouts/Partners/start";
 import Partners from "@layouts/Partners";
 import GetInvolved from "@layouts/GetInvolved";
+import SocialMentions from "@layouts/SocialMentions";
 import Tickets from "@layouts/Tickets";
 import FAQ from "@layouts/FAQ";
 import FooterBanner from "@layouts/Banner/FooterBanner";
@@ -117,12 +118,15 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
         <Partners {...isSponsorPartner} />
 
         {/* @get-involved */}
-        {/* <GetInvolved /> */}
+        <GetInvolved />
+
+        {/* @social-mentions */}
+        <SocialMentions />
 
         {/* @tickets */}
         <Tickets />
 
-        <div className="snap-start snap-always h-auto min-h-full">
+        <div className="snap-start snap-always h-auto min-h-full max-h-full">
           {/* @faq */}
           <FAQ />
 
