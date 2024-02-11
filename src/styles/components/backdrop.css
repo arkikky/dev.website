@@ -35,3 +35,8 @@
   @apply opacity-[0.7] blur-[10px];
   @apply -z-px;
 }
+
+/* @background rotate */
+.ca2024BgRotate-Backdrop {
+  transform: rotateX(180deg);
+}

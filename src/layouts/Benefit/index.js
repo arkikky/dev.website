@@ -80,8 +80,9 @@ const Benefit = () => {
           <div className="bg-[#E3EAFF] flex sm:hidden flex-row items-start justify-between rounded-xl mt-6 mx-4 lg:ml-auto py-1.5 px-1.5 w-max">
             <button
               id="btnPrevBenefit"
-              className="flex flex-col items-center justify-center bg-secondary2024 rounded-[10px] outline-none focus:outline-none relative ml-1.5 first:ml-0 h-10 w-10"
-              aria-label="Button Prev Benefit"
+              className="flex flex-col items-center justify-center bg-secondary rounded-[10px] outline-none focus:outline-none relative ml-1.5 first:ml-0 h-10 w-10"
+              aria-label="Button Prev (Benefit)"
+              aria-labelledby="Button Prev (Benefit)"
               onClick={(e) => btnPrev(e)}
             >
               <svg
@@ -106,8 +107,8 @@ const Benefit = () => {
             </button>
             <button
               id="btnNextBenefit"
-              className="flex flex-col items-center justify-center bg-secondary2024 rounded-[10px] outline-none focus:outline-none relative ml-1.5 first:ml-0 h-10 w-10"
-              aria-label="Button Right Benefit"
+              className="flex flex-col items-center justify-center bg-secondary rounded-[10px] outline-none focus:outline-none relative ml-1.5 first:ml-0 h-10 w-10"
+              aria-labelledby="Button Right (Benefit)"
               onClick={(e) => btnNext(e)}
             >
               <svg

@@ -39,7 +39,7 @@ const SocialMentions = ({ data }) => {
         <div className="ca2024SocialMentionsPointTop bg-transparent absolute top-10 bottom-auto inset-x-0 h-14 w-full select-none pointer-events-none z-px transition-all duration-150 ease-linear"></div>
 
         <Container className="overflow-hidden relative z-[5]">
-          <div className="flex flex-col overflow-hidden relative pt-[184px] sm:pt-[194px] pb-[254px] xl:pb-[172px]">
+          <div className="flex flex-col overflow-hidden relative pt-[154px] sm:pt-[194px] pb-[254px] xl:pb-[172px]">
             <div className="ca2024SocialMentionsContentTitle flex flex-col items-center justify-center opacity-1 transition duration-[1.2s] ease-out">
               <h2 className="text-black-900 font-staraExtraBold text-[32px] sm:text-[58px] lg:text-[80px] leading-[40px] sm:leading-[74px] lg:leading-[90px] text-center uppercase">
                 See what they're saying about Coinfest Asia
