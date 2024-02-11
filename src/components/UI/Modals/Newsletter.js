@@ -101,9 +101,9 @@ const NewsletterModal = ({ ipAddress }) => {
                   id={"rstFormNewsletter"}
                   method="POST"
                   onSubmit={handleSubmit(hndleOnSubmit)}
-                  className="flex flex-col mt-6"
+                  className="flex flex-col mt-6 w-full"
                 >
-                  <div className="flex flex-col mb-4 last:mb-0">
+                  <div className="flex flex-col mb-4 last:mb-0 w-full">
                     <label
                       htmlFor="inputFirstname"
                       className="text-black-900 font-bevietnamPro text-base font-normal text-start mb-2"
@@ -115,7 +115,7 @@ const NewsletterModal = ({ ipAddress }) => {
                       id="inputFirstname"
                       className={`form-input bg-white rounded-lg border border-solid ${
                         errors.firstname ? "border-red-500" : "border-[#E3E3E3]"
-                      } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4`}
+                      } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base font-normal capitalize py-5 px-4 w-full`}
                       name="firstname"
                       placeholder="Michael"
                       {...register("firstname", {
@@ -125,7 +125,7 @@ const NewsletterModal = ({ ipAddress }) => {
                       })}
                     />
                   </div>
-                  <div className="flex flex-col mb-4 last:mb-0">
+                  <div className="flex flex-col mb-4 last:mb-0 w-full">
                     <label
                       htmlFor="inputEmail"
                       className="text-black-900 font-bevietnamPro text-base font-normal text-start mb-2"
@@ -137,7 +137,7 @@ const NewsletterModal = ({ ipAddress }) => {
                       id="inputEmail"
                       className={`form-input bg-white rounded-lg border border-solid ${
                         errors.email ? "border-red-500" : "border-[#E3E3E3]"
-                      } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal lowercase py-5 px-4`}
+                      } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base font-normal lowercase py-5 px-4 w-full`}
                       name="email"
                       placeholder="michaelzhao@company.com"
                       {...register("email", {

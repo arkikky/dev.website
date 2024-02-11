@@ -165,7 +165,7 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
       </main>
 
       {/* @modal */}
-      {/* <NewsletterModal ipAddress={isIpAddress} /> */}
+      <NewsletterModal ipAddress={isIpAddress} />
     </>
   );
 };
