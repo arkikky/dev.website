@@ -18,7 +18,7 @@ const GetInvolved = () => {
     }
 
     return () => {
-      intBody.classList.remove("overflow-y-hidden");
+      undefined;
     };
   }, []);
 

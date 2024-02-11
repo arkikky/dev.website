@@ -8,10 +8,10 @@ const Layouts = ({ children }) => {
   return (
     <>
       {/* @navbar (top) */}
-      <NavbarTop />
+      {/* <NavbarTop /> */}
 
       {/* @navbar (bottom) */}
-      <NavbarBottom />
+      {/* <NavbarBottom /> */}
 
       {/* @main */}
       {children}

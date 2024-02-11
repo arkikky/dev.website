@@ -36,7 +36,7 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
     intBody.classList.add("overflow-y-hidden");
 
     return () => {
-      intBody.classList.remove("overflow-y-hidden");
+      undefined;
     };
   }, []);
 
