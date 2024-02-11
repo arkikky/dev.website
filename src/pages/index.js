@@ -16,6 +16,7 @@ import NavbarTop from "@layouts/Navbar/NavbarTop";
 import NavbarStatic from "@layouts/Navbar/NavbarStatic";
 import Header from "@layouts/Header";
 import Abouts from "@layouts/Abouts";
+import ChartInsight from "@layouts/ChartInsight";
 import StartSpeakers from "@layouts/Speakers/start";
 import Speakers from "@layouts/Speakers";
 import EndSpeakers from "@layouts/Speakers/end";
@@ -102,8 +103,13 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
       <main className="ca2024Main ca2024MainMandatory approved pt-0 w-full">
         {/* @header */}
         <Header />
-        <div className="snap-start snap-always overflow-hidden h-auto min-h-[auto]">
+
+        <div className="snap-start snap-always overflow-hidden pb-[298px] h-auto min-h-[auto]">
+          {/* @about */}
           <Abouts />
+
+          {/* @chart-insight */}
+          <ChartInsight />
         </div>
 
         {/* @speakers (start) */}

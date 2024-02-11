@@ -7,7 +7,7 @@ import Container from "@components/Container";
 const Abouts = () => {
   return (
     <>
-      <div className="ca2024AboutsStart bg-white flex flex-col items-center justify-center relative h-svh xl:h-screen min-h-svh xl:min-h-screen">
+      <section className="ca2024AboutsStart bg-white flex flex-col items-center justify-center relative h-svh xl:h-screen min-h-svh xl:min-h-screen">
         {/* @background (backdrop) */}
         <div className="ca2024SpeakersBackdrop absolute inset-y-0 inset-x-0 z-px">
           <Image
@@ -66,7 +66,7 @@ const Abouts = () => {
             </h1>
           </div>
         </Container>
-      </div>
+      </section>
     </>
   );
 };
