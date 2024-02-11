@@ -11,7 +11,7 @@ const Layouts = ({ children }) => {
       {/* <NavbarTop /> */}
 
       {/* @navbar (bottom) */}
-      {/* <NavbarBottom /> */}
+      <NavbarBottom />
 
       {/* @main */}
       {children}
