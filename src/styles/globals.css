@@ -13,6 +13,7 @@ html {
 }
 
 body {
+  @apply touch-none;
   @apply bg-white;
   @apply font-bevietnamPro;
 }
