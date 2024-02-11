@@ -102,7 +102,7 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
       <main className="ca2024Main ca2024MainMandatory approved pt-0 w-full">
         {/* @header */}
         <Header />
-        <div className="snap-start snap-always h-auto min-h-[auto]">
+        <div className="snap-start snap-always overflow-hidden h-auto min-h-[auto]">
           <Abouts />
         </div>
 
