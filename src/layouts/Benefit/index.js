@@ -11,7 +11,7 @@ import CardBenefit from "@components/UI/Card/CardBenefit";
 const Benefit = () => {
   const rfMainSplde = useRef(null);
 
-  // @controller (Splide)
+  // @controller (splide)
   const btnPrev = (e) => {
     e.preventDefault();
 
@@ -79,7 +79,6 @@ const Benefit = () => {
           </div>
           <div className="bg-[#E3EAFF] flex sm:hidden flex-row items-start justify-between rounded-xl mt-6 mx-4 lg:ml-auto py-1.5 px-1.5 w-max">
             <button
-              id="btnPrevBenefit"
               className="flex flex-col items-center justify-center bg-secondary rounded-[10px] outline-none focus:outline-none relative ml-1.5 first:ml-0 h-10 w-10"
               aria-label="Button Prev (Benefit)"
               aria-labelledby="Button Prev (Benefit)"
@@ -106,7 +105,6 @@ const Benefit = () => {
               </svg>
             </button>
             <button
-              id="btnNextBenefit"
               className="flex flex-col items-center justify-center bg-secondary rounded-[10px] outline-none focus:outline-none relative ml-1.5 first:ml-0 h-10 w-10"
               aria-labelledby="Button Right (Benefit)"
               onClick={(e) => btnNext(e)}
