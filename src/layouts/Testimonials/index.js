@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import Image from "next/image";
 
@@ -10,6 +10,27 @@ import Container from "@components/Container";
 
 const Testimonials = () => {
   const rfMainSplde = useRef(null);
+  const [intGrabDown, setGrabDown] = useState(false);
+
+  //  @mouse (Grab - Event)
+  const intMouseDown = (e) => {
+    e.preventDefault();
+
+    setGrabDown(true);
+  };
+
+  const intMouseDefault = (e) => {
+    e.preventDefault();
+
+    setGrabDown(false);
+  };
+
+  const intMouseMove = (e) => {
+    if (!intGrabDown) return;
+    e.preventDefault();
+
+    setGrabDown(true);
+  };
 
   return (
     <>
@@ -30,7 +51,15 @@ const Testimonials = () => {
         </div>
 
         {/* @content */}
-        <div className="flex flex-col relative -mt-5 w-full z-[22]">
+        <div
+          className={`${
+            intGrabDown === true ? "cursor-grabbing" : "cursor-grab"
+          } flex flex-col relative -mt-5 w-full z-[22]`}
+          onMouseDown={(e) => intMouseDown(e)}
+          onMouseUp={(e) => intMouseDefault(e)}
+          onMouseLeave={(e) => intMouseDefault(e)}
+          onMouseMove={(e) => intMouseMove(e)}
+        >
           <Container>
             <Splide
               ref={(slider) => (rfMainSplde.current = slider)}
@@ -71,7 +100,7 @@ const Testimonials = () => {
                 <div className="flex flex-col">
                   {/* <div className="bg-[#D9D9D9] rounded-xl sm:rounded-[28px] overflow-hidden h-24 sm:h-32 lg:h-[146] xl:h-32 2xl:h-[146px] w-24 sm:w-32 lg:w-[146] xl:w-32 2xl:w-[146px]"></div> */}
                   <div className="flex flex-col mt-6">
-                    <h3 className="text-white font-bevietnamPro text-2xl sm:text-[54px] lg:text-[64px] xl:text-[58px] 2xl:text-[64px] sm:leading-[62px] lg:leading-[96px] xl:leading-[76px] 2xl:leading-[96px] w-full">
+                    <h3 className="text-white font-bevietnamPro text-2xl sm:text-[54px] lg:text-[64px] xl:text-[58px] 2xl:text-[64px] sm:leading-[62px] lg:leading-[96px] xl:leading-[76px] 2xl:leading-[96px] font-semibold w-full">
                       “A great conference in a great setting and to be honest,
                       this is one of the most beautiful settings I’ve been to”
                     </h3>
@@ -85,7 +114,7 @@ const Testimonials = () => {
                 <div className="flex flex-col">
                   {/* <div className="bg-[#D9D9D9] rounded-xl sm:rounded-[28px] overflow-hidden h-24 sm:h-32 lg:h-[146] xl:h-32 2xl:h-[146px] w-24 sm:w-32 lg:w-[146] xl:w-32 2xl:w-[146px]"></div> */}
                   <div className="flex flex-col mt-6">
-                    <h3 className="text-white font-bevietnamPro text-2xl sm:text-[54px] lg:text-[64px] xl:text-[58px] 2xl:text-[64px] sm:leading-[62px] lg:leading-[96px] xl:leading-[76px] 2xl:leading-[96px] w-full">
+                    <h3 className="text-white font-bevietnamPro text-2xl sm:text-[54px] lg:text-[64px] xl:text-[58px] 2xl:text-[64px] sm:leading-[62px] lg:leading-[96px] xl:leading-[76px] 2xl:leading-[96px] font-semibold w-full">
                       “The event has been fantastic, well organized. It has
                       elevated the conversation of crypto, Web3, metaverse, and
                       DeFi that we all believe so strongly. I'm looking forward
@@ -101,7 +130,7 @@ const Testimonials = () => {
                 <div className="flex flex-col">
                   {/* <div className="bg-[#D9D9D9] rounded-xl sm:rounded-[28px] overflow-hidden h-24 sm:h-32 lg:h-[146] xl:h-32 2xl:h-[146px] w-24 sm:w-32 lg:w-[146] xl:w-32 2xl:w-[146px]"></div> */}
                   <div className="flex flex-col mt-6">
-                    <h3 className="text-white font-bevietnamPro text-2xl sm:text-[54px] lg:text-[64px] xl:text-[58px] 2xl:text-[64px] sm:leading-[62px] lg:leading-[96px] xl:leading-[76px] 2xl:leading-[96px] w-full">
+                    <h3 className="text-white font-bevietnamPro text-2xl sm:text-[54px] lg:text-[64px] xl:text-[58px] 2xl:text-[64px] sm:leading-[62px] lg:leading-[96px] xl:leading-[76px] 2xl:leading-[96px] font-semibold w-full">
                       “What I like the most of Coinfest is I've been able to
                       connect with a diverse range of people and it's very
                       interesting”
