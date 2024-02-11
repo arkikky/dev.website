@@ -1,0 +1,212 @@
+import React, { useState, useEffect } from "react";
+import getConfig from "next/config";
+import Head from "next/head";
+
+// @get .config
+const { publicRuntimeConfig } = getConfig();
+
+// @lib
+import { getFetchUrl, getFetch } from "@lib/controller/API";
+
+// @components
+import NewsletterModal from "@components/UI/Modals/Newsletter";
+
+// @layout
+import NavbarTop from "@layouts/Navbar/NavbarTop";
+import Navbar from "@layouts/Navbar/NavbarBottom";
+import Header from "@layouts/Header";
+import StartSpeakers from "@layouts/Speakers/start";
+import Speakers from "@layouts/Speakers";
+import EndSpeakers from "@layouts/Speakers/end";
+// import StartPartners from "@layouts/Partners/start";
+import Partners from "@layouts/Partners";
+import Tickets from "@layouts/Tickets";
+import FAQ from "@layouts/FAQ";
+import FooterBanner from "@layouts/Banner/FooterBanner";
+import Footer from "@layouts/Footer";
+
+const App = ({ ipAddress, speaker, sponsorPartner }) => {
+  const [isIpAddress, setIpAddress] = useState(ipAddress);
+  const [isSpeakers, setSpeakers] = useState(speaker);
+  const [isSponsorPartner, setSponsorPartner] = useState(sponsorPartner);
+
+  // useEffect(() => {
+  //   const intBody = document.body;
+
+  //   intBody.classList.add("overflow-y-hidden");
+
+  //   return () => {
+  //     intBody.classList.remove("overflow-y-hidden");
+  //   };
+  // }, []);
+
+  return (
+    <>
+      {/* @head */}
+      <Head>
+        <title>{`${publicRuntimeConfig.siteTitle}`}</title>
+        <meta name="title" content={`${publicRuntimeConfig.siteTitle}`} />
+        <meta
+          name="description"
+          content={
+            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
+          }
+        />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
+        <meta
+          property="og:title"
+          content={`${publicRuntimeConfig.siteTitle}`}
+        />
+        <meta
+          property="og:description"
+          content={
+            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
+          }
+        />
+        <meta
+          property="og:image"
+          content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
+        />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
+        <meta
+          property="twitter:title"
+          content={`${publicRuntimeConfig.siteTitle}`}
+        />
+        <meta
+          property="twitter:description"
+          content={
+            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
+          }
+        />
+        <meta
+          property="twitter:image"
+          content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
+        />
+      </Head>
+
+      {/* @navbar (top) */}
+      <NavbarTop />
+
+      {/* @navbar (bottom) */}
+      <Navbar />
+
+      <main className="ca2024Main ca2024MainMandatory approved overflow-x-hidden pt-0">
+        {/* @header */}
+        {/* <Header /> */}
+
+        {/* @speakers (start) */}
+        {/* <StartSpeakers /> */}
+
+        {/* @speakers */}
+        {/* <Speakers {...isSpeakers} /> */}
+
+        {/* @speakers (end) */}
+        {/* <EndSpeakers /> */}
+
+        {/* @partners (start - on hold) */}
+        {/* <StartPartners /> */}
+
+        {/* @partners */}
+        {/* <Partners {...isSponsorPartner} /> */}
+
+        {/* @tickets */}
+        {/* <Tickets /> */}
+
+        <div className="snap-start snap-always pt-32 px-32 h-auto min-h-[auto]">
+          <form method="POST" className="flex flex-col w-full">
+            <div className="flex flex-col mb-4 last:mb-0">
+              <label
+                htmlFor="inputFirstname"
+                className="text-black-900 font-bevietnamPro text-base font-normal text-start mb-2"
+              >
+                First name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="inputFirstname"
+                className={`form-input inline-flex bg-white rounded-lg border border-solid text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4 w-full`}
+                name="firstname"
+                placeholder="Michael"
+              />
+            </div>
+            <div className="flex flex-col mb-4 last:mb-0">
+              <label
+                htmlFor="inputFirstname"
+                className="text-black-900 font-bevietnamPro text-base font-normal text-start mb-2"
+              >
+                First name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="inputFirstname"
+                className={`form-input inline-flex bg-white rounded-lg border border-solid text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-sm font-normal capitalize py-5 px-4 w-full`}
+                name="firstname"
+                placeholder="Michael"
+              />
+            </div>
+          </form>
+        </div>
+        <div className="snap-start snap-always h-auto min-h-full">
+          {/* @faq */}
+          {/* <FAQ /> */}
+
+          {/* @footer (banner) */}
+          {/* <FooterBanner /> */}
+
+          {/* @footer */}
+          {/* <Footer /> */}
+        </div>
+      </main>
+
+      {/* @modal */}
+      {/* <NewsletterModal ipAddress={isIpAddress} /> */}
+    </>
+  );
+};
+
+export default App;
+
+export const getStaticProps = async () => {
+  const isIpAddress = await getFetchUrl(
+    `https://ipinfo.io/json?token=135855871d1f46`
+  );
+
+  const isSpeaker = await getFetch(
+    `/speaker-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
+  );
+
+  const isSponsorPartner = await getFetch(
+    `/sponsor-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
+  );
+
+  // const gCa2024SocialMentions = await getFetch(
+  //   `/people-says?populate=*&pagination[pageSize]=100`
+  // );
+
+  try {
+    return {
+      props: {
+        ipAddress: isIpAddress || [],
+        speaker: isSpeaker || [],
+        sponsorPartner: isSponsorPartner || [],
+        // socialMentions: gCa2024SocialMentions || [],
+      },
+
+      revalidate: 3600,
+    };
+  } catch (err) {
+    return {
+      notFound: true,
+    };
+  }
+};
+
+App.getLayout = function PageLayout(page) {
+  return <>{page}</>;
+};
