@@ -9,7 +9,6 @@ import Container from "@components/Container";
 import CardSocialMentions from "@components/UI/Card/SocialMentions";
 
 const SocialMentions = ({ data }) => {
-  const intGrabBackdrop = useRef(null);
   const [intSocialMentions, setSocialMentions] = useState(data);
 
   return (
@@ -26,8 +25,7 @@ const SocialMentions = ({ data }) => {
               </h2>
             </div>
 
-            <div
-              ref={intGrabBackdrop}
+            {/* <div
               id="ca2024SocialMentions"
               className="ca2024SocialMentions bckdrpCvrShdow flex flex-col relative mt-20 sm:mt-28 mb-28 transition duration-[2.2s] ease-out pointer-events-none lg:pointer-events-auto"
             >
@@ -65,7 +63,7 @@ const SocialMentions = ({ data }) => {
                   </div>
                 </SplideSlide>
               </Splide>
-            </div>
+            </div> */}
           </div>
         </Container>
       </section>
