@@ -106,7 +106,8 @@ const Benefit = () => {
             </button>
             <button
               className="flex flex-col items-center justify-center bg-secondary rounded-[10px] outline-none focus:outline-none relative ml-1.5 first:ml-0 h-10 w-10"
-              aria-labelledby="Button Right (Benefit)"
+              aria-label="Button Next (Benefit)"
+              aria-labelledby="Button Next (Benefit)"
               onClick={(e) => btnNext(e)}
             >
               <svg
