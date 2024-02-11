@@ -1,43 +1,23 @@
 import React, { useRef, useState, useEffect } from "react";
-// import { Splide, SplideSlide } from "@splidejs/react-splide";
-// import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 // import { gsap } from "gsap";
 // import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 // @xomponents
 import Container from "@components/Container";
-// import CardSocialMentions from "@components/UI/Card/SocialMentions";
+import CardSocialMentions from "@components/UI/Card/SocialMentions";
 
 const SocialMentions = ({ data }) => {
   const intGrabBackdrop = useRef(null);
-  const [intGrabDown, setGrabDown] = useState(false);
   const [intSocialMentions, setSocialMentions] = useState(data);
-
-  //  @mouse (Grab - Event)
-  // const intMouseDown = (e) => {
-  //   e.preventDefault();
-
-  //   setGrabDown(true);
-  // };
-
-  // const intMouseDefault = (e) => {
-  //   e.preventDefault();
-
-  //   setGrabDown(false);
-  // };
-
-  // const intMouseMove = (e) => {
-  //   if (!intGrabDown) return;
-  //   e.preventDefault();
-
-  //   setGrabDown(true);
-  // };
 
   return (
     <>
       <section className="ca2024SocialMentions bg-white snap-always snap-start flex flex-col items-center justify-center overflow-hidden relative h-auto z-10">
         <div className="ca2024SocialMentionsPointTop bg-transparent absolute top-10 bottom-auto inset-x-0 h-14 w-full select-none pointer-events-none z-px transition-all duration-150 ease-linear"></div>
 
+        {/* @content */}
         <Container className="overflow-hidden relative z-[5]">
           <div className="flex flex-col overflow-hidden relative pt-[154px] sm:pt-[194px] pb-[254px] xl:pb-[172px]">
             <div className="ca2024SocialMentionsContentTitle flex flex-col items-center justify-center opacity-1 transition duration-[1.2s] ease-out">
@@ -46,24 +26,50 @@ const SocialMentions = ({ data }) => {
               </h2>
             </div>
 
-            {/* <div className="ca2024SocialMentionsContent flex flex-col overflow-hidden relative transition duration-[2.2s] ease-out -mt-17 pointer-events-none lg:pointer-events-auto">
+            <div className="ca2024SocialMentionsContent flex flex-col overflow-hidden relative transition duration-[2.2s] ease-out -mt-17 pointer-events-none lg:pointer-events-auto">
               <div
                 ref={intGrabBackdrop}
                 id="ca2024SocialMentions"
                 className="ca2024SocialMentions relative mt-20 sm:mt-28 mb-28"
               >
-                <div
-                  className={`bckdrpCvrShdow ${
-                    intGrabDown === true ? "cursor-grabbing" : "cursor-grab"
-                  } relative mt-11`}
-                  onMouseDown={(e) => intMouseDown(e)}
-                  onMouseUp={(e) => intMouseDefault(e)}
-                  onMouseLeave={(e) => intMouseDefault(e)}
-                  onMouseMove={(e) => intMouseMove(e)}
-                >
+                <div className={`bckdrpCvrShdow relative mt-11`}>
+                  <Splide
+                    tag="section"
+                    id="caSpldeSocialMentions"
+                    aria-label="Social Mentions (Story)"
+                    options={{
+                      direction: "ttb",
+                      type: "loop",
+                      drag: "free",
+                      perPage: 1,
+                      gap: "16px",
+                      arrows: false,
+                      pagination: false,
+                      keyboard: false,
+                      cloneStatus: false,
+                      height: "auto",
+                      autoScroll: {
+                        pauseOnFocus: false,
+                        rewind: false,
+                        speed: 2,
+                      },
+                    }}
+                    extensions={{ AutoScroll }}
+                    className="caSpldeSocialMentions caSpldeMnsry overflow-hidden min-h-[1488px] max-h-[1488px] w-full"
+                  >
+                    <SplideSlide className="outline-none focus:outline-none">
+                      <div className="caMnsry">
+                        {intSocialMentions?.map((getResult, index) => (
+                          <div key={index} className="break-inside-avoid">
+                            <CardSocialMentions {...getResult} />
+                          </div>
+                        ))}
+                      </div>
+                    </SplideSlide>
+                  </Splide>
                 </div>
               </div>
-            </div> */}
+            </div>
           </div>
         </Container>
       </section>

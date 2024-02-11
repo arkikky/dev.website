@@ -31,10 +31,11 @@ import FAQ from "@layouts/FAQ";
 import FooterBanner from "@layouts/Banner/FooterBanner";
 import Footer from "@layouts/Footer";
 
-const App = ({ ipAddress, speaker, sponsorPartner }) => {
+const App = ({ ipAddress, speaker, sponsorPartner, socialMentions }) => {
   const [isIpAddress, setIpAddress] = useState(ipAddress);
   const [isSpeakers, setSpeakers] = useState(speaker);
   const [isSponsorPartner, setSponsorPartner] = useState(sponsorPartner);
+  const [isSocialMentions, setSocialMentions] = useState(socialMentions);
 
   useEffect(() => {
     const intBody = document.body;
@@ -139,7 +140,7 @@ const App = ({ ipAddress, speaker, sponsorPartner }) => {
         <GetInvolved />
 
         {/* @social-mentions */}
-        <SocialMentions />
+        <SocialMentions {...isSocialMentions} />
 
         {/* @tickets */}
         <Tickets />
@@ -177,9 +178,9 @@ export const getStaticProps = async () => {
     `/sponsor-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
   );
 
-  // const gCa2024SocialMentions = await getFetch(
-  //   `/people-says?populate=*&pagination[pageSize]=100`
-  // );
+  const isSocialMentions = await getFetch(
+    `/people-says?populate=*&pagination[pageSize]=100`
+  );
 
   try {
     return {
@@ -187,7 +188,7 @@ export const getStaticProps = async () => {
         ipAddress: isIpAddress || [],
         speaker: isSpeaker || [],
         sponsorPartner: isSponsorPartner || [],
-        // socialMentions: gCa2024SocialMentions || [],
+        socialMentions: isSocialMentions || [],
       },
 
       revalidate: 3600,
