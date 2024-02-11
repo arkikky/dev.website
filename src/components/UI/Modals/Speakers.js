@@ -106,7 +106,7 @@ const SpeakersModal = ({ attributes }) => {
                       className="my-auto h-auto w-auto min-h-[36px] max-h-[65px]"
                       src={isBrand}
                       alt={`(${isName} - Brand Speakers Modal)`}
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 280vw, 280vw"
+                      sizes="(max-width: 768px) 80vw, (max-width: 1200px) 280vw, 280vw"
                       height={58}
                       width={270}
                       quality="87"
