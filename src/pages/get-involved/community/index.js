@@ -359,7 +359,7 @@ const Community = (props) => {
                           <input
                             id={`radioConfrimCommunityForm${frmCommunity.formFieldGroups[3].fields[0].name}${a}`}
                             type="radio"
-                            className="form-radio border border-solid border-white/20 rounded-full text-secondary2024 bxShdowNone mt-0.5 shrink-0 ring-0 outline-none focus:outline-none pointer-events-none"
+                            className="form-radio border border-solid border-white/20 rounded-full text-secondary2024 bxShdowNone mt-[3px] shrink-0 ring-0 outline-none focus:outline-none pointer-events-none h-5 w-5"
                             name={`radioConfrimCommunityForm_${frmCommunity.formFieldGroups[3].fields[0].name}`}
                             value={gOptin.value}
                             {...register(
@@ -369,7 +369,7 @@ const Community = (props) => {
                               }
                             )}
                           />
-                          <span className="text-black-900 font-bevietnamPro text-sm font-normal ml-3">
+                          <span className="text-black-900 font-bevietnamPro text-base font-normal ml-3">
                             {gOptin.label}
                           </span>
                         </label>
@@ -433,7 +433,7 @@ const Community = (props) => {
                                     <input
                                       id={`checkboxCommunityFocusForm${i}`}
                                       type="checkbox"
-                                      className="form-checkbox border border-solid border-white/20 rounded text-secondary bxShdowNone shrink-0 mt-0.5 ring-0 outline-none focus:outline-none pointer-events-none"
+                                      className="form-checkbox border border-solid border-white/20 rounded text-secondary bxShdowNone shrink-0 mt-0.5 ring-0 outline-none focus:outline-none pointer-events-none h-5 w-5"
                                       name="checkboxCommunityFocusForm[]"
                                       value={gOptin.value}
                                       {...register("community_focus", {
@@ -441,7 +441,7 @@ const Community = (props) => {
                                       })}
                                     />
 
-                                    <span className="text-black-900 font-bevietnamPro text-sm font-normal ml-3">
+                                    <span className="text-black-900 font-bevietnamPro text-base font-normal ml-3">
                                       {gOptin.label}
                                     </span>
                                   </label>
