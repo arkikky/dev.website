@@ -41,6 +41,15 @@ a {
   @apply h-1 w-1;
 }
 
+/* @form */
+input,
+select,
+textarea {
+  box-shadow: none !important;
+  @apply outline-none focus-visible:outline-none;
+  @apply transition duration-200 ease-in-out;
+}
+
 /* @backdrop */
 @import url("./components/backdrop");
 

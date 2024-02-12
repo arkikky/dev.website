@@ -28,13 +28,14 @@ const Community = (props) => {
   const {
     watch,
     register,
-    formState: { isValid },
+    formState: { errors, isValid },
     handleSubmit,
     reset,
   } = useForm({
     mode: "all",
   });
 
+  // @body
   useEffect(() => {
     const intBody = document.body;
 
@@ -47,6 +48,7 @@ const Community = (props) => {
     };
   }, []);
 
+  // @handle (checkbox)
   const handleCheckboxChange = (value) => {
     if (selectedCheckboxesOthrs.includes(value)) {
       setSelectedCheckboxesOthrs(
@@ -57,10 +59,10 @@ const Community = (props) => {
     }
   };
 
-  // @Submit
+  // @submit
   const onSubmit = async (data) => {
-    const btnSuccessNewsletter = document.querySelector(
-      "#mdlBtnSuccessNewsletter.mdlBtnSuccessNewsletter"
+    const btnSuccessModal = document.querySelector(
+      "#mdlBtnSuccess.mdlBtnSuccess"
     );
 
     const otherChooseYrMindSpeakers =
@@ -137,7 +139,11 @@ const Community = (props) => {
         {
           objectTypeId: "0-1",
           name: "if_you_choose__other___tell_us_what_s_in_your_mind",
-          value: data.if_you_choose__other___tell_us_what_s_in_your_mind,
+          value:
+            data.if_you_choose__other___tell_us_what_s_in_your_mind ===
+            undefined
+              ? "-"
+              : data.if_you_choose__other___tell_us_what_s_in_your_mind,
         },
       ],
       context: {
@@ -154,7 +160,7 @@ const Community = (props) => {
     if (rs === true) {
       setForm({ ...isForm, mobilephone: "" });
       setSelectedCheckboxesOthrs([]);
-      btnSuccessNewsletter.click();
+      btnSuccessModal.click();
       reset();
     }
   };
@@ -232,7 +238,9 @@ const Community = (props) => {
                 <input
                   type="text"
                   id="inputFirstnameCommunity"
-                  className="form-input bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4"
+                  className={`form-input bg-white rounded-lg border border-solid ${
+                    errors.firstname ? "border-red-500" : "border-[#E3E3E3]"
+                  } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4`}
                   name="firstname"
                   placeholder="Michael"
                   {...register("firstname", {
@@ -251,7 +259,9 @@ const Community = (props) => {
                 <input
                   type="text"
                   id="inputLastnameCommunity"
-                  className="form-input bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4"
+                  className={`form-input bg-white rounded-lg border border-solid ${
+                    errors.lastname ? "border-red-500" : "border-[#E3E3E3]"
+                  } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4`}
                   name="lastname"
                   placeholder="Zhao"
                   {...register("lastname", {
@@ -271,8 +281,11 @@ const Community = (props) => {
               <input
                 type="email"
                 id="inputEmailCommunity"
-                className="form-input bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal lowercase py-5 px-4"
+                className={`form-input bg-white rounded-lg border border-solid ${
+                  errors.lastname ? "border-red-500" : "border-[#E3E3E3]"
+                } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal lowercase py-5 px-4`}
                 name="email"
+                autoComplete="true"
                 placeholder="michaelzhao@company.com"
                 {...register("email", {
                   required: true,
@@ -291,7 +304,11 @@ const Community = (props) => {
                 <PhoneInput
                   international
                   id="inputMobilephoneSpeakers"
-                  className="bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4"
+                  className={`bg-white rounded-lg border border-solid ${
+                    isForm.mobilephone === ""
+                      ? "border-red-500"
+                      : "border-[#E3E3E3]"
+                  } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4`}
                   name="phone"
                   placeholder="+14161114646"
                   value={isForm.mobilephone}
@@ -305,12 +322,14 @@ const Community = (props) => {
                   htmlFor="inputTelegramUsernameCommunity"
                   className="text-black-900 font-bevietnamPro text-base font-normal text-start mb-2"
                 >
-                  Telegram Username
+                  Telegram Username <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   id="inputTelegramUsernameCommunity"
-                  className="form-input bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal lowercase py-5 px-4"
+                  className={`form-input bg-white rounded-lg border border-solid ${
+                    errors.lastname ? "border-red-500" : "border-[#E3E3E3]"
+                  } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal lowercase py-5 px-4`}
                   name="telegram_username"
                   placeholder="@coinfest.asia"
                   {...register("telegram_username", {
@@ -328,49 +347,36 @@ const Community = (props) => {
                 <span className="text-red-500">*</span>
               </label>
               <div className="grid space-y-4">
-                {frmCommunity.formFieldGroups?.map((gRslt) => (
-                  <>
-                    {gRslt.fields?.map((gRsltIn, i) => (
+                <div className="space-y-2">
+                  {frmCommunity.formFieldGroups[3].fields[0].options?.map(
+                    (gOptin, a) => (
                       <>
-                        {gRsltIn.fieldType === "radio" &&
-                        gRsltIn.name ===
-                          "did_your_community_support_coinfest_asia_previously_" ? (
-                          <div className="space-y-2" key={i}>
-                            {gRsltIn.options?.map((gOptin, a) => (
-                              <>
-                                <label
-                                  htmlFor={`radioConfrimCommunityForm${gRsltIn.name}${a}`}
-                                  className={`flex w-full`}
-                                  key={a}
-                                >
-                                  {gRsltIn.name ===
-                                    "did_your_community_support_coinfest_asia_previously_" && (
-                                    <input
-                                      id={`radioConfrimCommunityForm${gRsltIn.name}${a}`}
-                                      type="radio"
-                                      className="form-radio border border-solid border-white/20 rounded-full text-secondary2024 bxShdowNone mt-1 shrink-0 ring-0 outline-none focus:outline-none focus-visible:outline-none pointer-events-none"
-                                      name={`radioConfrimCommunityForm_${gRsltIn.name}`}
-                                      value={gOptin.value}
-                                      {...register(
-                                        "did_your_community_support_coinfest_asia_previously_",
-                                        {
-                                          required: true,
-                                        }
-                                      )}
-                                    />
-                                  )}
-                                  <span className="text-black-900 font-bevietnamPro text-base font-normal ml-3">
-                                    {gOptin.label}
-                                  </span>
-                                </label>
-                              </>
-                            ))}
-                          </div>
-                        ) : null}
+                        <label
+                          htmlFor={`radioConfrimCommunityForm${frmCommunity.formFieldGroups[3].fields[0].name}${a}`}
+                          className={`flex w-full`}
+                          key={a}
+                        >
+                          <input
+                            id={`radioConfrimCommunityForm${frmCommunity.formFieldGroups[3].fields[0].name}${a}`}
+                            type="radio"
+                            className="form-radio border border-solid border-white/20 rounded-full text-secondary2024 bxShdowNone mt-0.5 shrink-0 ring-0 outline-none focus:outline-none pointer-events-none"
+                            name={`radioConfrimCommunityForm_${frmCommunity.formFieldGroups[3].fields[0].name}`}
+                            value={gOptin.value}
+                            {...register(
+                              "did_your_community_support_coinfest_asia_previously_",
+                              {
+                                required: true,
+                              }
+                            )}
+                          />
+                          <span className="text-black-900 font-bevietnamPro text-sm font-normal ml-3">
+                            {gOptin.label}
+                          </span>
+                        </label>
                       </>
-                    ))}
-                  </>
-                ))}
+                    )
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -391,7 +397,9 @@ const Community = (props) => {
               <input
                 type="text"
                 id="inputCompanyCommunity"
-                className="bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4"
+                className={`form-input bg-white rounded-lg border border-solid ${
+                  errors.lastname ? "border-red-500" : "border-[#E3E3E3]"
+                } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4`}
                 name="company"
                 placeholder="Company Co."
                 {...register("company", {
@@ -412,7 +420,7 @@ const Community = (props) => {
                   {gRslt.fields?.map((gRsltIn, i) => (
                     <>
                       {gRsltIn.fieldType === "checkbox" && (
-                        <div className="grid space-y-4" key={i}>
+                        <div className="grid space-y-3" key={i}>
                           {gRsltIn.options?.map((gOptin, i) => (
                             <>
                               {gRsltIn.name === "community_focus" && (
@@ -425,7 +433,7 @@ const Community = (props) => {
                                     <input
                                       id={`checkboxCommunityFocusForm${i}`}
                                       type="checkbox"
-                                      className="border border-solid border-white/20 bg-transparent rounded-full text-secondary2024 bxShdowNone  shrink-0 mt-1 sm:mt-0.5 h-5 w-5 ring-0 outline-none focus:outline-none focus-visible:outline-none pointer-events-none"
+                                      className="form-checkbox border border-solid border-white/20 rounded text-secondary bxShdowNone shrink-0 mt-0.5 ring-0 outline-none focus:outline-none pointer-events-none"
                                       name="checkboxCommunityFocusForm[]"
                                       value={gOptin.value}
                                       {...register("community_focus", {
@@ -433,7 +441,7 @@ const Community = (props) => {
                                       })}
                                     />
 
-                                    <span className="text-black-900 font-bevietnamPro text-base font-normal ml-3">
+                                    <span className="text-black-900 font-bevietnamPro text-sm font-normal ml-3">
                                       {gOptin.label}
                                     </span>
                                   </label>
@@ -459,7 +467,11 @@ const Community = (props) => {
               <textarea
                 type="text"
                 id="inputDescribeCommunity"
-                className="bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4"
+                className={`form-textarea bg-white rounded-lg border border-solid ${
+                  errors.describe_your_community_activities_in_bullet_points
+                    ? "border-red-500"
+                    : "border-[#E3E3E3]"
+                } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4`}
                 name="describe_your_community_activities_in_bullet_points"
                 rows={4}
                 placeholder="Live AMA with NFT creators once per week, member loyalty program once per month, and more"
@@ -483,7 +495,11 @@ const Community = (props) => {
               <textarea
                 type="text"
                 id="inputCommunityChanel"
-                className="bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4"
+                className={`form-textarea bg-white rounded-lg border border-solid ${
+                  errors.community_channel_link_s_
+                    ? "border-red-500"
+                    : "border-[#E3E3E3]"
+                } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4`}
                 name="community_channel_link_s_"
                 rows={4}
                 placeholder="Telegram (https://t.me/coinfestasiaofficial), Twitter (https://twitter.com/CoinfestAsia)"
@@ -504,7 +520,9 @@ const Community = (props) => {
               <input
                 type="text"
                 id="inputCountryCommunity"
-                className="bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4"
+                className={`form-input bg-white rounded-lg border border-solid ${
+                  errors.country ? "border-red-500" : "border-[#E3E3E3]"
+                } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4`}
                 name="country"
                 placeholder="Canada"
                 {...register("country", {
@@ -528,7 +546,9 @@ const Community = (props) => {
               <input
                 type="url"
                 id="inputWebsiteURLLinkLogoCommunity"
-                className="bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal lowercase py-5 px-4"
+                className={`form-input bg-white rounded-lg border border-solid ${
+                  errors.website ? "border-red-500" : "border-[#E3E3E3]"
+                } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal lowercase py-5 px-4`}
                 name="website"
                 placeholder="https://google.drive.com : Make sure your logo fits these criteria:"
                 {...register("website", {
@@ -563,8 +583,8 @@ const Community = (props) => {
                                     <input
                                       id={`checkboxIntrestCommunityForm${i}`}
                                       type="checkbox"
-                                      className="border border-solid border-white/20 bg-transparent rounded-full text-secondary2024 bxShdowNone  shrink-0 mt-1 sm:mt-0.5 h-5 w-5 ring-0 outline-none focus:outline-none focus-visible:outline-none pointer-events-none"
-                                      name="checkboxIntrestCommunityForm[]"
+                                      className={`form-checkbox border border-solid border-white/20 rounded text-secondary bxShdowNone shrink-0 mt-0.5 ring-0 pointer-events-none"
+                                      name="checkboxIntrestCommunityForm[]`}
                                       value={gOptin.value}
                                       checked={selectedCheckboxesOthrs.includes(
                                         gOptin.value
@@ -580,7 +600,7 @@ const Community = (props) => {
                                       }}
                                     />
 
-                                    <span className="text-black-900 font-bevietnamPro text-base font-normal ml-3">
+                                    <span className="text-black-900 font-bevietnamPro text-sm font-normal ml-3">
                                       {gOptin.label}
                                     </span>
                                   </label>
@@ -607,7 +627,7 @@ const Community = (props) => {
                   <input
                     type="text"
                     id="inputOtherIntrestedCommunity"
-                    className="bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4"
+                    className="form-input bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4"
                     name="if_you_choose__other___tell_us_what_s_in_your_mind"
                     placeholder="If you pick 'Other', tell us what kind of activations you'd like to explore"
                     {...register(
@@ -625,7 +645,7 @@ const Community = (props) => {
 
           <div className="flex flex-col">
             <button
-              className={`bg-secondary flex flex-col items-center justify-center rounded-[14px] text-white font-bevietnamPro text-base font-normal outline-none focus-visible:outline-none mt-6 py-4 w-full transition duration-[0.3] ease-in-out`}
+              className={`bg-secondary flex flex-col items-center justify-center rounded-[14px] text-white font-bevietnamPro text-base font-normal outline-none mt-6 py-4 w-full transition duration-[0.3] ease-in-out`}
               aria-label="Form Submit (Community)"
               aria-labelledby="Form Submit (Community)"
             >

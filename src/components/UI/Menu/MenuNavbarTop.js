@@ -34,16 +34,42 @@ const MenuNavbarTop = () => {
   return (
     <>
       <div className="flex flex-row items-start justify-between">
-        <Link className="block relative mt-2 sm:mt-0 w-max" href={"/"}>
-          <Image
-            className="my-auto mx-auto h-auto w-[120px] sm:w-32"
-            src={"/assets/images/ca2024-BrandWhite.svg"}
-            alt={`${publicRuntimeConfig.siteAppName} (Primary Brand Logo)`}
-            height={62}
-            width={182}
-            quality="87"
-          />
-        </Link>
+        <div className="flex flex-row items-center justify-center">
+          {router.pathname !== "/" && router.pathname !== "/get-involved" ? (
+            <Link
+              className="flex flex-col items-center justify-center rounded-2xl bg-white mr-4 h-12 w-12 z-100"
+              href={"/get-involved"}
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g>
+                  <path
+                    d="M15 19L8 12L15 5"
+                    stroke="black"
+                    strokeWidth="2.66667"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </g>
+              </svg>
+            </Link>
+          ) : null}
+          <Link className="block relative mt-2 sm:mt-0 w-max" href={"/"}>
+            <Image
+              className="my-auto mx-auto h-auto w-[120px] sm:w-32"
+              src={"/assets/images/ca2024-BrandWhite.svg"}
+              alt={`${publicRuntimeConfig.siteAppName} (Primary Brand Logo)`}
+              height={62}
+              width={182}
+              quality="87"
+            />
+          </Link>
+        </div>
         <div className="flex flex-col bg-white/30 rounded-xl relative py-3 sm:pt-4 pb-[38px] sm:pb-12 px-3 sm:px-4 w-full min-w-[157px] sm:min-w-[248px] max-w-[157px] sm:max-w-[248px]">
           <span className="text-white font-bevietnamPro text-sm font-light sm:font-medium">
             Starting in

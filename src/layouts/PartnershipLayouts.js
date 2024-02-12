@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 
 // @layouts
-// import NavbarTopFull from "@layouts/Navbar/NavbarTopFull";
+import NavbarTop from "@layouts/Navbar/NavbarTop";
 
 const PartnershipLayouts = ({
   title = "Take part in Coinfest Asia where innovation meets adoption.",
@@ -14,7 +14,7 @@ const PartnershipLayouts = ({
   return (
     <>
       {/* @navbar (top) */}
-      {/* <NavbarTopFull /> */}
+      <NavbarTop />
 
       <main className="bg-[#F8EAD7] flex flex-col relative">
         <section className="inline-flex flex-col xl:flex-row flex-grow relative h-auto w-full">
@@ -28,7 +28,6 @@ const PartnershipLayouts = ({
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                   height={1350}
                   width={900}
-                  loading="lazy"
                   quality="87"
                 />
 
@@ -44,6 +43,7 @@ const PartnershipLayouts = ({
                     className="object-center object-cover mx-auto h-auto w-[137px] sm:w-[187px]"
                     src={"/assets/images/backdrop/ca2024LeafTreeLeft-Small.png"}
                     alt={`Coinfest Asia 2024 (GetInvolved Leaf Tree Items - Left)`}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                     height={244}
                     width={374}
                     quality="87"
@@ -57,6 +57,7 @@ const PartnershipLayouts = ({
                       "/assets/images/backdrop/ca2024LeafTreeRight-Small.png"
                     }
                     alt={`Coinfest Asia 2024 (GetInvolved Leaf Tree Items - Right)`}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                     height={250}
                     width={576}
                     quality="87"
@@ -69,6 +70,7 @@ const PartnershipLayouts = ({
                     className="object-center object-cover mx-auto h-auto w-[241px] sm:w-[475px]"
                     src={"/assets/images/backdrop/ca2024StatueLeft.png"}
                     alt={`Coinfest Asia 2024 (Statue Items - Left)`}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                     height={1556}
                     width={1224}
                     quality="87"
@@ -80,6 +82,7 @@ const PartnershipLayouts = ({
                     className="object-center object-cover mx-auto h-auto w-[311px] sm:w-[525px] lg:w-[575px] z-10"
                     src={"/assets/images/backdrop/ca2024FooterBanner.png"}
                     alt={`Coinfest Asia 2024 (Statue Items - Right)`}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                     height={976}
                     width={753}
                     quality="87"
