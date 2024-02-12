@@ -359,7 +359,7 @@ const Community = (props) => {
                           <input
                             id={`radioConfrimCommunityForm${frmCommunity.formFieldGroups[3].fields[0].name}${a}`}
                             type="radio"
-                            className="form-radio border border-solid border-white/20 rounded-full text-secondary2024 bxShdowNone mt-[3px] shrink-0 ring-0 outline-none focus:outline-none pointer-events-none h-5 w-5"
+                            className="form-radio border border-solid border-white/20 rounded-full text-secondary2024 bxShdowNone mt-0.5 shrink-0 ring-0 outline-none focus:outline-none pointer-events-none h-5 w-5"
                             name={`radioConfrimCommunityForm_${frmCommunity.formFieldGroups[3].fields[0].name}`}
                             value={gOptin.value}
                             {...register(
@@ -420,7 +420,7 @@ const Community = (props) => {
                   {gRslt.fields?.map((gRsltIn, i) => (
                     <>
                       {gRsltIn.fieldType === "checkbox" && (
-                        <div className="grid space-y-3" key={i}>
+                        <div className="grid space-y-4" key={i}>
                           {gRsltIn.options?.map((gOptin, i) => (
                             <>
                               {gRsltIn.name === "community_focus" && (
@@ -583,8 +583,7 @@ const Community = (props) => {
                                     <input
                                       id={`checkboxIntrestCommunityForm${i}`}
                                       type="checkbox"
-                                      className={`form-checkbox border border-solid border-white/20 rounded text-secondary bxShdowNone shrink-0 mt-0.5 ring-0 pointer-events-none"
-                                      name="checkboxIntrestCommunityForm[]`}
+                                      className="form-checkbox border border-solid border-white/20 rounded text-secondary bxShdowNone shrink-0 mt-0.5 ring-0 outline-none focus:outline-none pointer-events-none h-5 w-5"
                                       value={gOptin.value}
                                       checked={selectedCheckboxesOthrs.includes(
                                         gOptin.value
@@ -600,7 +599,7 @@ const Community = (props) => {
                                       }}
                                     />
 
-                                    <span className="text-black-900 font-bevietnamPro text-sm font-normal ml-3">
+                                    <span className="text-black-900 font-bevietnamPro text-base font-normal ml-3">
                                       {gOptin.label}
                                     </span>
                                   </label>
@@ -627,7 +626,11 @@ const Community = (props) => {
                   <input
                     type="text"
                     id="inputOtherIntrestedCommunity"
-                    className="form-input bg-white rounded-lg border border-solid border-[#E3E3E3] text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4"
+                    className={`form-input bg-white rounded-lg border border-solid  ${
+                      errors.if_you_choose__other___tell_us_what_s_in_your_mind
+                        ? "border-red-500"
+                        : "border-[#E3E3E3]"
+                    } text-black-900 placeholder:text-[#9A9A9A] font-bevietnamPro text-base xl:text-sm font-normal capitalize py-5 px-4`}
                     name="if_you_choose__other___tell_us_what_s_in_your_mind"
                     placeholder="If you pick 'Other', tell us what kind of activations you'd like to explore"
                     {...register(
