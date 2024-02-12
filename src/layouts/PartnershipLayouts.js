@@ -93,7 +93,7 @@ const PartnershipLayouts = ({
           </div>
 
           {/* @content */}
-          <div className="flex-1 bg-[#F8EAD7] flex flex-col rounded-t-[20px] xl:rounded-none relative -mt-4 xl:mt-0 pt-12 pb-10 sm:py-12 lg:py-19 xl:py-17 px-4 sm:px-11 lg:px-17 w-full min-w-full xl:min-w-[auto] z-10">
+          <div className="flex-1 bg-[#F8EAD7] flex flex-col rounded-t-[20px] xl:rounded-none relative -mt-4 xl:mt-0 pt-12 pb-14 sm:py-12 lg:py-19 xl:py-17 px-4 sm:px-11 lg:px-17 w-full min-w-full xl:min-w-[auto] z-10">
             <div className="flex xl:hidden rounded-full bg-[#A19381] absolute top-4 bottom-auto inset-x-0 mx-auto h-1.5 w-[144px]"></div>
 
             {children}
