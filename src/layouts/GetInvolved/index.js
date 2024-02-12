@@ -76,7 +76,7 @@ const GetInvolved = () => {
                 </div>
                 <div className="col-span-2 sm:col-span-6">
                   <BoxGetInvolved
-                    url={"/get-involved/media-partner"}
+                    url={"/get-involved/media-partners"}
                     title="Media"
                     images="/assets/images/get-involved/ca2024GetInvolved-Media.jpg"
                     scale={true}

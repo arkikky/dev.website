@@ -11,13 +11,13 @@ const NavbarTop = () => {
   return (
     <>
       <section className="fixed top-4 bottom-auto inset-x-0 z-sm mix-blend-difference">
-        {router.pathname === "/" ? (
-          <Container>
-            <MenuNavbarTop />
-          </Container>
+        <Container>
+          <MenuNavbarTop />
+        </Container>
+        {/* {router.pathname === "/" ? (
         ) : (
           <MenuNavbarTop />
-        )}
+        )} */}
       </section>
     </>
   );
