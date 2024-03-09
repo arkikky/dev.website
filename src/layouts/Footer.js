@@ -415,7 +415,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-between mt-15 lg:mt-24">
-              <div className="text-black-900 font-bevietnamPro text-base lg:text-sm font-light prose-strong:text-secondary prose-a:text-secondary prose-a:underline w-full max-w-[545px] xl:max-w-max">
+              <div className="text-black-900 font-bevietnamPro text-sm font-light prose-strong:text-secondary prose-a:text-secondary prose-a:underline w-full max-w-[545px] xl:max-w-max">
                 Copyright © <strong>Coinfest Asia</strong>. All rights reserved.
                 Coinfest is organized by{" "}
                 <Link

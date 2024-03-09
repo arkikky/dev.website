@@ -53,7 +53,7 @@ input:valid {
 
 /* @article */
 .ca2024ArtcleFrmattd {
-  @apply prose-h1:text-[40px] prose-h1:leading-[48px] prose-h1:font-bold prose-h1:mb-10;
-  @apply prose-h2:text-2xl prose-h2:font-semibold prose-h2:mb-4 prose-h2:mt-8 first:prose-h2:mt-0;
+  @apply prose-h1:text-[32px] sm:prose-h1:text-[40px] prose-h1:leading-[38px] sm:prose-h1:leading-[48px] prose-h1:font-bold prose-h1:mb-18;
+  @apply prose-h2:text-2xl prose-h2:font-semibold prose-h2:mb-4 prose-h2:mt-10 first:prose-h2:mt-0;
   @apply prose-a:text-secondary prose-a:underline prose-ul:list-disc prose-ul:pl-[26px];
 }
