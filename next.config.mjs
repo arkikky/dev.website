@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-
 const nextConfig = {
   reactStrictMode: true,
   images: {
@@ -11,7 +10,7 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
-    formats: ["image/webp", "image/avif"],
+    formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
@@ -31,7 +30,12 @@ const nextConfig = {
       {
         source: "/deck",
         destination: "https://hubs.ly/Q02hGy2g0",
-        permanent: true,
+        permanent: true, // 301 Moved Permanently or false for temporary redirect (302 Found)
+      },
+      {
+        source: "/ticket",
+        destination: "https://ticket.coinfest.asia/",
+        permanent: true, // 301 Moved Permanently or false for temporary redirect (302 Found)
       },
     ];
   },

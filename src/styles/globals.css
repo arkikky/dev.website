@@ -10,57 +10,50 @@
 
 body {
   @apply bg-white;
-  @apply font-bevietnamPro;
-  @apply overflow-x-hidden;
+  @apply text-black-900 font-bevietnamPro text-base font-medium;
+}
+
+body::-webkit-scrollbar {
+  @apply w-2;
+}
+
+body::-webkit-scrollbar-track {
+  @apply bg-blue-200/30;
+}
+
+body::-webkit-scrollbar-thumb {
+  @apply bg-gray-500/40;
+  @apply rounded-full;
+  @apply border-none;
 }
 
 a {
   @apply outline-none focus-visible:outline-none;
 }
 
-/* main */
-.ca2024Main.ca2024MainMandatory {
-  @apply overflow-x-hidden overflow-y-auto;
-  @apply snap-y snap-mandatory;
+input:valid {
+  @apply bg-white focus-visible:bg-white;
+}
+
+/* @main */
+.ca2024Main {
+  scroll-display: marker;
   @apply relative;
+  @apply overflow-y-auto;
+  @apply snap-y snap-mandatory;
+  scroll-snap-points-y: repeat(100vh);
   @apply h-screen;
+  @apply max-h-max;
 }
 
-/* @scroll-indikator */
-.ca2024ScrolldownIcns {
-  border: 2px solid #ffffff;
-  @apply rounded-full;
-  @apply mx-auto;
-  @apply h-6 w-4;
+.ca2024MainPoints {
+  @apply flex flex-col relative;
+  @apply snap-always;
 }
 
-.ca2024ScrolldownIcns .ca2024ScrolldownIcns-Indiktr {
-  @apply flex;
-  @apply bg-white rounded-full;
-  @apply mt-1.5 mx-auto;
-  @apply h-1 w-1;
+/* @article */
+.ca2024ArtcleFrmattd {
+  @apply prose-h1:text-[40px] prose-h1:leading-[48px] prose-h1:font-bold prose-h1:mb-10;
+  @apply prose-h2:text-2xl prose-h2:font-semibold prose-h2:mb-4 prose-h2:mt-8 first:prose-h2:mt-0;
+  @apply prose-a:text-secondary prose-a:underline prose-ul:list-disc prose-ul:pl-[26px];
 }
-
-/* @form */
-input,
-select,
-textarea {
-  box-shadow: none !important;
-  @apply outline-none focus-visible:outline-none;
-  @apply transition duration-200 ease-in-out;
-}
-
-/* @backdrop */
-@import url("./components/backdrop");
-
-/* @menu */
-@import url("./components/menu");
-
-/* @button */
-@import url("./components/buttons");
-
-/* @card */
-@import url("./components/card");
-
-/* @splide */
-@import url("./components/splide");
