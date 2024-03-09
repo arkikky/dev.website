@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 // @layouts
+import NavbarTop from "@layouts/Navbar/NavbarTop";
 import Footer from "@layouts/Footer";
 
 const Layouts = ({ children }) => {
@@ -15,6 +16,9 @@ const Layouts = ({ children }) => {
 
   return (
     <>
+      {/* @navbar-top */}
+      <NavbarTop />
+
       {/* @main */}
       {children}
 
