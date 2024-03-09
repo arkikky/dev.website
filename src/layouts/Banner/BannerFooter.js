@@ -8,7 +8,7 @@ import Container from "@components/Container";
 const BannerFooter = () => {
   return (
     <>
-      <section className="flex flex-col relative pt-0 xl:pt-32 lg:pt-[123px]">
+      <section className="flex flex-col relative pt-0 sm:pt-24 xl:pt-32 lg:pt-[123px]">
         <Container>
           <div className="bg-secondary2024 flex flex-col items-start justify-center rounded-2xl sm:rounded-[35px] relative mt-0 xl:mt-[134px] py-8 px-4 sm:px-11 lg:px-17 h-full sm:h-[483px] xl:h-[614px] w-full">
             <div className="rounded-2xl sm:rounded-[35px] overflow-hidden absolute inset-y-0 inset-x-0 z-px">

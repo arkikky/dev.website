@@ -10,7 +10,6 @@ const { publicRuntimeConfig } = getConfig();
 import Container from "@components/Container";
 
 // @layouts
-// import NavbarTop from "@layouts/Navbar/NavbarTop";
 import BannerFooter from "@layouts/Banner/BannerFooter";
 
 const TermAndConditions = () => {
@@ -73,7 +72,9 @@ const TermAndConditions = () => {
           <div className="supports-grid:grid grid-cols-4 sm:grid-cols-12 lg:grid-cols-12 gap-y-2 gap-x-2 relative">
             <div className="col-start-1 sm:col-start-2 col-span-full sm:col-span-10">
               <div className="ca2024ArtcleFrmattd text-black-900 font-bevietnamPro text-sm font-light leading-relaxed mb-14 sm:mb-0 xl:mb-24">
-                <h1 className="text-center">TERMS & CONDITIONS</h1>
+                <h1 className="text-start sm:text-center mb-12 sm:mb-18">
+                  TERMS & CONDITIONS
+                </h1>
                 <h2>General Regulations</h2>
                 <p>
                   Welcome to Coinfest Asia 2024! These terms and conditions

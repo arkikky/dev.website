@@ -5,6 +5,7 @@ import Image from "next/image";
 import Container from "@components/Container";
 
 // @layouts
+import BannerFooter from "@layouts/Banner/BannerFooter";
 import Footer from "@layouts/Footer";
 
 const Home = () => {
@@ -122,8 +123,15 @@ const Home = () => {
         <h2>awdawd</h2>
       </section>
 
-      {/* @footer */}
-      <Footer />
+      <div className="ca2024MainPoints snap-start flex flex-col relative">
+        <div className="flex flex-col">
+          {/* @banner-footer */}
+          <BannerFooter />
+
+          {/* @footer */}
+          <Footer />
+        </div>
+      </div>
     </main>
   );
 };

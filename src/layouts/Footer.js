@@ -12,7 +12,7 @@ import Container from "@components/Container";
 const Footer = () => {
   return (
     <>
-      <footer className="ca2024Footer ca2024MainPoints ca2024SectionEnd bg-white snap-start items-end justify-end overflow-x-hidden relative">
+      <footer className="ca2024Footer ca2024SectionEnd bg-white justify-end overflow-x-hidden relative">
         <Container className="pt-12 sm:pt-17 pb-[128px] sm:pb-[164px]">
           <div className="flex flex-col">
             <div className="flex flex-col">
@@ -420,6 +420,7 @@ const Footer = () => {
                 Coinfest is organized by{" "}
                 <Link
                   href="https://coinvestasi.com/"
+                  title="Coinvestasi"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -428,6 +429,7 @@ const Footer = () => {
                 , a subsidiary of 
                 <Link
                   href="https://indonesiacrypto.network/"
+                  title="Indonesia Crypto Network"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -440,6 +442,7 @@ const Footer = () => {
                   <Link
                     className="outline-none focus-visible:outline-none"
                     href="https://twitter.com/coinfestasia"
+                    title="Twitter"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -457,6 +460,7 @@ const Footer = () => {
                   <Link
                     className="outline-none focus-visible:outline-none"
                     href="https://www.instagram.com/coinfest.asia/"
+                    title="Instagram"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -474,6 +478,7 @@ const Footer = () => {
                   <Link
                     className="outline-none focus-visible:outline-none"
                     href="https://t.me/coinfestasiaofficial"
+                    title="Telegram"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -491,6 +496,7 @@ const Footer = () => {
                   <Link
                     className="outline-none focus-visible:outline-none"
                     href="https://www.linkedin.com/showcase/coinfest/"
+                    title="Linkedin"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
