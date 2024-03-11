@@ -1,0 +1,8 @@
+/* @navbar */
+.ca2024Navbar .ca2024NavbarMain {
+  @apply backdrop-blur-md;
+}
+
+.ca2024Navbar .ca2024NavbarMain .ca2024NavbarMenu ul.menu li a {
+  @apply text-white;
+}
