@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* @tailwind-css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @fonts */
+@import url("./fonts");
+
+body {
+  @apply bg-white;
+  @apply font-bevietnamPro text-base font-medium text-black-900;
+}
+
+.ca2024Main::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  @apply w-2;
+}
+
+.ca2024Main::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
+
+.ca2024Main::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  @apply bg-gray-400/60;
+  @apply rounded-full;
+  @apply border-none;
+}
+
+a {
+  @apply outline-none focus-visible:outline-none;
+}
+
+input:valid {
+  @apply bg-white focus-visible:bg-white;
+}
+
+/* @main */
+.ca2024Main {
+  @apply relative;
+  @apply overflow-y-auto;
+  @apply snap-y snap-mandatory;
+  /* scroll-snap-points-y: repeat(100svh); */
+  @apply h-svh max-h-svh xl:h-screen xl:max-h-screen;
+}
+
+.ca2024MainPoints {
+  @apply relative flex flex-col;
+}
+
+.ca2024MainScreen {
+  @apply h-svh min-h-svh xl:h-screen xl:min-h-screen;
+}
+
+.ca2024BgRotateBackdrop {
+  transform: rotateX(180deg);
+}
+
+/* @article */
+.ca2024ArtcleFrmattd {
+  @apply prose-h1:text-[32px] prose-h1:font-bold prose-h1:leading-[38px] sm:prose-h1:text-[40px] sm:prose-h1:leading-[48px];
+  @apply prose-h2:mb-4 prose-h2:mt-8 prose-h2:text-2xl prose-h2:font-semibold first:prose-h2:mt-0 sm:prose-h2:mt-10;
+  @apply prose-a:text-secondary prose-a:underline prose-ul:list-disc prose-ul:pl-8;
+}
+
+/* @banner-ticket */
+.ca2024BnnrTicket {
+  @apply translate-y-0 transform;
+  @apply opacity-100;
+  @apply z-50;
+}
+
+.ca2024BckdrpBnnrTicket {
+  @apply opacity-100;
+  @apply z-50;
+}
+
+.ca2024BnnrTicket.nonActive {
+  @apply pointer-events-none;
+  backface-visibility: hidden;
+  @apply translate-y-[50%] transform;
+  @apply opacity-0;
+  @apply -z-px;
+}
+
+.ca2024BckdrpBnnrTicket.nonActive {
+  @apply pointer-events-none;
+  backface-visibility: hidden;
+  @apply opacity-0;
+  @apply -z-px;
+}
+
+/* @mansonry */
+.ca2024Mnsry {
+  @apply relative;
+  @apply columns-1 sm:columns-2 lg:columns-3 [&>div:not(:first-child)]:mt-4;
+}
+
+/* @background */
+@import url("./components/background");
+
+/* @list */
+@import url("./components/list");
+
+/* @button */
+@import url("./components/button");
+
+/* @dots */
+@import url("./components/dots");
+
+/* @markdown */
+@import url("./components/markdown");
+
+/* @navbar */
+@import url("./layouts/navbar");
