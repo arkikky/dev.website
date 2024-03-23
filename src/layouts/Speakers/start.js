@@ -17,7 +17,6 @@ const StartSpeakers = (props) => {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
             height={900}
             width={1440}
-            quality="87"
           />
         </div>
 
@@ -29,13 +28,12 @@ const StartSpeakers = (props) => {
             alt={`Coinfest Asia 2024 (Points Items Start Speakers)`}
             height={1635}
             width={958}
-            quality="87"
           />
         </div>
 
         <Container className="relative z-[5]">
           <div className="ca2024StartSpeakersContent flex flex-col text-start transition duration-[1.2s] ease-out">
-            <h2 className="font-staraExtraBold text-[32px] uppercase leading-[40px] text-white xs:text-[42px] xs:leading-[50px] sm:text-[58px] sm:leading-[74px] lg:text-[80px] lg:leading-[90px]">
+            <h2 className="font-staraExtraBold text-[32px] uppercase leading-[40px] text-white sm:text-[58px] sm:leading-[74px] lg:text-[80px] lg:leading-[90px] xl:text-[72px] xl:leading-[86px] 2xl:text-[80px] 2xl:leading-[90px]">
               Connect with over 6,000+ people in Southeast Asia; the
               fastest-growing Web3 region in the world!
             </h2>
