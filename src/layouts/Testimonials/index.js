@@ -107,7 +107,7 @@ const Testimonials = () => {
           <Container>
             <div
               ref={testimonialsSliderRef}
-              className={`keen-slider ca2024TestimonialsSlide ${
+              className={`keen-slider ca2024TestimonialsSlider ${
                 isGrab === true ? "cursor-grabbing" : "cursor-grab"
               } `}
               onMouseDown={(e) => isMouseDown(e)}
@@ -145,6 +145,8 @@ const Testimonials = () => {
               return (
                 <button
                   key={idx}
+                  aria-label={`ca2024TestimonialsDotsSlider${idx}`}
+                  aria-labelledby={`ca2024TestimonialsDotsSlider${idx}`}
                   onClick={() => {
                     instanceRef.current?.moveToIdx(idx);
                   }}
