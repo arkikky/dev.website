@@ -134,20 +134,13 @@ const Footer = () => {
                           </span>
                         </button>
                       </li>
-                      <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
-                        <button
-                          type="button"
-                          aria-label="menuSpeakers"
-                          className="hs-tooltip-toggle flex flex-row items-center font-bevietnamPro text-base font-light capitalize leading-[normal] text-black-900 outline-none focus-visible:outline-none group-hover:text-secondary group-hover:underline"
+                      <li className="group mb-4 last:mb-0">
+                        <Link
+                          className="flex flex-row items-center font-bevietnamPro text-base font-light capitalize leading-[normal] text-black-900 outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none group-hover:text-secondary group-hover:underline"
+                          href="/speakers"
                         >
                           Speakers
-                          <span
-                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-lg bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
-                            role="tooltip"
-                          >
-                            Coming Soon
-                          </span>
-                        </button>
+                        </Link>
                       </li>
                     </ul>
                   </div>

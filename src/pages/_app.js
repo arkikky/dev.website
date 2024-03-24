@@ -19,8 +19,8 @@ const ca2024Head = () => {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.svg" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
         <link
@@ -30,7 +30,7 @@ const ca2024Head = () => {
         />
 
         <meta name="author" content={publicRuntimeConfig.siteTitle} />
-        <link rel="mask-icon" href="/favicon.svg" color="#2458F4" />
+        <link rel="mask-icon" href="/favicon.ico" color="#2458F4" />
         <meta name="msapplication-TileColor" content="#2458F4" />
         <meta name="theme-color" content="#2458F4" />
         <meta name="msapplication-navbutton-color" content="#2458F4" />

@@ -8,9 +8,9 @@ import Container from "@components/Container";
 const Tickets = () => {
   return (
     <>
-      <section className="ca2024MainPoints ca2024StartTickets ca2024MainScreenAuto relative flex snap-start snap-always flex-col items-start justify-start overflow-hidden bg-secondary">
+      <section className="ca2024MainPoints ca2024Tickets ca2024MainScreenAuto relative flex snap-start snap-always flex-col items-start justify-start overflow-hidden bg-secondary">
         {/* @background (backdrop) */}
-        <div className="ca2024StartTicketsBackdrop opacity-1 absolute inset-x-0 inset-y-0 z-px">
+        <div className="ca2024ackdrop opacity-1 absolute inset-x-0 inset-y-0 z-px">
           <Image
             className={`mx-auto h-full w-full object-cover object-center`}
             src={"/assets/images/backdrop/ca2024BgLineRotate.jpg"}
@@ -36,7 +36,7 @@ const Tickets = () => {
 
         <Container className="relative z-[5]">
           <div className="relative flex flex-col overflow-hidden pb-[229px] pt-[135px]">
-            <div className="ca2024StartSpeakersContent flex flex-col text-start transition duration-[1.2s] ease-out">
+            <div className="ca2024TicketsContent flex flex-col text-start transition duration-[1.2s] ease-out">
               <h2 className="w-ful max-w-full text-start font-staraExtraBold text-[44px] uppercase leading-[52px] text-white sm:max-w-[445px] sm:text-[54px] sm:leading-[74px] lg:max-w-[677px] lg:text-[80px] lg:leading-[90px]">
                 GET YOUR TICKETS NOW
               </h2>
@@ -48,7 +48,9 @@ const Tickets = () => {
                     <div className="z-[5] mr-3 flex flex-col">
                       <Image
                         className="h-[50px] w-full max-w-[16px] sm:h-[58px]"
-                        src={"/assets/images/backdrop/ca2024TicketsProduct.png"}
+                        src={
+                          "/assets/images/backdrop/products/ca2024TicketsProduct.png"
+                        }
                         alt="Coinfest Asia 2024 (Festival — Super Early Bird)"
                         height={114}
                         width={42}
@@ -108,7 +110,7 @@ const Tickets = () => {
                       <Image
                         className="h-[50px] w-full max-w-[16px] sm:h-[58px]"
                         src={
-                          "/assets/images/backdrop/ca2024TicketsProductVIP.png"
+                          "/assets/images/backdrop/products/ca2024TicketsProductVIP.png"
                         }
                         alt="Coinfest Asia 2024 (Festival — Super Early Bird)"
                         height={114}
@@ -167,6 +169,7 @@ const Tickets = () => {
               <Link
                 className="relative inline-flex w-full max-w-max items-center justify-center rounded-[14px] bg-primary px-6 py-4 font-bevietnamPro text-sm font-medium text-black-900 outline-none focus-visible:outline-none sm:text-xl"
                 href={"https://ticket.coinfest.asia/"}
+                title="Tickets Coinfest Asia 2024"
               >
                 Secure your spots now
                 <svg
