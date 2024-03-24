@@ -14,10 +14,11 @@ import NavbarBottom from "@layouts/Navbar/NavbarBottom";
 import About from "@layouts/About";
 import Board from "@layouts/Board";
 import StartSpeakers from "@layouts/Speakers/start";
+import Tickets from "@layouts/Tickets";
 import NextSpeakers from "@layouts/Speakers/next";
 import Testimonials from "@layouts/Testimonials";
 import FAQ from "@layouts/FAQ";
-// import SocialMentions from "@layouts/SocialMentions";
+import SocialMentions from "@layouts/SocialMentions";
 import BannerFooter from "@layouts/Banner/BannerFooter";
 import Footer from "@layouts/Footer";
 
@@ -125,6 +126,9 @@ const Home = ({ ipAddress, speaker, sponsorPartner, socialMentions }) => {
         {/* @start(speakers) */}
         <StartSpeakers />
 
+        {/* @tickets */}
+        <Tickets />
+
         {/* @fake */}
         <section className="ca2024MainPoints h-svh snap-start snap-always bg-white">
           <h2>awdawd</h2>
@@ -142,9 +146,9 @@ const Home = ({ ipAddress, speaker, sponsorPartner, socialMentions }) => {
         <Testimonials />
 
         {/* @social-mentions */}
-        {/* <SocialMentions {...isSocialMentions} /> */}
+        <SocialMentions />
 
-        <div className="ca2024MainPoints ca2024EndMainPoints relative flex h-auto min-h-[auto] snap-start snap-always flex-col">
+        <div className="ca2024MainPoints ca2024EndMainPoints ca2024MainScreenAuto relative flex snap-start snap-always flex-col">
           <div className="flex flex-col">
             {/* @faq */}
             <FAQ />

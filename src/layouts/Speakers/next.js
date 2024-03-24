@@ -5,14 +5,14 @@ import Image from "next/image";
 // @components
 import Container from "@components/Container";
 
-const NextSpeakers = (props) => {
+const NextSpeakers = () => {
   return (
     <>
       <section className="ca2024MainPoints ca2024NextSpeakers ca2024MainScreen relative flex snap-center snap-always flex-col items-center justify-center overflow-hidden bg-secondary">
         {/* @background (backdrop) */}
         <div className="ca2024NextSpeakersBackdrop opacity-1 absolute inset-x-0 inset-y-0 z-px">
           <Image
-            className={`z-10 mx-auto h-full w-full object-cover object-center`}
+            className={`mx-auto h-full w-full object-cover object-center`}
             src={"/assets/images/backdrop/ca2024BgLine.jpg"}
             alt={`Coinfest Asia 2024 (Background Backdrop Start Speakers)`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
