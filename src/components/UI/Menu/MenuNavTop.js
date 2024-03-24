@@ -11,7 +11,7 @@ const { publicRuntimeConfig } = getConfig();
 import "keen-slider/keen-slider.min.css";
 
 // @lib
-import calculateTime from "@lib/utils/calculateTime";
+import calculateTime from "@lib/helper/calculateTime";
 
 const MenuNavTop = () => {
   const [isLoading, setLoading] = useState(true);

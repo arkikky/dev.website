@@ -47,6 +47,7 @@ const GetInvolved = () => {
           </div>
         </div>
 
+        {/* @main */}
         <Container className="relative z-[5]">
           <div className="relative flex flex-col overflow-hidden pb-[299px] pt-[144px]">
             <div className="ca2024SldeGetInvolvedTitle opacity-1 flex flex-col px-0 text-start transition duration-[1.2s] ease-out sm:px-32 sm:text-center xl:px-0">
@@ -95,7 +96,7 @@ const GetInvolved = () => {
                         "/assets/images/get-involved/ca2024MediaPartners.jpg"
                       }
                       alt={`Coinfest Asia 2024 (Media Partners - Get Involved)`}
-                      height={563}
+                      height={667}
                       width={1000}
                       quality="87"
                     />
@@ -110,7 +111,7 @@ const GetInvolved = () => {
                       className="mx-auto h-full w-full scale-[1.5] transform object-cover object-center"
                       src={"/assets/images/get-involved/ca2024Community.jpg"}
                       alt={`Coinfest Asia 2024 (Community - Get Involved)`}
-                      height={667}
+                      height={563}
                       width={1000}
                       quality="87"
                     />
