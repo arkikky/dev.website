@@ -26,7 +26,7 @@ const BannerFooter = () => {
             <div className="opacity-1 pointer-events-none absolute bottom-0 left-auto right-0 top-auto z-10 hidden select-none bg-transparent transition duration-[1s] ease-out xl:flex">
               <Image
                 className="z-10 mx-auto h-auto w-[471px] object-cover object-center sm:w-[771px] lg:w-[702px]"
-                src={"/assets/images/backdrop/ca2024StatueBanner.png"}
+                src={"/assets/images/backdrop/statue/ca2024StatueBanner.png"}
                 alt={`Coinfest Asia 2024 (Statue Footer Banner)`}
                 height={976}
                 width={753}

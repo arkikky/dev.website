@@ -28,7 +28,7 @@ const GetInvolved = () => {
           <div className="ca2024GetInvolvedPointsItems opacity-1 pointer-events-none absolute -bottom-17 -left-[227px] right-auto z-px select-none bg-transparent transition duration-[0.8s] ease-out sm:-bottom-[133px] sm:-left-[479px] sm:top-auto lg:-bottom-[179px] lg:-left-[637px] xl:-bottom-[185px] xl:-left-[493px]">
             <Image
               className="mx-auto h-auto w-[371px] object-cover object-center sm:w-[871px] lg:w-[1113px]"
-              src={"/assets/images/backdrop/ca2024StatueLeft.png"}
+              src={"/assets/images/backdrop/statue/ca2024StatueLeft.png"}
               alt={`Coinfest Asia 2024 (Statue Items - Left)`}
               height={1556}
               width={1224}
@@ -38,7 +38,7 @@ const GetInvolved = () => {
           <div className="ca2024GetInvolvedPointsItems opacity-1 pointer-events-none absolute -bottom-[46px] -right-28 left-auto top-auto z-px select-none bg-transparent transition duration-[0.8s] ease-out sm:-bottom-[231px] sm:-right-[350px] lg:-bottom-[139px] lg:-right-[350px] xl:-bottom-[101px] xl:-right-[280px] 2xl:-right-[180px]">
             <Image
               className="mx-auto h-auto w-[221px] object-cover object-center sm:w-[643px] lg:w-[715px]"
-              src={"/assets/images/backdrop/ca2024StatueRight.png"}
+              src={"/assets/images/backdrop/statue/ca2024StatueRight.png"}
               alt={`Coinfest Asia 2024 (Statue Items - Right)`}
               height={1389}
               width={1073}
@@ -91,7 +91,7 @@ const GetInvolved = () => {
                     label="Media Partner"
                   >
                     <Image
-                      className="mx-auto h-full w-full scale-[1.2] transform object-cover object-center"
+                      className="mx-auto h-full w-full scale-[1.5] transform object-cover object-center"
                       src={
                         "/assets/images/get-involved/ca2024MediaPartners.jpg"
                       }
@@ -108,7 +108,7 @@ const GetInvolved = () => {
                     label="Community"
                   >
                     <Image
-                      className="mx-auto h-full w-full scale-[1.5] transform object-cover object-center"
+                      className="mx-auto h-full w-full scale-[1.4] transform object-cover object-center"
                       src={"/assets/images/get-involved/ca2024Community.jpg"}
                       alt={`Coinfest Asia 2024 (Community - Get Involved)`}
                       height={563}
