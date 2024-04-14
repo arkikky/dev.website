@@ -12,7 +12,7 @@ const StartSpeakers = () => {
         <div className="ca2024StartSpeakersBackdrop opacity-1 absolute inset-x-0 inset-y-0 z-px">
           <Image
             className={`mx-auto h-full w-full object-cover object-center`}
-            src={"/assets/images/backdrop/ca2024BgLine.jpg"}
+            src={"/assets/images/backdrop/background/ca2024BgLine.jpg"}
             alt={`Coinfest Asia 2024 (Background Backdrop Start Speakers)`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
             height={900}

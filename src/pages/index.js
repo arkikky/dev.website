@@ -17,6 +17,7 @@ import StartSpeakers from "@layouts/Speakers/start";
 import Tickets from "@layouts/Tickets";
 import NextSpeakers from "@layouts/Speakers/next";
 import Testimonials from "@layouts/Testimonials";
+import GetInvolved from "@layouts/GetInvolved";
 import FAQ from "@layouts/FAQ";
 import SocialMentions from "@layouts/SocialMentions";
 import BannerFooter from "@layouts/Banner/BannerFooter";
@@ -144,6 +145,9 @@ const Home = ({ ipAddress, speaker, sponsorPartner, socialMentions }) => {
 
         {/* @testimonials */}
         <Testimonials />
+
+        {/* @get-involved */}
+        <GetInvolved />
 
         {/* @social-mentions */}
         <SocialMentions />

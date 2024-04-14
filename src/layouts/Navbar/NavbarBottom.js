@@ -15,6 +15,7 @@ const NavbarBottom = () => {
   const [isMenu, setMenu] = useState(false);
   const intNavMenuMobile = useRef(null);
   const [isFullWidth, setIsFullWidth] = useState(false);
+  
 
   // @gsap-active
   useEffect(() => {
@@ -139,8 +140,8 @@ const NavbarBottom = () => {
           router.pathname === "/"
             ? isFullWidth
               ? "bottom-8"
-              : "bottom-4"
-            : "bottom-4"
+              : "bottom-4 sm:bottom-6"
+            : "bottom-4 sm:bottom-6"
         } inset-x-0 z-xl mx-auto h-auto transition-all duration-300 ease-out sm:h-[100px]`}
       >
         <Container className="relative h-full">

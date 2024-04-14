@@ -12,7 +12,7 @@ const About = () => {
         <div className="ca2024AboutBackdrop absolute inset-x-0 inset-y-0 z-px">
           <Image
             className="z-10 mx-auto h-full w-full object-cover object-center"
-            src={"/assets/images/backdrop/ca2024BgLineWhite.jpg"}
+            src={"/assets/images/backdrop/background/ca2024BgLineWhite.jpg"}
             alt={`Coinfest Asia 2024 (Background Backdrop About)`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 80vw"
             height={1350}

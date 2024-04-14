@@ -13,7 +13,7 @@ const Tickets = () => {
         <div className="ca2024ackdrop opacity-1 absolute inset-x-0 inset-y-0 z-px">
           <Image
             className={`mx-auto h-full w-full object-cover object-center`}
-            src={"/assets/images/backdrop/ca2024BgLineRotate.jpg"}
+            src={"/assets/images/backdrop/background/ca2024BgLineRotate.jpg"}
             alt={`Coinfest Asia 2024 (Background Backdrop Start Tickets)`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
             height={1262}
@@ -63,7 +63,7 @@ const Tickets = () => {
                       </h3>
                       <div className="flex flex-row">
                         <span className="sale-price z-[2] font-bevietnamPro text-base font-semibold sm:text-xl">
-                          $75
+                          $100
                         </span>
                         <span className="regular-price z-[2] ml-2 font-bevietnamPro text-base font-normal text-[#8A8A8A] line-through sm:text-xl">
                           $150
@@ -124,10 +124,10 @@ const Tickets = () => {
                       </h3>
                       <div className="flex flex-row">
                         <span className="sale-price z-[2] font-bevietnamPro text-base font-semibold sm:text-xl">
-                          $650
+                          $750
                         </span>
                         <span className="regular-price z-[2] ml-2 font-bevietnamPro text-base font-normal text-[#8A8A8A] line-through sm:text-xl">
-                          $700
+                          $1000
                         </span>
                       </div>
                     </div>
@@ -167,7 +167,7 @@ const Tickets = () => {
 
             <div className="flex flex-col items-center justify-center pt-20">
               <Link
-                className="relative inline-flex w-full max-w-max items-center justify-center rounded-[14px] bg-primary px-6 py-4 font-bevietnamPro text-sm font-medium text-black-900 outline-none focus-visible:outline-none sm:text-xl"
+                className="relative inline-flex w-full max-w-max items-center justify-center rounded-[14px] bg-primary px-6 py-4 font-bevietnamPro text-sm font-medium text-black-900 outline-none focus-visible:outline-none sm:text-lg"
                 href={"https://ticket.coinfest.asia/"}
                 title="Tickets Coinfest Asia 2024"
               >

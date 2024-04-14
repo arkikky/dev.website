@@ -82,6 +82,9 @@ const App = ({ Component, pageProps }) => {
 
         {/* @main */}
         <Component {...pageProps} />
+
+        {/* @backdrop (modal) */}
+        <div id="bckdrpModalActve"></div>
       </>,
     );
   }
@@ -94,6 +97,9 @@ const App = ({ Component, pageProps }) => {
       {/* @main */}
       <Layouts>
         <Component {...pageProps} />
+
+        {/* @backdrop (modal) */}
+        <div id="bckdrpModalActve"></div>
       </Layouts>
     </>
   );

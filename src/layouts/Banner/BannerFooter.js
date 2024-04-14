@@ -14,7 +14,7 @@ const BannerFooter = () => {
             <div className="absolute inset-x-0 inset-y-0 z-px overflow-hidden rounded-2xl sm:rounded-[35px]">
               <Image
                 className="z-[5] mx-auto h-full w-full object-cover object-center"
-                src={"/assets/images/backdrop/ca2024BgLine.jpg"}
+                src={"/assets/images/backdrop/background/ca2024BgLine.jpg"}
                 alt={`Coinfest Asia 2024 (Background Footer Banner)`}
                 height={900}
                 width={1440}

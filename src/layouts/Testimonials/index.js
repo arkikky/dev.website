@@ -86,14 +86,14 @@ const Testimonials = () => {
 
   return (
     <>
-      <div className="ca2024MainPoints ca2024Testimonials ca2024MainScreen relative flex snap-start snap-always flex-col items-center justify-center overflow-hidden bg-white">
+      <div className="ca2024MainPoints ca2024Testimonials ca2024MainScreen relative z-10 flex snap-start snap-always flex-col items-center justify-center overflow-hidden bg-white">
         {/* <div className="ca2024TestimonialsPointTop bg-transparent absolute top-10 bottom-auto inset-x-0 h-14 w-full select-none pointer-events-none z-px transition duration-[0.8s] ease-linear"></div> */}
 
         {/* @background (backdrop) */}
         <div className="ca2024TestimonialsBackdrop opacity-1 absolute inset-x-0 inset-y-0 z-px">
           <Image
             className={`z-10 mx-auto h-full w-full object-cover object-center`}
-            src={"/assets/images/backdrop/ca2024BgLine.jpg"}
+            src={"/assets/images/backdrop/background/ca2024BgLine.jpg"}
             alt={`Coinfest Asia 2024 (Background Backdrop Testimonials)`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
             height={900}

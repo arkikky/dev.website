@@ -80,7 +80,7 @@ const NotFound = () => {
         <div className="ca2024NextSpeakersBackdrop opacity-1 absolute inset-x-0 inset-y-0 z-px">
           <Image
             className={`mx-auto h-full w-full object-cover object-center`}
-            src={"/assets/images/backdrop/ca2024BgBigLine.jpg"}
+            src={"/assets/images/backdrop/background/ca2024BgBigLine.jpg"}
             alt={`Coinfest Asia 2024 (404 NotFound Background Backdrop)`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
             height={900}
@@ -105,7 +105,7 @@ const NotFound = () => {
         {/* @content */}
         <Container className="container relative z-10">
           <div className="flex w-full max-w-[661px] flex-col items-start text-start">
-            <h1 className="flex flex-col pr-12 font-staraExtraBold text-[36px] font-bold uppercase leading-[44px] text-white sm:pr-0 sm:text-[58px] sm:leading-[74px] lg:text-[80px] lg:leading-[90px] xl:text-[72px] xl:leading-[86px] 2xl:text-[80px] 2xl:leading-[90px]">
+            <h1 className="flex flex-col pr-12 font-staraExtraBold text-[36px] font-bold uppercase leading-[44px] text-white sm:pr-0 sm:text-[58px] sm:leading-[74px] lg:text-[80px] lg:leading-[90px] xl:text-[72px] xl:leading-[80px] 2xl:text-[80px] 2xl:leading-[90px]">
               Whoops, that page is gone.
             </h1>
             <p className="mt-2 font-bevietnamPro text-base font-light text-[#E5ECFF] sm:text-lg xl:text-2xl">

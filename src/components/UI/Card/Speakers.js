@@ -4,7 +4,10 @@ import Image from "next/image";
 // @lib
 import { setJoinString } from "@lib/helper/splitArray";
 
-const SpeakersCard = ({ attributes, useHeading = "h3" }) => {
+const SpeakersCard = ({ attributes, useHeading = "h3", children }) => {
+  const [isLoading, setLoading] = useState(true);
+
+  // @attributes
   const isImages = attributes
     ? process.env.NEXT_PUBLIC_UPLOAD +
       attributes.profilePicture.data.attributes.url
@@ -16,18 +19,20 @@ const SpeakersCard = ({ attributes, useHeading = "h3" }) => {
       attributes.logoCompany.data.attributes.url
     : "";
 
-  const [isLoading, setLoading] = useState(true);
-
   // @random(images-backdrop)
-  const rndImages = [
-    "ca2024CvrBgSpeakersSkyBlue",
-    "ca2024CvrBgSpeakersYellow",
-    "ca2024CvrBgSpeakersBlue",
-    "ca2024CvrBgSpeakersRed",
-  ];
+  // const rndImages = [
+  //   "ca2024CvrBgSpeakersSkyBlue",
+  //   "ca2024CvrBgSpeakersBlue",
+  //   "ca2024CvrBgSpeakersRed",
+  //   "ca2024CvrBgSpeakersYellow",
+  //   "ca2024CvrBgSpeakersSkyBlue",
+  //   "ca2024CvrBgSpeakersBlue",
+  //   "ca2024CvrBgSpeakersRed",
+  //   "ca2024CvrBgSpeakersYellow",
+  // ];
 
-  const isRndIndex = Math.floor(Math.random() * rndImages.length);
-  const isRndImages = rndImages[isRndIndex];
+  // const isRndIndex = Math.floor(Math.random() * rndImages.length);
+  // const isRndImages = rndImages[isRndIndex];
 
   // @loading
   useEffect(() => {
@@ -72,26 +77,17 @@ const SpeakersCard = ({ attributes, useHeading = "h3" }) => {
 
           {/* @backdrop (cover) */}
           <div
-            className={`ca2024CvrBgSpeakers ${isRndImages} absolute inset-x-0 inset-y-0 z-px opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100`}
-          >
-            {/* <Image
-              className="mx-auto h-auto w-full object-cover object-center"
-              src={`/assets/images/backdrop/speakers/ca2024SpeakersBlue.png`}
-              alt={`Coinfest Asia 2024 (${isName} - Backdrop Speakers)`}
-              height={672}
-              width={564}
-              quality="87"
-            /> */}
-          </div>
+            className={`ca2024CvrBgSpeakers ca2024CvrBgSpeakersBlue absolute inset-x-0 inset-y-0 z-px opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100`}
+          ></div>
 
           {/* @btn (modal) */}
-          <button
-            role="button"
-            id={`mdlBtnSpeakers${setJoinString(" ", "", isName)}`}
+          {children}
+          {/* <button
+            id={`mdlBtnSpeakers`}
             className="mdlBtnSpeakers absolute bottom-auto left-auto right-3 top-3 z-10 flex h-10 w-10 flex-col items-center justify-center rounded-xl bg-white opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 sm:right-4 sm:top-4"
-            aria-label={`${isName} - (Modal Speakers)`}
-            aria-labelledby={`${isName} - (Modal Speakers)`}
-            data-hs-overlay={`#mdlSpeakers${setJoinString(" ", "", isName)}`}
+            // aria-label={`${isName} - (Modal Speakers)`}
+            // aria-labelledby={`${isName} - (Modal Speakers)`}
+            data-hs-overlay={`#mdlSpeakers`}
           >
             <svg
               className="h-6 w-6"
@@ -104,7 +100,7 @@ const SpeakersCard = ({ attributes, useHeading = "h3" }) => {
                 fill="black"
               />
             </svg>
-          </button>
+          </button> */}
         </div>
 
         {/* @content */}

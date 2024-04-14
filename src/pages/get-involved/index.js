@@ -5,6 +5,9 @@ import Head from "next/head";
 // @get .config
 const { publicRuntimeConfig } = getConfig();
 
+// @components
+import GetInvolvedCard from "@components/UI/Card/GetInvolvedCard";
+
 // @layouts
 import PartnershipLayouts from "@layouts/PartnershipLayouts";
 
@@ -63,7 +66,38 @@ const GetInvolved = (props) => {
       </Head>
 
       {/* @main */}
-      <PartnershipLayouts>awdawd</PartnershipLayouts>
+      <PartnershipLayouts>
+        <div className="flex flex-col space-y-4">
+          <GetInvolvedCard
+            page={true}
+            url="/sponsorship"
+            btnColor="bg-secondary"
+            title="Sponsors"
+            shortDesc="Demonstrate your innovations and solutions in a seamless & measurable manner."
+          />
+          <GetInvolvedCard
+            page={true}
+            url="/speakers"
+            btnColor="bg-[#1BA8AF]"
+            title="Speak"
+            shortDesc="Show and tell your impact-driven ideas, not just theories, on experiential stages."
+          />
+          <GetInvolvedCard
+            page={true}
+            url="/media-partner"
+            btnColor="bg-[#D84B3D]"
+            title="Partner as Media"
+            shortDesc="Become the main source on the latest Web3 insights and updates in Asia."
+          />
+          <GetInvolvedCard
+            page={true}
+            url="/community"
+            btnColor="bg-secondary"
+            title="Partner as a Community"
+            shortDesc="Connect with leading Web3 industry players, aspiring startups, and communities from 65+ countries."
+          />
+        </div>
+      </PartnershipLayouts>
     </>
   );
 };

@@ -14,7 +14,7 @@ const GetInvolved = () => {
         <div className="ca2024GetInvolvedBackdrop opacity-1 absolute inset-x-0 inset-y-0 z-px">
           <Image
             className={`mx-auto h-full w-full object-cover object-top`}
-            src={"/assets/images/backdrop/ca2024BgLineRotate.jpg"}
+            src={"/assets/images/backdrop/background/ca2024BgLineRotate.jpg"}
             alt={`Coinfest Asia 2024 (Background Backdrop Start Tickets)`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
             height={1262}

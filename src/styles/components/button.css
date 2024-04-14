@@ -8,7 +8,7 @@
 }
 
 .ca2024BgOverflayColor {
-  @apply bg-[url("/assets/images/backdrop/ca2024BgOverflayWhite.png")];
+  @apply bg-[url("/assets/images/backdrop/ca2024BgOverflay.png")];
   @apply bg-center object-cover object-right;
   @apply bg-blend-multiply;
 }
