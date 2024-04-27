@@ -8,21 +8,8 @@ const StartSpeakers = () => {
   return (
     <>
       <section className="ca2024MainPoints ca2024StartSpeakers ca2024MainScreen relative flex snap-center snap-always flex-col items-center justify-center overflow-hidden bg-secondary">
-        {/* @background (backdrop) */}
-        <div className="ca2024StartSpeakersBackdrop opacity-1 absolute inset-x-0 inset-y-0 z-px">
-          <Image
-            className={`mx-auto h-full w-full object-cover object-center`}
-            src={"/assets/images/backdrop/background/ca2024BgLine.jpg"}
-            alt={`Coinfest Asia 2024 (Background Backdrop Start Speakers)`}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-            height={900}
-            width={1440}
-            quality={87}
-          />
-        </div>
-
         {/* @point-items (backdrop) */}
-        <div className="ca2024StartSpeakersPoints opacity-1 pointer-events-none absolute -bottom-[229px] -right-[203px] left-auto top-auto z-px select-none bg-transparent transition duration-[0.8s] ease-out sm:-bottom-[405px] sm:-right-[325px] lg:-right-[415px] 2xl:-bottom-[527px]">
+        <div className="ca2024StartSpeakersPoints opacity-1 pointer-events-none absolute -bottom-[229px] -right-[203px] left-auto top-auto z-[5] select-none bg-transparent transition duration-[0.8s] ease-out sm:-bottom-[405px] sm:-right-[325px] lg:-right-[415px] 2xl:-bottom-[527px]">
           <Image
             className="z-10 mx-auto h-auto w-[471px] object-cover object-center sm:w-[771px] lg:w-[971px]"
             src={"/assets/images/backdrop/ca2024PointItems.png"}

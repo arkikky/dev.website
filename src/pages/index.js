@@ -8,14 +8,23 @@ const { publicRuntimeConfig } = getConfig();
 // @lib
 import { getFetchUrl, getFetch } from "@lib/controller/API";
 
+// @components
+import SectionInnerSplit from "@components/SectionInnerSplit";
+import SpeakersCard from "@components/UI/Card/Speakers";
+import SpeakersModal from "@components/UI/Modal/SpeakersModal";
+import PromoCode from "@components/UI/Modal/PromoCode";
+
 // @layouts
 import NavbarTop from "@layouts/Navbar/NavbarTop";
 import NavbarBottom from "@layouts/Navbar/NavbarBottom";
 import About from "@layouts/About";
 import Board from "@layouts/Board";
+import Benefit from "@layouts/Benefit";
 import StartSpeakers from "@layouts/Speakers/start";
 import Tickets from "@layouts/Tickets";
+import Speakers from "@layouts/Speakers";
 import NextSpeakers from "@layouts/Speakers/next";
+import Partner from "@layouts/Partner";
 import Testimonials from "@layouts/Testimonials";
 import GetInvolved from "@layouts/GetInvolved";
 import FAQ from "@layouts/FAQ";
@@ -23,11 +32,61 @@ import SocialMentions from "@layouts/SocialMentions";
 import BannerFooter from "@layouts/Banner/BannerFooter";
 import Footer from "@layouts/Footer";
 
-const Home = ({ ipAddress, speaker, sponsorPartner, socialMentions }) => {
-  const [isIpAddress, setIpAddress] = useState(ipAddress);
-  // const [isSpeakers, setSpeakers] = useState(speaker);
-  // const [isSponsorPartner, setSponsorPartner] = useState(sponsorPartner);
+const Home = ({
+  ipAddress,
+  speaker,
+  sponsor,
+  mediaPartner,
+  comunitiesPartner,
+}) => {
+  const [isSpeakers, setSpeakers] = useState(speaker);
+  const [isSpeakersModal, setSpeakersModal] = useState(null);
   // const [isSocialMentions, setSocialMentions] = useState(socialMentions);
+
+  // @import-smoothscroll(module)
+  useEffect(() => {
+    import("locomotive-scroll").then((locomotiveModule) => {
+      const locoScroll = new locomotiveModule.default({
+        smooth: true,
+      });
+    });
+
+    return () => {
+      undefined;
+    };
+  }, []);
+
+  // @preline (Add Plugins)
+  useEffect(() => {
+    import("preline");
+
+    return () => {
+      undefined;
+    };
+  }, []);
+
+  {
+    /* @speakers-modal(dynamic) */
+  }
+  const isModal = ({
+    id,
+    name,
+    images,
+    position,
+    aboutMe,
+    connectWithMe,
+    logoCompany,
+  }) => {
+    setSpeakersModal({
+      id: id,
+      images: images,
+      name: name,
+      position: position,
+      aboutMe,
+      connectWithMe,
+      logoCompany,
+    });
+  };
 
   // @main-scrollspy
   // useEffect(() => {
@@ -121,33 +180,80 @@ const Home = ({ ipAddress, speaker, sponsorPartner, socialMentions }) => {
         {/* @about */}
         <About />
 
-        {/* @board(chartinsights) */}
-        <Board />
+        <div className="flex flex-col pb-32">
+          {/* @board(chartinsights) */}
+          <Board />
 
-        {/* @start(speakers) */}
-        <StartSpeakers />
+          {/* @benefit */}
+          <Benefit />
+        </div>
 
-        {/* @tickets */}
-        <Tickets />
+        {/* @start(speakers) & tickets  */}
+        <SectionInnerSplit>
+          {/* @start(speakers) */}
+          <StartSpeakers />
 
-        {/* @fake */}
-        <section className="ca2024MainPoints h-svh snap-start snap-always bg-white">
-          <h2>awdawd</h2>
-        </section>
+          {/* @tickets */}
+          <Tickets />
+        </SectionInnerSplit>
+
+        {/* @speakers */}
+        {isSpeakers && (
+          <Speakers>
+            {isSpeakers.data?.map((gtRslt, i) => (
+              <div
+                className={`ca2024SpeakersCard col-span-2 sm:col-span-4 lg:col-span-3 ${gtRslt.id}`}
+                key={i}
+              >
+                <button
+                  id={`mdlBtnSpeakers`}
+                  className="mdlBtnSpeakers outline-none focus-visible:outline-none"
+                  aria-label={`${gtRslt.attributes.name} - (Button Modal Speakers)`}
+                  aria-labelledby={`${gtRslt.attributes.name} - (Button Modal Speakers)`}
+                  data-hs-overlay={`#mdlSpeakers`}
+                  onClick={(e) => {
+                    e.preventDefault();
+
+                    isModal({
+                      id: gtRslt.id,
+                      images: gtRslt.attributes
+                        ? process.env.NEXT_PUBLIC_UPLOAD +
+                          gtRslt.attributes.profilePicture.data.attributes.url
+                        : "",
+                      name: gtRslt.attributes.name,
+                      position: gtRslt.attributes.position,
+                      aboutMe: gtRslt.attributes.aboutMe,
+                      connectWithMe: gtRslt.attributes.connectWithMe,
+                    });
+                  }}
+                >
+                  <SpeakersCard {...gtRslt} useHeading="h2" />
+                </button>
+              </div>
+            ))}
+          </Speakers>
+        )}
 
         {/* @next(speakers) */}
         <NextSpeakers />
 
-        {/* @fake */}
-        <section className="ca2024MainPoints h-svh snap-start snap-always bg-white">
-          <h2>awdawd</h2>
+        {/* @partner */}
+        <section className="ca2024MainPoints bg-white pb-[189px] pt-[140px] sm:pt-[174px]">
+          <Partner
+            dataSponsor={sponsor}
+            dataMediaPartner={mediaPartner}
+            dataComunitiesPartner={comunitiesPartner}
+          />
         </section>
 
-        {/* @testimonials */}
-        <Testimonials />
+        {/* @testimonials & get-involved  */}
+        <SectionInnerSplit>
+          {/* @testimonials */}
+          <Testimonials />
 
-        {/* @get-involved */}
-        <GetInvolved />
+          {/* @get-involved */}
+          <GetInvolved />
+        </SectionInnerSplit>
 
         {/* @social-mentions */}
         <SocialMentions />
@@ -164,6 +270,12 @@ const Home = ({ ipAddress, speaker, sponsorPartner, socialMentions }) => {
             <Footer />
           </div>
         </div>
+
+        {/* @speakers-modal */}
+        <SpeakersModal {...isSpeakersModal} />
+
+        {/* @promo-code(popup) */}
+        <PromoCode />
       </main>
     </>
   );
@@ -176,13 +288,21 @@ export const getStaticProps = async () => {
     `https://ipinfo.io/json?token=135855871d1f46`,
   );
 
-  // const isSpeaker = await getFetch(
-  //   `/speaker-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`,
-  // );
+  const isSpeakers = await getFetch(
+    `/ca-24-speakers?populate=*&pagination[pageSize]=100`,
+  );
 
-  // const isSponsorPartner = await getFetch(
-  //   `/sponsor-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`,
-  // );
+  const isSponsor = await getFetch(
+    `/ca-24-sponsors?sort=rank:asc&populate=*&pagination[pageSize]=100`,
+  );
+
+  const isMediaPartner = await getFetch(
+    `/ca-24-media-partners?sort=rank:asc&populate=*&pagination[pageSize]=100`,
+  );
+
+  const isComunitiesPartner = await getFetch(
+    `/ca-24-communities?sort=rank:asc&populate=*&pagination[pageSize]=100`,
+  );
 
   // const isSocialMentions = await getFetch(
   //   `/people-says?populate=*&pagination[pageSize]=100`,
@@ -192,12 +312,14 @@ export const getStaticProps = async () => {
     return {
       props: {
         ipAddress: isIpAddress || [],
-        // speaker: isSpeaker || [],
-        // sponsorPartner: isSponsorPartner || [],
+        speaker: isSpeakers || [],
+        sponsor: isSponsor || [],
+        mediaPartner: isMediaPartner || [],
+        comunitiesPartner: isComunitiesPartner || [],
         // socialMentions: isSocialMentions || [],
       },
 
-      revalidate: 1600,
+      revalidate: 1800,
     };
   } catch (err) {
     return {

@@ -15,23 +15,15 @@ const NavbarBottom = () => {
   const [isMenu, setMenu] = useState(false);
   const intNavMenuMobile = useRef(null);
   const [isFullWidth, setIsFullWidth] = useState(false);
-  
 
   // @gsap-active
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    if (router.pathname === "/") {
-      ScrollTrigger.defaults({
-        scroller: ".ca2024Main",
-        markers: false,
-      });
-    } else {
-      ScrollTrigger.defaults({
-        scroller: "body",
-        markers: false,
-      });
-    }
+    ScrollTrigger.defaults({
+      scroller: "body",
+      markers: false,
+    });
 
     return () => {
       // optionally return a cleanup function that will be called when none of the conditions match anymore (after having matched)
@@ -140,8 +132,8 @@ const NavbarBottom = () => {
           router.pathname === "/"
             ? isFullWidth
               ? "bottom-8"
-              : "bottom-4 sm:bottom-6"
-            : "bottom-4 sm:bottom-6"
+              : "bottom-4"
+            : "bottom-4"
         } inset-x-0 z-xl mx-auto h-auto transition-all duration-300 ease-out sm:h-[100px]`}
       >
         <Container className="relative h-full">
@@ -195,8 +187,8 @@ const NavbarBottom = () => {
             <div className="ca2024NavbarMenu">
               <ul className="menu menu-row hidden">
                 <li>
-                  <Link className="text-white" href={"/get-involved/speakers"}>
-                    Apply as Speaker
+                  <Link className="text-white" href={"/speakers"}>
+                    Speaker
                   </Link>
                 </li>
                 <li>
@@ -240,6 +232,8 @@ const NavbarBottom = () => {
           </div>
         </Container>
       </nav>
+
+      {/* @nav-mobile */}
 
       {/* @banner-ticket(backcover) */}
       {/* <div
