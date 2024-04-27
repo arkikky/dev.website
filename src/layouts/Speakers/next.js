@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -37,14 +37,14 @@ const NextSpeakers = () => {
         <Container className=" relative z-[5]">
           <div className="ca2024NextSpeakersContent opacity-1 mx-auto flex w-full max-w-full flex-col items-center justify-center text-start transition duration-[1.4s] ease-out sm:max-w-[555px] sm:text-center lg:max-w-max">
             <h2 className="px-0 font-staraExtraBold text-[32px] uppercase leading-[40px] text-white xs:text-[42px] xs:leading-[50px] sm:text-[58px] sm:leading-[74px] lg:px-7 lg:text-[80px] lg:leading-[90px] xl:px-0">
-              2024 speakers will be announced very soon!
+              Speaking submission closes soon!
             </h2>
             <div className="mt-8 flex w-full flex-col sm:w-max">
               <Link
-                className="relative inline-flex w-full max-w-full items-center justify-center rounded-[14px] bg-primary px-6 py-4 font-bevietnamPro text-base font-medium text-black-900 outline-none focus-visible:outline-none sm:max-w-[334px] sm:text-xl lg:max-w-[365px]"
+                className="relative inline-flex w-full max-w-full items-center justify-center rounded-[14px] bg-primary px-6 py-4 font-bevietnamPro text-base font-medium text-black-900 outline-none focus-visible:outline-none sm:max-w-[334px] sm:text-xl lg:max-w-[365px] xl:px-8"
                 href={"/get-involved/speakers"}
               >
-                Apply as Speaker
+                Apply now
               </Link>
             </div>
           </div>

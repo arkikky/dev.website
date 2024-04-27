@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 // @lib
-import { setJoinString } from "@lib/helper/splitArray";
+// import { setJoinString } from "@lib/helper/splitArray";
 
 const SpeakersCard = ({ attributes, useHeading = "h3", children }) => {
   const [isLoading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ const SpeakersCard = ({ attributes, useHeading = "h3", children }) => {
   const isPosition = attributes ? attributes.position : "CEO & Co-Founder";
   const isBrand = attributes
     ? process.env.NEXT_PUBLIC_UPLOAD +
-      attributes.logoCompany.data.attributes.url
+      attributes.companyLogo.data.attributes.url
     : "";
 
   // @random(images-backdrop)
@@ -45,11 +45,11 @@ const SpeakersCard = ({ attributes, useHeading = "h3", children }) => {
 
   return (
     <>
-      <div className="group relative flex flex-col items-center justify-center overflow-hidden px-0 pt-12 group-hover:cursor-pointer">
+      <div className="group relative flex w-full min-w-full flex-col items-center justify-center overflow-hidden px-0 group-hover:cursor-pointer">
         {/* @brand */}
-        <div className="absolute inset-x-0 bottom-auto top-0 z-[2] mr-auto flex max-w-max flex-col items-center justify-center pl-4">
+        <div className="mx-auto mb-1 flex max-w-max flex-col items-center justify-center sm:mb-4">
           <Image
-            className="mx-auto mr-auto h-auto max-h-[40px] min-h-[36px] w-auto grayscale"
+            className="mx-auto mr-auto h-auto max-h-[40px] min-h-[36px] w-auto scale-[1.2] transform grayscale sm:scale-100"
             src={isBrand}
             alt={`(${isName} - Brand Speakers Card)`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 280vw, 280vw"
@@ -59,7 +59,7 @@ const SpeakersCard = ({ attributes, useHeading = "h3", children }) => {
           />
         </div>
 
-        <div className="relative flex h-[194px] w-full flex-col overflow-hidden rounded-2xl bg-[#D9DCE4] sm:h-[267px] lg:h-[249px] xl:h-[336px]">
+        <div className="relative flex h-[194px] w-full min-w-full flex-col overflow-hidden rounded-2xl bg-[#D9DCE4] sm:h-[267px] lg:h-[249px] xl:h-[336px]">
           {isLoading === true && (
             <div className="absolute inset-x-0 inset-y-0 z-20 bg-[#D9DCE4]">
               <div className="h-full w-full animate-pulse bg-gray-400/70"></div>
@@ -81,14 +81,7 @@ const SpeakersCard = ({ attributes, useHeading = "h3", children }) => {
           ></div>
 
           {/* @btn (modal) */}
-          {children}
-          {/* <button
-            id={`mdlBtnSpeakers`}
-            className="mdlBtnSpeakers absolute bottom-auto left-auto right-3 top-3 z-10 flex h-10 w-10 flex-col items-center justify-center rounded-xl bg-white opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 sm:right-4 sm:top-4"
-            // aria-label={`${isName} - (Modal Speakers)`}
-            // aria-labelledby={`${isName} - (Modal Speakers)`}
-            data-hs-overlay={`#mdlSpeakers`}
-          >
+          <span className="absolute bottom-auto left-auto right-3 top-3 z-10 flex h-10 w-10 flex-col items-center justify-center rounded-xl bg-white opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 sm:right-4 sm:top-4">
             <svg
               className="h-6 w-6"
               viewBox="0 0 24 24"
@@ -100,11 +93,11 @@ const SpeakersCard = ({ attributes, useHeading = "h3", children }) => {
                 fill="black"
               />
             </svg>
-          </button> */}
+          </span>
         </div>
 
         {/* @content */}
-        <div className="mt-4 flex h-full max-h-[84px] min-h-[84px] w-full flex-col items-start justify-start rounded-xl bg-[#F6F6F6] px-2 py-2 sm:px-4 sm:py-4">
+        <div className="mt-4 flex h-full max-h-[61px] min-h-[61px] w-full flex-col items-start justify-start rounded-xl bg-[#F6F6F6] px-2.5 py-2 sm:max-h-[84px] sm:min-h-[84px] sm:px-4 sm:py-4">
           {useHeading === "h2" && (
             <h2 className="font-bevietnamPro text-sm font-semibold text-black-900 sm:text-base">
               {isName}
@@ -116,7 +109,7 @@ const SpeakersCard = ({ attributes, useHeading = "h3", children }) => {
             </h3>
           )}
           {isPosition && (
-            <p className="mt-1 line-clamp-1 font-bevietnamPro text-base font-normal text-[#636363]">
+            <p className="line-break-anywhere mt-1 line-clamp-1 font-bevietnamPro text-sm font-normal text-[#636363] sm:text-base">
               {isPosition}
             </p>
           )}

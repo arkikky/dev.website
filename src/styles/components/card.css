@@ -40,3 +40,33 @@
 .ca2024ProductVIP .ca2024ProductGroup.ca2024ProductGroupContentFrmat ul li {
   @apply text-white;
 }
+
+/* @benefit (Card) */
+.ca2024CrdBenefit {
+  @apply bg-secondary;
+  @apply text-white;
+}
+
+.ca2024CrdBenefit::before {
+  @apply content-[''];
+  @apply bg-[url('/assets/images/backdrop/benefit/ca2024Benefit-default.png')];
+  @apply bg-cover bg-center object-cover object-center;
+  @apply absolute inset-x-0 inset-y-0;
+  @apply z-px;
+}
+
+.ca2024CrdBenefitItems:nth-child(even) .ca2024CrdBenefit {
+  @apply text-black-900;
+}
+
+.ca2024CrdBenefitItems:nth-child(even) .ca2024CrdBenefit::before {
+  @apply bg-[url('/assets/images/backdrop/benefit/ca2024Benefit-2x.png')];
+}
+
+.ca2024CrdBenefitItems:nth-child(3n) .ca2024CrdBenefit {
+  @apply text-black-900;
+}
+
+.ca2024CrdBenefitItems:nth-child(3n) .ca2024CrdBenefit::before {
+  @apply bg-[url('/assets/images/backdrop/benefit/ca2024Benefit-3x.png')];
+}

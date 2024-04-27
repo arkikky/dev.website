@@ -11,7 +11,7 @@ const SocialMentions = ({ data }) => {
 
   return (
     <>
-      <section className="ca2024MainPoints ca2024SocialMentionsPoints relative z-10 flex h-auto snap-start snap-always flex-col items-center justify-center overflow-hidden bg-red-500">
+      <section className="ca2024MainPoints ca2024SocialMentionsPoints relative z-[16] flex h-auto snap-start snap-always flex-col items-center justify-center overflow-hidden bg-red-500 xl:z-10">
         {/* <div className="ca2024SocialMentionsPointTop pointer-events-none absolute inset-x-0 bottom-auto top-10 z-px h-14 w-full select-none bg-transparent transition-all duration-150 ease-linear"></div> */}
 
         {/* @content */}

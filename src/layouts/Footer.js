@@ -142,6 +142,14 @@ const Footer = () => {
                           Speakers
                         </Link>
                       </li>
+                      <li className="group mb-4 last:mb-0">
+                        <Link
+                          className="flex flex-row items-center font-bevietnamPro text-base font-light capitalize leading-[normal] text-black-900 outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none group-hover:text-secondary group-hover:underline"
+                          href="/partners"
+                        >
+                          Partners
+                        </Link>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -175,7 +183,7 @@ const Footer = () => {
                           Co-host a side event
                         </Link>
                       </li> */}
-                      <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
+                      <li className="hs-tooltip [—prevent-popper:true] group mb-4 [--placement:right] [--trigger:hover] [--tooltip-strategy:absolute] last:mb-0">
                         <button
                           type="button"
                           aria-label="menuMap"

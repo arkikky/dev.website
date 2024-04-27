@@ -9,21 +9,8 @@ const Tickets = () => {
   return (
     <>
       <section className="ca2024MainPoints ca2024Tickets ca2024MainScreenAuto relative flex snap-start snap-always flex-col items-start justify-start overflow-hidden bg-secondary">
-        {/* @background (backdrop) */}
-        <div className="ca2024ackdrop opacity-1 absolute inset-x-0 inset-y-0 z-px">
-          <Image
-            className={`mx-auto h-full w-full object-cover object-center`}
-            src={"/assets/images/backdrop/background/ca2024BgLineRotate.jpg"}
-            alt={`Coinfest Asia 2024 (Background Backdrop Start Tickets)`}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-            height={1262}
-            width={1440}
-            quality={87}
-          />
-        </div>
-
         {/* @point-items (backdrop) */}
-        <div className="ca2024TicketsPoints opacity-1 pointer-events-none absolute -right-[225px] bottom-0 left-auto top-auto z-px select-none bg-transparent transition  duration-[0.8s] ease-out sm:-bottom-3 sm:-right-[283px] lg:-right-[197px] xl:-bottom-[253px] xl:-right-[120px]">
+        <div className="ca2024TicketsPoints opacity-1 pointer-events-none absolute -right-[225px] bottom-0 left-auto top-auto z-[5] select-none bg-transparent transition  duration-[0.8s] ease-out sm:-bottom-3 sm:-right-[283px] lg:-right-[197px] xl:-bottom-[253px] xl:-right-[120px]">
           <Image
             className="z-[2] mx-auto h-auto w-[671px] object-cover object-center sm:w-[971px] lg:w-[1080px]"
             src={"/assets/images/backdrop/ca2024WidePointItems.png"}
@@ -89,10 +76,10 @@ const Tickets = () => {
 
                   <div className="ca2024ProductGroup ca2024productButton">
                     <a
-                      href="https://ticket.coinfest.asia/?add-to-cart=9590949901"
+                      href="https://ticket.coinfest.asia/?add-to-cart=5232"
                       data-quantity="1"
                       className="button product_type_simple add_to_cart_button ajax_add_to_cart"
-                      data-product_id="9590949901"
+                      data-product_id="5232"
                       data-product_sku=""
                       aria-label="Add to cart: “Festival — Super Early Bird”"
                       aria-describedby="Festival — Super Early Bird (Tickets)"

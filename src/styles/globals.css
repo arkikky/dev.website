@@ -5,6 +5,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @lenis-smoothscroll */
+@import "node_modules/locomotive-scroll/dist/locomotive-scroll";
+
 /* @fonts */
 @import url("./fonts");
 
@@ -25,7 +28,7 @@ body::-webkit-scrollbar-track {
 
 .ca2024Main::-webkit-scrollbar-thumb,
 body::-webkit-scrollbar-thumb {
-  @apply bg-gray-400/60;
+  @apply bg-gray-400/80;
   @apply rounded-full;
   @apply border-none;
 }
@@ -38,13 +41,48 @@ input:valid {
   @apply bg-white focus-visible:bg-white;
 }
 
+/* @background */
+@import url("./components/background");
+
+/* @list */
+@import url("./components/list");
+
+/* @button */
+@import url("./components/button");
+
+/* @dots */
+@import url("./components/dots");
+
+/* @markdown */
+@import url("./components/markdown");
+
+/* @card */
+@import url("./components/card");
+
+/* @navbar */
+@import url("./layouts/navbar");
+
+/* @slider */
+@import url("./components/slider");
+
+/* @line-break */
+.line-break-anywhere {
+  line-break: anywhere;
+}
+
+/* @shadow */
+.boxShadow-none,
+.boxShadow-none:focus {
+  box-shadow: none;
+}
+
 /* @main */
 .ca2024Main {
   @apply relative;
-  @apply overflow-y-auto;
-  @apply snap-y snap-mandatory;
+  /* @apply overflow-y-auto; */
+  /* @apply snap-y snap-mandatory; */
   /* scroll-snap-points-y: repeat(100svh); */
-  @apply h-svh max-h-svh xl:h-screen xl:max-h-screen;
+  /* @apply h-svh max-h-svh xl:h-screen xl:max-h-screen; */
 }
 
 .ca2024MainPoints {
@@ -103,23 +141,34 @@ input:valid {
   @apply columns-1 sm:columns-2 lg:columns-3 [&>div:not(:first-child)]:mt-4;
 }
 
-/* @background */
-@import url("./components/background");
+/* @phone-format */
+.PhoneInputCountry {
+  @apply pr-2;
+}
 
-/* @list */
-@import url("./components/list");
+.PhoneInputCountrySelectArrow {
+  @apply !hidden;
+}
 
-/* @button */
-@import url("./components/button");
+.PhoneInputInput {
+  @apply border-l border-solid border-gray-300;
+  @apply focus-visible:outline-none;
+  @apply pl-2;
+}
 
-/* @dots */
-@import url("./components/dots");
+.PhoneInputCountryIcon.PhoneInputCountryIcon--border {
+  @apply rounded-sm;
+  @apply overflow-hidden;
+}
 
-/* @markdown */
-@import url("./components/markdown");
+/* @select */
+.css-t3ipsp-control,
+.css-13cymwt-control {
+  @apply !rounded-lg;
+  @apply !border border-solid !border-[#E3E3E3];
+  @apply !min-h-[62px];
+}
 
-/* @card */
-@import url("./components/card");
-
-/* @navbar */
-@import url("./layouts/navbar");
+.css-1dimb5e-singleValue {
+  @apply font-bevietnamPro text-sm;
+}

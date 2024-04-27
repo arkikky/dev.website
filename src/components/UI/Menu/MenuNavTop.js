@@ -13,7 +13,7 @@ import "keen-slider/keen-slider.min.css";
 // @lib
 import calculateTime from "@lib/helper/calculateTime";
 
-const MenuNavTop = () => {
+const MenuNavTop = ({ back = false, urlBack = "" }) => {
   const [isLoading, setLoading] = useState(true);
   const [getTimer, setTimeLeft] = useState({
     days: 0,
@@ -93,13 +93,39 @@ const MenuNavTop = () => {
   return (
     <>
       <div className="flex flex-row items-start justify-between">
-        <div className="flex flex-row items-center justify-center">
+        <div
+          className={`flex flex-row items-center ${back === true && "mt-2 space-x-2 sm:space-x-4"} justify-center`}
+        >
+          {back === true && (
+            <Link
+              className="z-100 flex h-10 w-10 flex-col items-center justify-center rounded-xl bg-white sm:h-12 sm:w-12 sm:rounded-2xl"
+              href={urlBack}
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g>
+                  <path
+                    d="M15 19L8 12L15 5"
+                    stroke="black"
+                    strokeWidth="2.66667"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </g>
+              </svg>
+            </Link>
+          )}
           <Link
-            className="relative mt-2 block w-max cursor-pointer sm:mt-0"
+            className={`relative ${back === true ? "mt-0" : "mt-2 sm:mt-0"} block w-max cursor-pointer`}
             href={"/"}
           >
             <Image
-              className="mx-auto my-auto h-auto w-28 sm:w-32"
+              className="mx-auto my-auto h-auto w-24 sm:w-32"
               src={"/assets/images/ca2024-BrandWhite.svg"}
               alt={`${publicRuntimeConfig.siteAppName} (Primary Brand - NavbarTop)`}
               height={62}

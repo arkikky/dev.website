@@ -8,11 +8,13 @@ import NavbarBottom from "@layouts/Navbar/NavbarBottom";
 const PartnershipLayouts = ({
   title = "Take part in Coinfest Asia where innovation meets adoption.",
   children,
+  btnBack = false,
+  urlBack = "",
 }) => {
   return (
     <>
       {/* @navbar-top */}
-      <NavbarTop type="full" />
+      <NavbarTop type="full" btnBack={btnBack} urlBack={urlBack} />
 
       {/* @navbar-bottom */}
       <NavbarBottom />
@@ -21,7 +23,7 @@ const PartnershipLayouts = ({
       <main className="relative flex min-h-svh flex-col bg-[#F8EAD7]">
         <section className="relative inline-flex h-auto w-full flex-grow flex-col xl:flex-row">
           <div className="flex h-auto w-full flex-1 flex-col bg-secondary xl:w-min xl:min-w-[600px] xl:max-w-[600px] 2xl:min-w-max 2xl:max-w-none">
-            <div className="relative top-0 h-full max-h-[424px] min-h-[424px] w-full sm:h-full sm:max-h-[527px] sm:min-h-[527px] xl:sticky xl:max-h-screen xl:min-h-screen">
+            <div className="relative top-0 h-full max-h-[424px] min-h-[424px] w-full overflow-hidden sm:h-full sm:max-h-[527px] sm:min-h-[527px] xl:sticky xl:max-h-screen xl:min-h-screen">
               <div className="absolute inset-x-0 inset-y-0 z-px h-full overflow-hidden">
                 <Image
                   className="z-[5] mx-auto h-full w-full object-cover object-center"
@@ -38,28 +40,52 @@ const PartnershipLayouts = ({
                     {title}
                   </h1>
                 </div>
-              </div>
 
-              {/* @backdrop (leaf tree - items) */}
-              <div className="opacity-1 pointer-events-none absolute bottom-auto left-0 right-auto top-0 z-[5] flex select-none bg-transparent">
-                <Image
-                  className="mx-auto h-auto w-[137px] object-cover object-center sm:w-[187px]"
-                  src={"/assets/images/backdrop/ca2024LeafTreeLeft.png"}
-                  alt={`Coinfest Asia 2024 (GetInvolved Leaf Tree - Left)`}
-                  height={244}
-                  width={374}
-                  quality="87"
-                />
-              </div>
-              <div className="opacity-1 pointer-events-none absolute bottom-auto left-auto right-0 top-0 z-[5] flex select-none bg-transparent">
-                <Image
-                  className="mx-auto h-auto w-[221px] object-cover object-center sm:w-[288px]"
-                  src={"/assets/images/backdrop/ca2024LeafTreeRight.png"}
-                  alt={`Coinfest Asia 2024 (GetInvolved Leaf Tree - Right)`}
-                  height={1389}
-                  width={1073}
-                  quality="87"
-                />
+                {/* @backdrop (leaf tree - items) */}
+                <div className="pointer-events-none absolute bottom-auto left-0 right-auto top-0 z-[5] flex select-none bg-transparent">
+                  <Image
+                    className="mx-auto h-auto w-[137px] object-cover object-center sm:w-[187px]"
+                    src={"/assets/images/backdrop/ca2024LeafTreeLeft.png"}
+                    alt={`Coinfest Asia 2024 (GetInvolved Leaf Tree - Left)`}
+                    height={244}
+                    width={374}
+                    quality="87"
+                  />
+                </div>
+                <div className="pointer-events-none absolute bottom-auto left-auto right-0 top-0 z-[5] flex select-none bg-transparent">
+                  <Image
+                    className="mx-auto h-auto w-[221px] object-cover object-center sm:w-[288px]"
+                    src={"/assets/images/backdrop/ca2024LeafTreeRight.png"}
+                    alt={`Coinfest Asia 2024 (GetInvolved Leaf Tree - Right)`}
+                    height={1389}
+                    width={1073}
+                    quality="87"
+                  />
+                </div>
+
+                {/* @backdrop (statue) */}
+                <div className="pointer-events-none absolute -bottom-[103px] -left-11 right-auto top-auto z-[5] flex select-none bg-transparent sm:-bottom-[225px] sm:-left-[175px]">
+                  <Image
+                    className="mx-auto h-auto w-[241px] object-cover object-center sm:w-[475px]"
+                    src={"/assets/images/backdrop/statue/ca2024StatueLeft.png"}
+                    alt={`Coinfest Asia 2024 (GetInvolved Statue - Left)`}
+                    height={1556}
+                    width={1224}
+                    quality="87"
+                  />
+                </div>
+                <div className="pointer-events-none absolute -bottom-[88px] -right-11 left-auto top-auto z-[5] flex select-none bg-transparent sm:-bottom-[154px] sm:-right-[120px]">
+                  <Image
+                    className="z-10 mx-auto h-auto w-[311px] object-cover object-center sm:w-[525px] lg:w-[575px]"
+                    src={
+                      "/assets/images/backdrop/statue/ca2024StatueBanner.png"
+                    }
+                    alt={`Coinfest Asia 2024 (GetInvolved Statue - Right)`}
+                    height={976}
+                    width={753}
+                    quality="87"
+                  />
+                </div>
               </div>
             </div>
           </div>

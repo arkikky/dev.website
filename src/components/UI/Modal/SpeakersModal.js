@@ -1,20 +1,29 @@
 import React from "react";
+import Markdown from "react-markdown";
 import Image from "next/image";
 
-const SpeakersModal = ({ name, images, position, shortBio, logoCompany }) => {
+const SpeakersModal = ({
+  name,
+  images,
+  position,
+  aboutMe,
+  connectWithMe,
+  // logoCompany,
+}) => {
   const isImages = images ? images : "";
   const isName = name ? name : "Sandiaga Uno";
   const isPosition = position ? position : "CEO & Co-Founder";
-  const isShortBio = shortBio
-    ? shortBio
+  const isAboutMe = aboutMe
+    ? aboutMe
     : "Jeth Soetoyo is the co-founder and CEO of Figma. Dylan studied computer science and mathematics at Brown University where he and his co-founder, Evan Wallace, first started experimenting with design tools built on (and for) the web. With funding from a Thiel fellowship, they began Figma. Prior to Figma, Dylan interned at O'Reilly Media, LinkedIn, and Flipboard.";
-  const isBrand = logoCompany ? logoCompany : "";
+  const isConnectWithMe = connectWithMe ? connectWithMe : "";
+  // const isBrand = logoCompany ? logoCompany : "";
 
   return (
     <>
       <div
         id={`mdlSpeakers`}
-        className="hs-overlay fixed left-0 top-0 z-[9999] hidden h-full w-full overflow-y-auto overflow-x-hidden bg-black-900/[0.33] opacity-0 transition-all hs-overlay-open:opacity-100 hs-overlay-open:duration-300"
+        className="hs-overlay fixed left-0 top-0 z-[9999] hidden h-full w-full overflow-y-auto overflow-x-hidden bg-black-900/[0.33] opacity-0 transition-all [--body-scroll:true] [--overlay-backdrop:static] hs-overlay-open:opacity-100 hs-overlay-open:duration-300"
         data-hs-overlay-backdrop-container="#bckdrpModalActve"
       >
         <div className="fixed inset-x-0 bottom-0 top-0 mx-auto flex w-full max-w-full translate-y-8 transform items-center justify-center px-4 opacity-0 transition-all duration-300 ease-out hs-overlay-open:translate-y-0 hs-overlay-open:opacity-100 sm:inset-y-0 sm:max-w-[720px] sm:px-0 lg:max-w-[825px]">
@@ -60,7 +69,7 @@ const SpeakersModal = ({ name, images, position, shortBio, logoCompany }) => {
                 />
               )}
             </div>
-            <div className="flex h-full max-h-[211px] w-full flex-1 flex-col overflow-y-auto bg-white px-4 py-6 sm:max-h-max sm:overflow-hidden sm:px-8 sm:py-10">
+            <div className="flex h-full max-h-[291px] w-full flex-1 flex-col overflow-y-auto bg-white px-4 py-6 sm:max-h-max sm:overflow-hidden sm:px-8 sm:py-10">
               <div className="flex flex-col text-start">
                 <div className="flex flex-col">
                   <h2 className="font-bevietnamPro text-base capitalize text-black-900 sm:text-lg">
@@ -72,34 +81,36 @@ const SpeakersModal = ({ name, images, position, shortBio, logoCompany }) => {
                     </span>
                   )}
                 </div>
-                {isShortBio && (
-                  <div className="mt-4 flex flex-col sm:mt-6">
-                    <span className="font-bevietnamPro text-base font-normal text-black-900 sm:text-lg">
-                      Speaking Topics
-                    </span>
-                    <p className="mt-2 font-bevietnamPro text-base font-light text-[#676767]">
-                      {isShortBio}
-                    </p>
+                {isAboutMe && (
+                  <div className="mt-4 flex flex-col">
+                    <Markdown className="mt-2 font-bevietnamPro text-base font-light text-[#676767]">
+                      {isAboutMe}
+                    </Markdown>
                   </div>
                 )}
-                {isBrand && (
-                  <div className="z-10 mt-6 flex max-w-max flex-col items-start justify-start sm:mt-8">
+                {isConnectWithMe && (
+                  <div className="mt-4 flex flex-col rounded-lg bg-[#ECF1FF] px-4 py-4">
+                    <h3 className="font-bevietnamPro text-base font-semibold text-black-900">
+                      Why Connect With Me at Coinfest Asia?
+                    </h3>
+                    <Markdown className="mt-2 font-bevietnamPro text-base font-light text-black-900">
+                      {isConnectWithMe}
+                    </Markdown>
+                  </div>
+                )}
+                {/* {isBrand && (
+                  <div className="z-10 mt-6 flex h-8 max-w-max flex-col items-start justify-start">
                     <Image
-                      className="my-auto h-auto max-h-[65px] min-h-[36px] w-auto grayscale"
+                      className="my-auto h-auto w-auto"
                       src={isBrand}
                       alt={`(${isName} - Brand Speakers)`}
-                      sizes="(min-width: 1874px) 246vw,
-                      (min-width: 1536px) 257vw,
-                      (min-width: 1280px) 313vw,
-                      (min-width: 1024px) 395vw,
-                      (min-width: 640px) 431vw,
-                      1005vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 280vw, 280vw"
                       height={58}
                       width={270}
                       quality="87"
                     />
                   </div>
-                )}
+                )} */}
               </div>
             </div>
           </div>

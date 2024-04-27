@@ -21,7 +21,11 @@ const About = () => {
         </div>
 
         {/* @items (backdrop) */}
-        <div className="ca2024AboutsItemsLeft opacity-1 pointer-events-none absolute -top-[120px] bottom-auto left-2 right-auto z-px select-none bg-transparent sm:-top-[163px] sm:left-[18%] lg:-top-[197px] lg:left-[17%] xl:left-[14%]">
+        <div
+          className="ca2024AboutsItemsLeft opacity-1 pointer-events-none absolute -top-[120px] bottom-auto left-2 right-auto z-px select-none bg-transparent sm:-top-[163px] sm:left-[18%] lg:-top-[197px] lg:left-[17%] xl:left-[14%]"
+          data-scroll
+          data-scroll-speed="0.1"
+        >
           <Image
             className="z-10 mx-auto h-auto w-[211px] object-cover object-center sm:w-[323px] lg:w-[415px] xl:w-[383px]"
             src={"/assets/images/backdrop/ca2024DiamondBlue.png"}
@@ -33,7 +37,11 @@ const About = () => {
           />
         </div>
 
-        <div className="ca2024AboutsItemsLeft opacity-1 pointer-events-none absolute -bottom-[120px] left-2 right-auto top-auto z-px select-none bg-transparent sm:-bottom-[163px] sm:left-[18%] lg:-bottom-[197px] lg:left-[17%] xl:left-[25%]">
+        <div
+          className="ca2024AboutsItemsLeft opacity-1 pointer-events-none absolute -bottom-[120px] left-2 right-auto top-auto z-px select-none bg-transparent sm:-bottom-[163px] sm:left-[18%] lg:-bottom-[197px] lg:left-[17%] xl:left-[25%]"
+          data-scroll
+          data-scroll-speed="0.1"
+        >
           <Image
             className="z-10 mx-auto h-auto w-[301px] object-cover object-center sm:w-[463px] lg:w-[555px] xl:w-[523px]"
             src={"/assets/images/backdrop/ca2024FlowerBlue.png"}
@@ -54,6 +62,8 @@ const About = () => {
             height={642}
             width={486}
             quality="87"
+            data-scroll
+            data-scroll-speed="-.1"
           />
         </div>
 

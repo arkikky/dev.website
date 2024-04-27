@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { useRouter } from "next/router";
 import getConfig from "next/config";
 import Head from "next/head";
 
@@ -8,6 +7,9 @@ const { publicRuntimeConfig } = getConfig();
 
 // @css-style (Global)
 import "@styles/globals.css";
+
+// @components
+import SuccessModal from "@components/UI/Modal/SuccessModal";
 
 // @layouts
 import Layouts from "@layouts/Layouts";
@@ -43,7 +45,18 @@ const ca2024Head = () => {
 };
 
 const App = ({ Component, pageProps }) => {
-  const router = useRouter();
+  // @import-smoothscroll(module)
+  useEffect(() => {
+    import("locomotive-scroll").then((locomotiveModule) => {
+      const locoScroll = new locomotiveModule.default({
+        smooth: true,
+      });
+    });
+
+    return () => {
+      undefined;
+    };
+  }, []);
 
   // @preline (Add Plugins)
   useEffect(() => {
@@ -54,24 +67,28 @@ const App = ({ Component, pageProps }) => {
     };
   }, []);
 
-  // @body
-  useEffect(() => {
-    const body = document.body;
+  // @modal
+  // useEffect(() => {
+  //   window.addEventListener("open.hs.overlay", (e) => {
+  //     const elmntBody = document.body;
 
-    if (router.pathname === "/") {
-      if (!body.classList.contains("overflow-y-hidden")) {
-        body.classList.add("overflow-y-hidden");
-      }
-    } else {
-      if (body.classList.contains("overflow-y-hidden")) {
-        body.classList.remove("overflow-y-hidden");
-      }
-    }
+  //     if (elmntBody) {
+  //       elmntBody.classList.add("mdlActive");
+  //     }
+  //   });
 
-    return () => {
-      undefined;
-    };
-  }, [router]);
+  //   window.addEventListener("close.hs.overlay", (e) => {
+  //     const elmntBody = document.body;
+
+  //     if (elmntBody) {
+  //       elmntBody.classList.remove("mdlActive");
+  //     }
+  //   });
+
+  //   return () => {
+  //     undefined;
+  //   };
+  // }, []);
 
   // @wihtout (navbar & footer)
   if (Component.getLayout) {
@@ -82,6 +99,9 @@ const App = ({ Component, pageProps }) => {
 
         {/* @main */}
         <Component {...pageProps} />
+
+        {/* @modal */}
+        <SuccessModal />
 
         {/* @backdrop (modal) */}
         <div id="bckdrpModalActve"></div>
@@ -97,6 +117,9 @@ const App = ({ Component, pageProps }) => {
       {/* @main */}
       <Layouts>
         <Component {...pageProps} />
+
+        {/* @modal */}
+        <SuccessModal />
 
         {/* @backdrop (modal) */}
         <div id="bckdrpModalActve"></div>
