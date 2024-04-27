@@ -38,7 +38,10 @@ const PromoCode = ({
         } transition-all duration-300 ease-in-out`}
       >
         <button
+          id="closePopUp"
           className="absolute -right-3 -top-3 bottom-0 left-auto z-[6] flex h-8 w-8 flex-col items-center justify-center rounded-full bg-[#AFAFAF] sm:-right-4 sm:-top-4"
+          aria-label={`Close Button PopUp PromoCode)`}
+          aria-labelledby={`Close Button PopUp PromoCode)`}
           onClick={(e) => {
             handleHidePopUp(e);
           }}
