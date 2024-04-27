@@ -558,7 +558,7 @@ const SponsorshipGetInvolved = ({
           <div className="flex flex-col">
             <button
               type="submit"
-              className={`mt-6 flex w-full flex-col items-center justify-center rounded-[14px] bg-secondary py-4 font-bevietnamPro text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none`}
+              className={`mt-6 flex w-full flex-col items-center justify-center rounded-[14px] !bg-secondary py-4 font-bevietnamPro text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none`}
               aria-label="Submit (Sponsorship)"
             >
               Submit
