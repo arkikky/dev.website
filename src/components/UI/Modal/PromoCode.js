@@ -12,12 +12,12 @@ const PromoCode = ({
   useEffect(() => {
     setShowPopUp(true);
 
-    const timeout = setTimeout(() => {
-      setShowPopUp(false);
-    }, 5000);
+    // const timeout = setTimeout(() => {
+    //   setShowPopUp(false);
+    // }, 5000);
 
     return () => {
-      clearTimeout(timeout);
+      // clearTimeout(timeout);
     };
   }, []);
 
@@ -31,7 +31,7 @@ const PromoCode = ({
   return (
     <>
       <section
-        className={`fixed inset-x-4 bottom-[108px] top-auto flex w-fit transform flex-col items-start justify-start rounded-[14px] bg-secondary px-4 py-4 shadow-2xl sm:bottom-[148px] sm:left-4 sm:right-auto sm:w-[396px] lg:left-8  ${
+        className={`fixed inset-x-4 bottom-[108px] top-auto flex w-auto transform flex-col items-start justify-start rounded-[14px] bg-secondary px-4 py-4 shadow-2xl sm:bottom-[148px] sm:left-4 sm:right-auto sm:w-[396px] lg:left-8  ${
           showPopUp === true
             ? "z-[38] translate-y-0 opacity-100"
             : "-z-px translate-y-6 opacity-0"

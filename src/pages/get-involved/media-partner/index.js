@@ -579,7 +579,7 @@ const MediaPartnerGetInvolved = ({ ipAddrs, formMediaPartner }) => {
                   </label>
 
                   <div className="grid space-y-4">
-                    {frmMediaPartner.formFieldGroups[9].fields[0].options?.map(
+                    {frmMediaPartner.formFieldGroups[10].fields[0].options?.map(
                       (gRslt, i) => (
                         <label
                           htmlFor={`checkboxDistriMediaPartnerForm${i}`}
@@ -615,7 +615,7 @@ const MediaPartnerGetInvolved = ({ ipAddrs, formMediaPartner }) => {
                     up to date. <span className="text-red-500">*</span>
                   </label>
 
-                  {frmMediaPartner.formFieldGroups[11].fields[0].options?.map(
+                  {frmMediaPartner.formFieldGroups[12].fields[0].options?.map(
                     (gRslt, i) => (
                       <label
                         htmlFor={`radioCorrectInformationMediaPartnerForm${gRslt.name}${i}`}
