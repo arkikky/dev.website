@@ -1,0 +1,17 @@
+/* @dots */
+.dots {
+  @apply flex flex-row items-center justify-center;
+  @apply rounded-2xl border border-solid border-white/[0.16] bg-black-900/25 backdrop-blur-md;
+  @apply absolute inset-x-0 bottom-[108px] top-auto outline-none focus-visible:outline-none sm:bottom-[124px];
+  @apply z-50 mx-auto w-max px-3 py-2.5;
+}
+
+.dot {
+  @apply cursor-pointer rounded-full border-none bg-white/40;
+  @apply mr-2 last:mr-0;
+  @apply h-2 w-2 sm:h-2.5 sm:w-2.5;
+}
+
+.dot.active {
+  @apply bg-primary;
+}
