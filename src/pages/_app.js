@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import TagManager from "react-gtm-module";
 import getConfig from "next/config";
 import Head from "next/head";
 
@@ -13,6 +14,12 @@ import SuccessModal from "@components/UI/Modal/SuccessModal";
 
 // @layouts
 import Layouts from "@layouts/Layouts";
+
+// @add(google-tags-manager) */
+const intTagManager = {
+  gtmId: "GTM-TMLM3MB",
+  dataLayerName: "CoinfestAsia2024",
+};
 
 const ca2024Head = () => {
   return (
@@ -61,6 +68,15 @@ const App = ({ Component, pageProps }) => {
   // @preline (Add Plugins)
   useEffect(() => {
     import("preline");
+
+    return () => {
+      undefined;
+    };
+  }, []);
+
+  // @add(google-tags-manager) */
+  useEffect(() => {
+    TagManager.initialize(intTagManager);
 
     return () => {
       undefined;

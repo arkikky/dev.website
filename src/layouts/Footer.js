@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <>
       <footer className="ca2024Footer ca2024SectionEnd relative justify-end overflow-x-hidden bg-white">
-        <Container className="pb-[128px] pt-12 sm:pb-[164px] sm:pt-17">
+        <Container className="pb-[128px] pt-12 sm:pb-[134px] sm:pt-17">
           <div className="flex flex-col">
             <div className="flex flex-col">
               <div className="relative block w-max">
@@ -103,29 +103,13 @@ const Footer = () => {
                       Coinfest asia
                     </h2>
                     <ul className="mt-6 pl-0">
-                      {/* <li className="group mb-4 last:mb-0">
-                        <Link
-                          className="flex flex-row items-center text-black-900 group-hover:text-secondary font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none transition duration-[0.3s] ease-in-out"
-                          href=""
-                        >
-                          Venue
-                        </Link>
-                      </li>
-                      <li className="group mb-4 last:mb-0">
-                        <Link
-                          className="flex flex-row items-center text-black-900 group-hover:text-secondary font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none transition duration-[0.3s] ease-in-out"
-                          href=""
-                        >
-                          Speakers
-                        </Link>
-                      </li> */}
                       <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
                         <button
                           type="button"
-                          aria-label="menuVenue"
+                          aria-label="menuGuide"
                           className="hs-tooltip-toggle flex flex-row items-center font-bevietnamPro text-base font-light capitalize leading-[normal] text-black-900 outline-none focus-visible:outline-none group-hover:text-secondary group-hover:underline"
                         >
-                          Venue
+                          Activities
                           <span
                             className="hs-tooltip-content invisible absolute z-10 inline-block rounded-lg bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
                             role="tooltip"
@@ -134,6 +118,22 @@ const Footer = () => {
                           </span>
                         </button>
                       </li>
+                      <li className="group mb-4 last:mb-0">
+                        <Link
+                          className="flex flex-row items-center font-bevietnamPro text-base font-light capitalize leading-[normal] text-black-900 outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none group-hover:text-secondary group-hover:underline"
+                          href="/venue"
+                        >
+                          Venue
+                        </Link>
+                      </li>
+                      {/* <li className="group mb-4 last:mb-0">
+                        <Link
+                          className="flex flex-row items-center text-black-900 group-hover:text-secondary font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none transition duration-[0.3s] ease-in-out"
+                          href=""
+                        >
+                          Speakers
+                        </Link>
+                      </li> */}
                       <li className="group mb-4 last:mb-0">
                         <Link
                           className="flex flex-row items-center font-bevietnamPro text-base font-light capitalize leading-[normal] text-black-900 outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none group-hover:text-secondary group-hover:underline"

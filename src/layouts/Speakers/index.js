@@ -8,7 +8,7 @@ const Speakers = ({ children }) => {
   return (
     <>
       <Container className="relative z-[5] overflow-hidden">
-        <section className="relative flex flex-col pb-32 pt-[169px] xl:pt-[139px] 2xl:pt-[185px]">
+        <section className="relative flex flex-col pb-[156px] pt-[119px] xl:pt-[139px] 2xl:pt-[185px]">
           <div className="flex flex-col items-start justify-start pr-11 sm:items-center sm:justify-center sm:pr-0">
             <h1 className="font-staraExtraBold text-[32px] uppercase leading-[40px] text-black-900 sm:text-[58px] sm:leading-[74px] lg:text-[80px] lg:leading-[90px] xl:text-[72px] xl:leading-[86px] 2xl:text-[80px] 2xl:leading-[90px]">
               Speakers

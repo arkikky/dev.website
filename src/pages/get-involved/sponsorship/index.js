@@ -163,12 +163,7 @@ const SponsorshipGetInvolved = ({
           name="title"
           content={`Sponsorship | ${publicRuntimeConfig.siteTitle}`}
         />
-        <meta
-          name="description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
-        />
+        <meta name="description" content={publicRuntimeConfig.siteUrl} />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -177,12 +172,7 @@ const SponsorshipGetInvolved = ({
           property="og:title"
           content={`Sponsorship | ${publicRuntimeConfig.siteTitle}`}
         />
-        <meta
-          property="og:description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
-        />
+        <meta property="og:description" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
@@ -197,9 +187,7 @@ const SponsorshipGetInvolved = ({
         />
         <meta
           property="twitter:description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
+          content={publicRuntimeConfig.siteUrl}
         />
         <meta
           property="twitter:image"
@@ -236,7 +224,7 @@ const SponsorshipGetInvolved = ({
                   placeholder="Michael"
                   {...register("firstname", {
                     required: true,
-                    maxLength: 50,
+                    maxLength: 255,
                   })}
                 />
               </div>
@@ -255,7 +243,7 @@ const SponsorshipGetInvolved = ({
                   placeholder="Zhao"
                   {...register("lastname", {
                     required: true,
-                    maxLength: 50,
+                    maxLength: 255,
                   })}
                 />
               </div>
@@ -276,7 +264,7 @@ const SponsorshipGetInvolved = ({
                   placeholder="michaelzhao@company.com"
                   {...register("email", {
                     required: true,
-                    maxLength: 50,
+                    maxLength: 255,
                   })}
                 />
               </div>
@@ -359,7 +347,7 @@ const SponsorshipGetInvolved = ({
                 placeholder="Company Co."
                 {...register("name", {
                   required: true,
-                  maxLength: 50,
+                  maxLength: 255,
                 })}
               />
             </div>
@@ -509,7 +497,7 @@ const SponsorshipGetInvolved = ({
                       "if_you_pick__other___tell_us_what_kind_of_activations_you_d_like_to_explore",
                       {
                         required: true,
-                        maxLength: 50,
+                        maxLength: 255,
                       },
                     )}
                   />

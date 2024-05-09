@@ -1,10 +1,12 @@
 import React from "react";
 import Image from "next/image";
 
-const SectionInnerSplit = ({ children }) => {
+const SectionInnerSplit = ({ children, overflowHidden = true }) => {
   return (
     <>
-      <div className="relative flex flex-col bg-secondary">
+      <div
+        className={`relative flex flex-col ${overflowHidden === true && "overflow-hidden"}  bg-secondary`}
+      >
         {/* @background (backdrop) */}
         <div className="ca2024BackdropFull opacity-1 absolute inset-x-0 inset-y-0 z-[2]">
           <Image

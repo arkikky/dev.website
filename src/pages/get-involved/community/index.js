@@ -164,12 +164,7 @@ const CommunityGetInvolved = ({ ipAddrs, formCommunity }) => {
           name="title"
           content={`Community | ${publicRuntimeConfig.siteTitle}`}
         />
-        <meta
-          name="description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
-        />
+        <meta name="description" content={publicRuntimeConfig.siteUrl} />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -178,12 +173,7 @@ const CommunityGetInvolved = ({ ipAddrs, formCommunity }) => {
           property="og:title"
           content={`Community | ${publicRuntimeConfig.siteTitle}`}
         />
-        <meta
-          property="og:description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
-        />
+        <meta property="og:description" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
@@ -198,9 +188,7 @@ const CommunityGetInvolved = ({ ipAddrs, formCommunity }) => {
         />
         <meta
           property="twitter:description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
+          content={publicRuntimeConfig.siteUrl}
         />
         <meta
           property="twitter:image"
@@ -237,7 +225,7 @@ const CommunityGetInvolved = ({ ipAddrs, formCommunity }) => {
                   placeholder="Michael"
                   {...register("firstname", {
                     required: true,
-                    maxLength: 50,
+                    maxLength: 255,
                   })}
                 />
               </div>
@@ -256,7 +244,7 @@ const CommunityGetInvolved = ({ ipAddrs, formCommunity }) => {
                   placeholder="Zhao"
                   {...register("lastname", {
                     required: true,
-                    maxLength: 50,
+                    maxLength: 255,
                   })}
                 />
               </div>
@@ -276,7 +264,7 @@ const CommunityGetInvolved = ({ ipAddrs, formCommunity }) => {
                 placeholder="michaelzhao@company.com"
                 {...register("email", {
                   required: true,
-                  maxLength: 50,
+                  maxLength: 255,
                 })}
               />
             </div>
@@ -387,7 +375,7 @@ const CommunityGetInvolved = ({ ipAddrs, formCommunity }) => {
                 placeholder="Company Co."
                 {...register("company", {
                   required: true,
-                  maxLength: 50,
+                  maxLength: 255,
                 })}
               />
             </div>
@@ -486,7 +474,7 @@ const CommunityGetInvolved = ({ ipAddrs, formCommunity }) => {
                 placeholder="Canada"
                 {...register("country", {
                   required: true,
-                  maxLength: 50,
+                  maxLength: 255,
                 })}
               />
             </div>
@@ -574,7 +562,7 @@ const CommunityGetInvolved = ({ ipAddrs, formCommunity }) => {
                       "if_you_choose__other___tell_us_what_s_in_your_mind",
                       {
                         required: true,
-                        maxLength: 50,
+                        maxLength: 255,
                       },
                     )}
                   />

@@ -1,10 +1,16 @@
 import React, { useState } from "react";
+import Link from "next/link";
 
 // @components
 import Container from "@components/Container";
 import BrandSponsor from "@components/UI/Card/BrandSponsor";
 
-const Partner = ({ dataSponsor, dataMediaPartner, dataComunitiesPartner }) => {
+const Partner = ({
+  isLayoutShow = false,
+  dataSponsor,
+  dataMediaPartner,
+  dataComunitiesPartner,
+}) => {
   const [isSponsorPartner, setSponsorPartner] = useState(dataSponsor);
   const [isMediaPartner, setMediaPartner] = useState(dataMediaPartner);
   const [isComunitiesPartner, setComunitiesPartner] = useState(
@@ -14,7 +20,7 @@ const Partner = ({ dataSponsor, dataMediaPartner, dataComunitiesPartner }) => {
   return (
     <>
       <Container>
-        <section className="relative flex flex-col items-center justify-center overflow-hidden pb-20">
+        <section className="relative flex flex-col items-center justify-center overflow-hidden">
           <div className="ca2024PartnersTitle flex flex-col items-start justify-start sm:items-center sm:justify-center sm:pr-0">
             <h2 className="font-staraExtraBold text-[32px] uppercase leading-[35px] text-black-900 sm:text-[58px] sm:leading-[74px] lg:text-[80px] lg:leading-[90px]">
               Partners
@@ -79,13 +85,18 @@ const Partner = ({ dataSponsor, dataMediaPartner, dataComunitiesPartner }) => {
                       <BrandSponsor {...gtRslt} vip={true} />
                     </div>
                   ))}
-                  {/* <div className="col-span-2 sm:col-span-4 lg:col-span-4">
-                    <div className="flex h-full flex-col items-center justify-center rounded-[8px] border border-solid border-secondary px-0 grayscale-0 transition duration-300 ease-in-out sm:rounded-[20px]">
-                      <span className="font-bevietnamPro text-sm font-bold uppercase text-black-900 sm:text-base">
-                        AND <span className="text-secondary">MANY MORE</span>
-                      </span>
+                  {isLayoutShow === true && (
+                    <div className="col-span-2 sm:col-span-4 lg:col-span-4">
+                      <Link
+                        className="flex h-[104px] flex-col items-center justify-center rounded-[8px] border border-solid border-secondary px-0 grayscale-0 transition duration-300 ease-in-out sm:h-[146px] sm:rounded-[20px] lg:h-[265px]"
+                        href="/partners"
+                      >
+                        <span className="font-bevietnamPro text-sm font-bold uppercase text-black-900 sm:text-base">
+                          AND <span className="text-secondary">MANY MORE</span>
+                        </span>
+                      </Link>
                     </div>
-                  </div> */}
+                  )}
                 </div>
               )}
             </div>
@@ -105,6 +116,18 @@ const Partner = ({ dataSponsor, dataMediaPartner, dataComunitiesPartner }) => {
                       <BrandSponsor {...gtRslt} vip={false} />
                     </div>
                   ))}
+                  {isLayoutShow === true && (
+                    <div className="col-span-2 sm:col-span-4 lg:col-span-3">
+                      <Link
+                        className="flex h-[99px] flex-col items-center justify-center rounded-[8px] border border-solid border-secondary px-0 grayscale-0 transition duration-300 ease-in-out sm:h-[138px] sm:rounded-[20px] lg:h-[190px]"
+                        href="/partners"
+                      >
+                        <span className="font-bevietnamPro text-sm font-bold uppercase text-black-900 sm:text-base">
+                          AND <span className="text-secondary">MANY MORE</span>
+                        </span>
+                      </Link>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -124,6 +147,18 @@ const Partner = ({ dataSponsor, dataMediaPartner, dataComunitiesPartner }) => {
                       <BrandSponsor {...gtRslt} vip={false} />
                     </div>
                   ))}
+                  {isLayoutShow === true && (
+                    <div className="col-span-2 sm:col-span-4 lg:col-span-2">
+                      <Link
+                        className="flex h-[99px] flex-col items-center justify-center rounded-[8px] border border-solid border-secondary px-0 grayscale-0 transition duration-300 ease-in-out sm:h-[138px] sm:rounded-[20px] lg:h-[190px]"
+                        href="/partners"
+                      >
+                        <span className="font-bevietnamPro text-sm font-bold uppercase text-black-900 sm:text-base">
+                          AND <span className="text-secondary">MANY MORE</span>
+                        </span>
+                      </Link>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

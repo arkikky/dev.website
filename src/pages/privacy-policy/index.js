@@ -25,9 +25,7 @@ const PrivacyPolicy = () => {
         />
         <meta
           name="description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
+          content={publicRuntimeConfig.siteUrl}
         />
 
         {/* Open Graph / Facebook */}
@@ -39,9 +37,7 @@ const PrivacyPolicy = () => {
         />
         <meta
           property="og:description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
+          content={publicRuntimeConfig.siteUrl}
         />
         <meta
           property="og:image"
@@ -57,9 +53,7 @@ const PrivacyPolicy = () => {
         />
         <meta
           property="twitter:description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
+          content={publicRuntimeConfig.siteUrl}
         />
         <meta
           property="twitter:image"

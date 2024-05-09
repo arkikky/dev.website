@@ -20,7 +20,7 @@ const FAQ = () => {
 
   return (
     <>
-      <section className="ca2024MainPoints ca2024FaqPoints relative flex flex-col items-center justify-center overflow-hidden pb-20 pt-[144px] sm:pb-6 lg:pt-[163px] xl:pb-24">
+      <section className="ca2024MainPoints ca2024FaqPoints relative flex flex-col items-center justify-center overflow-hidden pb-20 pt-[84px] sm:pb-6 sm:pt-[144px] lg:pt-[163px] xl:pb-24">
         {/* <div className="ca2024FaqPointTop bg-transparent absolute top-10 bottom-auto inset-x-0 h-14 w-full select-none pointer-events-none z-px"></div> */}
 
         <Container className="relative z-[5]">

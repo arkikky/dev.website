@@ -12,12 +12,12 @@ const PromoCode = ({
   useEffect(() => {
     setShowPopUp(true);
 
-    // const timeout = setTimeout(() => {
-    //   setShowPopUp(false);
-    // }, 5000);
+    const timeout = setTimeout(() => {
+      setShowPopUp(false);
+    }, 5000);
 
     return () => {
-      // clearTimeout(timeout);
+      clearTimeout(timeout);
     };
   }, []);
 

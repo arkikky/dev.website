@@ -21,12 +21,7 @@ const GetInvolved = (props) => {
           name="title"
           content={`Get Involved | ${publicRuntimeConfig.siteTitle}`}
         />
-        <meta
-          name="description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
-        />
+        <meta name="description" content={publicRuntimeConfig.siteUrl} />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -35,12 +30,7 @@ const GetInvolved = (props) => {
           property="og:title"
           content={`Get Involved | ${publicRuntimeConfig.siteTitle}`}
         />
-        <meta
-          property="og:description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
-        />
+        <meta property="og:description" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
@@ -55,9 +45,7 @@ const GetInvolved = (props) => {
         />
         <meta
           property="twitter:description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
+          content={publicRuntimeConfig.siteUrl}
         />
         <meta
           property="twitter:image"

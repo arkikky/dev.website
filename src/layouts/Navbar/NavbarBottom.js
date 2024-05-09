@@ -134,7 +134,7 @@ const NavbarBottom = () => {
               ? "bottom-8"
               : "bottom-4"
             : "bottom-4"
-        } inset-x-0 z-xl mx-auto h-auto transition-all duration-300 ease-out sm:h-[100px]`}
+        } inset-x-0 z-xl mx-auto h-auto transition-all duration-300 ease-out`}
       >
         <Container className="relative h-full">
           {/* <div className="ca2024BnnrTicket absolute inset-x-0 bottom-full top-auto mx-auto hidden w-full max-w-[645px] transition-all duration-[0.5s] ease-in-out sm:block lg:max-w-[695px]">
@@ -165,7 +165,7 @@ const NavbarBottom = () => {
 
           {/* @navbar-main */}
           <div
-            className={`ca2024NavbarMain relative mx-auto flex h-full w-full flex-row items-center justify-between rounded-2xl border border-solid border-white/[0.16] bg-black-900/25 px-3 py-3 sm:px-6 sm:py-0 lg:w-[857px] xl:w-[807px] ${
+            className={`ca2024NavbarMain relative mx-auto flex h-full w-full flex-row items-center justify-between rounded-[20px] border border-solid border-white/[0.16] bg-black-900/25 px-3 py-3 lg:w-[857px] xl:w-[807px] ${
               isMenu ? "!w-full" : null
             } z-100 max-w-full`}
           >

@@ -17,8 +17,8 @@ const GetInvolvedCard = ({
         <div className="relative block h-[120px] w-full overflow-hidden rounded-[10px] sm:h-[236px]">
           <div className="absolute inset-x-0 inset-y-0">{children}</div>
           <div className="ca2024CoverOvrflwBg absolute inset-x-0 inset-y-0 z-[15] flex flex-col items-end justify-end">
-            <div className="flex w-full flex-row items-center justify-between px-4 pb-2 sm:px-6 sm:pb-6">
-              <h3 className="font-bevietnamPro text-base font-medium text-white sm:text-2xl">
+            <div className="flex w-full flex-row items-center justify-between px-3 pb-2 sm:px-6 sm:pb-6">
+              <h3 className="font-bevietnamPro text-sm font-medium text-white sm:text-2xl">
                 {label}
               </h3>
               <svg

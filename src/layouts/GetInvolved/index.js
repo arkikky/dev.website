@@ -20,6 +20,7 @@ const GetInvolved = () => {
             quality="87"
           />
         </div>
+
         <div className="ca2024GetInvolvedPointsItems opacity-1 pointer-events-none absolute -bottom-[46px] -right-28 left-auto top-auto z-[12] select-none bg-transparent transition duration-[0.8s] ease-out sm:-bottom-[231px] sm:-right-[350px] lg:-bottom-[139px] lg:-right-[350px] xl:-bottom-[101px] xl:-right-[280px] 2xl:-right-[180px]">
           <Image
             className="mx-auto h-auto w-[221px] object-cover object-center sm:w-[643px] lg:w-[715px]"
@@ -33,7 +34,7 @@ const GetInvolved = () => {
 
         {/* @main */}
         <Container className="relative z-20">
-          <div className="relative flex flex-col overflow-hidden pb-[299px] pt-[144px]">
+          <div className="relative flex flex-col overflow-hidden pb-[165px] pt-[144px] sm:pb-[299px]">
             <div className="ca2024SldeGetInvolvedTitle opacity-1 flex flex-col px-0 text-start transition duration-[1.2s] ease-out sm:px-32 sm:text-center xl:px-0">
               <h2 className="w-full max-w-[243px] font-staraExtraBold text-[58px] uppercase leading-[62px] text-white xs:max-w-full sm:text-[58px] sm:leading-[74px] lg:text-[80px] lg:leading-[90px]">
                 Get involved for 2024

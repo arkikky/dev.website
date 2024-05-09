@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import getConfig from "next/config";
 import Head from "next/head";
+import Image from "next/image";
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
@@ -20,15 +21,16 @@ import NavbarBottom from "@layouts/Navbar/NavbarBottom";
 import About from "@layouts/About";
 import Board from "@layouts/Board";
 import Benefit from "@layouts/Benefit";
-import StartSpeakers from "@layouts/Speakers/start";
+// import StartSpeakers from "@layouts/Speakers/start";
 import Tickets from "@layouts/Tickets";
 import Speakers from "@layouts/Speakers";
+import Activist from "@layouts/Activist";
 import NextSpeakers from "@layouts/Speakers/next";
 import Partner from "@layouts/Partner";
 import Testimonials from "@layouts/Testimonials";
 import GetInvolved from "@layouts/GetInvolved";
 import FAQ from "@layouts/FAQ";
-import SocialMentions from "@layouts/SocialMentions";
+// import SocialMentions from "@layouts/SocialMentions";
 import BannerFooter from "@layouts/Banner/BannerFooter";
 import Footer from "@layouts/Footer";
 
@@ -121,12 +123,7 @@ const Home = ({
       <Head>
         <title>{`${publicRuntimeConfig.siteTitle}`}</title>
         <meta name="title" content={`${publicRuntimeConfig.siteTitle}`} />
-        <meta
-          name="description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
-        />
+        <meta name="description" content={publicRuntimeConfig.siteUrl} />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -135,12 +132,7 @@ const Home = ({
           property="og:title"
           content={`${publicRuntimeConfig.siteTitle}`}
         />
-        <meta
-          property="og:description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
-        />
+        <meta property="og:description" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
@@ -155,9 +147,7 @@ const Home = ({
         />
         <meta
           property="twitter:description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
+          content={publicRuntimeConfig.siteUrl}
         />
         <meta
           property="twitter:image"
@@ -180,7 +170,7 @@ const Home = ({
         {/* @about */}
         <About />
 
-        <div className="flex flex-col pb-32">
+        <div className="flex flex-col pb-[156px]">
           {/* @board(chartinsights) */}
           <Board />
 
@@ -191,7 +181,7 @@ const Home = ({
         {/* @start(speakers) & tickets  */}
         <SectionInnerSplit>
           {/* @start(speakers) */}
-          <StartSpeakers />
+          {/* <StartSpeakers /> */}
 
           {/* @tickets */}
           <Tickets />
@@ -234,12 +224,29 @@ const Home = ({
           </Speakers>
         )}
 
-        {/* @next(speakers) */}
-        <NextSpeakers />
+        <SectionInnerSplit>
+          <div className="opacity-1 pointer-events-none absolute -bottom-[229px] -right-[203px] left-auto top-auto z-[6] select-none bg-transparent transition duration-[0.8s] ease-out sm:-bottom-[405px] sm:-right-[325px] lg:-right-[415px] 2xl:-bottom-[527px]">
+            <Image
+              className="z-10 mx-auto h-auto w-[471px] object-cover object-center sm:w-[771px] lg:w-[971px]"
+              src={"/assets/images/backdrop/ca2024PointItems.png"}
+              alt={`Coinfest Asia 2024 (Points Items Start Speakers)`}
+              height={1635}
+              width={958}
+              quality="87"
+            />
+          </div>
+
+          {/* @activist */}
+          <Activist />
+
+          {/* @next(speakers) */}
+          <NextSpeakers />
+        </SectionInnerSplit>
 
         {/* @partner */}
         <section className="ca2024MainPoints bg-white pb-[189px] pt-[140px] sm:pt-[174px]">
           <Partner
+            isLayoutShow={true}
             dataSponsor={sponsor}
             dataMediaPartner={mediaPartner}
             dataComunitiesPartner={comunitiesPartner}
@@ -247,7 +254,7 @@ const Home = ({
         </section>
 
         {/* @testimonials & get-involved  */}
-        <SectionInnerSplit>
+        <SectionInnerSplit overflowHidden={false}>
           {/* @testimonials */}
           <Testimonials />
 
@@ -256,19 +263,17 @@ const Home = ({
         </SectionInnerSplit>
 
         {/* @social-mentions */}
-        <SocialMentions />
+        {/* <SocialMentions /> */}
 
-        <div className="ca2024MainPoints ca2024EndMainPoints ca2024MainScreenAuto relative flex snap-start snap-always flex-col">
-          <div className="flex flex-col">
-            {/* @faq */}
-            <FAQ />
+        <div className="ca2024MainPoints ca2024EndMainPoints relative z-[11] flex snap-start snap-always flex-col bg-white sm:z-[16] lg:z-[11]">
+          {/* @faq */}
+          <FAQ />
 
-            {/* @banner(footer) */}
-            <BannerFooter />
+          {/* @banner(footer) */}
+          <BannerFooter />
 
-            {/* @footer */}
-            <Footer />
-          </div>
+          {/* @footer */}
+          <Footer />
         </div>
 
         {/* @speakers-modal */}
@@ -289,19 +294,19 @@ export const getStaticProps = async () => {
   );
 
   const isSpeakers = await getFetch(
-    `/ca-24-speakers?populate=*&pagination[pageSize]=100`,
+    `/ca-24-speakers?sort=rank:asc&populate=*&pagination[pageSize]=100`,
   );
 
   const isSponsor = await getFetch(
-    `/ca-24-sponsors?sort=rank:asc&populate=*&pagination[pageSize]=100`,
+    `/ca-24-sponsors?sort=rank:asc&populate=*&pagination[pageSize]=8`,
   );
 
   const isMediaPartner = await getFetch(
-    `/ca-24-media-partners?sort=rank:asc&populate=*&pagination[pageSize]=100`,
+    `/ca-24-media-partners?sort=rank:asc&populate=*&pagination[pageSize]=15`,
   );
 
   const isComunitiesPartner = await getFetch(
-    `/ca-24-communities?sort=rank:asc&populate=*&pagination[pageSize]=100`,
+    `/ca-24-communities?sort=rank:asc&populate=*&pagination[pageSize]=14`,
   );
 
   // const isSocialMentions = await getFetch(

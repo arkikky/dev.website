@@ -61,9 +61,7 @@ const Speakers = ({ speakers }) => {
         <meta name="title" content={`${publicRuntimeConfig.siteTitle}`} />
         <meta
           name="description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
+          content={publicRuntimeConfig.siteUrl}
         />
 
         {/* Open Graph / Facebook */}
@@ -75,9 +73,7 @@ const Speakers = ({ speakers }) => {
         />
         <meta
           property="og:description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
+          content={publicRuntimeConfig.siteUrl}
         />
         <meta
           property="og:image"
@@ -93,9 +89,7 @@ const Speakers = ({ speakers }) => {
         />
         <meta
           property="twitter:description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
+          content={publicRuntimeConfig.siteUrl}
         />
         <meta
           property="twitter:image"
@@ -170,7 +164,7 @@ export default Speakers;
 
 export const getStaticProps = async () => {
   const isSpeakers = await getFetch(
-    `/ca-24-speakers?populate=*&pagination[pageSize]=100`,
+    `/ca-24-speakers?sort=rank:asc&populate=*&pagination[pageSize]=100`,
   );
 
   try {

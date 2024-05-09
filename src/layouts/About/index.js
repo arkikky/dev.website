@@ -1,10 +1,65 @@
-import React from "react";
+import React, { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Image from "next/image";
 
 // @components
 import Container from "@components/Container";
 
 const About = () => {
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.set(".ca2024AboutsItemsLeftPoint1", { y: "-2%" });
+    gsap.set(".ca2024AboutsItemsLeftPoint2", { y: "4%" });
+    gsap.set(".ca2024AboutsItemsLeftPoint3", { y: "-8%" });
+
+    const intAboutPoint1 = gsap.context(() => {
+      gsap.from(".ca2024AboutsItemsLeftPoint1", {
+        y: "-28%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".ca2024AboutPoints",
+          start: "top center",
+          end: "bottom center",
+          scrub: true,
+        },
+      });
+    });
+
+    const intAboutPoint2 = gsap.context(() => {
+      gsap.from(".ca2024AboutsItemsLeftPoint2", {
+        y: "-18%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".ca2024AboutPoints",
+          start: "center center",
+          end: "bottom center",
+          scrub: true,
+        },
+      });
+    });
+
+    const intAboutPoint3 = gsap.context(() => {
+      gsap.from(".ca2024AboutsItemsLeftPoint3", {
+        y: "8%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".ca2024AboutPoints",
+          start: "center center",
+          end: "bottom center",
+          scrub: true,
+        },
+      });
+    });
+
+    return () => {
+      intAboutPoint1.revert();
+      intAboutPoint2.revert();
+      intAboutPoint3.revert();
+    };
+  }, []);
+
   return (
     <>
       <section className="ca2024MainPoints ca2024AboutPoints ca2024MainScreen relative flex snap-start snap-always flex-col items-center justify-center bg-white">
@@ -21,11 +76,7 @@ const About = () => {
         </div>
 
         {/* @items (backdrop) */}
-        <div
-          className="ca2024AboutsItemsLeft opacity-1 pointer-events-none absolute -top-[120px] bottom-auto left-2 right-auto z-px select-none bg-transparent sm:-top-[163px] sm:left-[18%] lg:-top-[197px] lg:left-[17%] xl:left-[14%]"
-          data-scroll
-          data-scroll-speed="0.1"
-        >
+        <div className="ca2024AboutsItemsLeft ca2024AboutsItemsLeftPoint1 opacity-1 pointer-events-none absolute -top-[120px] bottom-auto left-2 right-auto z-px select-none bg-transparent sm:-top-[163px] sm:left-[18%] lg:-top-[197px] lg:left-[17%] xl:left-[14%]">
           <Image
             className="z-10 mx-auto h-auto w-[211px] object-cover object-center sm:w-[323px] lg:w-[415px] xl:w-[383px]"
             src={"/assets/images/backdrop/ca2024DiamondBlue.png"}
@@ -37,11 +88,7 @@ const About = () => {
           />
         </div>
 
-        <div
-          className="ca2024AboutsItemsLeft opacity-1 pointer-events-none absolute -bottom-[120px] left-2 right-auto top-auto z-px select-none bg-transparent sm:-bottom-[163px] sm:left-[18%] lg:-bottom-[197px] lg:left-[17%] xl:left-[25%]"
-          data-scroll
-          data-scroll-speed="0.1"
-        >
+        <div className="ca2024AboutsItemsLeft ca2024AboutsItemsLeftPoint2 opacity-1 pointer-events-none absolute -bottom-[120px] left-2 right-auto top-auto z-px select-none bg-transparent sm:-bottom-[163px] sm:left-[18%] lg:-bottom-[197px] lg:left-[17%] xl:left-[25%]">
           <Image
             className="z-10 mx-auto h-auto w-[301px] object-cover object-center sm:w-[463px] lg:w-[555px] xl:w-[523px]"
             src={"/assets/images/backdrop/ca2024FlowerBlue.png"}
@@ -53,7 +100,7 @@ const About = () => {
           />
         </div>
 
-        <div className="ca2024AboutsItemsRight opacity-1 pointer-events-none absolute -right-24 bottom-[39%] left-auto top-auto z-px select-none bg-transparent sm:-right-32 sm:bottom-[35%] lg:-right-24 lg:bottom-[41%] xl:bottom-[21%] xl:right-5">
+        <div className="ca2024AboutsItemsRight ca2024AboutsItemsLeftPoint3 opacity-1 pointer-events-none absolute -right-24 bottom-[39%] left-auto top-auto z-px select-none bg-transparent sm:-right-32 sm:bottom-[35%] lg:-right-24 lg:bottom-[41%] xl:bottom-[21%] xl:right-5">
           <Image
             className="z-10 mx-auto h-auto w-[211px] object-cover object-center sm:w-[315px] lg:w-[385px]"
             src={"/assets/images/backdrop/ca2024BitcoinRed.png"}
@@ -62,8 +109,6 @@ const About = () => {
             height={642}
             width={486}
             quality="87"
-            data-scroll
-            data-scroll-speed="-.1"
           />
         </div>
 

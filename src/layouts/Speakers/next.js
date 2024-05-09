@@ -10,7 +10,7 @@ const NextSpeakers = () => {
     <>
       <section className="ca2024MainPoints ca2024NextSpeakers ca2024MainScreen relative flex snap-center snap-always flex-col items-center justify-center overflow-hidden bg-secondary">
         {/* @background (backdrop) */}
-        <div className="ca2024NextSpeakersBackdrop opacity-1 absolute inset-x-0 inset-y-0 z-px">
+        {/* <div className="ca2024NextSpeakersBackdrop opacity-1 absolute inset-x-0 inset-y-0 z-px">
           <Image
             className={`mx-auto h-full w-full object-cover object-center`}
             src={"/assets/images/backdrop/background/ca2024BgLine.jpg"}
@@ -20,10 +20,10 @@ const NextSpeakers = () => {
             width={1440}
             quality="87"
           />
-        </div>
+        </div> */}
 
         {/* @point-items (backdrop) */}
-        <div className="opacity-1 pointer-events-none absolute -bottom-[229px] -right-[203px] left-auto top-auto z-px select-none bg-transparent transition duration-[0.8s] ease-out sm:-bottom-[405px] sm:-right-[325px] lg:-right-[415px] 2xl:-bottom-[527px]">
+        {/* <div className="opacity-1 pointer-events-none absolute -bottom-[229px] -right-[203px] left-auto top-auto z-px select-none bg-transparent transition duration-[0.8s] ease-out sm:-bottom-[405px] sm:-right-[325px] lg:-right-[415px] 2xl:-bottom-[527px]">
           <Image
             className="z-10 mx-auto h-auto w-[471px] object-cover object-center sm:w-[771px] lg:w-[971px]"
             src={"/assets/images/backdrop/ca2024PointItems.png"}
@@ -32,9 +32,9 @@ const NextSpeakers = () => {
             width={958}
             quality="87"
           />
-        </div>
+        </div> */}
 
-        <Container className=" relative z-[5]">
+        <Container className=" relative z-[6]">
           <div className="ca2024NextSpeakersContent opacity-1 mx-auto flex w-full max-w-full flex-col items-center justify-center text-start transition duration-[1.4s] ease-out sm:max-w-[555px] sm:text-center lg:max-w-max">
             <h2 className="px-0 font-staraExtraBold text-[32px] uppercase leading-[40px] text-white xs:text-[42px] xs:leading-[50px] sm:text-[58px] sm:leading-[74px] lg:px-7 lg:text-[80px] lg:leading-[90px] xl:px-0">
               Speaking submission closes soon!

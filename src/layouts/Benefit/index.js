@@ -60,18 +60,21 @@ const Benefit = () => {
               <BenefitCard
                 title="Dive into Emerging Markets"
                 desc="Get connected in Southeast Asia; the fastest-growing Web3 region in the world!"
+                images="/assets/images/backdrop/benefit/ca2024BenefitPoints1.png"
               />
             </SplideSlide>
             <SplideSlide className="ca2024CrdBenefitItems">
               <BenefitCard
                 title="Jump Straight to Adoption"
                 desc="Foster collaborations directly in Indonesia where there are 437k new crypto users each month"
+                images="/assets/images/backdrop/benefit/ca2024BenefitPoints2.png"
               />
             </SplideSlide>
             <SplideSlide className="ca2024CrdBenefitItems">
               <BenefitCard
                 title="Unconventionally Engaging"
                 desc="Our immersive programming, setting, sessions and side events leave you with more memory markers than any other event"
+                images="/assets/images/backdrop/benefit/ca2024BenefitPoints3.png"
               />
             </SplideSlide>
           </Splide>
