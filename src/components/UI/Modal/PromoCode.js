@@ -12,12 +12,12 @@ const PromoCode = ({
   useEffect(() => {
     setShowPopUp(true);
 
-    const timeout = setTimeout(() => {
-      setShowPopUp(false);
-    }, 5000);
+    // const timeout = setTimeout(() => {
+    //   setShowPopUp(false);
+    // }, 5000);
 
     return () => {
-      clearTimeout(timeout);
+      // clearTimeout(timeout);
     };
   }, []);
 
@@ -65,7 +65,7 @@ const PromoCode = ({
 
         <div className="absolute inset-x-0 inset-y-0 z-[5] flex flex-col overflow-hidden rounded-[14px]">
           <Image
-            className="mx-auto my-auto aspect-auto h-full w-full"
+            className="mx-auto my-auto h-full w-full"
             src="/assets/images/backdrop/background/ca2024BgPopUp.png"
             alt="Coinfest Asia 2024 (Background PopUp Promo Code)"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
