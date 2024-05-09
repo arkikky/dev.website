@@ -3,6 +3,8 @@ import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import Link from "next/link";
 
+import LazyImages from "@components/LazyImages";
+
 const ActivistCard = ({
   labels = "",
   images = "",
@@ -46,14 +48,20 @@ const ActivistCard = ({
           </div>
 
           <div className="absolute inset-x-0 inset-y-0">
-            <Image
-              className="mx-auto h-full w-full object-cover object-center"
+            <LazyImages
               src={images}
               alt="Coinfest Asia 2024 (Sponsor - Get Involved)"
               height={472}
               width={784}
-              quality="87"
             />
+            {/* <Image
+              className="mx-auto h-full w-full object-cover object-center"
+              src={images}
+              alt=
+              height={472}
+              width={784}
+              quality="87"
+            /> */}
           </div>
 
           <div className="ca2024CoverOvrflwBg absolute inset-x-0 inset-y-0 z-[15] flex flex-col items-end justify-end">

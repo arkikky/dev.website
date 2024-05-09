@@ -65,7 +65,7 @@ const PromoCode = ({
 
         <div className="absolute inset-x-0 inset-y-0 z-[5] flex flex-col overflow-hidden rounded-[14px]">
           <Image
-            className="mx-auto my-auto h-full w-full"
+            className="mx-auto my-auto h-full w-full object-cover"
             src="/assets/images/backdrop/background/ca2024BgPopUp.png"
             alt="Coinfest Asia 2024 (Background PopUp Promo Code)"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
@@ -85,7 +85,7 @@ const PromoCode = ({
             <strong>CA24HALVINGDAY</strong>
           </p>
           <Link
-            className="relative z-[6] mt-4 inline-flex w-full items-center justify-center rounded-lg bg-black-900 px-6 py-4 font-bevietnamPro text-sm font-medium text-white outline-none focus-visible:outline-none"
+            className="relative z-[6] mt-6 inline-flex w-full items-center justify-center rounded-lg bg-black-900 px-6 py-4 font-bevietnamPro text-sm font-medium text-white outline-none focus-visible:outline-none sm:mt-4"
             href={
               "https://ticket.coinfest.asia/cart/?add-to-cart=5232&coupon=CA24HALVINGDAY"
             }
