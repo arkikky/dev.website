@@ -59,10 +59,7 @@ const Speakers = ({ speakers }) => {
       <Head>
         <title>{`Speakers | ${publicRuntimeConfig.siteTitle}`}</title>
         <meta name="title" content={`${publicRuntimeConfig.siteTitle}`} />
-        <meta
-          name="description"
-          content={publicRuntimeConfig.siteUrl}
-        />
+        <meta name="description" content={publicRuntimeConfig.siteUrl} />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -71,10 +68,7 @@ const Speakers = ({ speakers }) => {
           property="og:title"
           content={`Speakers | ${publicRuntimeConfig.siteTitle}`}
         />
-        <meta
-          property="og:description"
-          content={publicRuntimeConfig.siteUrl}
-        />
+        <meta property="og:description" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
@@ -115,7 +109,7 @@ const Speakers = ({ speakers }) => {
                 >
                   <button
                     id={`mdlBtnSpeakers`}
-                    className="mdlBtnSpeakers outline-none focus-visible:outline-none"
+                    className="mdlBtnSpeakers w-full min-w-full outline-none focus-visible:outline-none"
                     aria-label={`${gtRslt.attributes.name} - (Button Modal Speakers)`}
                     aria-labelledby={`${gtRslt.attributes.name} - (Button Modal Speakers)`}
                     data-hs-overlay={`#mdlSpeakers`}

@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 
 // @lib
 // import { setJoinString } from "@lib/helper/splitArray";
 
-const SpeakersCard = ({ attributes, useHeading = "h3", children }) => {
-  const [isLoading, setLoading] = useState(true);
+const SpeakersCard = ({ attributes = {}, useHeading = "h3", children }) => {
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+    rootMargin: "10% 0% -25% 0%",
+  });
+  const [isLoading, setLoading] = useState(false);
 
   // @attributes
   const isImages = attributes
@@ -34,18 +39,23 @@ const SpeakersCard = ({ attributes, useHeading = "h3", children }) => {
   // const isRndIndex = Math.floor(Math.random() * rndImages.length);
   // const isRndImages = rndImages[isRndIndex];
 
-  // @loading
+  // @intersection-observer
   useEffect(() => {
-    setLoading(false);
+    if (inView) {
+      setLoading(true);
+    }
 
     return () => {
       undefined;
     };
-  }, []);
+  }, [inView]);
 
   return (
     <>
-      <div className="group relative flex w-full min-w-full flex-col items-center justify-center overflow-hidden px-0 group-hover:cursor-pointer">
+      <div
+        ref={ref}
+        className="group relative flex w-full min-w-full flex-col items-center justify-center overflow-hidden px-0 group-hover:cursor-pointer"
+      >
         {/* @brand */}
         <div className="mx-auto mb-1 flex max-w-max flex-col items-center justify-center sm:mb-4">
           <Image
@@ -59,21 +69,29 @@ const SpeakersCard = ({ attributes, useHeading = "h3", children }) => {
           />
         </div>
 
-        <div className="relative flex h-[194px] w-full min-w-full flex-col overflow-hidden rounded-2xl bg-[#D9DCE4] sm:h-[267px] lg:h-[249px] xl:h-[336px]">
-          {isLoading === true && (
-            <div className="absolute inset-x-0 inset-y-0 z-20 bg-[#D9DCE4]">
-              <div className="h-full w-full animate-pulse bg-gray-400/70"></div>
-            </div>
-          )}
-
-          <Image
-            className="z-10 mx-auto h-auto w-full object-cover object-center"
-            src={isImages}
-            alt={`Coinfest Asia 2024 (${isName} - Speakers)`}
-            height={672}
-            width={564}
-            quality="87"
-          />
+        <div className="relative flex h-[194px] w-full min-w-full max-w-min flex-col overflow-hidden rounded-2xl bg-[#D9DCE4] sm:h-[267px] lg:h-[249px] xl:h-[336px]">
+          <div className="z-20 h-full w-full">
+            {isLoading ? (
+              <Image
+                className="mx-auto h-auto w-full object-cover object-center"
+                src={isImages}
+                alt={`Coinfest Asia 2024 (${isName} - Speakers)`}
+                height={672}
+                width={564}
+                quality="87"
+              />
+            ) : (
+              <div className="flex h-full w-full flex-col items-center justify-center bg-[#D9DCE4]">
+                <div
+                  className="inline-block size-8 animate-spin rounded-full border-2 border-current border-t-transparent text-gray-500"
+                  role="status"
+                  aria-label="loading"
+                >
+                  <span className="sr-only">Loading...</span>
+                </div>
+              </div>
+            )}
+          </div>
 
           {/* @backdrop (cover) */}
           <div

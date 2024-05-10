@@ -15,7 +15,7 @@ const BrandSponsor = ({
 }) => {
   const { ref, inView } = useInView({
     threshold: 1,
-    rootMargin: "10% 0% -30% 0%",
+    rootMargin: "10% 0% -15% 0%",
   });
   const [isLoading, setLoading] = useState(false);
 

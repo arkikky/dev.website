@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 
-const LazyImages = ({ src = "", alt = "", height = 0, width = 0 }) => {
+const GetInvolvedImages = ({
+  style = "",
+  src = "",
+  alt = "",
+  height = 0,
+  width = 0,
+}) => {
   const { ref, inView } = useInView({
     threshold: 1,
     rootMargin: "10% 0% -25% 0%",
@@ -25,7 +31,7 @@ const LazyImages = ({ src = "", alt = "", height = 0, width = 0 }) => {
       <div ref={ref} className="relative h-full w-full">
         {isLoading ? (
           <Image
-            className="mx-auto h-full w-full object-cover object-center"
+            className={style}
             src={src}
             alt={alt}
             height={height}
@@ -48,4 +54,4 @@ const LazyImages = ({ src = "", alt = "", height = 0, width = 0 }) => {
   );
 };
 
-export default LazyImages;
+export default GetInvolvedImages;

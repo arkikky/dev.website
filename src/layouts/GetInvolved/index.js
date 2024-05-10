@@ -4,6 +4,7 @@ import Image from "next/image";
 // @components
 import Container from "@components/Container";
 import GetInvolvedCard from "@components/UI/Card/GetInvolved";
+import GetInvolvedImages from "@components/UI/Card/GetInvolvedImages";
 
 const GetInvolved = () => {
   return (
@@ -45,13 +46,12 @@ const GetInvolved = () => {
               <div className="col-span-full col-start-1 grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 sm:gap-x-6 sm:gap-y-6 lg:col-span-10 lg:col-start-2 lg:grid-cols-12 xl:col-span-8 xl:col-start-3">
                 <div className="col-span-2 sm:col-span-6">
                   <GetInvolvedCard url="/get-involved/speakers" label="Speaker">
-                    <Image
-                      className="mx-auto h-full w-full object-cover object-bottom"
+                    <GetInvolvedImages
+                      style="mx-auto h-full w-full object-cover object-bottom"
                       src={"/assets/images/get-involved/ca2024Speaker.png"}
                       alt={`Coinfest Asia 2024 (Speaker - Get Involved)`}
                       height={379}
                       width={629}
-                      quality="87"
                     />
                   </GetInvolvedCard>
                 </div>
@@ -60,8 +60,8 @@ const GetInvolved = () => {
                     url="/get-involved/sponsorship"
                     label="Sponsor"
                   >
-                    <Image
-                      className="mx-auto h-full w-full scale-[1.2] transform object-cover object-center"
+                    <GetInvolvedImages
+                      style="mx-auto h-full w-full scale-[1.2] transform object-cover object-center"
                       src={"/assets/images/get-involved/ca2024Sponsorship.png"}
                       alt={`Coinfest Asia 2024 (Sponsorship - Get Involved)`}
                       height={354}
@@ -75,8 +75,8 @@ const GetInvolved = () => {
                     url="/get-involved/media-partner"
                     label="Media Partner"
                   >
-                    <Image
-                      className="mx-auto h-full w-full scale-[1.5] transform object-cover object-center"
+                    <GetInvolvedImages
+                      style="mx-auto h-full w-full scale-[1.5] transform object-cover object-center"
                       src={
                         "/assets/images/get-involved/ca2024MediaPartners.jpg"
                       }
@@ -92,8 +92,8 @@ const GetInvolved = () => {
                     url="/get-involved/community"
                     label="Community"
                   >
-                    <Image
-                      className="mx-auto h-full w-full scale-[1.4] transform object-cover object-center"
+                    <GetInvolvedImages
+                      style="mx-auto h-full w-full scale-[1.4] transform object-cover object-center"
                       src={"/assets/images/get-involved/ca2024Community.jpg"}
                       alt={`Coinfest Asia 2024 (Community - Get Involved)`}
                       height={563}
