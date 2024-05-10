@@ -82,7 +82,12 @@ const Partner = ({
                       className="col-span-2 sm:col-span-4 lg:col-span-4"
                       key={i}
                     >
-                      <BrandSponsor {...gtRslt} vip={true} />
+                      <BrandSponsor
+                        {...gtRslt}
+                        vip={true}
+                        height={100}
+                        width={240}
+                      />
                     </div>
                   ))}
                   {isLayoutShow === true && (
@@ -113,7 +118,7 @@ const Partner = ({
                       className="col-span-2 sm:col-span-4 lg:col-span-3"
                       key={i}
                     >
-                      <BrandSponsor {...gtRslt} vip={false} />
+                      <BrandSponsor {...gtRslt} height={100} width={240} />
                     </div>
                   ))}
                   {isLayoutShow === true && (
@@ -144,7 +149,7 @@ const Partner = ({
                       className="col-span-2 sm:col-span-4 lg:col-span-2"
                       key={i}
                     >
-                      <BrandSponsor {...gtRslt} vip={false} />
+                      <BrandSponsor {...gtRslt} height={100} width={240} />
                     </div>
                   ))}
                   {isLayoutShow === true && (

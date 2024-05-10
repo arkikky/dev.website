@@ -5,13 +5,14 @@ import Image from "next/image";
 const LazyImages = ({ src = "", alt = "", height = 0, width = 0 }) => {
   const { ref, inView } = useInView({
     threshold: 1,
-    rootMargin: "10% 0% -10% 0%",
+    rootMargin: "10% 0% -30% 0%",
   });
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
+  // @intersection-observer
   useEffect(() => {
     if (inView) {
-      setIsLoading(true);
+      setLoading(true);
     }
 
     return () => {
