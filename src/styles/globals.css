@@ -76,6 +76,39 @@ input:valid {
   box-shadow: none;
 }
 
+/* @hamburger */
+.hmbrgrStairs .hmbrgrStairsLine {
+  @apply bg-white;
+  @apply mb-1.5 last:mb-0;
+  @apply h-0.5 w-2.5;
+
+  @apply visible opacity-100;
+  @apply transition duration-300 ease-in-out;
+}
+
+.hmbrgrStairs .hmbrgrStairsLine:nth-child(1) {
+  @apply ml-auto;
+}
+
+.hmbrgrStairs .hmbrgrStairsLine:nth-child(2) {
+  @apply mx-auto w-full;
+}
+
+.hmbrgrStairs .hmbrgrStairsLine:nth-child(3) {
+  @apply mr-auto;
+}
+
+.hmbrgrStairs.deactive .hmbrgrStairsLine {
+  @apply first:ml-0 first:translate-x-0 first:translate-y-2 first:rotate-[-42deg];
+  @apply last:mr-0 last:-translate-y-2 last:translate-x-0 last:rotate-[43deg];
+  @apply w-[20px];
+}
+
+.hmbrgrStairs.deactive .hmbrgrStairsLine:nth-child(2) {
+  @apply invisible opacity-0;
+  backface-visibility: hidden;
+}
+
 /* @main */
 .ca2024Main {
   @apply relative;
