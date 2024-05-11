@@ -12,8 +12,8 @@ const NavbarBottom = () => {
   const router = useRouter();
 
   const isNavBtnToggle = useRef(null);
+  const isNavMobile = useRef(null);
   const [isMenu, setMenu] = useState(false);
-  const intNavMenuMobile = useRef(null);
   const [isFullWidth, setIsFullWidth] = useState(false);
 
   // @gsap-active
@@ -196,16 +196,6 @@ const NavbarBottom = () => {
                     Get Involved
                   </Link>
                 </li>
-                {/* <li>
-                  <Link className="text-white" href={""}>
-                    Coinfest Week
-                  </Link>
-                </li> */}
-                {/* <li>
-                  <Link className="text-white" href={""}>
-                    Agenda
-                  </Link>
-                </li> */}
                 <li>
                   <Link className="text-white" href={""}>
                     Recap
@@ -234,6 +224,194 @@ const NavbarBottom = () => {
       </nav>
 
       {/* @nav-mobile */}
+      <nav
+        ref={isNavMobile}
+        className={`ca2024NavMenuMobile fixed inset-x-0 inset-y-0 flex flex-col justify-between overflow-y-auto bg-secondary ${
+          isMenu ? "active z-lg" : "deflt z-base"
+        } h-svh`}
+      >
+        <div className="flex h-auto flex-col justify-between sm:h-full">
+          <ul className={`menu menu-stripe hs-accordion-group mb-24`}>
+            <li>
+              <Link className="text-white" href={"/get-involved/speakers"}>
+                Speakers
+              </Link>
+            </li>
+            <li className="hs-accordion" id="projects-accordion">
+              <button
+                type="button"
+                className="hs-accordion-toggle flex w-full items-center gap-x-3.5 border-b border-solid border-white px-4 py-6 text-start text-white"
+              >
+                <Link
+                  className="!border-b-0 !px-0 !py-0 text-white"
+                  href={"/get-involved/"}
+                >
+                  Get Involved
+                </Link>
+                <svg
+                  className="ms-auto hidden size-4 hs-accordion-active:block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m18 15-6-6-6 6" />
+                </svg>
+                <svg
+                  className="ms-auto block size-4 hs-accordion-active:hidden"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+
+              <div
+                id="projects-accordion-child"
+                className="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300"
+              >
+                <ul className="pt-0">
+                  <li>
+                    <Link
+                      className="!ps-8 font-staraSemiBold text-lg text-white"
+                      href="/get-involved/sponsorship"
+                    >
+                      Sponsors
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="!ps-8 font-staraSemiBold text-lg text-white"
+                      href="/get-involved/speakers"
+                    >
+                      Speakers Inquiries
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="!ps-8 font-staraSemiBold text-lg text-white"
+                      href="/get-involved/media-partner"
+                    >
+                      Media Partners
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="!ps-8 font-staraSemiBold text-lg text-white"
+                      href="/get-involved/community"
+                    >
+                      Communities
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li className="hs-accordion" id="projects-accordion">
+              <button
+                type="button"
+                className="hs-accordion-toggle flex w-full items-center gap-x-3.5 border-b border-solid border-white px-4 py-6 text-start text-white"
+              >
+                <Link
+                  className="!border-b-0 !px-0 !py-0 text-white"
+                  href={"/get-involved/"}
+                >
+                  Recap
+                </Link>
+                <svg
+                  className="ms-auto hidden size-4 hs-accordion-active:block"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m18 15-6-6-6 6" />
+                </svg>
+                <svg
+                  className="ms-auto block size-4 hs-accordion-active:hidden"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+
+              <div
+                id="projects-accordion-child"
+                className="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300"
+              >
+                <ul className="pt-0">
+                  <li>
+                    <Link
+                      className="!border-b !border-solid !border-white !ps-8 font-staraSemiBold text-lg text-white"
+                      href="https://2022.coinfest.asia/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      2022
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="!border-b !border-solid !border-white !ps-8 font-staraSemiBold text-lg text-white"
+                      href="https://2023.coinfest.asia/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      2023
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="!border-b !border-solid !border-white !ps-8 font-staraSemiBold text-lg text-white"
+                      href="https://flic.kr/s/aHBqjATP6X"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Gallery
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            {/* <li>
+            <Link className="text-white" href={""}>
+              Coinfest Week
+            </Link>
+          </li> */}
+            {/* <li>
+            <Link className="text-white" href={""}>
+              Agenda
+            </Link>
+          </li> */}
+          </ul>
+
+          {/* <BannerTickets mobile={true} /> */}
+        </div>
+      </nav>
 
       {/* @banner-ticket(backcover) */}
       {/* <div
