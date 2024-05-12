@@ -14,6 +14,11 @@ const NavbarBottom = () => {
   const isNavBtnToggle = useRef(null);
   const isNavMobile = useRef(null);
   const [isMenu, setMenu] = useState(false);
+  const [isMenuPopNav, setMenuPopNav] = useState({
+    menu: false,
+    rounded: true,
+    options: [{ label: "Get Involved", url: "/get-involved", type: "page" }],
+  });
   const [isFullWidth, setIsFullWidth] = useState(false);
 
   // @gsap-active
@@ -57,50 +62,67 @@ const NavbarBottom = () => {
   });
 
   // @banner-popup(ticket)
-  const isClose = (e) => {
+  const isClosePopNav = (e) => {
     e.preventDefault();
 
-    const elmtBckdrpBnnrTicket = document.querySelector(
-      ".ca2024BckdrpBnnrTicket",
-    );
-    const elmtBnnrTickets = document.querySelector(".ca2024BnnrTicket");
+    const elBckdrpPopNav = document.querySelector(".ca2024BckdrpBnnrPopNav");
+    const elPopNav = document.querySelector(".ca2024PopUpNav");
 
-    if (elmtBckdrpBnnrTicket) {
-      elmtBckdrpBnnrTicket.classList.add("nonActive");
+    if (elBckdrpPopNav) {
+      elBckdrpPopNav.classList.add("nonActive");
     }
 
-    if (elmtBnnrTickets) {
-      elmtBnnrTickets.classList.add("nonActive");
+    if (elPopNav) {
+      elPopNav.classList.add("nonActive");
+    }
+  };
+
+  const isOpenPopNav = (e) => {
+    e.preventDefault();
+
+    const elBckdrpPopNav = document.querySelector(".ca2024BckdrpBnnrPopNav");
+    const elPopNav = document.querySelector(".ca2024PopUpNav");
+
+    if (elBckdrpPopNav.classList.contains("nonActive") === true) {
+      elBckdrpPopNav.classList.remove("nonActive");
+    } else {
+      elBckdrpPopNav.classList.add("nonActive");
+    }
+
+    if (elPopNav.classList.contains("nonActive") === true) {
+      elPopNav.classList.remove("nonActive");
+    } else {
+      elPopNav.classList.add("nonActive");
     }
   };
 
   // @active(banner-popup(ticket))
-  useEffect(() => {
-    const hndleRtrNavComplete = () => {
-      const elmtBckdrpBnnrTicket = document.querySelector(
-        ".ca2024BckdrpBnnrTicket",
-      );
-      const elmtBnnrTickets = document.querySelector(".ca2024BnnrTicket");
+  // useEffect(() => {
+  //   const hndleRtrNavComplete = () => {
+  //     const elmtBckdrpBnnrTicket = document.querySelector(
+  //       ".ca2024BckdrpBnnrTicket",
+  //     );
+  //     const elmtBnnrTickets = document.querySelector(".ca2024BnnrTicket");
 
-      if (elmtBckdrpBnnrTicket) {
-        elmtBckdrpBnnrTicket.classList.remove("nonActive");
-      }
+  //     if (elmtBckdrpBnnrTicket) {
+  //       elmtBckdrpBnnrTicket.classList.remove("nonActive");
+  //     }
 
-      if (elmtBnnrTickets) {
-        elmtBnnrTickets.classList.remove("nonActive");
-      }
-    };
+  //     if (elmtBnnrTickets) {
+  //       elmtBnnrTickets.classList.remove("nonActive");
+  //     }
+  //   };
 
-    router.events.on("routeChangeComplete", hndleRtrNavComplete);
-    router.events.on("routeChangeError", hndleRtrNavComplete);
+  //   router.events.on("routeChangeComplete", hndleRtrNavComplete);
+  //   router.events.on("routeChangeError", hndleRtrNavComplete);
 
-    return () => {
-      router.events.off("routeChangeComplete", hndleRtrNavComplete);
-      router.events.off("routeChangeError", hndleRtrNavComplete);
-    };
-  }, [router]);
+  //   return () => {
+  //     router.events.off("routeChangeComplete", hndleRtrNavComplete);
+  //     router.events.off("routeChangeError", hndleRtrNavComplete);
+  //   };
+  // }, [router]);
 
-  // @menu-toggle
+  // @menu-toggle(mobile)
   const isToggleMenu = useCallback(() => {
     setMenu((prev) => !prev);
   }, [setMenu]);
@@ -137,13 +159,14 @@ const NavbarBottom = () => {
         } inset-x-0 z-xl mx-auto h-auto transition-all duration-300 ease-out`}
       >
         <Container className="relative h-full">
-          {/* <div className="ca2024BnnrTicket absolute inset-x-0 bottom-full top-auto mx-auto hidden w-full max-w-[645px] transition-all duration-[0.5s] ease-in-out sm:block lg:max-w-[695px]">
+          {/* @menu-popup */}
+          <div className="ca2024PopUpNav ca2024PopUpNav nonActive absolute inset-x-0 bottom-full top-auto mx-auto hidden w-full max-w-[645px] transition-all duration-[0.5s] ease-in-out sm:block lg:max-w-[695px]">
             <button
-              id="btnBannerTickets"
-              className="relative flex flex-col items-center justify-center w-10 h-10 mb-3 overflow-hidden bg-white outline-none cursor-pointer rounded-xl focus-visible:outline-none"
+              id="ca2024BtnClosePopUpNav"
+              className="relative mb-3 flex h-10 w-10 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-xl bg-white outline-none focus-visible:outline-none"
               aria-label="Button Banner Tickets (Toggle)"
               onClick={(e) => {
-                isClose(e);
+                isClosePopNav(e);
               }}
             >
               <svg
@@ -160,8 +183,36 @@ const NavbarBottom = () => {
               </svg>
             </button>
 
-            <BannerTickets />
-          </div> */}
+            <div
+              className={`flex flex-col items-start justify-start overflow-hidden rounded-t-2xl ${isMenuPopNav.menu === true && "bg-secondary"}`}
+            >
+              <ul className="pt- flex w-full flex-col bg-secondary">
+                {isMenuPopNav.options?.map((gtRslt, i) => (
+                  <li>
+                    {gtRslt.type === "page" ? (
+                      <Link
+                        className="flex flex-col border-b border-solid border-white px-6 py-4 font-staraSemiBold text-xl text-white"
+                        href={gtRslt.url}
+                      >
+                        {gtRslt.label}
+                      </Link>
+                    ) : (
+                      <Link
+                        className="flex flex-col border-b border-solid border-white px-6 py-4 font-staraSemiBold text-xl text-white"
+                        href={gtRslt.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {gtRslt.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+
+              <BannerTickets rounded={isMenuPopNav.rounded} />
+            </div>
+          </div>
 
           {/* @navbar-main */}
           <div
@@ -169,6 +220,7 @@ const NavbarBottom = () => {
               isMenu ? "!w-full" : null
             } z-100 max-w-full`}
           >
+            {/* @menu */}
             <div className="flex flex-col xl:hidden">
               <button
                 ref={isNavBtnToggle}
@@ -192,9 +244,40 @@ const NavbarBottom = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className="text-white" href={"/get-involved"}>
+                  <span
+                    className="text-white"
+                    onClick={(e) => {
+                      isOpenPopNav(e);
+                      setMenuPopNav({
+                        menu: true,
+                        rounded: false,
+                        options: [
+                          {
+                            label: "Sponsors",
+                            url: "/get-involved/sponsorship",
+                            type: "page",
+                          },
+                          {
+                            label: "Speakers Inquiries",
+                            url: "/get-involved/speakers",
+                            type: "page",
+                          },
+                          {
+                            label: "Media Partners",
+                            url: "/get-involved/media-partner",
+                            type: "page",
+                          },
+                          {
+                            label: "Communities",
+                            url: "/get-involved/community",
+                            type: "page",
+                          },
+                        ],
+                      });
+                    }}
+                  >
                     Get Involved
-                  </Link>
+                  </span>
                 </li>
                 <li>
                   <Link className="text-white" href={""}>
@@ -211,13 +294,19 @@ const NavbarBottom = () => {
               >
                 Enquire for Sponsorship
               </Link>
-              <Link
-                className={`ca2024BgOverflay relative mr-3 inline-flex items-center justify-center rounded-[14px] px-3 py-4 font-bevietnamPro text-xs font-medium text-black-900 outline-none last:mr-0 focus-visible:outline-none sm:px-6 sm:text-base`}
-                title="Tickets (Navbar)"
-                href={"https://ticket.coinfest.asia/"}
+              <div
+                className={`ca2024BgOverflay relative mr-3 inline-flex cursor-pointer items-center justify-center rounded-[14px] bg-white px-3 py-4 font-bevietnamPro text-xs font-medium text-black-900 outline-none last:mr-0 focus-visible:outline-none sm:px-6 sm:text-base`}
+                onClick={(e) => {
+                  isOpenPopNav(e);
+                  setMenuPopNav({
+                    menu: false,
+                    rounded: true,
+                    options: [],
+                  });
+                }}
               >
                 Tickets
-              </Link>
+              </div>
             </div>
           </div>
         </Container>
@@ -397,30 +486,20 @@ const NavbarBottom = () => {
                 </ul>
               </div>
             </li>
-            {/* <li>
-            <Link className="text-white" href={""}>
-              Coinfest Week
-            </Link>
-          </li> */}
-            {/* <li>
-            <Link className="text-white" href={""}>
-              Agenda
-            </Link>
-          </li> */}
           </ul>
 
-          {/* <BannerTickets mobile={true} /> */}
+          <BannerTickets mobile={true} />
         </div>
       </nav>
 
       {/* @banner-ticket(backcover) */}
-      {/* <div
-        id="isBckdrpBnnrTicket"
-        className="ca2024BckdrpBnnrTicket fixed inset-x-0 inset-y-0 z-[150] hidden h-svh bg-black-900/40 transition-all duration-[0.3s] ease-in-out sm:block"
+      <div
+        id="ca2024BckdrpBnnrPopNav"
+        className="ca2024BckdrpBnnrPopNav nonActive fixed inset-x-0 inset-y-0 z-[150] hidden h-svh cursor-pointer bg-black-900/40 transition-all duration-[0.3s] ease-in-out sm:block"
         onClick={(e) => {
-          isClose(e);
+          isClosePopNav(e);
         }}
-      ></div> */}
+      ></div>
     </>
   );
 };

@@ -5,6 +5,7 @@ const SmallTickets = ({
   title = "Festival Ticket",
   price = "75",
   type = "default",
+  url = "https://ticket.coinfest.asia/",
 }) => {
   return (
     <>
@@ -25,7 +26,7 @@ const SmallTickets = ({
         </div>
         <Link
           className="relative mt-2.5 inline-flex w-full items-center justify-center rounded-xl bg-white px-4 py-5 font-bevietnamPro text-sm font-medium text-black-900 outline-none focus-visible:outline-none sm:rounded-[10px]"
-          href={"https://ticket.coinfest.asia/"}
+          href={url}
           title={`Tickets Coinfest Asia 2024 (${title})`}
           target="_blank"
           rel="noopener noreferrer"

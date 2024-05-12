@@ -209,3 +209,30 @@ input:valid {
 .css-1dimb5e-singleValue {
   @apply font-bevietnamPro text-sm;
 }
+
+/* @banner-popupnav */
+.ca2024BckdrpBnnrPopNav {
+  @apply opacity-100;
+  @apply z-base;
+}
+
+.ca2024PopUpNav {
+  @apply translate-y-0 transform;
+  @apply opacity-100;
+  @apply z-50;
+}
+
+.ca2024BckdrpBnnrPopNav.nonActive {
+  @apply pointer-events-none;
+  backface-visibility: hidden;
+  @apply opacity-0;
+  @apply -z-px;
+}
+
+.ca2024PopUpNav.nonActive {
+  @apply pointer-events-none;
+  backface-visibility: hidden;
+  @apply translate-y-[50%] transform;
+  @apply opacity-0;
+  @apply -z-px;
+}
