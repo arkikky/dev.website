@@ -6,6 +6,7 @@ import Link from "next/link";
 
 // @components
 import Container from "@components/Container";
+import MenuPopUp from "@components/UI/Modal/MenuPopUp";
 import BannerTickets from "@components/UI/Card/BannerTickets";
 
 const NavbarBottom = () => {
@@ -14,11 +15,6 @@ const NavbarBottom = () => {
   const isNavBtnToggle = useRef(null);
   const isNavMobile = useRef(null);
   const [isMenu, setMenu] = useState(false);
-  const [isMenuPopNav, setMenuPopNav] = useState({
-    menu: false,
-    rounded: true,
-    options: [{ label: "Get Involved", url: "/get-involved", type: "page" }],
-  });
   const [isFullWidth, setIsFullWidth] = useState(false);
 
   // @gsap-active
@@ -61,32 +57,40 @@ const NavbarBottom = () => {
     }
   });
 
-  // @banner-popup(ticket)
+  // @banner-popup(nav)
   const isClosePopNav = (e) => {
     e.preventDefault();
 
     const elBckdrpPopNav = document.querySelector(".ca2024BckdrpBnnrPopNav");
-    const elPopNav = document.querySelector(".ca2024PopUpNav");
+    const elmtPopUpAll = document.querySelectorAll(".ca2024PopUpNav");
 
     if (elBckdrpPopNav) {
       elBckdrpPopNav.classList.add("nonActive");
     }
 
-    if (elPopNav) {
-      elPopNav.classList.add("nonActive");
-    }
+    elmtPopUpAll.forEach((elmnt) => {
+      console.log(elmnt);
+      elmnt.classList.add("nonActive");
+    });
   };
 
   const isOpenPopNav = (e) => {
     e.preventDefault();
 
+    const elmtTarget = e.target.getAttribute("data-target");
     const elBckdrpPopNav = document.querySelector(".ca2024BckdrpBnnrPopNav");
-    const elPopNav = document.querySelector(".ca2024PopUpNav");
+    const elPopNav = document.querySelector(elmtTarget);
+
+    const elmtPopUpAll = document.querySelectorAll(".ca2024PopUpNav");
+
+    elmtPopUpAll.forEach((elmnt) => {
+      if (!elmnt.classList.contains("nonActive")) {
+        elmnt.classList.add("nonActive");
+      }
+    });
 
     if (elBckdrpPopNav.classList.contains("nonActive") === true) {
       elBckdrpPopNav.classList.remove("nonActive");
-    } else {
-      elBckdrpPopNav.classList.add("nonActive");
     }
 
     if (elPopNav.classList.contains("nonActive") === true) {
@@ -160,59 +164,40 @@ const NavbarBottom = () => {
       >
         <Container className="relative h-full">
           {/* @menu-popup */}
-          <div className="ca2024PopUpNav ca2024PopUpNav nonActive absolute inset-x-0 bottom-full top-auto mx-auto hidden w-full max-w-[645px] transition-all duration-[0.5s] ease-in-out sm:block lg:max-w-[695px]">
-            <button
-              id="ca2024BtnClosePopUpNav"
-              className="relative mb-3 flex h-10 w-10 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-xl bg-white outline-none focus-visible:outline-none"
-              aria-label="Button Banner Tickets (Toggle)"
-              onClick={(e) => {
-                isClosePopNav(e);
-              }}
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41L17.59 5Z"
-                  fill="black"
-                />
-              </svg>
-            </button>
-
-            <div
-              className={`flex flex-col items-start justify-start overflow-hidden rounded-t-2xl ${isMenuPopNav.menu === true && "bg-secondary"}`}
-            >
-              <ul className="pt- flex w-full flex-col bg-secondary">
-                {isMenuPopNav.options?.map((gtRslt, i) => (
-                  <li>
-                    {gtRslt.type === "page" ? (
-                      <Link
-                        className="flex flex-col border-b border-solid border-white px-6 py-4 font-staraSemiBold text-xl text-white"
-                        href={gtRslt.url}
-                      >
-                        {gtRslt.label}
-                      </Link>
-                    ) : (
-                      <Link
-                        className="flex flex-col border-b border-solid border-white px-6 py-4 font-staraSemiBold text-xl text-white"
-                        href={gtRslt.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {gtRslt.label}
-                      </Link>
-                    )}
-                  </li>
-                ))}
-              </ul>
-
-              <BannerTickets rounded={isMenuPopNav.rounded} />
-            </div>
-          </div>
+          {/* <MenuPopUp label="GetInvolved" /> */}
+          <MenuPopUp
+            label="GetInvolved"
+            menu={true}
+            rounded={false}
+            options={[
+              {
+                label: "Sponsors",
+                url: "/get-involved/sponsorship",
+                type: "page",
+              },
+              {
+                label: "Speakers Inquiries",
+                url: "/get-involved/speakers",
+                type: "page",
+              },
+              {
+                label: "Media Partners",
+                url: "/get-involved/media-partner",
+                type: "page",
+              },
+              {
+                label: "Communities",
+                url: "/get-involved/community",
+                type: "page",
+              },
+            ]}
+          />
+          <MenuPopUp
+            label="BtnTicket"
+            menu={false}
+            rounded={true}
+            options={[]}
+          />
 
           {/* @navbar-main */}
           <div
@@ -246,34 +231,9 @@ const NavbarBottom = () => {
                 <li>
                   <span
                     className="text-white"
+                    data-target=".ca2024GetInvolved"
                     onClick={(e) => {
                       isOpenPopNav(e);
-                      setMenuPopNav({
-                        menu: true,
-                        rounded: false,
-                        options: [
-                          {
-                            label: "Sponsors",
-                            url: "/get-involved/sponsorship",
-                            type: "page",
-                          },
-                          {
-                            label: "Speakers Inquiries",
-                            url: "/get-involved/speakers",
-                            type: "page",
-                          },
-                          {
-                            label: "Media Partners",
-                            url: "/get-involved/media-partner",
-                            type: "page",
-                          },
-                          {
-                            label: "Communities",
-                            url: "/get-involved/community",
-                            type: "page",
-                          },
-                        ],
-                      });
                     }}
                   >
                     Get Involved
@@ -296,13 +256,9 @@ const NavbarBottom = () => {
               </Link>
               <div
                 className={`ca2024BgOverflay relative mr-3 inline-flex cursor-pointer items-center justify-center rounded-[14px] bg-white px-3 py-4 font-bevietnamPro text-xs font-medium text-black-900 outline-none last:mr-0 focus-visible:outline-none sm:px-6 sm:text-base`}
+                data-target=".ca2024BtnTicket"
                 onClick={(e) => {
                   isOpenPopNav(e);
-                  setMenuPopNav({
-                    menu: false,
-                    rounded: true,
-                    options: [],
-                  });
                 }}
               >
                 Tickets
