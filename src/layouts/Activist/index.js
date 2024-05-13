@@ -28,7 +28,7 @@ const Activist = () => {
               The coinfest experience
             </h2>
 
-            <div className="mt-10 inline-flex w-full max-w-full flex-row flex-wrap justify-center gap-x-4 gap-y-4">
+            <div className="mt-10 w-full max-w-full grid-cols-2 flex-row flex-wrap justify-center gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-3 sm:gap-x-4 sm:gap-y-4 lg:inline-flex lg:grid-cols-none lg:flex-row">
               <ActivistCard
                 labels="Exhibition"
                 images="/assets/images/experiences/exhibition.png"

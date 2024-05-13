@@ -8,14 +8,14 @@
 /* @small-ticket */
 .ca2024BgSmallTicket::before {
   @apply content-[''];
-  @apply bg-[url("/assets/images/backdrop/ca2024BgSmallTicket.png")];
+  @apply bg-[url("/assets/images/backdrop/products/ca2024BgSmallTicket.png")];
   @apply bg-cover bg-center bg-no-repeat object-cover object-center;
   @apply absolute inset-x-0 inset-y-0;
 }
 
 .ca2024BgSmallTicketVIP::before {
   @apply content-[''];
-  @apply bg-[url("/assets/images/backdrop/ca2024BgSmallTicketVIP.png")];
+  @apply bg-[url("/assets/images/backdrop/products/ca2024BgSmallTicketVIP.png")];
   @apply bg-cover bg-center bg-no-repeat object-cover object-center;
   @apply absolute inset-x-0 inset-y-0;
 }

@@ -15,12 +15,6 @@ import SuccessModal from "@components/UI/Modal/SuccessModal";
 // @layouts
 import Layouts from "@layouts/Layouts";
 
-// @add(google-tags-manager) */
-const intTagManager = {
-  gtmId: "GTM-TMLM3MB",
-  dataLayerName: "CoinfestAsia2024",
-};
-
 const ca2024Head = () => {
   return (
     <>
@@ -52,6 +46,12 @@ const ca2024Head = () => {
 };
 
 const App = ({ Component, pageProps }) => {
+  // @add(google-tags-manager) */
+  const intTagManager = {
+    gtmId: "GTM-TMLM3MB",
+    dataLayerName: "CoinfestAsia2024",
+  };
+
   // @import-smoothscroll(module)
   useEffect(() => {
     import("locomotive-scroll").then((locomotiveModule) => {

@@ -117,12 +117,12 @@ const SpeakersCard = ({ attributes = {}, useHeading = "h3", children }) => {
         {/* @content */}
         <div className="mt-4 flex h-full max-h-[61px] min-h-[61px] w-full flex-col items-start justify-start rounded-xl bg-[#F6F6F6] px-2.5 py-2 sm:max-h-[84px] sm:min-h-[84px] sm:px-4 sm:py-4">
           {useHeading === "h2" && (
-            <h2 className="font-bevietnamPro text-sm font-semibold text-black-900 sm:text-base">
+            <h2 className="line-break-anywhere line-clamp-1 font-bevietnamPro text-sm font-semibold text-black-900 sm:text-base">
               {isName}
             </h2>
           )}
           {useHeading === "h3" && (
-            <h3 className="font-bevietnamPro text-sm font-semibold text-black-900 sm:text-base">
+            <h3 className="line-break-anywhere line-clamp-1 font-bevietnamPro text-sm font-semibold text-black-900 sm:text-base">
               {isName}
             </h3>
           )}

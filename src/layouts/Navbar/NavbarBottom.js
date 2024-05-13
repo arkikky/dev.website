@@ -69,7 +69,6 @@ const NavbarBottom = () => {
     }
 
     elmtPopUpAll.forEach((elmnt) => {
-      console.log(elmnt);
       elmnt.classList.add("nonActive");
     });
   };
@@ -77,7 +76,9 @@ const NavbarBottom = () => {
   const isOpenPopNav = (e) => {
     e.preventDefault();
 
+    console.log(e);
     const elmtTarget = e.target.getAttribute("data-target");
+    // console.log(elmtTarget);
     const elBckdrpPopNav = document.querySelector(".ca2024BckdrpBnnrPopNav");
     const elPopNav = document.querySelector(elmtTarget);
 
@@ -164,7 +165,6 @@ const NavbarBottom = () => {
       >
         <Container className="relative h-full">
           {/* @menu-popup */}
-          {/* <MenuPopUp label="GetInvolved" /> */}
           <MenuPopUp
             label="GetInvolved"
             menu={true}
@@ -189,6 +189,28 @@ const NavbarBottom = () => {
                 label: "Communities",
                 url: "/get-involved/community",
                 type: "page",
+              },
+            ]}
+          />
+          <MenuPopUp
+            label="Recap"
+            menu={true}
+            rounded={false}
+            options={[
+              {
+                label: "2022",
+                url: "https://2022.coinfest.asia/",
+                type: "blank_page",
+              },
+              {
+                label: "2023",
+                url: "https://2023.coinfest.asia/",
+                type: "blank_page",
+              },
+              {
+                label: "Gallery",
+                url: "https://flic.kr/s/aHBqjATP6X",
+                type: "blank_page",
               },
             ]}
           />
@@ -229,20 +251,54 @@ const NavbarBottom = () => {
                   </Link>
                 </li>
                 <li>
-                  <span
-                    className="text-white"
+                  <button
+                    className="flex flex-row items-center justify-center px-3 text-white"
                     data-target=".ca2024GetInvolved"
+                    aria-label="Coinfest Asia 2024 (GetInvolved - Button PopUp Nav)"
+                    aria-labelledby="Coinfest Asia 2024 (GetInvolved - Button PopUp Nav)"
                     onClick={(e) => {
                       isOpenPopNav(e);
                     }}
                   >
                     Get Involved
-                  </span>
+                    <svg
+                      className="ms-1.5 h-5 w-5 fill-current"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.70711 7.29289L10 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68342 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z"
+                      />
+                    </svg>
+                  </button>
                 </li>
                 <li>
-                  <Link className="text-white" href={""}>
+                  <button
+                    className="flex flex-row items-center justify-center px-3 text-white"
+                    data-target=".ca2024Recap"
+                    aria-label="Coinfest Asia 2024 (Recap - Button PopUp Nav)"
+                    aria-labelledby="Coinfest Asia 2024 (Recap - Button PopUp Nav)"
+                    onClick={(e) => {
+                      isOpenPopNav(e);
+                    }}
+                  >
                     Recap
-                  </Link>
+                    <svg
+                      className="ms-1.5 h-5 w-5 fill-current"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.70711 7.29289L10 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68342 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z"
+                      />
+                    </svg>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -254,15 +310,17 @@ const NavbarBottom = () => {
               >
                 Enquire for Sponsorship
               </Link>
-              <div
+              <button
                 className={`ca2024BgOverflay relative mr-3 inline-flex cursor-pointer items-center justify-center rounded-[14px] bg-white px-3 py-4 font-bevietnamPro text-xs font-medium text-black-900 outline-none last:mr-0 focus-visible:outline-none sm:px-6 sm:text-base`}
                 data-target=".ca2024BtnTicket"
+                aria-label="Coinfest Asia 2024 (Tickets - Button PopUp Nav)"
+                aria-labelledby="Coinfest Asia 2024 (Tickets - Button PopUp Nav)"
                 onClick={(e) => {
                   isOpenPopNav(e);
                 }}
               >
                 Tickets
-              </div>
+              </button>
             </div>
           </div>
         </Container>

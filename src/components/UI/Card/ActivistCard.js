@@ -22,7 +22,7 @@ const ActivistCard = ({
         <Link
           ref={ref}
           href={url}
-          className="group relative h-[134px] w-full overflow-hidden rounded-2xl sm:h-[193px] lg:h-[206px] lg:w-[305px] xl:w-[311px]"
+          className="group relative h-[134px] w-full overflow-hidden rounded-xl sm:h-[193px] sm:rounded-2xl lg:h-[206px] lg:w-[305px] xl:w-[311px]"
         >
           {/* @btn (modal) */}
           <div className="absolute bottom-auto left-auto right-3 top-3 z-10 flex h-10 w-10 flex-col items-center justify-center rounded-xl bg-white opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 sm:right-4 sm:top-4">
@@ -57,7 +57,7 @@ const ActivistCard = ({
           </div>
 
           <div className="ca2024CoverOvrflwBg absolute inset-x-0 inset-y-0 z-[15] flex flex-col items-end justify-end">
-            <div className="flex w-full flex-col items-start justify-start px-4 pb-2 sm:px-4 sm:pb-3">
+            <div className="flex w-full flex-col items-start justify-start px-3 pb-2 sm:px-4 sm:pb-3">
               <h3 className="font-bevietnamPro text-sm font-medium text-white sm:text-base">
                 {labels}
               </h3>

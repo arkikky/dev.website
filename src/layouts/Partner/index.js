@@ -96,7 +96,7 @@ const Partner = ({
                         className="flex h-[104px] flex-col items-center justify-center rounded-[8px] border border-solid border-secondary px-0 grayscale-0 transition duration-300 ease-in-out sm:h-[146px] sm:rounded-[20px] lg:h-[265px]"
                         href="/partners"
                       >
-                        <span className="font-bevietnamPro text-sm font-bold uppercase text-black-900 sm:text-base">
+                        <span className="font-bevietnamPro text-xs font-bold uppercase text-black-900 sm:text-base">
                           AND <span className="text-secondary">MANY MORE</span>
                         </span>
                       </Link>
@@ -127,7 +127,7 @@ const Partner = ({
                         className="flex h-[99px] flex-col items-center justify-center rounded-[8px] border border-solid border-secondary px-0 grayscale-0 transition duration-300 ease-in-out sm:h-[138px] sm:rounded-[20px] lg:h-[190px]"
                         href="/partners"
                       >
-                        <span className="font-bevietnamPro text-sm font-bold uppercase text-black-900 sm:text-base">
+                        <span className="font-bevietnamPro text-xs font-bold uppercase text-black-900 sm:text-base">
                           AND <span className="text-secondary">MANY MORE</span>
                         </span>
                       </Link>
@@ -158,7 +158,7 @@ const Partner = ({
                         className="flex h-[99px] flex-col items-center justify-center rounded-[8px] border border-solid border-secondary px-0 grayscale-0 transition duration-300 ease-in-out sm:h-[138px] sm:rounded-[20px] lg:h-[190px]"
                         href="/partners"
                       >
-                        <span className="font-bevietnamPro text-sm font-bold uppercase text-black-900 sm:text-base">
+                        <span className="font-bevietnamPro text-xs font-bold uppercase text-black-900 sm:text-base">
                           AND <span className="text-secondary">MANY MORE</span>
                         </span>
                       </Link>
