@@ -18,6 +18,7 @@ import PromoCode from "@components/UI/Modal/PromoCode";
 // @layouts
 import NavbarTop from "@layouts/Navbar/NavbarTop";
 import NavbarBottom from "@layouts/Navbar/NavbarBottom";
+import Header from "@layouts/Header";
 import About from "@layouts/About";
 import Board from "@layouts/Board";
 import Benefit from "@layouts/Benefit";
@@ -163,9 +164,7 @@ const Home = ({
 
       {/* @main */}
       <main className="ca2024Main relative overflow-hidden">
-        <section className="ca2024MainPoints ca2024HeaderPoints relative z-20 h-svh snap-start snap-always overflow-hidden bg-white">
-          <h1>awda</h1>
-        </section>
+        <Header />
 
         {/* @about */}
         <About />
