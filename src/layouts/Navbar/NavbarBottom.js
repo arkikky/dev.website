@@ -389,7 +389,7 @@ const NavbarBottom = () => {
                 className="hs-accordion-toggle flex w-full items-center gap-x-3.5 border-b border-solid border-white px-4 py-6 text-start text-white"
               >
                 <Link
-                  className="!border-b-0 !px-0 !py-0 text-white"
+                  className="!border-b-0 !px-0 !py-0 text-white outline-none focus-visible:outline-none"
                   href={"/get-involved/"}
                 >
                   Get Involved

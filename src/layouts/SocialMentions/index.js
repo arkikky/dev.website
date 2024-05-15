@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import Marquee from "react-fast-marquee";
+// import Marquee from "react-fast-marquee";
 
 // @xomponents
 import Container from "@components/Container";

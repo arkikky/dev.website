@@ -2,12 +2,21 @@ import React, { useEffect } from "react";
 import TagManager from "react-gtm-module";
 import getConfig from "next/config";
 import Head from "next/head";
+import Script from "next/script";
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
 
 // @css-style (Global)
 import "@styles/globals.css";
+
+// @libs/helper
+import {
+  GOOGLE_ADS_ID,
+  gtagUrl,
+  gtagAdsUrl,
+  gtagScript,
+} from "@lib/helper/googleTags";
 
 // @components
 import SuccessModal from "@components/UI/Modal/SuccessModal";
@@ -40,6 +49,30 @@ const ca2024Head = () => {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#2458F4" />
         <link rel="manifest" href="/manifest.json" />
+
+        {/* @google-tags */}
+        <Script id="google-ads" strategy="afterInteractive" src={gtagAdsUrl} />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          src={gtagUrl}
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: gtagScript,
+          }}
+        />
+        <Script
+          id="google-ads-remarketing"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            gtag('config', ${GOOGLE_ADS_ID});
+          `,
+          }}
+        />
       </Head>
     </>
   );

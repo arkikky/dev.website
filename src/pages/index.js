@@ -35,13 +35,7 @@ import FAQ from "@layouts/FAQ";
 import BannerFooter from "@layouts/Banner/BannerFooter";
 import Footer from "@layouts/Footer";
 
-const Home = ({
-  ipAddress,
-  speaker,
-  sponsor,
-  mediaPartner,
-  comunitiesPartner,
-}) => {
+const Home = ({ ipAddress, speaker, partners }) => {
   const [isSpeakers, setSpeakers] = useState(speaker);
   const [isSpeakersModal, setSpeakersModal] = useState(null);
   // const [isSocialMentions, setSocialMentions] = useState(socialMentions);
@@ -124,7 +118,7 @@ const Home = ({
       <Head>
         <title>{`${publicRuntimeConfig.siteTitle}`}</title>
         <meta name="title" content={`${publicRuntimeConfig.siteTitle}`} />
-        <meta name="description" content={publicRuntimeConfig.siteUrl} />
+        <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -133,7 +127,10 @@ const Home = ({
           property="og:title"
           content={`${publicRuntimeConfig.siteTitle}`}
         />
-        <meta property="og:description" content={publicRuntimeConfig.siteUrl} />
+        <meta
+          property="og:description"
+          content={publicRuntimeConfig.siteDesc}
+        />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
@@ -148,7 +145,7 @@ const Home = ({
         />
         <meta
           property="twitter:description"
-          content={publicRuntimeConfig.siteUrl}
+          content={publicRuntimeConfig.siteDesc}
         />
         <meta
           property="twitter:image"
@@ -246,9 +243,9 @@ const Home = ({
         <section className="ca2024MainPoints bg-white pb-[189px] pt-[140px] sm:pt-[174px]">
           <Partner
             isLayoutShow={true}
-            dataSponsor={sponsor}
-            dataMediaPartner={mediaPartner}
-            dataComunitiesPartner={comunitiesPartner}
+            dataSponsor={partners.sponsor}
+            dataMediaPartner={partners.mediaPartner}
+            dataComunitiesPartner={partners.comunitiesPartner}
           />
         </section>
 
@@ -317,9 +314,11 @@ export const getStaticProps = async () => {
       props: {
         ipAddress: isIpAddress || [],
         speaker: isSpeakers || [],
-        sponsor: isSponsor || [],
-        mediaPartner: isMediaPartner || [],
-        comunitiesPartner: isComunitiesPartner || [],
+        partners: {
+          sponsor: isSponsor || [],
+          mediaPartner: isMediaPartner || [],
+          comunitiesPartner: isComunitiesPartner || [],
+        },
         // socialMentions: isSocialMentions || [],
       },
 

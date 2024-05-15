@@ -24,12 +24,7 @@ const NotFound = () => {
           name="title"
           content={`Page Not Found! | ${publicRuntimeConfig.siteTitle}`}
         />
-        <meta
-          name="description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
-        />
+        <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -40,9 +35,7 @@ const NotFound = () => {
         />
         <meta
           property="og:description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
+          content={publicRuntimeConfig.siteDesc}
         />
         <meta
           property="og:image"
@@ -58,9 +51,7 @@ const NotFound = () => {
         />
         <meta
           property="twitter:description"
-          content={
-            "Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Join the immersive Web3 festival! Bali - August 2024"
-          }
+          content={publicRuntimeConfig.siteDesc}
         />
         <meta
           property="twitter:image"

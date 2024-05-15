@@ -23,10 +23,7 @@ const PrivacyPolicy = () => {
           name="title"
           content={`Privacy Policy | ${publicRuntimeConfig.siteTitle}`}
         />
-        <meta
-          name="description"
-          content={publicRuntimeConfig.siteUrl}
-        />
+        <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -37,7 +34,7 @@ const PrivacyPolicy = () => {
         />
         <meta
           property="og:description"
-          content={publicRuntimeConfig.siteUrl}
+          content={publicRuntimeConfig.siteDesc}
         />
         <meta
           property="og:image"
@@ -53,7 +50,7 @@ const PrivacyPolicy = () => {
         />
         <meta
           property="twitter:description"
-          content={publicRuntimeConfig.siteUrl}
+          content={publicRuntimeConfig.siteDesc}
         />
         <meta
           property="twitter:image"
