@@ -1,0 +1,19 @@
+.artcleMarkdown p {
+  @apply font-bevietnamPro font-light text-black-900;
+  @apply mt-4 first:mt-0;
+}
+
+.artcleMarkdown img {
+  @apply rounded object-cover object-center;
+}
+
+.artcleMarkdown strong,
+.artcleMarkdown span,
+.artcleMarkdown a {
+  @apply font-light text-secondary;
+}
+
+.artcleMarkdown strong,
+.artcleMarkdown a {
+  @apply hocus:underline;
+}

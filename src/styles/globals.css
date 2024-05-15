@@ -1,0 +1,238 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* @tailwind-css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @lenis-smoothscroll */
+@import "node_modules/locomotive-scroll/dist/locomotive-scroll";
+
+/* @fonts */
+@import url("./fonts");
+
+body {
+  @apply bg-white;
+  @apply font-bevietnamPro text-base font-medium text-black-900;
+}
+
+.ca2024Main::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  @apply w-2;
+}
+
+.ca2024Main::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
+
+.ca2024Main::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  @apply bg-gray-400/80;
+  @apply rounded-full;
+  @apply border-none;
+}
+
+a {
+  @apply outline-none focus-visible:outline-none;
+}
+
+input:valid {
+  @apply bg-white focus-visible:bg-white;
+}
+
+/* @background */
+@import url("./components/background");
+
+/* @list */
+@import url("./components/list");
+
+/* @button */
+@import url("./components/button");
+
+/* @dots */
+@import url("./components/dots");
+
+/* @markdown */
+@import url("./components/markdown");
+
+/* @card */
+@import url("./components/card");
+
+/* @navbar */
+@import url("./layouts/navbar");
+
+/* @menu */
+@import url("./components/menu");
+
+/* @slider */
+@import url("./components/slider");
+
+/* @line-break */
+.line-break-anywhere {
+  line-break: anywhere;
+}
+
+/* @shadow */
+.boxShadow-none,
+.boxShadow-none:focus {
+  box-shadow: none;
+}
+
+/* @hamburger */
+.hmbrgrStairs .hmbrgrStairsLine {
+  @apply bg-white;
+  @apply mb-1.5 last:mb-0;
+  @apply h-0.5 w-2.5;
+
+  @apply visible opacity-100;
+  @apply transition duration-300 ease-in-out;
+}
+
+.hmbrgrStairs .hmbrgrStairsLine:nth-child(1) {
+  @apply ml-auto;
+}
+
+.hmbrgrStairs .hmbrgrStairsLine:nth-child(2) {
+  @apply mx-auto w-full;
+}
+
+.hmbrgrStairs .hmbrgrStairsLine:nth-child(3) {
+  @apply mr-auto;
+}
+
+.hmbrgrStairs.deactive .hmbrgrStairsLine {
+  @apply first:ml-0 first:translate-x-0 first:translate-y-2 first:rotate-[-42deg];
+  @apply last:mr-0 last:-translate-y-2 last:translate-x-0 last:rotate-[43deg];
+  @apply w-[20px];
+}
+
+.hmbrgrStairs.deactive .hmbrgrStairsLine:nth-child(2) {
+  @apply invisible opacity-0;
+  backface-visibility: hidden;
+  @apply -z-px w-0;
+}
+
+/* @main */
+.ca2024Main {
+  @apply relative;
+  /* @apply overflow-y-auto; */
+  /* @apply snap-y snap-mandatory; */
+  /* scroll-snap-points-y: repeat(100svh); */
+  /* @apply h-svh max-h-svh xl:h-screen xl:max-h-screen; */
+}
+
+.ca2024MainPoints {
+  @apply relative flex flex-col;
+}
+
+.ca2024MainScreen {
+  @apply h-svh min-h-svh xl:h-screen xl:min-h-screen;
+}
+
+.ca2024MainScreenAuto {
+  @apply h-auto max-h-min min-h-[auto];
+}
+
+.ca2024BgRotateBackdrop {
+  transform: rotateX(180deg);
+}
+
+/* @article */
+.ca2024ArtcleFrmattd {
+  @apply prose-h1:text-[32px] prose-h1:font-bold prose-h1:leading-[38px] sm:prose-h1:text-[40px] sm:prose-h1:leading-[48px];
+  @apply prose-h2:mb-4 prose-h2:mt-8 prose-h2:text-2xl prose-h2:font-semibold first:prose-h2:mt-0 sm:prose-h2:mt-10;
+  @apply prose-a:text-secondary prose-a:underline prose-ul:list-disc prose-ul:pl-8;
+}
+
+/* @banner-ticket */
+.ca2024BnnrTicket {
+  @apply translate-y-0 transform;
+  @apply opacity-100;
+  @apply z-50;
+}
+
+.ca2024BckdrpBnnrTicket {
+  @apply opacity-100;
+  @apply z-50;
+}
+
+.ca2024BnnrTicket.nonActive {
+  @apply pointer-events-none;
+  backface-visibility: hidden;
+  @apply translate-y-[50%] transform;
+  @apply opacity-0;
+  @apply -z-px;
+}
+
+.ca2024BckdrpBnnrTicket.nonActive {
+  @apply pointer-events-none;
+  backface-visibility: hidden;
+  @apply opacity-0;
+  @apply -z-px;
+}
+
+/* @mansonry */
+.ca2024Mnsry {
+  @apply relative;
+  @apply columns-1 sm:columns-2 lg:columns-3 [&>div:not(:first-child)]:mt-4;
+}
+
+/* @phone-format */
+.PhoneInputCountry {
+  @apply pr-2;
+}
+
+.PhoneInputCountrySelectArrow {
+  @apply !hidden;
+}
+
+.PhoneInputInput {
+  @apply border-l border-solid border-gray-300;
+  @apply focus-visible:outline-none;
+  @apply pl-2;
+}
+
+.PhoneInputCountryIcon.PhoneInputCountryIcon--border {
+  @apply rounded-sm;
+  @apply overflow-hidden;
+}
+
+/* @select */
+.css-t3ipsp-control,
+.css-13cymwt-control {
+  @apply !rounded-lg;
+  @apply !border border-solid !border-[#E3E3E3];
+  @apply !min-h-[62px];
+}
+
+.css-1dimb5e-singleValue {
+  @apply font-bevietnamPro text-sm;
+}
+
+/* @banner-popupnav */
+.ca2024BckdrpBnnrPopNav {
+  @apply opacity-100;
+  @apply z-base;
+}
+
+.ca2024PopUpNav {
+  @apply translate-y-0 transform;
+  @apply opacity-100;
+  @apply z-50;
+}
+
+.ca2024BckdrpBnnrPopNav.nonActive {
+  @apply pointer-events-none;
+  backface-visibility: hidden;
+  @apply opacity-0;
+  @apply -z-px;
+}
+
+.ca2024PopUpNav.nonActive {
+  @apply pointer-events-none;
+  backface-visibility: hidden;
+  @apply translate-y-[50%] transform;
+  @apply opacity-0;
+  @apply -z-px;
+}
