@@ -15,6 +15,7 @@ const NavbarBottom = () => {
   const isNavBtnToggle = useRef(null);
   const isNavMobile = useRef(null);
   const [isMenu, setMenu] = useState(false);
+  const [isMenuConfig, setMenuMenuConfig] = useState({});
   const [isFullWidth, setIsFullWidth] = useState(false);
 
   // @gsap-active
@@ -73,11 +74,10 @@ const NavbarBottom = () => {
     });
   };
 
-  const isOpenPopNav = (e) => {
+  const isOpenPopNav = (e, dataTarget) => {
     e.preventDefault();
 
-    console.log(e);
-    const elmtTarget = e.target.getAttribute("data-target");
+    const elmtTarget = dataTarget;
     // console.log(elmtTarget);
     const elBckdrpPopNav = document.querySelector(".ca2024BckdrpBnnrPopNav");
     const elPopNav = document.querySelector(elmtTarget);
@@ -253,11 +253,10 @@ const NavbarBottom = () => {
                 <li>
                   <button
                     className="flex flex-row items-center justify-center px-3 text-white"
-                    data-target=".ca2024GetInvolved"
                     aria-label="Coinfest Asia 2024 (GetInvolved - Button PopUp Nav)"
                     aria-labelledby="Coinfest Asia 2024 (GetInvolved - Button PopUp Nav)"
                     onClick={(e) => {
-                      isOpenPopNav(e);
+                      isOpenPopNav(e, ".ca2024GetInvolved");
                     }}
                   >
                     Get Involved
@@ -278,11 +277,10 @@ const NavbarBottom = () => {
                 <li>
                   <button
                     className="flex flex-row items-center justify-center px-3 text-white"
-                    data-target=".ca2024Recap"
                     aria-label="Coinfest Asia 2024 (Recap - Button PopUp Nav)"
                     aria-labelledby="Coinfest Asia 2024 (Recap - Button PopUp Nav)"
                     onClick={(e) => {
-                      isOpenPopNav(e);
+                      isOpenPopNav(e, ".ca2024Recap");
                     }}
                   >
                     Recap
@@ -312,11 +310,10 @@ const NavbarBottom = () => {
               </Link>
               <button
                 className={`ca2024BgOverflay relative mr-3 inline-flex cursor-pointer items-center justify-center rounded-[14px] bg-white px-3 py-4 font-bevietnamPro text-xs font-medium text-black-900 outline-none last:mr-0 focus-visible:outline-none sm:px-6 sm:text-base`}
-                data-target=".ca2024BtnTicket"
                 aria-label="Coinfest Asia 2024 (Tickets - Button PopUp Nav)"
                 aria-labelledby="Coinfest Asia 2024 (Tickets - Button PopUp Nav)"
                 onClick={(e) => {
-                  isOpenPopNav(e);
+                  isOpenPopNav(e, ".ca2024BtnTicket");
                 }}
               >
                 Tickets
