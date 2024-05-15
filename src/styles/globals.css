@@ -113,6 +113,34 @@ input:valid {
   @apply -z-px w-0;
 }
 
+/* @scroll-indikator */
+.ca2024ScrolldownIcns {
+  border: 2px solid #ffffff;
+  @apply rounded-full;
+  @apply mx-auto;
+  @apply h-6 w-4;
+}
+
+.ca2024ScrolldownIcns .ca2024ScrolldownIcns-Indiktr {
+  @apply flex;
+  @apply rounded-full bg-white;
+  @apply mx-auto mt-1.5;
+  @apply h-1 w-1;
+}
+
+/* @shadow */
+.ca2024GrpBxShadow::before {
+  @apply content-[''];
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(0, 0, 0, 0.42) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  @apply absolute -inset-x-[70px] -inset-y-[70px];
+  @apply opacity-[0.7] blur-[10px];
+  @apply -z-px;
+}
+
 /* @main */
 .ca2024Main {
   @apply relative;
