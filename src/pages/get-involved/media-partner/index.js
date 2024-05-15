@@ -139,7 +139,7 @@ const MediaPartnerGetInvolved = ({ ipAddrs, formMediaPartner }) => {
       ],
       context: {
         pageUri: "https://coinfest.asia/get-involved/media-partner",
-        pageName: "Media Partners | Coinfest Asia 2024",
+        pageName: "Media Partner | Coinfest Asia 2024",
         ipAddress: ipAddrs.ip,
       },
     };
@@ -169,7 +169,7 @@ const MediaPartnerGetInvolved = ({ ipAddrs, formMediaPartner }) => {
           name="title"
           content={`Media Partner | ${publicRuntimeConfig.siteTitle}`}
         />
-        <meta name="description" content={publicRuntimeConfig.siteUrl} />
+        <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -178,7 +178,10 @@ const MediaPartnerGetInvolved = ({ ipAddrs, formMediaPartner }) => {
           property="og:title"
           content={`Media Partner | ${publicRuntimeConfig.siteTitle}`}
         />
-        <meta property="og:description" content={publicRuntimeConfig.siteUrl} />
+        <meta
+          property="og:description"
+          content={publicRuntimeConfig.siteDesc}
+        />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
@@ -193,7 +196,7 @@ const MediaPartnerGetInvolved = ({ ipAddrs, formMediaPartner }) => {
         />
         <meta
           property="twitter:description"
-          content={publicRuntimeConfig.siteUrl}
+          content={publicRuntimeConfig.siteDesc}
         />
         <meta
           property="twitter:image"
