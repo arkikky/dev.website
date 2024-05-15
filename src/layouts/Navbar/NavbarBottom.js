@@ -15,7 +15,6 @@ const NavbarBottom = () => {
   const isNavBtnToggle = useRef(null);
   const isNavMobile = useRef(null);
   const [isMenu, setMenu] = useState(false);
-  const [isMenuConfig, setMenuMenuConfig] = useState({});
   const [isFullWidth, setIsFullWidth] = useState(false);
 
   // @gsap-active
@@ -64,6 +63,7 @@ const NavbarBottom = () => {
 
     const elBckdrpPopNav = document.querySelector(".ca2024BckdrpBnnrPopNav");
     const elmtPopUpAll = document.querySelectorAll(".ca2024PopUpNav");
+    const elmtIconsPopUpAll = document.querySelectorAll(".ca2024IconNavPopUp");
 
     if (elBckdrpPopNav) {
       elBckdrpPopNav.classList.add("nonActive");
@@ -72,17 +72,28 @@ const NavbarBottom = () => {
     elmtPopUpAll.forEach((elmnt) => {
       elmnt.classList.add("nonActive");
     });
+
+    elmtIconsPopUpAll.forEach((elmnt) => {
+      if (elmnt.classList.contains("rotate-180")) {
+        elmnt.classList.remove("rotate-180");
+        elmnt.classList.add("rotate-0");
+      }
+    });
   };
 
-  const isOpenPopNav = (e, dataTarget) => {
+  const isOpenPopNav = (e, dataTarget, dataIcons) => {
     e.preventDefault();
 
     const elmtTarget = dataTarget;
-    // console.log(elmtTarget);
     const elBckdrpPopNav = document.querySelector(".ca2024BckdrpBnnrPopNav");
     const elPopNav = document.querySelector(elmtTarget);
 
     const elmtPopUpAll = document.querySelectorAll(".ca2024PopUpNav");
+    const elmtIconsPopUpAll = document.querySelectorAll(".ca2024IconNavPopUp");
+
+    if (elBckdrpPopNav.classList.contains("nonActive") === true) {
+      elBckdrpPopNav.classList.remove("nonActive");
+    }
 
     elmtPopUpAll.forEach((elmnt) => {
       if (!elmnt.classList.contains("nonActive")) {
@@ -90,8 +101,23 @@ const NavbarBottom = () => {
       }
     });
 
-    if (elBckdrpPopNav.classList.contains("nonActive") === true) {
-      elBckdrpPopNav.classList.remove("nonActive");
+    elmtIconsPopUpAll.forEach((elmnt) => {
+      if (elmnt.classList.contains("rotate-180")) {
+        elmnt.classList.remove("rotate-180");
+        elmnt.classList.add("rotate-0");
+      }
+    });
+
+    if (dataIcons !== undefined) {
+      const elmtIcons = document.querySelector(dataIcons);
+
+      if (elmtIcons.classList.contains("rotate-0")) {
+        elmtIcons.classList.remove("rotate-0");
+        elmtIcons.classList.add("rotate-180");
+      } else {
+        elmtIcons.classList.add("rotate-0");
+        elmtIcons.classList.remove("rotate-180");
+      }
     }
 
     if (elPopNav.classList.contains("nonActive") === true) {
@@ -102,30 +128,40 @@ const NavbarBottom = () => {
   };
 
   // @active(banner-popup(ticket))
-  // useEffect(() => {
-  //   const hndleRtrNavComplete = () => {
-  //     const elmtBckdrpBnnrTicket = document.querySelector(
-  //       ".ca2024BckdrpBnnrTicket",
-  //     );
-  //     const elmtBnnrTickets = document.querySelector(".ca2024BnnrTicket");
+  useEffect(() => {
+    const hndleRtrNavComplete = () => {
+      const elBckdrpPopNav = document.querySelector(".ca2024BckdrpBnnrPopNav");
+      const elmtPopUpAll = document.querySelectorAll(".ca2024PopUpNav");
+      const elmtIconsPopUpAll = document.querySelectorAll(
+        ".ca2024IconNavPopUp",
+      );
 
-  //     if (elmtBckdrpBnnrTicket) {
-  //       elmtBckdrpBnnrTicket.classList.remove("nonActive");
-  //     }
+      if (elBckdrpPopNav.classList.contains("nonActive") === false) {
+        elBckdrpPopNav.classList.add("nonActive");
+      }
 
-  //     if (elmtBnnrTickets) {
-  //       elmtBnnrTickets.classList.remove("nonActive");
-  //     }
-  //   };
+      elmtPopUpAll.forEach((elmnt) => {
+        if (!elmnt.classList.contains("nonActive")) {
+          elmnt.classList.add("nonActive");
+        }
+      });
 
-  //   router.events.on("routeChangeComplete", hndleRtrNavComplete);
-  //   router.events.on("routeChangeError", hndleRtrNavComplete);
+      elmtIconsPopUpAll.forEach((elmnt) => {
+        if (elmnt.classList.contains("rotate-180")) {
+          elmnt.classList.remove("rotate-180");
+          elmnt.classList.add("rotate-0");
+        }
+      });
+    };
 
-  //   return () => {
-  //     router.events.off("routeChangeComplete", hndleRtrNavComplete);
-  //     router.events.off("routeChangeError", hndleRtrNavComplete);
-  //   };
-  // }, [router]);
+    router.events.on("routeChangeComplete", hndleRtrNavComplete);
+    router.events.on("routeChangeError", hndleRtrNavComplete);
+
+    return () => {
+      router.events.off("routeChangeComplete", hndleRtrNavComplete);
+      router.events.off("routeChangeError", hndleRtrNavComplete);
+    };
+  }, [router]);
 
   // @menu-toggle(mobile)
   const isToggleMenu = useCallback(() => {
@@ -256,12 +292,18 @@ const NavbarBottom = () => {
                     aria-label="Coinfest Asia 2024 (GetInvolved - Button PopUp Nav)"
                     aria-labelledby="Coinfest Asia 2024 (GetInvolved - Button PopUp Nav)"
                     onClick={(e) => {
-                      isOpenPopNav(e, ".ca2024GetInvolved");
+                      isOpenPopNav(
+                        e,
+                        ".ca2024GetInvolved",
+                        ".ca2024IconGetInvolved_NavPopUp",
+                      );
                     }}
                   >
-                    Get Involved
+                    <Link className="!px-0 !py-0" href="/get-involved">
+                      Get Involved
+                    </Link>
                     <svg
-                      className="ms-1.5 h-5 w-5 fill-current"
+                      className="ca2024IconNavPopUp ca2024IconGetInvolved_NavPopUp duration-250 ms-2.5 h-5 w-5 rotate-0 transform fill-current transition ease-in-out"
                       viewBox="0 0 20 20"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -280,12 +322,16 @@ const NavbarBottom = () => {
                     aria-label="Coinfest Asia 2024 (Recap - Button PopUp Nav)"
                     aria-labelledby="Coinfest Asia 2024 (Recap - Button PopUp Nav)"
                     onClick={(e) => {
-                      isOpenPopNav(e, ".ca2024Recap");
+                      isOpenPopNav(
+                        e,
+                        ".ca2024Recap",
+                        ".ca2024IconRecap_NavPopUp",
+                      );
                     }}
                   >
                     Recap
                     <svg
-                      className="ms-1.5 h-5 w-5 fill-current"
+                      className="ca2024IconNavPopUp ca2024IconRecap_NavPopUp duration-250 ms-2.5 h-5 w-5 rotate-0 transform fill-current transition ease-in-out"
                       viewBox="0 0 20 20"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"

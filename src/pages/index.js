@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import getConfig from "next/config";
 import Head from "next/head";
-import Image from "next/image";
+// import Image from "next/image";
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
