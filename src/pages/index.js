@@ -26,7 +26,7 @@ import Benefit from "@layouts/Benefit";
 import Tickets from "@layouts/Tickets";
 import Speakers from "@layouts/Speakers";
 import Activist from "@layouts/Activist";
-import NextSpeakers from "@layouts/Speakers/next";
+// import NextSpeakers from "@layouts/Speakers/next";
 import Partner from "@layouts/Partner";
 import Testimonials from "@layouts/Testimonials";
 import GetInvolved from "@layouts/GetInvolved";
@@ -224,7 +224,7 @@ const Home = ({
         )}
 
         <SectionInnerSplit>
-          <div className="opacity-1 pointer-events-none absolute -bottom-[229px] -right-[203px] left-auto top-auto z-[6] select-none bg-transparent transition duration-[0.8s] ease-out sm:-bottom-[405px] sm:-right-[325px] lg:-right-[415px] 2xl:-bottom-[527px]">
+          {/* <div className="opacity-1 pointer-events-none absolute -bottom-[229px] -right-[203px] left-auto top-auto z-[6] select-none bg-transparent transition duration-[0.8s] ease-out sm:-bottom-[405px] sm:-right-[325px] lg:-right-[415px] 2xl:-bottom-[527px]">
             <Image
               className="z-10 mx-auto h-auto w-[471px] object-cover object-center sm:w-[771px] lg:w-[971px]"
               src={"/assets/images/backdrop/ca2024PointItems.png"}
@@ -233,13 +233,13 @@ const Home = ({
               width={958}
               quality="87"
             />
-          </div>
+          </div> */}
 
           {/* @activist */}
           <Activist />
 
           {/* @next(speakers) */}
-          <NextSpeakers />
+          {/* <NextSpeakers /> */}
         </SectionInnerSplit>
 
         {/* @partner */}
