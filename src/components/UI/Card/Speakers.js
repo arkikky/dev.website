@@ -24,21 +24,6 @@ const SpeakersCard = ({ attributes = {}, useHeading = "h3", children }) => {
       attributes.companyLogo.data.attributes.url
     : "";
 
-  // @random(images-backdrop)
-  // const rndImages = [
-  //   "ca2024CvrBgSpeakersSkyBlue",
-  //   "ca2024CvrBgSpeakersBlue",
-  //   "ca2024CvrBgSpeakersRed",
-  //   "ca2024CvrBgSpeakersYellow",
-  //   "ca2024CvrBgSpeakersSkyBlue",
-  //   "ca2024CvrBgSpeakersBlue",
-  //   "ca2024CvrBgSpeakersRed",
-  //   "ca2024CvrBgSpeakersYellow",
-  // ];
-
-  // const isRndIndex = Math.floor(Math.random() * rndImages.length);
-  // const isRndImages = rndImages[isRndIndex];
-
   // @intersection-observer
   useEffect(() => {
     if (inView) {

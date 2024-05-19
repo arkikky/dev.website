@@ -162,7 +162,7 @@ const MediaPartnerGetInvolved = ({ ipAddrs, formMediaPartner }) => {
   };
   return (
     <>
-      {/* @Head */}
+      {/* @head */}
       <Head>
         <title>{`Media Partner | ${publicRuntimeConfig.siteTitle}`}</title>
         <meta

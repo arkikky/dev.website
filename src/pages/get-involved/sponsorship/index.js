@@ -154,9 +154,10 @@ const SponsorshipGetInvolved = ({
       reset();
     }
   };
+  
   return (
     <>
-      {/* @Head */}
+      {/* @head */}
       <Head>
         <title>{`Sponsorship | ${publicRuntimeConfig.siteTitle}`}</title>
         <meta
