@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 
 // @components
 import Container from "@components/Container";
 import MenuNavTop from "@components/UI/Menu/MenuNavTop";
 
 const NavbarTop = ({ type = "default", btnBack = false, urlBack = "" }) => {
+  const router = useRouter();
+  
   return (
     <>
       <section

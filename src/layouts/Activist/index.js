@@ -46,6 +46,7 @@ const Activist = () => {
                 images="/assets/images/experiences/alpha-sessions.png"
               />
               <ActivistCard
+                url="/activities/treding-competition"
                 labels="Trading Competition"
                 images="/assets/images/experiences/trading-competition.png"
               />

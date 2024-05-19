@@ -5,6 +5,13 @@
   @apply absolute inset-x-0 inset-y-0;
 }
 
+.ca2024BgLine::before {
+  @apply content-[''];
+  @apply bg-[url("/assets/images/backdrop/background/ca2024BgLineBlue.jpg")];
+  @apply bg-cover bg-center object-cover object-center;
+  @apply absolute inset-x-0 inset-y-0;
+}
+
 /* @small-ticket */
 .ca2024BgSmallTicket::before {
   @apply content-[''];

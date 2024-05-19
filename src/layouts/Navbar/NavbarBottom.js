@@ -30,7 +30,7 @@ const NavbarBottom = () => {
       // optionally return a cleanup function that will be called when none of the conditions match anymore (after having matched)
       // it'll automatically call context.revert() - do NOT do that here . Only put custom cleanup code here.
     };
-  }, [router]);
+  }, []);
 
   // @gsap-init
   useEffect(() => {
