@@ -78,7 +78,7 @@ const Partners = ({ sponsor, mediaPartner, comunitiesPartner }) => {
         <BannerFooter />
 
         {/* @promo-code(popup) */}
-        <PromoCode />
+        {/* <PromoCode /> */}
       </main>
     </>
   );

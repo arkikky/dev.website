@@ -190,7 +190,7 @@ const PrivacyPolicy = () => {
         <BannerFooter />
 
         {/* @promo-code(popup) */}
-        <PromoCode />
+        {/* <PromoCode /> */}
       </main>
     </>
   );

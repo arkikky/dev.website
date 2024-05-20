@@ -477,7 +477,7 @@ const TermAndConditions = () => {
         <BannerFooter />
 
         {/* @promo-code(popup) */}
-        <PromoCode />
+        {/* <PromoCode /> */}
       </main>
     </>
   );

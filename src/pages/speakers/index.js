@@ -151,7 +151,7 @@ const Speakers = ({ speakers }) => {
         <SpeakersModal {...isSpeakersModal} />
 
         {/* @promo-code(popup) */}
-        <PromoCode />
+        {/* <PromoCode /> */}
       </main>
     </>
   );

@@ -90,7 +90,7 @@ const Partner = ({
                       />
                     </div>
                   ))}
-                  {isLayoutShow === true && (
+                  {/* {isLayoutShow === true && (
                     <div className="col-span-2 sm:col-span-4 lg:col-span-4">
                       <Link
                         className="flex h-[104px] flex-col items-center justify-center rounded-[8px] border border-solid border-secondary px-0 grayscale-0 transition duration-300 ease-in-out sm:h-[146px] sm:rounded-[20px] lg:h-[265px]"
@@ -101,7 +101,7 @@ const Partner = ({
                         </span>
                       </Link>
                     </div>
-                  )}
+                  )} */}
                 </div>
               )}
             </div>
