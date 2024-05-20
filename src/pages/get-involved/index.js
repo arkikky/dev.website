@@ -11,7 +11,7 @@ import GetInvolvedCard from "@components/UI/Card/GetInvolvedCard";
 // @layouts
 import PartnershipLayouts from "@layouts/PartnershipLayouts";
 
-const GetInvolved = (props) => {
+const GetInvolved = () => {
   return (
     <>
       {/* @head */}

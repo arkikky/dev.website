@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 // @components
 import VideoBackground from "@components/VideoBackground";
 
-const Header = (props) => {
+const Header = () => {
   return (
     <>
       <section className="ca2024MainPoints ca2024HeaderPoints relative z-20 h-svh snap-start snap-always overflow-hidden bg-white">
