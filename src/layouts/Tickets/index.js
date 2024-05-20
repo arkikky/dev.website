@@ -111,7 +111,7 @@ const Tickets = () => {
                       </h3>
                       <div className="flex flex-row">
                         <span className="sale-price z-[2] font-bevietnamPro text-base font-semibold sm:text-xl">
-                          $750
+                          $700
                         </span>
                         <span className="regular-price z-[2] ml-2 font-bevietnamPro text-base font-normal text-[#8A8A8A] line-through sm:text-xl">
                           $1000
