@@ -1,5 +1,4 @@
-import React from "react";
-import { useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
 
 // @components
 import Container from "@components/Container";
@@ -11,11 +10,31 @@ const NavbarTop = ({
   btnBack = false,
   urlBack = "",
 }) => {
+  const [isNavScroll, setNavScroll] = useState(false);
+
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition >= 16) {
+      setNavScroll(true);
+    } else {
+      setNavScroll(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <section
         id="ca2024NavTop"
-        className={`fixed inset-x-0 bottom-auto ${typeLayouts === "bento-grid" ? "top-4 sm:top-12" : "top-4"} z-sm mix-blend-difference ${type === "default" ? "px-0" : "px-4 sm:px-11"}`}
+        className={`fixed inset-x-0 bottom-auto ${isNavScroll === true ? "top-4 sm:top-4" : typeLayouts === "bento-grid" ? "top-4 sm:top-12" : "top-4"} z-sm mix-blend-difference ${type === "default" ? "px-0" : "px-4 sm:px-11"} transition-all ease-in`}
       >
         {type === "default" ? (
           <>
