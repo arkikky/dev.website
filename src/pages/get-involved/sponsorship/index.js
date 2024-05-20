@@ -67,8 +67,8 @@ const SponsorshipGetInvolved = ({
 
   // @submit
   const onSubmit = async (data) => {
-    const btnSuccessNewsletter = document.querySelector(
-      "#btnSuccessNewsletterMdl.btnSuccessNewsletterMdl",
+    const btnOpenGmailSuccess = document.querySelector(
+      "#mdlBtnSuccessOpenGmail.mdlBtnSuccessOpenGmail",
     );
 
     const isConfig = {
@@ -150,11 +150,11 @@ const SponsorshipGetInvolved = ({
 
     if (rs === true) {
       setForm({ ...isForm, mobilephone: "" });
-      btnSuccessNewsletter.click();
+      btnOpenGmailSuccess.click();
       reset();
     }
   };
-  
+
   return (
     <>
       {/* @head */}

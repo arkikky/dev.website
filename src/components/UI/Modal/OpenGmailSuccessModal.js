@@ -1,19 +1,20 @@
 import React from "react";
+import Link from "next/link";
 
-const SuccessModal = () => {
+const OpenGmailSuccessModal = () => {
   return (
     <>
       {/* @Modal (Success Newsletter) */}
       <button
-        id="btnSuccessNewsletterMdl"
-        className="btnSuccessNewsletterMdl toolsApp invisible absolute bottom-0 left-auto right-0 top-full z-10 hidden h-8 w-8 cursor-pointer flex-col items-center justify-center rounded-[10px] bg-transparent opacity-0 outline-none"
+        id="mdlBtnSuccessOpenGmail"
+        className="mdlBtnSuccessOpenGmail toolsApp invisible absolute bottom-0 left-auto right-0 top-full z-10 hidden h-8 w-8 cursor-pointer flex-col items-center justify-center rounded-[10px] bg-transparent opacity-0 outline-none"
         // className="toolsApp fixed bottom-auto left-auto right-0 top-40 z-100 flex h-8 w-8 cursor-pointer flex-col items-center justify-center rounded-[10px] bg-blue-500 outline-none"
-        aria-labelledby="Success Newsletter Modal"
-        data-hs-overlay="#successNewsletterModal"
+        aria-labelledby="Modal Success Gmail"
+        data-hs-overlay="#mdlSuccessOpenGmail"
       ></button>
 
       <div
-        id="successNewsletterModal"
+        id="mdlSuccessOpenGmail"
         className="hs-overlay fixed left-0 top-0 z-[9999] hidden h-full w-full overflow-y-auto overflow-x-hidden bg-black-900/[0.33] opacity-0 transition-all [--body-scroll:true] hs-overlay-open:opacity-100 hs-overlay-open:duration-300"
         data-hs-overlay-backdrop-container="#bckdrpModalActve"
       >
@@ -21,8 +22,8 @@ const SuccessModal = () => {
           <div className="relative flex flex-col rounded-xl bg-white px-7 py-8 text-center sm:rounded-[18px] sm:px-12 sm:py-14">
             <button
               className="hs-dropdown-toggle absolute bottom-auto left-auto right-4 top-4.5 outline-none"
-              aria-labelledby="successNewsletterModal"
-              data-hs-overlay="#successNewsletterModal"
+              aria-labelledby="mdlSuccessOpenGmail"
+              data-hs-overlay="#mdlSuccessOpenGmail"
             >
               <svg
                 className="h-4 w-4"
@@ -43,11 +44,20 @@ const SuccessModal = () => {
               <h2 className="font-figtree mx-auto mt-2 max-w-[313px] text-xl font-semibold uppercase text-black-900 sm:mt-4 sm:text-2xl">
                 You're on the list!
               </h2>
-              <p className="font-figtree mt-4 px-0 text-base font-light text-black-900 sm:px-7 sm:text-lg">
-                Thank you for your interest for Coinfest Asia 2024. You will be
-                the first to receive news and updates—including for the upcoming
-                <br></br>Coinfest Asia 2024.
+              <p className="font-figtree mt-4 px-0 text-base font-light text-black-900 sm:px-4 sm:text-lg">
+                Thank you for your enquiry for sponsorship. Please check your
+                inbox, you will receive an email within the next 2-3 minutes.
               </p>
+              <div className="mt-4">
+                <Link
+                  className={`relative mr-2 inline-flex w-[175px] items-center justify-center rounded-[14px] bg-primary px-3 py-4 font-bevietnamPro text-xs font-semibold text-black-900 outline-none last:mr-0 focus-visible:outline-none sm:px-6 sm:text-base`}
+                  href={"https://mail.google.com"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open Gmail
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -56,4 +66,4 @@ const SuccessModal = () => {
   );
 };
 
-export default SuccessModal;
+export default OpenGmailSuccessModal;

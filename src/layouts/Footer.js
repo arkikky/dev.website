@@ -41,7 +41,7 @@ const Footer = () => {
                         >
                           Flight Deals
                           <span
-                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-lg bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
                             role="tooltip"
                           >
                             Coming Soon
@@ -56,7 +56,7 @@ const Footer = () => {
                         >
                           Accomodation Deals
                           <span
-                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-lg bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
                             role="tooltip"
                           >
                             Coming Soon
@@ -66,12 +66,12 @@ const Footer = () => {
                       <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
                         <button
                           type="button"
-                          aria-label="menuGuide"
+                          aria-label="menuGuides"
                           className="hs-tooltip-toggle flex flex-row items-center font-bevietnamPro text-base font-light capitalize leading-[normal] text-black-900 outline-none focus-visible:outline-none group-hover:text-secondary group-hover:underline"
                         >
                           Guides
                           <span
-                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-lg bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
                             role="tooltip"
                           >
                             Coming Soon
@@ -106,26 +106,41 @@ const Footer = () => {
                       <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
                         <button
                           type="button"
-                          aria-label="menuGuide"
+                          aria-label="menuActivities"
                           className="hs-tooltip-toggle flex flex-row items-center font-bevietnamPro text-base font-light capitalize leading-[normal] text-black-900 outline-none focus-visible:outline-none group-hover:text-secondary group-hover:underline"
                         >
                           Activities
                           <span
-                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-lg bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
                             role="tooltip"
                           >
                             Coming Soon
                           </span>
                         </button>
                       </li>
-                      <li className="group mb-4 last:mb-0">
+                      <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
+                        <button
+                          type="button"
+                          aria-label="menuVenue"
+                          className="hs-tooltip-toggle flex flex-row items-center font-bevietnamPro text-base font-light capitalize leading-[normal] text-black-900 outline-none focus-visible:outline-none group-hover:text-secondary group-hover:underline"
+                        >
+                          Venue
+                          <span
+                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                            role="tooltip"
+                          >
+                            Coming Soon
+                          </span>
+                        </button>
+                      </li>
+                      {/* <li className="group mb-4 last:mb-0">
                         <Link
                           className="flex flex-row items-center font-bevietnamPro text-base font-light capitalize leading-[normal] text-black-900 outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none group-hover:text-secondary group-hover:underline"
                           href="/venue"
                         >
                           Venue
                         </Link>
-                      </li>
+                      </li> */}
                       {/* <li className="group mb-4 last:mb-0">
                         <Link
                           className="flex flex-row items-center text-black-900 group-hover:text-secondary font-bevietnamPro text-base font-light leading-[normal] capitalize group-hover:underline outline-none focus-visible:outline-none transition duration-[0.3s] ease-in-out"
@@ -191,7 +206,7 @@ const Footer = () => {
                         >
                           Map
                           <span
-                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-lg bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
                             role="tooltip"
                           >
                             Coming Soon
@@ -206,7 +221,7 @@ const Footer = () => {
                         >
                           Submit side event
                           <span
-                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-lg bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
                             role="tooltip"
                           >
                             Coming Soon
@@ -221,7 +236,7 @@ const Footer = () => {
                         >
                           Co-host a side event
                           <span
-                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-lg bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
                             role="tooltip"
                           >
                             Coming Soon
@@ -295,12 +310,23 @@ const Footer = () => {
                         >
                           2022
                           <svg
-                            className="ml-1 h-5 w-5 fill-current"
-                            viewBox="0 0 21 21"
+                            className="ml-1 h-5 w-5 stroke-current"
+                            viewBox="0 0 40 40"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                           >
-                            <path d="M9.43695 5.0791L9.43312 6.74577L13.2311 6.75465L5.22821 14.7415L6.40554 15.9212L14.4304 7.91247L14.4214 11.7575L16.088 11.7614L16.1036 5.09469L9.43695 5.0791Z" />
+                            <path
+                              d="M28.7507 25.4167V11.25H14.584"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d="M28.3333 11.6719L11.25 28.7552"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
                           </svg>
                         </Link>
                       </li>
@@ -313,12 +339,23 @@ const Footer = () => {
                         >
                           2023
                           <svg
-                            className="ml-1 h-5 w-5 fill-current"
-                            viewBox="0 0 21 21"
+                            className="ml-1 h-5 w-5 stroke-current"
+                            viewBox="0 0 40 40"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                           >
-                            <path d="M9.43695 5.0791L9.43312 6.74577L13.2311 6.75465L5.22821 14.7415L6.40554 15.9212L14.4304 7.91247L14.4214 11.7575L16.088 11.7614L16.1036 5.09469L9.43695 5.0791Z" />
+                            <path
+                              d="M28.7507 25.4167V11.25H14.584"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d="M28.3333 11.6719L11.25 28.7552"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
                           </svg>
                         </Link>
                       </li>
@@ -349,7 +386,7 @@ const Footer = () => {
                         >
                           Terms & Conditions
                           <span
-                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-[7px] inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
                             role="tooltip"
                           >
                             Coming Soon
@@ -364,7 +401,7 @@ const Footer = () => {
                         >
                           Privacy Policy
                           <span
-                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-[7px] inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
                             role="tooltip"
                           >
                             Coming Soon
@@ -379,7 +416,7 @@ const Footer = () => {
                         >
                           Gallery
                           <span
-                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-lg inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
+                            className="hs-tooltip-content bg-black-900 text-white font-bevietnamPro text-xs font-normal rounded-[7px] inline-block absolute py-1 px-2.5 hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity duration-[0.3s] ease-in-out invisible z-10"
                             role="tooltip"
                           >
                             Coming Soon

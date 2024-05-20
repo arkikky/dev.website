@@ -294,7 +294,7 @@ export const getStaticProps = async () => {
   );
 
   const isSponsor = await getFetch(
-    `/ca-24-sponsors?sort=rank:asc&populate=*&pagination[pageSize]=8`,
+    `/ca-24-sponsors?sort=rank:asc&populate=*&pagination[pageSize]=100`,
   );
 
   const isMediaPartner = await getFetch(

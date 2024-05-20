@@ -8,21 +8,21 @@ import Link from "next/link";
 const { publicRuntimeConfig } = getConfig();
 
 // @components
-import TredingCompetitionCard from "@components/UI/Card/TredingCompetitionCard";
+import HackathonCard from "@components/UI/Card/HackathonCard";
 
 // @layouts
 import BentoGridLayouts from "@layouts/BentoLayouts";
 import BannerFooter from "@layouts/Banner/BannerFooter";
 
-const TredingCompetition = () => {
+const Hackathon = () => {
   return (
     <>
       {/* @head */}
       <Head>
-        <title>{`Treding Competition | ${publicRuntimeConfig.siteTitle}`}</title>
+        <title>{`Hackathon | ${publicRuntimeConfig.siteTitle}`}</title>
         <meta
           name="title"
-          content={`Treding Competition | ${publicRuntimeConfig.siteTitle}`}
+          content={`Hackathon | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -31,7 +31,7 @@ const TredingCompetition = () => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Treding Competition | ${publicRuntimeConfig.siteTitle}`}
+          content={`Hackathon | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="og:description"
@@ -47,7 +47,7 @@ const TredingCompetition = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Treding Competition | ${publicRuntimeConfig.siteTitle}`}
+          content={`Hackathon | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"
@@ -60,10 +60,9 @@ const TredingCompetition = () => {
       </Head>
 
       {/* @main */}
-
       <BentoGridLayouts>
         <main className="relative">
-          <header className="ca2024BgLine relative mx-2 mb-[88px] mt-2 flex h-[796px] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-secondary sm:mx-5 sm:mt-5 sm:rounded-[26px] lg:h-[750px]">
+          <header className="ca2024BgLineBlack relative mx-2 mt-2 flex h-[796px] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-[#2B2B2B] sm:mx-5 sm:mt-5 sm:rounded-[26px] lg:h-[770px]">
             {/* @points(flower) */}
             <div className="absolute -left-[34px] bottom-0 right-auto top-auto z-px h-[201px] w-auto sm:-left-10 sm:h-[319px] lg:left-0 lg:h-[396px] xl:h-[576px]">
               <Image
@@ -86,9 +85,9 @@ const TredingCompetition = () => {
               />
             </div>
 
-            <div className="relative z-[5] -mt-[105px] flex w-full max-w-full flex-col text-center sm:max-w-[551px] lg:max-w-[711px]">
+            <div className="relative z-[5] -mt-[125px] flex w-full max-w-full flex-col text-center sm:max-w-[551px] lg:max-w-[711px]">
               <span className="mx-auto mb-4 inline-flex w-max flex-row items-center justify-center rounded-full border border-solid border-white bg-white/[0.07] px-3 py-2 font-bevietnamPro text-sm font-light text-white sm:mb-6">
-                Trading competition
+                Hackathon
               </span>
               <h1 className="font-staraExtraBold text-[40px] uppercase leading-[48px] text-white sm:text-[48px] sm:leading-[60px]">
                 Win a total prize of 1eth
@@ -117,34 +116,12 @@ const TredingCompetition = () => {
           </header>
 
           <div className="mx-4 sm:mx-5">
-            <div className="flex flex-col px-0 sm:px-9">
-              <h2 className="font-staraExtraBold text-[32px] uppercase leading-[38px] text-black-900 sm:text-[40px] sm:leading-[48px] lg:text-[48px] lg:leading-[60px]">
-                Trade and win xxx
-              </h2>
-              <p className="mt-2 font-bevietnamPro text-base font-light text-[#656565]/80 sm:mt-2 lg:text-xl">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna
-              </p>
-            </div>
-
-            <div className="relative mt-8 grid-cols-4 gap-x-4 gap-y-4 pb-20 supports-grid:grid sm:mt-15 sm:grid-cols-12 lg:grid-cols-12">
-              <div className="col-span-full sm:col-span-6 xl:col-span-4">
-                <TredingCompetitionCard images="/assets/images/activities/treding-competition/ca2024-Pintu.png" />
+            <div className="relative mt-6 grid-cols-4 gap-x-4 gap-y-4 pb-0 lg:pb-20 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+              <div className="col-span-full sm:col-span-6">
+                <HackathonCard />
               </div>
-              <div className="col-span-full sm:col-span-6 xl:col-span-4">
-                <TredingCompetitionCard images="/assets/images/activities/treding-competition/ca2024-Binance.png" />
-              </div>
-              <div className="col-span-full sm:col-span-6 xl:col-span-4">
-                <TredingCompetitionCard />
-              </div>
-              <div className="col-span-full sm:col-span-6 xl:col-span-4">
-                <TredingCompetitionCard />
-              </div>
-              <div className="col-span-full sm:col-span-6 xl:col-span-4">
-                <TredingCompetitionCard />
-              </div>
-              <div className="col-span-full sm:col-span-6 xl:col-span-4">
-                <TredingCompetitionCard />
+              <div className="col-span-full sm:col-span-6">
+                <HackathonCard />
               </div>
             </div>
           </div>
@@ -157,7 +134,7 @@ const TredingCompetition = () => {
   );
 };
 
-export default TredingCompetition;
+export default Hackathon;
 
 export const getStaticProps = async () => {
   try {
@@ -173,6 +150,6 @@ export const getStaticProps = async () => {
   }
 };
 
-TredingCompetition.getLayout = function PageLayout(page) {
+Hackathon.getLayout = function PageLayout(page) {
   return <>{page}</>;
 };

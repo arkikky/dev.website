@@ -20,6 +20,7 @@ import {
 
 // @components
 import SuccessModal from "@components/UI/Modal/SuccessModal";
+import OpenGmailSuccessModal from "@components/UI/Modal/OpenGmailSuccessModal";
 
 // @layouts
 import Layouts from "@layouts/Layouts";
@@ -151,6 +152,7 @@ const App = ({ Component, pageProps }) => {
 
         {/* @modal */}
         <SuccessModal />
+        <OpenGmailSuccessModal />
 
         {/* @backdrop (modal) */}
         <div id="bckdrpModalActve"></div>
@@ -169,6 +171,7 @@ const App = ({ Component, pageProps }) => {
 
         {/* @modal */}
         <SuccessModal />
+        <OpenGmailSuccessModal />
 
         {/* @backdrop (modal) */}
         <div id="bckdrpModalActve"></div>
