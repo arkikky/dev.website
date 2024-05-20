@@ -9,7 +9,7 @@ const { publicRuntimeConfig } = getConfig();
 import { getFetch } from "@lib/controller/API";
 
 // @components
-import PromoCode from "@components/UI/Modal/PromoCode";
+// import PromoCode from "@components/UI/Modal/PromoCode";
 
 // @layouts
 import Partner from "@layouts/Partner";

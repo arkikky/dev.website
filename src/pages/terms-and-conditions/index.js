@@ -8,7 +8,7 @@ const { publicRuntimeConfig } = getConfig();
 
 // @components
 import Container from "@components/Container";
-import PromoCode from "@components/UI/Modal/PromoCode";
+// import PromoCode from "@components/UI/Modal/PromoCode";
 
 // @layouts
 import BannerFooter from "@layouts/Banner/BannerFooter";

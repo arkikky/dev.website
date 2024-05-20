@@ -12,7 +12,7 @@ import { getFetch } from "@lib/controller/API";
 import Container from "@components/Container";
 import SpeakersCard from "@components/UI/Card/Speakers";
 import SpeakersModal from "@components/UI/Modal/SpeakersModal";
-import PromoCode from "@components/UI/Modal/PromoCode";
+// import PromoCode from "@components/UI/Modal/PromoCode";
 
 // @layouts
 import BannerFooter from "@layouts/Banner/BannerFooter";
