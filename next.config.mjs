@@ -21,7 +21,8 @@ const nextConfig = {
     siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
     siteAppName: process.env.NEXT_PUBLIC_SITE_APP_NAME,
     siteTitle: process.env.NEXT_PUBLIC_SITE_TITLE,
-    siteDesc: process.env.NEXT_PUBLIC_SITE_DESC,
+    siteDesc:
+      "Asia's largest Web3 festival. Where innovation meets adoption. BALI ☀️ 22-23 AUGUST 2024",
     author: process.env.NEXT_PUBLIC_AUTHOR,
     tags: process.env.NEXT_PUBLIC_TAGS,
     version: process.env.NEXT_PUBLIC_SITE_APP_VERSION,
