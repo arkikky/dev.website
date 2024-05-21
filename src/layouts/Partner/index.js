@@ -7,6 +7,7 @@ import BrandSponsor from "@components/UI/Card/BrandSponsor";
 
 const Partner = ({
   isLayoutShow = false,
+  isPage = false,
   dataSponsor,
   dataMediaPartner,
   dataComunitiesPartner,
@@ -20,7 +21,9 @@ const Partner = ({
   return (
     <>
       <Container>
-        <section className="relative flex flex-col items-center justify-center overflow-hidden">
+        <section
+          className={`relative flex flex-col items-center justify-center overflow-hidden ${isPage === true && "mb-20 sm:mb-0 xl:mb-14"}`}
+        >
           <div className="ca2024PartnersTitle flex flex-col items-start justify-start sm:items-center sm:justify-center sm:pr-0">
             <h2 className="font-staraExtraBold text-[32px] uppercase leading-[35px] text-black-900 sm:text-[58px] sm:leading-[74px] lg:text-[80px] lg:leading-[90px]">
               Partners

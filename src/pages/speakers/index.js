@@ -97,7 +97,7 @@ const Speakers = ({ speakers }) => {
       {/* @main */}
       <main className="relative pt-[129px] xl:pt-[139px] 2xl:pt-[185px]">
         <Container className="relative z-[5] overflow-hidden">
-          <div className="relative flex flex-col pb-28">
+          <div className="relative flex flex-col pb-20 sm:pb-0 xl:pb-28">
             <div className="flex flex-col items-center justify-center pr-0">
               <h1 className="font-staraExtraBold text-[32px] uppercase leading-[40px] text-black-900 sm:text-[58px] sm:leading-[74px] lg:text-[80px] lg:leading-[90px] xl:text-[72px] xl:leading-[86px] 2xl:text-[80px] 2xl:leading-[90px]">
                 Speakers

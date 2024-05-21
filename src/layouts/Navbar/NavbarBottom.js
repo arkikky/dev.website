@@ -355,7 +355,7 @@ const NavbarBottom = () => {
                 Enquire for Sponsorship
               </Link>
               <button
-                className={`ca2024BgOverflay relative mr-3 inline-flex cursor-pointer items-center justify-center rounded-[14px] bg-white px-3 py-4 font-bevietnamPro text-xs font-medium text-black-900 outline-none last:mr-0 focus-visible:outline-none sm:px-6 sm:text-base`}
+                className={`ca2024BgOverflay relative mr-3 hidden cursor-pointer items-center justify-center rounded-[14px] bg-white px-3 py-4 font-bevietnamPro text-xs font-medium text-black-900 outline-none last:mr-0 focus-visible:outline-none sm:px-6 sm:text-base xl:inline-flex`}
                 aria-label="Coinfest Asia 2024 (Tickets - Button PopUp Nav)"
                 aria-labelledby="Coinfest Asia 2024 (Tickets - Button PopUp Nav)"
                 onClick={(e) => {
@@ -364,6 +364,13 @@ const NavbarBottom = () => {
               >
                 Tickets
               </button>
+              <Link
+                className={`ca2024BgOverflay relative mr-3 inline-flex cursor-pointer items-center justify-center rounded-[14px] bg-white px-3 py-4 font-bevietnamPro text-xs font-medium text-black-900 outline-none last:mr-0 focus-visible:outline-none sm:px-6 sm:text-base xl:hidden`}
+                title="Coinfest Asia 2024 (Tickets)"
+                href={"https://ticket.coinfest.asia/"}
+              >
+                Tickets
+              </Link>
             </div>
           </div>
         </Container>

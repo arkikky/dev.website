@@ -69,6 +69,7 @@ const Partners = ({ sponsor, mediaPartner, comunitiesPartner }) => {
       {/* @main */}
       <main className="relative pt-[129px] xl:pt-[139px] 2xl:pt-[185px]">
         <Partner
+          isPage={true}
           dataSponsor={sponsor}
           dataMediaPartner={mediaPartner}
           dataComunitiesPartner={comunitiesPartner}
