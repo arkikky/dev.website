@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const TradingCompetitionCard = ({
   title = "",
-  images = "/assets/images/activities/treding-competition/ca2024-Bitwyre.png",
+  images = "/assets/images/activities/trading-competition/ca2024-Bitwyre.png",
   urlButton = "",
   labelButton = "Signup",
 }) => {

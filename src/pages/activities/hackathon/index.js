@@ -115,10 +115,13 @@ const Hackathon = () => {
             </div>
           </header>
 
-          <div className="mx-4 sm:mx-5">
-            <div className="relative mt-6 grid-cols-4 gap-x-4 gap-y-4 pb-0 lg:pb-20 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+          <div className="mx-2 sm:mx-5">
+            <div className="relative mt-4 grid-cols-4 gap-x-4 gap-y-4 pb-20 supports-grid:grid sm:mt-6 sm:grid-cols-12 sm:pb-0 lg:grid-cols-12 xl:pb-20">
               <div className="col-span-full sm:col-span-6">
-                <HackathonCard />
+                <HackathonCard
+                  images="/assets/images/activities/hackathon/ca2024BgLineBlack-ETHHackathonCard.png"
+                  colorButton="bg-black-900"
+                />
               </div>
               <div className="col-span-full sm:col-span-6">
                 <HackathonCard />

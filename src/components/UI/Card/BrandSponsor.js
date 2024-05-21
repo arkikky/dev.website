@@ -31,10 +31,9 @@ const BrandSponsor = ({
   }, [inView]);
 
   const isName = attributes ? attributes.name : "Google Cloud";
-  const isBrandLogo = attributes
-    ? process.env.NEXT_PUBLIC_UPLOAD + attributes.logo.data.attributes.url
-    : brandLogo
-      ? brandLogo
+  const isBrandLogo =
+    attributes.logo.data !== null
+      ? process.env.NEXT_PUBLIC_UPLOAD + attributes.logo.data.attributes.url
       : "/assets/images/sponsor/ca-GoogleCloud.svg";
 
   return (

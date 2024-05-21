@@ -63,7 +63,7 @@ const TradingCompetition = () => {
 
       <BentoGridLayouts>
         <main className="relative">
-          <header className="ca2024BgLine relative mx-2 mb-[88px] mt-2 flex h-[796px] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-secondary sm:mx-5 sm:mt-5 sm:rounded-[26px] lg:h-[750px]">
+          <header className="ca2024BgLine relative mx-2 mb-10 sm:mb-15 mt-2 flex h-[796px] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-secondary sm:mx-5 sm:mt-5 sm:rounded-[26px] lg:h-[750px] lg:mb-[88px]">
             {/* @points(flower) */}
             <div className="absolute -left-[34px] bottom-0 right-auto top-auto z-px h-[201px] w-auto sm:-left-10 sm:h-[319px] lg:left-0 lg:h-[396px] xl:h-[576px]">
               <Image
@@ -127,7 +127,7 @@ const TradingCompetition = () => {
               </p>
             </div>
 
-            <div className="relative mt-8 grid-cols-4 gap-x-4 gap-y-4 pb-20 supports-grid:grid sm:mt-15 sm:grid-cols-12 lg:grid-cols-12">
+            <div className="relative mt-8 grid-cols-4 gap-x-4 gap-y-4 pb-20 supports-grid:grid sm:mt-15 sm:grid-cols-12 sm:pb-0 lg:grid-cols-12 xl:pb-20">
               <div className="col-span-full sm:col-span-6 xl:col-span-4">
                 <TradingCompetitionCard images="/assets/images/activities/trading-competition/ca2024-Pintu.png" />
               </div>
