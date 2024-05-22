@@ -174,10 +174,10 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Speakers | ${publicRuntimeConfig.siteTitle}`}</title>
+        <title>{`Speakers | ${publicRuntimeConfig.siteDesc}`}</title>
         <meta
           name="title"
-          content={`Speakers | ${publicRuntimeConfig.siteTitle}`}
+          content={`Speakers | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -186,7 +186,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Speakers | ${publicRuntimeConfig.siteTitle}`}
+          content={`Speakers | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="og:description"
@@ -202,7 +202,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Speakers | ${publicRuntimeConfig.siteTitle}`}
+          content={`Speakers | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="twitter:description"

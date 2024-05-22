@@ -16,10 +16,10 @@ const GetInvolved = () => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Get Involved | ${publicRuntimeConfig.siteTitle}`}</title>
+        <title>{`Get Involved | ${publicRuntimeConfig.siteDesc}`}</title>
         <meta
           name="title"
-          content={`Get Involved | ${publicRuntimeConfig.siteTitle}`}
+          content={`Get Involved | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteUrl} />
 
@@ -28,7 +28,7 @@ const GetInvolved = () => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Get Involved | ${publicRuntimeConfig.siteTitle}`}
+          content={`Get Involved | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta property="og:description" content={publicRuntimeConfig.siteUrl} />
         <meta
@@ -41,7 +41,7 @@ const GetInvolved = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Get Involved | ${publicRuntimeConfig.siteTitle}`}
+          content={`Get Involved | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="twitter:description"

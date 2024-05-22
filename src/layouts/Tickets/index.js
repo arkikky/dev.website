@@ -38,7 +38,7 @@ const Tickets = () => {
                         src={
                           "/assets/images/backdrop/products/ca2024TicketsProduct.png"
                         }
-                        alt="Coinfest Asia 2024 (Festival — Super Early Bird)"
+                        alt="Coinfest Asia 2024 (Festival — Tickets)"
                         height={114}
                         width={42}
                         quality="87"
@@ -46,7 +46,7 @@ const Tickets = () => {
                     </div>
                     <div className="relative z-[5] flex flex-col">
                       <h3 className="z-[2] font-bevietnamPro text-base font-semibold sm:text-xl">
-                        Festival — Super Early Bird
+                        FESTIVAL TICKET
                       </h3>
                       <div className="flex flex-row">
                         <span className="sale-price z-[2] font-bevietnamPro text-base font-semibold sm:text-xl">
@@ -63,12 +63,12 @@ const Tickets = () => {
                     <ul>
                       <li>2-day pass to Coinfest Asia main venue</li>
                       <li>
-                        {`Access to main stage’s panel discussions &amp;
+                        {`Access to main stage’s panel discussions
                         conferences`}
                       </li>
                       <li>Direct networking with Speakers at Breakout Area</li>
                       <li>Access to workshops, meetups, and side sessions</li>
-                      <li>{`Light food &amp; beverage for 2 days`}</li>
+                      <li>{`Light food beverage for 2 days`}</li>
                       <li>Access to selected Coinfest Week events</li>
                       <li>Access to Official Networking Party</li>
                     </ul>

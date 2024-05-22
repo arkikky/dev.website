@@ -22,7 +22,7 @@ const Speakers = ({ children }) => {
           <div className="mt-18 flex w-full flex-col items-center justify-center">
             <Link
               className="mdlBtnNewsletter relative inline-flex w-full max-w-max cursor-pointer items-center justify-center rounded-[14px] bg-primary px-6 py-4 font-bevietnamPro text-sm font-medium text-black-900 outline-none focus-visible:outline-none sm:text-xl xl:px-8"
-              href={"/get-involved/speakers"}
+              href={"/speakers"}
             >
               And many more!
             </Link>

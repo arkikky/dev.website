@@ -164,10 +164,10 @@ const MediaPartnerGetInvolved = ({ ipAddrs, formMediaPartner }) => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Media Partner | ${publicRuntimeConfig.siteTitle}`}</title>
+        <title>{`Media Partner | ${publicRuntimeConfig.siteDesc}`}</title>
         <meta
           name="title"
-          content={`Media Partner | ${publicRuntimeConfig.siteTitle}`}
+          content={`Media Partner | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -176,7 +176,7 @@ const MediaPartnerGetInvolved = ({ ipAddrs, formMediaPartner }) => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Media Partner | ${publicRuntimeConfig.siteTitle}`}
+          content={`Media Partner | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="og:description"
@@ -192,7 +192,7 @@ const MediaPartnerGetInvolved = ({ ipAddrs, formMediaPartner }) => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Media Partner | ${publicRuntimeConfig.siteTitle}`}
+          content={`Media Partner | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="twitter:description"

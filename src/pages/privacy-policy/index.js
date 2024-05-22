@@ -18,10 +18,10 @@ const PrivacyPolicy = () => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Privacy Policy | ${publicRuntimeConfig.siteTitle}`}</title>
+        <title>{`Privacy Policy | ${publicRuntimeConfig.siteDesc}`}</title>
         <meta
           name="title"
-          content={`Privacy Policy | ${publicRuntimeConfig.siteTitle}`}
+          content={`Privacy Policy | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -30,7 +30,7 @@ const PrivacyPolicy = () => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Privacy Policy | ${publicRuntimeConfig.siteTitle}`}
+          content={`Privacy Policy | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="og:description"
@@ -46,7 +46,7 @@ const PrivacyPolicy = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Privacy Policy | ${publicRuntimeConfig.siteTitle}`}
+          content={`Privacy Policy | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="twitter:description"

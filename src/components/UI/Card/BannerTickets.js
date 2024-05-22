@@ -14,9 +14,9 @@ const BannerTickets = ({ rounded = true, mobile = false }) => {
         }`}
       >
         <div className="relative z-[5] flex flex-col">
-          <h2 className="font-staraBold text-2xl uppercase text-black-900">
+          <span className="font-staraBold text-2xl uppercase text-black-900">
             GET YOUR TICKETS NOW
-          </h2>
+          </span>
           <div className="relative mt-4 grid-cols-4 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-6">
               <SmallTickets
