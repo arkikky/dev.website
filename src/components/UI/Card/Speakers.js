@@ -84,7 +84,7 @@ const SpeakersCard = ({ attributes = {}, useHeading = "h3", children }) => {
           ></div>
 
           {/* @btn (modal) */}
-          <span className="absolute bottom-auto left-auto right-3 top-3 z-10 flex h-10 w-10 flex-col items-center justify-center rounded-xl bg-white opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 sm:right-4 sm:top-4">
+          <span className="absolute bottom-auto left-auto right-3 top-3 z-[24] flex h-10 w-10 flex-col items-center justify-center rounded-xl bg-white opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 sm:right-4 sm:top-4">
             <svg
               className="h-6 w-6"
               viewBox="0 0 24 24"

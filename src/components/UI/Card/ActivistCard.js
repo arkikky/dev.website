@@ -1,5 +1,4 @@
 import React from "react";
-import { useInView } from "react-intersection-observer";
 import Link from "next/link";
 
 // @components
@@ -11,16 +10,10 @@ const ActivistCard = ({
   url = "",
   type = "default",
 }) => {
-  const { ref, inView, entry } = useInView({
-    /* Optional options */
-    threshold: 0,
-  });
-
   return (
     <>
       {type === "default" && (
         <Link
-          ref={ref}
           href={url}
           className={`group relative h-[134px] w-full ${url !== "" ? "cursor-pointer" : "cursor-default"} overflow-hidden rounded-xl sm:h-[193px] sm:rounded-2xl lg:h-[206px] lg:w-[305px] xl:w-[311px]`}
         >
@@ -73,7 +66,6 @@ const ActivistCard = ({
 
       {type === "open" && (
         <Link
-          ref={ref}
           href={url}
           className="group relative h-[134px] w-full cursor-default overflow-hidden rounded-xl sm:h-[193px] sm:rounded-2xl lg:h-[206px] lg:w-[305px] xl:w-[311px]"
           target="_blank"

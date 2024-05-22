@@ -23,7 +23,7 @@ const Activist = () => {
 
         {/* @content */}
         <Container className={"z-[6]"}>
-          <div className="flex flex-col pb-24 pt-[209px] text-start">
+          <div className="flex flex-col pb-[144px] pt-[189px] text-start">
             <h2 className="font-staraExtraBold text-[32px] uppercase leading-[40px] text-white xs:text-[42px] xs:leading-[50px] sm:text-[58px] sm:leading-[74px] lg:text-[80px] lg:leading-[90px]">
               The coinfest experience
             </h2>
