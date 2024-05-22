@@ -115,7 +115,7 @@ const Speakers = ({ speakers }) => {
                 >
                   <button
                     id={`mdlBtnSpeakers`}
-                    className="mdlBtnSpeakers z-[22] w-full min-w-full outline-none focus-visible:outline-none"
+                    className="mdlBtnSpeakers w-full min-w-full outline-none focus-visible:outline-none"
                     aria-label={`${gtRslt.attributes.name} - (Button Modal Speakers)`}
                     aria-labelledby={`${gtRslt.attributes.name} - (Button Modal Speakers)`}
                     data-hs-overlay={`#mdlSpeakers`}
