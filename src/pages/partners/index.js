@@ -29,8 +29,11 @@ const Partners = ({ sponsor, mediaPartner, comunitiesPartner }) => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Partners | ${publicRuntimeConfig.siteTitle}`}</title>
-        <meta name="title" content={`${publicRuntimeConfig.siteTitle}`} />
+        <title>{`Partners | ${publicRuntimeConfig.siteDesc}`}</title>
+        <meta
+          name="title"
+          content={`Partners | ${publicRuntimeConfig.siteDesc}`}
+        />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
         {/* Open Graph / Facebook */}
@@ -38,7 +41,7 @@ const Partners = ({ sponsor, mediaPartner, comunitiesPartner }) => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Partners | ${publicRuntimeConfig.siteTitle}`}
+          content={`Partners | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="og:description"
@@ -54,7 +57,7 @@ const Partners = ({ sponsor, mediaPartner, comunitiesPartner }) => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Partners | ${publicRuntimeConfig.siteTitle}`}
+          content={`Partners | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="twitter:description"

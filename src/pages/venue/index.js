@@ -18,10 +18,10 @@ const Venue = () => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Venue | ${publicRuntimeConfig.siteTitle}`}</title>
+        <title>{`Venue | ${publicRuntimeConfig.siteDesc}`}</title>
         <meta
           name="title"
-          content={`Venue | ${publicRuntimeConfig.siteTitle}`}
+          content={`Venue | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -30,7 +30,7 @@ const Venue = () => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Venue | ${publicRuntimeConfig.siteTitle}`}
+          content={`Venue | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="og:description"
@@ -46,7 +46,7 @@ const Venue = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Venue | ${publicRuntimeConfig.siteTitle}`}
+          content={`Venue | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="twitter:description"

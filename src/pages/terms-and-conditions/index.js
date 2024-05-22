@@ -18,10 +18,10 @@ const TermAndConditions = () => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}</title>
+        <title>{`Terms & Conditions | ${publicRuntimeConfig.siteDesc}`}</title>
         <meta
           name="title"
-          content={`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}
+          content={`Terms & Conditions | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -30,7 +30,7 @@ const TermAndConditions = () => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}
+          content={`Terms & Conditions | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="og:description"
@@ -46,7 +46,7 @@ const TermAndConditions = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}
+          content={`Terms & Conditions | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="twitter:description"

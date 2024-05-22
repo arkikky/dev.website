@@ -19,10 +19,10 @@ const TradingCompetition = () => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Trading Competition | ${publicRuntimeConfig.siteTitle}`}</title>
+        <title>{`Trading Competition | ${publicRuntimeConfig.siteDesc}`}</title>
         <meta
           name="title"
-          content={`Trading Competition | ${publicRuntimeConfig.siteTitle}`}
+          content={`Trading Competition | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -31,7 +31,7 @@ const TradingCompetition = () => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Trading Competition | ${publicRuntimeConfig.siteTitle}`}
+          content={`Trading Competition | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="og:description"
@@ -47,7 +47,7 @@ const TradingCompetition = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Trading Competition | ${publicRuntimeConfig.siteTitle}`}
+          content={`Trading Competition | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="twitter:description"
@@ -63,7 +63,7 @@ const TradingCompetition = () => {
 
       <BentoGridLayouts>
         <main className="relative">
-          <header className="ca2024BgLine relative mx-2 mb-10 sm:mb-15 mt-2 flex h-[796px] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-secondary sm:mx-5 sm:mt-5 sm:rounded-[26px] lg:h-[750px] lg:mb-[88px]">
+          <header className="ca2024BgLine relative mx-2 mb-10 mt-2 flex h-[796px] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-secondary sm:mx-2.5 sm:mb-15 sm:mt-3.5 sm:rounded-[26px] lg:mx-5 lg:mb-[88px] lg:mt-5 lg:h-[750px]">
             {/* @points(flower) */}
             <div className="absolute -left-[34px] bottom-0 right-auto top-auto z-px h-[201px] w-auto sm:-left-10 sm:h-[319px] lg:left-0 lg:h-[396px] xl:h-[576px]">
               <Image
@@ -116,8 +116,8 @@ const TradingCompetition = () => {
             </div>
           </header>
 
-          <div className="mx-4 sm:mx-5">
-            <div className="flex flex-col px-0 sm:px-9">
+          <div className="mx-2 sm:mx-2.5 lg:mx-5">
+            <div className="flex flex-col px-5 sm:px-9">
               <h2 className="font-staraExtraBold text-[32px] uppercase leading-[38px] text-black-900 sm:text-[40px] sm:leading-[48px] lg:text-[48px] lg:leading-[60px]">
                 Trade and win xxx
               </h2>

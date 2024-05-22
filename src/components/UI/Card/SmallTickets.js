@@ -17,9 +17,9 @@ const SmallTickets = ({
         } relative overflow-hidden px-4.5 py-4`}
       >
         <div className="relative z-[5] flex flex-row items-center justify-between">
-          <h3 className="w-full max-w-[176px] font-staraBold text-[28px] uppercase leading-[28px] text-white">
+          <span className="w-full max-w-[176px] font-staraBold text-[28px] uppercase leading-[28px] text-white">
             {title}
-          </h3>
+          </span>
           <span className="font-staraSemiBold text-[28px] uppercase leading-[28px] text-white">
             ${price}
           </span>

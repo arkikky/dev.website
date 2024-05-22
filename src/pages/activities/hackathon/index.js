@@ -19,10 +19,10 @@ const Hackathon = () => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Hackathon | ${publicRuntimeConfig.siteTitle}`}</title>
+        <title>{`Hackathon | ${publicRuntimeConfig.siteDesc}`}</title>
         <meta
           name="title"
-          content={`Hackathon | ${publicRuntimeConfig.siteTitle}`}
+          content={`Hackathon | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -31,7 +31,7 @@ const Hackathon = () => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Hackathon | ${publicRuntimeConfig.siteTitle}`}
+          content={`Hackathon | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="og:description"
@@ -47,7 +47,7 @@ const Hackathon = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Hackathon | ${publicRuntimeConfig.siteTitle}`}
+          content={`Hackathon | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="twitter:description"
@@ -62,7 +62,7 @@ const Hackathon = () => {
       {/* @main */}
       <BentoGridLayouts>
         <main className="relative">
-          <header className="ca2024BgLineBlack relative mx-2 mt-2 flex h-[796px] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-[#2B2B2B] sm:mx-5 sm:mt-5 sm:rounded-[26px] lg:h-[770px]">
+          <header className="ca2024BgLineBlack relative mx-2 mt-2 flex h-[796px] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-[#2B2B2B] sm:mx-2.5 sm:mt-3.5 sm:rounded-[26px] lg:mx-5 lg:mt-5 lg:h-[770px]">
             {/* @points(flower) */}
             <div className="absolute -left-[34px] bottom-0 right-auto top-auto z-px h-[201px] w-auto sm:-left-10 sm:h-[319px] lg:left-0 lg:h-[396px] xl:h-[576px]">
               <Image
@@ -115,7 +115,7 @@ const Hackathon = () => {
             </div>
           </header>
 
-          <div className="mx-2 sm:mx-5">
+          <div className="mx-2 sm:mx-2.5 lg:mx-5">
             <div className="relative mt-4 grid-cols-4 gap-x-4 gap-y-4 pb-20 supports-grid:grid sm:mt-6 sm:grid-cols-12 sm:pb-0 lg:grid-cols-12 xl:pb-20">
               <div className="col-span-full sm:col-span-6">
                 <HackathonCard

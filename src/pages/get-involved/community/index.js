@@ -159,10 +159,10 @@ const CommunityGetInvolved = ({ ipAddrs, formCommunity }) => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Community | ${publicRuntimeConfig.siteTitle}`}</title>
+        <title>{`Community | ${publicRuntimeConfig.siteDesc}`}</title>
         <meta
           name="title"
-          content={`Community | ${publicRuntimeConfig.siteTitle}`}
+          content={`Community | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteUrl} />
 
@@ -171,7 +171,7 @@ const CommunityGetInvolved = ({ ipAddrs, formCommunity }) => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Community | ${publicRuntimeConfig.siteTitle}`}
+          content={`Community | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta property="og:description" content={publicRuntimeConfig.siteUrl} />
         <meta
@@ -184,7 +184,7 @@ const CommunityGetInvolved = ({ ipAddrs, formCommunity }) => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Community | ${publicRuntimeConfig.siteTitle}`}
+          content={`Community | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="twitter:description"

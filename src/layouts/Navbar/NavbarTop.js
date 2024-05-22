@@ -34,7 +34,7 @@ const NavbarTop = ({
     <>
       <section
         id="ca2024NavTop"
-        className={`fixed inset-x-0 bottom-auto ${isNavScroll === true ? "top-4 sm:top-4" : typeLayouts === "bento-grid" ? "top-4 sm:top-12" : "top-4"} z-sm mix-blend-difference ${type === "default" ? "px-0" : "px-4 sm:px-11"} transition-all ease-in`}
+        className={`fixed inset-x-0 bottom-auto ${isNavScroll === true ? "top-4 sm:top-4" : typeLayouts === "bento-grid" ? "top-4 sm:top-8 lg:top-10 xl:top-12" : "top-4"} z-sm mix-blend-difference ${type === "default" ? "px-0" : "px-4 sm:px-11"} transition-all ease-in`}
       >
         {type === "default" ? (
           <>
