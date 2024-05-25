@@ -216,7 +216,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
 
       {/* @main */}
       <PartnershipLayouts
-        title="Coinfest asia 2024 Community inquiry"
+        title="Coinfest asia 2024 Speaker inquiry"
         btnBack={true}
         urlBack={"/get-involved"}
       >

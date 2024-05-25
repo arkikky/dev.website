@@ -8,7 +8,6 @@ const { publicRuntimeConfig } = getConfig();
 
 // @components
 import Container from "@components/Container";
-// import PromoCode from "@components/UI/Modal/PromoCode";
 
 // @layouts
 import BannerFooter from "@layouts/Banner/BannerFooter";
@@ -475,9 +474,6 @@ const TermAndConditions = () => {
 
         {/* @banner-footer */}
         <BannerFooter />
-
-        {/* @promo-code(popup) */}
-        {/* <PromoCode /> */}
       </main>
     </>
   );

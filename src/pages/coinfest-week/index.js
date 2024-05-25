@@ -18,14 +18,6 @@ import BannerFooter from "@layouts/Banner/BannerFooter";
 const CoinfestWeek = ({ result }) => {
   const [isCoinfestWeek, setCoinfestWeek] = useState(result);
 
-  // @use-effect
-  // useEffect(() => {
-
-  //   return () => {
-  //     undefined;
-  //   };
-  // }, []);
-
   return (
     <>
       {/* @head */}

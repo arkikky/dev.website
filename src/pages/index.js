@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import getConfig from "next/config";
+import Script from "next/script";
 import Head from "next/head";
-// import Image from "next/image";
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
@@ -13,7 +13,6 @@ import { getFetchUrl, getFetch } from "@lib/controller/API";
 import SectionInnerSplit from "@components/SectionInnerSplit";
 import SpeakersCard from "@components/UI/Card/Speakers";
 import SpeakersModal from "@components/UI/Modal/SpeakersModal";
-// import PromoCode from "@components/UI/Modal/PromoCode";
 
 // @layouts
 import NavbarTop from "@layouts/Navbar/NavbarTop";
@@ -39,19 +38,6 @@ const Home = ({ ipAddress, speaker, partners }) => {
   const [isSpeakers, setSpeakers] = useState(speaker);
   const [isSpeakersModal, setSpeakersModal] = useState(null);
   // const [isSocialMentions, setSocialMentions] = useState(socialMentions);
-
-  // @import-smoothscroll(module)
-  useEffect(() => {
-    import("locomotive-scroll").then((locomotiveModule) => {
-      const locoScroll = new locomotiveModule.default({
-        smooth: true,
-      });
-    });
-
-    return () => {
-      undefined;
-    };
-  }, []);
 
   // @preline (Add Plugins)
   useEffect(() => {
@@ -112,12 +98,71 @@ const Home = ({ ipAddress, speaker, partners }) => {
   //   };
   // }, []);
 
+  // @schema
+  const schmaApp = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${publicRuntimeConfig.siteUrl}/#website`,
+        url: `${publicRuntimeConfig.siteUrl}`,
+        name: `${publicRuntimeConfig.siteAppName}`,
+        alternateName: `${publicRuntimeConfig.siteAppName}`,
+        description: `${publicRuntimeConfig.siteDesc}`,
+        potentialAction: [
+          {
+            "@type": "SearchAction",
+            target: "https://coinfest.asia/?s={search_term_string}",
+            "query-input": "required name=search_term_string",
+          },
+        ],
+        inLanguage: "en-US",
+      },
+      {
+        "@type": "ImageObject",
+        "@id": `${publicRuntimeConfig.siteUrl}/#primaryimage`,
+        inLanguage: "en-US",
+        url: `${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`,
+        width: 1200,
+        height: 628,
+        caption: `${publicRuntimeConfig.siteAppName} | ${publicRuntimeConfig.siteDesc}`,
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${publicRuntimeConfig.siteUrl}/#webpage`,
+        url: `${publicRuntimeConfig.siteUrl}`,
+        name: `${publicRuntimeConfig.siteAppName}`,
+        isPartOf: {
+          "@id": `${publicRuntimeConfig.siteUrl}/#website`,
+        },
+        primaryImageOfPage: {
+          "@id": `${publicRuntimeConfig.siteUrl}/#primaryimage`,
+        },
+        datePublished: "2023-03-16T09:45:42+00:00",
+        dateModified: "2023-03-21T09:14:35+00:00",
+        description: `${publicRuntimeConfig.siteDesc}`,
+        inLanguage: "en-US",
+      },
+    ],
+  };
+
+  // @schema(brand-logo)
+  const schmaBrandLogo = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    url: `${publicRuntimeConfig.siteUrl}`,
+    logo: `${process.env.NEXT_PUBLIC_UPLOAD}/uploads/favicon_512x512_46eb72a111.png`,
+  };
+
   return (
     <>
       {/* @head */}
       <Head>
-        <title>{`${publicRuntimeConfig.siteTitle}`}</title>
-        <meta name="title" content={`${publicRuntimeConfig.siteTitle}`} />
+        <title>{`${publicRuntimeConfig.siteTitle} | ${publicRuntimeConfig.siteDesc}`}</title>
+        <meta
+          name="title"
+          content={`${publicRuntimeConfig.siteTitle} | ${publicRuntimeConfig.siteDesc}`}
+        />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
         {/* Open Graph / Facebook */}
@@ -125,7 +170,7 @@ const Home = ({ ipAddress, speaker, partners }) => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`${publicRuntimeConfig.siteTitle}`}
+          content={`${publicRuntimeConfig.siteTitle} | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="og:description"
@@ -141,7 +186,7 @@ const Home = ({ ipAddress, speaker, partners }) => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`${publicRuntimeConfig.siteTitle}`}
+          content={`${publicRuntimeConfig.siteTitle} | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="twitter:description"
@@ -152,6 +197,14 @@ const Home = ({ ipAddress, speaker, partners }) => {
           content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
         />
       </Head>
+
+      {/* @schema(applications) */}
+      <Script type="application/ld+json">{JSON.stringify(schmaApp)}</Script>
+
+      {/* @schema(brand-logo) */}
+      <Script type="application/ld+json">
+        {JSON.stringify(schmaBrandLogo)}
+      </Script>
 
       {/* @navbar(top) */}
       <NavbarTop />
@@ -274,9 +327,6 @@ const Home = ({ ipAddress, speaker, partners }) => {
 
         {/* @speakers-modal */}
         <SpeakersModal {...isSpeakersModal} />
-
-        {/* @promo-code(popup) */}
-        {/* <PromoCode /> */}
       </main>
     </>
   );

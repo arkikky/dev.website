@@ -207,12 +207,12 @@ const NavbarBottom = () => {
             rounded={false}
             options={[
               {
-                label: "Sponsors",
+                label: "Sponsor",
                 url: "/get-involved/sponsorship",
                 type: "page",
               },
               {
-                label: "Speakers Inquiries",
+                label: "Speaker Inquiries",
                 url: "/get-involved/speakers",
                 type: "page",
               },
@@ -283,7 +283,7 @@ const NavbarBottom = () => {
               <ul className="menu menu-row hidden">
                 <li>
                   <Link className="text-white" href={"/speakers"}>
-                    Speaker
+                    Speakers
                   </Link>
                 </li>
                 <li>

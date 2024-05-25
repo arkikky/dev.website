@@ -1,19 +1,24 @@
-import React, { useEffect } from "react";
+import React from "react";
 import getConfig from "next/config";
 import Head from "next/head";
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
 
-const Activities = (props) => {
+// @layouts
+import NavbarTop from "@layouts/Navbar/NavbarTop";
+import NavbarBottom from "@layouts/Navbar/NavbarBottom";
+import Activist from "@layouts/Activist";
+
+const Activities = () => {
   return (
     <>
       {/* @head */}
       <Head>
-        <title>{`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}</title>
+        <title>{`Activities | ${publicRuntimeConfig.siteDesc}`}</title>
         <meta
           name="title"
-          content={`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}
+          content={`Activities | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -22,7 +27,7 @@ const Activities = (props) => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}
+          content={`Activities | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="og:description"
@@ -38,7 +43,7 @@ const Activities = (props) => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}
+          content={`Activities | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="twitter:description"
@@ -50,9 +55,22 @@ const Activities = (props) => {
         />
       </Head>
 
-      <main>awdaw</main>
+      {/* @navbar(top) */}
+      <NavbarTop />
+
+      {/* @navbar(bottom) */}
+      <NavbarBottom />
+
+      <main className="relative">
+        {/* @activist */}
+        <Activist page={true} />
+      </main>
     </>
   );
 };
 
 export default Activities;
+
+Activities.getLayout = function PageLayout(page) {
+  return <>{page}</>;
+};

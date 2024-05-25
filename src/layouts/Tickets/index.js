@@ -46,7 +46,7 @@ const Tickets = () => {
                     </div>
                     <div className="relative z-[5] flex flex-col">
                       <h3 className="z-[2] font-bevietnamPro text-base font-semibold sm:text-xl">
-                        FESTIVAL TICKET
+                        Festival Ticket
                       </h3>
                       <div className="flex flex-row">
                         <span className="sale-price z-[2] font-bevietnamPro text-base font-semibold sm:text-xl">

@@ -19,10 +19,10 @@ const NotFound = () => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Page Not Found! | ${publicRuntimeConfig.siteTitle}`}</title>
+        <title>{`Page Not Found! | ${publicRuntimeConfig.siteDesc}`}</title>
         <meta
           name="title"
-          content={`Page Not Found! | ${publicRuntimeConfig.siteTitle}`}
+          content={`Page Not Found! | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -31,7 +31,7 @@ const NotFound = () => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Page Not Found! | ${publicRuntimeConfig.siteTitle}`}
+          content={`Page Not Found! | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="og:description"
@@ -47,7 +47,7 @@ const NotFound = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Page Not Found! | ${publicRuntimeConfig.siteTitle}`}
+          content={`Page Not Found! | ${publicRuntimeConfig.siteDesc}`}
         />
         <meta
           property="twitter:description"

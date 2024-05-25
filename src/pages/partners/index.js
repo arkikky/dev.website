@@ -8,9 +8,6 @@ const { publicRuntimeConfig } = getConfig();
 // @controller
 import { getFetch } from "@lib/controller/API";
 
-// @components
-// import PromoCode from "@components/UI/Modal/PromoCode";
-
 // @layouts
 import Partner from "@layouts/Partner";
 import BannerFooter from "@layouts/Banner/BannerFooter";
@@ -80,9 +77,6 @@ const Partners = ({ sponsor, mediaPartner, comunitiesPartner }) => {
 
         {/* @banner-footer */}
         <BannerFooter />
-
-        {/* @promo-code(popup) */}
-        {/* <PromoCode /> */}
       </main>
     </>
   );

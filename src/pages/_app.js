@@ -51,6 +51,29 @@ const ca2024Head = () => {
         <meta name="apple-mobile-web-app-status-bar-style" content="#2458F4" />
         <link rel="manifest" href="/manifest.json" />
 
+        {/* @twitter-pixel */}
+        <Script
+          id="ca24TwitterPixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(e,t,n,s,u,a){
+                e.twq||(s=e.twq=function(){
+                  s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+                },
+                s.version='1.1',
+                s.queue=[],
+                u=t.createElement(n),
+                u.async=!0,
+                u.src='https://static.ads-twitter.com/uwt.js',
+                a=t.getElementsByTagName(n)[0],
+                a.parentNode.insertBefore(u,a))
+              }(window,document,'script');
+              twq('config','o9kyj');
+            `,
+          }}
+        />
+
         {/* @google-tags */}
         <Script id="google-ads" strategy="afterInteractive" src={gtagAdsUrl} />
         <Script
@@ -87,17 +110,17 @@ const App = ({ Component, pageProps }) => {
   };
 
   // @import-smoothscroll(module)
-  useEffect(() => {
-    import("locomotive-scroll").then((locomotiveModule) => {
-      const locoScroll = new locomotiveModule.default({
-        smooth: true,
-      });
-    });
+  // useEffect(() => {
+  //   import("locomotive-scroll").then((locomotiveModule) => {
+  //     const locoScroll = new locomotiveModule.default({
+  //       smooth: true,
+  //     });
+  //   });
 
-    return () => {
-      undefined;
-    };
-  }, []);
+  //   return () => {
+  //     undefined;
+  //   };
+  // }, []);
 
   // @preline (Add Plugins)
   useEffect(() => {
@@ -114,6 +137,28 @@ const App = ({ Component, pageProps }) => {
 
     return () => {
       undefined;
+    };
+  }, []);
+
+  // @twitter-pixel
+  useEffect(() => {
+    // Add Twitter Pixel script to the head
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://static.ads-twitter.com/uwt.js";
+    document.head.appendChild(script);
+
+    // Initialize Twitter Pixel
+    window.twq ||
+      (window.twq = function () {
+        twq.exe ? twq.exe.apply(twq, arguments) : twq.queue.push(arguments);
+      });
+    twq.version = "1.1";
+    twq.queue = [];
+    twq("config", "o9kyj");
+
+    return () => {
+      document.head.removeChild(script);
     };
   }, []);
 
