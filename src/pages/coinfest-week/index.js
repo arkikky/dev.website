@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
 import getConfig from "next/config";
 import Head from "next/head";
@@ -126,13 +126,17 @@ const CoinfestWeek = ({ result }) => {
 
           <div className="mx-2 sm:mx-2.5 lg:mx-5">
             {isCoinfestWeek.map((getDateWeek, i) => (
-              <div id={`day${i + 1}`} className="relative" key={i}>
-                <div className="sticky -bottom-4 top-[162px] z-50 w-full rounded-xl bg-[#EEEEEE] px-4 py-4 sm:relative sm:bottom-auto sm:top-0 sm:px-6 sm:py-6">
-                  <span className="text-base sm:text-xl">
+              <div
+                id={`day${i + 1}`}
+                className="relative mt-6 first:mt-0"
+                key={i}
+              >
+                <div className="sticky -bottom-4 top-[100px] z-50 w-full rounded-xl bg-primary px-4 py-4 sm:relative sm:bottom-auto sm:top-0 sm:px-6 sm:py-6">
+                  <h2 className="text-base sm:text-xl">
                     {dayjs(getDateWeek.date).format("DD MMMM YYYY")}
-                  </span>
+                  </h2>
                 </div>
-                <div className="mt-6 grid-cols-1 gap-x-6 gap-y-0 supports-grid:grid sm:mt-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4">
+                <div className="mt-6 grid-cols-1 gap-x-6 gap-y-4 supports-grid:grid sm:mt-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4">
                   {getDateWeek.attributes.map((getData, index) => (
                     <div key={index} className="flex flex-col">
                       <CoinfestWeekCard
@@ -146,8 +150,8 @@ const CoinfestWeek = ({ result }) => {
                               getData.attributes.banner.data.attributes.url
                             : ""
                         }
-                        rsvp={getData.attributes.rsvpLink}
                         labelRsvp={getData.attributes.buttonCopy}
+                        rsvpUrl={getData.attributes.rsvpLink}
                         headline={
                           "Bites, Brews, and Blockchain: Web3 Networking Event by AWS"
                         }
@@ -204,7 +208,7 @@ export const getStaticProps = async () => {
         result: groupArrays,
       },
 
-      revalidate: 60,
+      revalidate: 1800,
     };
   } catch (err) {
     return {

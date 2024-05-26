@@ -52,7 +52,7 @@ const ca2024Head = () => {
         <link rel="manifest" href="/manifest.json" />
 
         {/* @twitter-pixel */}
-        <Script
+        {/* <Script
           id="ca24TwitterPixel"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -72,7 +72,7 @@ const ca2024Head = () => {
               twq('config','o9kyj');
             `,
           }}
-        />
+        /> */}
 
         {/* @google-tags */}
         <Script id="google-ads" strategy="afterInteractive" src={gtagAdsUrl} />
@@ -141,26 +141,26 @@ const App = ({ Component, pageProps }) => {
   }, []);
 
   // @twitter-pixel
-  useEffect(() => {
-    // Add Twitter Pixel script to the head
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "https://static.ads-twitter.com/uwt.js";
-    document.head.appendChild(script);
+  // useEffect(() => {
+  //   // Add Twitter Pixel script to the head
+  //   const script = document.createElement("script");
+  //   script.async = true;
+  //   script.src = "https://static.ads-twitter.com/uwt.js";
+  //   document.head.appendChild(script);
 
-    // Initialize Twitter Pixel
-    window.twq ||
-      (window.twq = function () {
-        twq.exe ? twq.exe.apply(twq, arguments) : twq.queue.push(arguments);
-      });
-    twq.version = "1.1";
-    twq.queue = [];
-    twq("config", "o9kyj");
+  //   // Initialize Twitter Pixel
+  //   window.twq ||
+  //     (window.twq = function () {
+  //       twq.exe ? twq.exe.apply(twq, arguments) : twq.queue.push(arguments);
+  //     });
+  //   twq.version = "1.1";
+  //   twq.queue = [];
+  //   twq("config", "o9kyj");
 
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, []);
+  //   return () => {
+  //     document.head.removeChild(script);
+  //   };
+  // }, []);
 
   // @modal
   // useEffect(() => {

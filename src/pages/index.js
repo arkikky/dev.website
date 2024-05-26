@@ -138,8 +138,8 @@ const Home = ({ ipAddress, speaker, partners }) => {
         primaryImageOfPage: {
           "@id": `${publicRuntimeConfig.siteUrl}/#primaryimage`,
         },
-        datePublished: "2023-03-16T09:45:42+00:00",
-        dateModified: "2023-03-21T09:14:35+00:00",
+        datePublished: "2024-01-16T09:45:42+00:00",
+        dateModified: "2024-01-21T09:14:35+00:00",
         description: `${publicRuntimeConfig.siteDesc}`,
         inLanguage: "en-US",
       },

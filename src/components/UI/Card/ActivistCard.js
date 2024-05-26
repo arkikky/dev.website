@@ -3,9 +3,6 @@ import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import Link from "next/link";
 
-// @components
-import LazyImages from "@components/LazyImages";
-
 const ActivistCard = ({
   labels = "",
   images = "",
@@ -14,7 +11,7 @@ const ActivistCard = ({
 }) => {
   const { ref, inView } = useInView({
     threshold: 1,
-    // rootMargin: "10% 0% -25% 0%",
+    rootMargin: "10% 0% -15% 0%",
   });
   const [isLoading, setLoading] = useState(false);
 
@@ -106,7 +103,7 @@ const ActivistCard = ({
       )}
 
       {type === "open" && (
-        <Link href={url} target="_blank">
+        <Link ref={ref} href={url} target="_blank">
           {isActivistCard()}
         </Link>
       )}

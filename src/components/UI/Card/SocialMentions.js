@@ -33,7 +33,6 @@ const SocialMentionsCard = ({ attributes }) => {
                 className="h-10 w-10 overflow-hidden rounded-full object-cover object-center"
                 src={getPicture}
                 alt={`Coinfest Asia 2024 by Coinvestasi (${getName} - Social Mentions)`}
-                loading="lazy"
                 height={128}
                 width={128}
                 quality="87"
