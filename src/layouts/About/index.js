@@ -79,7 +79,7 @@ const About = () => {
         <div className="ca2024AboutsItemsLeft ca2024AboutsItemsLeftPoint1 opacity-1 pointer-events-none absolute -top-[120px] bottom-auto left-2 right-auto z-px select-none bg-transparent sm:-top-[163px] sm:left-[18%] lg:-top-[197px] lg:left-[17%] xl:left-[14%]">
           <Image
             className="z-10 mx-auto h-auto w-[211px] object-cover object-center sm:w-[323px] lg:w-[415px] xl:w-[383px]"
-            src={"/assets/images/backdrop/ca2024DiamondBlue.png"}
+            src={"/assets/images/backdrop/points/ca2024DiamondBlue.png"}
             alt={`Coinfest Asia 2024 (Diamond Blue - About)`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 60vw"
             height={653}
@@ -91,7 +91,7 @@ const About = () => {
         <div className="ca2024AboutsItemsLeft ca2024AboutsItemsLeftPoint2 opacity-1 pointer-events-none absolute -bottom-[120px] left-2 right-auto top-auto z-px select-none bg-transparent sm:-bottom-[163px] sm:left-[18%] lg:-bottom-[197px] lg:left-[17%] xl:left-[25%]">
           <Image
             className="z-10 mx-auto h-auto w-[301px] object-cover object-center sm:w-[463px] lg:w-[555px] xl:w-[523px]"
-            src={"/assets/images/backdrop/ca2024FlowerBlue.png"}
+            src={"/assets/images/backdrop/points/ca2024FlowerBlue.png"}
             alt={`Coinfest Asia 2024 (Flower Blue Items - About)`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 60vw"
             height={555}
@@ -103,7 +103,7 @@ const About = () => {
         <div className="ca2024AboutsItemsRight ca2024AboutsItemsLeftPoint3 opacity-1 pointer-events-none absolute -right-24 bottom-[39%] left-auto top-auto z-px select-none bg-transparent sm:-right-32 sm:bottom-[35%] lg:-right-24 lg:bottom-[41%] xl:bottom-[21%] xl:right-5">
           <Image
             className="z-10 mx-auto h-auto w-[211px] object-cover object-center sm:w-[315px] lg:w-[385px]"
-            src={"/assets/images/backdrop/ca2024BitcoinRed.png"}
+            src={"/assets/images/backdrop/points/ca2024BitcoinRed.png"}
             alt={`Coinfest Asia 2024 (Bitcoin Red Items - About)`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 60vw, 60vw"
             height={642}
