@@ -56,10 +56,10 @@ const Speakers = ({ speakers }) => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Speakers | ${publicRuntimeConfig.siteDesc}`}</title>
+        <title>{`Speakers | ${publicRuntimeConfig.siteTitle}`}</title>
         <meta
           name="title"
-          content={`Speakers | ${publicRuntimeConfig.siteDesc}`}
+          content={`Speakers | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -68,7 +68,7 @@ const Speakers = ({ speakers }) => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Speakers | ${publicRuntimeConfig.siteDesc}`}
+          content={`Speakers | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="og:description"
@@ -84,7 +84,7 @@ const Speakers = ({ speakers }) => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Speakers | ${publicRuntimeConfig.siteDesc}`}
+          content={`Speakers | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"
@@ -113,7 +113,7 @@ const Speakers = ({ speakers }) => {
                   key={i}
                 >
                   <button
-                    id={`mdlBtnSpeakers`}
+                    id={`mdlBtnSpeakers${gtRslt.attributes.name}`}
                     className="mdlBtnSpeakers w-full min-w-full outline-none focus-visible:outline-none"
                     aria-label={`${gtRslt.attributes.name} - (Button Modal Speakers)`}
                     aria-labelledby={`${gtRslt.attributes.name} - (Button Modal Speakers)`}
@@ -131,10 +131,10 @@ const Speakers = ({ speakers }) => {
                         position: gtRslt.attributes.position,
                         aboutMe: gtRslt.attributes.aboutMe,
                         connectWithMe: gtRslt.attributes.connectWithMe,
-                        logoCompany: gtRslt.attributes.popupLogo
-                          ? process.env.NEXT_PUBLIC_UPLOAD +
-                            gtRslt.attributes.popupLogo.data.attributes.url
-                          : "",
+                        // logoCompany: gtRslt.attributes.popupLogo
+                        //   ? process.env.NEXT_PUBLIC_UPLOAD +
+                        //     gtRslt.attributes.popupLogo.data.attributes.url
+                        //   : "",
                       });
                     }}
                   >

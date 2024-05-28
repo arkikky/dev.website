@@ -23,7 +23,7 @@ const SpeakersModal = ({
     <>
       <div
         id={`mdlSpeakers`}
-        className="hs-overlay fixed left-0 top-0 z-[9999] hidden h-full w-full overflow-y-auto overflow-x-hidden bg-black-900/[0.33] opacity-0 transition-all [--body-scroll:true] [--overlay-backdrop:static] hs-overlay-open:opacity-100 hs-overlay-open:duration-300"
+        className="hs-overlay fixed left-0 top-0 z-[9999] hidden h-full w-full overflow-y-auto overflow-x-hidden bg-black-900/[0.33] opacity-0 transition-all [--body-scroll:true] hs-overlay-open:opacity-100 hs-overlay-open:duration-300"
         data-hs-overlay-backdrop-container="#bckdrpModalActve"
       >
         <div className="fixed inset-x-0 bottom-0 top-0 mx-auto flex w-full max-w-full translate-y-8 transform items-center justify-center px-4 opacity-0 transition-all duration-300 ease-out hs-overlay-open:translate-y-0 hs-overlay-open:opacity-100 sm:inset-y-0 sm:max-w-[720px] sm:px-0 lg:max-w-[825px]">

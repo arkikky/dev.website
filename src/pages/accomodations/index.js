@@ -19,10 +19,10 @@ const accomodations = () => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Accomodations | ${publicRuntimeConfig.siteDesc}`}</title>
+        <title>{`Accomodations | ${publicRuntimeConfig.siteTitle}`}</title>
         <meta
           name="title"
-          content={`Accomodations | ${publicRuntimeConfig.siteDesc}`}
+          content={`Accomodations | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -31,7 +31,7 @@ const accomodations = () => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Accomodations | ${publicRuntimeConfig.siteDesc}`}
+          content={`Accomodations | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="og:description"
@@ -47,7 +47,7 @@ const accomodations = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Accomodations | ${publicRuntimeConfig.siteDesc}`}
+          content={`Accomodations | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"

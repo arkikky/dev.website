@@ -22,10 +22,10 @@ const CoinfestWeek = ({ result }) => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Coinfest Week | ${publicRuntimeConfig.siteDesc}`}</title>
+        <title>{`Coinfest Week | ${publicRuntimeConfig.siteTitle}`}</title>
         <meta
           name="title"
-          content={`Coinfest Week | ${publicRuntimeConfig.siteDesc}`}
+          content={`Coinfest Week | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -34,7 +34,7 @@ const CoinfestWeek = ({ result }) => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Coinfest Week | ${publicRuntimeConfig.siteDesc}`}
+          content={`Coinfest Week | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="og:description"
@@ -50,7 +50,7 @@ const CoinfestWeek = ({ result }) => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Coinfest Week | ${publicRuntimeConfig.siteDesc}`}
+          content={`Coinfest Week | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"

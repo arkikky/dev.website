@@ -15,10 +15,10 @@ const Activities = () => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Activities | ${publicRuntimeConfig.siteDesc}`}</title>
+        <title>{`Activities | ${publicRuntimeConfig.siteTitle}`}</title>
         <meta
           name="title"
-          content={`Activities | ${publicRuntimeConfig.siteDesc}`}
+          content={`Activities | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -27,7 +27,7 @@ const Activities = () => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Activities | ${publicRuntimeConfig.siteDesc}`}
+          content={`Activities | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="og:description"
@@ -43,7 +43,7 @@ const Activities = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Activities | ${publicRuntimeConfig.siteDesc}`}
+          content={`Activities | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"

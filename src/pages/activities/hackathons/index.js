@@ -19,10 +19,10 @@ const Hackathons = () => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Hackathon | ${publicRuntimeConfig.siteDesc}`}</title>
+        <title>{`Hackathon | ${publicRuntimeConfig.siteTitle}`}</title>
         <meta
           name="title"
-          content={`Hackathon | ${publicRuntimeConfig.siteDesc}`}
+          content={`Hackathon | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -31,7 +31,7 @@ const Hackathons = () => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Hackathon | ${publicRuntimeConfig.siteDesc}`}
+          content={`Hackathon | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="og:description"
@@ -47,7 +47,7 @@ const Hackathons = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Hackathon | ${publicRuntimeConfig.siteDesc}`}
+          content={`Hackathon | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"

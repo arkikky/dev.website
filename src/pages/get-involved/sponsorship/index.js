@@ -159,10 +159,10 @@ const SponsorshipGetInvolved = ({
     <>
       {/* @head */}
       <Head>
-        <title>{`Sponsorship | ${publicRuntimeConfig.siteDesc}`}</title>
+        <title>{`Sponsorship | ${publicRuntimeConfig.siteTitle}`}</title>
         <meta
           name="title"
-          content={`Sponsorship | ${publicRuntimeConfig.siteDesc}`}
+          content={`Sponsorship | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteUrl} />
 
@@ -171,7 +171,7 @@ const SponsorshipGetInvolved = ({
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Sponsorship | ${publicRuntimeConfig.siteDesc}`}
+          content={`Sponsorship | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta property="og:description" content={publicRuntimeConfig.siteUrl} />
         <meta
@@ -184,7 +184,7 @@ const SponsorshipGetInvolved = ({
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Sponsorship | ${publicRuntimeConfig.siteDesc}`}
+          content={`Sponsorship | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"
