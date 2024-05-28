@@ -69,17 +69,16 @@ const accomodations = () => {
               </h1>
               <p className="mt-2 font-bevietnamPro text-base font-normal text-black-900">
                 Pack your bags and get ready to feel the summer heat as Bali
-                will be packed with global Web2 and Web3 institutions &
-                communities. Book your stay for Coinfest Asia 2023 and get
-                special rates from our partners. From luxurious hotels to
-                budget-friendly villas, our partners have you covered.
+                will be packed with global Web3 institutions & communities. Book
+                your stay for Coinfest Asia and get special rates from our
+                partners.
               </p>
               <Link
                 className={`ca2024BgOverflayBlue relative mr-3 mt-7 inline-flex w-max cursor-pointer items-center justify-center rounded-[14px] bg-secondary  px-4 py-3.5 font-bevietnamPro text-sm font-medium text-white outline-none last:mr-0 focus-visible:outline-none sm:px-6 sm:py-6 sm:text-base`}
-                title="Coinfest Asia 2024 (Become our partners - Accomodations)"
-                href={"/partners"}
+                title="Coinfest Asia 2024 (Become our partner - Accomodations)"
+                href={"mailto:andrea@indonesiacrypto.network"}
               >
-                Become our partners
+                Become our partner
               </Link>
             </div>
 
