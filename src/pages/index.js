@@ -158,11 +158,8 @@ const Home = ({ ipAddress, speaker, partners }) => {
     <>
       {/* @head */}
       <Head>
-        <title>{`${publicRuntimeConfig.siteTitle} | ${publicRuntimeConfig.siteDesc}`}</title>
-        <meta
-          name="title"
-          content={`${publicRuntimeConfig.siteTitle} | ${publicRuntimeConfig.siteDesc}`}
-        />
+        <title>{`${publicRuntimeConfig.siteTitle}`}</title>
+        <meta name="title" content={`${publicRuntimeConfig.siteTitle}`} />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
         {/* Open Graph / Facebook */}
@@ -170,7 +167,7 @@ const Home = ({ ipAddress, speaker, partners }) => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`${publicRuntimeConfig.siteTitle} | ${publicRuntimeConfig.siteDesc}`}
+          content={`${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="og:description"
@@ -186,7 +183,7 @@ const Home = ({ ipAddress, speaker, partners }) => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`${publicRuntimeConfig.siteTitle} | ${publicRuntimeConfig.siteDesc}`}
+          content={`${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"
