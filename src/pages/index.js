@@ -104,11 +104,11 @@ const Home = ({ ipAddress, speaker, partners }) => {
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": `${publicRuntimeConfig.siteUrl}/#website`,
+        "@id": `${publicRuntimeConfig.siteUrl}#website`,
         url: `${publicRuntimeConfig.siteUrl}`,
         name: `${publicRuntimeConfig.siteAppName}`,
         alternateName: `${publicRuntimeConfig.siteAppName}`,
-        description: `${publicRuntimeConfig.siteDesc}`,
+        description: `Asia's largest Web3 festival. Where innovation meets adoption. BALI ☀️ 22-23 AUGUST 2024`,
         potentialAction: [
           {
             "@type": "SearchAction",
@@ -125,7 +125,7 @@ const Home = ({ ipAddress, speaker, partners }) => {
         url: `${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`,
         width: 1200,
         height: 628,
-        caption: `${publicRuntimeConfig.siteAppName} | ${publicRuntimeConfig.siteDesc}`,
+        caption: `${publicRuntimeConfig.siteAppName} | Asia's largest Web3 festival. Where innovation meets adoption. BALI ☀️ 22-23 AUGUST 2024`,
       },
       {
         "@type": "WebPage",
@@ -133,14 +133,14 @@ const Home = ({ ipAddress, speaker, partners }) => {
         url: `${publicRuntimeConfig.siteUrl}`,
         name: `${publicRuntimeConfig.siteAppName}`,
         isPartOf: {
-          "@id": `${publicRuntimeConfig.siteUrl}/#website`,
+          "@id": `${publicRuntimeConfig.siteUrl}#website`,
         },
         primaryImageOfPage: {
-          "@id": `${publicRuntimeConfig.siteUrl}/#primaryimage`,
+          "@id": `${publicRuntimeConfig.siteUrl}#primaryimage`,
         },
         datePublished: "2024-01-16T09:45:42+00:00",
         dateModified: "2024-01-21T09:14:35+00:00",
-        description: `${publicRuntimeConfig.siteDesc}`,
+        description: `Asia's largest Web3 festival. Where innovation meets adoption. BALI ☀️ 22-23 AUGUST 2024`,
         inLanguage: "en-US",
       },
     ],
@@ -160,7 +160,12 @@ const Home = ({ ipAddress, speaker, partners }) => {
       <Head>
         <title>{`${publicRuntimeConfig.siteTitle}`}</title>
         <meta name="title" content={`${publicRuntimeConfig.siteTitle}`} />
-        <meta name="description" content={publicRuntimeConfig.siteDesc} />
+        <meta
+          name="description"
+          content={
+            "Asia's largest Web3 festival. Where innovation meets adoption. BALI ☀️ 22-23 AUGUST 2024"
+          }
+        />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
@@ -171,7 +176,9 @@ const Home = ({ ipAddress, speaker, partners }) => {
         />
         <meta
           property="og:description"
-          content={publicRuntimeConfig.siteDesc}
+          content={
+            "Asia's largest Web3 festival. Where innovation meets adoption. BALI ☀️ 22-23 AUGUST 2024"
+          }
         />
         <meta
           property="og:image"
@@ -187,7 +194,9 @@ const Home = ({ ipAddress, speaker, partners }) => {
         />
         <meta
           property="twitter:description"
-          content={publicRuntimeConfig.siteDesc}
+          content={
+            "Asia's largest Web3 festival. Where innovation meets adoption. BALI ☀️ 22-23 AUGUST 2024"
+          }
         />
         <meta
           property="twitter:image"
