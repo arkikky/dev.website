@@ -1,9 +1,0 @@
-/* @splide */
-.splide.ca2024Grid .splide__track .splide__list {
-  @apply gap-0 supports-grid:grid-cols-none sm:grid-cols-12 sm:gap-x-4 sm:gap-y-4 sm:supports-grid:!grid lg:gap-x-6 lg:gap-y-6;
-}
-
-.splide.ca2024Grid .splide__track .splide__list .splide__slide {
-  @apply col-span-2 sm:col-span-4;
-  @apply w-full;
-}
