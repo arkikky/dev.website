@@ -67,7 +67,7 @@ const AccomodationsCard = ({
           </div>
 
           <div className="flex-items absolute inset-x-0 bottom-0 top-auto flex justify-center bg-black-900/[0.34] px-2 py-2 font-bevietnamPro text-xs font-normal text-white sm:text-base">
-            {diskon} Off Discount
+            {diskon}
           </div>
         </div>
       </Link>

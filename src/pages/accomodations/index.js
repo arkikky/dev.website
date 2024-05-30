@@ -168,7 +168,7 @@ const Accomodations = () => {
                   url=""
                   images="/assets/images/accomodations/ca2024AyanaResort.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_AyanaResort.png"
-                  diskon="15%"
+                  diskon="15% Off Discount"
                 />
               </div>
               <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
@@ -176,7 +176,7 @@ const Accomodations = () => {
                   url=""
                   images="/assets/images/accomodations/ca2024LeMeridien.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_LeMeridien.png"
-                  diskon="25%"
+                  diskon="25% Off Discount"
                 />
               </div>
               <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
@@ -184,7 +184,7 @@ const Accomodations = () => {
                   url=""
                   images="/assets/images/accomodations/ca2024Intercontinetal.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_Intercontinetal.png"
-                  diskon="15%"
+                  diskon="15% Off Discount"
                 />
               </div>
               <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
@@ -192,23 +192,23 @@ const Accomodations = () => {
                   url=""
                   images="/assets/images/accomodations/ca2024Vivara.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_Vivara.png"
-                  diskon="35%"
+                  diskon="35% Off Discount"
                 />
               </div>
               <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
-                  url=""
+                  url="mailto:melissa.yolanda@the-ascott.com?cc=partner@coinfest.asia&bcc=andrea@indonesiacrypto.network&subject=Coinfest%20Asia%202024%20-%20Reservation%20at%20Citadines%20Berawa%20Beach%20Bali&body=Hi%20Melissa%2C%0A%0AI%20would%20like%20to%20make%20a%20reservation%20at%20Citadines%20Berawa%20Beach%20Bali%20for%20Coinfest%20Asia%202024%20during%20...%20to%20...%202024.%0A%0APlease%20assist%20my%20inquiry"
                   images="/assets/images/accomodations/ca2024Citadines.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_Citadines.png"
-                  diskon="35%"
+                  diskon="Special offer"
                 />
               </div>
               <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
-                  url=""
+                  url="https://www.thekomu.com/"
                   images="/assets/images/accomodations/ca2024TheKomu.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_TheKomu.png"
-                  diskon="35%"
+                  diskon="35% Off Discount"
                 />
               </div>
             </div>
