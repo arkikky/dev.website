@@ -165,6 +165,7 @@ const Accomodations = () => {
             <div className="relative mt-4 grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:mt-11 sm:grid-cols-12 sm:gap-x-4 sm:gap-y-4 lg:grid-cols-12">
               <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
+                  url=""
                   images="/assets/images/accomodations/ca2024AyanaResort.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_AyanaResort.png"
                   diskon="15%"
@@ -172,6 +173,7 @@ const Accomodations = () => {
               </div>
               <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
+                  url=""
                   images="/assets/images/accomodations/ca2024LeMeridien.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_LeMeridien.png"
                   diskon="25%"
@@ -179,6 +181,7 @@ const Accomodations = () => {
               </div>
               <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
+                  url=""
                   images="/assets/images/accomodations/ca2024Intercontinetal.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_Intercontinetal.png"
                   diskon="15%"
@@ -186,6 +189,7 @@ const Accomodations = () => {
               </div>
               <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
+                  url=""
                   images="/assets/images/accomodations/ca2024Vivara.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_Vivara.png"
                   diskon="35%"
@@ -193,6 +197,7 @@ const Accomodations = () => {
               </div>
               <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
+                  url=""
                   images="/assets/images/accomodations/ca2024Citadines.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_Citadines.png"
                   diskon="35%"
@@ -200,6 +205,7 @@ const Accomodations = () => {
               </div>
               <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
+                  url=""
                   images="/assets/images/accomodations/ca2024TheKomu.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_TheKomu.png"
                   diskon="35%"

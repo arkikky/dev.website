@@ -7,16 +7,18 @@ import Link from "next/link";
 const { publicRuntimeConfig } = getConfig();
 
 const AccomodationsCard = ({
-  images,
+  url = "",
+  images = "",
   labelBrand = "/assets/images/accomodations/ca2024BrandLeMeridien.png",
   title = "Ayana",
   diskon = "0%",
 }) => {
   return (
     <>
-      <div
+      <Link
         className="group relative flex h-[228px] flex-col items-center justify-center sm:h-[448px]"
-        href=""
+        href={url}
+        target="_blank"
       >
         <Image
           className="mx-auto my-auto aspect-auto h-full w-full"
@@ -68,7 +70,7 @@ const AccomodationsCard = ({
             {diskon} Off Discount
           </div>
         </div>
-      </div>
+      </Link>
     </>
   );
 };
