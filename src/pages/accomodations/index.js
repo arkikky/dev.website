@@ -73,13 +73,18 @@ const Accomodations = () => {
                 will be packed with global Web3 institutions & communities. Book
                 your stay for Coinfest Asia and get special rates from our
                 partners.
+                <br></br>
+                <br></br>
+                Interest to take part in Coinfest Asia?
               </p>
               <Link
                 className={`ca2024BgOverflayBlue relative mr-3 mt-7 inline-flex w-max cursor-pointer items-center justify-center rounded-[14px] bg-secondary  px-4 py-3.5 font-bevietnamPro text-sm font-medium text-white outline-none last:mr-0 focus-visible:outline-none sm:px-6 sm:py-6 sm:text-base`}
                 title="Coinfest Asia 2024 (Become our partner - Accomodations)"
-                href={"mailto:andrea@indonesiacrypto.network"}
+                href={
+                  "mailto:andrea@indonesiacrypto.network?cc=partner@coinfest.asia&subject=Coinfest%20Asia%202024%20-%20Accommodation%20%26%20Travel%20Partner%20Inquiry&body=Hi%20Andrea%2C%0A%0AI%20would%20like%20to%20take%20part%20in%20Coinfest%20Asia%202024%20as%20accommodation%20%26%20travel%20partner.%20Please%20assist%20my%20inquiry%3A%0A%0AName%3A%20%0AType%20of%20Business%3A%20Hotel%2FAirlines%2FTransportation%2FTravel%2FOther%20(choose%20one)%0AWebsite%2FSocial%20Media%20link%3A%0A%0ABest%2C"
+                }
               >
-                Become our partner
+                Become our travel partners
               </Link>
             </div>
 
@@ -158,42 +163,42 @@ const Accomodations = () => {
               </p>
             </div>
             <div className="relative mt-4 grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:mt-11 sm:grid-cols-12 sm:gap-x-4 sm:gap-y-4 lg:grid-cols-12">
-              <div className="col-span-2 sm:col-span-4 lg:col-span-3">
+              <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
                   images="/assets/images/accomodations/ca2024AyanaResort.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_AyanaResort.png"
                   diskon="15%"
                 />
               </div>
-              <div className="col-span-2 sm:col-span-4 lg:col-span-3">
+              <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
                   images="/assets/images/accomodations/ca2024LeMeridien.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_LeMeridien.png"
                   diskon="25%"
                 />
               </div>
-              <div className="col-span-2 sm:col-span-4 lg:col-span-3">
+              <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
                   images="/assets/images/accomodations/ca2024Intercontinetal.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_Intercontinetal.png"
                   diskon="15%"
                 />
               </div>
-              <div className="col-span-2 sm:col-span-4 lg:col-span-3">
+              <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
                   images="/assets/images/accomodations/ca2024Vivara.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_Vivara.png"
                   diskon="35%"
                 />
               </div>
-              <div className="col-span-2 sm:col-span-4 lg:col-span-3">
+              <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
                   images="/assets/images/accomodations/ca2024Citadines.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_Citadines.png"
                   diskon="35%"
                 />
               </div>
-              <div className="col-span-2 sm:col-span-4 lg:col-span-3">
+              <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
                   images="/assets/images/accomodations/ca2024TheKomu.jpg"
                   labelBrand="/assets/images/accomodations/ca2024Brand_TheKomu.png"
