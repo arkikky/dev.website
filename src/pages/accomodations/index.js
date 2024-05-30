@@ -10,11 +10,12 @@ const { publicRuntimeConfig } = getConfig();
 // @components
 import Container from "@components/Container";
 import AccomodationsCard from "@components/UI/Card/AccomodationsCard";
+import BrandSponsorStatic from "@components/UI/Card/BrandSponsorStatic";
 
 // @layouts
 import BannerFooter from "@layouts/Banner/BannerFooter";
 
-const accomodations = () => {
+const Accomodations = () => {
   return (
     <>
       {/* @head */}
@@ -156,32 +157,46 @@ const accomodations = () => {
                 Get special offers by booking a room from our partners!
               </p>
             </div>
-            <div className="relative mt-4 grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:mt-11 sm:grid-cols-12 lg:grid-cols-12">
+            <div className="relative mt-4 grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:mt-11 sm:grid-cols-12 sm:gap-x-4 sm:gap-y-4 lg:grid-cols-12">
               <div className="col-span-2 sm:col-span-4 lg:col-span-3">
                 <AccomodationsCard
-                  images="/assets/images/accomodations/ca2024AyanaResort.png"
-                  labelBrand="/assets/images/accomodations/ca2024BrandAyanaResort.png"
+                  images="/assets/images/accomodations/ca2024AyanaResort.jpg"
+                  labelBrand="/assets/images/accomodations/ca2024Brand_AyanaResort.png"
                   diskon="15%"
                 />
               </div>
               <div className="col-span-2 sm:col-span-4 lg:col-span-3">
                 <AccomodationsCard
-                  images="/assets/images/accomodations/ca2024LeMeridien.png"
-                  labelBrand="/assets/images/accomodations/ca2024BrandLeMeridien.png"
+                  images="/assets/images/accomodations/ca2024LeMeridien.jpg"
+                  labelBrand="/assets/images/accomodations/ca2024Brand_LeMeridien.png"
                   diskon="25%"
                 />
               </div>
               <div className="col-span-2 sm:col-span-4 lg:col-span-3">
                 <AccomodationsCard
-                  images="/assets/images/accomodations/ca2024Intercontinetal.png"
-                  labelBrand="/assets/images/accomodations/ca2024BrandIntercontinetal.png"
+                  images="/assets/images/accomodations/ca2024Intercontinetal.jpg"
+                  labelBrand="/assets/images/accomodations/ca2024Brand_Intercontinetal.png"
                   diskon="15%"
                 />
               </div>
               <div className="col-span-2 sm:col-span-4 lg:col-span-3">
                 <AccomodationsCard
-                  images="/assets/images/accomodations/ca2024Intercontinetal.png"
-                  labelBrand="/assets/images/accomodations/ca2024BrandAyanaResort.png"
+                  images="/assets/images/accomodations/ca2024Vivara.jpg"
+                  labelBrand="/assets/images/accomodations/ca2024Brand_Vivara.png"
+                  diskon="35%"
+                />
+              </div>
+              <div className="col-span-2 sm:col-span-4 lg:col-span-3">
+                <AccomodationsCard
+                  images="/assets/images/accomodations/ca2024Citadines.jpg"
+                  labelBrand="/assets/images/accomodations/ca2024Brand_Citadines.png"
+                  diskon="35%"
+                />
+              </div>
+              <div className="col-span-2 sm:col-span-4 lg:col-span-3">
+                <AccomodationsCard
+                  images="/assets/images/accomodations/ca2024TheKomu.jpg"
+                  labelBrand="/assets/images/accomodations/ca2024Brand_TheKomu.png"
                   diskon="35%"
                 />
               </div>
@@ -191,17 +206,45 @@ const accomodations = () => {
 
         <div className="relative my-4 block bg-white py-8 sm:py-19">
           <Container>
-            <div className="flex flex-col text-start sm:text-center">
+            <div className="flex flex-col text-start">
               <h2 className="w-full font-staraExtraBold text-[32px] uppercase leading-[40px] text-black-900 sm:text-[40px] sm:leading-[48px]">
-                Discounted flights with our airline partner
+                Discounted Travel in bali with our transports partner
               </h2>
               <p className="mt-2 font-bevietnamPro text-sm font-light text-black-900 sm:text-xl">
-                {`As the official airline partner of TOKEN2049, Emirates is offering
-              discounted flights for members of the TOKEN2049 community. Only
-              for TOKEN2049 attendees – you will receive a dedicated booking
-              code for an exclusive discount once you have purchased your
-              TOKEN2049 ticket.`}
+                {`Get special offers by using “CoinfestASIA” from our partners!`}
               </p>
+            </div>
+            <div className="relative mt-8 min-w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12 lg:gap-x-4 lg:gap-y-4">
+              <div className="col-span-2 sm:col-span-4 lg:col-span-4">
+                <BrandSponsorStatic
+                  url="https://www.gojek.com/id-id"
+                  name="GoJek"
+                  brandLogo="/assets/images/accomodations/partners/ca2024GoJek.png"
+                  vip={true}
+                  height={100}
+                  width={240}
+                />
+              </div>
+              <div className="col-span-2 sm:col-span-4 lg:col-span-4">
+                <BrandSponsorStatic
+                  url="https://www.grab.com/id/"
+                  name="Grab"
+                  brandLogo="/assets/images/accomodations/partners/ca2024Grab.png"
+                  vip={true}
+                  height={100}
+                  width={240}
+                />
+              </div>
+              <div className="col-span-2 sm:col-span-4 lg:col-span-4">
+                <BrandSponsorStatic
+                  url="https://id.taximaxim.com/"
+                  name="Maxim"
+                  brandLogo="/assets/images/accomodations/partners/ca2024Maxim.png"
+                  vip={true}
+                  height={100}
+                  width={240}
+                />
+              </div>
             </div>
           </Container>
         </div>
@@ -215,4 +258,18 @@ const accomodations = () => {
   );
 };
 
-export default accomodations;
+export default Accomodations;
+
+export const getStaticProps = async () => {
+  try {
+    return {
+      props: {},
+
+      revalidate: 60,
+    };
+  } catch (err) {
+    return {
+      notFound: true,
+    };
+  }
+};

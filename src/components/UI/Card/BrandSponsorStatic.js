@@ -7,9 +7,10 @@ import Link from "next/link";
 // @get .config
 const { publicRuntimeConfig } = getConfig();
 
-const BrandSponsor = ({
-  attributes = {},
+const BrandSponsorStatic = ({
+  url = "",
   brandLogo = "",
+  name = "",
   vip = false,
   height = 0,
   width = 0,
@@ -31,16 +32,13 @@ const BrandSponsor = ({
     };
   }, [inView]);
 
-  const isName = attributes ? attributes.name : "Google Cloud";
-  const isUrl = attributes ? attributes.url : "";
-  const isBrandLogo =
-    attributes.logo.data !== null
-      ? process.env.NEXT_PUBLIC_UPLOAD + attributes.logo.data.attributes.url
-      : "";
+  const isName = name;
+  const isUrl = url;
+  const isBrandLogo = brandLogo;
 
   return (
     <>
-      {isUrl === null && (
+      {isUrl === "" && (
         <>
           <div
             ref={ref}
@@ -51,7 +49,7 @@ const BrandSponsor = ({
                 className="mx-auto h-full w-full object-cover object-center"
                 src={isBrandLogo}
                 alt={`${publicRuntimeConfig.siteAppName} (${isName} - Brand Sponsor Partner)`}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 160vw, 160vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                 height={height}
                 width={width}
                 quality="87"
@@ -71,7 +69,7 @@ const BrandSponsor = ({
         </>
       )}
 
-      {isUrl !== null && (
+      {isUrl !== "" && (
         <>
           <Link
             ref={ref}
@@ -84,7 +82,7 @@ const BrandSponsor = ({
                 className="mx-auto h-full w-full object-cover object-center"
                 src={isBrandLogo}
                 alt={`${publicRuntimeConfig.siteAppName} (${isName} - Brand Sponsor Partner)`}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 160vw, 160vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                 height={height}
                 width={width}
                 quality="87"
@@ -107,4 +105,4 @@ const BrandSponsor = ({
   );
 };
 
-export default BrandSponsor;
+export default BrandSponsorStatic;
