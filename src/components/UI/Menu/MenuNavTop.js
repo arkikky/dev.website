@@ -131,6 +131,7 @@ const MenuNavTop = ({ back = false, urlBack = "" }) => {
               height={62}
               width={182}
               quality="87"
+              priority="false"
             />
           </Link>
         </div>
@@ -143,7 +144,7 @@ const MenuNavTop = ({ back = false, urlBack = "" }) => {
             <>
               <div
                 ref={sliderRef}
-                className="keen-slider h-[46px] max-w-[240px] sm:h-[54px]"
+                className="keen-slider h-[46px] max-w-[240px] cursor-grab sm:h-[54px]"
               >
                 <div className="keen-slider__slide number-slide1">
                   <div className="relative flex h-[46px] flex-col items-start sm:h-[54px]">

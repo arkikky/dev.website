@@ -7,7 +7,7 @@ const BannerTickets = ({ rounded = true, mobile = false }) => {
   return (
     <>
       <div
-        className={`ca2024BgLineWhite relative mx-auto block w-full overflow-hidden ${rounded === true ? "rounded-t-2xl" : "rounded-none"} bg-white ${
+        className={`relative mx-auto block w-full overflow-hidden ${rounded === true ? "rounded-t-2xl" : "rounded-none"} bg-white ${
           mobile === true
             ? "px-4 pb-28 pt-6 sm:px-8 sm:pb-34 sm:pt-6"
             : "px-4 pb-28 pt-6 sm:px-8 sm:py-6"

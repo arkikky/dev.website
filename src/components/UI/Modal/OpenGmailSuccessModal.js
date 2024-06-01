@@ -4,12 +4,13 @@ import Link from "next/link";
 const OpenGmailSuccessModal = () => {
   return (
     <>
-      {/* @Modal (Success Newsletter) */}
+      {/* @modal (success - open gmail) */}
       <button
         id="mdlBtnSuccessOpenGmail"
         className="mdlBtnSuccessOpenGmail toolsApp invisible absolute bottom-0 left-auto right-0 top-full z-10 hidden h-8 w-8 cursor-pointer flex-col items-center justify-center rounded-[10px] bg-transparent opacity-0 outline-none"
         // className="toolsApp fixed bottom-auto left-auto right-0 top-40 z-100 flex h-8 w-8 cursor-pointer flex-col items-center justify-center rounded-[10px] bg-blue-500 outline-none"
-        aria-labelledby="Modal Success Gmail"
+        aria-label="Coinfest Asia 2024 (Modal - Success Gmail)"
+        aria-labelledby="Coinfest Asia 2024 (Modal - Success Gmail)"
         data-hs-overlay="#mdlSuccessOpenGmail"
       ></button>
 
@@ -22,6 +23,7 @@ const OpenGmailSuccessModal = () => {
           <div className="relative flex flex-col rounded-xl bg-white px-7 py-8 text-center sm:rounded-[18px] sm:px-12 sm:py-14">
             <button
               className="hs-dropdown-toggle absolute bottom-auto left-auto right-4 top-4.5 outline-none"
+              aria-label="mdlSuccessOpenGmail"
               aria-labelledby="mdlSuccessOpenGmail"
               data-hs-overlay="#mdlSuccessOpenGmail"
             >
@@ -52,6 +54,7 @@ const OpenGmailSuccessModal = () => {
                 <Link
                   className={`relative mr-2 inline-flex w-[175px] items-center justify-center rounded-[14px] bg-primary px-3 py-4 font-bevietnamPro text-xs font-semibold text-black-900 outline-none last:mr-0 focus-visible:outline-none sm:px-6 sm:text-base`}
                   href={"https://mail.google.com"}
+                  title="Coinfest Asia 2024 (Success - OpenGmail)"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

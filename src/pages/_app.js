@@ -7,7 +7,7 @@ import Script from "next/script";
 // @get .config
 const { publicRuntimeConfig } = getConfig();
 
-// @css-style (Global)
+// @css-style (global)
 import "@styles/globals.css";
 
 // @libs/helper
@@ -142,13 +142,12 @@ const App = ({ Component, pageProps }) => {
 
   // @twitter-pixel
   useEffect(() => {
-    // Add Twitter Pixel script to the head
     const script = document.createElement("script");
     script.async = true;
     script.src = "https://static.ads-twitter.com/uwt.js";
     document.head.appendChild(script);
 
-    // Initialize Twitter Pixel
+    // @initialize-twitter-pixel
     window.twq ||
       (window.twq = function () {
         twq.exe ? twq.exe.apply(twq, arguments) : twq.queue.push(arguments);

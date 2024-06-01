@@ -1,6 +1,6 @@
 .ca2024BgLineWhite::before {
   @apply content-[''];
-  @apply bg-[url("/assets/images/backdrop/ca2024BgHorizontalLineWhite.png")];
+  @apply bg-[url("/assets/images/backdrop/background/ca2024BgHorizontalLineWhite.png")];
   @apply bg-center object-cover object-center;
   @apply absolute inset-x-0 inset-y-0;
 }

@@ -19,6 +19,7 @@ const BannerFooter = () => {
                 height={900}
                 width={1440}
                 quality="100"
+                fetchPriority="low"
               />
             </div>
 
@@ -31,6 +32,7 @@ const BannerFooter = () => {
                 height={976}
                 width={753}
                 quality="87"
+                fetchPriority="low"
               />
             </div>
 

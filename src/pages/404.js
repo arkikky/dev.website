@@ -19,19 +19,19 @@ const NotFound = () => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Page Not Found! | ${publicRuntimeConfig.siteDesc}`}</title>
+        <title>{`Page Not Found! | ${publicRuntimeConfig.siteTitle}`}</title>
         <meta
           name="title"
-          content={`Page Not Found! | ${publicRuntimeConfig.siteDesc}`}
+          content={`Page Not Found! | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
-        {/* Open Graph / Facebook */}
+        {/* @open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Page Not Found! | ${publicRuntimeConfig.siteDesc}`}
+          content={`Page Not Found! | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="og:description"
@@ -42,12 +42,12 @@ const NotFound = () => {
           content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
         />
 
-        {/* Twitter */}
+        {/* @twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Page Not Found! | ${publicRuntimeConfig.siteDesc}`}
+          content={`Page Not Found! | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"
@@ -104,11 +104,11 @@ const NotFound = () => {
               Please go back to the homepage.
             </p>
             <Link
-              id="btnNotFound"
+              id="ca2024BtnNotFound"
               href="/"
               className="btnNotFound relative mt-6 inline-flex w-full max-w-max items-start justify-center rounded-[14px] bg-primary px-8 py-4 font-bevietnamPro text-sm font-normal text-black-900 outline-none focus-visible:outline-none sm:mt-10 sm:text-lg"
-              aria-label="Button 404 Not Found"
-              aria-labelledby="Button 404 Not Found"
+              aria-label="Coinfest Asia 2024 (Button 404 Not Found)"
+              aria-labelledby="Coinfest Asia 2024 (Button 404 Not Found)"
             >
               Go back home
             </Link>
