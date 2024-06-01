@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import getConfig from "next/config";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,21 +14,52 @@ const AccomodationsCard = ({
   title = "Ayana",
   diskon = "0%",
 }) => {
+  const { ref, inView } = useInView({
+    threshold: 1,
+    rootMargin: "10% 0% -15% 0%",
+  });
+  const [isLoading, setLoading] = useState(false);
+
+  // @intersection-observer
+  useEffect(() => {
+    if (inView) {
+      setLoading(true);
+    }
+
+    return () => {
+      undefined;
+    };
+  }, [inView]);
+
   return (
     <>
       <Link
-        className="group relative flex h-[228px] flex-col items-center justify-center sm:h-[448px]"
+        ref={ref}
+        className={`group relative flex h-[228px] flex-col items-center justify-center bg-gray-400 sm:h-[448px]`}
         href={url}
         target="_blank"
+        rel="noopener noreferrer"
       >
-        <Image
-          className="mx-auto my-auto aspect-auto h-full w-full"
-          src={images}
-          alt={`${publicRuntimeConfig.siteAppName} (${title} - Thumbnails)`}
-          height={80}
-          width={220}
-          quality="87"
-        />
+        {isLoading ? (
+          <Image
+            className="mx-auto my-auto aspect-auto h-full w-full"
+            src={images}
+            alt={`${publicRuntimeConfig.siteAppName} (${title} - Accomodation Thumbnails)`}
+            height={80}
+            width={220}
+            quality="87"
+          />
+        ) : (
+          <div className="flex h-full w-full animate-pulse flex-col items-center justify-center bg-white">
+            <div
+              className="inline-block size-8 animate-spin rounded-full border-2 border-current border-t-transparent text-gray-500"
+              role="status"
+              aria-label="Coinfest Asia 2024 (Loading Brand)"
+            >
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        )}
 
         <div className="flex-items absolute inset-x-0 inset-y-0 flex justify-center bg-black-900/[0.34] px-2 py-2"></div>
 
@@ -55,18 +87,20 @@ const AccomodationsCard = ({
           </div>
 
           <div className="absolute inset-x-0 inset-y-0 flex flex-col items-center justify-center">
-            <Image
-              className="mx-auto h-auto w-full"
-              src={labelBrand}
-              alt={`${publicRuntimeConfig.siteAppName} (${title} - Brand Accomodations)`}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 170vw, 170vw"
-              height={376}
-              width={640}
-              quality="87"
-            />
+            {isLoading && (
+              <Image
+                className="mx-auto h-auto w-full"
+                src={labelBrand}
+                alt={`${publicRuntimeConfig.siteAppName} (${title} - Brand Accomodations)`}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 170vw, 170vw"
+                height={376}
+                width={640}
+                quality="87"
+              />
+            )}
           </div>
 
-          <div className="flex-items absolute inset-x-0 bottom-0 top-auto flex justify-center bg-black-900/[0.34] px-2 py-2 font-bevietnamPro text-xs font-normal text-white sm:text-base">
+          <div className="flex-items absolute inset-x-0 bottom-0 top-auto flex justify-center bg-black-900/[0.34] px-2 py-2 font-bevietnamPro text-xs font-normal capitalize text-white sm:text-base">
             {diskon}
           </div>
         </div>

@@ -19,10 +19,10 @@ const TradingCompetitions = () => {
     <>
       {/* @head */}
       <Head>
-        <title>{`Trading Competition | ${publicRuntimeConfig.siteTitle}`}</title>
+        <title>{`Trading Competitions | ${publicRuntimeConfig.siteTitle}`}</title>
         <meta
           name="title"
-          content={`Trading Competition | ${publicRuntimeConfig.siteTitle}`}
+          content={`Trading Competitions | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
 
@@ -31,7 +31,7 @@ const TradingCompetitions = () => {
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:title"
-          content={`Trading Competition | ${publicRuntimeConfig.siteTitle}`}
+          content={`Trading Competitions | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="og:description"
@@ -47,7 +47,7 @@ const TradingCompetitions = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Trading Competition | ${publicRuntimeConfig.siteTitle}`}
+          content={`Trading Competitions | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"

@@ -63,7 +63,7 @@ const Accomodations = () => {
       <main className="relative flex flex-col bg-[#F8EAD7]">
         <header className="relative h-full pt-[144px] sm:pt-[229px]">
           <Container className="relative z-[8]">
-            <div className="mr-auto flex w-full max-w-[629px] flex-col px-2.5 pb-18 text-start sm:px-0 sm:pb-20">
+            <div className="mr-auto flex w-full max-w-[629px] flex-col px-2.5 pb-18 text-start sm:px-0 sm:pb-[91px]">
               <h1 className="w-full font-staraExtraBold text-[36px] uppercase leading-[38px] text-black-900 sm:text-[73px] sm:leading-[74px]">
                 Travel to Bali{" "}
                 <span className="text-secondary">Hassle-Free</span>
@@ -163,7 +163,7 @@ const Accomodations = () => {
               </p>
             </div>
             <div className="relative mt-4 grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:mt-11 sm:grid-cols-12 sm:gap-x-4 sm:gap-y-4 lg:grid-cols-12">
-              <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
+              {/* <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
                   url=""
                   images="/assets/images/accomodations/ca2024AyanaResort.jpg"
@@ -194,7 +194,7 @@ const Accomodations = () => {
                   labelBrand="/assets/images/accomodations/ca2024Brand_Vivara.png"
                   diskon="35% Off Discount"
                 />
-              </div>
+              </div> */}
               <div className="col-span-2 sm:col-span-6 lg:col-span-4 xl:col-span-3">
                 <AccomodationsCard
                   url="mailto:melissa.yolanda@the-ascott.com?cc=partner@coinfest.asia&bcc=andrea@indonesiacrypto.network&subject=Coinfest%20Asia%202024%20-%20Reservation%20at%20Citadines%20Berawa%20Beach%20Bali&body=Hi%20Melissa%2C%0A%0AI%20would%20like%20to%20make%20a%20reservation%20at%20Citadines%20Berawa%20Beach%20Bali%20for%20Coinfest%20Asia%202024%20during%20...%20to%20...%202024.%0A%0APlease%20assist%20my%20inquiry"
@@ -222,7 +222,7 @@ const Accomodations = () => {
                 Discounted Travel in bali with our transports partner
               </h2>
               <p className="mt-2 font-bevietnamPro text-sm font-light text-black-900 sm:text-xl">
-                {`Get special offers by using “CoinfestASIA” from our partners!`}
+                {`Get Around Bali, Travel to Coinfest Asia main venue with special promo from our official transportation partners`}
               </p>
             </div>
             <div className="relative mt-8 min-w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12 lg:gap-x-4 lg:gap-y-4">
