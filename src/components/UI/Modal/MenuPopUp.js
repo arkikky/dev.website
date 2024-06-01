@@ -21,7 +21,6 @@ const MenuPopUp = ({
     }
 
     elmtPopUpAll.forEach((elmnt) => {
-      console.log(elmnt);
       elmnt.classList.add("nonActive");
     });
   };
@@ -82,6 +81,7 @@ const MenuPopUp = ({
             </ul>
           )}
 
+          {/* @banner(tickets) */}
           <BannerTickets rounded={rounded} />
         </div>
       </div>
