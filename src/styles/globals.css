@@ -237,6 +237,10 @@ input:valid {
   @apply font-bevietnamPro text-sm;
 }
 
+.css-1nmdiq5-menu {
+  @apply !z-[5];
+}
+
 /* @banner-popupnav */
 .ca2024BckdrpBnnrPopNav {
   @apply opacity-100;

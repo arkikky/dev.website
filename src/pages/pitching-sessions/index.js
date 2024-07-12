@@ -7,7 +7,6 @@ import Select from "react-select";
 import getConfig from "next/config";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
@@ -36,6 +35,7 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
     useState(countryRegion);
   const [countryRegionSelect, setCountryRegionSelect] = useState(null);
   const [positioncompanySelect, setPositionCompanySelect] = useState(null);
+  const [selectSecured, setSelectSecured] = useState(false);
 
   gsap.registerPlugin(ScrollToPlugin);
 
@@ -97,6 +97,13 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
           objectTypeId: "0-1",
           name: "have_you_secured_your_coinfest_asia_ticket_",
           value: data.have_you_secured_your_coinfest_asia_ticket_,
+        },
+        {
+          objectTypeId: "0-1",
+          name: "your_coinfest_asia_ticket_number",
+          value: data.your_coinfest_asia_ticket_number
+            ? data.your_coinfest_asia_ticket_number
+            : "-",
         },
         {
           objectTypeId: "0-1",
@@ -209,7 +216,7 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
 
       <BentoGridLayouts>
         <main className="relative">
-          <header className="ca2024BgLineMint relative mx-2 mb-10 mt-2 flex h-[796px] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-secondary sm:mx-2.5 sm:mb-15 sm:mt-3.5 sm:rounded-[26px] lg:mx-5 lg:mb-[88px] lg:mt-5 lg:h-[750px]">
+          <header className="ca2024BgLineMint relative mx-2 mb-10 mt-2 flex h-[796px] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-[#0095A0] sm:mx-2.5 sm:mb-15 sm:mt-3.5 sm:rounded-[26px] lg:mx-5 lg:mb-[88px] lg:mt-5 lg:h-[750px]">
             {/* @points(flower) */}
             <div className="absolute -left-[34px] bottom-0 right-auto top-auto z-px h-[201px] w-auto sm:-left-10 sm:h-[319px] lg:left-0 lg:h-[396px] xl:h-[576px]">
               <Image
@@ -264,55 +271,40 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
             </div>
           </header>
 
-          <div className="relative z-10 mx-2 -mt-[105px] sm:mx-2.5 sm:-mt-[141px] lg:mx-5 lg:-mt-[187px] xl:mb-20">
+          <div
+            id="ca2024FormPitchingSessions"
+            className="relative z-10 mx-2 -mt-[105px] mb-18 sm:mx-2.5 sm:-mt-[141px] sm:mb-0 lg:mx-5 lg:-mt-[187px] xl:mb-20"
+          >
             <Container>
+              <div className="mb-15 flex flex-col rounded-[22px] border border-solid border-[#DCDCDC] bg-white px-4 py-6 sm:rounded-[26px] sm:px-12 sm:py-10">
+                <h2 className="font-bevietnamPro text-xl font-semibold uppercase text-black-900 sm:text-[28px] sm:font-bold sm:leading-[34px]">
+                  Use cases
+                </h2>
+                <div className="mt-3.5 inline-flex h-max w-full gap-y-2.5 overflow-x-auto lg:flex-wrap">
+                  {frmPitchingSessions.formFieldGroups[9].fields[0].options?.map(
+                    (gRslt, i) => (
+                      <div
+                        className="ca20240Radio-labelBtn group mr-3 last:mr-0"
+                        key={i}
+                      >
+                        {gRslt.label}
+                      </div>
+                    ),
+                  )}
+                </div>
+              </div>
+
               <form
-                id="ca2024FormPitchingSessions"
                 className="relative flex w-full flex-col"
                 method="POST"
                 onSubmit={handleSubmit(onSubmit)}
               >
-                <div className="mb-15 flex flex-col rounded-[22px] border border-solid border-[#DCDCDC] bg-white px-4 py-6 sm:rounded-[26px] sm:px-12 sm:py-10">
-                  <h2 className="font-bevietnamPro text-xl font-semibold uppercase text-black-900 sm:text-[28px] sm:font-bold sm:leading-[34px]">
-                    Use cases <span className="text-red-500">*</span>
-                  </h2>
-                  <div className="mt-3.5 inline-flex h-max w-full gap-y-2.5 overflow-x-auto lg:flex-wrap">
-                    {frmPitchingSessions.formFieldGroups[9].fields[0].options?.map(
-                      (gRslt, i) => (
-                        <div
-                          className="ca20240Radio-label mr-2.5 flex h-max w-max last:mr-0"
-                          key={i}
-                        >
-                          <input
-                            id={`useCasePitchingSessions${gRslt.label}${i}`}
-                            className="shrink-0 rounded-full border-gray-200 text-blue-600"
-                            type="radio"
-                            name="what_use_case_is_your_company_solving"
-                            value={gRslt.value}
-                            {...register(
-                              "what_use_case_is_your_company_solving",
-                              {
-                                required: true,
-                              },
-                            )}
-                          />
-                          <label
-                            for={`useCasePitchingSessions${gRslt.label}${i}`}
-                          >
-                            {gRslt.label}
-                          </label>
-                        </div>
-                      ),
-                    )}
-                  </div>
-                </div>
-
                 <div className="mb-6 flex flex-col items-start justify-start gap-y-3 sm:flex-row sm:items-center sm:justify-between sm:gap-y-0">
                   <h2 className="font-bevietnamPro text-xl font-semibold uppercase text-black-900 sm:text-[28px] sm:font-bold sm:leading-[34px]">
                     Submit your project
                   </h2>
 
-                  <span className="flex flex-col items-center justify-center overflow-hidden rounded-full bg-[#0095A0] px-4 py-2 font-light text-white">
+                  <span className="flex flex-col items-center justify-center overflow-hidden rounded-full bg-[#0095A0] px-4 py-2 text-sm font-light text-white sm:text-base">
                     Submission deadline: August 12th, 2024
                   </span>
                 </div>
@@ -411,44 +403,70 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
                       </div>
                     </div>
                     {frmPitchingSessions && (
-                      <div className="mb-6 flex flex-col last:mb-0">
-                        <label
-                          htmlFor="inputDidYourCompanySpeakers"
-                          className="mb-3 text-start font-bevietnamPro text-base font-normal text-black-900"
-                        >
-                          Have you secured your Coinfest Asia ticket?{" "}
-                          <span className="text-red-500">*</span>
-                        </label>
-                        <div className="grid space-y-2">
-                          {frmPitchingSessions.formFieldGroups[5].fields[0].options?.map(
-                            (gRslt, i) => (
-                              <div className="space-y-2" key={i}>
-                                <label
-                                  htmlFor={`radioSecuredPitchingSessionsForm_${gRslt.name}${i}`}
-                                  className={`flex w-full cursor-pointer`}
-                                >
-                                  <input
-                                    id={`radioSecuredPitchingSessionsForm_${gRslt.name}${i}`}
-                                    type="radio"
-                                    className="boxShadow-none form-radio pointer-events-none mt-[3px] h-5 w-5 shrink-0 rounded-full  border border-solid border-[#E3E3E3] bg-transparent text-secondary outline-none ring-0 focus:outline-none focus-visible:outline-none sm:mt-[3px]"
-                                    name={`radioSecuredPitchingSessionsForm_${gRslt.name}`}
-                                    value={gRslt.value}
-                                    {...register(
-                                      "have_you_secured_your_coinfest_asia_ticket_",
-                                      {
-                                        required: true,
-                                      },
-                                    )}
-                                  />
-                                  <span className="ml-3 font-bevietnamPro text-base font-normal text-black-900">
-                                    {gRslt.label}
-                                  </span>
-                                </label>
-                              </div>
-                            ),
-                          )}
+                      <>
+                        <div className="mb-6 flex flex-col last:mb-0">
+                          <label
+                            htmlFor="inputDidYourCompanySpeakers"
+                            className="mb-3 text-start font-bevietnamPro text-base font-normal text-black-900"
+                          >
+                            Have you secured your Coinfest Asia ticket?{" "}
+                            <span className="text-red-500">*</span>
+                          </label>
+                          <div className="grid space-y-2">
+                            {frmPitchingSessions.formFieldGroups[5].fields[0].options?.map(
+                              (gRslt, i) => (
+                                <div className="space-y-2" key={i}>
+                                  <label
+                                    htmlFor={`radioSecuredPitchingSessionsForm_${gRslt.name}${i}`}
+                                    className={`flex w-full cursor-pointer`}
+                                  >
+                                    <input
+                                      id={`radioSecuredPitchingSessionsForm_${gRslt.name}${i}`}
+                                      type="radio"
+                                      className="boxShadow-none form-radio pointer-events-none mt-[3px] h-5 w-5 shrink-0 rounded-full  border border-solid border-[#E3E3E3] bg-transparent text-secondary outline-none ring-0 focus:outline-none focus-visible:outline-none sm:mt-[3px]"
+                                      name={`radioSecuredPitchingSessionsForm_${gRslt.name}`}
+                                      value={gRslt.value}
+                                      {...register(
+                                        "have_you_secured_your_coinfest_asia_ticket_",
+                                        {
+                                          required: true,
+                                        },
+                                      )}
+                                      onChange={(e) => {
+                                        setSelectSecured(gRslt.value);
+                                      }}
+                                    />
+                                    <span className="ml-3 font-bevietnamPro text-base font-normal text-black-900">
+                                      {gRslt.label}
+                                    </span>
+                                  </label>
+                                </div>
+                              ),
+                            )}
+                          </div>
                         </div>
-                      </div>
+                        {selectSecured === "Yes" ? (
+                          <div className="mt-4 flex flex-col">
+                            <label
+                              htmlFor="otherSecuredPitchingSessions"
+                              className="mb-2 text-start font-bevietnamPro text-base font-normal text-black-900"
+                            >
+                              Your Coinfest Asia Ticket Number{" "}
+                              <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                              type="number"
+                              id="otherSecuredPitchingSessions"
+                              className="rounded-lg border border-solid border-[#E3E3E3] bg-white px-4 py-5 font-bevietnamPro text-sm font-normal capitalize text-black-900 placeholder:text-[#9A9A9A]"
+                              name="your_coinfest_asia_ticket_number"
+                              {...register("your_coinfest_asia_ticket_number", {
+                                required: true,
+                                maxLength: 1000,
+                              })}
+                            />
+                          </div>
+                        ) : null}
+                      </>
                     )}
                   </div>
 
@@ -533,17 +551,59 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
                         />
                       </div>
                     </div>
+                    {frmPitchingSessions && (
+                      <div className="mb-6 flex flex-col last:mb-0">
+                        <label
+                          htmlFor="inputDidYourCompanySpeakers"
+                          className="mb-3 text-start font-bevietnamPro text-base font-normal text-black-900"
+                        >
+                          What use case is your Project solving?{" "}
+                          <span className="text-red-500">*</span>
+                        </label>
+                        <div className="flex flex-col space-y-2">
+                          {frmPitchingSessions.formFieldGroups[9].fields[0].options?.map(
+                            (gRslt, i) => (
+                              <div
+                                className="ca20240Radio-label relative mr-2.5 flex w-full last:mr-0"
+                                key={i}
+                              >
+                                <input
+                                  id={`useCasePitchingSessions${gRslt.label}${i}`}
+                                  className="!boxShadow-none !focus:outline-none !focus-visible:outline-none shrink-0 rounded-full border-gray-200 text-secondary !outline-none !ring-0"
+                                  type="radio"
+                                  name={`what_use_case_is_your_company_solving${gRslt.label}${i}`}
+                                  value={gRslt.value}
+                                  {...register(
+                                    "what_use_case_is_your_company_solving",
+                                    {
+                                      required: true,
+                                    },
+                                  )}
+                                />
+                                <label
+                                  for={`useCasePitchingSessions${gRslt.label}${i}`}
+                                >
+                                  {gRslt.label}
+                                </label>
+                              </div>
+                            ),
+                          )}
+                        </div>
+                      </div>
+                    )}
                     <div className="mb-4 flex flex-col last:mb-0">
-                      <label
-                        htmlFor="projectOnePitchingSessions"
-                        className="mb-2 text-start font-bevietnamPro text-base font-normal text-black-900"
-                      >
-                        What product are you going to pitch?{" "}
-                        <span className="text-red-500">*</span>
-                      </label>
-                      <span className="mb-2 font-bevietnamPro text-xs font-normal text-black-900/60">
-                        The product name & one-liner explanation
-                      </span>
+                      <div className="flex flex-col items-start justify-start sm:flex-row sm:items-center sm:justify-between">
+                        <label
+                          htmlFor="projectOnePitchingSessions"
+                          className="mb-2 text-start font-bevietnamPro text-base font-normal text-black-900"
+                        >
+                          What product are you going to pitch?{" "}
+                          <span className="text-red-500">*</span>
+                        </label>
+                        <span className="mb-2 font-bevietnamPro text-xs font-normal text-black-900/60">
+                          The product name & one-liner explanation
+                        </span>
+                      </div>
                       <textarea
                         type="text"
                         id="projectOnePitchingSessions"
