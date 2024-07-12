@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { gsap } from "gsap";
+import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import { useForm } from "react-hook-form";
 import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
 import Select from "react-select";
@@ -34,6 +36,18 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
     useState(countryRegion);
   const [countryRegionSelect, setCountryRegionSelect] = useState(null);
   const [positioncompanySelect, setPositionCompanySelect] = useState(null);
+
+  gsap.registerPlugin(ScrollToPlugin);
+
+  const isScrollToCard = (e) => {
+    e.preventDefault();
+
+    gsap.to(window, {
+      duration: 1.5,
+      scrollTo: { y: "#ca2024FormPitchingSessions", offsetY: 140 },
+      ease: "power2",
+    });
+  };
 
   const {
     watch,
@@ -219,11 +233,14 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
             </div>
 
             <div className="relative z-[5] -mt-[105px] flex w-full max-w-full flex-col text-center sm:max-w-[551px] lg:max-w-[711px]">
-              <div className="mx-auto flex w-max flex-row items-center">
-                <span className="mx-auto mb-4 inline-flex w-max flex-row items-center justify-center rounded-full border border-solid border-white bg-white/[0.07] px-3 py-2 font-bevietnamPro text-sm font-light text-white sm:mb-6">
+              <div className="mx-auto mb-4 flex w-max flex-row items-center sm:mb-6">
+                <span className="mx-auto inline-flex w-max flex-row items-center justify-center rounded-full border border-solid border-white bg-white/[0.07] px-3 py-2 font-bevietnamPro text-sm font-light text-white">
                   Pitching Sessions
                 </span>
-                <span className="mx-auto mb-4 inline-flex w-max flex-row items-center justify-center rounded-full border border-solid border-white bg-white/[0.07] px-3 py-2 font-bevietnamPro text-sm font-light text-white sm:mb-6">
+                <span class="mx-1.5 text-base font-light text-white sm:mx-3.5">
+                  |
+                </span>
+                <span className="mx-auto inline-flex w-max flex-row items-center justify-center rounded-full border border-solid border-white bg-white/[0.07] px-3 py-2 font-bevietnamPro text-sm font-light text-white">
                   Day 2 @ Alpha Stage
                 </span>
               </div>
@@ -235,13 +252,14 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
                 prominent VCs and key players in Web3 Industry
               </p>
               <div className="mx-auto mt-6 inline-flex w-full flex-col items-center justify-between px-4 sm:w-max sm:flex-row sm:px-0">
-                <Link
+                <button
                   className={`relative mb-2 mr-0 inline-flex w-full items-center justify-center rounded-[14px] bg-white px-4 py-4 font-bevietnamPro text-base font-normal text-black-900 outline-none last:mr-0 focus-visible:outline-none sm:mb-0 sm:mr-4 sm:w-max sm:px-6`}
-                  title="Coinfest Asia 2024 (Header Treding Competition)"
-                  href={""}
+                  onClick={(e) => {
+                    isScrollToCard(e);
+                  }}
                 >
                   Submit your project
-                </Link>
+                </button>
               </div>
             </div>
           </header>
@@ -249,6 +267,7 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
           <div className="relative z-10 mx-2 -mt-[105px] sm:mx-2.5 sm:-mt-[141px] lg:mx-5 lg:-mt-[187px] xl:mb-20">
             <Container>
               <form
+                id="ca2024FormPitchingSessions"
                 className="relative flex w-full flex-col"
                 method="POST"
                 onSubmit={handleSubmit(onSubmit)}
