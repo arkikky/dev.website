@@ -1,0 +1,46 @@
+.ca2024BgOverflay {
+  @apply relative;
+}
+
+.ca2024BgOverflay {
+  @apply bg-[url("/assets/images/backdrop/buttons/ca2024BgOverflayWhite.png")];
+  @apply bg-center object-cover object-center;
+}
+
+.ca2024BgOverflayBlue {
+  @apply bg-[url("/assets/images/backdrop/buttons/ca2024BgOverflayBlue.png")];
+  @apply bg-center object-cover object-center;
+}
+
+.ca2024BgOverflayMint {
+  @apply bg-[url("/assets/images/backdrop/buttons/ca2024BgOverflayMint.png")];
+  @apply bg-center object-cover object-center;
+}
+
+.ca2024BgOverflayColor {
+  @apply bg-[url("/assets/images/backdrop/buttons/ca2024BgOverflay.png")];
+  @apply bg-center object-cover object-right;
+  @apply bg-blend-multiply;
+}
+
+/* @venue */
+.ca2024LabelNoVenue {
+  @apply bg-[url("/assets/images/backdrop/ca2024LabelNoVenue.png")];
+  @apply bg-center object-cover object-center;
+}
+
+.ca20240Radio-label input[type="radio"] {
+  @apply form-radio;
+  @apply hidden h-0 w-0;
+}
+
+.ca20240Radio-label label {
+  @apply relative flex cursor-pointer flex-col items-center justify-center;
+  @apply font-bevietnamPro text-base font-normal uppercase text-[#7D7D7D] text-nowrap;
+  @apply rounded-full border border-solid border-[#EBEBEB];
+  @apply px-4 py-3;
+}
+
+.ca20240Radio-label input[type="radio"]:checked + label {
+  @apply border-secondary text-secondary;
+}
