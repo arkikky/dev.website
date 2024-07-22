@@ -79,10 +79,7 @@ const CoinfestWeekCard = ({
         // className={`col-span-1 flex h-full flex-col overflow-hidden rounded-lg border border-solid border-[#C6C6C6]/40`}
         className={`col-span-1 flex h-full flex-col overflow-hidden rounded-lg`}
       >
-        <div
-          ref={ref}
-          className={`relative h-[189px] w-full bg-[#C6C6C6] sm:h-[169px] lg:h-[149px] xl:h-[159px] 2xl:h-[201px]`}
-        >
+        <div ref={ref} className={`relative h-auto w-full bg-[#C6C6C6]`}>
           {isLoading ? (
             <Image
               className="h-full w-full object-cover"
