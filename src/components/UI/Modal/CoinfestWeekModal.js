@@ -1,4 +1,5 @@
 import React from "react";
+import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,38 +9,41 @@ const CoinfestWeekModal = ({
   desc,
   images,
   date,
+  time,
   location,
-  labelBtn,
+  labelBtn = "RSVP",
   urlRsrv = "",
   disable = false,
 }) => {
   const isCoinfestWeek = () => {
     return (
       <div
-        className={`relative inline-flex w-full items-center justify-center rounded-[14px] ${disable ? "bg-[#788090]" : "bg-secondary"} px-5 py-4 font-bevietnamPro text-sm font-normal leading-initial text-white outline-none last:mr-0 focus-visible:outline-none sm:text-base lg:px-6 lg:py-5`}
+        className={`relative inline-flex w-full items-center justify-center rounded-[14px] ${disable === true || urlRsrv === "" ? "bg-[#788090]" : "bg-secondary"} px-5 py-4 font-bevietnamPro text-sm font-normal leading-initial text-white outline-none last:mr-0 focus-visible:outline-none sm:text-base lg:px-6 lg:py-5`}
       >
-        {labelBtn === null ? "RSVP" : labelBtn}
-        <svg
-          className="ml-0.5 h-6 w-6"
-          viewBox="0 0 25 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M7.75 17L17.75 7"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M7.75 7H17.75V17"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        {urlRsrv !== "" ? "RSVP" : "COMING SOON"}
+        {urlRsrv !== "" && (
+          <svg
+            className="ml-0.5 h-6 w-6"
+            viewBox="0 0 25 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7.75 17L17.75 7"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M7.75 7H17.75V17"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )}
       </div>
     );
   };
@@ -96,11 +100,13 @@ const CoinfestWeekModal = ({
               )} */}
               </div>
               <div className="flex h-full w-full flex-1 flex-col bg-white sm:overflow-hidden">
-                <div className={`relative h-[170px] w-full bg-[#C6C6C6]`}>
+                <div
+                  className={`relative h-[183px] w-full bg-[#C6C6C6] sm:h-[251px] lg:h-[259px] xl:h-[261px]`}
+                >
                   <Image
                     className="h-full w-full object-cover"
                     src={images}
-                    alt={`Coinfest Asia 2024 ${"isAlt"}`}
+                    alt={`Coinfest Asia 2024`}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                     width={684}
                     height={260}
@@ -114,7 +120,7 @@ const CoinfestWeekModal = ({
                       {name}
                     </h3>
                     {desc && (
-                      <div className="mt-2 flex flex-col font-bevietnamPro text-base font-light">
+                      <div className="ca2024CoinfestWeekCntnMdl mt-2 flex max-h-[145px] flex-col overflow-y-scroll font-bevietnamPro text-base font-light xl:max-h-[75px]">
                         {desc}
                       </div>
                     )}
@@ -197,7 +203,7 @@ const CoinfestWeekModal = ({
                           strokeLinejoin="round"
                         />
                       </svg>
-                      12:00
+                      {dayjs(time).format("h A")}
                     </span>
                   </div>
                   <div className="relative mt-6 block">
@@ -207,7 +213,7 @@ const CoinfestWeekModal = ({
                       <Link
                         title={`Coinfest Asia 2024 (Button Coinfest Week - ${name})`}
                         // href={urlRsrv === null || (undefined && "ll")}
-                        href=""
+                        href={urlRsrv}
                       >
                         {isCoinfestWeek()}
                       </Link>

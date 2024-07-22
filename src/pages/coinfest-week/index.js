@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-// import dayjs from "dayjs";
+import dayjs from "dayjs";
 import getConfig from "next/config";
 import Head from "next/head";
 import Image from "next/image";
@@ -9,8 +9,8 @@ import Link from "next/link";
 const { publicRuntimeConfig } = getConfig();
 
 // @components
-// import CoinfestWeekModal from "@components/UI/Modal/CoinfestWeekModal";
-// import CoinfestWeekCard from "@components/UI/Card/CoinfestWeekCard";
+import CoinfestWeekModal from "@components/UI/Modal/CoinfestWeekModal";
+import CoinfestWeekCard from "@components/UI/Card/CoinfestWeekCard";
 
 // @layouts
 import BentoGridLayouts from "@layouts/BentoLayouts";
@@ -19,7 +19,7 @@ import BannerFooter from "@layouts/Banner/BannerFooter";
 const CoinfestWeek = ({ result }) => {
   const [isCoinfestWeek, setCoinfestWeek] = useState(result);
   const [isDropdownMenu, setDropdownMenu] = useState(false);
-  // const [isCoinfestWeekModal, setCoinfestWeekModal] = useState(null);
+  const [isCoinfestWeekModal, setCoinfestWeekModal] = useState(null);
 
   // @preline (Add Plugins)
   useEffect(() => {
@@ -33,45 +33,45 @@ const CoinfestWeek = ({ result }) => {
   const dropdownMenu = useCallback(() => {
     setDropdownMenu((prev) => !prev);
 
-    // const bckDropModal = document.querySelector("#bckdrpModalActve");
+    const bckDropModal = document.querySelector("#bckdrpModalActve");
 
-    // if (bckDropModal) {
-    //   if (isDropdownMenu === false) {
-    //     bckDropModal.classList.add("active");
-    //   } else {
-    //     bckDropModal.classList.remove("active");
-    //   }
-    // }
+    if (bckDropModal) {
+      if (isDropdownMenu === false) {
+        bckDropModal.classList.add("active");
+      } else {
+        bckDropModal.classList.remove("active");
+      }
+    }
   }, [isDropdownMenu]);
 
   {
     /* @coinfestweek-modal */
   }
-  // const isModal = ({
-  //   id,
-  //   name,
-  //   desc,
-  //   images,
-  //   date,
-  //   time,
-  //   location,
-  //   labelBtn,
-  //   urlRsrv,
-  //   disable,
-  // }) => {
-  //   setCoinfestWeekModal({
-  //     id: id,
-  //     name: name,
-  //     desc: desc,
-  //     images: images,
-  //     date: date,
-  //     time: time,
-  //     location: location,
-  //     labelBtn: labelBtn,
-  //     urlRsrv: urlRsrv,
-  //     disable: disable,
-  //   });
-  // };
+  const isModal = ({
+    id,
+    name,
+    desc,
+    images,
+    date,
+    time,
+    location,
+    labelBtn,
+    urlRsrv,
+    disable,
+  }) => {
+    setCoinfestWeekModal({
+      id: id,
+      name: name,
+      desc: desc,
+      images: images,
+      date: date,
+      time: time,
+      location: location,
+      labelBtn: labelBtn,
+      urlRsrv: urlRsrv,
+      disable: disable,
+    });
+  };
 
   return (
     <>
@@ -233,10 +233,12 @@ const CoinfestWeek = ({ result }) => {
                 <Link
                   className={`relative z-[2] inline-flex w-full items-center justify-between rounded-[14px] border border-solid border-white bg-white/[0.07] px-4 py-4.5 font-bevietnamPro text-base font-normal text-white outline-none focus-visible:outline-none sm:w-max sm:px-6 sm:py-4`}
                   title="Coinfest Asia 2024 Google Spreadsheet - Coinfest Week)"
-                  href={""}
+                  href={
+                    "https://docs.google.com/spreadsheets/d/1S1_HLKxsLXoVaJ2LDg6wIwevooC9pw4nRRNOjmIiBP0/edit?usp=sharing"
+                  }
                   target="_blank"
                 >
-                  COMING SOON - Google Sheets List
+                  Google Sheets List
                   <div className="ml-0 flex flex-col items-center justify-center sm:ml-2">
                     <Image
                       className={`h-6 w-6`}
@@ -253,7 +255,7 @@ const CoinfestWeek = ({ result }) => {
             </div>
           </header>
 
-          {/* <div className="mx-2 sm:mx-2.5 lg:mx-5">
+          <div className="mx-2 mb-18 sm:mx-2.5 sm:mb-0 lg:mx-5">
             {isCoinfestWeek.map((getDateWeek, i) => (
               <div
                 id={`day${i + 1}`}
@@ -280,17 +282,17 @@ const CoinfestWeek = ({ result }) => {
                   {getDateWeek.attributes.map((gtRslt, i) => (
                     <div key={i} className="flex flex-col">
                       <CoinfestWeekCard
-                        title={gtRslt.attributes.name}
-                        alt={gtRslt.attributes.name}
-                        time={gtRslt.attributes.time}
+                        title={gtRslt.attributes.title}
+                        alt={gtRslt.attributes.title}
+                        time={gtRslt.attributes.startDate}
                         imageUrl={
-                          gtRslt.attributes.banner.data !== null
+                          gtRslt.attributes.thumbnail.data !== null
                             ? process.env.NEXT_PUBLIC_UPLOAD +
-                              gtRslt.attributes.banner.data.attributes.url
+                              gtRslt.attributes.thumbnail.data.attributes.url
                             : ""
                         }
                         labelRsvp={gtRslt.attributes.buttonCopy}
-                        rsvpUrl={gtRslt.attributes.rsvpLink}
+                        rsvpUrl={gtRslt.attributes.url}
                         headline={
                           "Bites, Brews, and Blockchain: Web3 Networking Event by AWS"
                         }
@@ -299,28 +301,29 @@ const CoinfestWeek = ({ result }) => {
                         }
                       >
                         <button
-                          id={`ca2024BtnCoinfestWeek${gtRslt.attributes.name}${i}`}
+                          id={`ca2024BtnCoinfestWeek${gtRslt.attributes.title}${i}`}
                           className={`relative inline-flex w-full items-center justify-center rounded-[14px] bg-transparent px-5 pb-2 pt-4 font-bevietnamPro text-sm font-light leading-initial text-[#C6C6C6] outline-none last:mr-0 hover:text-secondary hover:underline focus-visible:outline-none sm:pt-5 sm:text-base lg:px-6`}
-                          aria-label={`${gtRslt.attributes.name} - (Button Modal Coinfest Week)`}
-                          aria-labelledby={`${gtRslt.attributes.name} - (Button Modal Coinfest Week)`}
+                          aria-label={`${gtRslt.attributes.title} - (Button Modal Coinfest Week)`}
+                          aria-labelledby={`${gtRslt.attributes.title} - (Button Modal Coinfest Week)`}
                           data-hs-overlay={`#mdlCoinfestWeek`}
                           onClick={(e) => {
                             e.preventDefault();
 
                             isModal({
                               id: gtRslt.id,
-                              name: gtRslt.attributes.name,
+                              name: gtRslt.attributes.title,
                               desc: gtRslt.attributes.description,
                               images:
-                                gtRslt.attributes.banner.data !== null
+                                gtRslt.attributes.thumbnail.data !== null
                                   ? process.env.NEXT_PUBLIC_UPLOAD +
-                                    gtRslt.attributes.banner.data.attributes.url
-                                  : "",
+                                    gtRslt.attributes.thumbnail.data.attributes
+                                      .url
+                                  : "/assets/images/coinfest-week/ca2024CoinfestWeek-General.png",
                               date: gtRslt.attributes.date,
-                              time: gtRslt.attributes.time,
+                              time: gtRslt.attributes.startDate,
                               location: gtRslt.attributes.location,
                               labelBtn: gtRslt.attributes.buttonCopy,
-                              urlRsrv: gtRslt.attributes.rsvpLink,
+                              urlRsrv: gtRslt.attributes.url,
                               disable:
                                 gtRslt.attributes.status !== false
                                   ? false
@@ -336,13 +339,13 @@ const CoinfestWeek = ({ result }) => {
                 </div>
               </div>
             ))}
-          </div> */}
+          </div>
 
           {/* @banner-footer */}
           <BannerFooter />
 
           {/* @coinfestweek-modal */}
-          {/* <CoinfestWeekModal {...isCoinfestWeekModal} /> */}
+          <CoinfestWeekModal {...isCoinfestWeekModal} />
         </main>
       </BentoGridLayouts>
     </>
@@ -353,32 +356,35 @@ export default CoinfestWeek;
 
 export const getStaticProps = async () => {
   // const resDateCoinfestWeek = await fetch(
-  //   `${process.env.NEXT_PUBLIC_API}/coinfest-weeks?sort[0]=startClock:asc&populate=*&pagination[pageSize]=100`,
+  //   `${process.env.NEXT_PUBLIC_API}/coinfest-weeks?sort[0]=startDate:asc&populate=*&pagination[pageSize]=100`,
   // );
-  // const dateCoinfestWeek = await resDateCoinfestWeek.json();
+  const resDateCoinfestWeek = await fetch(
+    `${process.env.NEXT_PUBLIC_API}/ca24-side-events?sort[0]=startDate:asc&populate=*&pagination[pageSize]=100`,
+  );
+  const dateCoinfestWeek = await resDateCoinfestWeek.json();
 
-  // const groups = dateCoinfestWeek.data.reduce((groups, game) => {
-  //   const parts = game.attributes.startClock;
-  //   const date = parts.split("T")[0];
-  //   if (!groups[date]) {
-  //     groups[date] = [];
-  //   }
-  //   groups[date].push(game);
-  //   return groups;
-  // }, {});
+  const groups = dateCoinfestWeek.data.reduce((groups, game) => {
+    const parts = game.attributes.startDate;
+    const date = parts.split("T")[0];
+    if (!groups[date]) {
+      groups[date] = [];
+    }
+    groups[date].push(game);
+    return groups;
+  }, {});
 
   // Edit: to add it in the array format instead
-  // const groupArrays = Object.keys(groups).map((date) => {
-  //   return {
-  //     date,
-  //     attributes: groups[date],
-  //   };
-  // });
+  const groupArrays = Object.keys(groups).map((date) => {
+    return {
+      date,
+      attributes: groups[date],
+    };
+  });
 
   try {
     return {
       props: {
-        // result: groupArrays,
+        result: groupArrays,
       },
 
       revalidate: 900,

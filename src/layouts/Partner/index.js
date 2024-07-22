@@ -11,17 +11,22 @@ const Partner = ({
   dataSponsor,
   dataMediaPartner,
   dataComunitiesPartner,
+  dataStrategicPartner,
 }) => {
   const [isSponsorPartner, setSponsorPartner] = useState(dataSponsor);
-  const [isMediaPartner, setMediaPartner] = useState(dataMediaPartner);
+  const isMediaPartner = [].concat(
+    ...dataMediaPartner.page1.data,
+    ...dataMediaPartner.page2.data,
+  );
   const isComunitiesPartnerArr = [].concat(
     ...dataComunitiesPartner.page1.data,
     ...dataComunitiesPartner.page2.data,
   );
-
   const [isComunitiesPartner, setComunitiesPartner] = useState(
     isComunitiesPartnerArr,
   );
+  const [isStrategicPartner, setStrategicPartner] =
+    useState(dataStrategicPartner);
 
   return (
     <>
@@ -73,6 +78,16 @@ const Partner = ({
                 >
                   COMMUNITIES
                 </button>
+                <button
+                  type="button"
+                  className="inline-flex w-fill min-w-[189px] items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-6 text-center font-bevietnamPro text-base font-medium text-[#3B5683] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-secondary hs-tab-active:text-white sm:rounded-2xl"
+                  id="segment-item-4"
+                  data-hs-tab="#segment-4"
+                  aria-controls="segment-4"
+                  role="tab"
+                >
+                  STRATEGIC
+                </button>
               </nav>
             </div>
           </div>
@@ -121,7 +136,7 @@ const Partner = ({
             >
               {isMediaPartner && (
                 <div className="relative min-w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
-                  {isMediaPartner.data?.map((gtRslt, i) => (
+                  {isMediaPartner?.map((gtRslt, i) => (
                     <div
                       className="col-span-2 sm:col-span-4 lg:col-span-3"
                       key={i}
@@ -162,6 +177,36 @@ const Partner = ({
                   ))}
                   {isLayoutShow === true && (
                     <div className="col-span-2 sm:col-span-4 lg:col-span-2">
+                      <Link
+                        className="flex h-[99px] flex-col items-center justify-center rounded-[8px] border border-solid border-secondary px-0 grayscale-0 transition duration-300 ease-in-out sm:h-[138px] sm:rounded-[20px] lg:h-[190px]"
+                        href="/partners"
+                      >
+                        <span className="font-bevietnamPro text-xs font-bold uppercase text-black-900 sm:text-base">
+                          AND <span className="text-secondary">MANY MORE</span>
+                        </span>
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+            <div
+              id="segment-4"
+              role="tabpanel"
+              aria-labelledby="segment-item-4"
+            >
+              {isStrategicPartner && (
+                <div className="relative min-w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+                  {isStrategicPartner.data?.map((gtRslt, i) => (
+                    <div
+                      className="col-span-2 sm:col-span-4 lg:col-span-3"
+                      key={i}
+                    >
+                      <BrandSponsor {...gtRslt} height={100} width={240} />
+                    </div>
+                  ))}
+                  {isLayoutShow === true && (
+                    <div className="col-span-2 sm:col-span-4 lg:col-span-3">
                       <Link
                         className="flex h-[99px] flex-col items-center justify-center rounded-[8px] border border-solid border-secondary px-0 grayscale-0 transition duration-300 ease-in-out sm:h-[138px] sm:rounded-[20px] lg:h-[190px]"
                         href="/partners"

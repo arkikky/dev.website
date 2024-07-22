@@ -12,7 +12,12 @@ import { getFetch } from "@lib/controller/API";
 import Partner from "@layouts/Partner";
 import BannerFooter from "@layouts/Banner/BannerFooter";
 
-const Partners = ({ sponsor, mediaPartner, comunitiesPartner }) => {
+const Partners = ({
+  sponsor,
+  mediaPartner,
+  comunitiesPartner,
+  strategicPartners,
+}) => {
   // @preline (Add Plugins)
   useEffect(() => {
     import("preline");
@@ -73,6 +78,7 @@ const Partners = ({ sponsor, mediaPartner, comunitiesPartner }) => {
           dataSponsor={sponsor}
           dataMediaPartner={mediaPartner}
           dataComunitiesPartner={comunitiesPartner}
+          dataStrategicPartner={strategicPartners}
         />
 
         {/* @banner-footer */}
@@ -89,8 +95,11 @@ export const getStaticProps = async () => {
     `/ca-24-sponsors?sort=rank:asc&populate=*&pagination[pageSize]=100`,
   );
 
-  const isMediaPartner = await getFetch(
-    `/ca-24-media-partners?sort=rank:asc&populate=*&pagination[pageSize]=100`,
+  const isMediaPartner1 = await getFetch(
+    `/ca-24-media-partners?sort=rank:asc&populate=*&pagination[page]=1&pagination[pageSize]=100`,
+  );
+  const isMediaPartner2 = await getFetch(
+    `/ca-24-media-partners?sort=rank:asc&populate=*&pagination[page]=2&pagination[pageSize]=100`,
   );
 
   const isComunitiesPartner1 = await getFetch(
@@ -100,15 +109,23 @@ export const getStaticProps = async () => {
     `/ca-24-communities?sort=rank:asc&populate=*&pagination[page]=2&pagination[pageSize]=100`,
   );
 
+  const isStrategicPartners = await getFetch(
+    `/ca24-strategic-partners?sort=rank:asc&populate=*&pagination[pageSize]=100`,
+  );
+
   try {
     return {
       props: {
         sponsor: isSponsor || [],
-        mediaPartner: isMediaPartner || [],
+        mediaPartner: {
+          page1: isMediaPartner1 || [],
+          page2: isMediaPartner2 || [],
+        },
         comunitiesPartner: {
           page1: isComunitiesPartner1 || [],
           page2: isComunitiesPartner2 || [],
         },
+        strategicPartners: isStrategicPartners || [],
       },
 
       revalidate: 900,

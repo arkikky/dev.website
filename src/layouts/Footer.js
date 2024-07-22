@@ -64,20 +64,13 @@ const Footer = () => {
                           Venue map
                         </Link>
                       </li>
-                      <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
-                        <button
-                          type="button"
-                          aria-label="menuFaq"
-                          className="hs-tooltip-toggle flex flex-row items-center font-bevietnamPro text-base font-light capitalize leading-[normal] text-black-900 outline-none focus-visible:outline-none group-hover:text-secondary group-hover:underline"
+                      <li className="group mb-4 last:mb-0">
+                        <Link
+                          className="flex flex-row items-center font-bevietnamPro text-base font-light capitalize leading-[normal] text-black-900 outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none group-hover:text-secondary group-hover:underline"
+                          href="/faq"
                         >
                           FAQ
-                          <span
-                            className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-black-900 px-2.5 py-1 font-bevietnamPro text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
-                            role="tooltip"
-                          >
-                            Coming Soon
-                          </span>
-                        </button>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -365,8 +358,15 @@ const Footer = () => {
                   </div>
                 </div>
               </div>
+
+              <div className="mt-18 flex w-full flex-col pr-0 text-sm sm:pr-12 lg:mt-20 lg:pr-0 xl:mt-24 xl:pr-[128px]">
+                Coinfest Asia adalah acara tertutup yang berfokus pada edukasi
+                dan pengembangan industri, dengan tujuan memberi dampak positif
+                terhadap perekonomian Indonesia. Partisipasi terbatas hanya
+                untuk tamu undangan dan peserta yang telah terdaftar.
+              </div>
             </div>
-            <div className="mt-15 flex flex-col items-start justify-start lg:mt-24 lg:flex-row lg:items-center lg:justify-between">
+            <div className="mt-8 flex flex-col items-start justify-start sm:mt-10 lg:mt-12 lg:flex-row lg:items-center lg:justify-between">
               <div className="w-full max-w-[545px] font-bevietnamPro text-sm font-light text-black-900 prose-a:text-secondary prose-a:underline prose-strong:text-secondary xl:max-w-max">
                 Copyright © <strong>Coinfest Asia</strong>. All rights
                 reserved. Coinfest is organized by{" "}

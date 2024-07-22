@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import dayjs from "dayjs";
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +9,7 @@ const CoinfestWeekCard = ({
   imageUrl,
   alt,
   title = "Bite, Brews, and Blockchain",
-  time = "12:00 PM - 4:00PM",
+  time = "COMING SOON",
   labelRsvp,
   rsvpUrl = "",
   disable = false,
@@ -24,7 +25,7 @@ const CoinfestWeekCard = ({
   //  @init
   const addImage = imageUrl
     ? imageUrl
-    : "/2023/assets/images/coinfest-week/Thumbnail-Default.jpg";
+    : "/assets/images/coinfest-week/ca2024CoinfestWeek-General.png";
   const isAlt = alt ? alt : "(Coinfest Week Brand)";
   const isLabelRSVP = labelRsvp ? labelRsvp : "RSVP";
 
@@ -42,30 +43,32 @@ const CoinfestWeekCard = ({
   const isCoinfestWeek = () => {
     return (
       <div
-        className={`relative inline-flex w-full items-center justify-center rounded-[14px] ${disable === true ? "bg-[#788090]" : "bg-secondary"} px-5 py-4 font-bevietnamPro text-sm font-normal leading-initial text-white outline-none last:mr-0 focus-visible:outline-none sm:text-base lg:px-6 lg:py-5`}
+        className={`relative inline-flex w-full items-center justify-center rounded-[14px] ${disable === true || rsvpUrl === "" ? "bg-[#788090]" : "bg-secondary"} px-5 py-4 font-bevietnamPro text-sm font-normal leading-initial text-white outline-none last:mr-0 focus-visible:outline-none sm:text-base lg:px-6 lg:py-5`}
       >
-        {isLabelRSVP}
-        <svg
-          className="ml-0.5 h-6 w-6"
-          viewBox="0 0 25 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M7.75 17L17.75 7"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M7.75 7H17.75V17"
-            stroke="white"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        {rsvpUrl !== "" ? isLabelRSVP : "COMING SOON"}
+        {rsvpUrl !== "" && (
+          <svg
+            className="ml-0.5 h-6 w-6"
+            viewBox="0 0 25 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7.75 17L17.75 7"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M7.75 7H17.75V17"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )}
       </div>
     );
   };
@@ -76,7 +79,10 @@ const CoinfestWeekCard = ({
         // className={`col-span-1 flex h-full flex-col overflow-hidden rounded-lg border border-solid border-[#C6C6C6]/40`}
         className={`col-span-1 flex h-full flex-col overflow-hidden rounded-lg`}
       >
-        <div ref={ref} className={`relative h-[170px] w-full bg-[#C6C6C6]`}>
+        <div
+          ref={ref}
+          className={`relative h-[189px] w-full bg-[#C6C6C6] sm:h-[169px] lg:h-[149px] xl:h-[159px] 2xl:h-[201px]`}
+        >
           {isLoading ? (
             <Image
               className="h-full w-full object-cover"
@@ -132,17 +138,17 @@ const CoinfestWeekCard = ({
                 />
               </svg>
 
-              {time}
+              {dayjs(time).format("h A")}
             </span>
           </div>
 
           <div className="mt-4 flex flex-col justify-end">
-            {disable ? (
+            {disable || rsvpUrl === "" ? (
               <>{isCoinfestWeek()}</>
             ) : (
               <Link
                 title={`Coinfest Asia 2024 (Button Coinfest Week - ${title})`}
-                href={""}
+                href={rsvpUrl}
               >
                 {isCoinfestWeek()}
               </Link>

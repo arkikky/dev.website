@@ -79,3 +79,9 @@
   @apply bg-[url('/assets/images/ca2024LabelHeader.png')];
   @apply bg-cover bg-center object-cover object-center;
 }
+
+/* @agenda */
+.ca2024CvrBgAgenda.ca2024CvrBgAgendaGeneral {
+  @apply bg-[url('/assets/images/backdrop/agenda/ca2024BgAgenda_General.png')];
+  @apply bg-cover bg-center object-cover object-center;
+}

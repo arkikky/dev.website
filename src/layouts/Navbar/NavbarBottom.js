@@ -241,11 +241,16 @@ const NavbarBottom = () => {
               {
                 label: "Hackathons",
                 url: "/activities/hackathons",
-                type: "blank_page",
+                type: "page",
               },
               {
                 label: "Trading Competitions (Coming Soon)",
                 url: "/",
+                type: "page",
+              },
+              {
+                label: "Pitching Sessions",
+                url: "/pitching-sessions",
                 type: "page",
               },
             ]}
@@ -298,7 +303,7 @@ const NavbarBottom = () => {
 
           {/* @navbar-main */}
           <div
-            className={`ca2024NavbarMain relative mx-auto flex h-full w-full flex-row items-center justify-between rounded-[20px] border border-solid border-white/[0.16] bg-black-900/25 px-2 py-2 lg:w-[857px] xl:w-[897px] ${
+            className={`ca2024NavbarMain relative mx-auto flex h-full w-full flex-row items-center justify-between rounded-[20px] border border-solid border-white/[0.16] bg-black-900/25 px-2 py-2 lg:w-[857px] xl:w-[997px] ${
               isMenu ? "!w-full" : null
             } z-100 max-w-full`}
           >
@@ -376,6 +381,11 @@ const NavbarBottom = () => {
                       />
                     </svg>
                   </button>
+                </li>
+                <li>
+                  <Link className="text-white" href={"/coinfest-week"}>
+                    Side Events
+                  </Link>
                 </li>
                 <li>
                   <button
@@ -591,8 +601,21 @@ const NavbarBottom = () => {
                       Hackathons
                     </Link>
                   </li>
+                  <li>
+                    <Link
+                      className="!border-b !border-solid !border-white !ps-8 font-staraSemiBold text-lg text-white"
+                      href="/pitching-sessions"
+                    >
+                      Pitching Sessions
+                    </Link>
+                  </li>
                 </ul>
               </div>
+            </li>
+            <li>
+              <Link className="" href="/coinfest-week">
+                Side Events
+              </Link>
             </li>
             <li className="hs-accordion" id="getInvolvedAccordion">
               <button

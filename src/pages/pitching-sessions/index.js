@@ -72,7 +72,7 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
   // @submit
   const onSubmit = async (data) => {
     const btnSuccessNewsletter = document.querySelector(
-      "#btnSuccessNewsletterMdl.btnSuccessNewsletterMdl",
+      "#btnSuccessPitchingNewsletterMdl.btnSuccessPitchingNewsletterMdl",
     );
 
     const isConfig = {
@@ -93,18 +93,18 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
           name: "phone",
           value: isForm.mobilephone,
         },
-        {
-          objectTypeId: "0-1",
-          name: "have_you_secured_your_coinfest_asia_ticket_",
-          value: data.have_you_secured_your_coinfest_asia_ticket_,
-        },
-        {
-          objectTypeId: "0-1",
-          name: "your_coinfest_asia_ticket_number",
-          value: data.your_coinfest_asia_ticket_number
-            ? data.your_coinfest_asia_ticket_number
-            : "-",
-        },
+        // {
+        //   objectTypeId: "0-1",
+        //   name: "have_you_secured_your_coinfest_asia_ticket_",
+        //   value: data.have_you_secured_your_coinfest_asia_ticket_,
+        // },
+        // {
+        //   objectTypeId: "0-1",
+        //   name: "your_coinfest_asia_ticket_number",
+        //   value: data.your_coinfest_asia_ticket_number
+        //     ? data.your_coinfest_asia_ticket_number
+        //     : "-",
+        // },
         {
           objectTypeId: "0-1",
           name: "company",
@@ -248,7 +248,7 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
                   |
                 </span>
                 <span className="mx-auto inline-flex w-max flex-row items-center justify-center rounded-full border border-solid border-white bg-white/[0.07] px-3 py-2 font-bevietnamPro text-sm font-light text-white">
-                  Day 2 @ Alpha Stage
+                  Day 1 @ Coinfest Asia
                 </span>
               </div>
               <h1 className="font-staraExtraBold text-[40px] uppercase leading-[48px] text-white sm:text-[48px] sm:leading-[60px]">
@@ -281,16 +281,36 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
                   Use cases
                 </h2>
                 <div className="mt-3.5 inline-flex h-max w-full gap-y-2.5 overflow-x-auto lg:flex-wrap">
-                  {frmPitchingSessions.formFieldGroups[9].fields[0].options?.map(
-                    (gRslt, i) => (
-                      <div
-                        className="ca20240Radio-labelBtn group mr-3 last:mr-0"
-                        key={i}
-                      >
-                        {gRslt.label}
-                      </div>
-                    ),
-                  )}
+                  <div className="ca20240Radio-labelBtn group mr-3 uppercase last:mr-0">
+                    🏜 Land registration
+                  </div>
+                  <div className="ca20240Radio-labelBtn group mr-3 uppercase last:mr-0">
+                    🐟 Fishery
+                  </div>
+                  <div className="ca20240Radio-labelBtn group mr-3 uppercase last:mr-0">
+                    🌾 Agriculture
+                  </div>
+                  <div className="ca20240Radio-labelBtn group mr-3 uppercase last:mr-0">
+                    ⚡ Energy
+                  </div>
+                  <div className="ca20240Radio-labelBtn group mr-3 uppercase last:mr-0">
+                    🌳 Forestry
+                  </div>
+                  <div className="ca20240Radio-labelBtn group mr-3 uppercase last:mr-0">
+                    🏭 Carbon Trading
+                  </div>
+                  <div className="ca20240Radio-labelBtn group mr-3 uppercase last:mr-0">
+                    🚚 Logistics
+                  </div>
+                  <div className="ca20240Radio-labelBtn group mr-3 uppercase last:mr-0">
+                    🪪 Single Identity
+                  </div>
+                  <div className="ca20240Radio-labelBtn group mr-3 uppercase last:mr-0">
+                    ♻ Waste Management
+                  </div>
+                  <div className="ca20240Radio-labelBtn group mr-3 uppercase last:mr-0">
+                    💸 Financial Technology Innovation
+                  </div>
                 </div>
               </div>
 
@@ -402,72 +422,6 @@ const PitchingSessions = ({ ipAddrs, formPitchingSessions, countryRegion }) => {
                         />
                       </div>
                     </div>
-                    {frmPitchingSessions && (
-                      <>
-                        <div className="mb-6 flex flex-col last:mb-0">
-                          <label
-                            htmlFor="inputDidYourCompanySpeakers"
-                            className="mb-3 text-start font-bevietnamPro text-base font-normal text-black-900"
-                          >
-                            Have you secured your Coinfest Asia ticket?{" "}
-                            <span className="text-red-500">*</span>
-                          </label>
-                          <div className="grid space-y-2">
-                            {frmPitchingSessions.formFieldGroups[5].fields[0].options?.map(
-                              (gRslt, i) => (
-                                <div className="space-y-2" key={i}>
-                                  <label
-                                    htmlFor={`radioSecuredPitchingSessionsForm_${gRslt.name}${i}`}
-                                    className={`flex w-full cursor-pointer`}
-                                  >
-                                    <input
-                                      id={`radioSecuredPitchingSessionsForm_${gRslt.name}${i}`}
-                                      type="radio"
-                                      className="boxShadow-none form-radio pointer-events-none mt-[3px] h-5 w-5 shrink-0 rounded-full  border border-solid border-[#E3E3E3] bg-transparent text-secondary outline-none ring-0 focus:outline-none focus-visible:outline-none sm:mt-[3px]"
-                                      name={`radioSecuredPitchingSessionsForm_${gRslt.name}`}
-                                      value={gRslt.value}
-                                      {...register(
-                                        "have_you_secured_your_coinfest_asia_ticket_",
-                                        {
-                                          required: true,
-                                        },
-                                      )}
-                                      onChange={(e) => {
-                                        setSelectSecured(gRslt.value);
-                                      }}
-                                    />
-                                    <span className="ml-3 font-bevietnamPro text-base font-normal text-black-900">
-                                      {gRslt.label}
-                                    </span>
-                                  </label>
-                                </div>
-                              ),
-                            )}
-                          </div>
-                        </div>
-                        {selectSecured === "Yes" ? (
-                          <div className="mt-4 flex flex-col">
-                            <label
-                              htmlFor="otherSecuredPitchingSessions"
-                              className="mb-2 text-start font-bevietnamPro text-base font-normal text-black-900"
-                            >
-                              Your Coinfest Asia Ticket Number{" "}
-                              <span className="text-red-500">*</span>
-                            </label>
-                            <input
-                              type="number"
-                              id="otherSecuredPitchingSessions"
-                              className="rounded-lg border border-solid border-[#E3E3E3] bg-white px-4 py-5 font-bevietnamPro text-sm font-normal capitalize text-black-900 placeholder:text-[#9A9A9A]"
-                              name="your_coinfest_asia_ticket_number"
-                              {...register("your_coinfest_asia_ticket_number", {
-                                required: true,
-                                maxLength: 1000,
-                              })}
-                            />
-                          </div>
-                        ) : null}
-                      </>
-                    )}
                   </div>
 
                   <div className="mt-8 flex w-full flex-col">

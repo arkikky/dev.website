@@ -87,6 +87,14 @@ const HackathonCard = ({
                     label="Haqq"
                   />
                   <BrandHackathonCard
+                    images="/assets/images/activities/hackathon/ca2024Hackathon_Lisk.png"
+                    label="Lisk"
+                  />
+                  <BrandHackathonCard
+                    images="/assets/images/activities/hackathon/ca2024Hackathon_MantaNetwork.png"
+                    label="Manta Network"
+                  />
+                  <BrandHackathonCard
                     images="/assets/images/activities/hackathon/ca2024Hackathon_AnyManyMore.svg"
                     label="AnyManyMore"
                   />

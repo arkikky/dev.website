@@ -37,9 +37,12 @@ const Activist = ({ page = false }) => {
 
             <div className="mt-10 w-full max-w-full grid-cols-2 flex-row flex-wrap justify-center gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-3 sm:gap-x-4 sm:gap-y-4 lg:inline-flex lg:grid-cols-none lg:flex-row">
               <ActivistCard
-                url="/partners"
-                labels="Exhibitions"
-                images="/assets/images/experiences/exhibition.png"
+                labels="Keynotes & Panels"
+                images="/assets/images/experiences/main-stage.png"
+              />
+              <ActivistCard
+                labels="Breakout Sessions"
+                images="/assets/images/experiences/breakout-sessions.jpg"
               />
               <ActivistCard
                 url="/activities/hackathons"
@@ -48,8 +51,8 @@ const Activist = ({ page = false }) => {
               />
               <ActivistCard
                 url="/coinfest-week"
-                labels="After Parties"
-                images="/assets/images/experiences/after-parties.png"
+                labels="Community Events"
+                images="/assets/images/experiences/community-events.png"
               />
               <ActivistCard
                 labels="Alpha Sessions"
@@ -61,29 +64,35 @@ const Activist = ({ page = false }) => {
                 images="/assets/images/experiences/trading-competition.png"
               />
               <ActivistCard
-                labels="Keynotes & Panels"
-                images="/assets/images/experiences/main-stage.png"
+                url="/pitching-sessions"
+                labels="Pitching Sessions"
+                images="/assets/images/experiences/pitching-session.jpg"
               />
               <ActivistCard
+                labels="Networking Wallet"
+                images="/assets/images/experiences/networking-wallet.jpg"
+              />
+              {/* <ActivistCard
                 labels="Rapid Chess"
                 images="/assets/images/experiences/rapid-chess.png"
-              />
-              <ActivistCard
-                url="/coinfest-week"
-                labels="Community Events"
-                images="/assets/images/experiences/community-events.png"
-              />
+              /> */}
               <ActivistCard
                 labels="Regulatory Sessions"
                 images="/assets/images/experiences/regulatory-sessions.png"
+              />
+              <ActivistCard
+                url="/partners"
+                labels="Exhibitions"
+                images="/assets/images/experiences/exhibition.png"
               />
               <ActivistCard
                 labels="Paintball Networking"
                 images="/assets/images/experiences/paintball-networking.png"
               />
               <ActivistCard
-                labels="Golf"
-                images="/assets/images/experiences/driving-range.png"
+                url="/coinfest-week"
+                labels="After Parties"
+                images="/assets/images/experiences/after-parties.png"
               />
             </div>
           </div>

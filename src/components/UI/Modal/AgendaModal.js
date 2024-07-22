@@ -1,20 +1,64 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 const AgendaModal = () => {
+  const isAgendaCard = (name = "Amanda Cassat") => {
+    return (
+      <>
+        <div className="flex flex-col items-center gap-x-12 lg:flex-row">
+          <div className="relative mr-auto h-auto w-full min-w-full overflow-hidden rounded-[32px] bg-gray-300 sm:h-[446px] sm:w-[376px] sm:min-w-[376px] lg:mx-auto">
+            <Image
+              className="relative z-[2] mr-auto h-full w-full object-cover lg:mx-auto"
+              src="/assets/images/agenda/ca2024AgendaExmaple_YukiKamimoto.png"
+              alt="Coinfest Asia 2024 (Background General Line)"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+              height={892}
+              width={752}
+              quality="87"
+            />
+
+            {/* @backdrop (cover) */}
+            <div
+              className={`ca2024CvrBgAgenda ca2024CvrBgAgendaGeneral absolute inset-x-0 inset-y-0 z-px`}
+            ></div>
+          </div>
+          <div className="mt-4 w-fill pb-0 sm:mt-6 lg:mt-0 lg:pb-[88px]">
+            <div>
+              <div className="flex flex-col items-start">
+                <h3 className="font-bevietnamPro text-base font-semibold text-black-900 sm:text-xl">
+                  {name}
+                </h3>
+                <span className="mt-1 font-bevietnamPro text-base font-light text-[#9C9C9C] sm:mt-2 sm:text-xl">
+                  Founder/CEO at Serotonin
+                </span>
+              </div>
+              <div className="mt-4 font-bevietnamPro text-base font-light text-[#696666] sm:text-xl">
+                <p>
+                  Meet Amanda Cassatt, former CMO of ConsenSys, now founder of
+                  Serotonin. With her pioneering role in shaping web3 narratives
+                  and authoring the first web3 marketing book, Amanda is the
+                  web3 marketing maverick.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
       {/* @modal (agenda) */}
       <div
         id="mdlAgenda"
-        className="hs-overlay fixed left-0 top-0 z-[9999] hidden h-full w-full overflow-y-auto overflow-x-hidden bg-black-900/[0.33] opacity-0 transition-all [--body-scroll:true] hs-overlay-open:opacity-100 hs-overlay-open:duration-300"
+        className="hs-overlay fixed left-0 top-0 z-[9999] hidden h-full w-full overflow-y-auto overflow-x-hidden bg-black-900/[0.33] opacity-0 transition-all [--body-scroll:false] hs-overlay-open:opacity-100 hs-overlay-open:duration-300"
         data-hs-overlay-backdrop-container="#bckdrpModalActve"
       >
-        <div className="absolute inset-x-0 bottom-0 top-0 mt-8 flex w-full items-center justify-center opacity-0 transition-all duration-300 ease-out hs-overlay-open:mt-0 hs-overlay-open:opacity-100 sm:inset-y-0 sm:max-w-full sm:px-0">
-          <div className="relative flex w-full flex-col items-start justify-start rounded-t-[48px] bg-white">
+        <div className="relative bottom-0 top-auto opacity-0 transition-all duration-300 ease-out hs-overlay-open:mt-[114px] hs-overlay-open:opacity-100 sm:max-w-full sm:px-0 lg:absolute xl:relative">
+          <div className="relative flex w-full flex-col items-start justify-start rounded-t-[20px] bg-white sm:rounded-t-[48px]">
             <button
-              className="hs-dropdown-toggle absolute bottom-auto left-auto right-4 top-4.5 outline-none"
+              className="hs-dropdown-toggle absolute bottom-auto left-auto right-4 sm:right-12 top-4 sm:top-7 outline-none"
               aria-label="mdlAgenda"
               aria-labelledby="mdlAgenda"
               data-hs-overlay="#mdlAgenda"
@@ -32,15 +76,41 @@ const AgendaModal = () => {
               </svg>
             </button>
 
-            <div className="flex flex-col px-7 pt-8 sm:px-12 sm:pt-14">
-              <div className="flex w-full max-w-[820px] flex-col items-start justify-start">
-                <h2 className="font-figtree text-[40px] font-semibold capitalize leading-[54px] text-black-900">
-                  Breaking Bank: How Digital Assets are Disrupting Traditional
-                  Banking Models
-                </h2>
-                <p className="mt-4 px-0 font-bevietnamPro text-base font-light text-black-900">
-                  1:00 PM - 2:30 PM
-                </p>
+            <div className="flex w-full flex-col px-4 pt-12 sm:px-12 sm:pt-[80px]">
+              <div className="flex flex-col items-start justify-between lg:flex-row">
+                <div className="flex w-full max-w-full flex-col items-start justify-start lg:max-w-[495px] xl:max-w-[820px]">
+                  <span className="ca2024BgOverflayBlue inline-flex w-max flex-row items-center justify-center rounded-full bg-secondary px-2.5 py-1 font-bevietnamPro text-sm font-light text-white">
+                    Panel Discussion
+                  </span>
+                  <h2 className="font-figtree mt-4 text-2xl font-semibold capitalize text-black-900 sm:text-[34px] sm:leading-[44px] xl:text-[40px] xl:leading-[54px]">
+                    Breaking Bank: How Digital Assets are Disrupting Traditional
+                    Banking Models
+                  </h2>
+                  <p className="mt-4 px-0 font-bevietnamPro text-base font-light text-black-900">
+                    1:00 PM - 2:30 PM
+                  </p>
+                </div>
+                <div className="relative mt-4 flex w-full max-w-full flex-col sm:mt-6 lg:mt-0 lg:max-w-[327px] xl:max-w-[372px]">
+                  <div className="flex flex-col">
+                    <span className="font-bevietnamPro text-base font-light text-[#5E6577]">
+                      Location
+                    </span>
+                    <p className="mt-1.5 font-bevietnamPro text-base font-light text-secondary">
+                      Oasis Stage
+                    </p>
+                  </div>
+                  <div className="mt-6 hidden h-[85px] w-full lg:flex">
+                    <Image
+                      className="mx-auto h-full w-full object-cover"
+                      src="/assets/images/agenda/label/ca2024AgendaLabel_General.jpg"
+                      alt="Coinfest Asia 2024 (Agenda Label Modal)"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                      height={128}
+                      width={558}
+                      quality="87"
+                    />
+                  </div>
+                </div>
               </div>
               <div className="mt-8 font-bevietnamPro text-xl font-light text-[#5E6577]">
                 <p>
@@ -54,11 +124,113 @@ const AgendaModal = () => {
                   feelings.
                 </p>
               </div>
+
+              <div className="relative flex w-full flex-col">
+                <nav
+                  className="mt-10 flex w-full flex-row space-x-2 overflow-x-auto rounded-[24px] bg-[#EEEEEE] px-2 py-2"
+                  aria-label="Tabs"
+                  role="tablist"
+                >
+                  <div className="flex w-max flex-row  items-center rounded-2xl bg-[#DFDFDF] px-2 py-2 transition sm:px-2">
+                    <span className="inline-flex items-center justify-center whitespace-nowrap rounded-xl bg-[#DFDFDF] px-4 py-3 text-center font-bevietnamPro text-sm font-medium text-[#646464] sm:text-base">
+                      Speakers
+                    </span>
+                    <span class="mr-2 text-base font-light text-[#646464] sm:mr-4">
+                      |
+                    </span>
+                    <div className="flex w-full">
+                      <button
+                        type="button"
+                        className="inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-[#646464] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base"
+                        id="ca2024SegmentModalTabs-item-1"
+                        data-hs-tab="#ca2024SegmentModalTabs-1"
+                        aria-controls="ca2024SegmentModalTabs-1"
+                        role="tab"
+                      >
+                        Yat Siu
+                      </button>
+                      <button
+                        type="button"
+                        className="inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-[#646464] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base"
+                        id="ca2024SegmentModalTabs-item-2"
+                        data-hs-tab="#ca2024SegmentModalTabs-2"
+                        aria-controls="ca2024SegmentModalTabs-2"
+                        role="tab"
+                      >
+                        Yuki Kamimoto
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex w-max flex-row  items-center rounded-2xl bg-[#DFDFDF] px-2 py-2 transition sm:px-2">
+                    <span className="inline-flex items-center justify-center whitespace-nowrap rounded-xl bg-[#DFDFDF] px-4 py-3 text-center font-bevietnamPro text-sm font-medium text-[#646464] sm:text-base">
+                      Moderator
+                    </span>
+                    <span class="mr-2 text-base font-light text-[#646464] sm:mr-4">
+                      |
+                    </span>
+                    <div className="flex w-full">
+                      <button
+                        type="button"
+                        className="active inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-[#646464] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base"
+                        id="ca2024SegmentModalTabs-item-3"
+                        data-hs-tab="#ca2024SegmentModalTabs-3"
+                        aria-controls="ca2024SegmentModalTabs-3"
+                        role="tab"
+                      >
+                        Amanda Cassat
+                      </button>
+                      <button
+                        type="button"
+                        className="inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-[#646464] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base"
+                        id="ca2024SegmentModalTabs-item-4"
+                        data-hs-tab="#ca2024SegmentModalTabs-4"
+                        aria-controls="ca2024SegmentModalTabs-4"
+                        role="tab"
+                      >
+                        Amanda Cassatsss
+                      </button>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+
+              <div className="mt-6 flex w-full flex-col">
+                <div
+                  id="ca2024SegmentModalTabs-1"
+                  className="hidden"
+                  role="tabpanel"
+                  aria-labelledby="ca2024SegmentModalTabs-item-1"
+                >
+                  {isAgendaCard("Yat Siu")}
+                </div>
+                <div
+                  id="ca2024SegmentModalTabs-2"
+                  className="hidden"
+                  role="tabpanel"
+                  aria-labelledby="ca2024SegmentModalTabs-item-2"
+                >
+                  {isAgendaCard("Yuki Kamimoto")}
+                </div>
+                <div
+                  id="ca2024SegmentModalTabs-3"
+                  role="tabpanel"
+                  aria-labelledby="ca2024SegmentModalTabs-item-3"
+                >
+                  {isAgendaCard()}
+                </div>
+                <div
+                  id="ca2024SegmentModalTabs-4"
+                  className="hidden"
+                  role="tabpanel"
+                  aria-labelledby="ca2024SegmentModalTabs-item-4"
+                >
+                  {isAgendaCard()}
+                </div>
+              </div>
             </div>
-            <div className="mt-10"></div>
-            <div className="block w-full">
+            <div className="bottom-0 z-[15] mt-8 block h-[78px] w-full lg:absolute lg:mt-0">
               <Image
-                className="mx-auto h-full w-full object-cover"
+                className="mx-auto h-full w-full object-cover object-center"
                 src="/assets/images/backdrop/line/ca2024GeneralLine.png"
                 alt="Coinfest Asia 2024 (Background General Line)"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"

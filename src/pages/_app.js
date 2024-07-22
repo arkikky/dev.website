@@ -21,6 +21,7 @@ import "@styles/globals.css";
 // @components
 import SuccessModal from "@components/UI/Modal/SuccessModal";
 import OpenGmailSuccessModal from "@components/UI/Modal/OpenGmailSuccessModal";
+import SuccessPitchingModal from "@components/UI/Modal/SuccessPitchingModal";
 
 // @layouts
 import Layouts from "@layouts/Layouts";
@@ -196,6 +197,7 @@ const App = ({ Component, pageProps }) => {
 
         {/* @modal */}
         <SuccessModal />
+        <SuccessPitchingModal />
         <OpenGmailSuccessModal />
 
         {/* @backdrop (modal) */}
@@ -215,6 +217,7 @@ const App = ({ Component, pageProps }) => {
 
         {/* @modal */}
         <SuccessModal />
+        <SuccessPitchingModal />
         <OpenGmailSuccessModal />
 
         {/* @backdrop (modal) */}

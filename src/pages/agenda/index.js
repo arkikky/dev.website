@@ -74,71 +74,323 @@ const Agenda = () => {
             </p>
           </div>
           <div className="relative mt-8 flex flex-col">
-            <div className="sticky -bottom-4 top-[100px] z-50 w-full rounded-xl bg-primary px-4 py-4 sm:relative sm:bottom-auto sm:top-0 sm:px-6 sm:py-6">
-              <h2 className="flex w-full flex-row items-start justify-between text-base sm:text-xl">
-                <span className="flex flex-row items-center justify-start">
-                  <svg
-                    className="mr-2 h-5 w-5 sm:h-6 sm:w-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width={24}
-                    height={24}
-                    fill={"none"}
+            <div className="sticky bottom-auto top-[86px] z-[52] bg-white px-0 py-2 sm:top-[100px] sm:px-4 sm:py-4">
+              <div className="flex w-max flex-col rounded-2xl bg-secondary px-2 py-2 transition sm:px-2">
+                <nav
+                  className="flex w-max overflow-x-auto"
+                  aria-label="Tabs"
+                  role="tablist"
+                >
+                  <button
+                    type="button"
+                    className="active inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-secondary px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-white/[0.64] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base"
+                    id="segment-item-1"
+                    data-hs-tab="#segment-1"
+                    aria-controls="segment-1"
+                    role="tab"
                   >
-                    <path
-                      d="M18.952 8.60657L21.4622 8.45376C19.6629 3.70477 14.497 0.999914 9.4604 2.34474C4.09599 3.77711 0.909631 9.26107 2.34347 14.5935C3.77731 19.926 9.28839 23.0876 14.6528 21.6553C18.6358 20.5917 21.4181 17.2946 22 13.4844"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M12 8V12L14 14"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  11.00 PM
-                </span>
-                <span className="font-normal">GMT +7</span>
-              </h2>
+                    August 22
+                  </button>
+                  <button
+                    type="button"
+                    className="inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-secondary px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-white/[0.64] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base"
+                    id="segment-item-2"
+                    data-hs-tab="#segment-2"
+                    aria-controls="segment-2"
+                    role="tab"
+                  >
+                    August 23
+                  </button>
+                </nav>
+              </div>
             </div>
-            <div className="flex flex-col divide-y divide-[#D6D6D6]">
-              <AgendaCard>
-                <button
-                  id={`btnAgenda`}
-                  className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-3 font-bevietnamPro text-base font-normal text-secondary outline-none focus-visible:outline-none sm:w-max sm:flex-row sm:py-2.5"
-                  aria-label={` - (Button Modal Agenda)`}
-                  aria-labelledby={` - (Button Modal Agenda)`}
-                  data-hs-overlay="#mdlAgenda"
-                >
-                  See details
-                </button>
-              </AgendaCard>
-              <AgendaCard>
-                <button
-                  id={`btnAgenda`}
-                  className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none focus-visible:outline-none sm:w-max sm:flex-row"
-                  aria-label={` - (Button Modal Agenda)`}
-                  aria-labelledby={` - (Button Modal Agenda)`}
-                  data-hs-overlay="#mdlAgenda"
-                >
-                  See details
-                </button>
-              </AgendaCard>
-              <AgendaCard>
-                <button
-                  id={`btnAgenda`}
-                  className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none focus-visible:outline-none sm:w-max sm:flex-row"
-                  aria-label={` - (Button Modal Agenda)`}
-                  aria-labelledby={` - (Button Modal Agenda)`}
-                  data-hs-overlay="#mdlAgenda"
-                >
-                  See details
-                </button>
-              </AgendaCard>
+
+            <div className="relative flex w-full flex-col">
+              <div
+                id="segment-1"
+                role="tabpanel"
+                aria-labelledby="segment-item-1"
+              >
+                <div className="relative w-full">
+                  <div className="sticky bottom-auto top-[158px] z-50 w-full border-b border-[#D6D6D6] bg-white px-4 py-4 sm:top-[194px] sm:px-6 sm:py-6">
+                    <h2 className="flex w-full flex-row items-start justify-between text-base sm:text-xl">
+                      <span className="flex flex-row items-center justify-start">
+                        <svg
+                          className="mr-2 h-5 w-5 sm:h-6 sm:w-6"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          width={24}
+                          height={24}
+                          fill={"none"}
+                        >
+                          <path
+                            d="M18.952 8.60657L21.4622 8.45376C19.6629 3.70477 14.497 0.999914 9.4604 2.34474C4.09599 3.77711 0.909631 9.26107 2.34347 14.5935C3.77731 19.926 9.28839 23.0876 14.6528 21.6553C18.6358 20.5917 21.4181 17.2946 22 13.4844"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M12 8V12L14 14"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        11.00 PM
+                      </span>
+                      <span className="font-normal">GMT +7</span>
+                    </h2>
+                  </div>
+                  <div className="flex flex-col divide-y divide-[#D6D6D6]">
+                    <AgendaCard>
+                      <button
+                        id={`btnAgenda`}
+                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-3 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row sm:py-2.5"
+                        aria-label={` - (Button Modal Agenda)`}
+                        aria-labelledby={` - (Button Modal Agenda)`}
+                        data-hs-overlay="#mdlAgenda"
+                      >
+                        See details
+                      </button>
+                    </AgendaCard>
+                    <AgendaCard>
+                      <button
+                        id={`btnAgenda`}
+                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
+                        aria-label={` - (Button Modal Agenda)`}
+                        aria-labelledby={` - (Button Modal Agenda)`}
+                        data-hs-overlay="#mdlAgenda"
+                      >
+                        See details
+                      </button>
+                    </AgendaCard>
+                    <AgendaCard>
+                      <button
+                        id={`btnAgenda`}
+                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
+                        aria-label={` - (Button Modal Agenda)`}
+                        aria-labelledby={` - (Button Modal Agenda)`}
+                        data-hs-overlay="#mdlAgenda"
+                      >
+                        See details
+                      </button>
+                    </AgendaCard>
+                  </div>
+                </div>
+                <div className="relative w-full">
+                  <div className="sticky bottom-auto top-[158px] z-50 w-full border-b border-[#D6D6D6] bg-white px-4 py-4 sm:top-[194px] sm:px-6 sm:py-6">
+                    <h2 className="flex w-full flex-row items-start justify-between text-base sm:text-xl">
+                      <span className="flex flex-row items-center justify-start">
+                        <svg
+                          className="mr-2 h-5 w-5 sm:h-6 sm:w-6"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          width={24}
+                          height={24}
+                          fill={"none"}
+                        >
+                          <path
+                            d="M18.952 8.60657L21.4622 8.45376C19.6629 3.70477 14.497 0.999914 9.4604 2.34474C4.09599 3.77711 0.909631 9.26107 2.34347 14.5935C3.77731 19.926 9.28839 23.0876 14.6528 21.6553C18.6358 20.5917 21.4181 17.2946 22 13.4844"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M12 8V12L14 14"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        11.00 PM
+                      </span>
+                      <span className="font-normal">GMT +7</span>
+                    </h2>
+                  </div>
+                  <div className="flex flex-col divide-y divide-[#D6D6D6]">
+                    <AgendaCard>
+                      <button
+                        id={`btnAgenda`}
+                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-3 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row sm:py-2.5"
+                        aria-label={` - (Button Modal Agenda)`}
+                        aria-labelledby={` - (Button Modal Agenda)`}
+                        data-hs-overlay="#mdlAgenda"
+                      >
+                        See details
+                      </button>
+                    </AgendaCard>
+                    <AgendaCard>
+                      <button
+                        id={`btnAgenda`}
+                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
+                        aria-label={` - (Button Modal Agenda)`}
+                        aria-labelledby={` - (Button Modal Agenda)`}
+                        data-hs-overlay="#mdlAgenda"
+                      >
+                        See details
+                      </button>
+                    </AgendaCard>
+                    <AgendaCard>
+                      <button
+                        id={`btnAgenda`}
+                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
+                        aria-label={` - (Button Modal Agenda)`}
+                        aria-labelledby={` - (Button Modal Agenda)`}
+                        data-hs-overlay="#mdlAgenda"
+                      >
+                        See details
+                      </button>
+                    </AgendaCard>
+                  </div>
+                </div>
+              </div>
+              <div
+                id="segment-2"
+                className="hidden"
+                role="tabpanel"
+                aria-labelledby="segment-item-2"
+              >
+                <div className="relative w-full">
+                  <div className="sticky bottom-auto top-[158px] z-50 w-full border-b border-[#D6D6D6] bg-white px-4 py-4 sm:top-[194px] sm:px-6 sm:py-6">
+                    <h2 className="flex w-full flex-row items-start justify-between text-base sm:text-xl">
+                      <span className="flex flex-row items-center justify-start">
+                        <svg
+                          className="mr-2 h-5 w-5 sm:h-6 sm:w-6"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          width={24}
+                          height={24}
+                          fill={"none"}
+                        >
+                          <path
+                            d="M18.952 8.60657L21.4622 8.45376C19.6629 3.70477 14.497 0.999914 9.4604 2.34474C4.09599 3.77711 0.909631 9.26107 2.34347 14.5935C3.77731 19.926 9.28839 23.0876 14.6528 21.6553C18.6358 20.5917 21.4181 17.2946 22 13.4844"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M12 8V12L14 14"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        04.00 PM
+                      </span>
+                      <span className="font-normal">GMT +7</span>
+                    </h2>
+                  </div>
+                  <div className="flex flex-col divide-y divide-[#D6D6D6]">
+                    <AgendaCard>
+                      <button
+                        id={`btnAgenda`}
+                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-3 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row sm:py-2.5"
+                        aria-label={` - (Button Modal Agenda)`}
+                        aria-labelledby={` - (Button Modal Agenda)`}
+                        data-hs-overlay="#mdlAgenda"
+                      >
+                        See details
+                      </button>
+                    </AgendaCard>
+                    <AgendaCard>
+                      <button
+                        id={`btnAgenda`}
+                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
+                        aria-label={` - (Button Modal Agenda)`}
+                        aria-labelledby={` - (Button Modal Agenda)`}
+                        data-hs-overlay="#mdlAgenda"
+                      >
+                        See details
+                      </button>
+                    </AgendaCard>
+                    <AgendaCard>
+                      <button
+                        id={`btnAgenda`}
+                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
+                        aria-label={` - (Button Modal Agenda)`}
+                        aria-labelledby={` - (Button Modal Agenda)`}
+                        data-hs-overlay="#mdlAgenda"
+                      >
+                        See details
+                      </button>
+                    </AgendaCard>
+                  </div>
+                </div>
+                <div className="relative w-full">
+                  <div className="sticky bottom-auto top-[158px] z-50 w-full border-b border-[#D6D6D6] bg-white px-4 py-4 sm:top-[194px] sm:px-6 sm:py-6">
+                    <h2 className="flex w-full flex-row items-start justify-between text-base sm:text-xl">
+                      <span className="flex flex-row items-center justify-start">
+                        <svg
+                          className="mr-2 h-5 w-5 sm:h-6 sm:w-6"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          width={24}
+                          height={24}
+                          fill={"none"}
+                        >
+                          <path
+                            d="M18.952 8.60657L21.4622 8.45376C19.6629 3.70477 14.497 0.999914 9.4604 2.34474C4.09599 3.77711 0.909631 9.26107 2.34347 14.5935C3.77731 19.926 9.28839 23.0876 14.6528 21.6553C18.6358 20.5917 21.4181 17.2946 22 13.4844"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <path
+                            d="M12 8V12L14 14"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        08.00 PM
+                      </span>
+                      <span className="font-normal">GMT +7</span>
+                    </h2>
+                  </div>
+                  <div className="flex flex-col divide-y divide-[#D6D6D6]">
+                    <AgendaCard>
+                      <button
+                        id={`btnAgenda`}
+                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-3 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row sm:py-2.5"
+                        aria-label={` - (Button Modal Agenda)`}
+                        aria-labelledby={` - (Button Modal Agenda)`}
+                        data-hs-overlay="#mdlAgenda"
+                      >
+                        See details
+                      </button>
+                    </AgendaCard>
+                    <AgendaCard>
+                      <button
+                        id={`btnAgenda`}
+                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
+                        aria-label={` - (Button Modal Agenda)`}
+                        aria-labelledby={` - (Button Modal Agenda)`}
+                        data-hs-overlay="#mdlAgenda"
+                      >
+                        See details
+                      </button>
+                    </AgendaCard>
+                    <AgendaCard>
+                      <button
+                        id={`btnAgenda`}
+                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
+                        aria-label={` - (Button Modal Agenda)`}
+                        aria-labelledby={` - (Button Modal Agenda)`}
+                        data-hs-overlay="#mdlAgenda"
+                      >
+                        See details
+                      </button>
+                    </AgendaCard>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </Container>

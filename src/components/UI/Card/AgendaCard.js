@@ -6,7 +6,7 @@ const AgendaCard = ({ children }) => {
       <div className="flex flex-col items-start gap-y-6 px-4 py-6 sm:flex-row sm:gap-y-0">
         <div className="flex w-full max-w-max flex-col lg:max-w-[564px]">
           <div className="flex w-full max-w-full flex-col space-y-2 sm:max-w-[343px]">
-            <span className="inline-flex w-max flex-row items-center justify-center rounded-full bg-secondary px-2.5 py-1 font-bevietnamPro text-sm font-light text-white">
+            <span className="ca2024BgOverflayBlue inline-flex w-max flex-row items-center justify-center rounded-full bg-secondary px-2.5 py-1 font-bevietnamPro text-sm font-light text-white">
               Main Stage
             </span>
             <h3 className="pr-14 font-bevietnamPro text-lg font-semibold text-black-900 lg:pr-0 lg:text-xl">
