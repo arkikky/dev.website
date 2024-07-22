@@ -1,9 +1,9 @@
 import React from "react";
 
-const AgendaCard = ({ children }) => {
+const AgendaCard = () => {
   return (
     <>
-      <div className="flex flex-col items-start gap-y-6 px-4 py-6 sm:flex-row sm:gap-y-0">
+      <div className="group flex w-full flex-col items-start gap-y-6 px-4 py-6 text-start sm:flex-row sm:gap-y-0">
         <div className="flex w-full max-w-max flex-col lg:max-w-[564px]">
           <div className="flex w-full max-w-full flex-col space-y-2 sm:max-w-[343px]">
             <span className="ca2024BgOverflayBlue inline-flex w-max flex-row items-center justify-center rounded-full bg-secondary px-2.5 py-1 font-bevietnamPro text-sm font-light text-white">
@@ -45,7 +45,11 @@ const AgendaCard = ({ children }) => {
               </p>
             </div>
           </div>
-          <div className="flex w-full flex-col sm:w-max">{children}</div>
+          <div className="flex w-full flex-col sm:w-max">
+            <span className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none group-hover:bg-secondary group-hover:text-white sm:w-max sm:flex-row">
+              See details
+            </span>
+          </div>
         </div>
       </div>
     </>

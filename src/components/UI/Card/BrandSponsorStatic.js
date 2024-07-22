@@ -42,14 +42,14 @@ const BrandSponsorStatic = ({
         <>
           <div
             ref={ref}
-            className={`relative flex ${vip === true ? "h-[104px] sm:h-[146px] lg:h-[265px]" : "h-[99px] sm:h-[138px] lg:h-[190px]"} flex-col items-center justify-center overflow-hidden rounded-[8px] border border-solid border-[#E6E6E6] px-0 grayscale transition duration-300 ease-in-out hocus:border-secondary hocus:grayscale-0 sm:rounded-[18px]`}
+            className={`relative flex ${vip === true ? "h-auto" : "h-auto"} flex-col items-center justify-center overflow-hidden rounded-[8px] border border-solid border-[#E6E6E6] px-0 grayscale transition duration-300 ease-in-out hocus:border-secondary hocus:grayscale-0 sm:rounded-[18px]`}
           >
             {isLoading ? (
               <Image
                 className="mx-auto h-full w-full object-cover object-center"
                 src={isBrandLogo}
                 alt={`${publicRuntimeConfig.siteAppName} (${isName} - Brand Sponsor Partner)`}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 90vw"
                 height={height}
                 width={width}
                 quality="87"
@@ -73,7 +73,7 @@ const BrandSponsorStatic = ({
         <>
           <Link
             ref={ref}
-            className={`relative flex ${vip === true ? "h-[104px] sm:h-[146px] lg:h-[265px]" : "h-[99px] sm:h-[138px] lg:h-[190px]"} flex-col items-center justify-center overflow-hidden rounded-[8px] border border-solid border-[#E6E6E6] px-0 grayscale transition duration-300 ease-in-out hocus:border-secondary hocus:grayscale-0 sm:rounded-[18px]`}
+            className={`relative flex ${vip === true ? "h-auto" : "h-auto"} flex-col items-center justify-center overflow-hidden rounded-[8px] border border-solid border-[#E6E6E6] px-0 grayscale transition duration-300 ease-in-out hocus:border-secondary hocus:grayscale-0 sm:rounded-[18px]`}
             href={isUrl}
             target="_blank"
           >
@@ -82,7 +82,7 @@ const BrandSponsorStatic = ({
                 className="mx-auto h-full w-full object-cover object-center"
                 src={isBrandLogo}
                 alt={`${publicRuntimeConfig.siteAppName} (${isName} - Brand Sponsor Partner)`}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 90vw"
                 height={height}
                 width={width}
                 quality="87"

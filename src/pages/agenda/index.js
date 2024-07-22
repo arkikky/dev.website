@@ -144,39 +144,33 @@ const Agenda = () => {
                     </h2>
                   </div>
                   <div className="flex flex-col divide-y divide-[#D6D6D6]">
-                    <AgendaCard>
-                      <button
-                        id={`btnAgenda`}
-                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-3 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row sm:py-2.5"
-                        aria-label={` - (Button Modal Agenda)`}
-                        aria-labelledby={` - (Button Modal Agenda)`}
-                        data-hs-overlay="#mdlAgenda"
-                      >
-                        See details
-                      </button>
-                    </AgendaCard>
-                    <AgendaCard>
-                      <button
-                        id={`btnAgenda`}
-                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
-                        aria-label={` - (Button Modal Agenda)`}
-                        aria-labelledby={` - (Button Modal Agenda)`}
-                        data-hs-overlay="#mdlAgenda"
-                      >
-                        See details
-                      </button>
-                    </AgendaCard>
-                    <AgendaCard>
-                      <button
-                        id={`btnAgenda`}
-                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
-                        aria-label={` - (Button Modal Agenda)`}
-                        aria-labelledby={` - (Button Modal Agenda)`}
-                        data-hs-overlay="#mdlAgenda"
-                      >
-                        See details
-                      </button>
-                    </AgendaCard>
+                    <button
+                      id={`btnAgenda`}
+                      className="w-full outline-none focus-visible:outline-none"
+                      aria-label={` - (Button Modal Agenda)`}
+                      aria-labelledby={` - (Button Modal Agenda)`}
+                      data-hs-overlay="#mdlAgenda"
+                    >
+                      <AgendaCard />
+                    </button>
+                    <button
+                      id={`btnAgenda`}
+                      className="w-full outline-none focus-visible:outline-none"
+                      aria-label={` - (Button Modal Agenda)`}
+                      aria-labelledby={` - (Button Modal Agenda)`}
+                      data-hs-overlay="#mdlAgenda"
+                    >
+                      <AgendaCard />
+                    </button>
+                    <button
+                      id={`btnAgenda`}
+                      className="w-full outline-none focus-visible:outline-none"
+                      aria-label={` - (Button Modal Agenda)`}
+                      aria-labelledby={` - (Button Modal Agenda)`}
+                      data-hs-overlay="#mdlAgenda"
+                    >
+                      <AgendaCard />
+                    </button>
                   </div>
                 </div>
                 <div className="relative w-full">
@@ -212,39 +206,33 @@ const Agenda = () => {
                     </h2>
                   </div>
                   <div className="flex flex-col divide-y divide-[#D6D6D6]">
-                    <AgendaCard>
-                      <button
-                        id={`btnAgenda`}
-                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-3 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row sm:py-2.5"
-                        aria-label={` - (Button Modal Agenda)`}
-                        aria-labelledby={` - (Button Modal Agenda)`}
-                        data-hs-overlay="#mdlAgenda"
-                      >
-                        See details
-                      </button>
-                    </AgendaCard>
-                    <AgendaCard>
-                      <button
-                        id={`btnAgenda`}
-                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
-                        aria-label={` - (Button Modal Agenda)`}
-                        aria-labelledby={` - (Button Modal Agenda)`}
-                        data-hs-overlay="#mdlAgenda"
-                      >
-                        See details
-                      </button>
-                    </AgendaCard>
-                    <AgendaCard>
-                      <button
-                        id={`btnAgenda`}
-                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
-                        aria-label={` - (Button Modal Agenda)`}
-                        aria-labelledby={` - (Button Modal Agenda)`}
-                        data-hs-overlay="#mdlAgenda"
-                      >
-                        See details
-                      </button>
-                    </AgendaCard>
+                    <button
+                      id={`btnAgenda`}
+                      className="w-full outline-none focus-visible:outline-none"
+                      aria-label={` - (Button Modal Agenda)`}
+                      aria-labelledby={` - (Button Modal Agenda)`}
+                      data-hs-overlay="#mdlAgenda"
+                    >
+                      <AgendaCard />
+                    </button>
+                    <button
+                      id={`btnAgenda`}
+                      className="w-full outline-none focus-visible:outline-none"
+                      aria-label={` - (Button Modal Agenda)`}
+                      aria-labelledby={` - (Button Modal Agenda)`}
+                      data-hs-overlay="#mdlAgenda"
+                    >
+                      <AgendaCard />
+                    </button>
+                    <button
+                      id={`btnAgenda`}
+                      className="w-full outline-none focus-visible:outline-none"
+                      aria-label={` - (Button Modal Agenda)`}
+                      aria-labelledby={` - (Button Modal Agenda)`}
+                      data-hs-overlay="#mdlAgenda"
+                    >
+                      <AgendaCard />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -287,39 +275,33 @@ const Agenda = () => {
                     </h2>
                   </div>
                   <div className="flex flex-col divide-y divide-[#D6D6D6]">
-                    <AgendaCard>
-                      <button
-                        id={`btnAgenda`}
-                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-3 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row sm:py-2.5"
-                        aria-label={` - (Button Modal Agenda)`}
-                        aria-labelledby={` - (Button Modal Agenda)`}
-                        data-hs-overlay="#mdlAgenda"
-                      >
-                        See details
-                      </button>
-                    </AgendaCard>
-                    <AgendaCard>
-                      <button
-                        id={`btnAgenda`}
-                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
-                        aria-label={` - (Button Modal Agenda)`}
-                        aria-labelledby={` - (Button Modal Agenda)`}
-                        data-hs-overlay="#mdlAgenda"
-                      >
-                        See details
-                      </button>
-                    </AgendaCard>
-                    <AgendaCard>
-                      <button
-                        id={`btnAgenda`}
-                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
-                        aria-label={` - (Button Modal Agenda)`}
-                        aria-labelledby={` - (Button Modal Agenda)`}
-                        data-hs-overlay="#mdlAgenda"
-                      >
-                        See details
-                      </button>
-                    </AgendaCard>
+                    <button
+                      id={`btnAgenda`}
+                      className="w-full outline-none focus-visible:outline-none"
+                      aria-label={` - (Button Modal Agenda)`}
+                      aria-labelledby={` - (Button Modal Agenda)`}
+                      data-hs-overlay="#mdlAgenda"
+                    >
+                      <AgendaCard />
+                    </button>
+                    <button
+                      id={`btnAgenda`}
+                      className="w-full outline-none focus-visible:outline-none"
+                      aria-label={` - (Button Modal Agenda)`}
+                      aria-labelledby={` - (Button Modal Agenda)`}
+                      data-hs-overlay="#mdlAgenda"
+                    >
+                      <AgendaCard />
+                    </button>
+                    <button
+                      id={`btnAgenda`}
+                      className="w-full outline-none focus-visible:outline-none"
+                      aria-label={` - (Button Modal Agenda)`}
+                      aria-labelledby={` - (Button Modal Agenda)`}
+                      data-hs-overlay="#mdlAgenda"
+                    >
+                      <AgendaCard />
+                    </button>
                   </div>
                 </div>
                 <div className="relative w-full">
@@ -355,39 +337,33 @@ const Agenda = () => {
                     </h2>
                   </div>
                   <div className="flex flex-col divide-y divide-[#D6D6D6]">
-                    <AgendaCard>
-                      <button
-                        id={`btnAgenda`}
-                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-3 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row sm:py-2.5"
-                        aria-label={` - (Button Modal Agenda)`}
-                        aria-labelledby={` - (Button Modal Agenda)`}
-                        data-hs-overlay="#mdlAgenda"
-                      >
-                        See details
-                      </button>
-                    </AgendaCard>
-                    <AgendaCard>
-                      <button
-                        id={`btnAgenda`}
-                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
-                        aria-label={` - (Button Modal Agenda)`}
-                        aria-labelledby={` - (Button Modal Agenda)`}
-                        data-hs-overlay="#mdlAgenda"
-                      >
-                        See details
-                      </button>
-                    </AgendaCard>
-                    <AgendaCard>
-                      <button
-                        id={`btnAgenda`}
-                        className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none sm:w-max sm:flex-row"
-                        aria-label={` - (Button Modal Agenda)`}
-                        aria-labelledby={` - (Button Modal Agenda)`}
-                        data-hs-overlay="#mdlAgenda"
-                      >
-                        See details
-                      </button>
-                    </AgendaCard>
+                    <button
+                      id={`btnAgenda`}
+                      className="w-full outline-none focus-visible:outline-none"
+                      aria-label={` - (Button Modal Agenda)`}
+                      aria-labelledby={` - (Button Modal Agenda)`}
+                      data-hs-overlay="#mdlAgenda"
+                    >
+                      <AgendaCard />
+                    </button>
+                    <button
+                      id={`btnAgenda`}
+                      className="w-full outline-none focus-visible:outline-none"
+                      aria-label={` - (Button Modal Agenda)`}
+                      aria-labelledby={` - (Button Modal Agenda)`}
+                      data-hs-overlay="#mdlAgenda"
+                    >
+                      <AgendaCard />
+                    </button>
+                    <button
+                      id={`btnAgenda`}
+                      className="w-full outline-none focus-visible:outline-none"
+                      aria-label={` - (Button Modal Agenda)`}
+                      aria-labelledby={` - (Button Modal Agenda)`}
+                      data-hs-overlay="#mdlAgenda"
+                    >
+                      <AgendaCard />
+                    </button>
                   </div>
                 </div>
               </div>

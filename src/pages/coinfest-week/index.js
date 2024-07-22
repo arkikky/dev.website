@@ -262,7 +262,7 @@ const CoinfestWeek = ({ result }) => {
                 className="relative mt-6 first:mt-0"
                 key={i}
               >
-                <div className="sticky -bottom-4 top-[100px] z-50 w-full rounded-xl bg-primary px-4 py-4 sm:relative sm:bottom-auto sm:top-0 sm:px-6 sm:py-6">
+                <div className="sticky -bottom-4 top-[100px] z-50 w-full rounded-xl bg-[#EEEEEE] px-4 py-4 sm:relative sm:bottom-auto sm:top-0 sm:px-6 sm:py-6">
                   <h2 className="flex w-max flex-row items-start justify-start text-base sm:text-xl">
                     <div className="flex w-max flex-col">
                       <Image
@@ -302,7 +302,7 @@ const CoinfestWeek = ({ result }) => {
                       >
                         <button
                           id={`ca2024BtnCoinfestWeek${gtRslt.attributes.title}${i}`}
-                          className={`relative inline-flex w-full items-center justify-center rounded-[14px] bg-transparent px-5 pb-2 pt-4 font-bevietnamPro text-sm font-light leading-initial text-[#C6C6C6] outline-none last:mr-0 hover:text-secondary hover:underline focus-visible:outline-none sm:pt-5 sm:text-base lg:px-6`}
+                          className={`relative inline-flex w-full items-center justify-center rounded-[14px] bg-transparent px-5 pb-2 pt-4 font-bevietnamPro text-sm font-light leading-initial text-[#4A4A4A] outline-none last:mr-0 hover:text-secondary hover:underline focus-visible:outline-none sm:pt-5 sm:text-base lg:px-6`}
                           aria-label={`${gtRslt.attributes.title} - (Button Modal Coinfest Week)`}
                           aria-labelledby={`${gtRslt.attributes.title} - (Button Modal Coinfest Week)`}
                           data-hs-overlay={`#mdlCoinfestWeek`}

@@ -91,7 +91,7 @@ const CoinfestWeekCard = ({
               quality="87"
             />
           ) : (
-            <div className="flex h-full w-full animate-pulse flex-col items-center justify-center bg-black-900">
+            <div className="flex h-[189px] w-full animate-pulse flex-col items-center justify-center bg-black-900 sm:h-[169px] lg:h-[149px] xl:h-[159px] 2xl:h-[201px]">
               <div
                 className="inline-block size-8 animate-spin rounded-full border-2 border-current border-t-transparent text-white"
                 role="status"

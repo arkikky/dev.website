@@ -139,6 +139,7 @@ const Hackathons = () => {
                   meet="Online"
                   images="/assets/images/activities/hackathon/ca2024BgLineBlack-ETHHackathonCard.png"
                   colorButton="bg-black-900"
+                  labelButton="Submit your Project"
                   price="$50,000"
                   url="https://www.ethsea.com/"
                 />

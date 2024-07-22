@@ -165,8 +165,8 @@ const Travel = ({ travel }) => {
                 {`Get Around Bali, Travel to Coinfest Asia main venue with special promo from our official transportation partners`}
               </p>
             </div>
-            <div className="relative mt-8 min-w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12 lg:gap-x-4 lg:gap-y-4">
-              <div className="col-span-2 sm:col-span-4 lg:col-span-4">
+            <div className="relative mt-8 min-w-full grid-cols-4 justify-center gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12 lg:gap-x-4 lg:gap-y-4">
+              <div className="col-span-4 col-start-1 sm:col-span-4 sm:col-start-5 lg:col-span-4 lg:col-start-5">
                 <BrandSponsorStatic
                   url="https://www.travala.com/?utm_campaign=COINFESTASIA&utm_medium=by-partner-organic&utm_source=website&camp_name=COINFESTASIA&camp_offer=credit&camp_content=Sign-up-or-sign-in-to-receive-$50-in-Promo-Credits!-Get-limited-time-deals-on-hotels,-flights-and-activities-for-Coinfest-Asia-2024!&camp_code=COINFESTASIA&camp_value=50"
                   name="Travala"

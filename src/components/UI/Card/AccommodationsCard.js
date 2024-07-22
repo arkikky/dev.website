@@ -26,8 +26,6 @@ const AccommodationsCard = ({
       setLoading(true);
     }
 
-    console.log(url);
-
     return () => {
       undefined;
     };
