@@ -44,7 +44,7 @@ const BrandSponsor = ({
         <>
           <div
             ref={ref}
-            className={`relative flex ${vip === true ? "h-[107px] rounded-[8px] sm:h-[149px] sm:rounded-[14px] lg:h-[196px] lg:rounded-[18px] xl:h-[265px]" : "h-[107px] rounded-[8px] sm:h-[145px] sm:rounded-[14px] lg:h-[190px] lg:rounded-[18px]"} flex-col items-center justify-center overflow-hidden border border-solid border-[#E6E6E6] px-0 grayscale transition duration-300 ease-in-out hocus:border-secondary hocus:grayscale-0`}
+            className={`relative flex ${vip === true ? (isLoading === false ? "h-[116px] sm:h-[149px] lg:h-[196px] xl:h-[265px]" : "h-[auto]") : isLoading === false ? "h-[116px] sm:h-[145px] lg:h-[190px]" : "h-[auto]"} flex-col items-center justify-center overflow-hidden rounded-[8px] border border-solid border-[#E6E6E6] px-0 grayscale transition duration-300 ease-in-out hocus:border-secondary hocus:grayscale-0 sm:rounded-[14px] lg:rounded-[18px]`}
           >
             {isLoading ? (
               <Image
@@ -74,7 +74,7 @@ const BrandSponsor = ({
         <>
           <Link
             ref={ref}
-            className={`relative flex ${vip === true ? "h-[107px] rounded-[8px] sm:h-[149px] sm:rounded-[14px] lg:h-[196px] lg:rounded-[18px] xl:h-[265px]" : "h-[107px] rounded-[8px] sm:h-[145px] sm:rounded-[14px] lg:h-[190px] lg:rounded-[18px]"} flex-col items-center justify-center overflow-hidden border border-solid border-[#E6E6E6] px-0 grayscale transition duration-300 ease-in-out hocus:border-secondary hocus:grayscale-0`}
+            className={`relative flex ${vip === true ? (isLoading === false ? "h-[116px] sm:h-[149px] lg:h-[196px] xl:h-[265px]" : "h-[auto]") : isLoading === false ? "h-[116px] sm:h-[145px] lg:h-[190px]" : "h-[auto]"} sm:rounded-[14px]lg:rounded-[18px] flex-col items-center justify-center overflow-hidden rounded-[8px] border border-solid border-[#E6E6E6] px-0 grayscale transition duration-300 ease-in-out hocus:border-secondary hocus:grayscale-0`}
             href={isUrl}
             target="_blank"
           >
