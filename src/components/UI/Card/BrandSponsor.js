@@ -74,7 +74,7 @@ const BrandSponsor = ({
         <>
           <Link
             ref={ref}
-            className={`relative flex ${vip === true ? (isLoading === false ? "h-[116px] sm:h-[149px] lg:h-[196px] xl:h-[265px]" : "h-[auto]") : isLoading === false ? "h-[116px] sm:h-[145px] lg:h-[189px]" : "h-[auto]"} sm:rounded-[14px] lg:rounded-[18px] flex-col items-center justify-center overflow-hidden rounded-[8px] border border-solid border-[#010101] px-0 grayscale transition duration-300 ease-in-out hocus:border-secondary hocus:grayscale-0`}
+            className={`relative flex ${vip === true ? (isLoading === false ? "h-[116px] sm:h-[149px] lg:h-[196px] xl:h-[265px]" : "h-[auto]") : isLoading === false ? "h-[116px] sm:h-[145px] lg:h-[189px]" : "h-[auto]"} flex-col items-center justify-center overflow-hidden rounded-[8px] border border-solid border-[#E6E6E6] px-0 grayscale transition duration-300 ease-in-out hocus:border-secondary hocus:grayscale-0 sm:rounded-[14px] lg:rounded-[18px]`}
             href={isUrl}
             target="_blank"
           >
