@@ -1,0 +1,16 @@
+{
+  "name": "Coinfest Asia",
+  "short_name": "Coinfest Asia",
+  "description": "Asia's largest Web3 festival. Where innovation meets adoption. BALI ☀️ 22-23 AUGUST 2024",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2458F4",
+  "theme_color": "#2458F4",
+  "icons": [
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

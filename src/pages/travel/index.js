@@ -155,49 +155,71 @@ const Travel = ({ travel }) => {
           </div>
         </header>
 
-        <div className="relative my-4 block bg-white py-8 sm:py-19">
-          <Container>
-            <div className="flex flex-col text-start">
-              <h2 className="w-full font-staraExtraBold text-[32px] uppercase leading-[40px] text-black-900 sm:text-[40px] sm:leading-[48px]">
-                Discounted Travel in bali with our transports partner
-              </h2>
-              <p className="mt-2 font-bevietnamPro text-sm font-light text-black-900 sm:text-xl">
-                {`Get Around Bali, Travel to Coinfest Asia main venue with special promo from our official transportation partners`}
-              </p>
+        <div className="relative z-[15] mb-4 mt-0 block bg-white sm:-mt-[8.5%] lg:-mt-[6.5%]">
+          <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+            <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-6 lg:hidden lg:py-0">
+              <Container>
+                <div className="my-auto flex flex-col text-start">
+                  <h2 className="w-full pr-10 font-staraExtraBold text-[40px] uppercase leading-[42px] text-black-900 sm:leading-[48px] lg:pr-20 lg:text-[32px] lg:leading-[40px] xl:pr-0 xl:text-[40px] xl:leading-[48px]">
+                    Arrange Your Itinerary
+                  </h2>
+                  <p className="mt-2 font-bevietnamPro text-xl font-light text-black-900 lg:text-base xl:text-xl">
+                    Enjoy $50 off your flights and hotel bookings with Travala
+                    only for Coinfest Asia attendees.
+                  </p>
+                  <Link
+                    className={`ca2024BgOverflayBlue relative mr-3 mt-5 inline-flex w-max cursor-pointer items-center justify-center rounded-[14px] bg-secondary px-4  py-3.5 font-bevietnamPro text-sm font-medium text-white outline-none last:mr-0 focus-visible:outline-none sm:mt-7 sm:px-6 sm:py-6 sm:text-base`}
+                    title="Coinfest Asia 2024 (Claim $50 Travel Credits - Travel)"
+                    href={
+                      "https://www.travala.com/?utm_campaign=COINFESTASIA&utm_medium=by-partner-organic&utm_source=website&camp_name=COINFESTASIA&camp_offer=credit&camp_content=Sign-up-or-sign-in-to-receive-$50-in-Promo-Credits!-Get-limited-time-deals-on-hotels,-flights-and-activities-for-Coinfest-Asia-2024!&camp_code=COINFESTASIA&camp_value=50"
+                    }
+                    target="_blank"
+                  >
+                    Claim $50 Travel Credits
+                  </Link>
+                </div>
+              </Container>
             </div>
-            <div className="relative mt-8 min-w-full grid-cols-4 justify-center gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12 lg:gap-x-4 lg:gap-y-4">
-              <div className="col-span-4 col-start-1 sm:col-span-4 sm:col-start-5 lg:col-span-4 lg:col-start-5">
-                <BrandSponsorStatic
-                  url="https://www.travala.com/?utm_campaign=COINFESTASIA&utm_medium=by-partner-organic&utm_source=website&camp_name=COINFESTASIA&camp_offer=credit&camp_content=Sign-up-or-sign-in-to-receive-$50-in-Promo-Credits!-Get-limited-time-deals-on-hotels,-flights-and-activities-for-Coinfest-Asia-2024!&camp_code=COINFESTASIA&camp_value=50"
-                  name="Travala"
-                  brandLogo="/assets/images/accomodations/partners/ca2024Travala.png"
-                  vip={true}
-                  height={100}
-                  width={240}
+            <div className="col-span-full lg:col-span-6 lg:col-start-7">
+              <div className="bg-[#FD6F5A]">
+                <Image
+                  className="h-full w-full object-cover object-center"
+                  src={"/assets/images/accomodations/ca2024Travala.jpg"}
+                  alt={`Coinfest Asia 2024 (Travala Partners - Travel)`}
+                  height={696}
+                  width={1080}
+                  quality="95"
                 />
               </div>
-              {/* <div className="col-span-2 sm:col-span-4 lg:col-span-4">
-                <BrandSponsorStatic
-                  url="https://www.grab.com/id/"
-                  name="Grab"
-                  brandLogo="/assets/images/accomodations/partners/ca2024Grab.png"
-                  vip={true}
-                  height={100}
-                  width={240}
-                />
-              </div>
-              <div className="col-span-2 sm:col-span-4 lg:col-span-4">
-                <BrandSponsorStatic
-                  url="https://id.taximaxim.com/"
-                  name="Maxim"
-                  brandLogo="/assets/images/accomodations/partners/ca2024Maxim.png"
-                  vip={true}
-                  height={100}
-                  width={240}
-                />
-              </div> */}
             </div>
-          </Container>
+          </div>
+          <div className="absolute inset-x-0 inset-y-0 z-10 hidden flex-col items-center justify-center lg:flex">
+            <Container>
+              <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+                <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-5 lg:py-0">
+                  <div className="my-auto flex flex-col text-start">
+                    <h2 className="w-full pr-10 font-staraExtraBold text-[40px] uppercase leading-[42px] text-black-900 sm:leading-[48px] lg:pr-20 lg:text-[32px] lg:leading-[40px] xl:pr-0 xl:text-[40px] xl:leading-[48px]">
+                      Arrange Your Itinerary
+                    </h2>
+                    <p className="mt-2 font-bevietnamPro text-xl font-light text-black-900 lg:text-base xl:text-xl">
+                      Enjoy $50 off your flights and hotel bookings with Travala
+                      only for Coinfest Asia attendees.
+                    </p>
+                    <Link
+                      className={`ca2024BgOverflayBlue relative mr-3 mt-5 inline-flex w-max cursor-pointer items-center justify-center rounded-[14px] bg-secondary px-4  py-3.5 font-bevietnamPro text-sm font-medium text-white outline-none last:mr-0 focus-visible:outline-none sm:mt-7 sm:px-6 sm:py-6 sm:text-base`}
+                      title="Coinfest Asia 2024 (Claim $50 Travel Credits - Accomodations)"
+                      href={
+                        "https://www.travala.com/?utm_campaign=COINFESTASIA&utm_medium=by-partner-organic&utm_source=website&camp_name=COINFESTASIA&camp_offer=credit&camp_content=Sign-up-or-sign-in-to-receive-$50-in-Promo-Credits!-Get-limited-time-deals-on-hotels,-flights-and-activities-for-Coinfest-Asia-2024!&camp_code=COINFESTASIA&camp_value=50"
+                      }
+                      target="_blank"
+                    >
+                      Claim $50 Travel Credit
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </Container>
+          </div>
         </div>
 
         <div className="relative block bg-white pb-8 pt-12 sm:py-19">
@@ -248,6 +270,51 @@ const Travel = ({ travel }) => {
             </div>
           </Container>
         </div>
+
+        {/* <div className="relative my-4 block bg-white py-8 sm:py-19">
+          <Container>
+            <div className="flex flex-col text-start">
+              <h2 className="w-full font-staraExtraBold text-[32px] uppercase leading-[40px] text-black-900 sm:text-[40px] sm:leading-[48px]">
+                Discounted Travel in bali with our transports partner
+              </h2>
+              <p className="mt-2 font-bevietnamPro text-sm font-light text-black-900 sm:text-xl">
+                {`Get Around Bali, Travel to Coinfest Asia main venue with special promo from our official transportation partners`}
+              </p>
+            </div>
+            <div className="relative mt-8 min-w-full grid-cols-4 justify-center gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12 lg:gap-x-4 lg:gap-y-4">
+              <div className="col-span-4 col-start-1 sm:col-span-4 sm:col-start-5 lg:col-span-4 lg:col-start-5">
+                <BrandSponsorStatic
+                  url="https://www.travala.com/?utm_campaign=COINFESTASIA&utm_medium=by-partner-organic&utm_source=website&camp_name=COINFESTASIA&camp_offer=credit&camp_content=Sign-up-or-sign-in-to-receive-$50-in-Promo-Credits!-Get-limited-time-deals-on-hotels,-flights-and-activities-for-Coinfest-Asia-2024!&camp_code=COINFESTASIA&camp_value=50"
+                  name="Travala"
+                  brandLogo="/assets/images/accomodations/partners/ca2024Travala.png"
+                  vip={true}
+                  height={100}
+                  width={240}
+                />
+              </div>
+              <div className="col-span-2 sm:col-span-4 lg:col-span-4">
+                <BrandSponsorStatic
+                  url="https://www.grab.com/id/"
+                  name="Grab"
+                  brandLogo="/assets/images/accomodations/partners/ca2024Grab.png"
+                  vip={true}
+                  height={100}
+                  width={240}
+                />
+              </div>
+              <div className="col-span-2 sm:col-span-4 lg:col-span-4">
+                <BrandSponsorStatic
+                  url="https://id.taximaxim.com/"
+                  name="Maxim"
+                  brandLogo="/assets/images/accomodations/partners/ca2024Maxim.png"
+                  vip={true}
+                  height={100}
+                  width={240}
+                />
+              </div>
+            </div>
+          </Container>
+        </div> */}
 
         <div className="relative mt-4 block bg-white pt-6 sm:pt-0 xl:pt-10">
           {/* @banner-footer */}

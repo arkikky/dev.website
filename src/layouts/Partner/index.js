@@ -108,8 +108,8 @@ const Partner = ({
                       <BrandSponsor
                         {...gtRslt}
                         vip={true}
-                        height={100}
-                        width={240}
+                        height={442}
+                        width={640}
                       />
                     </div>
                   ))}
@@ -141,7 +141,7 @@ const Partner = ({
                       className="col-span-2 sm:col-span-4 lg:col-span-3"
                       key={i}
                     >
-                      <BrandSponsor {...gtRslt} height={100} width={240} />
+                      <BrandSponsor {...gtRslt} height={442} width={640} />
                     </div>
                   ))}
                   {isLayoutShow === true && (
@@ -172,7 +172,7 @@ const Partner = ({
                       className="col-span-2 sm:col-span-4 lg:col-span-2"
                       key={i}
                     >
-                      <BrandSponsor {...gtRslt} height={100} width={240} />
+                      <BrandSponsor {...gtRslt} height={442} width={640} />
                     </div>
                   ))}
                   {isLayoutShow === true && (
@@ -192,6 +192,7 @@ const Partner = ({
             </div>
             <div
               id="segment-4"
+              className="hidden"
               role="tabpanel"
               aria-labelledby="segment-item-4"
             >
@@ -202,7 +203,7 @@ const Partner = ({
                       className="col-span-2 sm:col-span-4 lg:col-span-3"
                       key={i}
                     >
-                      <BrandSponsor {...gtRslt} height={100} width={240} />
+                      <BrandSponsor {...gtRslt} height={442} width={640} />
                     </div>
                   ))}
                   {isLayoutShow === true && (

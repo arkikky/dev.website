@@ -180,7 +180,7 @@ const CoinfestWeek = ({ result }) => {
                     href={"/get-involved/cohost-side-events"}
                     target="_blank"
                   >
-                    Co-host your side event with Coinfest Asia
+                    Do your event within Coinfest Asia venue
                     <svg
                       className="ml-8 h-6 w-6 min-w-6 stroke-current"
                       viewBox="0 0 40 40"
@@ -266,7 +266,7 @@ const CoinfestWeek = ({ result }) => {
                   <h2 className="flex w-max flex-row items-start justify-start text-base sm:text-xl">
                     <div className="flex w-max flex-col">
                       <Image
-                        className="mr-2 h-5 w-5 text-white sm:mr-2.5 sm:h-6 sm:w-6"
+                        className="mr-2 mt-px h-5 w-5 text-white sm:mr-2.5 sm:h-6 sm:w-6"
                         src={"/assets/images/icons/ca2024-Date.svg"}
                         alt={`Coinfest Asia 2024 (Icons Date - Coinfest Week)`}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"

@@ -121,7 +121,7 @@ const Hackathons = () => {
                 </button>
                 <Link
                   className={`relative inline-flex w-full items-center justify-center rounded-[14px] border border-solid border-white bg-white/[0.07] px-4 py-4 font-bevietnamPro text-base font-normal text-white outline-none last:mr-0 focus-visible:outline-none sm:w-max sm:px-6`}
-                  title="Coinfest Asia 2024 (Header Treding Competition)"
+                  title="Coinfest Asia 2024 (Header Hackathons)"
                   href={"/get-involved/sponsorship"}
                 >
                   Host your own track
@@ -137,15 +137,57 @@ const Hackathons = () => {
                   title="ETHSEA"
                   date="July - August"
                   meet="Online"
-                  images="/assets/images/activities/hackathon/ca2024BgLineBlack-ETHHackathonCard.png"
+                  images="/assets/images/activities/hackathon/ca2024BgETH_HackathonCard.png"
                   colorButton="bg-black-900"
                   labelButton="Submit your Project"
                   price="$50,000"
                   url="https://www.ethsea.com/"
+                  tracks={[
+                    {
+                      label: "Aptos",
+                      images:
+                        "/assets/images/activities/hackathon/ca2024Hackathon_Aptos.svg",
+                    },
+                    {
+                      label: "Haqq",
+                      images:
+                        "/assets/images/activities/hackathon/ca2024Hackathon_Haqq.svg",
+                    },
+                    {
+                      label: "Lisk",
+                      images:
+                        "/assets/images/activities/hackathon/ca2024Hackathon_Lisk.png",
+                    },
+                    {
+                      label: "Manta Network",
+                      images:
+                        "/assets/images/activities/hackathon/ca2024Hackathon_MantaNetwork.png",
+                    },
+                    {
+                      label: "AnyManyMore",
+                      images:
+                        "/assets/images/activities/hackathon/ca2024Hackathon_AnyManyMore.svg",
+                    },
+                  ]}
                 />
               </div>
               <div className="col-span-full sm:col-span-6">
-                <HackathonCard status="draf" price="Stay Tuned" />
+                <HackathonCard
+                  title="Chain Fusion"
+                  date="22 Aug — 23 August"
+                  meet="Offline"
+                  images="/assets/images/activities/hackathon/ca2024BgChainFusion_HackathonCards.png"
+                  labelButton="Register"
+                  price="$50,000"
+                  url="https://lu.ma/1rg40k2f"
+                  tracks={[
+                    {
+                      label: "ICP",
+                      images:
+                        "/assets/images/activities/hackathon/ca2024HackathonChainFusion_ICP.svg",
+                    },
+                  ]}
+                />
               </div>
             </div>
           </div>

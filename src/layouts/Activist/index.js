@@ -66,16 +66,12 @@ const Activist = ({ page = false }) => {
               <ActivistCard
                 url="/pitching-sessions"
                 labels="Pitching Sessions"
-                images="/assets/images/experiences/pitching-session.jpg"
+                images="/assets/images/experiences/pitching-session.png"
               />
               <ActivistCard
                 labels="Networking Wallet"
                 images="/assets/images/experiences/networking-wallet.jpg"
               />
-              {/* <ActivistCard
-                labels="Rapid Chess"
-                images="/assets/images/experiences/rapid-chess.png"
-              /> */}
               <ActivistCard
                 labels="Regulatory Sessions"
                 images="/assets/images/experiences/regulatory-sessions.png"
@@ -86,8 +82,8 @@ const Activist = ({ page = false }) => {
                 images="/assets/images/experiences/exhibition.png"
               />
               <ActivistCard
-                labels="Paintball Networking"
-                images="/assets/images/experiences/paintball-networking.png"
+                labels="Simultaneous Chess"
+                images="/assets/images/experiences/rapid-chess.png"
               />
               <ActivistCard
                 url="/coinfest-week"

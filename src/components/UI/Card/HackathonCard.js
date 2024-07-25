@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,12 +15,22 @@ const HackathonCard = ({
   images = "/assets/images/backdrop/background/ca2024BgLineBlack-HackathonCard.png",
   labelButton = "Pre-register now",
   colorButton = status !== "draf" ? "bg-secondary" : "bg-gray-500",
+  tracks = [],
 }) => {
+  // @use-effect
+  useEffect(() => {
+    console.log(tracks);
+
+    return () => {
+      undefined;
+    };
+  }, []);
+
   return (
     <>
       <div
         id={`ca2024${title}Hackathons`}
-        className={`relative flex h-[474px] flex-col items-start justify-end overflow-hidden rounded-3xl bg-[#2B2B2B] px-3 py-3 sm:h-[498px] lg:h-[654px] lg:rounded-[26px] lg:px-6 lg:py-6 xl:h-[872px]`}
+        className={`relative flex h-[474px] flex-col items-start justify-end overflow-hidden rounded-[16px] bg-[#2B2B2B] px-3 py-3 sm:h-[498px] sm:rounded-3xl lg:h-[654px] lg:rounded-[26px] lg:px-6 lg:py-6 xl:h-[872px]`}
       >
         <div className=" absolute inset-x-0 inset-y-0 z-px">
           <Image
@@ -76,28 +86,16 @@ const HackathonCard = ({
               Tracks hosted by
             </span>
             <div className="inline-flex w-full flex-row flex-wrap gap-x-1 gap-y-1">
-              {status !== "draf" ? (
+              {status !== "draf" && tracks !== 0 ? (
                 <>
-                  <BrandHackathonCard
-                    images="/assets/images/activities/hackathon/ca2024Hackathon_Aptos.svg"
-                    label="Aptos"
-                  />
-                  <BrandHackathonCard
-                    images="/assets/images/activities/hackathon/ca2024Hackathon_Haqq.svg"
-                    label="Haqq"
-                  />
-                  <BrandHackathonCard
-                    images="/assets/images/activities/hackathon/ca2024Hackathon_Lisk.png"
-                    label="Lisk"
-                  />
-                  <BrandHackathonCard
-                    images="/assets/images/activities/hackathon/ca2024Hackathon_MantaNetwork.png"
-                    label="Manta Network"
-                  />
-                  <BrandHackathonCard
-                    images="/assets/images/activities/hackathon/ca2024Hackathon_AnyManyMore.svg"
-                    label="AnyManyMore"
-                  />
+                  {tracks?.map((gtRslt, i) => (
+                    <div key={i}>
+                      <BrandHackathonCard
+                        images={gtRslt.images}
+                        label={gtRslt.label}
+                      />
+                    </div>
+                  ))}
                 </>
               ) : (
                 <span>Coming Soon</span>

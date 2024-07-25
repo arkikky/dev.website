@@ -369,7 +369,7 @@ const NavbarBottom = () => {
                       Activities
                     </Link>
                     <svg
-                      className="ca2024IconNavPopUp ca2024IconActivities_NavPopUp duration-250 ms-2.5 h-5 w-5 rotate-0 transform fill-current transition ease-in-out"
+                      className="ca2024IconNavPopUp ca2024IconActivities_NavPopUp duration-250 ms-2.5 mt-0.5 h-5 w-5 rotate-0 transform fill-current transition ease-in-out"
                       viewBox="0 0 20 20"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -383,7 +383,7 @@ const NavbarBottom = () => {
                   </button>
                 </li>
                 <li>
-                  <Link className="text-white" href={"/coinfest-week"}>
+                  <Link className="mt-px text-white" href={"/coinfest-week"}>
                     Side Events
                   </Link>
                 </li>
@@ -404,7 +404,7 @@ const NavbarBottom = () => {
                       Get Involved
                     </Link>
                     <svg
-                      className="ca2024IconNavPopUp ca2024IconGetInvolved_NavPopUp duration-250 ms-2.5 h-5 w-5 rotate-0 transform fill-current transition ease-in-out"
+                      className="ca2024IconNavPopUp ca2024IconGetInvolved_NavPopUp duration-250 ms-2.5 mt-0.5 h-5 w-5 rotate-0 transform fill-current transition ease-in-out"
                       viewBox="0 0 20 20"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"

@@ -205,6 +205,21 @@ const CoinfestWeekModal = ({
                       </svg>
                       {dayjs(time).format("h A")}
                     </span>
+                    <span
+                      className={`flex text-sm font-normal text-black-900 sm:text-base`}
+                    >
+                      <Image
+                        className="mr-2 mt-px h-5 w-5 text-white sm:mr-2.5 sm:h-6 sm:w-6"
+                        src={"/assets/images/icons/ca2024-Date.svg"}
+                        alt={`Coinfest Asia 2024 (Icons Date - Coinfest Week)`}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                        height={24}
+                        width={24}
+                        quality="90"
+                      />
+
+                      {dayjs(time).format("DD MMMM YYYY")}
+                    </span>
                   </div>
                   <div className="relative mt-6 block">
                     {disable ? (

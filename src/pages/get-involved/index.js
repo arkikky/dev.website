@@ -74,15 +74,15 @@ const GetInvolved = () => {
             page={true}
             url="/cohost-side-events"
             btnColor="bg-[#D84B3D]"
-            title="Co-host a Side Event"
-            shortDesc="Strategically position your brand to meet attendees that align with your goals."
+            title="Do your event within Coinfest Asia venue"
+            shortDesc="Strategically position your brand to meet attendees that align with your goals"
           />
           <GetInvolvedCard
             page={true}
             url="/submit-side-events"
             btnColor="bg-secondary"
             title="Submit Side Event"
-            shortDesc="Strategically position your brand to meet attendees that align with your goals."
+            shortDesc="Get listed on Coinfest Week official list"
           />
           <GetInvolvedCard
             page={true}
