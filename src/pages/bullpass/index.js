@@ -62,7 +62,7 @@ const BullPass = () => {
 
       {/* @main */}
       <BentoGridLayouts>
-        <main className="relative">
+        <main className="relative -mb-18 overflow-hidden pb-[208px] xl:pb-[265px]">
           <header className="ca2024BgLineBlack relative mx-2 mt-2 flex h-[796px] flex-col items-center justify-center overflow-hidden rounded-[20px] bg-[#2B2B2B] sm:mx-2.5 sm:mt-3.5 sm:rounded-[26px] lg:mx-5 lg:mt-5 lg:h-[770px]">
             {/* @points(flower) */}
             <div className="absolute -left-[18px] bottom-0 right-auto top-auto z-px h-[181px] w-auto sm:-left-10 sm:h-[329px] lg:left-0 lg:h-[406px] xl:h-[459px]">
@@ -212,7 +212,7 @@ const BullPass = () => {
           {/* @banner */}
           <section className="relative flex flex-col pt-[84px]">
             <Container>
-              <div className="relative mt-0 flex h-full w-full flex-col items-start justify-center rounded-2xl bg-[#2B2B2B] px-4 py-8 sm:h-[483px] sm:rounded-[35px] sm:px-11 lg:px-17 xl:h-[614px]">
+              <div className="relative mt-0 flex h-[443px] w-full flex-col items-start justify-start rounded-2xl bg-[#2B2B2B] px-6 py-8 sm:h-[533px] sm:rounded-[35px] sm:px-11 lg:justify-center lg:px-17 xl:h-[614px]">
                 <div className="absolute inset-x-0 inset-y-0 z-px overflow-hidden rounded-2xl sm:rounded-[35px]">
                   <Image
                     className="z-[5] mx-auto h-full w-full object-cover object-center"
@@ -227,21 +227,19 @@ const BullPass = () => {
                 </div>
 
                 {/* @statue-items (backdrop) */}
-                {/* <div className="opacity-1 pointer-events-none absolute bottom-0 left-auto right-0 top-auto z-10 hidden select-none bg-transparent transition duration-[1s] ease-out xl:flex">
+                <div className="opacity-1 pointer-events-none absolute -bottom-[121px] -left-10 -right-[155px] top-auto z-10 flex select-none bg-transparent transition duration-[1s] ease-out sm:-bottom-[178px] sm:-right-[185px] sm:left-auto lg:-bottom-[210px] lg:-right-[235px] xl:-bottom-[265px] xl:-right-[249px]">
                   <Image
-                    className="z-10 mx-auto h-auto w-[471px] object-cover object-center sm:w-[771px] lg:w-[702px]"
-                    src={
-                      "/assets/images/backdrop/statue/ca2024StatueBanner.png"
-                    }
-                    alt={`Coinfest Asia 2024 (Statue Footer Banner)`}
-                    height={976}
-                    width={753}
+                    className="z-10 mx-auto h-auto w-[561px] object-cover object-center sm:w-[771px] lg:w-[975px] xl:w-[1125px]"
+                    src={"/assets/images/backdrop/ca2024BullPassBanner.png"}
+                    alt={`Coinfest Asia 2024 (BullPass Banner)`}
+                    height={1062}
+                    width={1839}
                     quality="87"
                   />
-                </div> */}
+                </div>
 
                 <div className="relative z-10 flex w-full max-w-[697px] flex-col items-start justify-start">
-                  <h2 className="font-staraExtraBold text-[32px] uppercase leading-[35px] text-white sm:text-[58px] sm:leading-[74px] xl:text-[80px] xl:leading-[90px]">
+                  <h2 className="font-staraExtraBold text-[40px] uppercase leading-[48px] text-white sm:text-[58px] sm:leading-[74px] xl:text-[80px] xl:leading-[90px]">
                     Secure your Ultimate VIP Experience
                   </h2>
                   <div className="mt-4 flex w-full flex-col sm:mt-8 sm:w-max">
