@@ -70,3 +70,16 @@
 .ca2024CrdBenefitItems:nth-child(3n) .ca2024CrdBenefit::before {
   @apply bg-[url('/assets/images/backdrop/benefit/ca2024Benefit-3x.png')];
 }
+
+/* @bull-pass */
+.ca2024BullPassCard {
+  @apply bg-[#D9DCE4];
+}
+
+.ca2024BullPassCard::before {
+  @apply content-[''];
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%);
+  @apply absolute inset-x-0 inset-y-0;
+
+  @apply z-[2];
+}
