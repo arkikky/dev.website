@@ -212,7 +212,7 @@ const BullPass = () => {
           {/* @banner */}
           <section className="relative flex flex-col pt-[84px]">
             <Container>
-              <div className="relative mt-0 flex h-[443px] w-full flex-col items-start justify-start rounded-2xl bg-[#2B2B2B] px-6 py-8 sm:h-[533px] sm:rounded-[35px] sm:px-11 lg:justify-center lg:px-17 xl:h-[614px]">
+              <div className="relative mt-0 flex h-[453px] w-full flex-col items-start justify-start rounded-2xl bg-[#2B2B2B] px-6 py-8 sm:h-[593px] sm:rounded-[35px] sm:px-11 sm:py-10 lg:h-[533px] lg:justify-center lg:px-17 lg:py-10 xl:h-[614px]">
                 <div className="absolute inset-x-0 inset-y-0 z-px overflow-hidden rounded-2xl sm:rounded-[35px]">
                   <Image
                     className="z-[5] mx-auto h-full w-full object-cover object-center"
@@ -227,24 +227,36 @@ const BullPass = () => {
                 </div>
 
                 {/* @statue-items (backdrop) */}
-                <div className="opacity-1 pointer-events-none absolute -bottom-[121px] -left-10 -right-[155px] top-auto z-10 flex select-none bg-transparent transition duration-[1s] ease-out sm:-bottom-[178px] sm:-right-[185px] sm:left-auto lg:-bottom-[210px] lg:-right-[235px] xl:-bottom-[265px] xl:-right-[249px]">
+                <div className="absolute -right-2.5 bottom-[83px] left-auto top-auto z-[6] flex h-auto w-[168px] flex-col overflow-hidden bg-transparent sm:bottom-[140px] sm:right-11 sm:w-[228px] lg:bottom-auto lg:top-2 lg:w-[283px] xl:right-[101px] xl:top-0 xl:w-[364px]">
                   <Image
-                    className="z-10 mx-auto h-auto w-[561px] object-cover object-center sm:w-[771px] lg:w-[975px] xl:w-[1125px]"
-                    src={"/assets/images/backdrop/ca2024BullPassBanner.png"}
-                    alt={`Coinfest Asia 2024 (BullPass Banner)`}
+                    className="z-10 mx-auto mt-0 h-auto w-[561px] object-cover object-center sm:w-[771px] lg:w-full xl:-mt-17"
+                    src={
+                      "/assets/images/bull-pass/ca2024BullPass_SmallTicketBanner.png"
+                    }
+                    alt={`Coinfest Asia 2024 (BullPass Small Ticket Banner)`}
+                    height={522}
+                    width={493}
+                    quality="87"
+                  />
+                </div>
+                <div className="opacity-1 pointer-events-none absolute -bottom-[121px] -left-10 -right-[155px] top-auto z-[8] flex select-none bg-transparent transition duration-[1s] ease-out sm:-bottom-[178px] sm:-right-[185px] sm:left-auto lg:-bottom-[210px] lg:-right-[235px] xl:-bottom-[265px] xl:-right-[249px]">
+                  <Image
+                    className="z-10 mx-auto h-auto w-[561px] object-cover object-center sm:w-[811px] lg:w-[975px] xl:w-[1225px]"
+                    src={"/assets/images/bull-pass/ca2024BullPass_Banner.png"}
+                    alt={`Coinfest Asia 2024 (BullPass Ticket Banner)`}
                     height={1062}
                     width={1839}
                     quality="87"
                   />
                 </div>
 
-                <div className="relative z-10 flex w-full max-w-[697px] flex-col items-start justify-start">
-                  <h2 className="font-staraExtraBold text-[40px] uppercase leading-[48px] text-white sm:text-[58px] sm:leading-[74px] xl:text-[80px] xl:leading-[90px]">
+                <div className="relative z-10 flex w-full max-w-[444px] flex-col items-start justify-start">
+                  <h2 className="font-staraExtraBold text-[40px] uppercase leading-[48px] text-white sm:text-[56px] sm:leading-[66px]">
                     Secure your Ultimate VIP Experience
                   </h2>
                   <div className="mt-4 flex w-full flex-col sm:mt-8 sm:w-max">
                     <Link
-                      className="ca2024BgOverflayBullPass relative inline-flex w-full max-w-max items-center justify-center rounded-xl bg-primary px-3 py-3.5 font-bevietnamPro text-sm font-medium text-white outline-none focus-visible:outline-none sm:rounded-[14px] sm:px-6 sm:py-6 sm:text-xl"
+                      className="ca2024BgOverflayBullPass relative inline-flex w-full max-w-max items-center justify-center rounded-xl bg-primary px-4 py-4 font-bevietnamPro text-base font-medium text-white outline-none focus-visible:outline-none sm:rounded-[14px] sm:px-6 sm:py-6 sm:text-xl"
                       href={"https://ticket.coinfest.asia/"}
                     >
                       Get bull pass
