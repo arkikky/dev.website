@@ -78,13 +78,13 @@ const Venue = () => {
       </Head>
 
       {/* @main */}
-      <main className="relative flex flex-col pt-[149px] xl:pt-[159px] 2xl:pt-[259px]">
+      <main className="relative flex flex-col pt-[149px] xl:pt-[159px]">
         <Container>
           <div className="flex flex-col items-start justify-start sm:flex-row sm:justify-between">
             <div className="flex flex-col pr-0 sm:pr-10 lg:pr-28 xl:pr-0">
-              <h2 className="font-staraExtraBold text-2xl uppercase text-black-900 xs:text-[42px] xs:leading-[50px] sm:text-[58px] sm:leading-[74px]">
+              <h1 className="font-staraExtraBold text-2xl uppercase text-black-900 xs:text-[42px] xs:leading-[50px] sm:text-[58px] sm:leading-[74px]">
                 Venue map
-              </h2>
+              </h1>
               <p className="text-base font-light sm:text-xl">
                 8 areas connected by walking & golf buggies
               </p>
@@ -106,7 +106,7 @@ const Venue = () => {
         {/* @maps */}
         <div
           ref={ref}
-          className="relative mt-6 flex h-[284px] w-full flex-col overflow-hidden sm:h-[550px] lg:mt-12 lg:h-[700px] xl:mt-15 xl:h-[900px]"
+          className="relative mt-6 flex h-[284px] w-full flex-col overflow-hidden bg-[#D9DCE4] sm:h-[550px] lg:mt-12 lg:h-[700px] xl:mt-15 xl:h-[900px]"
         >
           <div
             className={`absolute bottom-[36.5%] left-auto right-[10.5%] top-auto ${isLoading ? "z-[11] scale-100 opacity-100" : "z-px scale-75 opacity-0"} transform transition delay-[0.5s] xs:right-[12.5%] sm:bottom-[37.5%] sm:right-[11.5%] lg:bottom-[40.5%] lg:right-[10.5%] xl:bottom-[40.5%] xl:right-[13.5%] `}
@@ -169,7 +169,7 @@ const Venue = () => {
             <Image
               className="ca2024VenueMaps z-10 mx-auto h-full w-full object-cover"
               src={"/assets/images/ca2024Venue.jpg"}
-              alt={`Coinfest Asia 2024 (Background Venue)`}
+              alt={`Coinfest Asia 2024 (Background Venue Maps)`}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
               height={900}
               width={1440}

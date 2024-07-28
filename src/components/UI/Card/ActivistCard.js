@@ -8,6 +8,7 @@ const ActivistCard = ({
   images = "",
   url = "",
   type = "default",
+  isPage = false,
 }) => {
   const { ref, inView } = useInView({
     threshold: 1,
@@ -82,9 +83,19 @@ const ActivistCard = ({
 
         <div className="ca2024CoverOvrflwBg absolute inset-x-0 inset-y-0 z-[15] flex flex-col items-end justify-end">
           <div className="flex w-full flex-col items-start justify-start px-3 pb-2 sm:px-4 sm:pb-3">
-            <h3 className="font-bevietnamPro text-sm font-medium text-white sm:text-base">
-              {labels}
-            </h3>
+            {isPage === true ? (
+              <>
+                <h2 className="font-bevietnamPro text-sm font-medium text-white sm:text-base">
+                  {labels}
+                </h2>
+              </>
+            ) : (
+              <>
+                <h3 className="font-bevietnamPro text-sm font-medium text-white sm:text-base">
+                  {labels}
+                </h3>
+              </>
+            )}
             {url !== "" && (
               <span className="font-bevietnamPro text-sm font-light text-white/[0.48] sm:text-base">
                 Learn more

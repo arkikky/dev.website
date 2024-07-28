@@ -272,7 +272,7 @@ const Home = ({ ipAddress, speaker, partners }) => {
                     });
                   }}
                 >
-                  <SpeakersCard {...gtRslt} useHeading="h2" />
+                  <SpeakersCard {...gtRslt} useHeading="h3" />
                 </button>
               </div>
             ))}
