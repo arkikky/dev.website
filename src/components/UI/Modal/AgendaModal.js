@@ -58,7 +58,7 @@ const AgendaModal = () => {
         <div className="relative bottom-0 top-auto opacity-0 transition-all duration-300 ease-out hs-overlay-open:mt-[114px] hs-overlay-open:opacity-100 sm:max-w-full sm:px-0 lg:absolute xl:relative">
           <div className="relative flex w-full flex-col items-start justify-start rounded-t-[20px] bg-white sm:rounded-t-[48px]">
             <button
-              className="hs-dropdown-toggle absolute bottom-auto left-auto right-4 sm:right-12 top-4 sm:top-7 outline-none"
+              className="hs-dropdown-toggle absolute bottom-auto left-auto right-4 top-4 outline-none sm:right-12 sm:top-7"
               aria-label="mdlAgenda"
               aria-labelledby="mdlAgenda"
               data-hs-overlay="#mdlAgenda"
@@ -135,7 +135,7 @@ const AgendaModal = () => {
                     <span className="inline-flex items-center justify-center whitespace-nowrap rounded-xl bg-[#DFDFDF] px-4 py-3 text-center font-bevietnamPro text-sm font-medium text-[#646464] sm:text-base">
                       Speakers
                     </span>
-                    <span class="mr-2 text-base font-light text-[#646464] sm:mr-4">
+                    <span className="mr-2 text-base font-light text-[#646464] sm:mr-4">
                       |
                     </span>
                     <div className="flex w-full">
@@ -165,7 +165,7 @@ const AgendaModal = () => {
                     <span className="inline-flex items-center justify-center whitespace-nowrap rounded-xl bg-[#DFDFDF] px-4 py-3 text-center font-bevietnamPro text-sm font-medium text-[#646464] sm:text-base">
                       Moderator
                     </span>
-                    <span class="mr-2 text-base font-light text-[#646464] sm:mr-4">
+                    <span className="mr-2 text-base font-light text-[#646464] sm:mr-4">
                       |
                     </span>
                     <div className="flex w-full">

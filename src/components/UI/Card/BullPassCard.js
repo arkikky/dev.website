@@ -27,7 +27,7 @@ const BullPassCard = ({
 
         <div className="absolute inset-x-4 bottom-4 top-auto z-10 flex flex-col sm:inset-x-6 sm:bottom-6 lg:inset-x-8 lg:bottom-8">
           <h3
-            className={`font-bevietnamPro ${normal === true ? "text-base xl:text-xl" : " text-base lg:text-xl"} font-normal text-white`}
+            className={`font-bevietnamPro ${normal === true ? "text-base xl:text-xl" : " text-base lg:text-xl"} font-normal capitalize text-white`}
           >
             {title}
           </h3>

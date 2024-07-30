@@ -239,13 +239,13 @@ const NavbarBottom = () => {
             rounded={false}
             options={[
               {
-                label: "Hackathons",
-                url: "/activities/hackathons",
+                label: "VIP Experience",
+                url: "/bull-pass",
                 type: "page",
               },
               {
-                label: "Trading Competitions (Coming Soon)",
-                url: "/",
+                label: "Hackathons",
+                url: "/activities/hackathons",
                 type: "page",
               },
               {
@@ -253,6 +253,11 @@ const NavbarBottom = () => {
                 url: "/pitching-sessions",
                 type: "page",
               },
+              {
+                label: "Trading Competitions (Coming Soon)",
+                url: "/",
+                type: "page",
+              }
             ]}
             banner={false}
           />

@@ -366,10 +366,13 @@ export const getStaticProps = async () => {
   const groups = dateCoinfestWeek.data.reduce((groups, game) => {
     const parts = game.attributes.startDate;
     const date = parts.split("T")[0];
+
     if (!groups[date]) {
       groups[date] = [];
     }
+    
     groups[date].push(game);
+
     return groups;
   }, {});
 

@@ -91,7 +91,7 @@ const TradingCompetitions = () => {
                 Trading competition
               </span>
               <h1 className="font-staraExtraBold text-[40px] uppercase leading-[48px] text-white sm:text-[48px] sm:leading-[60px]">
-                Win a total prize of 1eth
+                Trading Competition
               </h1>
               <p className="mt-1 font-bevietnamPro text-base font-light text-white/80 lg:text-xl">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -117,40 +117,45 @@ const TradingCompetitions = () => {
           </header>
 
           <div className="mx-2 sm:mx-2.5 lg:mx-5">
-            <div className="flex flex-col px-5 sm:px-9">
-              <h2 className="font-staraExtraBold text-[32px] uppercase leading-[38px] text-black-900 sm:text-[40px] sm:leading-[48px] lg:text-[48px] lg:leading-[60px]">
-                Trade and win xxx
-              </h2>
-              <p className="mt-2 font-bevietnamPro text-base font-light text-[#656565]/80 sm:mt-2 lg:text-xl">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna
-              </p>
-            </div>
-
-            <div className="relative mt-8 grid-cols-4 gap-x-4 gap-y-4 pb-20 supports-grid:grid sm:mt-15 sm:grid-cols-12 sm:pb-0 lg:grid-cols-12 xl:pb-20">
-              <div className="col-span-full sm:col-span-6 xl:col-span-4">
-                <TradingCompetitionCard images="/assets/images/activities/trading-competition/ca2024-Pintu.png" />
+            <div className="relative mt-4 grid-cols-4 gap-x-4 gap-y-4 pb-20 supports-grid:grid sm:mt-6 sm:grid-cols-12 sm:pb-0 lg:grid-cols-12 xl:pb-20">
+              <div className="col-span-full sm:col-span-6">
+                <TradingCompetitionCard
+                  title="ETHSEA"
+                  date="27 July — 26 August"
+                  colorButton="bg-black-900"
+                  labelButton="Register"
+                  price="$250,000"
+                  url="https://www.ethsea.com/"
+                  tracks={[
+                    {
+                      label: "AnyManyMore",
+                      images:
+                        "/assets/images/activities/trading-competition/ca2024Trading_Bitwyre.svg",
+                    },
+                  ]}
+                />
               </div>
-              <div className="col-span-full sm:col-span-6 xl:col-span-4">
-                <TradingCompetitionCard images="/assets/images/activities/trading-competition/ca2024-Binance.png" />
-              </div>
-              <div className="col-span-full sm:col-span-6 xl:col-span-4">
-                <TradingCompetitionCard />
-              </div>
-              <div className="col-span-full sm:col-span-6 xl:col-span-4">
-                <TradingCompetitionCard />
-              </div>
-              <div className="col-span-full sm:col-span-6 xl:col-span-4">
-                <TradingCompetitionCard />
-              </div>
-              <div className="col-span-full sm:col-span-6 xl:col-span-4">
-                <TradingCompetitionCard />
+              <div className="col-span-full sm:col-span-6">
+                <TradingCompetitionCard
+                  title="Chain Fusion"
+                  date="22 Aug — 23 August"
+                  labelButton="Register"
+                  price="$50,000"
+                  url="https://lu.ma/1rg40k2f"
+                  tracks={[
+                    {
+                      label: "AnyManyMore",
+                      images:
+                        "/assets/images/activities/trading-competition/ca2024Trading_CoinTech2u.svg",
+                    },
+                  ]}
+                />
               </div>
             </div>
           </div>
 
           {/* @banner-footer */}
-          <BannerFooter />
+          {/* <BannerFooter /> */}
         </main>
       </BentoGridLayouts>
     </>

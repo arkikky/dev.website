@@ -83,3 +83,12 @@
 
   @apply z-[2];
 }
+
+/* @agenda */
+.ca2024AgendaListName::after {
+  @apply content-[','];
+}
+
+.ca2024AgendaListName:last-child::after {
+  @apply hidden;
+}

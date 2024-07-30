@@ -45,7 +45,7 @@ const Activist = ({ page = false }) => {
               </>
             )}
 
-            <div className="mt-10 w-full max-w-full grid-cols-2 flex-row flex-wrap justify-center gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-3 sm:gap-x-4 sm:gap-y-4 lg:inline-flex lg:grid-cols-none lg:flex-row">
+            <div className="mt-10 w-full max-w-full grid-cols-2 flex-row flex-wrap justify-start gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-3 sm:gap-x-4 sm:gap-y-4 lg:inline-flex lg:grid-cols-none lg:flex-row">
               <ActivistCard
                 isPage={page}
                 labels="Keynotes & Panels"
@@ -111,6 +111,12 @@ const Activist = ({ page = false }) => {
                 url="/coinfest-week"
                 labels="After Parties"
                 images="/assets/images/experiences/after-parties.png"
+              />
+              <ActivistCard
+                isPage={page}
+                url="/bull-pass"
+                labels="Bull Pass"
+                images="/assets/images/experiences/bull-pass.png"
               />
             </div>
           </div>

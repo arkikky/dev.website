@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import dayjs from "dayjs";
 import getConfig from "next/config";
 import Head from "next/head";
 import Image from "next/image";
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
+
+// @lib
+import { formatTimeTo12Hour } from "@lib/helper/formatedTime";
+
+// @controller
+import { getFetch } from "@lib/controller/API";
 
 // @components
 import Container from "@components/Container";
@@ -14,7 +21,26 @@ import AgendaModal from "@components/UI/Modal/AgendaModal";
 // @layouts
 import BannerFooter from "@layouts/Banner/BannerFooter";
 
-const Agenda = () => {
+const Agenda = ({ day1, day2 }) => {
+  const [isDay, setDay] = useState(1);
+  const [isDay1, setDay1] = useState(day1);
+  const [isDay2, setDay2] = useState(day2);
+
+  // @use-effect
+  useEffect(() => {
+    console.log(isDay);
+
+    return () => {
+      undefined;
+    };
+  }, [isDay]);
+
+  const isTabDateActived = (e, days) => {
+    e.preventDefault();
+
+    setDay(days);
+  };
+
   return (
     <>
       {/* @head */}
@@ -84,20 +110,26 @@ const Agenda = () => {
                   <button
                     type="button"
                     className="active inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-secondary px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-white/[0.64] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base"
-                    id="segment-item-1"
-                    data-hs-tab="#segment-1"
-                    aria-controls="segment-1"
+                    id="agendaDay-Content-1"
+                    data-hs-tab="#agendaDay-1"
+                    aria-controls="agendaDay-1"
                     role="tab"
+                    onClick={(e) => {
+                      isTabDateActived(e, 1);
+                    }}
                   >
                     August 22
                   </button>
                   <button
                     type="button"
                     className="inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-secondary px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-white/[0.64] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base"
-                    id="segment-item-2"
-                    data-hs-tab="#segment-2"
-                    aria-controls="segment-2"
+                    id="agendaDay-Content-2"
+                    data-hs-tab="#agendaDay-2"
+                    aria-controls="agendaDay-2"
                     role="tab"
+                    onClick={(e) => {
+                      isTabDateActived(e, 2);
+                    }}
                   >
                     August 23
                   </button>
@@ -107,264 +139,148 @@ const Agenda = () => {
 
             <div className="relative flex w-full flex-col">
               <div
-                id="segment-1"
+                id="agendaDay-1"
                 role="tabpanel"
-                aria-labelledby="segment-item-1"
+                aria-labelledby="agendaDay-Content-1"
               >
-                <div className="relative w-full">
-                  <div className="sticky bottom-auto top-[158px] z-50 w-full border-b border-[#D6D6D6] bg-white px-4 py-4 sm:top-[194px] sm:px-6 sm:py-6">
-                    <h2 className="flex w-full flex-row items-start justify-between text-base sm:text-xl">
-                      <span className="flex flex-row items-center justify-start">
-                        <svg
-                          className="mr-2 h-5 w-5 sm:h-6 sm:w-6"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          width={24}
-                          height={24}
-                          fill={"none"}
-                        >
-                          <path
-                            d="M18.952 8.60657L21.4622 8.45376C19.6629 3.70477 14.497 0.999914 9.4604 2.34474C4.09599 3.77711 0.909631 9.26107 2.34347 14.5935C3.77731 19.926 9.28839 23.0876 14.6528 21.6553C18.6358 20.5917 21.4181 17.2946 22 13.4844"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M12 8V12L14 14"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                        11.00 PM
-                      </span>
-                      <span className="font-normal">GMT +7</span>
-                    </h2>
-                  </div>
-                  <div className="flex flex-col divide-y divide-[#D6D6D6]">
-                    <button
-                      id={`btnAgenda`}
-                      className="w-full outline-none focus-visible:outline-none"
-                      aria-label={` - (Button Modal Agenda)`}
-                      aria-labelledby={` - (Button Modal Agenda)`}
-                      data-hs-overlay="#mdlAgenda"
-                    >
-                      <AgendaCard />
-                    </button>
-                    <button
-                      id={`btnAgenda`}
-                      className="w-full outline-none focus-visible:outline-none"
-                      aria-label={` - (Button Modal Agenda)`}
-                      aria-labelledby={` - (Button Modal Agenda)`}
-                      data-hs-overlay="#mdlAgenda"
-                    >
-                      <AgendaCard />
-                    </button>
-                    <button
-                      id={`btnAgenda`}
-                      className="w-full outline-none focus-visible:outline-none"
-                      aria-label={` - (Button Modal Agenda)`}
-                      aria-labelledby={` - (Button Modal Agenda)`}
-                      data-hs-overlay="#mdlAgenda"
-                    >
-                      <AgendaCard />
-                    </button>
-                  </div>
-                </div>
-                <div className="relative w-full">
-                  <div className="sticky bottom-auto top-[158px] z-50 w-full border-b border-[#D6D6D6] bg-white px-4 py-4 sm:top-[194px] sm:px-6 sm:py-6">
-                    <h2 className="flex w-full flex-row items-start justify-between text-base sm:text-xl">
-                      <span className="flex flex-row items-center justify-start">
-                        <svg
-                          className="mr-2 h-5 w-5 sm:h-6 sm:w-6"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          width={24}
-                          height={24}
-                          fill={"none"}
-                        >
-                          <path
-                            d="M18.952 8.60657L21.4622 8.45376C19.6629 3.70477 14.497 0.999914 9.4604 2.34474C4.09599 3.77711 0.909631 9.26107 2.34347 14.5935C3.77731 19.926 9.28839 23.0876 14.6528 21.6553C18.6358 20.5917 21.4181 17.2946 22 13.4844"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M12 8V12L14 14"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                        11.00 PM
-                      </span>
-                      <span className="font-normal">GMT +7</span>
-                    </h2>
-                  </div>
-                  <div className="flex flex-col divide-y divide-[#D6D6D6]">
-                    <button
-                      id={`btnAgenda`}
-                      className="w-full outline-none focus-visible:outline-none"
-                      aria-label={` - (Button Modal Agenda)`}
-                      aria-labelledby={` - (Button Modal Agenda)`}
-                      data-hs-overlay="#mdlAgenda"
-                    >
-                      <AgendaCard />
-                    </button>
-                    <button
-                      id={`btnAgenda`}
-                      className="w-full outline-none focus-visible:outline-none"
-                      aria-label={` - (Button Modal Agenda)`}
-                      aria-labelledby={` - (Button Modal Agenda)`}
-                      data-hs-overlay="#mdlAgenda"
-                    >
-                      <AgendaCard />
-                    </button>
-                    <button
-                      id={`btnAgenda`}
-                      className="w-full outline-none focus-visible:outline-none"
-                      aria-label={` - (Button Modal Agenda)`}
-                      aria-labelledby={` - (Button Modal Agenda)`}
-                      data-hs-overlay="#mdlAgenda"
-                    >
-                      <AgendaCard />
-                    </button>
-                  </div>
+                <div className="relative flex flex-col">
+                  {isDay1?.map((gtRsltItems, i) => (
+                    <>
+                      <div className="relative w-full" key={i}>
+                        <div className="sticky bottom-auto top-[158px] z-50 w-full border-b border-[#D6D6D6] bg-white px-4 py-4 sm:top-[194px] sm:px-6 sm:py-6">
+                          <h2 className="flex w-full flex-row items-start justify-between text-base sm:text-xl">
+                            <span className="flex flex-row items-center justify-start">
+                              <svg
+                                className="mr-2 h-5 w-5 sm:h-6 sm:w-6"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                width={24}
+                                height={24}
+                                fill={"none"}
+                              >
+                                <path
+                                  d="M18.952 8.60657L21.4622 8.45376C19.6629 3.70477 14.497 0.999914 9.4604 2.34474C4.09599 3.77711 0.909631 9.26107 2.34347 14.5935C3.77731 19.926 9.28839 23.0876 14.6528 21.6553C18.6358 20.5917 21.4181 17.2946 22 13.4844"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                                <path
+                                  d="M12 8V12L14 14"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                              {formatTimeTo12Hour(
+                                `day${isDay}`,
+                                gtRsltItems.timeStart + ":00:00",
+                              )}
+                            </span>
+                            <span className="font-normal">GMT +8</span>
+                          </h2>
+                        </div>
+                        <div className="flex flex-col divide-y divide-[#D6D6D6]">
+                          {gtRsltItems.data?.map((gtRslt, index) => (
+                            <>
+                              <button
+                                id={`btnAgenda`}
+                                className="w-full outline-none focus-visible:outline-none"
+                                aria-label={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
+                                aria-labelledby={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
+                                data-hs-overlay="#mdlAgenda"
+                                key={index}
+                              >
+                                <AgendaCard
+                                  day={`day${isDay}`}
+                                  title={gtRslt.attributes.title}
+                                  stage={gtRslt.attributes.stage}
+                                  startTime={gtRslt.attributes.timeStart}
+                                  lastTime={gtRslt.attributes.timeEnd}
+                                  speakers={gtRslt.attributes.speaker}
+                                  moderator={gtRslt.attributes.moderator}
+                                />
+                              </button>
+                            </>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  ))}
                 </div>
               </div>
               <div
-                id="segment-2"
+                id="agendaDay-2"
                 className="hidden"
                 role="tabpanel"
-                aria-labelledby="segment-item-2"
+                aria-labelledby="agendaDay-Content-2"
               >
-                <div className="relative w-full">
-                  <div className="sticky bottom-auto top-[158px] z-50 w-full border-b border-[#D6D6D6] bg-white px-4 py-4 sm:top-[194px] sm:px-6 sm:py-6">
-                    <h2 className="flex w-full flex-row items-start justify-between text-base sm:text-xl">
-                      <span className="flex flex-row items-center justify-start">
-                        <svg
-                          className="mr-2 h-5 w-5 sm:h-6 sm:w-6"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          width={24}
-                          height={24}
-                          fill={"none"}
-                        >
-                          <path
-                            d="M18.952 8.60657L21.4622 8.45376C19.6629 3.70477 14.497 0.999914 9.4604 2.34474C4.09599 3.77711 0.909631 9.26107 2.34347 14.5935C3.77731 19.926 9.28839 23.0876 14.6528 21.6553C18.6358 20.5917 21.4181 17.2946 22 13.4844"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M12 8V12L14 14"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                        04.00 PM
-                      </span>
-                      <span className="font-normal">GMT +7</span>
-                    </h2>
-                  </div>
-                  <div className="flex flex-col divide-y divide-[#D6D6D6]">
-                    <button
-                      id={`btnAgenda`}
-                      className="w-full outline-none focus-visible:outline-none"
-                      aria-label={` - (Button Modal Agenda)`}
-                      aria-labelledby={` - (Button Modal Agenda)`}
-                      data-hs-overlay="#mdlAgenda"
-                    >
-                      <AgendaCard />
-                    </button>
-                    <button
-                      id={`btnAgenda`}
-                      className="w-full outline-none focus-visible:outline-none"
-                      aria-label={` - (Button Modal Agenda)`}
-                      aria-labelledby={` - (Button Modal Agenda)`}
-                      data-hs-overlay="#mdlAgenda"
-                    >
-                      <AgendaCard />
-                    </button>
-                    <button
-                      id={`btnAgenda`}
-                      className="w-full outline-none focus-visible:outline-none"
-                      aria-label={` - (Button Modal Agenda)`}
-                      aria-labelledby={` - (Button Modal Agenda)`}
-                      data-hs-overlay="#mdlAgenda"
-                    >
-                      <AgendaCard />
-                    </button>
-                  </div>
-                </div>
-                <div className="relative w-full">
-                  <div className="sticky bottom-auto top-[158px] z-50 w-full border-b border-[#D6D6D6] bg-white px-4 py-4 sm:top-[194px] sm:px-6 sm:py-6">
-                    <h2 className="flex w-full flex-row items-start justify-between text-base sm:text-xl">
-                      <span className="flex flex-row items-center justify-start">
-                        <svg
-                          className="mr-2 h-5 w-5 sm:h-6 sm:w-6"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          width={24}
-                          height={24}
-                          fill={"none"}
-                        >
-                          <path
-                            d="M18.952 8.60657L21.4622 8.45376C19.6629 3.70477 14.497 0.999914 9.4604 2.34474C4.09599 3.77711 0.909631 9.26107 2.34347 14.5935C3.77731 19.926 9.28839 23.0876 14.6528 21.6553C18.6358 20.5917 21.4181 17.2946 22 13.4844"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M12 8V12L14 14"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                        08.00 PM
-                      </span>
-                      <span className="font-normal">GMT +7</span>
-                    </h2>
-                  </div>
-                  <div className="flex flex-col divide-y divide-[#D6D6D6]">
-                    <button
-                      id={`btnAgenda`}
-                      className="w-full outline-none focus-visible:outline-none"
-                      aria-label={` - (Button Modal Agenda)`}
-                      aria-labelledby={` - (Button Modal Agenda)`}
-                      data-hs-overlay="#mdlAgenda"
-                    >
-                      <AgendaCard />
-                    </button>
-                    <button
-                      id={`btnAgenda`}
-                      className="w-full outline-none focus-visible:outline-none"
-                      aria-label={` - (Button Modal Agenda)`}
-                      aria-labelledby={` - (Button Modal Agenda)`}
-                      data-hs-overlay="#mdlAgenda"
-                    >
-                      <AgendaCard />
-                    </button>
-                    <button
-                      id={`btnAgenda`}
-                      className="w-full outline-none focus-visible:outline-none"
-                      aria-label={` - (Button Modal Agenda)`}
-                      aria-labelledby={` - (Button Modal Agenda)`}
-                      data-hs-overlay="#mdlAgenda"
-                    >
-                      <AgendaCard />
-                    </button>
-                  </div>
+                <div className="relative flex flex-col">
+                  {isDay2?.map((gtRsltItems, i) => (
+                    <>
+                      <div className="relative w-full" key={i}>
+                        <div className="sticky bottom-auto top-[158px] z-50 w-full border-b border-[#D6D6D6] bg-white px-4 py-4 sm:top-[194px] sm:px-6 sm:py-6">
+                          <h2 className="flex w-full flex-row items-start justify-between text-base sm:text-xl">
+                            <span className="flex flex-row items-center justify-start">
+                              <svg
+                                className="mr-2 h-5 w-5 sm:h-6 sm:w-6"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                width={24}
+                                height={24}
+                                fill={"none"}
+                              >
+                                <path
+                                  d="M18.952 8.60657L21.4622 8.45376C19.6629 3.70477 14.497 0.999914 9.4604 2.34474C4.09599 3.77711 0.909631 9.26107 2.34347 14.5935C3.77731 19.926 9.28839 23.0876 14.6528 21.6553C18.6358 20.5917 21.4181 17.2946 22 13.4844"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                                <path
+                                  d="M12 8V12L14 14"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                              {formatTimeTo12Hour(
+                                `day${isDay}`,
+                                gtRsltItems.timeStart + ":00:00",
+                              )}
+                            </span>
+                            <span className="font-normal">GMT +8</span>
+                          </h2>
+                        </div>
+                        <div className="flex flex-col divide-y divide-[#D6D6D6]">
+                          {gtRsltItems.data?.map((gtRslt, index) => (
+                            <>
+                              <button
+                                id={`btnAgenda`}
+                                className="w-full outline-none focus-visible:outline-none"
+                                aria-label={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
+                                aria-labelledby={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
+                                data-hs-overlay="#mdlAgenda"
+                                key={index}
+                              >
+                                <AgendaCard
+                                  day={`day${isDay}`}
+                                  title={gtRslt.attributes.title}
+                                  stage={gtRslt.attributes.stage}
+                                  startTime={gtRslt.attributes.timeStart}
+                                  lastTime={gtRslt.attributes.timeEnd}
+                                  speakers={gtRslt.attributes.speaker}
+                                  moderator={gtRslt.attributes.moderator}
+                                />
+                              </button>
+                            </>
+                          ))}
+                        </div>
+                      </div>
+                    </>
+                  ))}
                 </div>
               </div>
             </div>
@@ -375,10 +291,77 @@ const Agenda = () => {
         <BannerFooter />
       </main>
 
-      {/* @agenda-modal */}
+      {/* @agendaDay-modal */}
       <AgendaModal />
     </>
   );
 };
 
 export default Agenda;
+
+export const getStaticProps = async () => {
+  const isDay1MainStage = await getFetch(
+    `/ca24-agendas/?filters[stage][$eq]=mainStage&filters[stage][$eq]=overallVenue&filters[day][$eq]=day1&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
+  );
+
+  const groupsTimeDay1 = isDay1MainStage.data.reduce((groups, items) => {
+    const parts = items.attributes.timeStart;
+    const time = parts !== "Invalid Date" ? parts.split(":")[0] : "00";
+
+    if (!groups[time]) {
+      groups[time] = [];
+    }
+
+    groups[time].push(items);
+
+    return groups;
+  }, {});
+
+  // @edit: to add it in the array format instead
+  const groupArrDay1 = Object.keys(groupsTimeDay1).map((timeStart) => {
+    return {
+      timeStart,
+      data: groupsTimeDay1[timeStart],
+    };
+  });
+
+  const isDay2MainStage = await getFetch(
+    `/ca24-agendas/?filters[stage][$eq]=mainStage&filters[stage][$eq]=overallVenue&filters[day][$eq]=day2&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
+  );
+
+  const groupsTimeDay2 = isDay2MainStage.data.reduce((groups, items) => {
+    const parts = items.attributes.timeStart;
+    const time = parts !== "Invalid Date" ? parts.split(":")[0] : "00";
+
+    if (!groups[time]) {
+      groups[time] = [];
+    }
+
+    groups[time].push(items);
+
+    return groups;
+  }, {});
+
+  // @edit: to add it in the array format instead
+  const groupArrDay2 = Object.keys(groupsTimeDay2).map((timeStart) => {
+    return {
+      timeStart,
+      data: groupsTimeDay2[timeStart],
+    };
+  });
+
+  try {
+    return {
+      props: {
+        day1: groupArrDay1 || [],
+        day2: groupArrDay2 || [],
+      },
+
+      revalidate: 3600,
+    };
+  } catch (err) {
+    return {
+      notFound: true,
+    };
+  }
+};

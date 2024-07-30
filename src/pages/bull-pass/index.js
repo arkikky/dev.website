@@ -1,4 +1,6 @@
 import React from "react";
+import { gsap } from "gsap";
+import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 import getConfig from "next/config";
 import Head from "next/head";
 import Image from "next/image";
@@ -15,6 +17,18 @@ import BullPassCard from "@components/UI/Card/BullPassCard";
 import BentoGridLayouts from "@layouts/BentoLayouts";
 
 const BullPass = () => {
+  gsap.registerPlugin(ScrollToPlugin);
+
+  const isScrollToCard = (e) => {
+    e.preventDefault();
+
+    gsap.to(window, {
+      duration: 1.5,
+      scrollTo: { y: "#ca2024BullPassContainer", offsetY: 140 },
+      ease: "power2",
+    });
+  };
+
   return (
     <>
       {/* @head */}
@@ -98,23 +112,30 @@ const BullPass = () => {
                 festival with Bull ticket
               </p>
               <div className="mx-auto mt-6 inline-flex w-full flex-col items-center justify-between px-4 sm:w-max sm:flex-row sm:px-0">
-                <button
+                <Link
                   className={`relative mb-2 mr-0 inline-flex w-full items-center justify-center rounded-[14px] bg-white px-4 py-4 font-bevietnamPro text-base font-normal text-black-900 outline-none last:mr-0 focus-visible:outline-none sm:mb-0 sm:mr-4 sm:w-max sm:px-6`}
+                  href="https://ticket.coinfest.asia/?add-to-cart=3613"
+                  target="_blank"
                 >
                   Get bull pass
-                </button>
-                <Link
+                </Link>
+                <button
                   className={`relative inline-flex w-full items-center justify-center rounded-[14px] bg-transparent px-4 py-4 font-bevietnamPro text-base font-normal text-white outline-none last:mr-0 hover:underline focus-visible:outline-none sm:w-max sm:px-6`}
                   title="Coinfest Asia 2024 (Header BullPass)"
-                  href={""}
+                  onClick={(e) => {
+                    isScrollToCard(e);
+                  }}
                 >
                   Learn more about bull pass
-                </Link>
+                </button>
               </div>
             </div>
           </header>
 
-          <div className="relative mt-12 flex flex-col">
+          <div
+            id="ca2024BullPassContainer"
+            className="relative mt-12 flex flex-col"
+          >
             <Container>
               <div className="flex flex-col">
                 <h2 className="font-staraExtraBold text-[32px] uppercase leading-[38px] text-black-900">
@@ -257,7 +278,8 @@ const BullPass = () => {
                   <div className="mt-4 flex w-full flex-col sm:mt-8 sm:w-max">
                     <Link
                       className="ca2024BgOverflayBullPass relative inline-flex w-full max-w-max items-center justify-center rounded-xl bg-primary px-4 py-4 font-bevietnamPro text-base font-medium text-white outline-none focus-visible:outline-none sm:rounded-[14px] sm:px-6 sm:py-6 sm:text-xl"
-                      href={"https://ticket.coinfest.asia/"}
+                      href="https://ticket.coinfest.asia/?add-to-cart=3613"
+                      target="_blank"
                     >
                       Get bull pass
                     </Link>

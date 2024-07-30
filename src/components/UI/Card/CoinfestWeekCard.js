@@ -127,7 +127,7 @@ const CoinfestWeekCard = ({
                   />
                 </svg>
 
-                {dayjs(time).format("h A")}
+                {dayjs(time, "Asia/Makassar").format("h A")}
               </span>
               <span
                 className={`flex text-sm font-normal text-[#6E7383] sm:text-base`}
@@ -146,7 +146,7 @@ const CoinfestWeekCard = ({
                   />
                 </svg>
 
-                {dayjs(time).format("DD MMMM YYYY")}
+                {dayjs(time, "Asia/Makassar").format("DD MMMM YYYY")}
               </span>
             </div>
           </div>
