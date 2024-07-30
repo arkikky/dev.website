@@ -23,17 +23,17 @@ import BannerFooter from "@layouts/Banner/BannerFooter";
 
 const Agenda = ({ day1, day2 }) => {
   const [isDay, setDay] = useState(1);
+  const [isStage, setStage] = useState("mainStage");
   const [isDay1, setDay1] = useState(day1);
   const [isDay2, setDay2] = useState(day2);
 
   // @use-effect
-  useEffect(() => {
-    console.log(isDay);
+  // useEffect(() => {
 
-    return () => {
-      undefined;
-    };
-  }, [isDay]);
+  //   return () => {
+  //     undefined;
+  //   };
+  // }, [isDay]);
 
   const isTabDateActived = (e, days) => {
     e.preventDefault();
@@ -100,7 +100,7 @@ const Agenda = ({ day1, day2 }) => {
             </p>
           </div>
           <div className="relative mt-8 flex flex-col">
-            <div className="sticky bottom-auto top-[86px] z-[52] bg-white px-0 py-2 sm:top-[100px] sm:px-4 sm:py-4">
+            <div className="sticky bottom-auto top-[86px] z-[52] flex flex-row items-center justify-between bg-white px-0 py-2 sm:top-[100px] sm:px-4 sm:py-4">
               <div className="flex w-max flex-col rounded-2xl bg-secondary px-2 py-2 transition sm:px-2">
                 <nav
                   className="flex w-max overflow-x-auto"
@@ -132,6 +132,33 @@ const Agenda = ({ day1, day2 }) => {
                     }}
                   >
                     August 23
+                  </button>
+                </nav>
+              </div>
+              <div className="flex w-max flex-col rounded-2xl bg-secondary px-2 py-2 transition sm:px-2">
+                <nav
+                  className="flex w-max overflow-x-auto"
+                  aria-label="Tabs"
+                  role="tablist"
+                >
+                  <button
+                    type="button"
+                    className={`active inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${isStage === "mainStage" ? "bg-white text-secondary" : "bg-secondary text-white/[0.64]"} transition duration-300 ease-in-out hover:bg-white hover:text-secondary`}
+                    role="tab"
+                    // onClick={(e) => {
+                    //   isTabDateActived(e, 1);
+                    // }}
+                  >
+                    Main Stage
+                  </button>
+                  <button
+                    type="button"
+                    className={`active inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${isStage === "alphaStage" ? "bg-white text-secondary" : "bg-secondary text-white/[0.64]"} transition duration-300 ease-in-out hover:bg-white hover:text-secondary`}
+                    onClick={(e) => {
+                      isTabDateActived(e, 2);
+                    }}
+                  >
+                    Alpha Stage
                   </button>
                 </nav>
               </div>

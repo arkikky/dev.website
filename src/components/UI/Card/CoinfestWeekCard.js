@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
+var utc = require("dayjs/plugin/utc");
+var timezone = require("dayjs/plugin/timezone");
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import Link from "next/link";
@@ -127,7 +133,7 @@ const CoinfestWeekCard = ({
                   />
                 </svg>
 
-                {dayjs(time, "Asia/Makassar").format("h A")}
+                {dayjs.tz(time, "Asia/Makassar").format("h A")}
               </span>
               <span
                 className={`flex text-sm font-normal text-[#6E7383] sm:text-base`}
@@ -146,7 +152,7 @@ const CoinfestWeekCard = ({
                   />
                 </svg>
 
-                {dayjs(time, "Asia/Makassar").format("DD MMMM YYYY")}
+                {dayjs.tz(time, "Asia/Makassar").format("DD MMMM YYYY")}
               </span>
             </div>
           </div>
