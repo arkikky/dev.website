@@ -85,3 +85,10 @@
   @apply bg-[url('/assets/images/backdrop/agenda/ca2024BgAgenda_General.png')];
   @apply bg-cover bg-center object-cover object-center;
 }
+
+.ca2024BannerAgenda_Highlight::before {
+  @apply content-[''];
+  @apply bg-[url("/assets/images/backdrop/background/ca2024BgBannerAgenda.png")];
+  @apply bg-cover bg-center bg-no-repeat object-cover object-center;
+  @apply absolute inset-x-0 inset-y-0;
+}

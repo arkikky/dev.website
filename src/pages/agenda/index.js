@@ -441,15 +441,30 @@ const Agenda = ({ day1, day2 }) => {
                         <div className="flex flex-col divide-y divide-[#D6D6D6]">
                           {gtRsltItems.data?.map((gtRslt, index) => (
                             <>
-                              <button
-                                id={`btnAgenda`}
-                                className="w-full outline-none focus-visible:outline-none"
-                                aria-label={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
-                                aria-labelledby={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
-                                data-hs-overlay="#mdlAgenda"
-                                key={index}
-                              >
+                              {gtRslt.attributes.highlight === false ? (
+                                <button
+                                  id={`btnAgenda`}
+                                  className="w-full outline-none focus-visible:outline-none"
+                                  aria-label={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
+                                  aria-labelledby={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
+                                  data-hs-overlay="#mdlAgenda"
+                                  key={index}
+                                >
+                                  <AgendaCard
+                                    highlight={gtRslt.attributes.highlight}
+                                    day={`day${isDay}`}
+                                    title={gtRslt.attributes.title}
+                                    stage={gtRslt.attributes.stage}
+                                    selectedStage={isStage}
+                                    startTime={gtRslt.attributes.timeStart}
+                                    lastTime={gtRslt.attributes.timeEnd}
+                                    speakers={gtRslt.attributes.speaker}
+                                    moderator={gtRslt.attributes.moderator}
+                                  />
+                                </button>
+                              ) : (
                                 <AgendaCard
+                                  highlight={gtRslt.attributes.highlight}
                                   day={`day${isDay}`}
                                   title={gtRslt.attributes.title}
                                   stage={gtRslt.attributes.stage}
@@ -459,7 +474,7 @@ const Agenda = ({ day1, day2 }) => {
                                   speakers={gtRslt.attributes.speaker}
                                   moderator={gtRslt.attributes.moderator}
                                 />
-                              </button>
+                              )}
                             </>
                           ))}
                         </div>
