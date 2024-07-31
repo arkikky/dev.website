@@ -19,26 +19,115 @@ import AgendaCard from "@components/UI/Card/AgendaCard";
 import AgendaModal from "@components/UI/Modal/AgendaModal";
 
 // @layouts
+import NavbarTop from "@layouts/Navbar/NavbarTop";
+import NavbarBottom from "@layouts/Navbar/NavbarBottom";
 import BannerFooter from "@layouts/Banner/BannerFooter";
+import Footer from "@layouts/Footer";
 
 const Agenda = ({ day1, day2 }) => {
+  const [loading, setLoading] = useState(false);
   const [isDay, setDay] = useState(1);
   const [isStage, setStage] = useState("mainStage");
-  const [isDay1, setDay1] = useState(day1);
-  const [isDay2, setDay2] = useState(day2);
+  const [isDay1, setDay1] = useState(day1 || []);
+  const [isDay2, setDay2] = useState(day2 || []);
 
-  // @use-effect
-  // useEffect(() => {
-
-  //   return () => {
-  //     undefined;
-  //   };
-  // }, [isDay]);
-
-  const isTabDateActived = (e, days) => {
+  const isTabDateActived = async (e, days, stage) => {
     e.preventDefault();
 
+    let url = "";
+
     setDay(days);
+
+    if (stage === "alphaStage") {
+      if (days === 1) {
+        url = `/ca24-agendas/?filters[stage][$eq]=overallVenue&filters[stage][$eq]=alphaStage&filters[day][$eq]=day${days}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`;
+      } else {
+        url = `/ca24-agendas/?filters[stage][$eq]=alphaStage&filters[day][$eq]=day${days}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`;
+      }
+    } else if (stage === "buildersHut") {
+      url = `/ca24-agendas/?filters[stage][$eq]=buildersHut&filters[day][$eq]=day${days}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`;
+    } else if (stage === "breakoutArea") {
+      url = `/ca24-agendas/?populate=*&filters[stage][$eq]=breakoutArea&filters[stage][$eq]=overallVenue&filters[day][$eq]=day${days}&sort[0]=timeStart:asc`;
+    } else {
+      url = `/ca24-agendas/?filters[stage][$eq]=mainStage&filters[stage][$eq]=overallVenue&filters[day][$eq]=day${days}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`;
+    }
+
+    try {
+      const getStage = await getFetch(url);
+
+      const groupsStage = getStage.data.reduce((groups, items) => {
+        const parts = items.attributes.timeStart;
+        const time = parts !== "Invalid Date" ? parts.split(":")[0] : "00";
+
+        if (!groups[time]) {
+          groups[time] = [];
+        }
+
+        groups[time].push(items);
+
+        return groups;
+      }, {});
+
+      // @edit: to add it in the array format instead
+      const groupArrStage = Object.keys(groupsStage).map((timeStart) => {
+        return {
+          timeStart,
+          data: groupsStage[timeStart],
+        };
+      });
+
+      if (days === 1) {
+        setDay1(groupArrStage);
+      } else {
+        setDay2(groupArrStage);
+      }
+
+      setStage(stage);
+    } catch (err) {
+      // @error
+    }
+  };
+
+  // @load(tab-stage)
+  const isTabDateActivedStage = async (e, day, stage, url) => {
+    e.preventDefault();
+
+    try {
+      const getStage = await getFetch(url);
+
+      const groupsStage = getStage.data.reduce((groups, items) => {
+        const parts = items.attributes.timeStart;
+        const time = parts !== "Invalid Date" ? parts.split(":")[0] : "00";
+
+        if (!groups[time]) {
+          groups[time] = [];
+        }
+
+        groups[time].push(items);
+
+        return groups;
+      }, {});
+
+      // @edit: to add it in the array format instead
+      const groupArrStage = Object.keys(groupsStage).map((timeStart) => {
+        return {
+          timeStart,
+          data: groupsStage[timeStart],
+        };
+      });
+
+      console.log(groupArrStage);
+
+      if (day === 1) {
+        setDay1(groupArrStage);
+      } else {
+        setDay2(groupArrStage);
+      }
+
+      setStage(stage);
+    } catch (err) {
+      // @error
+    }
   };
 
   return (
@@ -85,10 +174,16 @@ const Agenda = ({ day1, day2 }) => {
         />
       </Head>
 
+      {/* @navbar(top) */}
+      <NavbarTop withBg={true} />
+
+      {/* @navbar(bottom) */}
+      <NavbarBottom />
+
       {/* @main */}
       <main className="relative pt-[146px]">
-        <Container className={"pb-20 sm:pb-0"}>
-          <div className="flex flex-col items-start justify-start pr-0">
+        <Container className={"px-0 pb-20 sm:pb-0"}>
+          <div className="flex flex-col items-start justify-start px-4 pr-0 sm:px-0">
             <h1 className="font-staraExtraBold text-[32px] uppercase leading-[40px] text-black-900 sm:text-[58px] sm:leading-[74px] lg:text-[80px] lg:leading-[90px] xl:text-[72px] xl:leading-[86px] 2xl:text-[80px] 2xl:leading-[90px]">
               Agenda
             </h1>
@@ -99,8 +194,8 @@ const Agenda = ({ day1, day2 }) => {
               an eye towards shaping tomorrow.
             </p>
           </div>
-          <div className="relative mt-8 flex flex-col">
-            <div className="sticky bottom-auto top-[86px] z-[52] flex flex-row items-center justify-between bg-white px-0 py-2 sm:top-[100px] sm:px-4 sm:py-4">
+          <div className="relative mt-8 flex flex-col bg-white">
+            <div className="sticky bottom-auto top-[102px] z-[52] flex flex-row items-center justify-between overflow-hidden rounded-t-[20px] border-b border-[#D6D6D6] bg-[#EEEEEE] px-2 py-2 sm:top-[113px] sm:rounded-t-2xl sm:px-4 sm:py-4">
               <div className="flex w-max flex-col rounded-2xl bg-secondary px-2 py-2 transition sm:px-2">
                 <nav
                   className="flex w-max overflow-x-auto"
@@ -115,7 +210,7 @@ const Agenda = ({ day1, day2 }) => {
                     aria-controls="agendaDay-1"
                     role="tab"
                     onClick={(e) => {
-                      isTabDateActived(e, 1);
+                      isTabDateActived(e, 1, isStage);
                     }}
                   >
                     August 22
@@ -128,14 +223,14 @@ const Agenda = ({ day1, day2 }) => {
                     aria-controls="agendaDay-2"
                     role="tab"
                     onClick={(e) => {
-                      isTabDateActived(e, 2);
+                      isTabDateActived(e, 2, isStage);
                     }}
                   >
                     August 23
                   </button>
                 </nav>
               </div>
-              <div className="flex w-max flex-col rounded-2xl bg-secondary px-2 py-2 transition sm:px-2">
+              <div className="hidden w-max flex-col rounded-2xl bg-secondary px-2 py-2 transition sm:px-2 lg:flex">
                 <nav
                   className="flex w-max overflow-x-auto"
                   aria-label="Tabs"
@@ -143,24 +238,159 @@ const Agenda = ({ day1, day2 }) => {
                 >
                   <button
                     type="button"
-                    className={`active inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${isStage === "mainStage" ? "bg-white text-secondary" : "bg-secondary text-white/[0.64]"} transition duration-300 ease-in-out hover:bg-white hover:text-secondary`}
+                    className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${isStage === "mainStage" ? "bg-white text-secondary" : "bg-secondary text-white/[0.64]"} transition duration-300 ease-in-out hover:bg-white hover:text-secondary`}
                     role="tab"
-                    // onClick={(e) => {
-                    //   isTabDateActived(e, 1);
-                    // }}
+                    onClick={(e) => {
+                      isTabDateActivedStage(
+                        e,
+                        isDay,
+                        "mainStage",
+                        `/ca24-agendas/?filters[stage][$eq]=mainStage&filters[stage][$eq]=overallVenue&filters[day][$eq]=day${isDay}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
+                      );
+                    }}
                   >
                     Main Stage
                   </button>
                   <button
                     type="button"
-                    className={`active inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${isStage === "alphaStage" ? "bg-white text-secondary" : "bg-secondary text-white/[0.64]"} transition duration-300 ease-in-out hover:bg-white hover:text-secondary`}
+                    className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${isStage === "alphaStage" ? "bg-white text-secondary" : "bg-secondary text-white/[0.64]"} transition duration-300 ease-in-out hover:bg-white hover:text-secondary`}
                     onClick={(e) => {
-                      isTabDateActived(e, 2);
+                      setLoading(true);
+                      isTabDateActivedStage(
+                        e,
+                        isDay,
+                        "alphaStage",
+                        isDay === 1
+                          ? `/ca24-agendas/?filters[stage][$eq]=overallVenue&filters[stage][$eq]=alphaStage&filters[day][$eq]=day${isDay}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`
+                          : `/ca24-agendas/?filters[stage][$eq]=alphaStage&filters[day][$eq]=day${isDay}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
+                      );
                     }}
                   >
                     Alpha Stage
                   </button>
+                  <button
+                    type="button"
+                    className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${isStage === "buildersHut" ? "bg-white text-secondary" : "bg-secondary text-white/[0.64]"} transition duration-300 ease-in-out hover:bg-white hover:text-secondary`}
+                    onClick={(e) => {
+                      isTabDateActivedStage(
+                        e,
+                        isDay,
+                        "buildersHut",
+                        `/ca24-agendas/?filters[stage][$eq]=buildersHut&filters[day][$eq]=day${isDay}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
+                      );
+                    }}
+                  >
+                    Builders Hut
+                  </button>
+                  <button
+                    type="button"
+                    className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${isStage === "breakoutArea" ? "bg-white text-secondary" : "bg-secondary text-white/[0.64]"} transition duration-300 ease-in-out hover:bg-white hover:text-secondary`}
+                    onClick={(e) => {
+                      isTabDateActivedStage(
+                        e,
+                        isDay,
+                        "breakoutArea",
+                        `/ca24-agendas/?populate=*&filters[stage][$eq]=breakoutArea&filters[stage][$eq]=overallVenue&filters[day][$eq]=day${isDay}&sort[0]=timeStart:asc`,
+                      );
+                    }}
+                  >
+                    Breakout Area
+                  </button>
                 </nav>
+              </div>
+              <div className="flex flex-col lg:hidden">
+                <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                  <button
+                    id="hs-dropright"
+                    type="button"
+                    class="hs-dropdown-toggle inline-flex items-center gap-x-2 rounded-lg bg-transparent px-4 py-3 text-sm font-medium text-secondary focus:outline-none disabled:pointer-events-none disabled:opacity-50 sm:text-base"
+                    aria-haspopup="menu"
+                    aria-expanded="false"
+                    aria-label="Dropdown"
+                  >
+                    Stage
+                    <svg
+                      className="mt-0.5 h-5 w-5 rotate-0 transform fill-current transition ease-in-out"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.70711 7.29289L10 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68342 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z"
+                      />
+                    </svg>
+                  </button>
+
+                  <div
+                    class="hs-dropdown-menu duration z-10 hidden w-[165px] rounded-xl bg-white px-2 py-2 opacity-0 shadow-xl transition-[opacity,margin] hs-dropdown-open:opacity-100"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="hs-dropright"
+                  >
+                    <button
+                      type="button"
+                      className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 lg:text-base ${isStage === "mainStage" ? "bg-secondary text-white" : "bg-white text-[#4C4C4C]/[0.64]"} transition duration-300 ease-in-out hover:bg-secondary hover:text-white`}
+                      role="tab"
+                      onClick={(e) => {
+                        isTabDateActivedStage(
+                          e,
+                          isDay,
+                          "mainStage",
+                          `/ca24-agendas/?filters[stage][$eq]=mainStage&filters[stage][$eq]=overallVenue&filters[day][$eq]=day${isDay}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
+                        );
+                      }}
+                    >
+                      Main Stage
+                    </button>
+                    <button
+                      type="button"
+                      className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 lg:text-base ${isStage === "alphaStage" ? "bg-secondary text-white" : "bg-white text-[#4C4C4C]/[0.64]"} transition duration-300 ease-in-out hover:bg-secondary hover:text-white`}
+                      onClick={(e) => {
+                        setLoading(true);
+                        isTabDateActivedStage(
+                          e,
+                          isDay,
+                          "alphaStage",
+                          isDay === 1
+                            ? `/ca24-agendas/?filters[stage][$eq]=overallVenue&filters[stage][$eq]=alphaStage&filters[day][$eq]=day${isDay}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`
+                            : `/ca24-agendas/?filters[stage][$eq]=alphaStage&filters[day][$eq]=day${isDay}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
+                        );
+                      }}
+                    >
+                      Alpha Stage
+                    </button>
+                    <button
+                      type="button"
+                      className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 lg:text-base ${isStage === "buildersHut" ? "bg-secondary text-white" : "bg-white text-[#4C4C4C]/[0.64]"} transition duration-300 ease-in-out hover:bg-secondary hover:text-white`}
+                      onClick={(e) => {
+                        isTabDateActivedStage(
+                          e,
+                          isDay,
+                          "buildersHut",
+                          `/ca24-agendas/?filters[stage][$eq]=buildersHut&filters[day][$eq]=day${isDay}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
+                        );
+                      }}
+                    >
+                      Builders Hut
+                    </button>
+                    <button
+                      type="button"
+                      className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 lg:text-base ${isStage === "breakoutArea" ? "bg-secondary text-white" : "bg-white text-[#4C4C4C]/[0.64]"} transition duration-300 ease-in-out hover:bg-secondary hover:text-white`}
+                      onClick={(e) => {
+                        isTabDateActivedStage(
+                          e,
+                          isDay,
+                          "breakoutArea",
+                          `/ca24-agendas/?populate=*&filters[stage][$eq]=breakoutArea&filters[stage][$eq]=overallVenue&filters[day][$eq]=day${isDay}&sort[0]=timeStart:asc`,
+                        );
+                      }}
+                    >
+                      Breakout Area
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -174,8 +404,8 @@ const Agenda = ({ day1, day2 }) => {
                   {isDay1?.map((gtRsltItems, i) => (
                     <>
                       <div className="relative w-full" key={i}>
-                        <div className="sticky bottom-auto top-[158px] z-50 w-full border-b border-[#D6D6D6] bg-white px-4 py-4 sm:top-[194px] sm:px-6 sm:py-6">
-                          <h2 className="flex w-full flex-row items-start justify-between text-base sm:text-xl">
+                        <div className="sticky bottom-auto top-[177px] z-40 w-full border-b border-[#D6D6D6] bg-[#EEEEEE] px-3 py-3 sm:top-[209px] sm:px-4 sm:py-4 lg:px-6 lg:py-6">
+                          <h2 className="flex w-full flex-row items-start justify-between text-base lg:text-xl">
                             <span className="flex flex-row items-center justify-start">
                               <svg
                                 className="mr-2 h-5 w-5 sm:h-6 sm:w-6"
@@ -223,6 +453,7 @@ const Agenda = ({ day1, day2 }) => {
                                   day={`day${isDay}`}
                                   title={gtRslt.attributes.title}
                                   stage={gtRslt.attributes.stage}
+                                  selectedStage={isStage}
                                   startTime={gtRslt.attributes.timeStart}
                                   lastTime={gtRslt.attributes.timeEnd}
                                   speakers={gtRslt.attributes.speaker}
@@ -247,8 +478,8 @@ const Agenda = ({ day1, day2 }) => {
                   {isDay2?.map((gtRsltItems, i) => (
                     <>
                       <div className="relative w-full" key={i}>
-                        <div className="sticky bottom-auto top-[158px] z-50 w-full border-b border-[#D6D6D6] bg-white px-4 py-4 sm:top-[194px] sm:px-6 sm:py-6">
-                          <h2 className="flex w-full flex-row items-start justify-between text-base sm:text-xl">
+                        <div className="sticky bottom-auto top-[177px] z-40 w-full border-b border-[#D6D6D6] bg-[#EEEEEE] px-3 py-3 sm:top-[209px] sm:px-4 sm:py-4 lg:px-6 lg:py-6">
+                          <h2 className="flex w-full flex-row items-start justify-between text-base lg:text-xl">
                             <span className="flex flex-row items-center justify-start">
                               <svg
                                 className="mr-2 h-5 w-5 sm:h-6 sm:w-6"
@@ -296,6 +527,7 @@ const Agenda = ({ day1, day2 }) => {
                                   day={`day${isDay}`}
                                   title={gtRslt.attributes.title}
                                   stage={gtRslt.attributes.stage}
+                                  selectedStage={isStage}
                                   startTime={gtRslt.attributes.timeStart}
                                   lastTime={gtRslt.attributes.timeEnd}
                                   speakers={gtRslt.attributes.speaker}
@@ -317,6 +549,9 @@ const Agenda = ({ day1, day2 }) => {
         {/* @banner-footer */}
         <BannerFooter />
       </main>
+
+      {/* @footer */}
+      <Footer />
 
       {/* @agendaDay-modal */}
       <AgendaModal />
@@ -391,4 +626,8 @@ export const getStaticProps = async () => {
       notFound: true,
     };
   }
+};
+
+Agenda.getLayout = function PageLayout(page) {
+  return <>{page}</>;
 };

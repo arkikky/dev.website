@@ -75,7 +75,7 @@ const Activist = ({ page = false }) => {
               />
               <ActivistCard
                 isPage={page}
-                // url="/activities/treding-competition"
+                url="/activities/trading-competitions"
                 labels="Trading Competitions"
                 images="/assets/images/experiences/trading-competition.png"
               />

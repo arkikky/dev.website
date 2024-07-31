@@ -15,6 +15,7 @@ const TradingCompetitionCard = ({
   labelButton = "Pre-register now",
   colorButton = status !== "draf" ? "bg-secondary" : "bg-gray-500",
   tracks = [],
+  description = ""
 }) => {
   // @use-effect
   useEffect(() => {
@@ -28,14 +29,14 @@ const TradingCompetitionCard = ({
   return (
     <>
       <div
-        id={`ca2024${title}Hackathons`}
-        className={`relative flex h-[474px] flex-col items-start justify-end overflow-hidden rounded-[16px] bg-[#2B2B2B] px-3 py-3 sm:h-[498px] sm:rounded-3xl lg:h-[654px] lg:rounded-[26px] lg:px-6 lg:py-6 xl:h-[872px]`}
+        id={`ca2024${title}TradingCompetition`}
+        className={`relative flex aspect-[0.7/1] flex-col items-start text-cent justify-end overflow-hidden rounded-[16px] bg-[#2B2B2B] px-3 py-3 sm:aspect-[0.66/1] sm:rounded-3xl md:aspect-[0.68/1] lg:aspect-[0.7/1] lg:rounded-[26px] lg:px-6 lg:py-6 xl:aspect-[0.76/1]`}
       >
         <div className=" absolute inset-x-0 inset-y-0 z-px">
           <Image
             className="mx-auto h-full w-full object-cover object-center"
             src={images}
-            alt={`Coinfest Asia 2024 (${title} - Default Hackathon Card)`}
+            alt={`Coinfest Asia 2024 (${title} - Default Trading Competition Card)`}
             height={363}
             width={576}
             quality="87"
@@ -94,14 +95,15 @@ const TradingCompetitionCard = ({
                 <span>Coming Soon</span>
               )}
             </div>
+            <p className="text-[#9C9C9C] font-bevietnamPro leading-5 mt-3 lg:mt-6 sm:h-10 2xl:h-auto">{description}</p>
           </div>
         </div>
 
         <div className="relative z-[5] mt-3 flex w-full flex-col lg:mt-4">
           <Link
-            id={`ca2024Btn${title}Hackathons`}
+            id={`ca2024Btn${title}TradingCompetition`}
             className={`relative inline-flex w-full items-center justify-center rounded-[14px] ${colorButton} px-5 py-4 font-bevietnamPro text-sm font-normal leading-initial ${status !== "draf" ? "cursor-pointer text-white" : "cursor-default text-white"} outline-none last:mr-0 focus-visible:outline-none sm:text-base lg:px-6 lg:py-5 lg:text-xl`}
-            title={`Coinfest Asia 2024 (${title} - Button Hackathon)`}
+            title={`Coinfest Asia 2024 (${title} - Button Trading Competition)`}
             href={url}
             target="_blank"
             rel="noopener noreferrer"

@@ -13,7 +13,7 @@ import "keen-slider/keen-slider.min.css";
 // @lib
 import calculateTime from "@lib/helper/calculateTime";
 
-const MenuNavTop = ({ back = false, urlBack = "" }) => {
+const MenuNavTop = ({ back = false, urlBack = "", withBg = false }) => {
   const [isGrab, setGrab] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [getTimer, setTimeLeft] = useState({
@@ -145,18 +145,29 @@ const MenuNavTop = ({ back = false, urlBack = "" }) => {
             className={`relative ${back === true ? "mt-0" : "mt-2 sm:mt-0"} block w-max cursor-pointer`}
             href={"/"}
           >
-            <Image
-              className="mx-auto my-auto h-auto w-24 sm:w-32"
-              src={"/assets/images/ca2024-BrandWhite.svg"}
-              alt={`${publicRuntimeConfig.siteAppName} (Primary Brand - NavbarTop)`}
-              height={62}
-              width={182}
-              quality="87"
-            />
+            {withBg === true ? (
+              <Image
+                className="mx-auto my-auto h-auto w-24 sm:w-32"
+                src={"/assets/images/ca2024-BlackBrand.svg"}
+                alt={`${publicRuntimeConfig.siteAppName} (Black Primary Brand - NavbarTop)`}
+                height={62}
+                width={182}
+                quality="87"
+              />
+            ) : (
+              <Image
+                className="mx-auto my-auto h-auto w-24 sm:w-32"
+                src={"/assets/images/ca2024-BrandWhite.svg"}
+                alt={`${publicRuntimeConfig.siteAppName} (White Primary Brand - NavbarTop)`}
+                height={62}
+                width={182}
+                quality="87"
+              />
+            )}
           </Link>
         </div>
         <div
-          className={`relative flex flex-col rounded-xl bg-white/30 px-3 py-3 sm:px-4 sm:py-3.5 ${
+          className={`relative flex flex-col rounded-xl ${withBg === true ? "bg-gray-600/50" : "bg-white/30"} px-3 py-3 sm:px-4 sm:py-3.5 ${
             isLoading === true ? "h-[70px] sm:h-[82px]" : "h-auto"
           } w-full min-w-[187px] max-w-[187px] sm:min-w-[272px] sm:max-w-[272px]`}
         >
@@ -174,20 +185,28 @@ const MenuNavTop = ({ back = false, urlBack = "" }) => {
               >
                 <div className="keen-slider__slide number-slide1">
                   <div className="relative flex h-[46px] flex-col items-start sm:h-[54px]">
-                    <span className="font-bevietnamPro text-sm font-light text-white sm:font-normal">
+                    <span
+                      className={`font-bevietnamPro text-sm font-light ${withBg === true ? "text-black-900" : "text-white"} sm:font-normal`}
+                    >
                       Event Date
                     </span>
-                    <div className="absolute inset-x-0 bottom-0 top-auto w-[165px] font-bevietnamPro text-base font-medium text-white sm:w-[265px] sm:text-2xl">
+                    <div
+                      className={`absolute inset-x-0 bottom-0 top-auto w-[165px] font-bevietnamPro text-base font-medium ${withBg === true ? "text-black-900" : "text-white"} sm:w-[265px] sm:text-2xl`}
+                    >
                       22-23 August 2024
                     </div>
                   </div>
                 </div>
                 <div className="keen-slider__slide number-slide2">
                   <div className="relative flex h-[46px] flex-col items-start sm:h-[54px]">
-                    <span className="font-bevietnamPro text-sm font-light text-white sm:font-normal">
+                    <span
+                      className={`font-bevietnamPro text-sm font-light ${withBg === true ? "text-black-900" : "text-white"} sm:font-normal`}
+                    >
                       Starting in
                     </span>
-                    <div className="absolute inset-x-0 bottom-0 top-auto w-[155px] font-bevietnamPro text-base font-medium text-white sm:w-[265px] sm:text-2xl">
+                    <div
+                      className={`absolute inset-x-0 bottom-0 top-auto w-[155px] font-bevietnamPro text-base font-medium ${withBg === true ? "text-black-900" : "text-white"} sm:w-[265px] sm:text-2xl`}
+                    >
                       {`${getTimer.days}d ${getTimer.hours}h ${getTimer.minutes}m ${getTimer.seconds}s`}
                     </div>
                   </div>

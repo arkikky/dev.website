@@ -196,7 +196,7 @@ const Footer = () => {
                       <li className="group mb-4 last:mb-0">
                         <Link
                           className="flex flex-row items-center font-bevietnamPro text-base font-light capitalize leading-[normal] text-black-900 outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none group-hover:text-secondary group-hover:underline"
-                          href="/get-involved/media-partners"
+                          href="/get-involved/media-partner"
                         >
                           Become a media partner
                         </Link>

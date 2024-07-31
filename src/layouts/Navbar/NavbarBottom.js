@@ -254,8 +254,8 @@ const NavbarBottom = () => {
                 type: "page",
               },
               {
-                label: "Trading Competitions (Coming Soon)",
-                url: "/",
+                label: "Trading Competitions",
+                url: "/activities/trading-competitions",
                 type: "page",
               }
             ]}

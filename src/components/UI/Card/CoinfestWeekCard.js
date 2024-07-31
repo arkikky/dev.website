@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
-var utc = require("dayjs/plugin/utc");
-var timezone = require("dayjs/plugin/timezone");
-
-dayjs.extend(utc);
-dayjs.extend(timezone);
-
 import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import Link from "next/link";
+import { convertToBaliTime } from "@lib/helper/convertToBaliTime";
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 // import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 const CoinfestWeekCard = ({
@@ -133,7 +133,7 @@ const CoinfestWeekCard = ({
                   />
                 </svg>
 
-                {dayjs.tz(time, "Asia/Makassar").format("h A")}
+                {convertToBaliTime(time)}
               </span>
               <span
                 className={`flex text-sm font-normal text-[#6E7383] sm:text-base`}
@@ -152,7 +152,7 @@ const CoinfestWeekCard = ({
                   />
                 </svg>
 
-                {dayjs.tz(time, "Asia/Makassar").format("DD MMMM YYYY")}
+                {dayjs(time).tz("Asia/Makassar").format("DD MMMM YYYY")}
               </span>
             </div>
           </div>

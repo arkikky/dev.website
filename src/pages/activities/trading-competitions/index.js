@@ -3,6 +3,8 @@ import getConfig from "next/config";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { gsap } from "gsap";
+import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
@@ -15,6 +17,18 @@ import BentoGridLayouts from "@layouts/BentoLayouts";
 import BannerFooter from "@layouts/Banner/BannerFooter";
 
 const TradingCompetitions = () => {
+  gsap.registerPlugin(ScrollToPlugin);
+
+  const isScrollToCard = (e) => {
+    e.preventDefault();
+
+    gsap.to(window, {
+      duration: 1.5,
+      scrollTo: { y: "#ca2024BtnBitwyreTradingCompetition", offsetY: 540 },
+      ease: "power2",
+    });
+  };
+
   return (
     <>
       {/* @head */}
@@ -86,49 +100,51 @@ const TradingCompetitions = () => {
               />
             </div>
 
-            <div className="relative z-[5] -mt-[105px] flex w-full max-w-full flex-col text-center sm:max-w-[551px] lg:max-w-[711px]">
+            <div className="relative z-[5] mt-1.5 flex w-full max-w-full flex-col text-center sm:max-w-[677px] lg:max-w-[867px]">
               <span className="mx-auto mb-4 inline-flex w-max flex-row items-center justify-center rounded-full border border-solid border-white bg-white/[0.07] px-3 py-2 font-bevietnamPro text-sm font-light text-white sm:mb-6">
                 Trading competition
               </span>
-              <h1 className="font-staraExtraBold text-[40px] uppercase leading-[48px] text-white sm:text-[48px] sm:leading-[60px]">
-                Trading Competition
+              <h1 className="font-staraExtraBold text-[36px] uppercase leading-[40px] text-white sm:text-[48px] sm:leading-[60px]">
+                Trading Competition With $15,000+ Prize Pool
               </h1>
-              <p className="mt-1 font-bevietnamPro text-base font-light text-white/80 lg:text-xl">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna
+              <p className="mt-1 px-0 font-bevietnamPro text-base font-light text-white/80 sm:px-12 lg:px-32 lg:text-xl">
+                Show off your chart reading skills in Trading Competition at Coinfest Asia 2024
               </p>
               <div className="mx-auto mt-6 inline-flex w-full flex-col items-center justify-between px-4 sm:w-max sm:flex-row sm:px-0">
-                <Link
+                <button
                   className={`relative mb-2 mr-0 inline-flex w-full items-center justify-center rounded-[14px] bg-white px-4 py-4 font-bevietnamPro text-base font-normal text-black-900 outline-none last:mr-0 focus-visible:outline-none sm:mb-0 sm:mr-4 sm:w-max sm:px-6`}
                   title="Coinfest Asia 2024 (Header Treding Competition)"
-                  href={""}
+                  onClick={(e) => {
+                    isScrollToCard(e);
+                  }}
                 >
-                  Join trade
-                </Link>
+                  Explore Trading Competitions
+                </button>
                 <Link
                   className={`relative inline-flex w-full items-center justify-center rounded-[14px] border border-solid border-white bg-white/[0.07] px-4 py-4 font-bevietnamPro text-base font-normal text-white outline-none last:mr-0 focus-visible:outline-none sm:w-max sm:px-6`}
                   title="Coinfest Asia 2024 (Header Treding Competition)"
-                  href={""}
+                  href={"/get-involved/sponsorship"}
                 >
-                  Lorem ipsum dolor sit amet
+                  Host your own track
                 </Link>
               </div>
             </div>
           </header>
 
           <div className="mx-2 sm:mx-2.5 lg:mx-5">
-            <div className="relative mt-4 grid-cols-4 gap-x-4 gap-y-4 pb-20 supports-grid:grid sm:mt-6 sm:grid-cols-12 sm:pb-0 lg:grid-cols-12 xl:pb-20">
+            <div className="relative mt-4 grid-cols-4 gap-x-4 gap-y-4 pb-6 supports-grid:grid sm:mt-6 sm:grid-cols-12 sm:pb-6 lg:grid-cols-12 xl:pb-6">
               <div className="col-span-full sm:col-span-6">
                 <TradingCompetitionCard
-                  title="ETHSEA"
-                  date="27 July — 26 August"
-                  colorButton="bg-black-900"
-                  labelButton="Register"
-                  price="$250,000"
-                  url="https://www.ethsea.com/"
+                  title="Bitwyre"
+                  date="17 August — 21 August"
+                  labelButton="See Details"
+                  description="Bitwyre is a crypto spot exchange with the upcoming BAPPEBTI license."
+                  images="/assets/images/activities/trading-competition/ca2024BgBitwyre_TradingCard.png"
+                  price="$10,000"
+                  url="https://bitwyre.id/event/coinfest-2024"
                   tracks={[
                     {
-                      label: "AnyManyMore",
+                      label: "Bitwyre",
                       images:
                         "/assets/images/activities/trading-competition/ca2024Trading_Bitwyre.svg",
                     },
@@ -137,14 +153,16 @@ const TradingCompetitions = () => {
               </div>
               <div className="col-span-full sm:col-span-6">
                 <TradingCompetitionCard
-                  title="Chain Fusion"
-                  date="22 Aug — 23 August"
-                  labelButton="Register"
-                  price="$50,000"
-                  url="https://lu.ma/1rg40k2f"
+                  title="Coin Tech 2U"
+                  date="17 August — 21 August"
+                  labelButton="See Details"
+                  description="CoinTech2u is a trading tool built for optimizing strategies."
+                  images="/assets/images/activities/trading-competition/ca2024BgCoinTech2u_TradingCard.png"
+                  price="$5,000"
+                  url="https://cointech2u.com/event/coinfest-2024.html"
                   tracks={[
                     {
-                      label: "AnyManyMore",
+                      label: "CoinTech2u",
                       images:
                         "/assets/images/activities/trading-competition/ca2024Trading_CoinTech2u.svg",
                     },
@@ -152,10 +170,13 @@ const TradingCompetitions = () => {
                 />
               </div>
             </div>
-          </div>
 
-          {/* @banner-footer */}
-          {/* <BannerFooter /> */}
+            {/* @disclaimer */}
+            <div className="p-6 lg:p-8 rounded-3xl bg-[#F8EAD7] text-base lg:text-xl">
+              <h2 className="font-bold">Disclaimer</h2>
+              <p className="text-black-900/[0.7] mt-2 leading-[26px]">Participation in this trading competition involves significant risk. Please ensure you fully understand the terms and conditions, and only trade with funds you can afford to lose. Past performance is not indicative of future results. We encourage you to use licensed exchanges.</p>
+            </div>
+          </div>
         </main>
       </BentoGridLayouts>
     </>
