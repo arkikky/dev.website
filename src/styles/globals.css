@@ -311,3 +311,18 @@ input:valid {
   @apply rounded-full;
   @apply border-none;
 }
+
+/* @agenda */
+.ca2024AgendaModal::-webkit-scrollbar {
+  @apply w-1.5;
+}
+
+.ca2024AgendaModal::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
+
+.ca2024AgendaModal::-webkit-scrollbar-thumb {
+  @apply bg-gray-400/80;
+  @apply rounded-full;
+  @apply border-none;
+}

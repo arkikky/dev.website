@@ -26,6 +26,7 @@ import Footer from "@layouts/Footer";
 
 const Agenda = ({ day1, day2 }) => {
   const [loading, setLoading] = useState(false);
+  const [isAgendaModal, setAgendaModal] = useState(null);
   const [isDay, setDay] = useState(1);
   const [isStage, setStage] = useState("mainStage");
   const [isDay1, setDay1] = useState(day1 || []);
@@ -116,8 +117,6 @@ const Agenda = ({ day1, day2 }) => {
         };
       });
 
-      console.log(groupArrStage);
-
       if (day === 1) {
         setDay1(groupArrStage);
       } else {
@@ -128,6 +127,35 @@ const Agenda = ({ day1, day2 }) => {
     } catch (err) {
       // @error
     }
+  };
+
+  {
+    /* @agenda-modal */
+  }
+  const isModal = ({
+    id,
+    day,
+    stage,
+    name,
+    title,
+    desc,
+    startTime,
+    lastTime,
+    speaker,
+    moderator,
+  }) => {
+    setAgendaModal({
+      id: id,
+      day: day,
+      stage: stage,
+      title: title,
+      desc: desc,
+      name: name,
+      startTime: startTime,
+      lastTime: lastTime,
+      speaker: speaker,
+      moderator: moderator,
+    });
   };
 
   return (
@@ -449,6 +477,23 @@ const Agenda = ({ day1, day2 }) => {
                                   aria-labelledby={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
                                   data-hs-overlay="#mdlAgenda"
                                   key={index}
+                                  onClick={(e) => {
+                                    e.preventDefault();
+
+                                    isModal({
+                                      id: gtRslt.id,
+                                      day: isDay,
+                                      stage: isStage,
+                                      title: gtRslt.attributes.title,
+                                      desc: gtRslt.attributes.description,
+                                      name: gtRslt.attributes.name,
+                                      startTime: gtRslt.attributes.timeStart,
+                                      lastTime: gtRslt.attributes.timeEnd,
+                                      speaker: gtRslt.attributes.speaker.data,
+                                      moderator:
+                                        gtRslt.attributes.moderator.data,
+                                    });
+                                  }}
                                 >
                                   <AgendaCard
                                     highlight={gtRslt.attributes.highlight}
@@ -463,17 +508,22 @@ const Agenda = ({ day1, day2 }) => {
                                   />
                                 </button>
                               ) : (
-                                <AgendaCard
-                                  highlight={gtRslt.attributes.highlight}
-                                  day={`day${isDay}`}
-                                  title={gtRslt.attributes.title}
-                                  stage={gtRslt.attributes.stage}
-                                  selectedStage={isStage}
-                                  startTime={gtRslt.attributes.timeStart}
-                                  lastTime={gtRslt.attributes.timeEnd}
-                                  speakers={gtRslt.attributes.speaker}
-                                  moderator={gtRslt.attributes.moderator}
-                                />
+                                <div
+                                  key={i}
+                                  className="w-full outline-none focus-visible:outline-none"
+                                >
+                                  <AgendaCard
+                                    highlight={gtRslt.attributes.highlight}
+                                    day={`day${isDay}`}
+                                    title={gtRslt.attributes.title}
+                                    stage={gtRslt.attributes.stage}
+                                    selectedStage={isStage}
+                                    startTime={gtRslt.attributes.timeStart}
+                                    lastTime={gtRslt.attributes.timeEnd}
+                                    speakers={gtRslt.attributes.speaker}
+                                    moderator={gtRslt.attributes.moderator}
+                                  />
+                                </div>
                               )}
                             </>
                           ))}
@@ -537,6 +587,22 @@ const Agenda = ({ day1, day2 }) => {
                                 aria-labelledby={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
                                 data-hs-overlay="#mdlAgenda"
                                 key={index}
+                                onClick={(e) => {
+                                  e.preventDefault();
+
+                                  isModal({
+                                    id: gtRslt.id,
+                                    day: isDay,
+                                    stage: isStage,
+                                    title: gtRslt.attributes.title,
+                                    desc: gtRslt.attributes.description,
+                                    name: gtRslt.attributes.name,
+                                    startTime: gtRslt.attributes.timeStart,
+                                    lastTime: gtRslt.attributes.timeEnd,
+                                    speaker: gtRslt.attributes.speaker.data,
+                                    moderator: gtRslt.attributes.moderator,
+                                  });
+                                }}
                               >
                                 <AgendaCard
                                   day={`day${isDay}`}
@@ -569,7 +635,7 @@ const Agenda = ({ day1, day2 }) => {
       <Footer />
 
       {/* @agendaDay-modal */}
-      <AgendaModal />
+      <AgendaModal {...isAgendaModal} />
     </>
   );
 };

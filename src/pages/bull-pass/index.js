@@ -198,8 +198,8 @@ const BullPass = () => {
                   <div className="col-span-full sm:col-span-1">
                     <BullPassCard
                       images="/assets/images/bull-pass/gallery/ca2024BentoGrid_BullPass5.jpg"
-                      title="Private bull party"
-                      shortDesc="Celebrate in style at the Private Bull Party with fellow Bull ticket holders and VIPs."
+                      title="Selected Side Events"
+                      shortDesc="Gain access to selected private Coinfest Week side events."
                       normal={true}
                       height={748}
                       width={801}

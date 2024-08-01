@@ -76,7 +76,7 @@ const Partner = ({
                   aria-controls="segment-2"
                   role="tab"
                 >
-                  MEDIA PARTNERS
+                  STRATEGIC
                 </button>
                 <button
                   type="button"
@@ -86,7 +86,7 @@ const Partner = ({
                   aria-controls="segment-3"
                   role="tab"
                 >
-                  COMMUNITIES
+                  MEDIA PARTNERS
                 </button>
                 <button
                   type="button"
@@ -96,7 +96,7 @@ const Partner = ({
                   aria-controls="segment-4"
                   role="tab"
                 >
-                  STRATEGIC
+                  COMMUNITIES
                 </button>
               </nav>
             </div>
@@ -144,9 +144,9 @@ const Partner = ({
               role="tabpanel"
               aria-labelledby="segment-item-2"
             >
-              {isMediaPartner && (
+              {isStrategicPartner && (
                 <div className="relative min-w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
-                  {isMediaPartner?.map((gtRslt, i) => (
+                  {isStrategicPartner.data?.map((gtRslt, i) => (
                     <div
                       className="col-span-2 sm:col-span-4 lg:col-span-3"
                       key={i}
@@ -175,18 +175,18 @@ const Partner = ({
               role="tabpanel"
               aria-labelledby="segment-item-3"
             >
-              {isComunitiesPartner && (
-                <div className="relative min-w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-10">
-                  {isComunitiesPartner?.map((gtRslt, i) => (
+              {isMediaPartner && (
+                <div className="relative min-w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+                  {isMediaPartner?.map((gtRslt, i) => (
                     <div
-                      className="col-span-2 sm:col-span-4 lg:col-span-2"
+                      className="col-span-2 sm:col-span-4 lg:col-span-3"
                       key={i}
                     >
                       <BrandSponsor {...gtRslt} height={442} width={640} />
                     </div>
                   ))}
                   {isLayoutShow === true && (
-                    <div className="col-span-2 sm:col-span-4 lg:col-span-2">
+                    <div className="col-span-2 sm:col-span-4 lg:col-span-3">
                       <Link
                         className="flex h-[99px] flex-col items-center justify-center rounded-[8px] border border-solid border-secondary px-0 grayscale-0 transition duration-300 ease-in-out sm:h-[138px] sm:rounded-[20px] lg:h-[190px]"
                         href="/partners"
@@ -206,18 +206,18 @@ const Partner = ({
               role="tabpanel"
               aria-labelledby="segment-item-4"
             >
-              {isStrategicPartner && (
-                <div className="relative min-w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
-                  {isStrategicPartner.data?.map((gtRslt, i) => (
+              {isComunitiesPartner && (
+                <div className="relative min-w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-10">
+                  {isComunitiesPartner?.map((gtRslt, i) => (
                     <div
-                      className="col-span-2 sm:col-span-4 lg:col-span-3"
+                      className="col-span-2 sm:col-span-4 lg:col-span-2"
                       key={i}
                     >
                       <BrandSponsor {...gtRslt} height={442} width={640} />
                     </div>
                   ))}
                   {isLayoutShow === true && (
-                    <div className="col-span-2 sm:col-span-4 lg:col-span-3">
+                    <div className="col-span-2 sm:col-span-4 lg:col-span-2">
                       <Link
                         className="flex h-[99px] flex-col items-center justify-center rounded-[8px] border border-solid border-secondary px-0 grayscale-0 transition duration-300 ease-in-out sm:h-[138px] sm:rounded-[20px] lg:h-[190px]"
                         href="/partners"

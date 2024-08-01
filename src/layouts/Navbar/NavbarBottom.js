@@ -257,7 +257,7 @@ const NavbarBottom = () => {
                 label: "Trading Competitions",
                 url: "/activities/trading-competitions",
                 type: "page",
-              }
+              },
             ]}
             banner={false}
           />
@@ -601,6 +601,14 @@ const NavbarBottom = () => {
                   <li>
                     <Link
                       className="!border-b !border-solid !border-white !ps-8 font-staraSemiBold text-lg text-white"
+                      href="/bull-pass"
+                    >
+                      VIP Experience
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="!border-b !border-solid !border-white !ps-8 font-staraSemiBold text-lg text-white"
                       href="/activities/hackathons"
                     >
                       Hackathons
@@ -612,6 +620,14 @@ const NavbarBottom = () => {
                       href="/pitching-sessions"
                     >
                       Pitching Sessions
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="!border-b !border-solid !border-white !ps-8 font-staraSemiBold text-lg text-white"
+                      href="/activities/trading-competitions"
+                    >
+                      Trading Competitions
                     </Link>
                   </li>
                 </ul>

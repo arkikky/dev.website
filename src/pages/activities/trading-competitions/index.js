@@ -125,7 +125,7 @@ const TradingCompetitions = () => {
                   title="Coinfest Asia 2024 (Header Treding Competition)"
                   href={"/get-involved/sponsorship"}
                 >
-                  Host your own track
+                  Host a competition
                 </Link>
               </div>
             </div>
@@ -136,7 +136,7 @@ const TradingCompetitions = () => {
               <div className="col-span-full sm:col-span-6">
                 <TradingCompetitionCard
                   title="Bitwyre"
-                  date="17 August — 21 August"
+                  date="17 August — 23 August"
                   labelButton="See Details"
                   description="Bitwyre is a crypto spot exchange with the upcoming BAPPEBTI license."
                   images="/assets/images/activities/trading-competition/ca2024BgBitwyre_TradingCard.png"
@@ -154,7 +154,7 @@ const TradingCompetitions = () => {
               <div className="col-span-full sm:col-span-6">
                 <TradingCompetitionCard
                   title="Coin Tech 2U"
-                  date="17 August — 21 August"
+                  date="17 August — 23 August"
                   labelButton="See Details"
                   description="CoinTech2u is a trading tool built for optimizing strategies."
                   images="/assets/images/activities/trading-competition/ca2024BgCoinTech2u_TradingCard.png"

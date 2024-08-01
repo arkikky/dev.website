@@ -18,7 +18,7 @@ const Layouts = ({ children }) => {
   return (
     <>
       {/* @navbar-top */}
-      <NavbarTop />
+      <NavbarTop withBg={false} />
 
       {/* @navbar-bottom */}
       <NavbarBottom />

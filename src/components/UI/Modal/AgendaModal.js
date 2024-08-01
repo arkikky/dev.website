@@ -1,8 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 
-const AgendaModal = () => {
-  const isAgendaCard = (name = "Amanda Cassat") => {
+// @lib
+import { formatTimeTo12Hour } from "@lib/helper/formatedTime";
+
+const AgendaModal = ({
+  id,
+  day,
+  stage,
+  name = "Amanda Cassat",
+  title,
+  desc = null,
+  startTime,
+  lastTime,
+  speaker = [],
+  moderator = [],
+}) => {
+  // const isStartTime = formatTimeTo12Hour(day, startTime);
+  // const setEndTime = lastTime !== undefined ? lastTime : "00:00:00";
+  // const isEndTime = formatTimeTo12Hour(day, setEndTime);
+
+  const setStage =
+    stage === "mainStage"
+      ? "Main Stage"
+      : stage === "alphaStage"
+        ? "Alpha Stage"
+        : stage === "buildersHut"
+          ? "Builders Hut"
+          : stage === "breakoutArea"
+            ? "Breakout Area"
+            : "UnStake Stage";
+
+  // const setModerator = moderator !== undefined ? moderator.data : null;
+
+  // @use-effect
+  useEffect(() => {
+    console.log(moderator);
+
+    return () => {
+      undefined;
+    };
+  }, [moderator]);
+
+  const isAgendaCard = ({ isName = name, isPosition = "", isAbout = "-" }) => {
     return (
       <>
         <div className="flex flex-col items-center gap-x-12 lg:flex-row">
@@ -26,20 +66,19 @@ const AgendaModal = () => {
             <div>
               <div className="flex flex-col items-start">
                 <h3 className="font-bevietnamPro text-base font-semibold text-black-900 sm:text-xl">
-                  {name}
+                  {isName}
                 </h3>
-                <span className="mt-1 font-bevietnamPro text-base font-light text-[#9C9C9C] sm:mt-2 sm:text-xl">
-                  Founder/CEO at Serotonin
-                </span>
+                {isPosition && (
+                  <span className="mt-1 font-bevietnamPro text-base font-light text-[#9C9C9C] sm:mt-2 sm:text-xl">
+                    {isPosition}
+                  </span>
+                )}
               </div>
-              <div className="mt-4 font-bevietnamPro text-base font-light text-[#696666] sm:text-xl">
-                <p>
-                  Meet Amanda Cassatt, former CMO of ConsenSys, now founder of
-                  Serotonin. With her pioneering role in shaping web3 narratives
-                  and authoring the first web3 marketing book, Amanda is the
-                  web3 marketing maverick.
-                </p>
-              </div>
+              {isAbout && (
+                <div className="mt-4 font-bevietnamPro text-base font-light text-[#696666] sm:text-xl">
+                  <p>{isAbout}</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -52,13 +91,13 @@ const AgendaModal = () => {
       {/* @modal (agenda) */}
       <div
         id="mdlAgenda"
-        className="hs-overlay fixed left-0 top-0 z-[9999] hidden h-full w-full overflow-y-auto overflow-x-hidden bg-black-900/[0.33] opacity-0 transition-all [--body-scroll:false] hs-overlay-open:opacity-100 hs-overlay-open:duration-300"
+        className="ca2024AgendaModal hs-overlay fixed left-0 top-0 z-[9999] hidden h-full w-full overflow-y-auto overflow-x-hidden bg-black-900/[0.33] opacity-0 transition-all [--body-scroll:false] hs-overlay-open:opacity-100 hs-overlay-open:duration-300"
         data-hs-overlay-backdrop-container="#bckdrpModalActve"
       >
         <div className="relative bottom-0 top-auto opacity-0 transition-all duration-300 ease-out hs-overlay-open:mt-[114px] hs-overlay-open:opacity-100 sm:max-w-full sm:px-0 lg:absolute xl:relative">
           <div className="relative flex w-full flex-col items-start justify-start rounded-t-[20px] bg-white sm:rounded-t-[48px]">
             <button
-              className="hs-dropdown-toggle absolute bottom-auto left-auto right-4 sm:right-12 top-4 sm:top-7 outline-none"
+              className="hs-dropdown-toggle absolute bottom-auto left-auto right-4 top-4 outline-none sm:right-12 sm:top-7"
               aria-label="mdlAgenda"
               aria-labelledby="mdlAgenda"
               data-hs-overlay="#mdlAgenda"
@@ -79,51 +118,50 @@ const AgendaModal = () => {
             <div className="flex w-full flex-col px-4 pt-12 sm:px-12 sm:pt-[80px]">
               <div className="flex flex-col items-start justify-between lg:flex-row">
                 <div className="flex w-full max-w-full flex-col items-start justify-start lg:max-w-[495px] xl:max-w-[820px]">
-                  <span className="ca2024BgOverflayBlue inline-flex w-max flex-row items-center justify-center rounded-full bg-secondary px-2.5 py-1 font-bevietnamPro text-sm font-light text-white">
-                    Panel Discussion
-                  </span>
+                  {setStage && (
+                    <span className="ca2024BgOverflayBlue inline-flex w-max flex-row items-center justify-center rounded-full bg-secondary px-2.5 py-1 font-bevietnamPro text-sm font-light text-white">
+                      {setStage}
+                    </span>
+                  )}
                   <h2 className="font-figtree mt-4 text-2xl font-semibold capitalize text-black-900 sm:text-[34px] sm:leading-[44px] xl:text-[40px] xl:leading-[54px]">
-                    Breaking Bank: How Digital Assets are Disrupting Traditional
-                    Banking Models
+                    {title}
                   </h2>
                   <p className="mt-4 px-0 font-bevietnamPro text-base font-light text-black-900">
-                    1:00 PM - 2:30 PM
+                    {/* {isStartTime}{" "}
+                    {isEndTime &&
+                      "- " + (isEndTime !== undefined ? isEndTime : "00:00 AM")} */}
                   </p>
                 </div>
-                <div className="relative mt-4 flex w-full max-w-full flex-col sm:mt-6 lg:mt-0 lg:max-w-[327px] xl:max-w-[372px]">
-                  <div className="flex flex-col">
-                    <span className="font-bevietnamPro text-base font-light text-[#5E6577]">
-                      Location
-                    </span>
-                    <p className="mt-1.5 font-bevietnamPro text-base font-light text-secondary">
-                      Oasis Stage
-                    </p>
+                {setStage && (
+                  <div className="relative mt-4 flex w-full max-w-full flex-col sm:mt-6 lg:mt-0 lg:max-w-[327px] xl:max-w-[372px]">
+                    <div className="flex flex-col">
+                      <span className="font-bevietnamPro text-base font-light text-[#5E6577]">
+                        Location
+                      </span>
+                      <p className="mt-1.5 font-bevietnamPro text-base font-light text-secondary">
+                        {setStage}
+                      </p>
+                    </div>
+                    <div className="mt-6 hidden h-[85px] w-full lg:flex">
+                      <Image
+                        className="mx-auto h-full w-full object-cover"
+                        src="/assets/images/agenda/label/ca2024AgendaLabel_General.jpg"
+                        alt="Coinfest Asia 2024 (Agenda Label Modal)"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                        height={128}
+                        width={558}
+                        quality="87"
+                      />
+                    </div>
                   </div>
-                  <div className="mt-6 hidden h-[85px] w-full lg:flex">
-                    <Image
-                      className="mx-auto h-full w-full object-cover"
-                      src="/assets/images/agenda/label/ca2024AgendaLabel_General.jpg"
-                      alt="Coinfest Asia 2024 (Agenda Label Modal)"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-                      height={128}
-                      width={558}
-                      quality="87"
-                    />
-                  </div>
+                )}
+              </div>
+
+              {desc !== null && (
+                <div className="mt-8 font-bevietnamPro text-xl font-light text-[#5E6577]">
+                  <p>{desc}</p>
                 </div>
-              </div>
-              <div className="mt-8 font-bevietnamPro text-xl font-light text-[#5E6577]">
-                <p>
-                  Intense feelings are at the center of contemporary
-                  experiential and immersive work. Experiences that were once
-                  rare have become more and more accessible, so what do
-                  audiences expect today? How do you make an experience that's
-                  still felt weeks later? Has the bar for amazement gone up, or
-                  is the goal something else--something deeper? Meet diverse
-                  creatives who are exploring the new sensorium of extreme
-                  feelings.
-                </p>
-              </div>
+              )}
 
               <div className="relative flex w-full flex-col">
                 <nav
@@ -131,101 +169,118 @@ const AgendaModal = () => {
                   aria-label="Tabs"
                   role="tablist"
                 >
-                  <div className="flex w-max flex-row  items-center rounded-2xl bg-[#DFDFDF] px-2 py-2 transition sm:px-2">
-                    <span className="inline-flex items-center justify-center whitespace-nowrap rounded-xl bg-[#DFDFDF] px-4 py-3 text-center font-bevietnamPro text-sm font-medium text-[#646464] sm:text-base">
-                      Speakers
-                    </span>
-                    <span class="mr-2 text-base font-light text-[#646464] sm:mr-4">
-                      |
-                    </span>
-                    <div className="flex w-full">
-                      <button
-                        type="button"
-                        className="inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-[#646464] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base"
-                        id="ca2024SegmentModalTabs-item-1"
-                        data-hs-tab="#ca2024SegmentModalTabs-1"
-                        aria-controls="ca2024SegmentModalTabs-1"
-                        role="tab"
-                      >
-                        Yat Siu
-                      </button>
-                      <button
-                        type="button"
-                        className="inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-[#646464] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base"
-                        id="ca2024SegmentModalTabs-item-2"
-                        data-hs-tab="#ca2024SegmentModalTabs-2"
-                        aria-controls="ca2024SegmentModalTabs-2"
-                        role="tab"
-                      >
-                        Yuki Kamimoto
-                      </button>
+                  {speaker !== null && (
+                    <div className="flex w-max flex-row  items-center rounded-2xl bg-[#DFDFDF] px-2 py-2 transition sm:px-2">
+                      <span className="inline-flex items-center justify-center whitespace-nowrap rounded-xl bg-[#DFDFDF] px-4 py-3 text-center font-bevietnamPro text-sm font-medium text-[#646464] sm:text-base">
+                        Speakers
+                      </span>
+                      <span className="mr-2 text-base font-light text-[#646464] sm:mr-4">
+                        |
+                      </span>
+                      <div className="flex w-full">
+                        {speaker.length > 0 ? (
+                          speaker?.map((gtRslt, i) => (
+                            <button
+                              type="button"
+                              className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-[#646464] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base`}
+                              id={`ca2024SegmentSpeakersModalTabs-item-${i}`}
+                              data-hs-tab={`#ca2024SegmentSpeakersModalTabs-${i}`}
+                              aria-controls={`ca2024SegmentSpeakersModalTabs-${i}`}
+                              role="tab"
+                              key={i}
+                            >
+                              {gtRslt.attributes.name}
+                            </button>
+                          ))
+                        ) : (
+                          <span
+                            className={`active inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent bg-white px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-secondary disabled:pointer-events-none disabled:opacity-50 sm:text-base`}
+                          >
+                            Coming Soon
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex w-max flex-row  items-center rounded-2xl bg-[#DFDFDF] px-2 py-2 transition sm:px-2">
-                    <span className="inline-flex items-center justify-center whitespace-nowrap rounded-xl bg-[#DFDFDF] px-4 py-3 text-center font-bevietnamPro text-sm font-medium text-[#646464] sm:text-base">
-                      Moderator
-                    </span>
-                    <span class="mr-2 text-base font-light text-[#646464] sm:mr-4">
-                      |
-                    </span>
-                    <div className="flex w-full">
-                      <button
-                        type="button"
-                        className="active inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-[#646464] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base"
-                        id="ca2024SegmentModalTabs-item-3"
-                        data-hs-tab="#ca2024SegmentModalTabs-3"
-                        aria-controls="ca2024SegmentModalTabs-3"
-                        role="tab"
-                      >
-                        Amanda Cassat
-                      </button>
-                      <button
-                        type="button"
-                        className="inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-[#646464] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base"
-                        id="ca2024SegmentModalTabs-item-4"
-                        data-hs-tab="#ca2024SegmentModalTabs-4"
-                        aria-controls="ca2024SegmentModalTabs-4"
-                        role="tab"
-                      >
-                        Amanda Cassatsss
-                      </button>
+                  )}
+                  {moderator !== null && (
+                    <div className="flex w-max flex-row  items-center rounded-2xl bg-[#DFDFDF] px-2 py-2 transition sm:px-2">
+                      <span className="inline-flex items-center justify-center whitespace-nowrap rounded-xl bg-[#DFDFDF] px-4 py-3 text-center font-bevietnamPro text-sm font-medium text-[#646464] sm:text-base">
+                        Moderator
+                      </span>
+                      <span className="mr-2 text-base font-light text-[#646464] sm:mr-4">
+                        |
+                      </span>
+                      <div className="flex w-full">
+                        {moderator.length > 0 ? (
+                          moderator?.map((gtRslt, i) => (
+                            <button
+                              type="button"
+                              className={`${i == 0 && "active"} inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-[#646464] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base`}
+                              id={`ca2024SegmentModeratorModalTabs-item-${i}`}
+                              data-hs-tab={`#ca2024SegmentModeratorModalTabs-${i}`}
+                              aria-controls={`ca2024SegmentModeratorModalTabs-${i}`}
+                              role="tab"
+                              key={i}
+                            >
+                              {gtRslt.attributes.name}
+                            </button>
+                          ))
+                        ) : (
+                          <span
+                            className={`active inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent bg-white px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-secondary disabled:pointer-events-none disabled:opacity-50 sm:text-base`}
+                          >
+                            Coming Soon
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </nav>
               </div>
 
               <div className="mt-6 flex w-full flex-col">
-                <div
-                  id="ca2024SegmentModalTabs-1"
-                  className="hidden"
-                  role="tabpanel"
-                  aria-labelledby="ca2024SegmentModalTabs-item-1"
-                >
-                  {isAgendaCard("Yat Siu")}
-                </div>
-                <div
-                  id="ca2024SegmentModalTabs-2"
-                  className="hidden"
-                  role="tabpanel"
-                  aria-labelledby="ca2024SegmentModalTabs-item-2"
-                >
-                  {isAgendaCard("Yuki Kamimoto")}
-                </div>
-                <div
-                  id="ca2024SegmentModalTabs-3"
-                  role="tabpanel"
-                  aria-labelledby="ca2024SegmentModalTabs-item-3"
-                >
-                  {isAgendaCard()}
-                </div>
-                <div
-                  id="ca2024SegmentModalTabs-4"
-                  className="hidden"
-                  role="tabpanel"
-                  aria-labelledby="ca2024SegmentModalTabs-item-4"
-                >
-                  {isAgendaCard()}
-                </div>
+                {speaker.length > 0 || moderator.length > 0 ? (
+                  <>
+                    {speaker?.map((gtRslt, i) => (
+                      <div
+                        id={`ca2024SegmentSpeakersModalTabs-${i}`}
+                        className={`hidden`}
+                        role="tabpanel"
+                        aria-labelledby={`ca2024SegmentSpeakersModalTabs-item-${i}`}
+                        key={i}
+                      >
+                        {isAgendaCard({
+                          isName: gtRslt.attributes.name,
+                          isPosition: gtRslt.attributes.position,
+                          isAbout: gtRslt.attributes.aboutMe,
+                        })}
+                      </div>
+                    ))}
+                    {moderator?.map((gtRslt, i) => (
+                      <div
+                        id={`ca2024SegmentModeratorModalTabs-${i}`}
+                        className={`${i >= 1 && "hidden"}`}
+                        role="tabpanel"
+                        aria-labelledby={`ca2024SegmentModeratorModalTabs-item-${i}`}
+                        key={i}
+                      >
+                        {isAgendaCard({
+                          isName: gtRslt.attributes.name,
+                          isPosition: gtRslt.attributes.position,
+                          isAbout: gtRslt.attributes.aboutMe,
+                        })}
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <div
+                    id={`ca2024SegmentModeratorModalTabs-0`}
+                    role="tabpanel"
+                    aria-labelledby={`ca2024SegmentModeratorModalTabs-item-0`}
+                  >
+                    {isAgendaCard({ isName: "Coming Soon" })}
+                  </div>
+                )}
               </div>
             </div>
             <div className="bottom-0 z-[15] mt-8 block h-[78px] w-full lg:absolute lg:mt-0">
