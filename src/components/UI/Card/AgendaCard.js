@@ -103,11 +103,19 @@ const AgendaCard = ({
                 </p>
               </div>
             </div>
-            <div className="flex w-full flex-col sm:w-max">
-              <span className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none group-hover:bg-secondary group-hover:text-white sm:w-max sm:flex-row">
-                See details
-              </span>
-            </div>
+            {setSpeakers.length > 0 && setModerator.length > 0 ? (
+              <div className="flex w-full flex-col sm:w-max">
+                <span className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none group-hover:bg-secondary group-hover:text-white sm:w-max sm:flex-row">
+                  See details
+                </span>
+              </div>
+            ) : setSpeakers.length > 0 || setModerator.length > 0 ? (
+              <div className="flex w-full flex-col sm:w-max">
+                <span className="inline-flex w-full flex-col items-center justify-center rounded-full border border-solid border-secondary bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal text-secondary outline-none transition duration-300 ease-in-out hover:bg-secondary hover:text-white focus-visible:outline-none group-hover:bg-secondary group-hover:text-white sm:w-max sm:flex-row">
+                  See details
+                </span>
+              </div>
+            ) : null}
           </div>
         </div>
       ) : (

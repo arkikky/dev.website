@@ -31,25 +31,28 @@ const AgendaModal = ({
             ? "Breakout Area"
             : "UnStake Stage";
 
-  // const setModerator = moderator !== undefined ? moderator.data : null;
-
   // @use-effect
-  useEffect(() => {
-    console.log(moderator);
+  // useEffect(() => {
+  //   console.log(moderator);
 
-    return () => {
-      undefined;
-    };
-  }, [moderator]);
+  //   return () => {
+  //     undefined;
+  //   };
+  // }, [moderator]);
 
-  const isAgendaCard = ({ isName = name, isPosition = "", isAbout = "-" }) => {
+  const isAgendaCard = ({
+    isName = name,
+    isPosition = "",
+    isAbout = "-",
+    images,
+  }) => {
     return (
       <>
         <div className="flex flex-col items-center gap-x-12 lg:flex-row">
           <div className="relative mr-auto h-auto w-full min-w-full overflow-hidden rounded-[32px] bg-gray-300 sm:h-[446px] sm:w-[376px] sm:min-w-[376px] lg:mx-auto">
             <Image
               className="relative z-[2] mr-auto h-full w-full object-cover lg:mx-auto"
-              src="/assets/images/agenda/ca2024AgendaExmaple_YukiKamimoto.png"
+              src={images}
               alt="Coinfest Asia 2024 (Background General Line)"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
               height={892}
@@ -239,7 +242,7 @@ const AgendaModal = ({
               </div>
 
               <div className="mt-6 flex w-full flex-col">
-                {speaker.length > 0 || moderator.length > 0 ? (
+                {speaker.length > 0 ? (
                   <>
                     {speaker?.map((gtRslt, i) => (
                       <div
@@ -253,9 +256,27 @@ const AgendaModal = ({
                           isName: gtRslt.attributes.name,
                           isPosition: gtRslt.attributes.position,
                           isAbout: gtRslt.attributes.aboutMe,
+                          images: gtRslt.attributes
+                            ? process.env.NEXT_PUBLIC_UPLOAD +
+                              gtRslt.attributes.profilePicture.data.attributes
+                                .url
+                            : "",
                         })}
                       </div>
                     ))}
+                  </>
+                ) : (
+                  <div
+                    id={`ca2024SegmentGeneralModalTabs-0`}
+                    role="tabpanel"
+                    aria-labelledby={`ca2024SegmentGeneralModalTabs-item-0`}
+                  >
+                    {isAgendaCard({ isName: "Coming Soon" })}
+                  </div>
+                )}
+
+                {moderator.length > 0 ? (
+                  <>
                     {moderator?.map((gtRslt, i) => (
                       <div
                         id={`ca2024SegmentModeratorModalTabs-${i}`}
@@ -268,15 +289,20 @@ const AgendaModal = ({
                           isName: gtRslt.attributes.name,
                           isPosition: gtRslt.attributes.position,
                           isAbout: gtRslt.attributes.aboutMe,
+                          images: gtRslt.attributes
+                            ? process.env.NEXT_PUBLIC_UPLOAD +
+                              gtRslt.attributes.profilePicture.data.attributes
+                                .url
+                            : "",
                         })}
                       </div>
                     ))}
                   </>
                 ) : (
                   <div
-                    id={`ca2024SegmentModeratorModalTabs-0`}
+                    id={`ca2024SegmentGeneralModalTabs-0`}
                     role="tabpanel"
-                    aria-labelledby={`ca2024SegmentModeratorModalTabs-item-0`}
+                    aria-labelledby={`ca2024SegmentGeneralModalTabs-item-0`}
                   >
                     {isAgendaCard({ isName: "Coming Soon" })}
                   </div>
