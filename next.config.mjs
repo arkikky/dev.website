@@ -39,6 +39,11 @@ const nextConfig = {
         destination: "https://ticket.coinfest.asia/",
         permanent: true, // 301 Moved Permanently or false for temporary redirect (302 Found)
       },
+      {
+        source: "/get-involved/speakers",
+        destination: "/get-involved",
+        permanent: true, // 301 Moved Permanently or false for temporary redirect (302 Found)
+      },
     ];
   },
 };

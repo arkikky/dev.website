@@ -136,6 +136,7 @@ const Agenda = ({ day1, day2 }) => {
     id,
     day,
     stage,
+    session,
     name,
     title,
     desc,
@@ -147,6 +148,7 @@ const Agenda = ({ day1, day2 }) => {
     setAgendaModal({
       id: id,
       day: day,
+      session: session,
       stage: stage,
       title: title,
       desc: desc,
@@ -327,11 +329,11 @@ const Agenda = ({ day1, day2 }) => {
                 </nav>
               </div>
               <div className="flex flex-col lg:hidden">
-                <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                <div className="hs-dropdown relative inline-flex [--placement:bottom-right]">
                   <button
                     id="hs-dropright"
                     type="button"
-                    class="hs-dropdown-toggle inline-flex items-center gap-x-2 rounded-lg bg-transparent px-4 py-3 text-sm font-medium text-secondary focus:outline-none disabled:pointer-events-none disabled:opacity-50 sm:text-base"
+                    className="hs-dropdown-toggle inline-flex items-center gap-x-2 rounded-lg bg-transparent px-4 py-3 text-sm font-medium text-secondary focus:outline-none disabled:pointer-events-none disabled:opacity-50 sm:text-base"
                     aria-haspopup="menu"
                     aria-expanded="false"
                     aria-label="Dropdown"
@@ -352,7 +354,7 @@ const Agenda = ({ day1, day2 }) => {
                   </button>
 
                   <div
-                    class="hs-dropdown-menu duration z-10 hidden w-[165px] rounded-xl bg-white px-2 py-2 opacity-0 shadow-xl transition-[opacity,margin] hs-dropdown-open:opacity-100"
+                    className="hs-dropdown-menu duration z-10 hidden w-[165px] rounded-xl bg-white px-2 py-2 opacity-0 shadow-xl transition-[opacity,margin] hs-dropdown-open:opacity-100"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="hs-dropright"
@@ -470,43 +472,74 @@ const Agenda = ({ day1, day2 }) => {
                           {gtRsltItems.data?.map((gtRslt, index) => (
                             <>
                               {gtRslt.attributes.highlight === false ? (
-                                <button
-                                  id={`btnAgenda`}
-                                  className="w-full outline-none focus-visible:outline-none"
-                                  aria-label={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
-                                  aria-labelledby={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
-                                  data-hs-overlay="#mdlAgenda"
-                                  key={index}
-                                  onClick={(e) => {
-                                    e.preventDefault();
+                                gtRslt.attributes.speaker.data.length > 0 ||
+                                gtRslt.attributes.moderator.data.length > 0 ? (
+                                  <>
+                                    <button
+                                      id={`btnAgenda`}
+                                      className="w-full outline-none focus-visible:outline-none"
+                                      aria-label={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
+                                      aria-labelledby={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
+                                      data-hs-overlay="#mdlAgenda"
+                                      key={index}
+                                      onClick={(e) => {
+                                        e.preventDefault();
 
-                                    isModal({
-                                      id: gtRslt.id,
-                                      day: isDay,
-                                      stage: isStage,
-                                      title: gtRslt.attributes.title,
-                                      desc: gtRslt.attributes.description,
-                                      name: gtRslt.attributes.name,
-                                      startTime: gtRslt.attributes.timeStart,
-                                      lastTime: gtRslt.attributes.timeEnd,
-                                      speaker: gtRslt.attributes.speaker.data,
-                                      moderator:
-                                        gtRslt.attributes.moderator.data,
-                                    });
-                                  }}
-                                >
-                                  <AgendaCard
-                                    highlight={gtRslt.attributes.highlight}
-                                    day={`day${isDay}`}
-                                    title={gtRslt.attributes.title}
-                                    stage={gtRslt.attributes.stage}
-                                    selectedStage={isStage}
-                                    startTime={gtRslt.attributes.timeStart}
-                                    lastTime={gtRslt.attributes.timeEnd}
-                                    speakers={gtRslt.attributes.speaker}
-                                    moderator={gtRslt.attributes.moderator}
-                                  />
-                                </button>
+                                        isModal({
+                                          id: gtRslt.id,
+                                          day: `day${isDay}`,
+                                          stage: isStage,
+                                          session: gtRslt.attributes.session,
+                                          title: gtRslt.attributes.title,
+                                          desc: gtRslt.attributes.description,
+                                          name: gtRslt.attributes.name,
+                                          startTime:
+                                            gtRslt.attributes.timeStart,
+                                          lastTime: gtRslt.attributes.timeEnd,
+                                          speaker:
+                                            gtRslt.attributes.speaker.data,
+                                          moderator:
+                                            gtRslt.attributes.moderator.data,
+                                        });
+                                      }}
+                                    >
+                                      <AgendaCard
+                                        highlight={gtRslt.attributes.highlight}
+                                        day={`day${isDay}`}
+                                        title={gtRslt.attributes.title}
+                                        session={gtRslt.attributes.session}
+                                        stage={gtRslt.attributes.stage}
+                                        selectedStage={isStage}
+                                        startTime={gtRslt.attributes.timeStart}
+                                        lastTime={gtRslt.attributes.timeEnd}
+                                        speakers={gtRslt.attributes.speaker}
+                                        moderator={gtRslt.attributes.moderator}
+                                      />
+                                    </button>
+                                  </>
+                                ) : (
+                                  <>
+                                    <span
+                                      className="w-full outline-none focus-visible:outline-none"
+                                      aria-label={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
+                                      aria-labelledby={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
+                                      key={index}
+                                    >
+                                      <AgendaCard
+                                        highlight={gtRslt.attributes.highlight}
+                                        day={`day${isDay}`}
+                                        title={gtRslt.attributes.title}
+                                        session={gtRslt.attributes.session}
+                                        stage={gtRslt.attributes.stage}
+                                        selectedStage={isStage}
+                                        startTime={gtRslt.attributes.timeStart}
+                                        lastTime={gtRslt.attributes.timeEnd}
+                                        speakers={gtRslt.attributes.speaker}
+                                        moderator={gtRslt.attributes.moderator}
+                                      />
+                                    </span>
+                                  </>
+                                )
                               ) : (
                                 <div
                                   key={i}
@@ -516,6 +549,7 @@ const Agenda = ({ day1, day2 }) => {
                                     highlight={gtRslt.attributes.highlight}
                                     day={`day${isDay}`}
                                     title={gtRslt.attributes.title}
+                                    session={gtRslt.attributes.session}
                                     stage={gtRslt.attributes.stage}
                                     selectedStage={isStage}
                                     startTime={gtRslt.attributes.timeStart}
@@ -581,43 +615,74 @@ const Agenda = ({ day1, day2 }) => {
                           {gtRsltItems.data?.map((gtRslt, index) => (
                             <>
                               {gtRslt.attributes.highlight === false ? (
-                                <button
-                                  id={`btnAgenda`}
-                                  className="w-full outline-none focus-visible:outline-none"
-                                  aria-label={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
-                                  aria-labelledby={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
-                                  data-hs-overlay="#mdlAgenda"
-                                  key={index}
-                                  onClick={(e) => {
-                                    e.preventDefault();
+                                gtRslt.attributes.speaker.data.length > 0 ||
+                                gtRslt.attributes.moderator.data.length > 0 ? (
+                                  <>
+                                    <button
+                                      id={`btnAgenda`}
+                                      className="w-full outline-none focus-visible:outline-none"
+                                      aria-label={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
+                                      aria-labelledby={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
+                                      data-hs-overlay="#mdlAgenda"
+                                      key={index}
+                                      onClick={(e) => {
+                                        e.preventDefault();
 
-                                    isModal({
-                                      id: gtRslt.id,
-                                      day: isDay,
-                                      stage: isStage,
-                                      title: gtRslt.attributes.title,
-                                      desc: gtRslt.attributes.description,
-                                      name: gtRslt.attributes.name,
-                                      startTime: gtRslt.attributes.timeStart,
-                                      lastTime: gtRslt.attributes.timeEnd,
-                                      speaker: gtRslt.attributes.speaker.data,
-                                      moderator:
-                                        gtRslt.attributes.moderator.data,
-                                    });
-                                  }}
-                                >
-                                  <AgendaCard
-                                    highlight={gtRslt.attributes.highlight}
-                                    day={`day${isDay}`}
-                                    title={gtRslt.attributes.title}
-                                    stage={gtRslt.attributes.stage}
-                                    selectedStage={isStage}
-                                    startTime={gtRslt.attributes.timeStart}
-                                    lastTime={gtRslt.attributes.timeEnd}
-                                    speakers={gtRslt.attributes.speaker}
-                                    moderator={gtRslt.attributes.moderator}
-                                  />
-                                </button>
+                                        isModal({
+                                          id: gtRslt.id,
+                                          day: `day${isDay}`,
+                                          stage: isStage,
+                                          session: gtRslt.attributes.session,
+                                          title: gtRslt.attributes.title,
+                                          desc: gtRslt.attributes.description,
+                                          name: gtRslt.attributes.name,
+                                          startTime:
+                                            gtRslt.attributes.timeStart,
+                                          lastTime: gtRslt.attributes.timeEnd,
+                                          speaker:
+                                            gtRslt.attributes.speaker.data,
+                                          moderator:
+                                            gtRslt.attributes.moderator.data,
+                                        });
+                                      }}
+                                    >
+                                      <AgendaCard
+                                        highlight={gtRslt.attributes.highlight}
+                                        day={`day${isDay}`}
+                                        title={gtRslt.attributes.title}
+                                        session={gtRslt.attributes.session}
+                                        stage={gtRslt.attributes.stage}
+                                        selectedStage={isStage}
+                                        startTime={gtRslt.attributes.timeStart}
+                                        lastTime={gtRslt.attributes.timeEnd}
+                                        speakers={gtRslt.attributes.speaker}
+                                        moderator={gtRslt.attributes.moderator}
+                                      />
+                                    </button>
+                                  </>
+                                ) : (
+                                  <>
+                                    <span
+                                      className="w-full outline-none focus-visible:outline-none"
+                                      aria-label={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
+                                      aria-labelledby={`${gtRslt.attributes.title} - (Button Modal Agenda)`}
+                                      key={index}
+                                    >
+                                      <AgendaCard
+                                        highlight={gtRslt.attributes.highlight}
+                                        day={`day${isDay}`}
+                                        title={gtRslt.attributes.title}
+                                        session={gtRslt.attributes.session}
+                                        stage={gtRslt.attributes.stage}
+                                        selectedStage={isStage}
+                                        startTime={gtRslt.attributes.timeStart}
+                                        lastTime={gtRslt.attributes.timeEnd}
+                                        speakers={gtRslt.attributes.speaker}
+                                        moderator={gtRslt.attributes.moderator}
+                                      />
+                                    </span>
+                                  </>
+                                )
                               ) : (
                                 <div
                                   key={i}
@@ -627,6 +692,7 @@ const Agenda = ({ day1, day2 }) => {
                                     highlight={gtRslt.attributes.highlight}
                                     day={`day${isDay}`}
                                     title={gtRslt.attributes.title}
+                                    session={gtRslt.attributes.session}
                                     stage={gtRslt.attributes.stage}
                                     selectedStage={isStage}
                                     startTime={gtRslt.attributes.timeStart}

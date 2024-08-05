@@ -4,10 +4,12 @@ import Link from "next/link";
 const GetInvolvedCard = ({
   bgColor = "bg-white",
   btnColor = "bg-secondary",
+  btnLabel = "Apply Now",
   url = "",
   title = "Sponsors",
   page = false,
   shortDesc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  isFull = false,
 }) => {
   return (
     <>
@@ -30,7 +32,7 @@ const GetInvolvedCard = ({
         </p>
         {page === true ? (
           <Link
-            className={`${btnColor} ca2024BgOverflayColor inline-flex items-center justify-center rounded-full brightness-[1.2] ${
+            className={`${isFull === true ? "pointer-events-none bg-gray-500" : btnColor} ca2024BgOverflayColor inline-flex items-center justify-center rounded-full brightness-[1.2] ${
               btnColor === "bg-primary"
                 ? "text-black-900"
                 : btnColor === "bg-[#6AF0E4]"
@@ -39,11 +41,11 @@ const GetInvolvedCard = ({
             } relative mt-6 w-max px-6 py-4 font-bevietnamPro text-sm font-medium outline-none focus-visible:outline-none sm:text-base`}
             href={"/get-involved" + url}
           >
-            Apply Now
+            {isFull === true ? "Slots Full" : btnLabel}
           </Link>
         ) : (
           <Link
-            className={`${btnColor} ca2024BgOverflayColor inline-flex items-center justify-center rounded-full brightness-[1.2] ${
+            className={`${isFull === true ? "pointer-events-none bg-gray-500" : btnColor} ca2024BgOverflayColor  inline-flex items-center justify-center rounded-full brightness-[1.2] ${
               btnColor === "bg-primary"
                 ? "text-black-900"
                 : btnColor === "bg-[#6AF0E4]"
@@ -54,7 +56,7 @@ const GetInvolvedCard = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            Apply Now
+            {isFull === true ? "Slots Full" : btnLabel}
           </Link>
         )}
       </div>

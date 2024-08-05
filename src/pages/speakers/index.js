@@ -101,7 +101,7 @@ const Speakers = ({ speakers }) => {
       {/* @main */}
       <main className="relative pt-[129px] xl:pt-[139px] 2xl:pt-[185px]">
         <Container className="relative z-[5] overflow-hidden">
-          <Link
+          {/* <Link
             className="relative mb-10 flex h-[109px] w-full flex-col items-center justify-center overflow-hidden rounded-[16px] bg-secondary sm:mb-15 sm:h-[201px] sm:rounded-[20px] lg:h-[271px] xl:mb-17 xl:h-[351px]"
             href="/get-involved/speakers"
           >
@@ -114,9 +114,6 @@ const Speakers = ({ speakers }) => {
               quality="87"
             />
             <div className="absolute inset-x-0 inset-y-0 z-[5] mx-auto flex w-full max-w-[245px] flex-col items-center justify-center sm:max-w-[455px] lg:max-w-[635px] xl:max-w-[795px]">
-              {/* <span className="flex flex-col items-center justify-center text-center font-staraExtraBold text-xs uppercase leading-[18px] text-white sm:text-[20px] sm:leading-[28px] lg:text-[28px] lg:leading-[38px] xl:text-[42px] xl:leading-[50px]">
-                Apply to speak
-              </span> */}
               <span className="font-staraExtraBold text-[24px] uppercase leading-[36px] text-white sm:text-[42px] sm:leading-[56px] lg:text-[54px] lg:leading-[66px] xl:text-[72px] xl:leading-[86px] 2xl:text-[80px] 2xl:leading-[90px]">
                 Apply to speak
               </span>
@@ -126,7 +123,7 @@ const Speakers = ({ speakers }) => {
                 Apply now
               </span>
             </div>
-          </Link>
+          </Link> */}
 
           <div className="relative flex flex-col pb-20 sm:pb-0 xl:pb-28">
             <div className="flex flex-col items-center justify-center pr-0">

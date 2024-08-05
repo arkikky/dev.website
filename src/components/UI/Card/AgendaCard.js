@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // @lib
 import { formatTimeTo12Hour } from "@lib/helper/formatedTime";
+import splitCamelCase from "@lib/helper/splitCamelCase";
 
 const AgendaCard = ({
   highlight = false,
   day,
   title,
+  session,
   stage,
   selectedStage,
   startTime,
@@ -33,18 +35,27 @@ const AgendaCard = ({
             ? "Breakout Area"
             : "UnStake Stage";
 
+  // useEffect(() => {
+  //   console.log(splitCamelCase(session));
+
+  //   return () => {
+  //     undefined;
+  //   };
+  // }, [session]);
+
   return (
     <>
       {highlight === false ? (
         <div className="group flex w-full flex-col items-start gap-y-6 px-4 py-6 text-start sm:flex-row sm:gap-y-0">
           <div className="flex w-full max-w-max flex-col sm:max-w-[325px] lg:max-w-[564px]">
             <div className="flex w-full max-w-full flex-col space-y-2 sm:max-w-[343px]">
-              <span className="ca2024BgOverflayBlue inline-flex w-max flex-row items-center justify-center rounded-full bg-secondary px-2.5 py-1 font-bevietnamPro text-sm font-light text-white">
-                {setStage === "UnStake Stage"
+              <span className="ca2024BgOverflayBlue capitalize inline-flex w-max flex-row items-center justify-center rounded-full bg-secondary px-2.5 py-1 font-bevietnamPro text-sm font-light text-white">
+                {/* {setStage === "UnStake Stage"
                   ? (selectedStage === "mainStage" && "Main Stage") ||
                     (selectedStage === "alphaStage" && "Alpha Stage") ||
                     (selectedStage === "breakoutArea" && "Breakout Area")
-                  : setStage}
+                  : setStage} */}
+                {splitCamelCase(session)}
               </span>
               <h3 className="pr-14 font-bevietnamPro text-lg font-semibold text-black-900 lg:pr-0 lg:text-xl">
                 {title}

@@ -56,119 +56,119 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
   };
 
   // @submit
-  const onSubmit = async (data) => {
-    const btnSuccessNewsletter = document.querySelector(
-      "#btnSuccessNewsletterMdl.btnSuccessNewsletterMdl",
-    );
+  // const onSubmit = async (data) => {
+  //   const btnSuccessNewsletter = document.querySelector(
+  //     "#btnSuccessNewsletterMdl.btnSuccessNewsletterMdl",
+  //   );
 
-    const isConfig = {
-      fields: [
-        {
-          name: "firstname",
-          value: data.firstname,
-        },
-        {
-          name: "lastname",
-          value: data.lastname,
-        },
-        {
-          name: "email",
-          value: data.email,
-        },
-        {
-          name: "phone",
-          value: isForm.mobilephone,
-        },
-        {
-          objectTypeId: "0-1",
-          name: "country",
-          value: countryRegionSelect !== null ? countryRegionSelect.value : "-",
-        },
-        {
-          objectTypeId: "0-1",
-          name: "what_role_would_you_like_to_fill_in_",
-          value: data.what_role_would_you_like_to_fill_in_,
-        },
-        {
-          objectTypeId: "0-1",
-          name: "what_topics_are_you_most_able_to_speak_to_authoritatively",
-          value: topicSelect !== null ? topicSelect : "-",
-        },
-        {
-          objectTypeId: "0-1",
-          name: "if_you_choose__other___tell_us_what_s_in_your_mind",
-          value:
-            topicSelect === "Other"
-              ? data.if_you_choose__other___tell_us_what_s_in_your_mind
-              : "-",
-        },
-        {
-          objectTypeId: "0-1",
-          name: "do_you_have__or_expect_to_have__significant_news_to_share_",
-          value:
-            data.do_you_have__or_expect_to_have__significant_news_to_share_,
-        },
-        {
-          objectTypeId: "0-1",
-          name: "do_you_have_other_noteworthy_speaking_experience_",
-          value: data.do_you_have_other_noteworthy_speaking_experience_,
-        },
-        {
-          objectTypeId: "0-1",
-          name: "company",
-          value: data.company,
-        },
-        {
-          objectTypeId: "0-1",
-          name: "position",
-          value: companyFocusSelect !== null ? companyFocusSelect.value : "-",
-        },
-        {
-          objectTypeId: "0-1",
-          name: "job_title_position",
-          value: jobsPositionSelect !== null ? jobsPositionSelect.value : "-",
-        },
-        {
-          objectTypeId: "0-1",
-          name: "website",
-          value: data.website,
-        },
-        {
-          objectTypeId: "0-1",
-          name: "linkedin_profile",
-          value: data.linkedin_profile,
-        },
-        {
-          objectTypeId: "0-1",
-          name: "twitterhandle",
-          value: data.twitterhandle !== "" ? data.twitterhandle : "-",
-        },
-        {
-          objectTypeId: "0-1",
-          name: "telegram_username",
-          value: data.telegram_username !== "" ? data.telegram_username : "-",
-        },
-      ],
-      context: {
-        pageUri: "https://coinfest.asia/get-involved/speakers",
-        pageName: "Speakers | Coinfest Asia 2024",
-        ipAddress: ipAddrs.ip,
-      },
-    };
+  //   const isConfig = {
+  //     fields: [
+  //       {
+  //         name: "firstname",
+  //         value: data.firstname,
+  //       },
+  //       {
+  //         name: "lastname",
+  //         value: data.lastname,
+  //       },
+  //       {
+  //         name: "email",
+  //         value: data.email,
+  //       },
+  //       {
+  //         name: "phone",
+  //         value: isForm.mobilephone,
+  //       },
+  //       {
+  //         objectTypeId: "0-1",
+  //         name: "country",
+  //         value: countryRegionSelect !== null ? countryRegionSelect.value : "-",
+  //       },
+  //       {
+  //         objectTypeId: "0-1",
+  //         name: "what_role_would_you_like_to_fill_in_",
+  //         value: data.what_role_would_you_like_to_fill_in_,
+  //       },
+  //       {
+  //         objectTypeId: "0-1",
+  //         name: "what_topics_are_you_most_able_to_speak_to_authoritatively",
+  //         value: topicSelect !== null ? topicSelect : "-",
+  //       },
+  //       {
+  //         objectTypeId: "0-1",
+  //         name: "if_you_choose__other___tell_us_what_s_in_your_mind",
+  //         value:
+  //           topicSelect === "Other"
+  //             ? data.if_you_choose__other___tell_us_what_s_in_your_mind
+  //             : "-",
+  //       },
+  //       {
+  //         objectTypeId: "0-1",
+  //         name: "do_you_have__or_expect_to_have__significant_news_to_share_",
+  //         value:
+  //           data.do_you_have__or_expect_to_have__significant_news_to_share_,
+  //       },
+  //       {
+  //         objectTypeId: "0-1",
+  //         name: "do_you_have_other_noteworthy_speaking_experience_",
+  //         value: data.do_you_have_other_noteworthy_speaking_experience_,
+  //       },
+  //       {
+  //         objectTypeId: "0-1",
+  //         name: "company",
+  //         value: data.company,
+  //       },
+  //       {
+  //         objectTypeId: "0-1",
+  //         name: "position",
+  //         value: companyFocusSelect !== null ? companyFocusSelect.value : "-",
+  //       },
+  //       {
+  //         objectTypeId: "0-1",
+  //         name: "job_title_position",
+  //         value: jobsPositionSelect !== null ? jobsPositionSelect.value : "-",
+  //       },
+  //       {
+  //         objectTypeId: "0-1",
+  //         name: "website",
+  //         value: data.website,
+  //       },
+  //       {
+  //         objectTypeId: "0-1",
+  //         name: "linkedin_profile",
+  //         value: data.linkedin_profile,
+  //       },
+  //       {
+  //         objectTypeId: "0-1",
+  //         name: "twitterhandle",
+  //         value: data.twitterhandle !== "" ? data.twitterhandle : "-",
+  //       },
+  //       {
+  //         objectTypeId: "0-1",
+  //         name: "telegram_username",
+  //         value: data.telegram_username !== "" ? data.telegram_username : "-",
+  //       },
+  //     ],
+  //     context: {
+  //       pageUri: "https://coinfest.asia/get-involved/speakers",
+  //       pageName: "Speakers | Coinfest Asia 2024",
+  //       ipAddress: ipAddrs.ip,
+  //     },
+  //   };
 
-    const isKey = "e47f2b87-a41b-43b9-bdd1-f221798314dc";
+  //   const isKey = "e47f2b87-a41b-43b9-bdd1-f221798314dc";
 
-    const rs = await SubmitForm(isConfig, isKey);
+  //   const rs = await SubmitForm(isConfig, isKey);
 
-    // @debug
-    console.log(isConfig);
+  //   // @debug
+  //   console.log(isConfig);
 
-    if (rs === true) {
-      setForm({ ...isForm, mobilephone: "" });
-      btnSuccessNewsletter.click();
-      reset();
-    }
-  };
+  //   if (rs === true) {
+  //     setForm({ ...isForm, mobilephone: "" });
+  //     btnSuccessNewsletter.click();
+  //     reset();
+  //   }
+  // };
 
   return (
     <>
@@ -223,7 +223,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
         <form
           id="formSpeakers"
           method="POST"
-          onSubmit={handleSubmit(onSubmit)}
+          // onSubmit={handleSubmit(onSubmit)}
           className="mt-0 flex flex-col space-y-8 sm:mt-6"
         >
           <div className="flex flex-col">
@@ -594,10 +594,11 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
           <div className="flex flex-col">
             <button
               type="submit"
-              className={`mt-6 flex w-full flex-col items-center justify-center rounded-[14px] !bg-secondary py-4 font-bevietnamPro text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none`}
+              className={`mt-6 flex w-full flex-col items-center justify-center rounded-[14px] !bg-gray-500 py-4 font-bevietnamPro text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none`}
               aria-label="Submit (Speakers)"
+              disabled="disabled"
             >
-              Submit
+              Slots Full
             </button>
           </div>
         </form>

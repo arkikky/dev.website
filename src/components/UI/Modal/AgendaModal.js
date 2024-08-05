@@ -3,11 +3,13 @@ import Image from "next/image";
 
 // @lib
 import { formatTimeTo12Hour } from "@lib/helper/formatedTime";
+import splitCamelCase from "@lib/helper/splitCamelCase";
 
 const AgendaModal = ({
   id,
   day,
   stage,
+  session,
   name = "Amanda Cassat",
   title,
   desc = null,
@@ -16,9 +18,10 @@ const AgendaModal = ({
   speaker = [],
   moderator = [],
 }) => {
-  // const isStartTime = formatTimeTo12Hour(day, startTime);
-  // const setEndTime = lastTime !== undefined ? lastTime : "00:00:00";
-  // const isEndTime = formatTimeTo12Hour(day, setEndTime);
+  const setStartTime = startTime !== undefined ? startTime : "00:00:00";
+  const isStartTime = formatTimeTo12Hour(day, setStartTime);
+  const setEndTime = lastTime !== undefined ? lastTime : "00:00:00";
+  const isEndTime = formatTimeTo12Hour(day, setEndTime);
 
   const setStage =
     stage === "mainStage"
@@ -33,7 +36,7 @@ const AgendaModal = ({
 
   // @use-effect
   // useEffect(() => {
-  //   console.log(moderator);
+  //   console.log(isStartTime);
 
   //   return () => {
   //     undefined;
@@ -50,15 +53,17 @@ const AgendaModal = ({
       <>
         <div className="flex flex-col items-center gap-x-12 lg:flex-row">
           <div className="relative mr-auto h-auto w-full min-w-full overflow-hidden rounded-[32px] bg-gray-300 sm:h-[446px] sm:w-[376px] sm:min-w-[376px] lg:mx-auto">
-            <Image
-              className="relative z-[2] mr-auto h-full w-full object-cover lg:mx-auto"
-              src={images}
-              alt="Coinfest Asia 2024 (Background General Line)"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-              height={892}
-              width={752}
-              quality="87"
-            />
+            {images ? (
+              <Image
+                className="relative z-[2] mr-auto h-full w-full object-cover lg:mx-auto"
+                src={images}
+                alt="Coinfest Asia 2024 (Background General Line)"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                height={892}
+                width={752}
+                quality="87"
+              />
+            ) : null}
 
             {/* @backdrop (cover) */}
             <div
@@ -121,18 +126,16 @@ const AgendaModal = ({
             <div className="flex w-full flex-col px-4 pt-12 sm:px-12 sm:pt-[80px]">
               <div className="flex flex-col items-start justify-between lg:flex-row">
                 <div className="flex w-full max-w-full flex-col items-start justify-start lg:max-w-[495px] xl:max-w-[820px]">
-                  {setStage && (
-                    <span className="ca2024BgOverflayBlue inline-flex w-max flex-row items-center justify-center rounded-full bg-secondary px-2.5 py-1 font-bevietnamPro text-sm font-light text-white">
-                      {setStage}
-                    </span>
-                  )}
+                  <span className="ca2024BgOverflayBlue inline-flex w-max flex-row items-center justify-center rounded-full bg-secondary px-2.5 py-1 font-bevietnamPro text-sm font-light capitalize text-white">
+                    {splitCamelCase(session)}
+                  </span>
                   <h2 className="font-figtree mt-4 text-2xl font-semibold capitalize text-black-900 sm:text-[34px] sm:leading-[44px] xl:text-[40px] xl:leading-[54px]">
                     {title}
                   </h2>
                   <p className="mt-4 px-0 font-bevietnamPro text-base font-light text-black-900">
-                    {/* {isStartTime}{" "}
+                    {isStartTime}{" "}
                     {isEndTime &&
-                      "- " + (isEndTime !== undefined ? isEndTime : "00:00 AM")} */}
+                      "- " + (isEndTime !== undefined ? isEndTime : "00:00 AM")}
                   </p>
                 </div>
                 {setStage && (
@@ -172,7 +175,7 @@ const AgendaModal = ({
                   aria-label="Tabs"
                   role="tablist"
                 >
-                  {speaker !== null && (
+                  {speaker !== null && speaker.length > 0 ? (
                     <div className="flex w-max flex-row  items-center rounded-2xl bg-[#DFDFDF] px-2 py-2 transition sm:px-2">
                       <span className="inline-flex items-center justify-center whitespace-nowrap rounded-xl bg-[#DFDFDF] px-4 py-3 text-center font-bevietnamPro text-sm font-medium text-[#646464] sm:text-base">
                         Speakers
@@ -185,7 +188,7 @@ const AgendaModal = ({
                           speaker?.map((gtRslt, i) => (
                             <button
                               type="button"
-                              className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-[#646464] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base`}
+                              className={`${moderator !== null && moderator.length <= 0 ? i <= 0 && "active" : null} inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-[#646464] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base`}
                               id={`ca2024SegmentSpeakersModalTabs-item-${i}`}
                               data-hs-tab={`#ca2024SegmentSpeakersModalTabs-${i}`}
                               aria-controls={`ca2024SegmentSpeakersModalTabs-${i}`}
@@ -204,8 +207,9 @@ const AgendaModal = ({
                         )}
                       </div>
                     </div>
-                  )}
-                  {moderator !== null && (
+                  ) : null}
+
+                  {moderator !== null && moderator.length > 0 ? (
                     <div className="flex w-max flex-row  items-center rounded-2xl bg-[#DFDFDF] px-2 py-2 transition sm:px-2">
                       <span className="inline-flex items-center justify-center whitespace-nowrap rounded-xl bg-[#DFDFDF] px-4 py-3 text-center font-bevietnamPro text-sm font-medium text-[#646464] sm:text-base">
                         Moderator
@@ -218,7 +222,7 @@ const AgendaModal = ({
                           moderator?.map((gtRslt, i) => (
                             <button
                               type="button"
-                              className={`${i == 0 && "active"} inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-[#646464] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base`}
+                              className={`${i == 0 || (speaker !== null && speaker.length == 0) ? "active" : null} inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl bg-transparent px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-[#646464] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white hs-tab-active:text-secondary sm:text-base`}
                               id={`ca2024SegmentModeratorModalTabs-item-${i}`}
                               data-hs-tab={`#ca2024SegmentModeratorModalTabs-${i}`}
                               aria-controls={`ca2024SegmentModeratorModalTabs-${i}`}
@@ -237,7 +241,7 @@ const AgendaModal = ({
                         )}
                       </div>
                     </div>
-                  )}
+                  ) : null}
                 </nav>
               </div>
 
@@ -247,7 +251,7 @@ const AgendaModal = ({
                     {speaker?.map((gtRslt, i) => (
                       <div
                         id={`ca2024SegmentSpeakersModalTabs-${i}`}
-                        className={`hidden`}
+                        className={`${i >= 1 || moderator.length > 0 ? "hidden" : i == 1 ? null : null}`}
                         role="tabpanel"
                         aria-labelledby={`ca2024SegmentSpeakersModalTabs-item-${i}`}
                         key={i}
@@ -265,7 +269,7 @@ const AgendaModal = ({
                       </div>
                     ))}
                   </>
-                ) : (
+                ) : moderator.length < 1 ? (
                   <div
                     id={`ca2024SegmentGeneralModalTabs-0`}
                     role="tabpanel"
@@ -273,14 +277,15 @@ const AgendaModal = ({
                   >
                     {isAgendaCard({ isName: "Coming Soon" })}
                   </div>
-                )}
+                ) : null}
 
                 {moderator.length > 0 ? (
                   <>
                     {moderator?.map((gtRslt, i) => (
                       <div
                         id={`ca2024SegmentModeratorModalTabs-${i}`}
-                        className={`${i >= 1 && "hidden"}`}
+                        // className={`${i >= 1 && ("hidden")}`}
+                        // className={`${i > 0 ? "hidden" : i == 0 ? null : null}`}
                         role="tabpanel"
                         aria-labelledby={`ca2024SegmentModeratorModalTabs-item-${i}`}
                         key={i}
@@ -298,7 +303,7 @@ const AgendaModal = ({
                       </div>
                     ))}
                   </>
-                ) : (
+                ) : speaker.length < 1 ? (
                   <div
                     id={`ca2024SegmentGeneralModalTabs-0`}
                     role="tabpanel"
@@ -306,10 +311,10 @@ const AgendaModal = ({
                   >
                     {isAgendaCard({ isName: "Coming Soon" })}
                   </div>
-                )}
+                ) : null}
               </div>
             </div>
-            <div className="bottom-0 z-[15] mt-8 block h-[78px] w-full lg:absolute lg:mt-0">
+            <div className="bottom-0 z-[15] mt-8 block h-[28px] w-full lg:absolute lg:mt-0 xl:h-[68px]">
               <Image
                 className="mx-auto h-full w-full object-cover object-center"
                 src="/assets/images/backdrop/line/ca2024GeneralLine.png"

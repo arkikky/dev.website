@@ -69,6 +69,7 @@ const GetInvolved = () => {
             btnColor="bg-[#1BA8AF]"
             title="Speak"
             shortDesc="Show and tell your impact-driven ideas, not just theories, on experiential stages."
+            isFull={true}
           />
           <GetInvolvedCard
             page={true}
