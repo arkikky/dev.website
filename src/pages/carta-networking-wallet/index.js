@@ -22,8 +22,8 @@ const Carta = () => {
         start: "top 60%",
         end: "bottom 100%",
         scrub: true,
-        duration: 1,
-        ease: "power3.out",
+        duration: 0.6,
+        ease: "back.in(1)",
       },
     });
 
@@ -39,8 +39,8 @@ const Carta = () => {
         start: "top 60%",
         end: "bottom 100%",
         scrub: true,
-        duration: 1,
-        ease: "power3.out",
+        duration: 0.6,
+        ease: "back.in(1)",
       },
     });
 
