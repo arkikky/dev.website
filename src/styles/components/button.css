@@ -1,0 +1,76 @@
+.ca2024BgOverflay {
+  @apply relative;
+}
+
+.ca2024BgOverflay {
+  @apply bg-[url("/assets/images/backdrop/buttons/ca2024BgOverflayWhite.png")];
+  @apply bg-center object-cover object-center;
+}
+
+.ca2024BgOverflayBlue {
+  @apply bg-[url("/assets/images/backdrop/buttons/ca2024BgOverflayBlue.png")];
+  @apply bg-center object-cover object-center;
+}
+
+.ca2024BgOverflayAlpha {
+  @apply bg-[url("/assets/images/agenda/button/ca2024AgendaButtonLabel_Alpha.png")];
+  @apply bg-right object-cover object-center;
+}
+
+.ca2024BgOverflayBuildersHut {
+  @apply bg-[url("/assets/images/agenda/button/ca2024AgendaButtonLabel_BuildersHut.png")];
+  @apply bg-right object-cover object-center;
+}
+
+.ca2024BgOverflayBreakoutArea {
+  @apply bg-[url("/assets/images/agenda/button/ca2024AgendaButtonLabel_BreakoutArea.png")];
+  @apply bg-right object-cover object-center;
+}
+
+.ca2024BgOverflayMint {
+  @apply bg-[url("/assets/images/backdrop/buttons/ca2024BgOverflayMint.png")];
+  @apply bg-center object-cover object-center;
+}
+
+.ca2024BgOverflayColor {
+  @apply bg-[url("/assets/images/backdrop/buttons/ca2024BgOverflay.png")];
+  @apply bg-center object-cover object-right;
+  @apply bg-blend-multiply;
+}
+
+.ca2024BgOverflayBullPass {
+  @apply bg-[url("/assets/images/backdrop/buttons/ca2024BgOverflayBull.png")];
+  @apply bg-center object-cover object-center;
+}
+
+/* @venue */
+.ca2024LabelNoVenue {
+  @apply bg-[url("/assets/images/backdrop/ca2024LabelNoVenue.png")];
+  @apply bg-center object-cover object-center;
+}
+
+.ca20240Radio-label input[type="radio"] {
+  @apply form-radio;
+  @apply absolute inset-y-0 left-4 right-auto;
+  @apply z-[1] my-auto;
+}
+
+.ca20240Radio-labelBtn {
+  @apply relative flex cursor-default flex-col items-start justify-start;
+  @apply text-nowrap font-bevietnamPro text-base font-normal capitalize text-[#7D7D7D] hover:text-secondary;
+  @apply rounded-full border border-solid border-[#EBEBEB] hover:border-secondary;
+  @apply w-max px-5 py-3;
+
+  @apply transition duration-300 ease-in-out;
+}
+
+.ca20240Radio-label label {
+  @apply relative flex cursor-pointer flex-col items-start justify-start;
+  @apply text-nowrap font-bevietnamPro text-sm font-normal capitalize text-[#7D7D7D] sm:text-base;
+  @apply rounded-lg  border border-solid border-[#EBEBEB];
+  @apply w-full py-4 pl-11 pr-4;
+}
+
+.ca20240Radio-label input[type="radio"]:checked + label {
+  @apply border-secondary text-secondary;
+}

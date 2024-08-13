@@ -1,0 +1,226 @@
+import React, { useEffect } from "react";
+
+// @lib
+import { formatTimeTo12Hour } from "@lib/helper/formatedTime";
+import splitCamelCase from "@lib/helper/splitCamelCase";
+import { containsID, replaceIDWithText } from "@lib/helper/containsID";
+
+const AgendaCard = ({
+  highlight = false,
+  day,
+  title,
+  session,
+  stage,
+  selectedStage,
+  startTime,
+  lastTime,
+  speakers,
+  moderator,
+}) => {
+  const setStartTime = startTime !== undefined ? startTime : "00:00:00";
+  const isStartTime = formatTimeTo12Hour(day, setStartTime);
+  const setEndTime = lastTime !== undefined ? lastTime : "00:00:00";
+  const isEndTime = formatTimeTo12Hour(day, setEndTime);
+
+  const setSpeakers = speakers !== undefined ? speakers.data : null;
+  const setModerator = moderator !== undefined ? moderator.data : null;
+
+  const setStage =
+    stage === "mainStage"
+      ? "Main Stage"
+      : stage === "alphaStage"
+        ? "Alpha Stage"
+        : stage === "buildersHut"
+          ? "Builders Hut"
+          : stage === "breakoutArea"
+            ? "Breakout Area"
+            : "UnStake Stage";
+
+  // useEffect(() => {
+  //   console.log(session);
+
+  //   return () => {
+  //     undefined;
+  //   };
+  // }, [session]);
+
+  return (
+    <>
+      {highlight === false ? (
+        <div className="group flex w-full flex-col items-start gap-y-6 px-4 py-6 text-start sm:flex-row sm:gap-y-0">
+          <div className="flex w-full max-w-max flex-col sm:max-w-[325px] lg:max-w-[564px]">
+            <div className="flex w-full max-w-full flex-col space-y-2 sm:max-w-[343px]">
+              <span
+                className={`${
+                  selectedStage === "mainStage"
+                    ? "ca2024BgOverflayBlue bg-secondary"
+                    : selectedStage === "alphaStage" || stage === "alphaStage"
+                      ? "ca2024BgOverflayAlpha bg-[#FF4E20]"
+                      : selectedStage === "buildersHut" ||
+                          stage === "buildersHut"
+                        ? "ca2024BgOverflayBuildersHut bg-[#7B0FC9]"
+                        : selectedStage === "breakoutArea" ||
+                            stage === "breakoutArea"
+                          ? "ca2024BgOverflayBreakoutArea bg-[#0FBCC9]"
+                          : "ca2024BgOverflayBlue bg-secondary"
+                } inline-flex w-max flex-row items-center justify-center rounded-full px-2.5 py-1 font-bevietnamPro text-sm font-light capitalize text-white`}
+              >
+                {/* {setStage === "UnStake Stage"
+                  ? (selectedStage === "mainStage" && "Main Stage") ||
+                    (selectedStage === "alphaStage" && "Alpha Stage") ||
+                    (selectedStage === "breakoutArea" && "Breakout Area")
+                  : setStage} */}
+                {session !== null
+                  ? containsID(splitCamelCase(session)) === true
+                    ? replaceIDWithText(splitCamelCase(session))
+                    : splitCamelCase(session)
+                  : "Pitching Session"}
+              </span>
+              <h3 className="pr-14 font-bevietnamPro text-lg font-semibold text-black-900 lg:pr-0 lg:text-xl">
+                {title}
+              </h3>
+              <p className="font-bevietnamPro text-base font-light text-[#2F2F2F]">
+                {isStartTime}{" "}
+                {isEndTime &&
+                  "- " + (isEndTime !== undefined ? isEndTime : "00:00 AM")}
+              </p>
+            </div>
+          </div>
+          <div className="flex w-fill flex-col items-start justify-between gap-y-6 lg:flex-row lg:gap-y-0">
+            <div className="flex w-full flex-col space-y-2">
+              {setSpeakers.length > 0 && (
+                <>
+                  <div className="flex flex-col">
+                    <span className="font-bevietnamPro text-base font-light text-[#5E6577]">
+                      Speakers
+                    </span>
+                    <p className="space-x-1.5 font-bevietnamPro text-base font-light text-black-900">
+                      {setSpeakers?.map((gtRslt, i) => (
+                        <span className="ca2024AgendaListName" key={i}>
+                          {gtRslt.attributes.name}{" "}
+                          {i < setSpeakers.length - 1 && ","}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                </>
+              )}
+              {setModerator.length > 0 && (
+                <>
+                  <div className="flex flex-col">
+                    <span className="font-bevietnamPro text-base font-light text-[#5E6577]">
+                      Moderator
+                    </span>
+                    <p className="space-x-1.5 font-bevietnamPro text-base font-light text-black-900">
+                      {setModerator?.map((gtRslt, i) => (
+                        <span className="ca2024AgendaListName" key={i}>
+                          {gtRslt.attributes.name}{" "}
+                          {i < setModerator.length - 1 && ","}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                </>
+              )}
+              <div className="flex flex-col">
+                <span className="font-bevietnamPro text-base font-light text-[#5E6577]">
+                  Location
+                </span>
+                <p
+                  className={`font-bevietnamPro text-base font-light ${
+                    selectedStage === "mainStage" || stage === "mainStage"
+                      ? "text-secondary"
+                      : selectedStage === "alphaStage" || stage === "alphaStage"
+                        ? "text-[#FF4E20]"
+                        : selectedStage === "buildersHut" ||
+                            stage === "buildersHut"
+                          ? "text-[#7B0FC9]"
+                          : selectedStage === "breakoutArea" ||
+                              stage === "breakoutArea"
+                            ? "text-[#0FBCC9]"
+                            : "text-secondary"
+                  }`}
+                >
+                  {setStage === "UnStake Stage"
+                    ? (selectedStage === "mainStage" && "Main Stage") ||
+                      (selectedStage === "alphaStage" && "Alpha Stage") ||
+                      (selectedStage === "breakoutArea" && "Breakout Area")
+                    : setStage}
+                </p>
+              </div>
+            </div>
+            {setSpeakers.length > 0 && setModerator.length > 0 ? (
+              <div className="flex w-full flex-col sm:w-max">
+                <span
+                  className={`inline-flex w-full flex-col items-center justify-center rounded-full border border-solid ${
+                    selectedStage === "mainStage" || stage === "mainStage"
+                      ? "border-secondary text-secondary hover:bg-secondary group-hover:bg-secondary"
+                      : selectedStage === "alphaStage" || stage === "alphaStage"
+                        ? "border-[#FF4E20] text-[#FF4E20] hover:bg-[#FF4E20] group-hover:bg-[#FF4E20]"
+                        : selectedStage === "buildersHut" ||
+                            stage === "buildersHut"
+                          ? "border-[#7B0FC9] text-[#7B0FC9] hover:bg-[#7B0FC9] group-hover:bg-[#7B0FC9]"
+                          : selectedStage === "breakoutArea" ||
+                              stage === "breakoutArea"
+                            ? "border-[#0FBCC9] text-[#0FBCC9] hover:bg-[#0FBCC9] group-hover:bg-[#0FBCC9]"
+                            : "border-secondary text-secondary hover:bg-secondary group-hover:bg-secondary"
+                  } bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal outline-none transition duration-300 ease-in-out hover:text-white focus-visible:outline-none group-hover:text-white sm:w-max sm:flex-row`}
+                >
+                  See details
+                </span>
+              </div>
+            ) : setSpeakers.length > 0 || setModerator.length > 0 ? (
+              <div className="flex w-full flex-col sm:w-max">
+                <span
+                  className={`inline-flex w-full flex-col items-center justify-center rounded-full border border-solid ${
+                    selectedStage === "mainStage" || stage === "mainStage"
+                      ? "border-secondary text-secondary hover:bg-secondary group-hover:bg-secondary"
+                      : selectedStage === "alphaStage" || stage === "alphaStage"
+                        ? "border-[#FF4E20] text-[#FF4E20] hover:bg-[#FF4E20] group-hover:bg-[#FF4E20]"
+                        : selectedStage === "buildersHut" ||
+                            stage === "buildersHut"
+                          ? "border-[#7B0FC9] text-[#7B0FC9] hover:bg-[#7B0FC9] group-hover:bg-[#7B0FC9]"
+                          : selectedStage === "breakoutArea" ||
+                              stage === "breakoutArea"
+                            ? "border-[#0FBCC9] text-[#0FBCC9] hover:bg-[#0FBCC9] group-hover:bg-[#0FBCC9]"
+                            : "border-secondary text-secondary hover:bg-secondary group-hover:bg-secondary"
+                  } bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal outline-none transition duration-300 ease-in-out hover:text-white focus-visible:outline-none group-hover:text-white sm:w-max sm:flex-row`}
+                >
+                  See details
+                </span>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      ) : (
+        <div className="ca2024BannerAgenda_Highlight relative flex h-[183px] w-full flex-col items-center justify-center sm:h-[203px] lg:h-[243px]">
+          <div className="relative z-[5] flex flex-col items-center justify-center">
+            <h3
+              className={`font-staraExtraBold text-[32px] uppercase leading-[35px] ${
+                selectedStage === "mainStage" || stage === "mainStage"
+                  ? "text-secondary"
+                  : selectedStage === "alphaStage" || stage === "alphaStage"
+                    ? "text-[#FF4E20]"
+                    : selectedStage === "buildersHut" || stage === "buildersHut"
+                      ? "text-[#7B0FC9]"
+                      : selectedStage === "breakoutArea" ||
+                          stage === "breakoutArea"
+                        ? "text-[#0FBCC9]"
+                        : "text-secondary"
+              } sm:text-[56px] sm:leading-[74px]`}
+            >
+              {title}
+            </h3>
+            <p className="mt-1 font-bevietnamPro text-base font-light text-[#2F2F2F]">
+              {isStartTime}{" "}
+              {isEndTime &&
+                "- " + (isEndTime !== undefined ? isEndTime : "00:00 AM")}
+            </p>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default AgendaCard;
