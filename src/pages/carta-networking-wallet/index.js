@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { gsap } from "gsap";
+import { CustomEase } from "gsap/dist/CustomEase";
 import getConfig from "next/config";
 import Head from "next/head";
 import Link from "next/link";
@@ -16,6 +17,8 @@ import BannerFooter from "@layouts/Banner/BannerFooter";
 
 const Carta = () => {
   useEffect(() => {
+    gsap.registerPlugin(CustomEase);
+
     const tlCartaLeft = gsap.timeline({
       defaults: {
         trigger: "#ca2024CartaIContainerMobile",
@@ -23,14 +26,13 @@ const Carta = () => {
         end: "bottom 100%",
         scrub: true,
         duration: 0.6,
-        ease: "back.in(1)",
+        ease: CustomEase.create("custom", "M0,0 C0.299,0 0.703,1 1,1 "),
       },
     });
 
     tlCartaLeft.to("#ca2024CartaItemsLeft", {
       rotate: "-6deg",
       translateX: "-58%",
-      ease: "none",
     });
 
     const tlCartaRight = gsap.timeline({
@@ -40,14 +42,13 @@ const Carta = () => {
         end: "bottom 100%",
         scrub: true,
         duration: 0.6,
-        ease: "back.in(1)",
+        ease: CustomEase.create("custom", "M0,0 C0.299,0 0.703,1 1,1 "),
       },
     });
 
     tlCartaRight.to("#ca2024CartaItemsRight", {
       rotate: "6deg",
       translateX: "58%",
-      ease: "none",
     });
 
     return () => {
