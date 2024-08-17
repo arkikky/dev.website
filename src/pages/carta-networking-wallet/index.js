@@ -870,7 +870,7 @@ const Carta = () => {
                 <div className="mt-4 flex w-full flex-col sm:mt-8 sm:w-max">
                   <Link
                     className="ca2024BgOverflayBlue relative inline-flex w-full max-w-max items-center justify-center rounded-xl bg-secondary px-4 py-4 font-bevietnamPro text-base font-medium text-white outline-none focus-visible:outline-none sm:rounded-[14px] sm:px-6 sm:py-6 sm:text-xl"
-                    href=""
+                    href="https://www.cartawallet.com/coinfestasia"
                     target="_blank"
                   >
                     Get your special Carta Wallet
