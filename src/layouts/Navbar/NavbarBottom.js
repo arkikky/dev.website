@@ -23,7 +23,7 @@ const NavbarBottom = () => {
 
     ScrollTrigger.defaults({
       scroller: "body",
-      markers: true,
+      markers: false,
     });
 
     return () => {

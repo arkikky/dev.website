@@ -469,6 +469,68 @@ const Travel = ({ travel }) => {
           </div>
         </div>
 
+        {/* @Travel Partner - Stynex */}
+        <div className="relative mt-4 block bg-white">
+          <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+            <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-6 lg:hidden lg:py-0">
+              <Container>
+                <div className="my-auto flex flex-col text-start">
+                  <h2 className="w-full pr-10 font-staraExtraBold text-[40px] uppercase leading-[42px] text-black-900 sm:leading-[48px] lg:pr-20 lg:text-[32px] lg:leading-[40px] xl:pr-0 xl:text-[40px] xl:leading-[48px]">
+                    Travel partner
+                  </h2>
+                  <p className="mt-2 font-bevietnamPro text-xl font-light text-black-900 lg:text-base xl:text-xl">
+                    Reinvent your travel experience with the Web3 travel subscription membership.
+                  </p>
+                  <Link
+                    className={`ca2024BgOverflayBlue relative mr-3 mt-5 inline-flex w-max cursor-pointer items-center justify-center rounded-[14px] bg-secondary px-4  py-3.5 font-bevietnamPro text-sm font-medium text-white outline-none last:mr-0 focus-visible:outline-none sm:mt-7 sm:px-6 sm:py-6 sm:text-base`}
+                    title="Coinfest Asia 2024 (Learn more - Travel Partner)"
+                    href={"https://staynex.vip"}
+                    target="_blank"
+                  >
+                    Learn more
+                  </Link>
+                </div>
+              </Container>
+            </div>
+            <div className="col-span-full lg:col-span-6 lg:col-start-7">
+              <div className="bg-secondary">
+                <Image
+                  className="h-full w-full object-cover object-center"
+                  src={"/assets/images/accomodations/ca2024Staynex.jpg"}
+                  alt={`Coinfest Asia 2024 (Stynex - Travel Partner)`}
+                  height={696}
+                  width={1080}
+                  quality="95"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="absolute inset-x-0 inset-y-0 z-10 hidden flex-col items-center justify-center lg:flex">
+            <Container>
+              <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+                <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-5 lg:py-0">
+                  <div className="my-auto flex flex-col text-start">
+                    <h2 className="w-full pr-10 font-staraExtraBold text-[40px] uppercase leading-[42px] text-black-900 sm:leading-[48px] lg:pr-20 lg:text-[32px] lg:leading-[40px] xl:pr-0 xl:text-[40px] xl:leading-[48px]">
+                      Travel partner
+                    </h2>
+                    <p className="mt-2 font-bevietnamPro text-xl font-light text-black-900 lg:text-base xl:text-xl">
+                      Reinvent your travel experience with the Web3 travel subscription membership.
+                    </p>
+                    <Link
+                      className={`ca2024BgOverflayBlue relative mr-3 mt-5 inline-flex w-max cursor-pointer items-center justify-center rounded-[14px] bg-secondary px-4  py-3.5 font-bevietnamPro text-sm font-medium text-white outline-none last:mr-0 focus-visible:outline-none sm:mt-7 sm:px-6 sm:py-6 sm:text-base`}
+                      title="Coinfest Asia 2024 (Learn more - Travel Partner)"
+                      href={"https://staynex.vip"}
+                      target="_blank"
+                    >
+                      Learn more
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </Container>
+          </div>
+        </div>
+
         {/* <div className="relative my-4 block bg-white py-8 sm:py-19">
           <Container>
             <div className="flex flex-col text-start">

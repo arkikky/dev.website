@@ -44,7 +44,7 @@ const PromoCodeCard = ({
         </div>
       </div>
       <div
-        className={`fixed left-0 bottom-24 w-full flex items-center justify-center transition-opacity duration-500 ${
+        className={`fixed left-0 z-[999] bottom-24 w-full flex items-center justify-center transition-opacity duration-500 ${
           showToast ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >

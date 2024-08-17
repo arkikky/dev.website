@@ -134,8 +134,7 @@ const CoinfestWeekCard = ({
                       strokeLinejoin="round"
                     />
                   </svg>
-
-                  {convertToBaliTime(time)}
+                  {convertToBaliTime(time)} — GMT + 8
                 </span>
                 <span
                   className={`flex text-sm font-normal text-[#6E7383] sm:text-base`}

@@ -326,3 +326,8 @@ input:valid {
   @apply rounded-full;
   @apply border-none;
 }
+
+/* @carta */
+.ca2024CartaMobile_Shadow {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 1%, #ffffff 89%);
+}

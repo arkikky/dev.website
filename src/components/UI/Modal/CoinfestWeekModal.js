@@ -205,7 +205,7 @@ const CoinfestWeekModal = ({
                           strokeLinejoin="round"
                         />
                       </svg>
-                      {convertToBaliTime(time)}
+                      {convertToBaliTime(time)} — GMT + 8
                     </span>
                     <span
                       className={`flex text-sm font-normal text-black-900 sm:text-base`}

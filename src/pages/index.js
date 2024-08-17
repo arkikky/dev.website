@@ -42,6 +42,7 @@ const Home = ({
   comunitiesPartner,
   strategicPartners,
   cyber,
+  fnb,
 }) => {
   const [isSpeakersModal, setSpeakersModal] = useState(null);
 
@@ -316,6 +317,7 @@ const Home = ({
             dataComunitiesPartner={comunitiesPartner}
             dataStrategicPartner={strategicPartners}
             dataCyber={cyber}
+            dataFnb={fnb}
           />
         </section>
 
@@ -420,6 +422,10 @@ export const getStaticProps = async () => {
     `/ca-24-other-partners?sort=rank:asc&populate=*&pagination[pageSize]=100`,
   );
 
+  const isFnB = await getFetch(
+    `/ca24-fnb-partners?sort=rank:asc&populate=*&pagination[pageSize]=100`,
+  );
+
   try {
     return {
       props: {
@@ -433,6 +439,7 @@ export const getStaticProps = async () => {
         comunitiesPartner: isComunitiesPartner || [],
         strategicPartners: isStrategicPartner || [],
         cyber: isCyber || [],
+        fnb: isFnB || [],
         // socialMentions: isSocialMentions || [],
       },
 

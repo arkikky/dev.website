@@ -18,6 +18,7 @@ const Partners = ({
   comunitiesPartner,
   strategicPartners,
   cyber,
+  fnb,
 }) => {
   // @preline (Add Plugins)
   useEffect(() => {
@@ -81,6 +82,7 @@ const Partners = ({
           dataComunitiesPartner={comunitiesPartner}
           dataStrategicPartner={strategicPartners}
           dataCyber={cyber}
+          dataFnb={fnb}
         />
 
         {/* @banner-footer */}
@@ -150,6 +152,10 @@ export const getStaticProps = async () => {
     `/ca-24-other-partners?sort=rank:asc&populate=*&pagination[pageSize]=100`,
   );
 
+  const isFnB = await getFetch(
+    `/ca24-fnb-partners?sort=rank:asc&populate=*&pagination[pageSize]=100`,
+  );
+
   try {
     return {
       props: {
@@ -158,6 +164,7 @@ export const getStaticProps = async () => {
         comunitiesPartner: isComunitiesPartner || [],
         strategicPartners: isStrategicPartner || [],
         cyber: isCyber || [],
+        fnb: isFnB || [],
       },
 
       revalidate: 900,

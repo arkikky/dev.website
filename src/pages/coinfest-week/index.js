@@ -21,6 +21,8 @@ const CoinfestWeek = ({ result }) => {
   const [isDropdownMenu, setDropdownMenu] = useState(false);
   const [isCoinfestWeekModal, setCoinfestWeekModal] = useState(null);
 
+  // console.log(result);
+
   // @preline (Add Plugins)
   useEffect(() => {
     import("preline");
@@ -371,6 +373,7 @@ export const getStaticProps = async () => {
       groups[date] = [];
     }
     groups[date].push(game);
+
     return groups;
   }, {});
 
@@ -381,6 +384,8 @@ export const getStaticProps = async () => {
       attributes: groups[date],
     };
   });
+
+  // console.log(groupArrays);
 
   try {
     return {

@@ -197,7 +197,7 @@ const Tickets = () => {
                       <li>Access to Bull Areas</li>
                       <li>Exclusive access to the Speakers</li>
                       <li>Premium bar & café</li>
-                      <li>Bull & Speakers pre-networking</li>
+                      {/* <li>Bull & Speakers pre-networking</li> */}
                       <li>Access to Official Networking Party</li>
                     </ul>
                   </div>
