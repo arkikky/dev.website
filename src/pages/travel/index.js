@@ -106,7 +106,7 @@ const Travel = ({ travel }) => {
           </Container>
 
           {/* @images(header - accomodations) */}
-          <div className="absolute bottom-auto left-auto right-0 top-[398px] z-[5] hidden h-[477px] w-auto sm:block lg:top-[308px] lg:h-[581px] xl:top-[138px] xl:h-[714px]">
+          <div className="absolute bottom-auto left-auto right-0 top-[398px] z-[20] hidden h-[477px] w-auto sm:block lg:top-[308px] lg:h-[581px] xl:top-[138px] xl:h-[714px]">
             <Image
               className="h-full w-auto object-cover object-center"
               src={"/assets/images/ca2024Accomodations.png"}
@@ -156,7 +156,70 @@ const Travel = ({ travel }) => {
           </div>
         </header>
 
-        <div className="relative z-[15] mb-4 mt-0 block bg-white sm:-mt-[8.5%] lg:-mt-[6.5%]">
+        {/* @Travel Partner - Stynex */}
+        <div className="relative z-[5] mb-4 mt-0 block bg-white sm:-mt-[8.5%] lg:-mt-[7.2%]">
+          <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+            <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-6 lg:hidden lg:py-0">
+              <Container>
+                <div className="my-auto flex flex-col text-start">
+                  <h2 className="w-full pr-10 font-staraExtraBold text-[40px] uppercase leading-[42px] text-black-900 sm:leading-[48px] lg:pr-20 lg:text-[32px] lg:leading-[40px] xl:pr-0 xl:text-[40px] xl:leading-[48px]">
+                    Travel partner
+                  </h2>
+                  <p className="mt-2 font-bevietnamPro text-xl font-light text-black-900 lg:text-base xl:text-xl">
+                    Reinvent your travel experience with the Web3 travel subscription membership.
+                  </p>
+                  <Link
+                    className={`ca2024BgOverflayBlue relative mr-3 mt-5 inline-flex w-max cursor-pointer items-center justify-center rounded-[14px] bg-secondary px-4  py-3.5 font-bevietnamPro text-sm font-medium text-white outline-none last:mr-0 focus-visible:outline-none sm:mt-7 sm:px-6 sm:py-6 sm:text-base`}
+                    title="Coinfest Asia 2024 (Learn more - Travel Partner)"
+                    href={"https://staynex.vip"}
+                    target="_blank"
+                  >
+                    Learn more
+                  </Link>
+                </div>
+              </Container>
+            </div>
+            <div className="col-span-full lg:col-span-6 lg:col-start-7">
+              <div className="bg-secondary">
+                <Image
+                  className="h-full w-full object-cover object-center"
+                  src={"/assets/images/accomodations/ca2024Staynex.jpg"}
+                  alt={`Coinfest Asia 2024 (Stynex - Travel Partner)`}
+                  height={696}
+                  width={1080}
+                  quality="95"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="absolute inset-x-0 inset-y-0 z-10 hidden flex-col items-center justify-center lg:flex">
+            <Container>
+              <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+                <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-5 lg:py-0">
+                  <div className="my-auto flex flex-col text-start">
+                    <h2 className="w-full pr-10 font-staraExtraBold text-[40px] uppercase leading-[42px] text-black-900 sm:leading-[48px] lg:pr-20 lg:text-[32px] lg:leading-[40px] xl:pr-0 xl:text-[40px] xl:leading-[48px]">
+                      Travel partner
+                    </h2>
+                    <p className="mt-2 font-bevietnamPro text-xl font-light text-black-900 lg:text-base xl:text-xl">
+                      Reinvent your travel experience with the Web3 travel subscription membership.
+                    </p>
+                    <Link
+                      className={`ca2024BgOverflayBlue relative mr-3 mt-5 inline-flex w-max cursor-pointer items-center justify-center rounded-[14px] bg-secondary px-4  py-3.5 font-bevietnamPro text-sm font-medium text-white outline-none last:mr-0 focus-visible:outline-none sm:mt-7 sm:px-6 sm:py-6 sm:text-base`}
+                      title="Coinfest Asia 2024 (Learn more - Travel Partner)"
+                      href={"https://staynex.vip"}
+                      target="_blank"
+                    >
+                      Learn more
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </Container>
+          </div>
+        </div>
+
+        {/* @Book Your Itinerary - Travala */}
+        <div className="relative z-[15] mb-4 block bg-white">
           <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-6 lg:hidden lg:py-0">
               <Container>
@@ -181,8 +244,8 @@ const Travel = ({ travel }) => {
                 </div>
               </Container>
             </div>
-            <div className="col-span-full lg:col-span-6 lg:col-start-7">
-              <div className="bg-[#FD6F5A]">
+            <div className="col-span-full lg:col-span-6">
+              <div className="bg-[#7C0FCA]">
                 <Image
                   className="h-full w-full object-cover object-center"
                   src={"/assets/images/accomodations/ca2024Travala.jpg"}
@@ -196,8 +259,8 @@ const Travel = ({ travel }) => {
           </div>
           <div className="absolute inset-x-0 inset-y-0 z-10 hidden flex-col items-center justify-center lg:flex">
             <Container>
-              <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
-                <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-5 lg:py-0">
+              <div className="relative grid-cols-4 text-end supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+                <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-5 lg:col-end-13 lg:py-0">
                   <div className="my-auto flex flex-col text-start">
                     <h2 className="w-full pr-10 font-staraExtraBold text-[40px] uppercase leading-[42px] text-black-900 sm:leading-[48px] lg:pr-20 lg:text-[32px] lg:leading-[40px] xl:pr-0 xl:text-[40px] xl:leading-[48px]">
                       Arrange Your Itinerary
@@ -274,7 +337,7 @@ const Travel = ({ travel }) => {
         </div>
 
         {/* @Concierge Service - Beyond */}
-        <div className="relative z-[15] mb-0 mt-4 block bg-white">
+        <div className="relative z-[15] mt-4 block bg-white">
           <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-6 lg:hidden lg:py-0">
               <Container>
@@ -297,7 +360,7 @@ const Travel = ({ travel }) => {
                 </div>
               </Container>
             </div>
-            <div className="col-span-full lg:col-span-6">
+            <div className="col-span-full lg:col-span-6 lg:col-start-7">
               <div className="bg-[#10BCCA]">
                 <Image
                   className="h-full w-full object-cover object-center"
@@ -312,8 +375,8 @@ const Travel = ({ travel }) => {
           </div>
           <div className="absolute inset-x-0 inset-y-0 z-10 hidden flex-col items-center justify-center lg:flex">
             <Container>
-              <div className="relative grid-cols-4 text-end supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
-                <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-5 lg:col-end-13 lg:py-0">
+              <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+                <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-5 lg:py-0">
                   <div className="my-auto flex flex-col justify-end text-start">
                     <h2 className="w-full pr-10 font-staraExtraBold text-[40px] uppercase leading-[42px] text-black-900 sm:leading-[48px] lg:pr-20 lg:text-[32px] lg:leading-[40px] xl:pr-0 xl:text-[40px] xl:leading-[48px]">
                       Concierge Service
@@ -338,7 +401,7 @@ const Travel = ({ travel }) => {
         </div>
 
         {/* @E-SIM - Dent */}
-        <div className="relative z-[15] mt-4 block bg-white">
+        <div className="relative z-[15] mb-0 mt-4 block bg-white">
           <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-6 lg:hidden lg:py-0">
               <Container>
@@ -362,7 +425,7 @@ const Travel = ({ travel }) => {
                 </div>
               </Container>
             </div>
-            <div className="col-span-full lg:col-span-6 lg:col-start-7">
+            <div className="col-span-full lg:col-span-6">
               <div className="bg-secondary">
                 <Image
                   className="h-full w-full object-cover object-center"
@@ -377,8 +440,8 @@ const Travel = ({ travel }) => {
           </div>
           <div className="absolute inset-x-0 inset-y-0 z-10 hidden flex-col items-center justify-center lg:flex">
             <Container>
-              <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
-                <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-5 lg:py-0">
+              <div className="relative grid-cols-4 text-end supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+                <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-5 lg:col-end-13 lg:py-0">
                   <div className="my-auto flex flex-col text-start">
                     <h2 className="w-full pr-10 font-staraExtraBold text-[40px] uppercase leading-[42px] text-black-900 sm:leading-[48px] lg:pr-20 lg:text-[32px] lg:leading-[40px] xl:pr-0 xl:text-[40px] xl:leading-[48px]">
                       E-SIM
@@ -404,7 +467,7 @@ const Travel = ({ travel }) => {
         </div>
 
         {/* @Transportation - Gojek */}
-        <div className="relative z-[15] mb-0 mt-4 block bg-white">
+        <div className="relative z-[15] mt-4 block bg-white">
           <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-6 lg:hidden lg:py-0">
               <Container>
@@ -428,7 +491,7 @@ const Travel = ({ travel }) => {
                 </div>
               </Container>
             </div>
-            <div className="col-span-full lg:col-span-6">
+            <div className="col-span-full lg:col-span-6 lg:col-start-7">
               <div className="bg-[#2A2A2A]">
                 <Image
                   className="h-full w-full object-cover object-center"
@@ -443,8 +506,8 @@ const Travel = ({ travel }) => {
           </div>
           <div className="absolute inset-x-0 inset-y-0 z-10 hidden flex-col items-center justify-center lg:flex">
             <Container>
-              <div className="relative grid-cols-4 text-end supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
-                <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-5 lg:col-end-13 lg:py-0">
+              <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+                <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-5 lg:py-0">
                   <div className="my-auto flex flex-col justify-end text-start">
                     <h2 className="w-full pr-10 font-staraExtraBold text-[40px] uppercase leading-[42px] text-black-900 sm:leading-[48px] lg:pr-20 lg:text-[32px] lg:leading-[40px] xl:pr-0 xl:text-[40px] xl:leading-[48px]">
                       Transportation
@@ -462,68 +525,6 @@ const Travel = ({ travel }) => {
                         promoCode="GOBANDARA"
                       />
                     </div>
-                  </div>
-                </div>
-              </div>
-            </Container>
-          </div>
-        </div>
-
-        {/* @Travel Partner - Stynex */}
-        <div className="relative mt-4 block bg-white">
-          <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
-            <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-6 lg:hidden lg:py-0">
-              <Container>
-                <div className="my-auto flex flex-col text-start">
-                  <h2 className="w-full pr-10 font-staraExtraBold text-[40px] uppercase leading-[42px] text-black-900 sm:leading-[48px] lg:pr-20 lg:text-[32px] lg:leading-[40px] xl:pr-0 xl:text-[40px] xl:leading-[48px]">
-                    Travel partner
-                  </h2>
-                  <p className="mt-2 font-bevietnamPro text-xl font-light text-black-900 lg:text-base xl:text-xl">
-                    Reinvent your travel experience with the Web3 travel subscription membership.
-                  </p>
-                  <Link
-                    className={`ca2024BgOverflayBlue relative mr-3 mt-5 inline-flex w-max cursor-pointer items-center justify-center rounded-[14px] bg-secondary px-4  py-3.5 font-bevietnamPro text-sm font-medium text-white outline-none last:mr-0 focus-visible:outline-none sm:mt-7 sm:px-6 sm:py-6 sm:text-base`}
-                    title="Coinfest Asia 2024 (Learn more - Travel Partner)"
-                    href={"https://staynex.vip"}
-                    target="_blank"
-                  >
-                    Learn more
-                  </Link>
-                </div>
-              </Container>
-            </div>
-            <div className="col-span-full lg:col-span-6 lg:col-start-7">
-              <div className="bg-secondary">
-                <Image
-                  className="h-full w-full object-cover object-center"
-                  src={"/assets/images/accomodations/ca2024Staynex.jpg"}
-                  alt={`Coinfest Asia 2024 (Stynex - Travel Partner)`}
-                  height={696}
-                  width={1080}
-                  quality="95"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="absolute inset-x-0 inset-y-0 z-10 hidden flex-col items-center justify-center lg:flex">
-            <Container>
-              <div className="relative grid-cols-4 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
-                <div className="col-span-full flex flex-col items-center justify-center py-20 sm:py-24 lg:col-span-5 lg:py-0">
-                  <div className="my-auto flex flex-col text-start">
-                    <h2 className="w-full pr-10 font-staraExtraBold text-[40px] uppercase leading-[42px] text-black-900 sm:leading-[48px] lg:pr-20 lg:text-[32px] lg:leading-[40px] xl:pr-0 xl:text-[40px] xl:leading-[48px]">
-                      Travel partner
-                    </h2>
-                    <p className="mt-2 font-bevietnamPro text-xl font-light text-black-900 lg:text-base xl:text-xl">
-                      Reinvent your travel experience with the Web3 travel subscription membership.
-                    </p>
-                    <Link
-                      className={`ca2024BgOverflayBlue relative mr-3 mt-5 inline-flex w-max cursor-pointer items-center justify-center rounded-[14px] bg-secondary px-4  py-3.5 font-bevietnamPro text-sm font-medium text-white outline-none last:mr-0 focus-visible:outline-none sm:mt-7 sm:px-6 sm:py-6 sm:text-base`}
-                      title="Coinfest Asia 2024 (Learn more - Travel Partner)"
-                      href={"https://staynex.vip"}
-                      target="_blank"
-                    >
-                      Learn more
-                    </Link>
                   </div>
                 </div>
               </div>
