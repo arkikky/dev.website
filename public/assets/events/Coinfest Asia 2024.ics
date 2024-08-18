@@ -1,0 +1,29 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//ical.marudot.com//iCal Event Maker
+X-WR-CALNAME:Coinfest Asia 2024
+NAME:Coinfest Asia 2024
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:Asia/Shanghai
+LAST-MODIFIED:20231222T233358Z
+TZURL:https://www.tzurl.org/zoneinfo-outlook/Asia/Shanghai
+X-LIC-LOCATION:Asia/Shanghai
+BEGIN:STANDARD
+TZNAME:CST
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+DTSTART:19700101T000000
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTAMP:20240815T082239Z
+UID:1723709787528-86164@ical.marudot.com
+DTSTART;TZID=Asia/Shanghai:20240822T130000
+DTEND;TZID=Asia/Shanghai:20240823T210000
+SUMMARY:Coinfest Asia 2024
+URL:https://coinfest.asia/
+DESCRIPTION:This is where innovation meets adoption.\n\nRegistration for (in)side events starts at 9 AM. The gate for Main Event opens at 1 PM.\n\n​​Coinfest Asia 2024 spans 8 venues with 17 immersive areas. With new activities and areas opening up on Day 2. The venue will be illuminated after sunset with dynamic light and laser mappings.\n\nSee you soon at Asia's largest Web3 festival!
+LOCATION:Nuanu City\, Bali
+END:VEVENT
+END:VCALENDAR

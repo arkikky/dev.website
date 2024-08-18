@@ -1,0 +1,86 @@
+[
+  {
+    "id": 0,
+    "name": "General Information",
+    "url": "/guide"
+  },
+  {
+    "id": 1,
+    "name": "Event Day & Time",
+    "url": "/guide/event-day-time"
+  },
+  {
+    "id": 2,
+    "name": "Event Credentials",
+    "url": "/guide/event-credentials"
+  },
+  {
+    "id": 3,
+    "name": "Weather & Attire",
+    "url": "/guide/weather-attire"
+  },
+  {
+    "id": 4,
+    "name": "Getting to Coinfest Asia",
+    "url": "/guide/getting-to-coinfest-asia",
+    "children": [
+      {
+        "id": 5,
+        "name": "Google Maps",
+        "url": ""
+      },
+      {
+        "id": 6,
+        "name": "Transportation",
+        "url": ""
+      },
+      {
+        "id": 7,
+        "name": "Mobile Connection",
+        "url": ""
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Important Notice",
+    "url": "/guide/important-notice"
+  },
+  {
+    "id": 9,
+    "name": "Emergency",
+    "url": "/guide/emergency"
+  },
+  {
+    "id": 10,
+    "name": "Networking Wallet",
+    "url": "/guide/networking-wallet"
+  },
+  {
+    "id": 11,
+    "name": "Activities",
+    "url": "",
+    "children": [
+      {
+        "id": 12,
+        "name": "Venue Map",
+        "url": "/guide/activities/venue-map"
+      },
+      {
+        "id": 13,
+        "name": "Agenda",
+        "url": "/guide/activities/agenda"
+      },
+      {
+        "id": 14,
+        "name": "Side Event",
+        "url": "/guide/activities/side-event"
+      },
+      {
+        "id": 15,
+        "name": "Engage to Win",
+        "url": "/guide/activities/engage-to-win"
+      }
+    ]
+  }
+]
