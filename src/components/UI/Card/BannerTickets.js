@@ -83,7 +83,7 @@ const BannerTickets = ({ rounded = true, mobile = false }) => {
             >
               <SplideSlide>
                 <SmallTickets
-                  url="https://ticket.coinfest.asia/?add-to-cart=9590951106"
+                  url="https://ticket.coinfest.asia/?add-to-cart=9591988800"
                   title="Festival Ticket"
                   price="150"
                 />

@@ -44,10 +44,9 @@ const SuccessModal2025 = ({ years = "2025" }) => {
                 You're on the list!
               </h2>
               <p className="font-figtree mt-4 px-0 text-base font-light text-black-900 sm:px-7 sm:text-lg">
-                Thank you for your interest for Coinfest Asia {years}. You will
-                be the first to receive news and updates—including for the
-                upcoming
-                <br></br>Coinfest Asia {years}.
+                Coinfest Asia 2025. Thank you for your interest for Coinfest
+                Asia 2025! You will be the first to receive the upcoming
+                Coinfest Asia 2025 prospectus deck. Talk soon!
               </p>
             </div>
           </div>

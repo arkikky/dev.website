@@ -4,11 +4,11 @@ import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import Link from "next/link";
 import { convertToBaliTime } from "@lib/helper/convertToBaliTime";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
+// import utc from "dayjs/plugin/utc";
+// import tz from "dayjs/plugin/timezone";
 
-dayjs.extend(utc);
-dayjs.extend(timezone);
+// dayjs.extend(utc);
+// dayjs.extend(tz);
 // import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 const CoinfestWeekCard = ({
@@ -35,12 +35,15 @@ const CoinfestWeekCard = ({
     : "/assets/images/coinfest-week/ca2024CoinfestWeek-General.png";
   const isAlt = alt ? alt : "(Coinfest Week Brand)";
   const isLabelRSVP = labelRsvp ? labelRsvp : "RSVP";
+  let formattedDate;
 
   // @intersection-observer
   useEffect(() => {
     if (inView) {
       setLoading(true);
     }
+
+    // console.log(title);
 
     return () => {
       undefined;
@@ -153,7 +156,20 @@ const CoinfestWeekCard = ({
                     />
                   </svg>
 
-                  {dayjs(time).tz("Asia/Makassar").format("DD MMMM YYYY")}
+                  {title ===
+                  "Bitcoin Sunrise Yoga | Welcoming All Levels During Coinfest Week"
+                    ? dayjs("2024-08-21T07:00:00.000Z").format("DD MMMM YYYY")
+                    : title === "ONE OF US SURF // Aya & Tars Protocol"
+                      ? dayjs("2024-08-21T07:00:00.000Z").format("DD MMMM YYYY")
+                      : title === "ONE OF US SURF // Aya & Frax"
+                        ? dayjs("2024-08-23T07:00:00.000Z").format(
+                            "DD MMMM YYYY",
+                          )
+                        : title === "ONE OF US SURF // Aya"
+                          ? dayjs("2024-08-24T07:00:00.000Z").format(
+                              "DD MMMM YYYY",
+                            )
+                          : dayjs(time).format("DD MMMM YYYY")}
                 </span>
               </div>
             </div>

@@ -49,6 +49,11 @@ const nextConfig = {
         destination: "https://ticket.coinfest.asia/?add-to-cart=9591985501",
         permanent: true, // 301 Moved Permanently or false for temporary redirect (302 Found)
       },
+      {
+        source: "/guide",
+        destination: "/coming-soon",
+        permanent: false, // 301 Moved Permanently or false for temporary redirect (302 Found)
+      },
     ];
   },
 };

@@ -193,6 +193,9 @@ const SponsorshipGetInvolved = ({
       {/* @main */}
       <PartnershipLayouts
         title="Coinfest asia 2025 sponsorship inquiry"
+        shortDesc={
+          "Be the first to get the first look window for Coinfest Asia 2025 sponsorship and secure packages at the lowest price."
+        }
         btnBack={false}
       >
         <form

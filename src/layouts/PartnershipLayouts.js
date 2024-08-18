@@ -7,6 +7,7 @@ import NavbarBottom from "@layouts/Navbar/NavbarBottom";
 
 const PartnershipLayouts = ({
   title = "Take part in Coinfest Asia where innovation meets adoption.",
+  shortDesc = null,
   children,
   btnBack = false,
   urlBack = "",
@@ -35,10 +36,17 @@ const PartnershipLayouts = ({
                   quality="87"
                 />
 
-                <div className="absolute inset-x-0 bottom-auto top-[100px] z-[6] flex flex-col px-4 text-start sm:top-[146px] sm:px-11">
+                <div
+                  className={`absolute inset-x-0 bottom-auto z-[6] flex flex-col px-4 text-start ${shortDesc !== null ? "top-[100px] sm:top-[186px]" : "top-[100px] sm:top-[146px]"} sm:px-11`}
+                >
                   <h1 className="w-full max-w-[496px] font-staraExtraBold text-[32px] uppercase leading-[40px] text-white sm:max-w-[543px] sm:text-[40px] sm:leading-[48px] xl:max-w-[486px]">
                     {title}
                   </h1>
+                  {shortDesc && (
+                    <span className="mt-4 text-xl font-normal text-white">
+                      {shortDesc}
+                    </span>
+                  )}
                 </div>
 
                 {/* @backdrop (leaf tree - items) */}
@@ -64,28 +72,34 @@ const PartnershipLayouts = ({
                 </div>
 
                 {/* @backdrop (statue) */}
-                <div className="pointer-events-none absolute -bottom-[103px] -left-11 right-auto top-auto z-[5] flex select-none bg-transparent sm:-bottom-[225px] sm:-left-[175px]">
-                  <Image
-                    className="mx-auto h-auto w-[241px] object-cover object-center sm:w-[475px]"
-                    src={"/assets/images/backdrop/statue/ca2024StatueLeft.png"}
-                    alt={`Coinfest Asia 2024 (GetInvolved Statue - Left)`}
-                    height={1556}
-                    width={1224}
-                    quality="87"
-                  />
-                </div>
-                <div className="pointer-events-none absolute -bottom-[88px] -right-11 left-auto top-auto z-[5] flex select-none bg-transparent sm:-bottom-[154px] sm:-right-[120px]">
-                  <Image
-                    className="z-10 mx-auto h-auto w-[311px] object-cover object-center sm:w-[525px] lg:w-[575px]"
-                    src={
-                      "/assets/images/backdrop/statue/ca2024StatueBanner.png"
-                    }
-                    alt={`Coinfest Asia 2024 (GetInvolved Statue - Right)`}
-                    height={976}
-                    width={753}
-                    quality="87"
-                  />
-                </div>
+                {shortDesc === null && (
+                  <>
+                    <div className="pointer-events-none absolute -bottom-[103px] -left-11 right-auto top-auto z-[5] flex select-none bg-transparent sm:-bottom-[225px] sm:-left-[175px]">
+                      <Image
+                        className="mx-auto h-auto w-[241px] object-cover object-center sm:w-[475px]"
+                        src={
+                          "/assets/images/backdrop/statue/ca2024StatueLeft.png"
+                        }
+                        alt={`Coinfest Asia 2024 (GetInvolved Statue - Left)`}
+                        height={1556}
+                        width={1224}
+                        quality="87"
+                      />
+                    </div>
+                    <div className="pointer-events-none absolute -bottom-[88px] -right-11 left-auto top-auto z-[5] flex select-none bg-transparent sm:-bottom-[154px] sm:-right-[120px]">
+                      <Image
+                        className="z-10 mx-auto h-auto w-[311px] object-cover object-center sm:w-[525px] lg:w-[575px]"
+                        src={
+                          "/assets/images/backdrop/statue/ca2024StatueBanner.png"
+                        }
+                        alt={`Coinfest Asia 2024 (GetInvolved Statue - Right)`}
+                        height={976}
+                        width={753}
+                        quality="87"
+                      />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
