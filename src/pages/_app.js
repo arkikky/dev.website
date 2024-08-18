@@ -20,6 +20,7 @@ import "@styles/globals.css";
 
 // @components
 import SuccessModal from "@components/UI/Modal/SuccessModal";
+import SuccessModal2025 from "@components/UI/Modal/SuccessModal2025";
 import OpenGmailSuccessModal from "@components/UI/Modal/OpenGmailSuccessModal";
 import SuccessPitchingModal from "@components/UI/Modal/SuccessPitchingModal";
 
@@ -197,6 +198,7 @@ const App = ({ Component, pageProps }) => {
 
         {/* @modal */}
         <SuccessModal />
+        <SuccessModal2025 />
         <SuccessPitchingModal />
         <OpenGmailSuccessModal />
 
@@ -217,6 +219,7 @@ const App = ({ Component, pageProps }) => {
 
         {/* @modal */}
         <SuccessModal />
+        <SuccessModal2025 />
         <SuccessPitchingModal />
         <OpenGmailSuccessModal />
 

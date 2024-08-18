@@ -1,12 +1,12 @@
 import React from "react";
 
-const SuccessModal = ({ years = "2024" }) => {
+const SuccessModal2025 = ({ years = "2025" }) => {
   return (
     <>
       {/* @Modal (Success Newsletter) */}
       <button
         id={`btnSuccessNewsletterMdl${years}`}
-        className="btnSuccessNewsletterMdl toolsApp invisible absolute bottom-0 left-auto right-0 top-full z-10 hidden h-8 w-8 cursor-pointer flex-col items-center justify-center rounded-[10px] bg-transparent opacity-0 outline-none"
+        className={`btnSuccessNewsletterMdl${years} toolsApp invisible absolute bottom-0 left-auto right-0 top-full z-10 hidden h-8 w-8 cursor-pointer flex-col items-center justify-center rounded-[10px] bg-transparent opacity-0 outline-none`}
         // className="toolsApp fixed bottom-auto left-auto right-0 top-40 z-100 flex h-8 w-8 cursor-pointer flex-col items-center justify-center rounded-[10px] bg-blue-500 outline-none"
         aria-labelledby={`Success Newsletter Modal ${years}`}
         data-hs-overlay={`#successNewsletterModal${years}`}
@@ -21,7 +21,7 @@ const SuccessModal = ({ years = "2024" }) => {
           <div className="relative flex flex-col rounded-xl bg-white px-7 py-8 text-center sm:rounded-[18px] sm:px-12 sm:py-14">
             <button
               className="hs-dropdown-toggle absolute bottom-auto left-auto right-4 top-4.5 outline-none"
-              aria-labelledby="successNewsletterModal"
+              aria-labelledby={`successNewsletterModal${years}`}
               data-hs-overlay={`#successNewsletterModal${years}`}
             >
               <svg
@@ -57,4 +57,4 @@ const SuccessModal = ({ years = "2024" }) => {
   );
 };
 
-export default SuccessModal;
+export default SuccessModal2025;

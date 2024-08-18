@@ -71,7 +71,7 @@ const SponsorshipGetInvolved = ({
     //   "#mdlBtnSuccessOpenGmail.mdlBtnSuccessOpenGmail",
     // );
     const btnOpenGmailSuccess = document.querySelector(
-      "#btnSuccessNewsletterMdl.btnSuccessNewsletterMdl",
+      "#btnSuccessNewsletterMdl2025",
     );
 
     const isConfig = {
