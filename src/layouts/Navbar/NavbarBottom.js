@@ -207,6 +207,11 @@ const NavbarBottom = () => {
             rounded={false}
             options={[
               {
+                label: "Guide",
+                url: "/guide",
+                type: "page",
+              },
+              {
                 label: "Agenda",
                 url: "/agenda",
                 type: "page",
@@ -326,7 +331,7 @@ const NavbarBottom = () => {
 
           {/* @navbar-main */}
           <div
-            className={`ca2024NavbarMain relative mx-auto flex h-full w-full flex-row items-center justify-between rounded-[20px] border border-solid border-white/[0.16] bg-black-900/25 px-2 py-2 lg:w-[857px] xl:w-[1037px] ${
+            className={`ca2024NavbarMain relative mx-auto flex h-full w-full flex-row items-center justify-between rounded-[20px] border border-solid border-white/[0.16] bg-black-900/25 px-2 py-2 lg:w-[857px] xl:w-[1100px] ${
               isMenu ? "!w-full" : null
             } z-100 max-w-full`}
           >
@@ -369,6 +374,11 @@ const NavbarBottom = () => {
                       <span className="hmbrgrStairsLine"></span>
                     </div>
                   </button>
+                </li>
+                <li>
+                  <Link className="mt-px text-white" href={"/guide"}>
+                    Guide
+                  </Link>
                 </li>
                 <li>
                   <button
@@ -595,6 +605,11 @@ const NavbarBottom = () => {
                   </li>
                 </ul>
               </div>
+            </li>
+            <li>
+              <Link className="" href="/guide">
+                Guide
+              </Link>
             </li>
             <li className="hs-accordion" id="activitesAccordion">
               <button

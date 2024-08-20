@@ -97,8 +97,8 @@ const EventCredentials = () => {
           />
           <Image
             className="w-full"
-            src={"/assets/images/guide/ca2024BullWristband.png"}
-            width={375}
+            src={"/assets/images/guide/ca2024BullWristband.jpg"}
+            width={1042}
             height={839}
             quality="100"
           />

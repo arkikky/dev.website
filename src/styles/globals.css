@@ -31,6 +31,23 @@ body::-webkit-scrollbar-thumb {
   @apply border-none;
 }
 
+.overflow-y-auto::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  @apply w-2;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  @apply bg-gray-400/80;
+  @apply rounded-full;
+  @apply border-none;
+}
+
 a {
   @apply outline-none focus-visible:outline-none;
 }

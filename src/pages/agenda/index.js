@@ -64,7 +64,7 @@ const Agenda = ({ day1, day2 }) => {
     } else if (stage === "breakoutArea") {
       url = `/ca24-agendas/?populate=*&filters[stage][$eq]=breakoutArea&filters[stage][$eq]=overallVenue&filters[day][$eq]=day${days}&sort[0]=timeStart:asc`;
     } else {
-      url = `/ca24-agendas/?filters[day][$eq]=day${days}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`;
+      url = `/ca24-agendas/?filters[day][$eq]=day${days}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture&pagination[pageSize]=100`;
     }
 
     try {
@@ -599,7 +599,6 @@ const Agenda = ({ day1, day2 }) => {
                       type="button"
                       className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 lg:text-base ${isStage === "alphaStage" ? "bg-secondary text-white" : "bg-white text-[#4C4C4C]/[0.64]"} transition duration-300 ease-in-out hover:bg-secondary hover:text-white`}
                       onClick={(e) => {
-                        setLoading(true);
                         isTabDateActivedStage(
                           e,
                           isDay,
@@ -957,7 +956,7 @@ export const getStaticProps = async () => {
   //   `/ca24-agendas/?filters[stage][$eq]=mainStage&filters[stage][$eq]=overallVenue&filters[day][$eq]=day1&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
   // );
   const isDay1MainStage = await getFetch(
-    `/ca24-agendas/?filters[day][$eq]=day1&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
+    `/ca24-agendas/?filters[day][$eq]=day1&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture&pagination[pageSize]=100`,
   );
 
   const groupsTimeDay1 = isDay1MainStage.data.reduce((groups, items) => {
@@ -985,7 +984,7 @@ export const getStaticProps = async () => {
   //   `/ca24-agendas/?filters[stage][$eq]=mainStage&filters[stage][$eq]=overallVenue&filters[day][$eq]=day2&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
   // );
   const isDay2MainStage = await getFetch(
-    `/ca24-agendas/?filters[day][$eq]=day2&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
+    `/ca24-agendas/?filters[day][$eq]=day2&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture&pagination[pageSize]=100`,
   );
 
   const groupsTimeDay2 = isDay2MainStage.data.reduce((groups, items) => {

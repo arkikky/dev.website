@@ -1,20 +1,21 @@
 import React from "react";
-import Head from "next/head";
 import getConfig from "next/config";
-
-// @lib
-import engageToWinData from "@lib/json/engage.json";
-
-// @components
-import EngageToWinCard from "@components/UI/Card/EngageToWinCard";
+import Head from "next/head";
+import Image from "next/image";
 
 // @layout
 import GuideLayout from "@layouts/GuideLayout";
 
+// @lib
+import exhibitorsData from "@lib/json/exhibitors-data.json";
+
+// @components
+import EngageToWinCard from "@components/UI/Card/EngageToWinCard";
+
 // @get .config
 const { publicRuntimeConfig } = getConfig();
 
-const WeatherAttire = () => {
+const EngageToWin = () => {
 
   return (
     <>
@@ -47,19 +48,40 @@ const WeatherAttire = () => {
       </Head>
 
       <GuideLayout title="Engage to Win" className="px-6 lg:px-14 pb-32 text-[#303030] !mt-2">
-        <p className="text-[#303030]">Total $1000 worth of Prizes</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-11 sm:gap-8 mt-12 lg:mt-12">
-          {engageToWinData.map(engageData => (
-            <EngageToWinCard data={engageData}/>
-          ))}
+        <p className="text-base lg:text-xl leading-6 lg:leading-[30px]">Total $1000 worth of Prizes</p>
+        <Image
+          src={"/assets/images/guide/engage-to-win/ca2024-Engage.svg"}
+          width={914}
+          height={500}
+          quality={95}
+          className="w-full mb-2"
+        />
+        <EngageToWinCard />
+
+        <div className="mt-10">
+          <h2 className="text-[#202020] text-base sm:text-lg md:text-xl lg:text-2xl font-bold">Visit Our Exhibitors</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 mt-4 gap-2">
+            {exhibitorsData.map(data => (
+              <div className="flex flex-col gap-1 items-center pt-2 pb-6 px-2 lg:py-6 border border-[#DBDBDB] rounded-[10px]">
+                <Image
+                  src={data.logo}
+                  width={204}
+                  height={80}
+                  quality={95}
+                  className="w-full"
+                />
+                <p className="text-xs xl:text-sm text-center text-[#303030]">{data.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </GuideLayout>
     </>
   );
 };
 
-export default WeatherAttire;
+export default EngageToWin;
 
-WeatherAttire.getLayout = function PageLayout(page) {
+EngageToWin.getLayout = function PageLayout(page) {
   return <>{page}</>;
 };

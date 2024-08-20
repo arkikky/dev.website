@@ -137,7 +137,17 @@ const CoinfestWeekCard = ({
                       strokeLinejoin="round"
                     />
                   </svg>
-                  {convertToBaliTime(time)} — GMT + 8
+                  {/* {`${convertToBaliTime(time)} — GMT + 8`} */}
+                  {title ===
+                  "Bitcoin Sunrise Yoga | Welcoming All Levels During Coinfest Week"
+                    ? `7 AM — GMT + 8`
+                    : title === "ONE OF US SURF // Aya & Tars Protocol"
+                      ? `7 AM — GMT + 8`
+                      : title === "ONE OF US SURF // Aya & Frax"
+                        ? `7 AM — GMT + 8`
+                        : title === "ONE OF US SURF // Aya"
+                          ? `7 AM — GMT + 8`
+                          : `${convertToBaliTime(time)} — GMT + 8`}
                 </span>
                 <span
                   className={`flex text-sm font-normal text-[#6E7383] sm:text-base`}
@@ -162,11 +172,11 @@ const CoinfestWeekCard = ({
                     : title === "ONE OF US SURF // Aya & Tars Protocol"
                       ? dayjs("2024-08-21T07:00:00.000Z").format("DD MMMM YYYY")
                       : title === "ONE OF US SURF // Aya & Frax"
-                        ? dayjs("2024-08-23T07:00:00.000Z").format(
+                        ? dayjs("2024-08-22T07:00:00.000Z").format(
                             "DD MMMM YYYY",
                           )
                         : title === "ONE OF US SURF // Aya"
-                          ? dayjs("2024-08-24T07:00:00.000Z").format(
+                          ? dayjs("2024-08-23T07:00:00.000Z").format(
                               "DD MMMM YYYY",
                             )
                           : dayjs(time).format("DD MMMM YYYY")}

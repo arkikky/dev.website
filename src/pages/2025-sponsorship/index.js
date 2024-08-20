@@ -194,7 +194,7 @@ const SponsorshipGetInvolved = ({
       <PartnershipLayouts
         title="Coinfest asia 2025 sponsorship inquiry"
         shortDesc={
-          "Be the first to get the first look window for Coinfest Asia 2025 sponsorship and secure packages at the lowest price."
+          "Unlock early access to Coinfest Asia 2025 sponsorships and lock in the best deals before anyone else."
         }
         btnBack={false}
       >

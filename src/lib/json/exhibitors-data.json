@@ -1,0 +1,57 @@
+[
+  {
+      "name": "Bitwyre",
+      "description": "Win special prize by visiting Bitwyre booth",
+      "logo": "/assets/images/guide/engage-to-win/ca2024-Bitwyre.svg"
+  },
+  {
+      "name": "CoinEx",
+      "description": "Try your luck at CoinEx Fishbowl",
+      "logo": "/assets/images/guide/engage-to-win/ca2024-CoinEx.svg"
+  },
+  {
+      "name": "Bitget",
+      "description": "Bent it like MESSI to win merchandise",
+      "logo": "/assets/images/guide/engage-to-win/ca2024-Bitget.svg"
+  },
+  {
+      "name": "PEXX",
+      "description": "Win special prize by visiting PEXX booth",
+      "logo": "/assets/images/guide/engage-to-win/ca2024-Pexx.svg"
+  },
+  {
+      "name": "PRIME XBT",
+      "description": "Capture your moment at PrimeXBT photo booth",
+      "logo": "/assets/images/guide/engage-to-win/ca2024-PrimeXbt.svg"
+  },
+  {
+      "name": "triv",
+      "description": "Win special prize by visiting TRIV booth",
+      "logo": "/assets/images/guide/engage-to-win/ca2024-Triv.svg"
+  },
+  {
+      "name": "Gate.io",
+      "description": "Win special prize by visiting Gate.io booth",
+      "logo": "/assets/images/guide/engage-to-win/ca2024-Gateio.svg"
+  },
+  {
+      "name": "bittime",
+      "description": "Spin the wheel and win prizes at Bittime booth",
+      "logo": "/assets/images/guide/engage-to-win/ca2024-Bittime.svg"
+  },
+  {
+      "name": "Wallet",
+      "description": "Post a pict, tag OKX, get a gelato or limited swags",
+      "logo": "/assets/images/guide/engage-to-win/ca2024-Wallet.svg"
+  },
+  {
+      "name": "MEEET",
+      "description": "Win special prize from MEEET",
+      "logo": "/assets/images/guide/engage-to-win/ca2024-Meeet.svg"
+  },
+  {
+      "name": "CREO ENGINE",
+      "description": "Play the game and win prizes from Creo Engine",
+      "logo": "/assets/images/guide/engage-to-win/ca2024-CreoEngine.svg"
+  }
+]

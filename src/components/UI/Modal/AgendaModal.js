@@ -26,13 +26,13 @@ const AgendaModal = ({
   const isEndTime = formatTimeTo12Hour(day, setEndTime);
 
   const setStage =
-    selectedStage === "mainStage"
+    selectedStage === "mainStage" || stage === "mainStage"
       ? "Main Stage"
-      : selectedStage === "alphaStage"
+      : selectedStage === "alphaStage" || stage === "alphaStage"
         ? "Alpha Stage"
-        : selectedStage === "buildersHut"
+        : selectedStage === "buildersHut" || stage === "buildersHut"
           ? "Builders Hut"
-          : selectedStage === "breakoutArea"
+          : selectedStage === "breakoutArea" || stage === "breakoutArea"
             ? "Breakout Area"
             : "UnStake Stage";
 

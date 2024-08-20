@@ -56,31 +56,33 @@ const MenuPopUp = ({
         <div
           className={`flex flex-col items-start justify-start overflow-hidden rounded-t-2xl ${menu === true && "bg-secondary"}`}
         >
-          {menu === true && (
-            <ul className="pt- flex w-full flex-col bg-secondary">
-              {options?.map((gtRslt, i) => (
-                <li key={i}>
-                  {gtRslt.type === "page" ? (
-                    <Link
-                      className="flex flex-col border-b border-solid border-white px-4 py-3 font-staraSemiBold text-lg text-white sm:px-5 2xl:text-xl"
-                      href={gtRslt.url}
-                    >
-                      {gtRslt.label}
-                    </Link>
-                  ) : (
-                    <Link
-                      className="flex flex-col border-b border-solid border-white px-4 py-3 font-staraSemiBold text-lg text-white sm:px-5 2xl:text-xl"
-                      href={gtRslt.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {gtRslt.label}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
+          <div className="w-full flex flex-col items-start justify-start max-h-[340px] overflow-y-auto">
+            {menu === true && (
+              <ul className="pt- flex w-full flex-col bg-secondary">
+                {options?.map((gtRslt, i) => (
+                  <li key={i}>
+                    {gtRslt.type === "page" ? (
+                      <Link
+                        className="flex flex-col border-b border-solid border-white px-4 py-3 font-staraSemiBold text-lg text-white sm:px-5 2xl:text-xl"
+                        href={gtRslt.url}
+                      >
+                        {gtRslt.label}
+                      </Link>
+                    ) : (
+                      <Link
+                        className="flex flex-col border-b border-solid border-white px-4 py-3 font-staraSemiBold text-lg text-white sm:px-5 2xl:text-xl"
+                        href={gtRslt.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {gtRslt.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
 
           {/* @banner(tickets) */}
           {banner === true && <BannerTickets rounded={rounded} />}

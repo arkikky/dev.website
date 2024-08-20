@@ -249,7 +249,7 @@ const Venue = () => {
           />
           <ListVenueCard
             no="8"
-            label="Amphitheatre"
+            label="Oshom"
             list={[
               { label: "Exclusive Events" },
               { label: "CFX Party" },

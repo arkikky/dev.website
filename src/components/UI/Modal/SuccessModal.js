@@ -5,15 +5,15 @@ const SuccessModal = ({ years = "2024" }) => {
     <>
       {/* @Modal (Success Newsletter) */}
       <button
-        id={`btnSuccessNewsletterMdl${years}`}
+        id={`btnSuccessNewsletterMdl`}
         className="btnSuccessNewsletterMdl toolsApp invisible absolute bottom-0 left-auto right-0 top-full z-10 hidden h-8 w-8 cursor-pointer flex-col items-center justify-center rounded-[10px] bg-transparent opacity-0 outline-none"
         // className="toolsApp fixed bottom-auto left-auto right-0 top-40 z-100 flex h-8 w-8 cursor-pointer flex-col items-center justify-center rounded-[10px] bg-blue-500 outline-none"
-        aria-labelledby={`Success Newsletter Modal ${years}`}
-        data-hs-overlay={`#successNewsletterModal${years}`}
+        aria-labelledby={`Success Newsletter Modal `}
+        data-hs-overlay={`#successNewsletterModal`}
       ></button>
 
       <div
-        id={`successNewsletterModal${years}`}
+        id={`successNewsletterModal`}
         className="hs-overlay fixed left-0 top-0 z-[9999] hidden h-full w-full overflow-y-auto overflow-x-hidden bg-black-900/[0.33] opacity-0 transition-all [--body-scroll:true] hs-overlay-open:opacity-100 hs-overlay-open:duration-300"
         data-hs-overlay-backdrop-container="#bckdrpModalActve"
       >
@@ -22,7 +22,7 @@ const SuccessModal = ({ years = "2024" }) => {
             <button
               className="hs-dropdown-toggle absolute bottom-auto left-auto right-4 top-4.5 outline-none"
               aria-labelledby="successNewsletterModal"
-              data-hs-overlay={`#successNewsletterModal${years}`}
+              data-hs-overlay={`#successNewsletterModal`}
             >
               <svg
                 className="h-4 w-4"

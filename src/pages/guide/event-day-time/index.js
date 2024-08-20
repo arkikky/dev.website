@@ -5,6 +5,7 @@ import Image from "next/image";
 
 // @layout
 import GuideLayout from "@layouts/GuideLayout";
+import Link from "next/link";
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
@@ -50,8 +51,8 @@ const EventDayTime = () => {
         />
       </Head>
 
-      <GuideLayout title="Event Day And Time" className="px-6 lg:px-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-2 bg-[#EEF0F4] border border-[#E3E3E3] rounded-xl w-full">
+      <GuideLayout title="Event Day And Time" className="px-6 lg:px-14 pb-32">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 p-4 lg:p-6 bg-[#EEF0F4] border border-[#E3E3E3] rounded-xl w-full">
           <div className="flex flex-col gap-2 bg-white rounded-[10px] p-4">
             <Image src={"/assets/images/icons/ca2024-Calendar.svg"} width={24} height={24} alt="Calendar Icon" />
             <div className="flex flex-col gap-[2px]">
@@ -75,6 +76,40 @@ const EventDayTime = () => {
         <div className="flex flex-col gap-4 md:flex-row justify-between mt-8 text-[#303030]">
           <p>Registration for (in)side events start at 9 AM</p>
           <p>Check in for Main Event starts at 1 PM</p>
+        </div>
+
+        <div className="mt-10 p-4 lg:p-6 bg-[#EEF0F4] border border-[#E3E3E3] rounded-[11px]">
+          <h2 className="text-[#303030] text-xl font-bold">Pre-Registration</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full mt-4">
+            <div className="flex flex-col gap-2 bg-white rounded-[10px] p-4">
+              <Image src={"/assets/images/icons/ca2024-LocationBlue.svg"} width={24} height={24} alt="Location Icon" />
+              <div className="flex flex-col gap-[2px]">
+                <span className="text-sm text-[#303030]/50">10AM - 6PM</span>
+                <span className="text-base text-[#303030]">Le Bajo, Pererenan</span>
+              </div>
+              <Link
+                className="text-center col-span-1 sm:col-span-2 mt-2 text-white text-sm font-medium py-4 rounded-xl bg-[url('/assets/images/backdrop/background/ca2024BgBigLine.jpg')] bg-cover bg-left"
+                href={"https://maps.app.goo.gl/uPQVXUnJe4TAze2p6"}
+                target="_blank"
+              >
+                See directions
+              </Link>
+            </div>
+            <div className="flex flex-col gap-2 bg-white rounded-[10px] p-4">
+              <Image src={"/assets/images/icons/ca2024-LocationBlue.svg"} width={24} height={24} alt="Calendar Icon" />
+              <div className="flex flex-col gap-[2px]">
+                <span className="text-sm text-[#303030]/50">10AM - 6PM</span>
+                <span className="text-base text-[#303030]">The OXO Factory, Kuta Utara</span>
+              </div>
+              <Link
+                className="text-center col-span-1 sm:col-span-2 mt-2 text-white text-sm font-medium py-4 rounded-xl bg-[url('/assets/images/backdrop/background/ca2024BgBigLine.jpg')] bg-cover bg-left"
+                href={"https://maps.app.goo.gl/nxtT147dpwuCtfFU8"}
+                target="_blank"
+              >
+                See directions
+              </Link>
+            </div>
+          </div>
         </div>
       </GuideLayout>
     </>

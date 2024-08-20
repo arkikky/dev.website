@@ -74,7 +74,7 @@ const AgendaCard = ({
                   ? containsID(splitCamelCase(session)) === true
                     ? replaceIDWithText(splitCamelCase(session))
                     : splitCamelCase(session)
-                  : "Pitching Session"}
+                  : "Breakout Session"}
               </span>
               <h3 className="pr-14 font-bevietnamPro text-lg font-semibold text-black-900 lg:pr-0 lg:text-xl">
                 {title}

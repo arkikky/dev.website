@@ -270,7 +270,7 @@ const CartaNetworkingWallet = () => {
                         Step 1
                       </span>
                       <span className="text-left text-base font-light text-[#474747] transition duration-300 ease-in-out group-hover:text-white hs-tab-active:text-white">
-                        Download Carta in your Appstore/Playstore
+                      Download the Carta App
                       </span>
                     </span>
                   </button>
@@ -287,7 +287,7 @@ const CartaNetworkingWallet = () => {
                         Step 2
                       </span>
                       <span className="text-left text-base font-light text-[#474747] transition duration-300 ease-in-out group-hover:text-white hs-tab-active:text-white">
-                        Click “Setup” to start your Carta Apps
+                        Tap on "Setup" to begin activation
                       </span>
                     </span>
                   </button>
@@ -304,8 +304,7 @@ const CartaNetworkingWallet = () => {
                         Step 3
                       </span>
                       <span className="text-left text-base font-light text-[#474747] transition duration-300 ease-in-out group-hover:text-white hs-tab-active:text-white">
-                        Scan your carta networking wallet to start the setup of
-                        your Carta Apps
+                        Tap the event pass when prompted
                       </span>
                     </span>
                   </button>
@@ -322,7 +321,7 @@ const CartaNetworkingWallet = () => {
                         Step 4
                       </span>
                       <span className="text-left text-base font-light text-[#474747] transition duration-300 ease-in-out group-hover:text-white hs-tab-active:text-white">
-                        Setup your password
+                        Create a password and pin
                       </span>
                     </span>
                   </button>
@@ -339,8 +338,7 @@ const CartaNetworkingWallet = () => {
                         Step 5
                       </span>
                       <span className="text-left text-base font-light text-[#474747] transition duration-300 ease-in-out group-hover:text-white hs-tab-active:text-white">
-                        Scan your Carta networking wallet to secure your card to
-                        your profile
+                        Tap your card again to secure the networking wallet
                       </span>
                     </span>
                   </button>
@@ -357,7 +355,7 @@ const CartaNetworkingWallet = () => {
                         Step 6
                       </span>
                       <span className="text-left text-base font-light text-[#474747] transition duration-300 ease-in-out group-hover:text-white hs-tab-active:text-white">
-                        Fill out your information
+                        Create your profile by filling out the information
                       </span>
                     </span>
                   </button>
@@ -374,8 +372,7 @@ const CartaNetworkingWallet = () => {
                         Step 7
                       </span>
                       <span className="text-left text-base font-light text-[#474747] transition duration-300 ease-in-out group-hover:text-white hs-tab-active:text-white">
-                        Start networking by tapping others networking wallet
-                        into your Carta apps to gain more points
+                        All done! You are ready to start networking!
                       </span>
                     </span>
                   </button>
@@ -595,49 +592,49 @@ const CartaNetworkingWallet = () => {
                       <CartaWalletMobile
                         url="/assets/images/carta/step/ca2024CartaWallet_Step01.png"
                         number="1"
-                        shortDesc="Download Carta in your Appstore/Playstore"
+                        shortDesc="Download the Carta App"
                       />
                     </SplideSlide>
                     <SplideSlide className="w-full text-black-900">
                       <CartaWalletMobile
                         url="/assets/images/carta/step/ca2024CartaWallet_Step02.png"
                         number="2"
-                        shortDesc="Click “Setup” to start your Carta Apps"
+                        shortDesc="Tap on “Setup” to begin activation"
                       />
                     </SplideSlide>
                     <SplideSlide className="w-full text-black-900">
                       <CartaWalletMobile
                         url="/assets/images/carta/step/ca2024CartaWallet_Step03.png"
                         number="3"
-                        shortDesc="Scan your carta networking wallet to start the setup of your Carta Apps"
+                        shortDesc="Tap the event pass when prompted"
                       />
                     </SplideSlide>
                     <SplideSlide className="w-full text-black-900">
                       <CartaWalletMobile
                         url="/assets/images/carta/step/ca2024CartaWallet_Step04.png"
                         number="4"
-                        shortDesc="Setup your password"
+                        shortDesc="Create a password and pin"
                       />
                     </SplideSlide>
                     <SplideSlide className="w-full text-black-900">
                       <CartaWalletMobile
                         url="/assets/images/carta/step/ca2024CartaWallet_Step05.png"
                         number="5"
-                        shortDesc="Scan your Carta networking wallet to secure your card to your profile"
+                        shortDesc="Tap your card again to secure the networking wallet"
                       />
                     </SplideSlide>
                     <SplideSlide className="w-full text-black-900">
                       <CartaWalletMobile
                         url="/assets/images/carta/step/ca2024CartaWallet_Step06.png"
                         number="6"
-                        shortDesc="Fill out your information"
+                        shortDesc="Create your profile by filling out the information"
                       />
                     </SplideSlide>
                     <SplideSlide className="w-full text-black-900">
                       <CartaWalletMobile
                         url="/assets/images/carta/step/ca2024CartaWallet_Step07.png"
                         number="7"
-                        shortDesc="Start networking by tapping others networking wallet into your Carta apps to gain more points"
+                        shortDesc="All done! You are ready to start networking!"
                       />
                     </SplideSlide>
                   </Splide>
@@ -704,48 +701,48 @@ const CartaNetworkingWallet = () => {
                   <SplideSlide className="w-full text-black-900">
                     <CartaWalletContentMobile
                       number={1}
-                      shortDesc={"Download Carta in your Appstore/Playstore"}
+                      shortDesc={"Download the Carta App"}
                     />
                   </SplideSlide>
                   <SplideSlide className="w-full text-black-900">
                     <CartaWalletContentMobile
                       number={2}
-                      shortDesc={"Click “Setup” to start your Carta Apps"}
+                      shortDesc={`Tap on "Setup" to begin activation`}
                     />
                   </SplideSlide>
                   <SplideSlide className="w-full text-black-900">
                     <CartaWalletContentMobile
                       number={3}
                       shortDesc={
-                        "Scan your carta networking wallet to start the setup of your Carta Apps"
+                        "Tap the event pass when prompted"
                       }
                     />
                   </SplideSlide>
                   <SplideSlide className="w-full text-black-900">
                     <CartaWalletContentMobile
                       number={4}
-                      shortDesc={"Setup your password"}
+                      shortDesc={"Create a password and pin"}
                     />
                   </SplideSlide>
                   <SplideSlide className="w-full text-black-900">
                     <CartaWalletContentMobile
                       number={5}
                       shortDesc={
-                        "Scan your Carta networking wallet to secure your card to your profile"
+                        "Tap your card again to secure the networking wallet"
                       }
                     />
                   </SplideSlide>
                   <SplideSlide className="w-full text-black-900">
                     <CartaWalletContentMobile
                       number={6}
-                      shortDesc={"Fill out your information"}
+                      shortDesc={"Create your profile by filling out the information"}
                     />
                   </SplideSlide>
                   <SplideSlide className="w-full text-black-900">
                     <CartaWalletContentMobile
                       number={7}
                       shortDesc={
-                        "Start networking by tapping others networking wallet into your Carta apps to gain more points"
+                        "All done! You are ready to start networking!"
                       }
                     />
                   </SplideSlide>

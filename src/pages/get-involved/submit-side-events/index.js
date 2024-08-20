@@ -187,8 +187,6 @@ const SubmitSideEvents = ({ ipAddrs, formSideEvents, countryRegion }) => {
 
     const rs = await SubmitForm(isConfig, isKey);
 
-    // console.log(isConfig);
-
     // @debug
     // console.log(isConfig);
 

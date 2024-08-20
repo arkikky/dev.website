@@ -50,7 +50,7 @@ const Agenda = ({ day1, day2 }) => {
     } else if (stage === "breakoutArea") {
       url = `/ca24-agendas/?populate=*&filters[stage][$eq]=breakoutArea&filters[stage][$eq]=overallVenue&filters[day][$eq]=day${days}&sort[0]=timeStart:asc`;
     } else {
-      url = `/ca24-agendas/?filters[day][$eq]=day${days}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`;
+      url = `/ca24-agendas/?filters[day][$eq]=day${days}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture&pagination[pageSize]=100`;
     }
 
     try {
@@ -199,12 +199,21 @@ const Agenda = ({ day1, day2 }) => {
     <>
       <Head>
         <title>{`Agenda | ${publicRuntimeConfig.siteTitle}`}</title>
-        <meta name="title" content={`Agenda | ${publicRuntimeConfig.siteTitle}`} />
+        <meta
+          name="title"
+          content={`Agenda | ${publicRuntimeConfig.siteTitle}`}
+        />
         <meta name="description" content={publicRuntimeConfig.siteDesc} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
-        <meta property="og:title" content={`Agenda | ${publicRuntimeConfig.siteTitle}`} />
-        <meta property="og:description" content={publicRuntimeConfig.siteDesc} />
+        <meta
+          property="og:title"
+          content={`Agenda | ${publicRuntimeConfig.siteTitle}`}
+        />
+        <meta
+          property="og:description"
+          content={publicRuntimeConfig.siteDesc}
+        />
         <meta
           property="og:image"
           content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
@@ -225,21 +234,25 @@ const Agenda = ({ day1, day2 }) => {
         />
       </Head>
 
-      <GuideLayout title="Agenda" className="px-6 lg:px-14 pb-32 text-[#303030]">
+      <GuideLayout
+        title="Agenda"
+        className="px-6 pb-32 text-[#303030] lg:px-14"
+      >
         <div className="relative mt-8 flex flex-col bg-white">
-          <div className="sticky bottom-auto z-[52] top-0 pt-4 bg-white">
+          <div className="sticky bottom-auto top-0 z-[52] bg-white pt-4">
             <div className="flex flex-row items-center justify-between overflow-hidden rounded-t-[20px] border-b border-[#D6D6D6] bg-[#EEEEEE] px-2 py-2 sm:top-5 sm:rounded-t-2xl sm:px-4 sm:py-4">
               <div
-                className={`flex w-max flex-col rounded-2xl ${isStage === "mainStage"
-                  ? "bg-secondary "
-                  : isStage === "alphaStage"
-                    ? "bg-[#FF4E20]"
-                    : isStage === "buildersHut"
-                      ? "bg-[#7B0FC9]"
-                      : isStage === "breakoutArea"
-                        ? "bg-[#0FBCC9]"
-                        : "bg-secondary "
-                  } px-2 py-2 transition sm:px-2`}
+                className={`flex w-max flex-col rounded-2xl ${
+                  isStage === "mainStage"
+                    ? "bg-secondary "
+                    : isStage === "alphaStage"
+                      ? "bg-[#FF4E20]"
+                      : isStage === "buildersHut"
+                        ? "bg-[#7B0FC9]"
+                        : isStage === "breakoutArea"
+                          ? "bg-[#0FBCC9]"
+                          : "bg-secondary "
+                } px-2 py-2 transition sm:px-2`}
               >
                 <nav
                   className="flex w-max overflow-x-auto"
@@ -248,16 +261,18 @@ const Agenda = ({ day1, day2 }) => {
                 >
                   <button
                     type="button"
-                    className={`active inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl ${isStage === "mainStage"
-                      ? "bg-secondary "
-                      : isStage === "alphaStage"
-                        ? "bg-[#FF4E20]"
-                        : isStage === "buildersHut"
-                          ? "bg-[#7B0FC9]"
-                          : isStage === "breakoutArea"
-                            ? "bg-[#0FBCC9]"
-                            : "bg-secondary "
-                      } px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-white/[0.64] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white ${isStage === "mainStage"
+                    className={`active inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl ${
+                      isStage === "mainStage"
+                        ? "bg-secondary "
+                        : isStage === "alphaStage"
+                          ? "bg-[#FF4E20]"
+                          : isStage === "buildersHut"
+                            ? "bg-[#7B0FC9]"
+                            : isStage === "breakoutArea"
+                              ? "bg-[#0FBCC9]"
+                              : "bg-secondary "
+                    } px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-white/[0.64] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white ${
+                      isStage === "mainStage"
                         ? "hs-tab-active:text-secondary "
                         : isStage === "alphaStage"
                           ? "hs-tab-active:text-[#FF4E20]"
@@ -266,7 +281,7 @@ const Agenda = ({ day1, day2 }) => {
                             : isStage === "breakoutArea"
                               ? "hs-tab-active:text-[#0FBCC9]"
                               : "hs-tab-active:text-secondary "
-                      } sm:text-base`}
+                    } sm:text-base`}
                     id="agendaDay-Content-1"
                     data-hs-tab="#agendaDay-1"
                     aria-controls="agendaDay-1"
@@ -279,16 +294,18 @@ const Agenda = ({ day1, day2 }) => {
                   </button>
                   <button
                     type="button"
-                    className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl ${isStage === "mainStage"
-                      ? "bg-secondary "
-                      : isStage === "alphaStage"
-                        ? "bg-[#FF4E20]"
-                        : isStage === "buildersHut"
-                          ? "bg-[#7B0FC9]"
-                          : isStage === "breakoutArea"
-                            ? "bg-[#0FBCC9]"
-                            : "bg-secondary "
-                      } px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-white/[0.64] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white ${isStage === "mainStage"
+                    className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl ${
+                      isStage === "mainStage"
+                        ? "bg-secondary "
+                        : isStage === "alphaStage"
+                          ? "bg-[#FF4E20]"
+                          : isStage === "buildersHut"
+                            ? "bg-[#7B0FC9]"
+                            : isStage === "breakoutArea"
+                              ? "bg-[#0FBCC9]"
+                              : "bg-secondary "
+                    } px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-white/[0.64] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white ${
+                      isStage === "mainStage"
                         ? "hs-tab-active:text-secondary "
                         : isStage === "alphaStage"
                           ? "hs-tab-active:text-[#FF4E20]"
@@ -297,7 +314,7 @@ const Agenda = ({ day1, day2 }) => {
                             : isStage === "breakoutArea"
                               ? "hs-tab-active:text-[#0FBCC9]"
                               : "hs-tab-active:text-secondary "
-                      } sm:text-base`}
+                    } sm:text-base`}
                     id="agendaDay-Content-2"
                     data-hs-tab="#agendaDay-2"
                     aria-controls="agendaDay-2"
@@ -311,16 +328,17 @@ const Agenda = ({ day1, day2 }) => {
                 </nav>
               </div>
               <div
-                className={`hidden w-max flex-col rounded-2xl ${isStage === "mainStage"
-                  ? "bg-secondary"
-                  : isStage === "alphaStage"
-                    ? "bg-[#FF4E20]"
-                    : isStage === "buildersHut"
-                      ? "bg-[#7B0FC9]"
-                      : isStage === "breakoutArea"
-                        ? "bg-[#0FBCC9]"
-                        : "bg-secondary"
-                  } px-2 py-2 transition sm:px-2 lg:flex`}
+                className={`hidden w-max flex-col rounded-2xl ${
+                  isStage === "mainStage"
+                    ? "bg-secondary"
+                    : isStage === "alphaStage"
+                      ? "bg-[#FF4E20]"
+                      : isStage === "buildersHut"
+                        ? "bg-[#7B0FC9]"
+                        : isStage === "breakoutArea"
+                          ? "bg-[#0FBCC9]"
+                          : "bg-secondary"
+                } px-2 py-2 transition sm:px-2 lg:flex`}
               >
                 <nav
                   className="flex w-max overflow-x-auto"
@@ -330,19 +348,22 @@ const Agenda = ({ day1, day2 }) => {
                   <button
                     type="button"
                     id="ca2024AgendaTabs_Main"
-                    className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${isStage === "mainStage"
-                      ? "bg-white text-secondary"
-                      : `${isStage === "mainStage"
-                        ? "bg-secondary "
-                        : isStage === "alphaStage"
-                          ? "bg-[#FF4E20]"
-                          : isStage === "buildersHut"
-                            ? "bg-[#7B0FC9]"
-                            : isStage === "breakoutArea"
-                              ? "bg-[#0FBCC9]"
-                              : "bg-secondary"
-                      } text-white/[0.64]`
-                      } transition duration-300 ease-in-out hover:bg-white ${isStage === "mainStage"
+                    className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${
+                      isStage === "mainStage"
+                        ? "bg-white text-secondary"
+                        : `${
+                            isStage === "mainStage"
+                              ? "bg-secondary "
+                              : isStage === "alphaStage"
+                                ? "bg-[#FF4E20]"
+                                : isStage === "buildersHut"
+                                  ? "bg-[#7B0FC9]"
+                                  : isStage === "breakoutArea"
+                                    ? "bg-[#0FBCC9]"
+                                    : "bg-secondary"
+                          } text-white/[0.64]`
+                    } transition duration-300 ease-in-out hover:bg-white ${
+                      isStage === "mainStage"
                         ? "hover:text-secondary "
                         : isStage === "alphaStage"
                           ? "hover:text-[#FF4E20]"
@@ -351,7 +372,7 @@ const Agenda = ({ day1, day2 }) => {
                             : isStage === "breakoutArea"
                               ? "hover:text-[#0FBCC9]"
                               : "hover:text-secondary"
-                      }`}
+                    }`}
                     role="tab"
                     onClick={(e) => {
                       isTabDateActivedStage(
@@ -367,19 +388,22 @@ const Agenda = ({ day1, day2 }) => {
                   <button
                     type="button"
                     id="ca2024AgendaTabs_AlphaStage"
-                    className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${isStage === "alphaStage"
-                      ? "bg-white text-[#FF4E20]"
-                      : `${isStage === "mainStage"
-                        ? "bg-secondary "
-                        : isStage === "alphaStage"
-                          ? "bg-[#FF4E20]"
-                          : isStage === "buildersHut"
-                            ? "bg-[#7B0FC9]"
-                            : isStage === "breakoutArea"
-                              ? "bg-[#0FBCC9]"
-                              : "bg-secondary"
-                      } text-white/[0.64]`
-                      } transition duration-300 ease-in-out hover:bg-white ${isStage === "mainStage"
+                    className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${
+                      isStage === "alphaStage"
+                        ? "bg-white text-[#FF4E20]"
+                        : `${
+                            isStage === "mainStage"
+                              ? "bg-secondary "
+                              : isStage === "alphaStage"
+                                ? "bg-[#FF4E20]"
+                                : isStage === "buildersHut"
+                                  ? "bg-[#7B0FC9]"
+                                  : isStage === "breakoutArea"
+                                    ? "bg-[#0FBCC9]"
+                                    : "bg-secondary"
+                          } text-white/[0.64]`
+                    } transition duration-300 ease-in-out hover:bg-white ${
+                      isStage === "mainStage"
                         ? "hover:text-secondary "
                         : isStage === "alphaStage"
                           ? "hover:text-[#FF4E20]"
@@ -388,7 +412,7 @@ const Agenda = ({ day1, day2 }) => {
                             : isStage === "breakoutArea"
                               ? "hover:text-[#0FBCC9]"
                               : "hover:text-secondary"
-                      }`}
+                    }`}
                     onClick={(e) => {
                       isTabDateActivedStage(
                         e,
@@ -404,19 +428,22 @@ const Agenda = ({ day1, day2 }) => {
                   </button>
                   <button
                     type="button"
-                    className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${isStage === "buildersHut"
-                      ? "bg-white text-[#7B0FC9]"
-                      : `${isStage === "mainStage"
-                        ? "bg-secondary "
-                        : isStage === "alphaStage"
-                          ? "bg-[#FF4E20]"
-                          : isStage === "buildersHut"
-                            ? "bg-[#7B0FC9]"
-                            : isStage === "breakoutArea"
-                              ? "bg-[#0FBCC9]"
-                              : "bg-secondary"
-                      } text-white/[0.64]`
-                      } transition duration-300 ease-in-out hover:bg-white ${isStage === "mainStage"
+                    className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${
+                      isStage === "buildersHut"
+                        ? "bg-white text-[#7B0FC9]"
+                        : `${
+                            isStage === "mainStage"
+                              ? "bg-secondary "
+                              : isStage === "alphaStage"
+                                ? "bg-[#FF4E20]"
+                                : isStage === "buildersHut"
+                                  ? "bg-[#7B0FC9]"
+                                  : isStage === "breakoutArea"
+                                    ? "bg-[#0FBCC9]"
+                                    : "bg-secondary"
+                          } text-white/[0.64]`
+                    } transition duration-300 ease-in-out hover:bg-white ${
+                      isStage === "mainStage"
                         ? "hover:text-secondary "
                         : isStage === "alphaStage"
                           ? "hover:text-[#FF4E20]"
@@ -425,7 +452,7 @@ const Agenda = ({ day1, day2 }) => {
                             : isStage === "breakoutArea"
                               ? "hover:text-[#0FBCC9]"
                               : "hover:text-secondary"
-                      }`}
+                    }`}
                     onClick={(e) => {
                       isTabDateActivedStage(
                         e,
@@ -440,19 +467,22 @@ const Agenda = ({ day1, day2 }) => {
                   <button
                     type="button"
                     id="ca2024AgendaTabs_BreakoutArea"
-                    className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${isStage === "breakoutArea"
-                      ? "bg-white text-[#0FBCC9]"
-                      : `${isStage === "mainStage"
-                        ? "bg-secondary "
-                        : isStage === "alphaStage"
-                          ? "bg-[#FF4E20]"
-                          : isStage === "buildersHut"
-                            ? "bg-[#7B0FC9]"
-                            : isStage === "breakoutArea"
-                              ? "bg-[#0FBCC9]"
-                              : "bg-secondary"
-                      } text-white/[0.64]`
-                      } transition duration-300 ease-in-out hover:bg-white ${isStage === "mainStage"
+                    className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${
+                      isStage === "breakoutArea"
+                        ? "bg-white text-[#0FBCC9]"
+                        : `${
+                            isStage === "mainStage"
+                              ? "bg-secondary "
+                              : isStage === "alphaStage"
+                                ? "bg-[#FF4E20]"
+                                : isStage === "buildersHut"
+                                  ? "bg-[#7B0FC9]"
+                                  : isStage === "breakoutArea"
+                                    ? "bg-[#0FBCC9]"
+                                    : "bg-secondary"
+                          } text-white/[0.64]`
+                    } transition duration-300 ease-in-out hover:bg-white ${
+                      isStage === "mainStage"
                         ? "hover:text-secondary "
                         : isStage === "alphaStage"
                           ? "hover:text-[#FF4E20]"
@@ -461,7 +491,7 @@ const Agenda = ({ day1, day2 }) => {
                             : isStage === "breakoutArea"
                               ? "hover:text-[#0FBCC9]"
                               : "hover:text-secondary"
-                      }`}
+                    }`}
                     onClick={(e) => {
                       isTabDateActivedStage(
                         e,
@@ -619,7 +649,7 @@ const Agenda = ({ day1, day2 }) => {
                           <>
                             {gtRslt.attributes.highlight === false ? (
                               gtRslt.attributes.speaker.data.length > 0 ||
-                                gtRslt.attributes.moderator.data.length > 0 ? (
+                              gtRslt.attributes.moderator.data.length > 0 ? (
                                 <>
                                   <button
                                     id={`btnAgenda`}
@@ -640,11 +670,9 @@ const Agenda = ({ day1, day2 }) => {
                                         title: gtRslt.attributes.title,
                                         desc: gtRslt.attributes.description,
                                         name: gtRslt.attributes.name,
-                                        startTime:
-                                          gtRslt.attributes.timeStart,
+                                        startTime: gtRslt.attributes.timeStart,
                                         lastTime: gtRslt.attributes.timeEnd,
-                                        speaker:
-                                          gtRslt.attributes.speaker.data,
+                                        speaker: gtRslt.attributes.speaker.data,
                                         moderator:
                                           gtRslt.attributes.moderator.data,
                                       });
@@ -763,7 +791,7 @@ const Agenda = ({ day1, day2 }) => {
                           <>
                             {gtRslt.attributes.highlight === false ? (
                               gtRslt.attributes.speaker.data.length > 0 ||
-                                gtRslt.attributes.moderator.data.length > 0 ? (
+                              gtRslt.attributes.moderator.data.length > 0 ? (
                                 <>
                                   <button
                                     id={`btnAgenda`}
@@ -784,11 +812,9 @@ const Agenda = ({ day1, day2 }) => {
                                         title: gtRslt.attributes.title,
                                         desc: gtRslt.attributes.description,
                                         name: gtRslt.attributes.name,
-                                        startTime:
-                                          gtRslt.attributes.timeStart,
+                                        startTime: gtRslt.attributes.timeStart,
                                         lastTime: gtRslt.attributes.timeEnd,
-                                        speaker:
-                                          gtRslt.attributes.speaker.data,
+                                        speaker: gtRslt.attributes.speaker.data,
                                         moderator:
                                           gtRslt.attributes.moderator.data,
                                       });
@@ -875,7 +901,7 @@ export const getStaticProps = async () => {
   //   `/ca24-agendas/?filters[stage][$eq]=mainStage&filters[stage][$eq]=overallVenue&filters[day][$eq]=day1&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
   // );
   const isDay1MainStage = await getFetch(
-    `/ca24-agendas/?filters[day][$eq]=day1&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
+    `/ca24-agendas/?filters[day][$eq]=day1&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture&pagination[pageSize]=100`,
   );
 
   const groupsTimeDay1 = isDay1MainStage.data.reduce((groups, items) => {
@@ -903,7 +929,7 @@ export const getStaticProps = async () => {
   //   `/ca24-agendas/?filters[stage][$eq]=mainStage&filters[stage][$eq]=overallVenue&filters[day][$eq]=day2&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
   // );
   const isDay2MainStage = await getFetch(
-    `/ca24-agendas/?filters[day][$eq]=day2&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
+    `/ca24-agendas/?filters[day][$eq]=day2&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture&pagination[pageSize]=100`,
   );
 
   const groupsTimeDay2 = isDay2MainStage.data.reduce((groups, items) => {
