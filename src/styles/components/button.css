@@ -22,7 +22,7 @@
   @apply bg-right object-cover object-center;
 }
 
-.ca2024BgOverflayBreakoutArea {
+.ca2024BgOverflaycommunityGround {
   @apply bg-[url("/assets/images/agenda/button/ca2024AgendaButtonLabel_BreakoutArea.png")];
   @apply bg-right object-cover object-center;
 }

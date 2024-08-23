@@ -47,8 +47,8 @@ const Agenda = ({ day1, day2 }) => {
       }
     } else if (stage === "buildersHut") {
       url = `/ca24-agendas/?filters[stage][$eq]=buildersHut&filters[day][$eq]=day${days}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`;
-    } else if (stage === "breakoutArea") {
-      url = `/ca24-agendas/?populate=*&filters[stage][$eq]=breakoutArea&filters[stage][$eq]=overallVenue&filters[day][$eq]=day${days}&sort[0]=timeStart:asc`;
+    } else if (stage === "communityGround") {
+      url = `/ca24-agendas/?populate=*&filters[stage][$eq]=communityGround&filters[day][$eq]=day${days}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`;
     } else {
       url = `/ca24-agendas/?filters[day][$eq]=day${days}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture&pagination[pageSize]=100`;
     }
@@ -56,7 +56,7 @@ const Agenda = ({ day1, day2 }) => {
     try {
       const getStage = await getFetch(url);
 
-      const groupsStage = getStage.data.reduce((groups, items) => {
+      const groupsTimeDay = getStage.data.reduce((groups, items) => {
         const parts = items.attributes.timeStart;
         const time = parts !== "Invalid Date" ? parts.split(":")[0] : "00";
 
@@ -69,13 +69,14 @@ const Agenda = ({ day1, day2 }) => {
         return groups;
       }, {});
 
-      // @edit: to add it in the array format instead
-      const groupArrStage = Object.keys(groupsStage).map((timeStart) => {
-        return {
-          timeStart,
-          data: groupsStage[timeStart],
-        };
-      });
+      const groupArrStage = Object.keys(groupsTimeDay)
+        .sort((a, b) => a - b) // Urutkan dari kecil ke besar (AM ke PM)
+        .map((timeStart) => {
+          return {
+            timeStart,
+            data: groupsTimeDay[timeStart],
+          };
+        });
 
       if (days === 1) {
         setDay1(groupArrStage);
@@ -137,9 +138,9 @@ const Agenda = ({ day1, day2 }) => {
         if (gtAgendaTabs) {
           gtAgendaTabs.click();
         }
-      } else if (isTabs === "breakoutArea") {
+      } else if (isTabs === "communityGround") {
         const gtAgendaTabs = document.querySelector(
-          "#ca2024AgendaTabs_BreakoutArea",
+          "#ca2024AgendaTabs_communityGround",
         );
 
         if (gtAgendaTabs) {
@@ -249,7 +250,7 @@ const Agenda = ({ day1, day2 }) => {
                       ? "bg-[#FF4E20]"
                       : isStage === "buildersHut"
                         ? "bg-[#7B0FC9]"
-                        : isStage === "breakoutArea"
+                        : isStage === "communityGround"
                           ? "bg-[#0FBCC9]"
                           : "bg-secondary "
                 } px-2 py-2 transition sm:px-2`}
@@ -268,7 +269,7 @@ const Agenda = ({ day1, day2 }) => {
                           ? "bg-[#FF4E20]"
                           : isStage === "buildersHut"
                             ? "bg-[#7B0FC9]"
-                            : isStage === "breakoutArea"
+                            : isStage === "communityGround"
                               ? "bg-[#0FBCC9]"
                               : "bg-secondary "
                     } px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-white/[0.64] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white ${
@@ -278,7 +279,7 @@ const Agenda = ({ day1, day2 }) => {
                           ? "hs-tab-active:text-[#FF4E20]"
                           : isStage === "buildersHut"
                             ? "hs-tab-active:text-[#7B0FC9]"
-                            : isStage === "breakoutArea"
+                            : isStage === "communityGround"
                               ? "hs-tab-active:text-[#0FBCC9]"
                               : "hs-tab-active:text-secondary "
                     } sm:text-base`}
@@ -301,7 +302,7 @@ const Agenda = ({ day1, day2 }) => {
                           ? "bg-[#FF4E20]"
                           : isStage === "buildersHut"
                             ? "bg-[#7B0FC9]"
-                            : isStage === "breakoutArea"
+                            : isStage === "communityGround"
                               ? "bg-[#0FBCC9]"
                               : "bg-secondary "
                     } px-4 py-3 text-center font-bevietnamPro text-sm font-normal text-white/[0.64] disabled:pointer-events-none disabled:opacity-50 hs-tab-active:bg-white ${
@@ -311,7 +312,7 @@ const Agenda = ({ day1, day2 }) => {
                           ? "hs-tab-active:text-[#FF4E20]"
                           : isStage === "buildersHut"
                             ? "hs-tab-active:text-[#7B0FC9]"
-                            : isStage === "breakoutArea"
+                            : isStage === "communityGround"
                               ? "hs-tab-active:text-[#0FBCC9]"
                               : "hs-tab-active:text-secondary "
                     } sm:text-base`}
@@ -335,7 +336,7 @@ const Agenda = ({ day1, day2 }) => {
                       ? "bg-[#FF4E20]"
                       : isStage === "buildersHut"
                         ? "bg-[#7B0FC9]"
-                        : isStage === "breakoutArea"
+                        : isStage === "communityGround"
                           ? "bg-[#0FBCC9]"
                           : "bg-secondary"
                 } px-2 py-2 transition sm:px-2 lg:flex`}
@@ -358,7 +359,7 @@ const Agenda = ({ day1, day2 }) => {
                                 ? "bg-[#FF4E20]"
                                 : isStage === "buildersHut"
                                   ? "bg-[#7B0FC9]"
-                                  : isStage === "breakoutArea"
+                                  : isStage === "communityGround"
                                     ? "bg-[#0FBCC9]"
                                     : "bg-secondary"
                           } text-white/[0.64]`
@@ -369,7 +370,7 @@ const Agenda = ({ day1, day2 }) => {
                           ? "hover:text-[#FF4E20]"
                           : isStage === "buildersHut"
                             ? "hover:text-[#7B0FC9]"
-                            : isStage === "breakoutArea"
+                            : isStage === "communityGround"
                               ? "hover:text-[#0FBCC9]"
                               : "hover:text-secondary"
                     }`}
@@ -398,7 +399,7 @@ const Agenda = ({ day1, day2 }) => {
                                 ? "bg-[#FF4E20]"
                                 : isStage === "buildersHut"
                                   ? "bg-[#7B0FC9]"
-                                  : isStage === "breakoutArea"
+                                  : isStage === "communityGround"
                                     ? "bg-[#0FBCC9]"
                                     : "bg-secondary"
                           } text-white/[0.64]`
@@ -409,7 +410,7 @@ const Agenda = ({ day1, day2 }) => {
                           ? "hover:text-[#FF4E20]"
                           : isStage === "buildersHut"
                             ? "hover:text-[#7B0FC9]"
-                            : isStage === "breakoutArea"
+                            : isStage === "communityGround"
                               ? "hover:text-[#0FBCC9]"
                               : "hover:text-secondary"
                     }`}
@@ -438,7 +439,7 @@ const Agenda = ({ day1, day2 }) => {
                                 ? "bg-[#FF4E20]"
                                 : isStage === "buildersHut"
                                   ? "bg-[#7B0FC9]"
-                                  : isStage === "breakoutArea"
+                                  : isStage === "communityGround"
                                     ? "bg-[#0FBCC9]"
                                     : "bg-secondary"
                           } text-white/[0.64]`
@@ -449,7 +450,7 @@ const Agenda = ({ day1, day2 }) => {
                           ? "hover:text-[#FF4E20]"
                           : isStage === "buildersHut"
                             ? "hover:text-[#7B0FC9]"
-                            : isStage === "breakoutArea"
+                            : isStage === "communityGround"
                               ? "hover:text-[#0FBCC9]"
                               : "hover:text-secondary"
                     }`}
@@ -466,9 +467,9 @@ const Agenda = ({ day1, day2 }) => {
                   </button>
                   <button
                     type="button"
-                    id="ca2024AgendaTabs_BreakoutArea"
+                    id="ca2024AgendaTabs_communityGround"
                     className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 sm:text-base ${
-                      isStage === "breakoutArea"
+                      isStage === "communityGround"
                         ? "bg-white text-[#0FBCC9]"
                         : `${
                             isStage === "mainStage"
@@ -477,7 +478,7 @@ const Agenda = ({ day1, day2 }) => {
                                 ? "bg-[#FF4E20]"
                                 : isStage === "buildersHut"
                                   ? "bg-[#7B0FC9]"
-                                  : isStage === "breakoutArea"
+                                  : isStage === "communityGround"
                                     ? "bg-[#0FBCC9]"
                                     : "bg-secondary"
                           } text-white/[0.64]`
@@ -488,7 +489,7 @@ const Agenda = ({ day1, day2 }) => {
                           ? "hover:text-[#FF4E20]"
                           : isStage === "buildersHut"
                             ? "hover:text-[#7B0FC9]"
-                            : isStage === "breakoutArea"
+                            : isStage === "communityGround"
                               ? "hover:text-[#0FBCC9]"
                               : "hover:text-secondary"
                     }`}
@@ -496,12 +497,12 @@ const Agenda = ({ day1, day2 }) => {
                       isTabDateActivedStage(
                         e,
                         isDay,
-                        "breakoutArea",
-                        `/ca24-agendas/?populate=*&filters[stage][$eq]=breakoutArea&filters[stage][$eq]=overallVenue&filters[day][$eq]=day${isDay}&sort[0]=timeStart:asc`,
+                        "communityGround",
+                        `/ca24-agendas/?populate=*&filters[stage][$eq]=communityGround&filters[day][$eq]=day${isDay}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
                       );
                     }}
                   >
-                    Breakout Area
+                    Community Village
                   </button>
                 </nav>
               </div>
@@ -582,17 +583,17 @@ const Agenda = ({ day1, day2 }) => {
                     </button>
                     <button
                       type="button"
-                      className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 lg:text-base ${isStage === "breakoutArea" ? "bg-secondary text-white" : "bg-white text-[#4C4C4C]/[0.64]"} transition duration-300 ease-in-out hover:bg-secondary hover:text-white`}
+                      className={`inline-flex w-fill items-center justify-center gap-x-2 whitespace-nowrap rounded-xl px-4 py-3 text-center font-bevietnamPro text-sm font-normal disabled:pointer-events-none disabled:opacity-50 lg:text-base ${isStage === "communityGround" ? "bg-secondary text-white" : "bg-white text-[#4C4C4C]/[0.64]"} transition duration-300 ease-in-out hover:bg-secondary hover:text-white`}
                       onClick={(e) => {
                         isTabDateActivedStage(
                           e,
                           isDay,
-                          "breakoutArea",
-                          `/ca24-agendas/?populate=*&filters[stage][$eq]=breakoutArea&filters[stage][$eq]=overallVenue&filters[day][$eq]=day${isDay}&sort[0]=timeStart:asc`,
+                          "communityGround",
+                          `/ca24-agendas/?populate=*&filters[stage][$eq]=communityGround&filters[day][$eq]=day${isDay}&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
                         );
                       }}
                     >
-                      Breakout Area
+                      Community Village
                     </button>
                   </div>
                 </div>
@@ -752,8 +753,8 @@ const Agenda = ({ day1, day2 }) => {
                 {isDay2?.map((gtRsltItems, i) => (
                   <>
                     <div className="relative w-full" key={i}>
-                      <div className="sticky bottom-auto top-[93px] z-40 w-full border-b border-[#D6D6D6] bg-[#EEEEEE] px-3 py-3 sm:top-[113px] sm:px-4 sm:py-4 lg:px-6 lg:py-6">
-                        <h2 className="flex w-full flex-row items-start justify-between text-base lg:text-xl">
+                      <div className="sticky bottom-auto top-[93px] z-40 w-full border-b border-[#D6D6D6] bg-[#EEEEEE] px-3 py-3 sm:top-[113px] sm:px-4 sm:py-4 lg:px-4 lg:py-4">
+                        <h2 className="flex w-full flex-row items-start justify-between text-base">
                           <span className="flex flex-row items-center justify-start">
                             <svg
                               className="mr-2 h-5 w-5 sm:h-6 sm:w-6"
@@ -897,9 +898,6 @@ const Agenda = ({ day1, day2 }) => {
 export default Agenda;
 
 export const getStaticProps = async () => {
-  // const isDay1MainStage = await getFetch(
-  //   `/ca24-agendas/?filters[stage][$eq]=mainStage&filters[stage][$eq]=overallVenue&filters[day][$eq]=day1&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
-  // );
   const isDay1MainStage = await getFetch(
     `/ca24-agendas/?filters[day][$eq]=day1&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture&pagination[pageSize]=100`,
   );
@@ -918,16 +916,15 @@ export const getStaticProps = async () => {
   }, {});
 
   // @edit: to add it in the array format instead
-  const groupArrDay1 = Object.keys(groupsTimeDay1).map((timeStart) => {
-    return {
-      timeStart,
-      data: groupsTimeDay1[timeStart],
-    };
-  });
+  const groupArrDay1 = Object.keys(groupsTimeDay1)
+    .sort((a, b) => a - b) // Urutkan dari kecil ke besar (AM ke PM)
+    .map((timeStart) => {
+      return {
+        timeStart,
+        data: groupsTimeDay1[timeStart],
+      };
+    });
 
-  // const isDay2MainStage = await getFetch(
-  //   `/ca24-agendas/?filters[stage][$eq]=mainStage&filters[stage][$eq]=overallVenue&filters[day][$eq]=day2&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture`,
-  // );
   const isDay2MainStage = await getFetch(
     `/ca24-agendas/?filters[day][$eq]=day2&sort[0]=timeStart:asc&populate[0]=speaker.profilePicture&populate[1]=host.logo&populate[2]=moderator.profilePicture&pagination[pageSize]=100`,
   );
@@ -945,13 +942,14 @@ export const getStaticProps = async () => {
     return groups;
   }, {});
 
-  // @edit: to add it in the array format instead
-  const groupArrDay2 = Object.keys(groupsTimeDay2).map((timeStart) => {
-    return {
-      timeStart,
-      data: groupsTimeDay2[timeStart],
-    };
-  });
+  const groupArrDay2 = Object.keys(groupsTimeDay2)
+    .sort((a, b) => a - b) // Urutkan dari kecil ke besar (AM ke PM)
+    .map((timeStart) => {
+      return {
+        timeStart,
+        data: groupsTimeDay2[timeStart],
+      };
+    });
 
   try {
     return {

@@ -53,8 +53,6 @@ const Activist = ({ page = false }) => {
                 images="/assets/images/experiences/main-stage.png"
               />
               <ActivistCard
-                isPage={page}
-                url="/agenda?tabs=breakoutArea"
                 labels="Breakout Sessions"
                 images="/assets/images/experiences/breakout-sessions.jpg"
               />

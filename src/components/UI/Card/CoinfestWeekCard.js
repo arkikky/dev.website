@@ -4,12 +4,6 @@ import { useInView } from "react-intersection-observer";
 import Image from "next/image";
 import Link from "next/link";
 import { convertToBaliTime } from "@lib/helper/convertToBaliTime";
-// import utc from "dayjs/plugin/utc";
-// import tz from "dayjs/plugin/timezone";
-
-// dayjs.extend(utc);
-// dayjs.extend(tz);
-// import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 const CoinfestWeekCard = ({
   imageUrl,
@@ -35,7 +29,6 @@ const CoinfestWeekCard = ({
     : "/assets/images/coinfest-week/ca2024CoinfestWeek-General.png";
   const isAlt = alt ? alt : "(Coinfest Week Brand)";
   const isLabelRSVP = labelRsvp ? labelRsvp : "RSVP";
-  let formattedDate;
 
   // @intersection-observer
   useEffect(() => {
@@ -43,7 +36,7 @@ const CoinfestWeekCard = ({
       setLoading(true);
     }
 
-    // console.log(title);
+    // console.log(time);
 
     return () => {
       undefined;
@@ -137,7 +130,7 @@ const CoinfestWeekCard = ({
                       strokeLinejoin="round"
                     />
                   </svg>
-                  {/* {`${convertToBaliTime(time)} — GMT + 8`} */}
+                  {/* {convertToBaliTime(time)} */}
                   {title ===
                   "Bitcoin Sunrise Yoga | Welcoming All Levels During Coinfest Week"
                     ? `7 AM — GMT + 8`

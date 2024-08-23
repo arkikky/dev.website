@@ -32,8 +32,8 @@ const AgendaModal = ({
         ? "Alpha Stage"
         : selectedStage === "buildersHut" || stage === "buildersHut"
           ? "Builders Hut"
-          : selectedStage === "breakoutArea" || stage === "breakoutArea"
-            ? "Breakout Area"
+          : selectedStage === "communityGround" || stage === "communityGround"
+            ? "Community Village"
             : "UnStake Stage";
 
   // @use-effect
@@ -80,7 +80,8 @@ const AgendaModal = ({
               <div
                 className={`ca2024CvrBgAgenda ca2024CvrBgAgendaGeneral absolute inset-x-0 inset-y-0 z-px`}
               ></div>
-            ) : selectedStage === "breakoutArea" || stage === "breakoutArea" ? (
+            ) : selectedStage === "communityGround" ||
+              stage === "communityGround" ? (
               <div
                 className={`ca2024CvrBgAgenda ca2024CvrBgAgendaGeneral absolute inset-x-0 inset-y-0 z-px`}
               ></div>
@@ -156,9 +157,9 @@ const AgendaModal = ({
                           : selectedStage === "buildersHut" ||
                               stage === "buildersHut"
                             ? "Builders Hut"
-                            : selectedStage === "breakoutArea" ||
-                                stage === "breakoutArea"
-                              ? "Breakout Area"
+                            : selectedStage === "communityGround" ||
+                                stage === "communityGround"
+                              ? "Community Village"
                               : "ca2024BgOverflayBlue bg-secondary"
                     } inline-flex w-max flex-row items-center justify-center rounded-full px-2.5 py-1 font-bevietnamPro text-sm font-light capitalize text-white`}
                   >
@@ -173,7 +174,7 @@ const AgendaModal = ({
                   </h2>
                   <p className="mt-4 px-0 font-bevietnamPro text-base font-light text-black-900">
                     {isStartTime}{" "}
-                    {isEndTime &&
+                    {isEndTime !== null &&
                       "- " + (isEndTime !== undefined ? isEndTime : "00:00 AM")}
                   </p>
                 </div>
@@ -193,8 +194,8 @@ const AgendaModal = ({
                               : selectedStage === "buildersHut" ||
                                   stage === "buildersHut"
                                 ? "text-[#7B0FC9]"
-                                : selectedStage === "breakoutArea" ||
-                                    stage === "breakoutArea"
+                                : selectedStage === "communityGround" ||
+                                    stage === "communityGround"
                                   ? "text-[#0FBCC9]"
                                   : "text-secondary"
                         }`}
@@ -236,8 +237,8 @@ const AgendaModal = ({
                           width={558}
                           quality="87"
                         />
-                      ) : selectedStage === "breakoutArea" ||
-                        stage === "breakoutArea" ? (
+                      ) : selectedStage === "communityGround" ||
+                        stage === "communityGround" ? (
                         <Image
                           className="mx-auto h-full w-full object-cover object-center"
                           src="/assets/images/agenda/line/ca2024AgendaLineTop_Main.png"
@@ -298,8 +299,8 @@ const AgendaModal = ({
                                     : selectedStage === "buildersHut" ||
                                         stage === "buildersHut"
                                       ? "hs-tab-active:text-[#7B0FC9]"
-                                      : selectedStage === "breakoutArea" ||
-                                          stage === "breakoutArea"
+                                      : selectedStage === "communityGround" ||
+                                          stage === "communityGround"
                                         ? "hs-tab-active:text-[#0FBCC9]"
                                         : "hs-tab-active:text-secondary"
                               } sm:text-base`}
@@ -346,8 +347,8 @@ const AgendaModal = ({
                                     : selectedStage === "buildersHut" ||
                                         stage === "buildersHut"
                                       ? "hs-tab-active:text-[#7B0FC9]"
-                                      : selectedStage === "breakoutArea" ||
-                                          stage === "breakoutArea"
+                                      : selectedStage === "communityGround" ||
+                                          stage === "communityGround"
                                         ? "hs-tab-active:text-[#0FBCC9]"
                                         : "hs-tab-active:text-secondary"
                               } sm:text-base`}
@@ -473,12 +474,12 @@ const AgendaModal = ({
                   width={2160}
                   quality="87"
                 />
-              ) : selectedStage === "breakoutArea" ||
-                stage === "breakoutArea" ? (
+              ) : selectedStage === "communityGround" ||
+                stage === "communityGround" ? (
                 <Image
                   className="mx-auto h-full w-full object-cover object-center"
-                  src="/assets/images/agenda/line/ca2024AgendaLine_BreakoutArea.png"
-                  alt="Coinfest Asia 2024 (Background Breakout Area Line)"
+                  src="/assets/images/agenda/line/ca2024AgendaLine_communityGround.png"
+                  alt="Coinfest Asia 2024 (Background Community Village Line)"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                   height={132}
                   width={2160}

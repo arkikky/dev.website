@@ -156,7 +156,7 @@ const Tickets = () => {
                 </div>
               </div>
 
-              <div className="col-span-full lg:col-span-4">
+              {/* <div className="col-span-full lg:col-span-4">
                 <div className="ca2024Product ca2024ProductVIP">
                   <div className="ca2024ProductGroup ca2024ProductGroupHeading">
                     <div className="z-[5] mr-3 flex flex-col">
@@ -197,7 +197,6 @@ const Tickets = () => {
                       <li>Access to Bull Areas</li>
                       <li>Exclusive access to the Speakers</li>
                       <li>Premium bar & café</li>
-                      {/* <li>Bull & Speakers pre-networking</li> */}
                       <li>Access to Official Networking Party</li>
                     </ul>
                   </div>
@@ -217,7 +216,7 @@ const Tickets = () => {
                     </a>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className="flex flex-col items-center justify-center pt-20">

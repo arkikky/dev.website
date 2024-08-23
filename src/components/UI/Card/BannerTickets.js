@@ -96,14 +96,14 @@ const BannerTickets = ({ rounded = true, mobile = false }) => {
                   price="600"
                 />
               </SplideSlide>
-              <SplideSlide>
+              {/* <SplideSlide>
                 <SmallTickets
                   type="VIP"
                   url="https://ticket.coinfest.asia/?add-to-cart=3613"
                   title="Bull Ticket"
                   price="700"
                 />
-              </SplideSlide>
+              </SplideSlide> */}
             </Splide>
           </div>
         </div>

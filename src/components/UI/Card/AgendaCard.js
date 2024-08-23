@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 // @lib
 import { formatTimeTo12Hour } from "@lib/helper/formatedTime";
@@ -32,8 +32,8 @@ const AgendaCard = ({
         ? "Alpha Stage"
         : stage === "buildersHut"
           ? "Builders Hut"
-          : stage === "breakoutArea"
-            ? "Breakout Area"
+          : stage === "communityGround"
+            ? "Community Village"
             : "UnStake Stage";
 
   // useEffect(() => {
@@ -59,16 +59,16 @@ const AgendaCard = ({
                       : selectedStage === "buildersHut" ||
                           stage === "buildersHut"
                         ? "ca2024BgOverflayBuildersHut bg-[#7B0FC9]"
-                        : selectedStage === "breakoutArea" ||
-                            stage === "breakoutArea"
-                          ? "ca2024BgOverflayBreakoutArea bg-[#0FBCC9]"
+                        : selectedStage === "communityGround" ||
+                            stage === "communityGround"
+                          ? "ca2024BgOverflaycommunityGround bg-[#0FBCC9]"
                           : "ca2024BgOverflayBlue bg-secondary"
                 } inline-flex w-max flex-row items-center justify-center rounded-full px-2.5 py-1 font-bevietnamPro text-sm font-light capitalize text-white`}
               >
                 {/* {setStage === "UnStake Stage"
                   ? (selectedStage === "mainStage" && "Main Stage") ||
                     (selectedStage === "alphaStage" && "Alpha Stage") ||
-                    (selectedStage === "breakoutArea" && "Breakout Area")
+                    (selectedStage === "communityGround" && "Community Village")
                   : setStage} */}
                 {session !== null
                   ? containsID(splitCamelCase(session)) === true
@@ -81,7 +81,7 @@ const AgendaCard = ({
               </h3>
               <p className="font-bevietnamPro text-base font-light text-[#2F2F2F]">
                 {isStartTime}{" "}
-                {isEndTime &&
+                {setEndTime !== null &&
                   "- " + (isEndTime !== undefined ? isEndTime : "00:00 AM")}
               </p>
             </div>
@@ -135,8 +135,8 @@ const AgendaCard = ({
                         : selectedStage === "buildersHut" ||
                             stage === "buildersHut"
                           ? "text-[#7B0FC9]"
-                          : selectedStage === "breakoutArea" ||
-                              stage === "breakoutArea"
+                          : selectedStage === "communityGround" ||
+                              stage === "communityGround"
                             ? "text-[#0FBCC9]"
                             : "text-secondary"
                   }`}
@@ -144,7 +144,8 @@ const AgendaCard = ({
                   {setStage === "UnStake Stage"
                     ? (selectedStage === "mainStage" && "Main Stage") ||
                       (selectedStage === "alphaStage" && "Alpha Stage") ||
-                      (selectedStage === "breakoutArea" && "Breakout Area")
+                      (selectedStage === "communityGround" &&
+                        "Community Village")
                     : setStage}
                 </p>
               </div>
@@ -160,8 +161,8 @@ const AgendaCard = ({
                         : selectedStage === "buildersHut" ||
                             stage === "buildersHut"
                           ? "border-[#7B0FC9] text-[#7B0FC9] hover:bg-[#7B0FC9] group-hover:bg-[#7B0FC9]"
-                          : selectedStage === "breakoutArea" ||
-                              stage === "breakoutArea"
+                          : selectedStage === "communityGround" ||
+                              stage === "communityGround"
                             ? "border-[#0FBCC9] text-[#0FBCC9] hover:bg-[#0FBCC9] group-hover:bg-[#0FBCC9]"
                             : "border-secondary text-secondary hover:bg-secondary group-hover:bg-secondary"
                   } bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal outline-none transition duration-300 ease-in-out hover:text-white focus-visible:outline-none group-hover:text-white sm:w-max sm:flex-row`}
@@ -180,8 +181,8 @@ const AgendaCard = ({
                         : selectedStage === "buildersHut" ||
                             stage === "buildersHut"
                           ? "border-[#7B0FC9] text-[#7B0FC9] hover:bg-[#7B0FC9] group-hover:bg-[#7B0FC9]"
-                          : selectedStage === "breakoutArea" ||
-                              stage === "breakoutArea"
+                          : selectedStage === "communityGround" ||
+                              stage === "communityGround"
                             ? "border-[#0FBCC9] text-[#0FBCC9] hover:bg-[#0FBCC9] group-hover:bg-[#0FBCC9]"
                             : "border-secondary text-secondary hover:bg-secondary group-hover:bg-secondary"
                   } bg-white px-5 py-2.5 font-bevietnamPro text-base font-normal outline-none transition duration-300 ease-in-out hover:text-white focus-visible:outline-none group-hover:text-white sm:w-max sm:flex-row`}
@@ -203,8 +204,8 @@ const AgendaCard = ({
                     ? "text-[#FF4E20]"
                     : selectedStage === "buildersHut" || stage === "buildersHut"
                       ? "text-[#7B0FC9]"
-                      : selectedStage === "breakoutArea" ||
-                          stage === "breakoutArea"
+                      : selectedStage === "communityGround" ||
+                          stage === "communityGround"
                         ? "text-[#0FBCC9]"
                         : "text-secondary"
               } sm:text-[56px] sm:leading-[74px]`}
