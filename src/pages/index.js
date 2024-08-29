@@ -1,123 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import getConfig from "next/config";
-import Script from "next/script";
 import Head from "next/head";
 
-// @get .config
+// @Get .config
 const { publicRuntimeConfig } = getConfig();
 
-// @lib
-import { getFetchUrl, getFetch } from "@lib/controller/API";
+// @Controller
+import { getFetch } from "@lib/controller/Api";
 
-// @components
-import SectionInnerSplit from "@components/SectionInnerSplit";
-import SpeakersCard from "@components/UI/Card/Speakers";
-import SpeakersModal from "@components/UI/Modal/SpeakersModal";
+// @Component's
+import Main from "@components/Main";
+import Container from "@components/Container";
 
-// @layouts
-import NavbarTop from "@layouts/Navbar/NavbarTop";
-import NavbarBottom from "@layouts/Navbar/NavbarBottom";
-import Header from "@layouts/Header";
-import About from "@layouts/About";
-import Board from "@layouts/Board";
-import Benefit from "@layouts/Benefit";
-// import StartSpeakers from "@layouts/Speakers/start";
-import Tickets from "@layouts/Tickets";
-import Speakers from "@layouts/Speakers";
-import Activist from "@layouts/Activist";
-// import NextSpeakers from "@layouts/Speakers/next";
-import Partner from "@layouts/Partner";
+// @Layout's
+import Header from "@layouts/Header/Header";
+import ChartInsights from "@layouts/ChartInsights";
+import Highlight from "@layouts/Highlight";
+import PastSpeakers from "@layouts/PastSpeakers";
 import Testimonials from "@layouts/Testimonials";
-import GetInvolved from "@layouts/GetInvolved";
-import FAQ from "@layouts/FAQ";
-// import SocialMentions from "@layouts/SocialMentions";
-import BannerFooter from "@layouts/Banner/BannerFooter";
-import Footer from "@layouts/Footer";
+import PrevSite from "@layouts/PrevCoinfestAsia";
+import Partners from "@layouts/Partners";
+import SocialMentions from "@layouts/SocialMentions";
+import BannerEmail from "@layouts/Banner/EmailSubscribe";
 
-const Home = ({
-  ipAddress,
-  speakers,
-  sponsor,
-  mediaPartner,
-  comunitiesPartner,
-  strategicPartners,
-  cyber,
-  fnb,
-}) => {
-  const [isSpeakersModal, setSpeakersModal] = useState(null);
-
-  const isSpeakers = [].concat(...speakers.page1.data, ...speakers.page2.data);
-
-  // @preline (Add Plugins)
-  useEffect(() => {
-    import("preline");
-
-    return () => {
-      undefined;
-    };
-  }, []);
-
-  {
-    /* @speakers-modal(dynamic) */
-  }
-  const isModal = ({
-    id,
-    name,
-    images,
-    position,
-    aboutMe,
-    connectWithMe,
-    logoCompany,
-  }) => {
-    setSpeakersModal({
-      id: id,
-      images: images,
-      name: name,
-      position: position,
-      aboutMe,
-      connectWithMe,
-      logoCompany,
-    });
-  };
-
-  // @main-scrollspy
-  // useEffect(() => {
-  //   const isMain = document.querySelector(".ca2024Main");
-
-  //   const hndleMainScrll = (e) => {
-  //     const isPoint = document.querySelectorAll(".ca2024MainPoints");
-
-  //     isPoint.forEach((elmnt) => {
-  //       const rct = elmnt.getBoundingClientRect();
-
-  //       if (rct.top < window.innerHeight && rct.bottom >= 20) {
-  //         elmnt.classList.add("snap-start");
-  //         elmnt.classList.remove("snap-end");
-  //       } else {
-  //         elmnt.classList.remove("snap-start");
-  //         elmnt.classList.add("snap-end");
-  //       }
-  //     });
-  //   }
-
-  //   isMain.addEventListener("scroll", (e) => hndleMainScrll(e));
-
-  //   return () => {
-  //     isMain.removeEventListener("scroll", (e) => hndleMainScrll(e));
-  //   };
-  // }, []);
-
-  // @schema
-  const schmaApp = {
+const AppCoinfestAsia = (props) => {
+  // @Schema (Website Application)
+  const schmaWebApp = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": `${publicRuntimeConfig.siteUrl}#website`,
+        "@id": `${publicRuntimeConfig.siteUrl}/#website`,
         url: `${publicRuntimeConfig.siteUrl}`,
         name: `${publicRuntimeConfig.siteAppName}`,
         alternateName: `${publicRuntimeConfig.siteAppName}`,
-        description: `Asia's largest Web3 festival. Where innovation meets adoption. BALI ☀️ 22-23 AUGUST 2024`,
+        description: `${publicRuntimeConfig.siteDesc}`,
         potentialAction: [
           {
             "@type": "SearchAction",
@@ -131,10 +48,10 @@ const Home = ({
         "@type": "ImageObject",
         "@id": `${publicRuntimeConfig.siteUrl}/#primaryimage`,
         inLanguage: "en-US",
-        url: `${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`,
+        url: "https://hub.coinvestasi.com/uploads/thumbnail_ca_Thumbnails_App_4be5853875.jpg",
         width: 1200,
         height: 628,
-        caption: `${publicRuntimeConfig.siteAppName} | Asia's largest Web3 festival. Where innovation meets adoption. BALI ☀️ 22-23 AUGUST 2024`,
+        caption: `${publicRuntimeConfig.siteAppName}`,
       },
       {
         "@type": "WebPage",
@@ -142,316 +59,214 @@ const Home = ({
         url: `${publicRuntimeConfig.siteUrl}`,
         name: `${publicRuntimeConfig.siteAppName}`,
         isPartOf: {
-          "@id": `${publicRuntimeConfig.siteUrl}#website`,
+          "@id": `${publicRuntimeConfig.siteUrl}/#website`,
         },
         primaryImageOfPage: {
-          "@id": `${publicRuntimeConfig.siteUrl}#primaryimage`,
+          "@id": `${publicRuntimeConfig.siteUrl}/#primaryimage`,
         },
-        datePublished: "2024-01-16T09:45:42+00:00",
-        dateModified: "2024-01-21T09:14:35+00:00",
-        description: `Asia's largest Web3 festival. Where innovation meets adoption. BALI ☀️ 22-23 AUGUST 2024`,
+        datePublished: "2023-07-16T09:45:42+00:00",
+        dateModified: "2023-07-21T09:14:35+00:00",
+        description: `${publicRuntimeConfig.siteDesc}`,
         inLanguage: "en-US",
       },
     ],
   };
 
-  // @schema(brand-logo)
-  const schmaBrandLogo = {
+  // @Schema (Software Application)
+  const schmaSoftwareApp = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: `${publicRuntimeConfig.siteAppName}`,
+    operatingSystem: "Web-based",
+    applicationCategory: "Event's",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      ratingCount: "2022",
+    },
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  };
+
+  // Schema LOGO Webapplication
+  const schmaLogoApp = {
     "@context": "https://schema.org",
     "@type": "Organization",
     url: `${publicRuntimeConfig.siteUrl}`,
-    logo: `${process.env.NEXT_PUBLIC_UPLOAD}/uploads/favicon_512x512_46eb72a111.png`,
+    logo: "https://hub.coinvestasi.com/uploads/favicon_b7c4681ee2.png",
   };
+
+  // Init
+  const [intSpeaker, setSpeaker] = useState(props.speaker);
+  const [intSponsorPartner, setSponsorPartner] = useState(props.sponsorPartner);
+  const [intSocialMentions, setSocialMentions] = useState(props.socialMentions);
 
   return (
     <>
-      {/* @head */}
+      {/* Head (Home) */}
       <Head>
         <title>{`${publicRuntimeConfig.siteTitle}`}</title>
         <meta name="title" content={`${publicRuntimeConfig.siteTitle}`} />
-        <meta
-          name="description"
-          content={
-            "Asia's largest Web3 festival. Where innovation meets adoption. BALI ☀️ 22-23 AUGUST 2024"
-          }
-        />
+        <meta name="description" content={`${publicRuntimeConfig.siteDesc}`} />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
+        <meta property="og:url" content={`${publicRuntimeConfig.siteUrl}`} />
         <meta
           property="og:title"
           content={`${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="og:description"
-          content={
-            "Asia's largest Web3 festival. Where innovation meets adoption. BALI ☀️ 22-23 AUGUST 2024"
-          }
+          content={`${publicRuntimeConfig.siteDesc}`}
         />
-        <meta
-          property="og:image"
-          content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
-        />
+        <meta property="og:image" content="/assets/caThumbnailsApp.jpg" />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
+        <meta
+          property="twitter:url"
+          content={`${publicRuntimeConfig.siteUrl}`}
+        />
         <meta
           property="twitter:title"
           content={`${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"
-          content={
-            "Asia's largest Web3 festival. Where innovation meets adoption. BALI ☀️ 22-23 AUGUST 2024"
-          }
+          content={`${publicRuntimeConfig.siteDesc}`}
         />
-        <meta
-          property="twitter:image"
-          content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
-        />
+        <meta property="twitter:image" content="/assets/caThumbnailsApp.jpg" />
       </Head>
 
-      {/* @schema(applications) */}
-      <Script type="application/ld+json">{JSON.stringify(schmaApp)}</Script>
+      {/* @Layout Header (App) */}
+      <Header />
 
-      {/* @schema(brand-logo) */}
-      <Script type="application/ld+json">
-        {JSON.stringify(schmaBrandLogo)}
-      </Script>
-
-      {/* @navbar(top) */}
-      <NavbarTop />
-
-      {/* @navbar(bottom) */}
-      <NavbarBottom />
-
-      {/* @main */}
-      <main className="ca2024Main relative overflow-hidden">
-        <Header />
-
-        {/* @about */}
-        <About />
-
-        <div className="flex flex-col pb-[156px]">
-          {/* @board(chartinsights) */}
-          <Board />
-
-          {/* @benefit */}
-          <Benefit />
-        </div>
-
-        {/* @start(speakers) & tickets  */}
-        <SectionInnerSplit>
-          {/* @start(speakers) */}
-          {/* <StartSpeakers /> */}
-
-          {/* @tickets */}
-          <Tickets />
-        </SectionInnerSplit>
-
-        {/* @speakers */}
-        {/* {isSpeakers && (
-         
-        )} */}
-        <Speakers>
-          {isSpeakers?.map((gtRslt, i) => (
-            <div
-              className={`ca2024SpeakersCard col-span-2 sm:col-span-4 lg:col-span-3 ${gtRslt.id}`}
-              key={i}
-            >
-              <button
-                id={`btnSpeakers${gtRslt.attributes.name}`}
-                className="btnSpeakers w-full min-w-full outline-none focus-visible:outline-none"
-                aria-label={`${gtRslt.attributes.name} - (Button Modal Speakers)`}
-                aria-labelledby={`${gtRslt.attributes.name} - (Button Modal Speakers)`}
-                data-hs-overlay={`#mdlSpeakers`}
-                onClick={(e) => {
-                  e.preventDefault();
-
-                  isModal({
-                    id: gtRslt.id,
-                    images: gtRslt.attributes
-                      ? process.env.NEXT_PUBLIC_UPLOAD +
-                        gtRslt.attributes.profilePicture.data.attributes.url
-                      : "",
-                    name: gtRslt.attributes.name,
-                    position: gtRslt.attributes.position,
-                    aboutMe: gtRslt.attributes.aboutMe,
-                    connectWithMe: gtRslt.attributes.connectWithMe,
-                  });
-                }}
-              >
-                <SpeakersCard {...gtRslt} useHeading="h3" />
-              </button>
+      <Main className="relative z-100">
+        <Container className="relative">
+          <section className="mt-10 lg:mt-18">
+            <div className="flex flex-col items-start justify-start">
+              <h2 className="text-black-800 font-bevietnamPro h2 font-bold uppercase">
+                Coinfest Asia is{" "}
+                <span className="italic sm:not-italic">NOT</span> a Traditional
+                Conference
+              </h2>
+              <p className="text-black-400 body">
+                Our unique concept at Coinfest Asia ensures memorable engagement
+                and valuable insights every year.
+              </p>
             </div>
-          ))}
-        </Speakers>
 
-        <SectionInnerSplit>
-          {/* <div className="opacity-1 pointer-events-none absolute -bottom-[229px] -right-[203px] left-auto top-auto z-[6] select-none bg-transparent transition duration-[0.8s] ease-out sm:-bottom-[405px] sm:-right-[325px] lg:-right-[415px] 2xl:-bottom-[527px]">
-            <Image
-              className="z-10 mx-auto h-auto w-[471px] object-cover object-center sm:w-[771px] lg:w-[971px]"
-              src={"/assets/images/backdrop/ca2024PointItems.png"}
-              alt={`Coinfest Asia 2024 (Points Items Start Speakers)`}
-              height={1635}
-              width={958}
-              quality="87"
-            />
-          </div> */}
+            {/* @Layout Section (Chart Insights) */}
+            <ChartInsights />
+          </section>
+        </Container>
 
-          {/* @activist */}
-          <Activist />
+        {/* @Layout Section (Highlight) */}
+        <Highlight />
 
-          {/* @next(speakers) */}
-          {/* <NextSpeakers /> */}
-        </SectionInnerSplit>
+        {/* @Layout Section (Prev Sponsor) */}
+        <Container>
+          <PrevSite />
+        </Container>
 
-        {/* @partner */}
-        <section className="ca2024MainPoints bg-white pb-[189px] pt-[140px] sm:pt-[174px]">
-          <Partner
-            isLayoutShow={true}
-            dataSponsor={sponsor}
-            dataMediaPartner={mediaPartner}
-            dataComunitiesPartner={comunitiesPartner}
-            dataStrategicPartner={strategicPartners}
-            dataCyber={cyber}
-            dataFnb={fnb}
-          />
-        </section>
+        {/* @Layout Section (Past Speakers) */}
+        <PastSpeakers {...intSpeaker} />
 
-        {/* @testimonials & get-involved  */}
-        <SectionInnerSplit overflowHidden={false}>
-          {/* @testimonials */}
-          <Testimonials />
+        {/* @Layout Section (Testimonials) */}
+        <Testimonials />
 
-          {/* @get-involved */}
-          <GetInvolved />
-        </SectionInnerSplit>
+        <Container>
+          {/* @Layout Section (Sponsor) */}
+          <Partners {...intSponsorPartner} />
 
-        {/* @social-mentions */}
-        {/* <SocialMentions /> */}
+          {/* @Layout Section (PeopleSaying) */}
+          <SocialMentions {...intSocialMentions} />
+        </Container>
 
-        <div className="ca2024MainPoints ca2024EndMainPoints relative z-[11] flex snap-start snap-always flex-col bg-white sm:z-[16] lg:z-[11]">
-          {/* @faq */}
-          <FAQ />
+        {/* @Layout Section (Banner - Email Subscrbe) */}
+        <BannerEmail />
+      </Main>
 
-          {/* @banner(footer) */}
-          <BannerFooter />
-
-          {/* @footer */}
-          <Footer />
+      {/* @Modal (Subscribe) */}
+      <div
+        id="mdlSbscbeEmail"
+        className="hs-overlay [--body-scroll:true] bg-black-900/[0.33] hidden fixed top-0 left-0 overflow-x-hidden overflow-y-auto h-full w-full z-base"
+        data-hs-overlay-backdrop-container="#bckdrpModalActve"
+      >
+        <div className="flex items-center justify-center absolute top-0 bottom-0 sm:inset-y-0 inset-x-0 mt-8 hs-overlay-open:mt-0 mx-auto px-4 sm:px-0 w-full sm:max-w-[547px] opacity-0 hs-overlay-open:opacity-100 transition-all duration-300 ease-out">
+          <div className="bg-white flex flex-col rounded-xl sm:rounded-[18px] text-center relative py-8 sm:py-14 px-7 sm:px-12">
+            <button
+              className="hs-dropdown-toggle outline-none absolute top-4.5 bottom-auto left-auto right-4"
+              aria-labelledby="mdlSbscbeEmail"
+              data-hs-overlay="#mdlSbscbeEmail"
+            >
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 8 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0.258206 1.00652C0.351976 0.912791 0.479126 0.860131 0.611706 0.860131C0.744296 0.860131 0.871447 0.912791 0.965207 1.00652L3.61171 3.65302L6.25822 1.00652C6.30432 0.958771 6.35952 0.920671 6.42052 0.894471C6.48152 0.868271 6.54712 0.854471 6.61352 0.853901C6.67992 0.853321 6.74572 0.865971 6.80722 0.891111C6.86862 0.916251 6.92442 0.953381 6.97142 1.00032C7.01832 1.04727 7.05552 1.1031 7.08062 1.16454C7.10572 1.22599 7.11842 1.29183 7.11782 1.35822C7.11722 1.42461 7.10342 1.49022 7.07722 1.55122C7.05102 1.61222 7.01292 1.6674 6.96522 1.71352L4.31871 4.36002L6.96522 7.00648C7.05632 7.10078 7.10672 7.22708 7.10552 7.35818C7.10442 7.48928 7.05182 7.61468 6.95912 7.70738C6.86642 7.80018 6.74102 7.85268 6.60992 7.85388C6.47882 7.85498 6.35252 7.80458 6.25822 7.71348L3.61171 5.06702L0.965207 7.71348C0.870907 7.80458 0.744606 7.85498 0.613506 7.85388C0.482406 7.85268 0.357007 7.80018 0.264297 7.70738C0.171597 7.61468 0.119017 7.48928 0.117877 7.35818C0.116737 7.22708 0.167126 7.10078 0.258206 7.00648L2.90471 4.36002L0.258206 1.71352C0.164476 1.61976 0.111816 1.4926 0.111816 1.36002C0.111816 1.22744 0.164476 1.10028 0.258206 1.00652Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+            <div className="flex flex-col text-center">
+              <span className="text-black-900 text-[72px] leading-[80px]">
+                🎉
+              </span>
+              <h2 className="text-black-900 font-bevietnamPro text-xl sm:text-2xl font-semibold mt-2 sm:mt-4">
+                You're on the list!
+              </h2>
+              <p className="text-black-900 font-bevietnamPro text-sm sm:text-base font-medium mt-4">
+                Thank you for your interest for Coinfest Asia. You will be the
+                first to receive news and updates—including our special promo,
+                for the upcoming Coinfest Asia.
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
 
-        {/* @speakers-modal */}
-        <SpeakersModal {...isSpeakersModal} />
-      </main>
+      {/* @Backdrop (Modal) */}
+      <div id="bckdrpModalActve"></div>
     </>
   );
 };
 
-export default Home;
+export default AppCoinfestAsia;
 
 export const getStaticProps = async () => {
-  const isIpAddress = await getFetchUrl(
-    `https://ipinfo.io/json?token=135855871d1f46`,
+  const gCaSpeaker = await getFetch(
+    `/speaker-generals?populate=*&pagination[pageSize]=100`
   );
 
-  const isSpeakers1 = await getFetch(
-    `/ca-24-speakers?sort=rank:asc&populate=*&pagination[page]=1&pagination[pageSize]=100`,
+  const gCaSponsorPartner = await getFetch(
+    `/sponsor-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
   );
 
-  const isSpeakers2 = await getFetch(
-    `/ca-24-speakers?sort=rank:asc&populate=*&pagination[page]=2&pagination[pageSize]=100`,
-  );
-  const isSponsor = await getFetch(
-    `/ca-24-sponsors?sort=rank:asc&populate=*&pagination[pageSize]=100`,
-  );
-
-  const isMediaPartnerAll = await getFetch(
-    `/ca-24-media-partners?sort=rank:asc&populate=*&pagination[page]=1&pagination[pageSize]=100`,
-  );
-
-  let isMediaPartner = [];
-
-  for (let i = 1; i <= isMediaPartnerAll.meta.pagination.pageCount; i++) {
-    const pageData = await getFetch(
-      `/ca-24-media-partners?sort=rank:asc&populate=*&pagination[page]=${i}&pagination[pageSize]=100`,
-    );
-    isMediaPartner = isMediaPartner.concat(pageData.data);
-  }
-
-  const isComunitiesAll = await getFetch(
-    `/ca-24-communities?sort=rank:asc&populate=*&pagination[page]=1&pagination[pageSize]=100`,
-  );
-
-  let isComunitiesPartner = [];
-
-  for (let i = 1; i <= isComunitiesAll.meta.pagination.pageCount; i++) {
-    const pageData = await getFetch(
-      `/ca-24-communities?sort=rank:asc&populate=*&pagination[page]=${i}&pagination[pageSize]=100`,
-    );
-    isComunitiesPartner = isComunitiesPartner.concat(pageData.data);
-  }
-
-  const isStrategicPartnersAll = await getFetch(
-    `/ca-24-strategic-partners?sort=rank:asc&populate=*&pagination[page]=1&pagination[pageSize]=100`,
-  );
-
-  let isStrategicPartner = [];
-
-  for (
-    let i = 1;
-    i <=
-    (isStrategicPartnersAll &&
-    isStrategicPartnersAll.meta &&
-    isStrategicPartnersAll.meta.pagination
-      ? isStrategicPartnersAll.meta.pagination.pageCount
-      : 1);
-    i++
-  ) {
-    const pageData = await getFetch(
-      `/ca24-strategic-partners?sort=rank:asc&populate=*&pagination[page]=${i}&pagination[pageSize]=100`,
-    );
-
-    isStrategicPartner = isStrategicPartner.concat(pageData.data);
-  }
-
-  const isCyber = await getFetch(
-    `/ca-24-other-partners?sort=rank:asc&populate=*&pagination[pageSize]=100`,
-  );
-
-  const isFnB = await getFetch(
-    `/ca24-fnb-partners?sort=rank:asc&populate=*&pagination[pageSize]=100`,
+  const gCaSocialMentions = await getFetch(
+    `/people-says?populate=*&pagination[pageSize]=100`
   );
 
   try {
     return {
       props: {
-        ipAddress: isIpAddress || [],
-        speakers: {
-          page1: isSpeakers1 || [],
-          page2: isSpeakers2 || [],
-        },
-        sponsor: isSponsor || [],
-        mediaPartner: isMediaPartner || [],
-        comunitiesPartner: isComunitiesPartner || [],
-        strategicPartners: isStrategicPartner || [],
-        cyber: isCyber || [],
-        fnb: isFnB || [],
-        // socialMentions: isSocialMentions || [],
+        speaker: gCaSpeaker || [],
+        sponsorPartner: gCaSponsorPartner || [],
+        socialMentions: gCaSocialMentions || [],
       },
 
-      revalidate: 900,
+      revalidate: 10,
     };
   } catch (err) {
     return {
       notFound: true,
     };
   }
-};
-
-Home.getLayout = function PageLayout(page) {
-  return <>{page}</>;
 };

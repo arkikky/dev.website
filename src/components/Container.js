@@ -1,12 +1,12 @@
 import React from "react";
 
 const Container = ({ className = null, children }) => {
-  const dflt = `container`;
-  const isClss = className ? `${dflt} ${className}` : `${dflt}`;
+  const dfltClss = `container`;
+  const addClss = className ? `${dfltClss} ${className}` : `${dfltClss}`;
 
   return (
     <>
-      <div className={`${isClss}`}>{children}</div>
+      <div className={`${addClss}`}>{children}</div>
     </>
   );
 };

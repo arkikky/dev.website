@@ -1,0 +1,23 @@
+.footr {
+  @apply relative;
+}
+
+.footrEnd {
+  @apply border-t border-solid border-[#EBECEE];
+}
+
+.footrGroupMnu  ul>li {
+  @apply mb-2 last:mb-0;
+}
+
+.footrGroupMnu  ul>li>a {
+  @apply text-black-400 hocus:text-primary hocus:underline;
+  
+  @apply transition duration-300 ease-in-out;
+}
+
+.footrGroupMnu  ul>a {
+  @apply text-black-400 hocus:text-primary hocus:underline;
+
+  @apply transition duration-300 ease-in-out;
+}

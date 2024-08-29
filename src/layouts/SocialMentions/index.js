@@ -1,48 +1,94 @@
-import React, { useRef, useState, useEffect } from "react";
-// import Marquee from "react-fast-marquee";
+import React, { useRef, useState } from "react";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 
-// @xomponents
-import Container from "@components/Container";
-// import CardSocialMentions from "@components/UI/Card/SocialMentions";
-// import SocialMentionsCard from "@components/UI/Card/SocialMentions";
+// @Component's
+import CardPeopleSaying from "@components/UI/Card/PeopleSaying";
 
 const SocialMentions = ({ data }) => {
+  const intGrabBackdrop = useRef(null);
+  const [intGrabDown, setGrabDown] = useState(false);
   const [intSocialMentions, setSocialMentions] = useState(data);
+
+  //  @Mouse (Grab - Event)
+  const intMouseDown = (e) => {
+    e.preventDefault();
+
+    setGrabDown(true);
+  };
+
+  const intMouseDefault = (e) => {
+    e.preventDefault();
+
+    setGrabDown(false);
+  };
+
+  const intMouseMove = (e) => {
+    if (!intGrabDown) return;
+    e.preventDefault();
+
+    setGrabDown(true);
+  };
 
   return (
     <>
-      <section className="ca2024MainPoints ca2024SocialMentionsPoints relative z-[16] flex h-auto snap-start snap-always flex-col items-center justify-center overflow-hidden bg-red-500 xl:z-10">
-        {/* <div className="ca2024SocialMentionsPointTop pointer-events-none absolute inset-x-0 bottom-auto top-10 z-px h-14 w-full select-none bg-transparent transition-all duration-150 ease-linear"></div> */}
-
-        {/* @content */}
-        <Container className="relative z-[5] overflow-hidden">
-          <div className="relative flex flex-col overflow-hidden pb-[254px] pt-[154px] sm:pt-[194px] xl:pb-[202px]">
-            <div className="ca2024SocialMentionsContentTitle opacity-1 flex flex-col items-center justify-center transition duration-[1.2s] ease-out">
-              <h2 className="text-center font-staraExtraBold text-[32px] uppercase leading-[40px] text-black-900 sm:text-[58px] sm:leading-[74px] lg:text-[80px] lg:leading-[90px]">
-                See what they're saying about Coinfest Asia
-              </h2>
-            </div>
-
-            <div id="ca2024SocialMentions" className="bckdrpCvrShdow">
-              {/* <Marquee
-                autoFill={false}
-                pauseOnHover={false}
-                direction="down"
-                speed={30} 
-                className="flex w-full flex-col"
-              > */}
-              awdwdad
-              {/* <div className="ca2024Mnsry relative">
-                  {intSocialMentions?.map((gtRslt, i) => (
-                    <div className="break-inside-avoid" key={i}>
-                      <SocialMentionsCard {...gtRslt} />
-                    </div>
-                  ))}
-                </div> */}
-              {/* </Marquee> */}
-            </div>
-          </div>
-        </Container>
+      <section
+        ref={intGrabBackdrop}
+        id="caSocialMentions"
+        className="caSocialMentions relative mt-28 mb-28"
+      >
+        <div className="flex flex-col items-center justify-center text-center">
+          <h2 className="text-black-800 font-bevietnamPro text-2xl sm:text-[40px] sm:leading-[54px] font-bold uppercase">
+            See what people are saying
+          </h2>
+          <p className="text-black-400 body">
+            Find out about Coinfest Asia from your most trusted key leaders
+          </p>
+        </div>
+        <div
+          className={`bckdrpCvrShdow ${
+            intGrabDown === true ? "cursor-grabbing" : "cursor-grab"
+          } relative mt-11`}
+          onMouseDown={(e) => intMouseDown(e)}
+          onMouseUp={(e) => intMouseDefault(e)}
+          onMouseLeave={(e) => intMouseDefault(e)}
+          onMouseMove={(e) => intMouseMove(e)}
+        >
+          <Splide
+            tag="section"
+            id="caSpldePeopleSaying"
+            aria-label="Vertical Story"
+            options={{
+              direction: "ttb",
+              type: "loop",
+              drag: "free",
+              perPage: 1,
+              gap: "16px",
+              arrows: false,
+              pagination: false,
+              keyboard: false,
+              cloneStatus: false,
+              height: "auto",
+              autoScroll: {
+                pauseOnFocus: false,
+                rewind: false,
+                speed: 2,
+              },
+            }}
+            extensions={{ AutoScroll }}
+            className="caSpldePeopleSaying caSpldeMnsry overflow-hidden min-h-[1488px] max-h-[1488px] w-full"
+          >
+            <SplideSlide className="outline-none focus:outline-none">
+              <div className="caMnsry">
+                {intSocialMentions?.map((getResult, index) => (
+                  <div key={index} className="break-inside-avoid">
+                    <CardPeopleSaying {...getResult} />
+                  </div>
+                ))}
+              </div>
+            </SplideSlide>
+          </Splide>
+        </div>
       </section>
     </>
   );
