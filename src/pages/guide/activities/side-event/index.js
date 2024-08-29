@@ -34,7 +34,7 @@ const SideEvent = ({ result }) => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Page Not Found! | ${publicRuntimeConfig.siteTitle}`}
+          content={`Side Event | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"

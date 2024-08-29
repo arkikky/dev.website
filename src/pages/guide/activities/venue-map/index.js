@@ -36,7 +36,7 @@ const VenueMap = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Page Not Found! | ${publicRuntimeConfig.siteTitle}`}
+          content={`Venue Map | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"
@@ -52,9 +52,8 @@ const VenueMap = () => {
         <div className="px-0 sm:px-7 lg:px-14">
           <Image
             className="h-full w-full object-cover cursor-pointer sm:rounded-2xl"
-            src={"/assets/images/guide/ca2024VenueMap.jpg"}
+            src={"/assets/images/guide/ca2024VenueMap.png"}
             alt={`Coinfest Asia 2024 (Background Venue Maps)`}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
             height={900}
             width={1440}
             quality="90"

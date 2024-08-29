@@ -35,7 +35,7 @@ const EngageToWin = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Page Not Found! | ${publicRuntimeConfig.siteTitle}`}
+          content={`Engage to Win | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"
@@ -50,10 +50,10 @@ const EngageToWin = () => {
       <GuideLayout title="Engage to Win" className="px-6 lg:px-14 pb-32 text-[#303030] !mt-2">
         <p className="text-base lg:text-xl leading-6 lg:leading-[30px]">Total $1000 worth of Prizes</p>
         <Image
-          src={"/assets/images/guide/engage-to-win/ca2024-Engage.svg"}
+          src={"/assets/images/guide/engage-to-win/ca2024-Engage.png"}
           width={914}
           height={500}
-          quality={95}
+          quality="100"
           className="w-full mb-2"
         />
         <EngageToWinCard />

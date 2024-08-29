@@ -29,7 +29,7 @@ const WeatherAttire = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Page Not Found! | ${publicRuntimeConfig.siteTitle}`}
+          content={`Weather & Attire | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"
