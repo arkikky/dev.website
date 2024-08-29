@@ -10,12 +10,13 @@ import Container from "@components/Container";
 // @layouts
 import GuideSidebar from "@layouts/Sidebar/GuideSidebar";
 
-const ActiveMenu = ({ isActive }) => {
+const ActiveMenu = ({ isActive, setIsMenuActive }) => {
   const router = useRouter();
 
   return (
     <div
-      className={`absolute bottom-0 left-0 top-0 block h-full bg-black-900/[56%] lg:hidden ${isActive ? "right-0" : "right-full"} z-70`}
+      className={`block lg:hidden absolute top-0 bottom-0 left-0 h-full bg-black-900/[56%] ${isActive ? "right-0" : "right-full"} z-70`}
+      onClick={() => setIsMenuActive(false)}
     >
       <div
         className={`absolute ${isActive ? "top-0 pt-[105px] opacity-100" : "top-full opacity-0"} z-10 w-full transition-all duration-500 ease-in-out`}
@@ -27,13 +28,12 @@ const ActiveMenu = ({ isActive }) => {
             const isActive = router.pathname === nav.url;
             return (
               <div className="border-b border-[#E9E9E9]">
-                <Link href={nav.url} key={nav.id}>
+                <Link onClick={(e) => e.stopPropagation()} href={nav.url} key={nav.id}>
                   <div
-                    className={`${
-                      isActive
+                    className={`${isActive
                         ? "bg-[#2458F1] text-white"
                         : "hover:bg-[#E9E9E9]"
-                    }`}
+                      }`}
                   >
                     <div className="px-8 py-4">{nav.name}</div>
                   </div>
@@ -44,11 +44,10 @@ const ActiveMenu = ({ isActive }) => {
                       {nav.children.map((child) => {
                         const isChildActive = router.pathname === child.url;
                         return (
-                          <Link href={child.url} key={child.id}>
+                          <Link onClick={(e) => e.stopPropagation()} href={child.url} key={child.id}>
                             <div
-                              className={`p-4 ${
-                                isChildActive ? "bg-[#2458F1] text-white" : ""
-                              }`}
+                              className={`p-4 ${isChildActive ? "bg-[#2458F1] text-white" : ""
+                                }`}
                             >
                               {child.name}
                             </div>
@@ -103,7 +102,7 @@ const GuideLayout = ({
 
   return (
     <div className="relative flex h-svh">
-      <ActiveMenu isActive={isMenuActive} />
+      <ActiveMenu isActive={isMenuActive} setIsMenuActive={setIsMenuActive}/>
 
       {/* @Sidebar */}
       <GuideSidebar />
@@ -238,75 +237,87 @@ const GuideLayout = ({
               />
             </svg>
           </button>
-          {nextItem ? (
-            <Link
-              href={nextItem.url}
-              className="flex w-full flex-1 flex-col items-end gap-1 border-l border-[#E6E6E6] px-6 py-4"
-            >
-              <div className="flex gap-2 text-sm font-normal text-[#2458F1]">
-                Next
-                <svg
-                  width="20"
-                  height="21"
-                  viewBox="0 0 20 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4.16406 10.5H15.8307"
-                    stroke="#2458F1"
-                    stroke-width="1.66667"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M10 4.66602L15.8333 10.4993L10 16.3327"
-                    stroke="#2458F1"
-                    stroke-width="1.66667"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+          {!isMenuActive ?
+            nextItem ? (
+              <Link
+                href={nextItem.url}
+                className="flex w-full flex-1 flex-col items-end gap-1 border-l border-[#E6E6E6] px-6 py-4"
+              >
+                <div className="flex gap-2 text-sm font-normal text-[#2458F1]">
+                  Next
+                  <svg
+                    width="20"
+                    height="21"
+                    viewBox="0 0 20 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M4.16406 10.5H15.8307"
+                      stroke="#2458F1"
+                      stroke-width="1.66667"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M10 4.66602L15.8333 10.4993L10 16.3327"
+                      stroke="#2458F1"
+                      stroke-width="1.66667"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <span className="line-clamp-1 text-xs text-[#7B7B7B]">
+                  {nextItem.name}
+                </span>
+              </Link>
+            ) : (
+              <button
+                disabled
+                className="flex w-full flex-1 flex-col items-end gap-1 border-l border-[#E6E6E6] bg-[#E9E9E9] px-6 py-4"
+              >
+                <div className="flex gap-2 text-sm font-normal text-[#2458F1]">
+                  Next
+                  <svg
+                    width="20"
+                    height="21"
+                    viewBox="0 0 20 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M4.16406 10.5H15.8307"
+                      stroke="#2458F1"
+                      stroke-width="1.66667"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M10 4.66602L15.8333 10.4993L10 16.3327"
+                      stroke="#2458F1"
+                      stroke-width="1.66667"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <span className="line-clamp-1 text-xs text-[#7B7B7B]">
+                  No more page
+                </span>
+              </button>
+            )
+            :
+            <Link href={"/"} className="flex flex-col gap-1 items-end flex-1 w-full border-l border-[#E6E6E6] px-6 py-[25px] bg-[url('/assets/images/backdrop/background/ca2024BgNavGuide.jpg')] bg-cover bg-left">
+              <div className="flex gap-2 text-sm font-normal text-white">
+                Back to Home
+                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.41406 10.4534H16.0807" stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M10.25 4.61938L16.0833 10.4527L10.25 16.2861" stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
               </div>
-              <span className="line-clamp-1 text-xs text-[#7B7B7B]">
-                {nextItem.name}
-              </span>
             </Link>
-          ) : (
-            <button
-              disabled
-              className="flex w-full flex-1 flex-col items-end gap-1 border-l border-[#E6E6E6] bg-[#E9E9E9] px-6 py-4"
-            >
-              <div className="flex gap-2 text-sm font-normal text-[#2458F1]">
-                Next
-                <svg
-                  width="20"
-                  height="21"
-                  viewBox="0 0 20 21"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4.16406 10.5H15.8307"
-                    stroke="#2458F1"
-                    stroke-width="1.66667"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M10 4.66602L15.8333 10.4993L10 16.3327"
-                    stroke="#2458F1"
-                    stroke-width="1.66667"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-              <span className="line-clamp-1 text-xs text-[#7B7B7B]">
-                No more page
-              </span>
-            </button>
-          )}
+          }
         </div>
       </nav>
     </div>

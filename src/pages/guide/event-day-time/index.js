@@ -39,7 +39,7 @@ const EventDayTime = () => {
         <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="twitter:title"
-          content={`Page Not Found! | ${publicRuntimeConfig.siteTitle}`}
+          content={`Event Day & Time | ${publicRuntimeConfig.siteTitle}`}
         />
         <meta
           property="twitter:description"
