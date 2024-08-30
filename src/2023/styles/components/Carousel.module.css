@@ -1,0 +1,12 @@
+.hdingTags {
+    @apply font-bevietnam-pro text-sm sm:text-base font-bold;
+    @apply mb-2;
+  }
+  
+  .hdingTitle {
+    @apply text-2xl sm:text-[40px] leading-[normal] lg:leading-[48px] tracking-[inherit];
+  }
+  
+  .hdingDesc {
+    @apply font-bevietnam-pro text-sm sm:text-base font-medium;
+  }
