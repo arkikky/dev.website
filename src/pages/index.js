@@ -19,6 +19,7 @@ import Highlight from "@layouts/Highlight";
 import PastSpeakers from "@layouts/PastSpeakers";
 import Testimonials from "@layouts/Testimonials";
 import PrevSite from "@layouts/PrevCoinfestAsia";
+import SponsorshipBanner from "@layouts/SponsorshipBanner";
 import Partners from "@layouts/Partners";
 import SocialMentions from "@layouts/SocialMentions";
 import BannerEmail from "@layouts/Banner/EmailSubscribe";
@@ -172,6 +173,8 @@ const AppCoinfestAsia = (props) => {
         <Container>
           <PrevSite />
         </Container>
+
+        <SponsorshipBanner />
 
         {/* @Layout Section (Past Speakers) */}
         <PastSpeakers {...intSpeaker} />

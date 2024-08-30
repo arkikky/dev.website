@@ -128,8 +128,8 @@ const BannerEmailSubscribe = () => {
             <button
               ref={mdlBtnSuccess}
               id="mdlBtnSuccess"
-              className="toolsApp bg-white flex flex-col items-center justify-center cursor-pointer rounded-[10px] outline-none absolute top-full bottom-0 left-auto right-0 h-8 w-8 opacity-0 invisible z-10"
-              // className="toolsApp bg-white flex flex-col items-center justify-center cursor-pointer rounded-[10px] outline-none absolute top-full bottom-0 left-auto right-0 h-8 w-8 z-10"
+              // className="toolsApp bg-white flex flex-col items-center justify-center cursor-pointer rounded-[10px] outline-none absolute top-full bottom-0 left-auto right-0 h-8 w-8 opacity-0 invisible z-10"
+              className="toolsApp bg-white flex flex-col items-center justify-center cursor-pointer rounded-[10px] outline-none absolute top-full bottom-0 left-auto right-0 h-8 w-8 z-10"
               aria-labelledby="Modal Subscribe Email"
               data-hs-overlay="#mdlSbscbeEmail"
             ></button>

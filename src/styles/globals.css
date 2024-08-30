@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 /* Tailwind CSS */
 @tailwind base;
@@ -16,7 +16,7 @@ body {
 }
 
 body::-webkit-scrollbar {
-  @apply w-2; 
+  @apply w-2;
 }
 
 body::-webkit-scrollbar-track {
@@ -78,15 +78,25 @@ a {
   @apply w-[290px] lg:w-[373px] xl:w-[464px];
 }
 
-.splide.caSpldeBox .splide__track .splide__list .splide__slide .caSpldeBoxImags::after {
+.splide.caSpldeBox
+  .splide__track
+  .splide__list
+  .splide__slide
+  .caSpldeBoxImags::after {
   @apply content-[''];
-  background: linear-gradient(180deg, rgba(40, 37, 37, 0.00) 0%, rgba(40, 37, 37, 0.70) 74.25%, rgba(40, 37, 37, 0.78) 82.94%, #282525 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(40, 37, 37, 0) 0%,
+    rgba(40, 37, 37, 0.7) 74.25%,
+    rgba(40, 37, 37, 0.78) 82.94%,
+    #282525 100%
+  );
   @apply absolute inset-y-0 inset-x-0;
   @apply opacity-90 z-[9];
 }
 
 .splide.caSpldeBox .splide__track .splide__list .splide__slide.is-active {
-  @apply border-[3px] border-solid border-primary grayscale-0
+  @apply border-[3px] border-solid border-primary grayscale-0;
 }
 
 /* Splde (Coverflow) */
@@ -134,7 +144,7 @@ a {
 
 .swiper.swpeVertical .swiper-wrapper .swiper-slide.swiper-slide-active::after {
   @apply content-[''];
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, #000 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%);
   @apply absolute inset-y-0 inset-x-0;
 }
 
@@ -203,7 +213,7 @@ a {
 
 @screen lg {
   .caNavbar.active {
-  @apply shadow-none;
+    @apply shadow-none;
   }
 }
 
@@ -272,7 +282,7 @@ a {
 }
 
 .caNavbar .caNavbarMain ul.caNavbarMainLinks > li > a.active,
-.caNavbar .caNavbarMain ul.caNavbarMainLinks> li:hover >a {
+.caNavbar .caNavbarMain ul.caNavbarMainLinks > li:hover > a {
   @apply bg-primary text-white;
 }
 
@@ -286,13 +296,13 @@ a {
   @apply object-cover object-center rounded;
 }
 
-.artcleMarkdown strong ,
-.artcleMarkdown span ,
+.artcleMarkdown strong,
+.artcleMarkdown span,
 .artcleMarkdown a {
   @apply text-primary font-normal;
 }
 
-.artcleMarkdown strong ,
+.artcleMarkdown strong,
 .artcleMarkdown a {
   @apply hocus:underline;
 }
@@ -300,8 +310,8 @@ a {
 /* Backdrop Shadow */
 .bckdrpCvrShdow::before {
   @apply content-[''];
-  background: linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%),
-  linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%);
+  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
   @apply absolute -top-10 bottom-auto inset-x-0;
   @apply h-[385px];
   @apply z-10;
@@ -309,8 +319,8 @@ a {
 
 .bckdrpCvrShdow::after {
   @apply content-[''];
-  background: linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%),
-  linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%);
+  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
   @apply absolute top-auto -bottom-10 inset-x-0;
   @apply h-[385px];
   @apply z-10;
@@ -327,19 +337,23 @@ a {
 /* Splide - Custom */
 .caSpldeHeaderMain::after {
   @apply content-[""];
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #282525 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #282525 100%);
   @apply absolute inset-y-0 inset-x-0;
   @apply z-[2];
 }
 
-.splide.caSpldeHeader .splide__track ,
+.splide.caSpldeHeader .splide__track,
 .splide.caSpldeHeader .splide__list {
   @apply h-full min-h-[812px] sm:min-h-[753px] lg:min-h-[928px];
 }
 
 /* Splide Mansory */
-.splide.caSpldeMnsry .splide__track .splide__slide--clone .caMasonryGrid .caMasonryGrid_Column {
-  @media (max-width: theme('screens.sm')) {
+.splide.caSpldeMnsry
+  .splide__track
+  .splide__slide--clone
+  .caMasonryGrid
+  .caMasonryGrid_Column {
+  @media (max-width: theme("screens.sm")) {
     width: 100% !important;
   }
 }
@@ -382,7 +396,7 @@ ul.footrMenu li.hs-tooltip .hs-tooltip-toggle {
 .caPastSpeakerMain::before {
   @apply content-[''];
   @apply hidden lg:flex;
-  background: linear-gradient(270deg, #FFF 10.82%, rgba(255, 255, 255, 0.00) 100%);
+  background: linear-gradient(270deg, #fff 10.82%, rgba(255, 255, 255, 0) 100%);
   @apply absolute inset-y-0 left-0 right-auto;
   @apply w-[398px];
 
@@ -393,7 +407,7 @@ ul.footrMenu li.hs-tooltip .hs-tooltip-toggle {
 .caPastSpeakerMain::after {
   @apply content-[''];
   @apply hidden lg:flex;
-  background: linear-gradient(270deg, #FFF 10.82%, rgba(255, 255, 255, 0.00) 100%);
+  background: linear-gradient(270deg, #fff 10.82%, rgba(255, 255, 255, 0) 100%);
   @apply absolute inset-y-0 left-auto right-0;
   @apply w-[398px];
 
@@ -402,7 +416,7 @@ ul.footrMenu li.hs-tooltip .hs-tooltip-toggle {
 
 .crdPstSpeakerMain::after {
   @apply content-[''];
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 9.23%, #000 91.82%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 9.23%, #000 91.82%);
   @apply absolute inset-y-0 inset-x-0;
 }
 

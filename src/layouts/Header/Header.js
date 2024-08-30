@@ -30,19 +30,19 @@ const Header = () => {
 
       if (e.index == 0) {
         if (intVideo1.current) {
-          // intVideo1.current.play();
+          intVideo1.current.play();
         }
       }
 
       if (e.index == 1) {
         if (intVideo2.current) {
-          // intVideo1.current.play();
+          intVideo2.current.play();
         }
       }
 
       if (e.index == 2) {
         if (intVideo3.current) {
-          // intVideo2.current.play();
+          intVideo3.current.play();
         }
       }
     });
@@ -125,6 +125,19 @@ const Header = () => {
               >
                 <source
                   src={"/assets/video/ca-hero2024.mp4"}
+                  type="video/mp4"
+                />
+              </video>
+            </SplideSlide>
+            <SplideSlide className="outline-none focus:outline-none overflow-hidden">
+              <video
+                preload="auto"
+                __idm_id__="true"
+                className="aspect-video object-cover object-center h-full w-full"
+                muted
+              >
+                <source
+                  src={"/assets/video/ca-hero2022.mp4"}
                   type="video/mp4"
                 />
               </video>
