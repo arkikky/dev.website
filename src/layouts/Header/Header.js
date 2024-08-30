@@ -30,29 +30,29 @@ const Header = () => {
 
       if (e.index == 0) {
         if (intVideo1.current) {
-          intVideo1.current.play();
+          // intVideo1.current.play();
         }
       }
 
       if (e.index == 1) {
         if (intVideo2.current) {
-          intVideo2.current.play();
+          // intVideo1.current.play();
         }
       }
 
       if (e.index == 2) {
         if (intVideo3.current) {
-          intVideo3.current.play();
+          // intVideo2.current.play();
         }
       }
     });
-  }, []);
+  }, [refSpldeThumbs]);
 
   useEffect(() => {
     if (intVideo1.current) {
       intVideo1.current.play();
     }
-  }, []);
+  }, [refSpldeThumbs]);
 
   return (
     <>
@@ -85,7 +85,7 @@ const Header = () => {
                 __idm_id__="true"
                 className="aspect-video object-cover object-center h-full w-full"
                 muted
-                autoPlay
+                // autoPlay
                 loop
                 playsInline
               >
@@ -97,13 +97,12 @@ const Header = () => {
             </SplideSlide>
             <SplideSlide className="outline-none focus:outline-none overflow-hidden">
               <video
-                ref={intVideo1}
+                ref={intVideo2}
                 preload="auto"
-                id="caVideoHeaderApp2"
                 __idm_id__="true"
                 className="aspect-video object-cover object-center h-full w-full"
                 muted
-                autoPlay
+                // autoPlay
                 loop
                 playsInline
               >
@@ -117,11 +116,10 @@ const Header = () => {
               <video
                 ref={intVideo3}
                 preload="auto"
-                id="caVideoHeaderApp3"
                 __idm_id__="true"
                 className="aspect-video object-cover object-center h-full w-full"
                 muted
-                autoPlay
+                // autoPlay
                 loop
                 playsInline
               >
