@@ -217,7 +217,7 @@ const Header = () => {
                     </h2>
                   </div>
                 </SplideSlide>
-                <SplideSlide className="rounded-2xl cursor-default outline-none focus:outline-none overflow-hidden">
+                <SplideSlide className="rounded-2xl cursor-default outline-none focus:outline-none overflow-hidden pointer-events-none">
                   <div className="caSpldeBoxImags absolute inset-y-0 inset-x-0 z-[8]">
                     <Image
                       className="object-cover object-center h-full w-full"
