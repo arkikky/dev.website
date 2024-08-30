@@ -18,6 +18,7 @@ const Header = () => {
 
   const intVideo1 = useRef(null);
   const intVideo2 = useRef(null);
+  const intVideo3 = useRef(null);
 
   useEffect(() => {
     if (refMainThumbs.current) {
@@ -36,6 +37,12 @@ const Header = () => {
       if (e.index == 1) {
         if (intVideo2.current) {
           intVideo2.current.play();
+        }
+      }
+
+      if (e.index == 2) {
+        if (intVideo3.current) {
+          intVideo3.current.play();
         }
       }
     });
@@ -74,7 +81,7 @@ const Header = () => {
               <video
                 ref={intVideo1}
                 preload="auto"
-                id="caVideoHeaderApp"
+                id="caVideoHeaderApp1"
                 __idm_id__="true"
                 className="aspect-video object-cover object-center h-full w-full"
                 muted
@@ -92,7 +99,7 @@ const Header = () => {
               <video
                 ref={intVideo1}
                 preload="auto"
-                id="caVideoHeaderApp"
+                id="caVideoHeaderApp2"
                 __idm_id__="true"
                 className="aspect-video object-cover object-center h-full w-full"
                 muted
@@ -106,12 +113,30 @@ const Header = () => {
                 />
               </video>
             </SplideSlide>
+            <SplideSlide className="outline-none focus:outline-none overflow-hidden">
+              <video
+                ref={intVideo3}
+                preload="auto"
+                id="caVideoHeaderApp3"
+                __idm_id__="true"
+                className="aspect-video object-cover object-center h-full w-full"
+                muted
+                autoPlay
+                loop
+                playsInline
+              >
+                <source
+                  src={"/assets/video/ca-hero2024.mp4"}
+                  type="video/mp4"
+                />
+              </video>
+            </SplideSlide>
           </Splide>
         </div>
         <Container className="relative -mt-[305px] sm:-mt-[297px] lg:-mt-[359px] px-0 z-100">
           <section id="caHeaderMain" className="flex flex-col">
             <h1 className="text-white font-bevietnamPro text-[32px] sm:text-[46px] lg:text-[56px] leading-[42px] sm:leading-[66px] lg:leading-[78px] font-bold uppercase px-4 sm:px-0">
-              The most innovative event built for innovative web3 companies
+              Asia's Largest Web3 Festival. Where Innovation Meets Adoption
             </h1>
             <div className="relative mt-4">
               <Splide
@@ -177,7 +202,7 @@ const Header = () => {
                     </h2>
                   </div>
                 </SplideSlide>
-                <SplideSlide className="rounded-2xl cursor-default outline-none focus:outline-none overflow-hidden pointer-events-none">
+                <SplideSlide className="rounded-2xl cursor-default outline-none focus:outline-none overflow-hidden">
                   <div className="caSpldeBoxImags absolute inset-y-0 inset-x-0 z-[8]">
                     <Image
                       className="object-cover object-center h-full w-full"
@@ -190,8 +215,25 @@ const Header = () => {
                   </div>
                   <div className="absolute top-auto bottom-4 lg:bottom-6 inset-x-5 lg:inset-x-7 z-10">
                     <h2 className="text-white font-bevietnamPro text-base lg:text-2xl font-bold uppercase">
-                      2024{" "}
-                      <span className="filter blur-[10px]">Coming Soon:P</span>
+                      2024 Oasis
+                    </h2>
+                  </div>
+                </SplideSlide>
+                <SplideSlide className="rounded-2xl cursor-default outline-none focus:outline-none overflow-hidden">
+                  <div className="caSpldeBoxImags absolute inset-y-0 inset-x-0 z-[8]">
+                    <Image
+                      className="object-cover object-center h-full w-full"
+                      src="/assets/images/header/caThumbnail-website2024.jpg"
+                      alt={`${publicRuntimeConfig.siteAppName} (Thumbnails - Website 2024)`}
+                      height={426}
+                      width={680}
+                      quality="87"
+                    />
+                  </div>
+                  <div className="absolute top-auto bottom-4 lg:bottom-6 inset-x-5 lg:inset-x-7 z-10">
+                    <h2 className="text-white font-bevietnamPro text-base lg:text-2xl font-bold uppercase">
+                      2025{" "}
+                      <span className="filter blur-[10px]">Coming Soon</span>
                     </h2>
                   </div>
                   <div className="absolute top-4 lg:top-6 bottom-auto inset-x-4 lg:inset-x-6 z-10">

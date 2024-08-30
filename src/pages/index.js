@@ -251,7 +251,7 @@ export const getStaticProps = async () => {
   );
 
   const gCaSocialMentions = await getFetch(
-    `/people-says?populate=*&pagination[pageSize]=100`
+    `/people-says?sort=rank:asc&populate=*&pagination[pageSize]=100`
   );
 
   try {

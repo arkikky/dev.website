@@ -11,7 +11,7 @@ const ChartInsights = () => {
         <div className="col-span-2 sm:col-span-6 lg:col-span-3">
           <div className="flex flex-col items-start justify-start bg-white border border-solid border-gray-100 rounded-[10px] py-4 sm:py-6 px-4 sm:px-6">
             <h3 className="body font-bold">
-              <CountUp separator="" start={0} end={6000} duration={5} />+
+              <CountUp separator="" start={0} end={7000} duration={5} />+
             </h3>
             <span className="text-black-400 text-base sm:text-lg font-normal">
               Attendees
@@ -41,7 +41,7 @@ const ChartInsights = () => {
         <div className="col-span-2 sm:col-span-6 lg:col-span-3">
           <div className="flex flex-col items-start justify-start bg-white border border-solid border-gray-100 rounded-[10px] py-4 sm:py-6 px-4 sm:px-6">
             <h3 className="body font-bold">
-              <CountUp separator="" start={0} end={60} duration={6} />+
+              <CountUp separator="" start={0} end={65} duration={6} />+
             </h3>
             <span className="text-black-400 text-base sm:text-lg font-normal">
               Countries
