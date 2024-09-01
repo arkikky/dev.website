@@ -1,0 +1,429 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Configuration */
+::selection {
+  @apply bg-primary text-white;
+}
+
+body {
+  @apply bg-white;
+  @apply font-bevietnamPro text-base font-normal;
+}
+
+body::-webkit-scrollbar {
+  @apply w-2;
+}
+
+body::-webkit-scrollbar-track {
+  /* @apply bg-blue-200/30; */
+  @apply bg-blue-300/20;
+}
+
+body::-webkit-scrollbar-thumb {
+  @apply bg-gray-500/50;
+  @apply rounded-full;
+  @apply border-none;
+}
+
+/* Modal Active in Body */
+/* body.mdlActive .caNavbar {
+  @apply z-10;
+} */
+
+a {
+  @apply text-inherit;
+  @apply outline-none hocus:outline-none;
+}
+
+/* ScrollbarY */
+.scrollbar-y::-webkit-scrollbar {
+  @apply w-0.5 sm:w-1;
+}
+
+.scrollbar-y::-webkit-scrollbar-track {
+  @apply bg-blue-300/20;
+}
+
+.scrollbar-y::-webkit-scrollbar-thumb {
+  @apply bg-gray-500/50;
+  @apply rounded-full;
+  @apply border-none;
+}
+
+/* ScrollbarX */
+.scrollbar-x::-webkit-scrollbar {
+  @apply h-0.5 sm:h-1;
+}
+
+.scrollbar-x::-webkit-scrollbar-track {
+  @apply bg-blue-300/20;
+}
+
+.scrollbar-x::-webkit-scrollbar-thumb {
+  @apply bg-gray-500/50;
+  @apply rounded-full;
+  @apply border-none;
+}
+
+/* Splide (Box) */
+.splide.caSpldeBox .splide__track .splide__list .splide__slide {
+  @apply bg-[#EFEFEF];
+  @apply rounded-[14px] overflow-hidden grayscale relative;
+  @apply min-h-[199px] lg:min-h-[228px] xl:min-h-[284px];
+  @apply w-[290px] lg:w-[373px] xl:w-[464px];
+}
+
+.splide.caSpldeBox
+  .splide__track
+  .splide__list
+  .splide__slide
+  .caSpldeBoxImags::after {
+  @apply content-[''];
+  background: linear-gradient(
+    180deg,
+    rgba(40, 37, 37, 0) 0%,
+    rgba(40, 37, 37, 0.7) 74.25%,
+    rgba(40, 37, 37, 0.78) 82.94%,
+    #282525 100%
+  );
+  @apply absolute inset-y-0 inset-x-0;
+  @apply opacity-90 z-[9];
+}
+
+.splide.caSpldeBox .splide__track .splide__list .splide__slide.is-active {
+  @apply border-[3px] border-solid border-primary grayscale-0;
+}
+
+/* Splde (Coverflow) */
+.splide.caSpldeCverflow .splide__track .splide__list {
+  @apply supports-grid:!grid grid-cols-4 sm:grid-cols-12 lg:supports-grid:grid-cols-none lg:!flex lg:flex-row gap-y-2 sm:gap-y-4 lg:gap-y-0 gap-x-2 sm:gap-x-4 lg:gap-x-0;
+}
+
+.splide.caSpldeCverflow .splide__track .splide__list .splide__slide {
+  @apply col-span-2 sm:col-span-4;
+  @apply bg-gray-200 rounded-xl sm:rounded-[18px] text-start overflow-hidden;
+  @apply w-full lg:w-auto;
+}
+
+/* Splide (Grayscale) */
+.splide.caSpldeGrayscale .splide__track .splide__list .splide__slide {
+  @apply grayscale;
+}
+
+.splide.caSpldeGrayscale .splide__track .splide__list .splide__slide.is-active {
+  @apply grayscale-0;
+}
+
+/* Swiper (Vertical) */
+.swiper.swpeVertical .swiper-wrapper .swiper-slide {
+  @apply bg-white;
+}
+
+.swiper.swpeVertical .swiper-wrapper .swiper-slide::after {
+  @apply content-[''];
+  @apply bg-white;
+  @apply absolute inset-y-0 inset-x-0;
+}
+
+.swiper.swpeVertical .swiper-wrapper .swiper-slide.swiper-slide-prev,
+.swiper.swpeVertical .swiper-wrapper .swiper-slide.swiper-slide-next {
+  @apply bg-[#BEBEBE];
+}
+
+.swiper.swpeVertical .swiper-wrapper .swiper-slide.swiper-slide-prev::after,
+.swiper.swpeVertical .swiper-wrapper .swiper-slide.swiper-slide-next::after {
+  @apply content-[''];
+  @apply bg-[#BEBEBE];
+  @apply absolute inset-y-0 inset-x-0;
+}
+
+.swiper.swpeVertical .swiper-wrapper .swiper-slide.swiper-slide-active::after {
+  @apply content-[''];
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000 100%);
+  @apply absolute inset-y-0 inset-x-0;
+}
+
+/* Swiper (Pagination - Line) */
+.swpePaginationLine {
+  @apply flex flex-row items-center;
+}
+
+.swiper-pagination-line {
+  @apply flex items-center justify-center;
+  @apply bg-[#D9D9D9];
+  @apply rounded-full;
+  @apply mr-1 last:mr-0;
+  @apply h-1.5 w-1.5;
+}
+.swiper-pagination-line.swiper-pagination-lineActive {
+  @apply bg-primary;
+  @apply w-6;
+}
+
+/* Hamburger */
+.hmbrgrStairs {
+  @apply py-[5px] px-[3px];
+}
+
+.hmbrgrStairs .hmbrgrStairsLine {
+  @apply bg-black-900;
+  @apply mb-1 last:mb-0;
+  @apply h-0.5 w-2.5;
+
+  @apply opacity-100 visible;
+  @apply transition duration-300 ease-in-out;
+}
+
+.hmbrgrStairs .hmbrgrStairsLine:nth-child(1) {
+  @apply ml-2;
+}
+
+.hmbrgrStairs .hmbrgrStairsLine:nth-child(2) {
+  @apply mx-auto;
+}
+
+.hmbrgrStairs .hmbrgrStairsLine:nth-child(3) {
+  @apply mr-2;
+}
+
+.hmbrgrStairs.close .hmbrgrStairsLine {
+  @apply first:rotate-[-45deg] first:translate-y-1.5 first:translate-x-px first:ml-0;
+  @apply last:rotate-[43deg] last:-translate-y-1.5 last:translate-x-px last:mr-0;
+  @apply w-[17px];
+}
+
+.hmbrgrStairs.close .hmbrgrStairsLine:nth-child(2) {
+  @apply opacity-0 invisible;
+}
+
+/* Navbar */
+.caNavbar {
+  @apply transition-[background-color] duration-300 ease-in-out;
+}
+
+.caNavbar.active {
+  @apply bg-white lg:bg-transparent;
+  box-shadow: 0px -33px 115px rgba(45, 55, 94, 0.47);
+}
+
+@screen lg {
+  .caNavbar.active {
+    @apply shadow-none;
+  }
+}
+
+.caNavbar .caNavbarMain {
+  @apply flex flex-col lg:flex-row rounded-none lg:rounded-xl;
+  @apply bg-white lg:bg-white/[0.15];
+  @apply backdrop-blur-md backdrop-saturate-150;
+  @apply border-[1.5px] border-solid border-white;
+  @apply absolute lg:relative top-full bottom-0 lg:inset-y-0 inset-x-0;
+  @apply py-4 sm:py-10 lg:py-1.5 xl:py-2 px-4 sm:px-10 lg:px-2;
+  @apply min-h-screen lg:min-h-max;
+
+  backface-visibility: hidden;
+  @apply invisible opacity-0;
+
+  @apply -z-px lg:z-[5];
+
+  @apply transition-all duration-[0.3s] ease-in-out;
+}
+
+.caNavbar .caNavbarMain::before {
+  @apply content-[''];
+  @apply bg-gray-200;
+  @apply absolute top-1 bottom-auto inset-x-0;
+  @apply mx-auto;
+  @apply h-px w-[92%];
+}
+
+@screen lg {
+  .caNavbar .caNavbarMain {
+    backface-visibility: visible;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .caNavbar .caNavbarMain::before {
+    @apply hidden;
+  }
+}
+
+.caNavbar .caNavbarMain.active {
+  backface-visibility: visible;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Navbar (Main) */
+.caNavbar .caNavbarMain ul.caNavbarMainLinks {
+  @apply flex flex-col lg:flex-row;
+  @apply h-[calc(70vh-30px)] lg:h-max;
+}
+
+.caNavbar .caNavbarMain ul.caNavbarMainLinks > li {
+  @apply flex flex-col relative;
+  @apply mr-0 lg:mr-1.5 xl:mr-2 last:mr-0;
+  @apply mb-2 sm:mb-3 lg:mb-0 last:mb-0;
+}
+
+/* Navbar (Main Menu) */
+.caNavbar .caNavbarMain ul.caNavbarMainLinks > li > a {
+  @apply flex flex-col rounded-[10px];
+  @apply focus:bg-transparent text-black-900 focus:text-black-900 font-bevietnamPro text-sm sm:text-xl lg:text-sm xl:text-base font-medium leading-initial xl:leading-inherit;
+  @apply py-3.5 lg:py-3 xl:py-3.5 px-3 lg:px-2.5 xl:px-3;
+
+  @apply transition duration-300 ease-in-out;
+}
+
+.caNavbar .caNavbarMain ul.caNavbarMainLinks > li > a.active,
+.caNavbar .caNavbarMain ul.caNavbarMainLinks > li:hover > a {
+  @apply bg-primary text-white;
+}
+
+/* Article Markdown Desc */
+.artcleMarkdown p {
+  @apply text-black-900 font-bevietnamPro font-normal;
+  @apply mt-4 first:mt-0;
+}
+
+.artcleMarkdown img {
+  @apply object-cover object-center rounded;
+}
+
+.artcleMarkdown strong,
+.artcleMarkdown span,
+.artcleMarkdown a {
+  @apply text-primary font-normal;
+}
+
+.artcleMarkdown strong,
+.artcleMarkdown a {
+  @apply hocus:underline;
+}
+
+/* Backdrop Shadow */
+.bckdrpCvrShdow::before {
+  @apply content-[''];
+  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  @apply absolute -top-10 bottom-auto inset-x-0;
+  @apply h-[385px];
+  @apply z-10;
+}
+
+.bckdrpCvrShdow::after {
+  @apply content-[''];
+  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+  @apply absolute top-auto -bottom-10 inset-x-0;
+  @apply h-[385px];
+  @apply z-10;
+
+  @apply rotate-180;
+}
+
+/* Mansonry */
+.caMnsry {
+  @apply relative;
+  @apply columns-1 sm:columns-2 lg:columns-3 [&>div:not(:first-child)]:mt-4;
+}
+
+/* Splide - Custom */
+.caSpldeHeaderMain::after {
+  @apply content-[""];
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #282525 100%);
+  @apply absolute inset-y-0 inset-x-0;
+  @apply z-[2];
+}
+
+.splide.caSpldeHeader .splide__track,
+.splide.caSpldeHeader .splide__list {
+  @apply h-full min-h-[812px] sm:min-h-[753px] lg:min-h-[928px];
+}
+
+/* Splide Mansory */
+.splide.caSpldeMnsry
+  .splide__track
+  .splide__slide--clone
+  .caMasonryGrid
+  .caMasonryGrid_Column {
+  @media (max-width: theme("screens.sm")) {
+    width: 100% !important;
+  }
+}
+
+/* Footer */
+.caFootr .caFootrEnd::before {
+  @apply content-[''];
+  @apply bg-gray-50;
+  @apply absolute top-1 bottom-auto inset-x-0;
+  @apply mx-auto;
+  @apply h-px w-full;
+}
+
+/* Footer (Nav Menu) */
+ul.footrMenu {
+  @apply flex flex-col;
+}
+
+ul.footrMenu li {
+  @apply relative;
+  @apply mb-2 last:mb-0;
+}
+
+ul.footrMenu li > a {
+  @apply flex flex-col items-start;
+  @apply text-black-900 hocus:text-primary font-bevietnamPro text-base font-normal hocus:underline capitalize;
+  @apply w-full;
+
+  @apply transition duration-300 ease-in-out;
+}
+
+/* Footer (Nav Menu - With Tooltip) */
+ul.footrMenu li.hs-tooltip .hs-tooltip-toggle {
+  @apply text-black-900 hocus:text-primary font-bevietnamPro text-base font-normal hocus:underline capitalize;
+
+  @apply transition duration-300 ease-in-out;
+}
+
+/* Past Speaker */
+.caPastSpeakerMain::before {
+  @apply content-[''];
+  @apply hidden lg:flex;
+  background: linear-gradient(270deg, #fff 10.82%, rgba(255, 255, 255, 0) 100%);
+  @apply absolute inset-y-0 left-0 right-auto;
+  @apply w-[398px];
+
+  @apply z-[5];
+  @apply transform rotate-180;
+}
+
+.caPastSpeakerMain::after {
+  @apply content-[''];
+  @apply hidden lg:flex;
+  background: linear-gradient(270deg, #fff 10.82%, rgba(255, 255, 255, 0) 100%);
+  @apply absolute inset-y-0 left-auto right-0;
+  @apply w-[398px];
+
+  @apply z-[5];
+}
+
+.crdPstSpeakerMain::after {
+  @apply content-[''];
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 9.23%, #000 91.82%);
+  @apply absolute inset-y-0 inset-x-0;
+}
+
+/* Banner Shadow */
+.caBnnrShdw::after {
+  @apply content-[''];
+  @apply bg-black-900/50;
+  @apply absolute inset-y-0 inset-x-0;
+  @apply z-px;
+}

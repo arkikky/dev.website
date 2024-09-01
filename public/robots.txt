@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://coinfest.asia/
+
+# Sitemaps
+Sitemap: https://coinfest.asia/sitemap.xml
+Sitemap: https://coinfest.asia/server-sitemap.xml
