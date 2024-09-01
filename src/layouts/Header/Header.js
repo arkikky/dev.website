@@ -73,7 +73,7 @@ const Header = () => {
               arrows: false,
               pagination: false,
               keyboard: true,
-              omitEnd: true,
+              // omitEnd: true,
             }}
             className="caSpldeHeader h-full min-h-[812px] sm:min-h-[753px] lg:min-h-[928px] w-full"
           >
@@ -85,12 +85,12 @@ const Header = () => {
                 __idm_id__="true"
                 className="aspect-video object-cover object-center h-full w-full"
                 muted
-                // autoPlay
+                autoPlay
                 loop
                 playsInline
               >
                 <source
-                  src={"/assets/video/ca-hero2022.mp4"}
+                  src={"/assets/video/ca-hero2024.mp4"}
                   type="video/mp4"
                 />
               </video>
@@ -102,7 +102,7 @@ const Header = () => {
                 __idm_id__="true"
                 className="aspect-video object-cover object-center h-full w-full"
                 muted
-                // autoPlay
+                autoPlay
                 loop
                 playsInline
               >
@@ -119,22 +119,9 @@ const Header = () => {
                 __idm_id__="true"
                 className="aspect-video object-cover object-center h-full w-full"
                 muted
-                // autoPlay
+                autoPlay
                 loop
                 playsInline
-              >
-                <source
-                  src={"/assets/video/ca-hero2024.mp4"}
-                  type="video/mp4"
-                />
-              </video>
-            </SplideSlide>
-            <SplideSlide className="outline-none focus:outline-none overflow-hidden">
-              <video
-                preload="auto"
-                __idm_id__="true"
-                className="aspect-video object-cover object-center h-full w-full"
-                muted
               >
                 <source
                   src={"/assets/video/ca-hero2022.mp4"}
@@ -163,7 +150,7 @@ const Header = () => {
                   keyboard: true,
                   arrows: false,
                   pagination: false,
-                  omitEnd: true,
+                  // omitEnd: true,
                   mediaQuery: "max",
                   breakpoints: {
                     1080: {
@@ -180,11 +167,11 @@ const Header = () => {
                 className="caSpldeHeaderThumb caSpldeBox"
               >
                 <SplideSlide className="rounded-2xl cursor-pointer outline-none focus:outline-none overflow-hidden">
-                  <div className="caSpldeBoxImags absolute inset-y-0 inset-x-0 z-[4]">
+                  <div className="caSpldeBoxImags absolute inset-y-0 inset-x-0 z-[8]">
                     <Image
                       className="object-cover object-center h-full w-full"
-                      src="/assets/images/header/caThumbnail-website2022.jpg"
-                      alt={`${publicRuntimeConfig.siteAppName} (Thumbnails - Website 2022)`}
+                      src="/assets/images/header/caThumbnail-website2024.jpg"
+                      alt={`${publicRuntimeConfig.siteAppName} (Thumbnails - Website 2024)`}
                       height={426}
                       width={680}
                       quality="87"
@@ -192,7 +179,7 @@ const Header = () => {
                   </div>
                   <div className="absolute top-auto bottom-4 lg:bottom-6 inset-x-5 lg:inset-x-7 z-10">
                     <h2 className="text-white font-bevietnamPro text-base lg:text-2xl font-bold uppercase">
-                      2022 Beach Club
+                      2024 Oasis
                     </h2>
                   </div>
                 </SplideSlide>
@@ -214,11 +201,11 @@ const Header = () => {
                   </div>
                 </SplideSlide>
                 <SplideSlide className="rounded-2xl cursor-default outline-none focus:outline-none overflow-hidden">
-                  <div className="caSpldeBoxImags absolute inset-y-0 inset-x-0 z-[8]">
+                  <div className="caSpldeBoxImags absolute inset-y-0 inset-x-0 z-[4]">
                     <Image
                       className="object-cover object-center h-full w-full"
-                      src="/assets/images/header/caThumbnail-website2024.jpg"
-                      alt={`${publicRuntimeConfig.siteAppName} (Thumbnails - Website 2024)`}
+                      src="/assets/images/header/caThumbnail-website2022.jpg"
+                      alt={`${publicRuntimeConfig.siteAppName} (Thumbnails - Website 2022)`}
                       height={426}
                       width={680}
                       quality="87"
@@ -226,31 +213,8 @@ const Header = () => {
                   </div>
                   <div className="absolute top-auto bottom-4 lg:bottom-6 inset-x-5 lg:inset-x-7 z-10">
                     <h2 className="text-white font-bevietnamPro text-base lg:text-2xl font-bold uppercase">
-                      2024 Oasis
+                      2022 Beach Club
                     </h2>
-                  </div>
-                </SplideSlide>
-                <SplideSlide className="rounded-2xl cursor-default outline-none focus:outline-none overflow-hidden pointer-events-none">
-                  <div className="caSpldeBoxImags absolute inset-y-0 inset-x-0 z-[8]">
-                    <Image
-                      className="object-cover object-center h-full w-full"
-                      src="/assets/images/header/caThumbnail-website2024.jpg"
-                      alt={`${publicRuntimeConfig.siteAppName} (Thumbnails - Website 2024)`}
-                      height={426}
-                      width={680}
-                      quality="87"
-                    />
-                  </div>
-                  <div className="absolute top-auto bottom-4 lg:bottom-6 inset-x-5 lg:inset-x-7 z-10">
-                    <h2 className="text-white font-bevietnamPro text-base lg:text-2xl font-bold uppercase">
-                      2025{" "}
-                      <span className="filter blur-[10px]">Coming Soon</span>
-                    </h2>
-                  </div>
-                  <div className="absolute top-4 lg:top-6 bottom-auto inset-x-4 lg:inset-x-6 z-10">
-                    <span className="bg-primary flex items-center justify-center rounded-md sm:rounded-[10px] text-white font-bevietnamPro text-xs sm:text-sm font-semibold relative py-1.5 sm:py-2 px-2 sm:px-3 w-max">
-                      Coming Soon
-                    </span>
                   </div>
                 </SplideSlide>
               </Splide>

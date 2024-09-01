@@ -51,7 +51,7 @@ const Highlight = () => {
     <>
       <section
         id="caHightlight"
-        className="bg-[#121212] overflow-hidden relative mt-13 pt-18 sm:pt-22 pb-20 sm:pb-24"
+        className="bg-primary overflow-hidden relative mt-13 pt-18 sm:pt-22 pb-20 sm:pb-24"
       >
         <Container className="px-0 sm:px-auto">
           <div className="supports-grid:grid grid-cols-4 sm:grid-cols-10 lg:grid-cols-12 gap-y-2 sm:gap-y-4 gap-x-2 sm:gap-x-4 relative z-10">
