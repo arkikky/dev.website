@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import getConfig from "next/config";
 import Image from "next/image";
+import Links from "next/link";
 import { Link } from "react-scroll";
 
 // @Get .config
@@ -158,12 +159,12 @@ const BannerAdsSide = () => {
               </ul>
             </div>
             <div className="flex flex-row items-center justify-end">
-              <Link
+              <Links
                 className="py-4 px-4 flex flex-col items-center justify-center bg-secondary w-max mx-auto rounded-full mr-4 lg:mr-0 outline-none"
                 href=""
               >
                 Sponsorship form
-              </Link>
+              </Links>
               <button
                 ref={intNavBtnToggle}
                 className={`hmbrgrStairs flex lg:hidden flex-col outline-none focus:outline-none ${

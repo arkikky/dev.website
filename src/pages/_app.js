@@ -1,17 +1,15 @@
 import React from "react";
 import getConfig from "next/config";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import Head from "next/head";
 
 // # Get .config
 const { publicRuntimeConfig } = getConfig();
 
 import "@styles/globals.css";
-import "@styles23/globals.css";
 
 // Layouts - Components
 import Layouts from "@layouts/Layout";
-import Layouts23 from "@layouts23/Layouts";
 
 const App = ({ Component, pageProps }) => {
   const router = useRouter();
@@ -60,21 +58,9 @@ const App = ({ Component, pageProps }) => {
         <link rel="canonical" href={publicRuntimeConfig.siteUrl} />
       </Head>
 
-      {getPath === "2023" && (
-        <>
-          <Layouts23>
-            <Component {...pageProps} />
-          </Layouts23>
-        </>
-      )}
-
-      {getPath !== "2023" && (
-        <>
-          <Layouts>
-            <Component {...pageProps} />
-          </Layouts>
-        </>
-      )}
+      <Layouts>
+        <Component {...pageProps} />
+      </Layouts>
     </>
   );
 };
