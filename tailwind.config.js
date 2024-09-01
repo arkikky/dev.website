@@ -8,9 +8,6 @@ module.exports = {
     "./src/pages/**/*.{js,ts}",
     "./src/components/**/*.{js,ts}",
     "./src/layouts/**/*.{js,ts}",
-    "./src/2023/pages/**/*.{js,ts}",
-    "./src/2023/components/**/*.{js,ts}",
-    "./src/2023/layouts/**/*.{js,ts}",
   ],
   theme: {
     extend: {
@@ -152,7 +149,9 @@ module.exports = {
     require("preline/plugin"),
     require("@tailwindcss/typography"),
     require("tailwind-scrollbar-hide"),
-    // 2023
+    require("@tailwindcss/forms")({
+      strategy: "class", // only generate global styles
+    }),
     // Or with a custom prefix:
     require("@headlessui/tailwindcss")({ prefix: "ui" }),
 

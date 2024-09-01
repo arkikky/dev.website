@@ -165,6 +165,12 @@ a {
   @apply w-6;
 }
 
+/* @shadow */
+.boxShadow-none,
+.boxShadow-none:focus {
+  box-shadow: none;
+}
+
 /* Hamburger */
 .hmbrgrStairs {
   @apply py-[5px] px-[3px];
@@ -426,4 +432,28 @@ ul.footrMenu li.hs-tooltip .hs-tooltip-toggle {
   @apply bg-black-900/50;
   @apply absolute inset-y-0 inset-x-0;
   @apply z-px;
+}
+
+/* @article */
+.ca2024ArtcleFrmattd {
+  @apply prose-h1:text-[32px] prose-h1:font-bold prose-h1:leading-[38px] sm:prose-h1:text-[40px] sm:prose-h1:leading-[48px];
+  @apply prose-h2:mb-4 prose-h2:mt-8 prose-h2:text-2xl prose-h2:font-semibold first:prose-h2:mt-0 sm:prose-h2:mt-10;
+  @apply prose-strong:font-semibold;
+  @apply prose-a:text-secondary prose-a:underline prose-ul:list-disc prose-ul:pl-8;
+}
+
+/* @select */
+.css-t3ipsp-control,
+.css-13cymwt-control {
+  @apply !rounded-lg;
+  @apply !border border-solid !border-[#E3E3E3];
+  @apply !min-h-[62px];
+}
+
+.css-1dimb5e-singleValue {
+  @apply font-bevietnamPro text-sm;
+}
+
+.css-1nmdiq5-menu {
+  @apply !z-[5];
 }

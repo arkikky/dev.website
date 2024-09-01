@@ -3,7 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Link from "next/link";
 
-const FooterBanner = () => {
+const SponsorshipBanner = () => {
   const intScBanner = useRef(null);
   const bgBannerImgs = useRef(null);
 
@@ -64,4 +64,4 @@ const FooterBanner = () => {
     </>
   );
 };
-export default FooterBanner;
+export default SponsorshipBanner;

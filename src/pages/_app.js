@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import getConfig from "next/config";
-import { useRouter } from "next/router";
 import Head from "next/head";
 
 // # Get .config
@@ -9,23 +8,10 @@ const { publicRuntimeConfig } = getConfig();
 import "@styles/globals.css";
 
 // Layouts - Components
+import SuccessModal2025 from "@components/UI/Modal/SuccessModal2025";
 import Layouts from "@layouts/Layout";
 
-const App = ({ Component, pageProps }) => {
-  const router = useRouter();
-  const setPath = router.pathname;
-  const arrPath = setPath.split("/");
-  const getPath = arrPath[1];
-
-  // Wihtout (Navbar & Footer)
-  if (Component.getLayout) {
-    return Component.getLayout(
-      <>
-        <Component {...pageProps} />
-      </>
-    );
-  }
-
+const ca2024Head = () => {
   return (
     <>
       <Head>
@@ -57,10 +43,50 @@ const App = ({ Component, pageProps }) => {
 
         <link rel="canonical" href={publicRuntimeConfig.siteUrl} />
       </Head>
+    </>
+  );
+};
+
+const App = ({ Component, pageProps }) => {
+  // @preline (Add Plugins)
+  useEffect(() => {
+    import("preline");
+
+    return () => {
+      undefined;
+    };
+  }, []);
+
+  // Wihtout (Navbar & Footer)
+  if (Component.getLayout) {
+    return Component.getLayout(
+      <>
+        {ca2024Head()}
+
+        <Component {...pageProps} />
+
+        {/* @modal */}
+        <SuccessModal2025 />
+
+        {/* @backdrop (modal) */}
+        <div id="bckdrpModalActve"></div>
+      </>
+    );
+  }
+
+  return (
+    <>
+      {ca2024Head()}
 
       <Layouts>
         <Component {...pageProps} />
       </Layouts>
+
+      {/* @modal */}
+      <SuccessModal2025 />
+
+      {/* @backdrop (modal) */}
+      <div id="bckdrpModalActve"></div>
     </>
   );
 };

@@ -158,16 +158,9 @@ const Footer = () => {
                     </h2>
                     <ul className="footrMenu mt-3">
                       <li className="hs-tooltip inline-block [--trigger:hover] [--placement:right]">
-                        {/* <Link href="/">Sponsorship Inquiry</Link> */}
-                        <div className="hs-tooltip-toggle cursor-default w-max">
+                        <Link href="/2025-sponsorship">
                           Sponsorship Inquiry
-                          <span
-                            className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible inline-block bg-black-800/80 rounded-lg text-white font-bevietnamPro text-xs leading-initial absolute py-[5px] px-2 opacity-0 invisible transition-opacity z-10"
-                            role="tooltip"
-                          >
-                            Coming Soon
-                          </span>
-                        </div>
+                        </Link>
                       </li>
                       <li className="hs-tooltip inline-block [--trigger:hover] [--placement:right]">
                         {/* <Link href="/">Media Contact</Link> */}
@@ -203,7 +196,7 @@ const Footer = () => {
                     </h2>
                     <ul className="footrMenu mt-3">
                       <li>
-                        <Link href="/2023/terms-and-conditions">
+                        <Link href="/terms-and-conditions">
                           Terms & Conditions
                         </Link>
                         {/* <div className="hs-tooltip-toggle cursor-default w-max">
@@ -217,7 +210,7 @@ const Footer = () => {
                         </div> */}
                       </li>
                       <li>
-                        <Link href="/2023/privacy-policy">Privacy Policy</Link>
+                        <Link href="/privacy-policy">Privacy Policy</Link>
                         {/* <div className="hs-tooltip-toggle cursor-default w-max">
                           Privacy Policy
                           <span
