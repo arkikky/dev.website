@@ -10,6 +10,8 @@ const PartnershipLayouts = ({
   children,
   btnBack = false,
   urlBack = "",
+  brandLogo = "primary",
+  modeDifferent = false,
 }) => {
   useEffect(() => {
     import("preline");
@@ -23,7 +25,12 @@ const PartnershipLayouts = ({
     <>
       {/* @navbar-top */}
       {/* <NavbarTop type="full" btnBack={btnBack} urlBack={urlBack} /> */}
-      <Navbar back={btnBack} bgBack="bg-white" />
+      <Navbar
+        back={btnBack}
+        bgBack="bg-white"
+        brandLogo={brandLogo}
+        modeDifferent={modeDifferent}
+      />
 
       {/* @main */}
       <main className="relative flex min-h-svh flex-col bg-primary">

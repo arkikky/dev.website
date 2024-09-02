@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 import getConfig from "next/config";
@@ -169,7 +169,7 @@ const SponsorshipGetInvolved = ({
         <meta property="og:description" content={publicRuntimeConfig.siteUrl} />
         <meta
           property="og:image"
-          content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
+          content={`/assets/caGeneral-Thumbnails.png`}
         />
 
         {/* Twitter */}
@@ -185,7 +185,7 @@ const SponsorshipGetInvolved = ({
         />
         <meta
           property="twitter:image"
-          content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
+          content={`/assets/caGeneral-Thumbnails.png`}
         />
       </Head>
 
@@ -196,6 +196,8 @@ const SponsorshipGetInvolved = ({
           "Unlock early access to Coinfest Asia 2025 sponsorships and lock in the best deals before anyone else."
         }
         btnBack={true}
+        brandLogo="white"
+        modeDifferent={true}
       >
         <form
           id="formSponsorship"

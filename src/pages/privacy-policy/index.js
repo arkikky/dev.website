@@ -37,7 +37,7 @@ const PrivacyPolicy = (props) => {
           property="og:description"
           content={`${publicRuntimeConfig.siteDesc}`}
         />
-        <meta property="og:image" content="/assets/caThumbnailsApp.jpg" />
+        <meta property="og:image" content="/assets/caGeneral-Thumbnails.png" />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
@@ -53,7 +53,10 @@ const PrivacyPolicy = (props) => {
           property="twitter:description"
           content={`${publicRuntimeConfig.siteDesc}`}
         />
-        <meta property="twitter:image" content="/assets/caThumbnailsApp.jpg" />
+        <meta
+          property="twitter:image"
+          content="/assets/caGeneral-Thumbnails.png"
+        />
       </Head>
 
       <Navbar back={true} />

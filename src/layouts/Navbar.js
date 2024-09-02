@@ -10,7 +10,12 @@ const { publicRuntimeConfig } = getConfig();
 // @Component's
 import Container from "@components/Container";
 
-const Navbar = ({ back = false, bgBack = "bg-primary" }) => {
+const Navbar = ({
+  back = false,
+  bgBack = "bg-primary",
+  brandLogo = "primary",
+  modeDifferent = false,
+}) => {
   const intNavBtnToggle = useRef(null);
   const intNavMenuPrimry = useRef(null);
   const [intMenu, setMenu] = useState(false);
@@ -53,8 +58,10 @@ const Navbar = ({ back = false, bgBack = "bg-primary" }) => {
           intMenu
             ? "z-base active"
             : intScroll
-            ? "z-base active"
+            ? `z-base ${modeDifferent === false && "active"}`
             : "z-sm deactive"
+        } ${
+          modeDifferent === true ? "mix-blend-difference" : "mix-blend-normal"
         }`}
       >
         <Container className="h-full">
@@ -72,9 +79,7 @@ const Navbar = ({ back = false, bgBack = "bg-primary" }) => {
                   <svg
                     className={`stroke-current ${
                       bgBack === "bg-primary" ? "text-white" : "text-primary"
-                    }`}
-                    width="24"
-                    height="24"
+                    } h-4 sm:h-6 w-4 sm:w-6`}
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -94,14 +99,25 @@ const Navbar = ({ back = false, bgBack = "bg-primary" }) => {
                 className={`relative mt-2 sm:mt-0 block w-max cursor-pointer`}
                 href={"/"}
               >
-                <Image
-                  className="mx-auto my-auto h-auto w-24 sm:w-32"
-                  src="/assets/images/coinfest.asia.svg"
-                  alt={`${publicRuntimeConfig.siteAppName} (Black Primary Brand - NavbarTop)`}
-                  height={62}
-                  width={182}
-                  quality="87"
-                />
+                {brandLogo === "primary" ? (
+                  <Image
+                    className="mx-auto my-auto h-auto w-24 sm:w-32"
+                    src="/assets/images/coinfest.asia.svg"
+                    alt={`${publicRuntimeConfig.siteAppName} (Black Primary Brand - NavbarTop)`}
+                    height={62}
+                    width={182}
+                    quality="87"
+                  />
+                ) : brandLogo === "white" ? (
+                  <Image
+                    className="mx-auto my-auto h-auto w-24 sm:w-32"
+                    src="/assets/images/caGeneral-BrandWhite.svg"
+                    alt={`${publicRuntimeConfig.siteAppName} (White Primary Brand - NavbarTop)`}
+                    height={62}
+                    width={182}
+                    quality="87"
+                  />
+                ) : null}
               </Links>
             </div>
             {/* <a href="/" className="relative">
@@ -209,7 +225,9 @@ const Navbar = ({ back = false, bgBack = "bg-primary" }) => {
             )}
             <div className="flex flex-row items-center justify-end">
               <Links
-                className={`py-2 sm:py-4 px-3 sm:px-4 flex flex-col items-center text-sm sm:text-base justify-center bg-secondary w-max mx-auto rounded-2xl ${
+                className={`py-2 sm:py-4 px-3 sm:px-4 flex flex-col items-center text-sm sm:text-base justify-center ${
+                  modeDifferent === true ? "bg-white" : "bg-secondary"
+                } w-max mx-auto rounded-2xl ${
                   back === true ? "mr-0" : "mr-4 lg:mr-0"
                 } outline-none`}
                 href="/2025-sponsorship"
