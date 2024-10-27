@@ -35,21 +35,15 @@ const Cart = ({ products }) => {
       if (existItems) {
         const prosesAddItemsCart = dispatch(addItemToCart(products));
 
-        if (prosesAddItemsCart) {
-          await authSession_Token(products.id_product);
-
-          router.push('/checkout');
-        }
+        await authSession_Token(products.id_product);
+        router.push('/checkout');
       } else {
         console.info('[info] your cart is full!');
       }
     } else {
       const prosesAddItemsCart = dispatch(addItemToCart(products));
-      if (prosesAddItemsCart) {
-        await authSession_Token(products.id_product);
-
-        router.push('/checkout');
-      }
+      await authSession_Token(products.id_product);
+      router.push('/checkout');
     }
   };
 
