@@ -1,18 +1,22 @@
-const bseURL = `https://api.hubapi.com`;
-const tokenApp = "pat-na1-68646d39-14c0-4c60-a133-11611743c279";
-// const tokenApp = "pat-na1-59dabf54-1691-4486-8df3-767f45999cd1"; @v2
+import getConfig from 'next/config';
 
-// @fetch-api
-export async function getFetch(url) {
-  const rs = await fetch(`${bseURL}${url}`, {
-    method: "GET",
+// @get .config
+const { publicRuntimeConfig } = getConfig();
+
+// @init
+const baseUrl = `https://api.hubapi.com`;
+const tokenKey = publicRuntimeConfig.hbspot_token_api;
+
+export async function getHbSptFetch(url) {
+  const res = await fetch(`${baseUrl}${url}`, {
+    method: 'GET',
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Origin: "*",
-      Authorization: `Bearer ${tokenApp}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Origin: '*',
+      Authorization: `Bearer ${tokenKey}`,
     },
-    cache: "no-store",
+    cache: 'no-store',
   })
     .then((res) => {
       if (res.ok) {
@@ -23,21 +27,23 @@ export async function getFetch(url) {
       return false;
     });
 
-  return rs;
+  return res;
 }
 
-export async function SubmitForm(isData, isKey) {
-  const rs = await fetch(
-    `https://api.hsforms.com/submissions/v3/integration/submit/21063184/${isKey}`,
+export async function HbSptSubmitForm(data, key) {
+  const res = await fetch(
+    `https://api.hsforms.com/submissions/v3/integration/submit/21063184/${key}`,
     {
-      method: "POST",
+      method: 'POST',
       headers: {
-        Authorization: `Bearer ${tokenApp}`,
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Origin: '*',
+        Authorization: `Bearer ${tokenKey}`,
       },
-      body: JSON.stringify(isData),
-      cache: "no-store",
-    },
+      body: JSON.stringify(data),
+      cache: 'no-store',
+    }
   )
     .then((res) => {
       if (res.ok) {
@@ -48,5 +54,5 @@ export async function SubmitForm(isData, isKey) {
       return false;
     });
 
-  return rs;
+  return res;
 }
