@@ -35,8 +35,8 @@ export async function authSession_Token(products) {
         if (rsAuth.status === true) {
           setCookie('_athutkca25', rsAuth.token, {
             maxAge: 3600,
-            // httpOnly: true,
-            // secure: true,
+            httpOnly: true,
+            secure: true,
             sameSite: 'strict',
           });
 
