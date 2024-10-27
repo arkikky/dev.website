@@ -38,7 +38,9 @@ const Cart = ({ products }) => {
         if (prosesAddItemsCart) {
           const rsAuth = await authSession_Token(products.id_product);
 
-          router.push('/checkout');
+          if (rsAuth === true) {
+            router.push('/checkout');
+          }
         }
       } else {
         console.info('[info] your cart is full!');
@@ -48,7 +50,9 @@ const Cart = ({ products }) => {
       if (prosesAddItemsCart) {
         const rsAuth = await authSession_Token(products.id_product);
 
-        router.push('/checkout');
+        if (rsAuth === true) {
+          router.push('/checkout');
+        }
       }
     }
   };
