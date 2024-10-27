@@ -9,6 +9,7 @@ export default function Home() {
         <h1>Customer List</h1>
 
         <div>Data List :</div>
+        <Link href={'/cart'}>Cart</Link>
       </section>
     </main>
   );
