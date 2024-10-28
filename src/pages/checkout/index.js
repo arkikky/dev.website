@@ -545,7 +545,9 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
                         <div className="inline-flex w-full flex-col">
                           <BillingDetailCheckout
                             ipAddress={
-                              isIpAddress.country.toLowerCase() || 'id'
+                              isIpAddress.country !== undefined
+                                ? isIpAddress.country.toLowerCase()
+                                : 'id'
                             }
                             register={register}
                             setValue={setValue}
@@ -596,7 +598,9 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
                                 <Card>
                                   <AttendeeDetailCheckouts
                                     ipAddress={
-                                      isIpAddress.country.toLowerCase() || 'id'
+                                      isIpAddress.country !== undefined
+                                        ? isIpAddress.country.toLowerCase()
+                                        : 'id'
                                     }
                                     country={isCountry}
                                     fieldForm={isFormCheckouts.fields}
