@@ -30,6 +30,10 @@ const Cart = ({ products }) => {
       '#ca25CartProduct_Checkout.ca25CartProduct_Checkout'
     );
 
+    const totalQty = isCart?.reduce((acc, item) => {
+      return acc + item.quantity;
+    }, 0);
+
     const products = {
       id_product: product.documentId,
     };
@@ -40,14 +44,11 @@ const Cart = ({ products }) => {
       );
 
       dispatch(addItemToCart(products));
-
       if (hasCookie('_cart') === true) {
-        if (handleRouteCheckout) {
+        if (handleRouteCheckout !== null) {
           handleRouteCheckout.click();
         } else {
-          setTimeout(() => {
-            router.push('/checkout');
-          }, 100);
+          router.push('/checkout');
         }
       }
 
@@ -76,12 +77,10 @@ const Cart = ({ products }) => {
 
       dispatch(addItemToCart(products));
       if (hasCookie('_cart') === true) {
-        if (handleRouteCheckout) {
+        if (handleRouteCheckout !== null) {
           handleRouteCheckout.click();
         } else {
-          setTimeout(() => {
-            router.push('/checkout');
-          }, 100);
+          router.push('/checkout');
         }
       }
 
@@ -125,6 +124,7 @@ const Cart = ({ products }) => {
             </div>
           </div>
 
+          {/* @handle push(checkout) */}
           <div className="relative hidden w-max flex-col">
             <Link
               id="ca25CartProduct_Checkout"
