@@ -1,8 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { getCookie, setCookie } from 'cookies-next';
-
-// @.env
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
 const cartSlice = createSlice({
   name: '_cart',
@@ -35,12 +32,7 @@ const cartSlice = createSlice({
         exItms.quantity = d.qty;
       }
 
-      setCookie('_cart', JSON.stringify(state), {
-        maxAge: 3600,
-        // httpOnly: true,
-        // secure: true,
-        sameSite: 'strict',
-      });
+      setCookie('_cart', JSON.stringify(state), { maxAge: 30 * 60 });
     },
 
     // Action untuk menghapus item dari cart

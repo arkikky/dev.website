@@ -6,8 +6,7 @@ import { useForm } from 'react-hook-form';
 import DOMPurify from 'dompurify';
 
 // @redux
-import { useSelector, useDispatch } from 'react-redux';
-import { updateQuantity } from '@reduxState/slices';
+import { useSelector } from 'react-redux';
 
 // @lib/controller & helper
 import { getFetch, getFetchUrl, pushSubmitData } from '@lib/controller/API';
@@ -107,11 +106,37 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
     }
   };
 
+  // @hook-preline
+  const handleIntzPreline = async () => {
+    await import('preline/preline');
+
+    if (window.HSStaticMethods) {
+      window.HSStaticMethods.autoInit();
+    }
+    // await import('@preline/select');
+
+    // if (typeof window !== 'undefined' && window.HSSelect) {
+    //   window.HSSelect.autoInit();
+    // }
+  };
+
+  // useEffect(() => {
+  //   if (isTotalQty) {
+  //     handleIntzPreline();
+  //   }
+
+  //   return () => {
+  //     undefined;
+  //   };
+  // }, [isTotalQty]);
+
   useEffect(() => {
     fetchHookProducts();
+    handleIntzPreline();
 
     const handleRouteChange = () => {
       fetchHookProducts();
+      handleIntzPreline();
     };
 
     router.events.on('routeChangeComplete', handleRouteChange);
@@ -131,20 +156,21 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
 
     if (total >= 5) {
       const newQty = 5;
-
       setTotalQty(newQty);
-      // dispatch(updateQuantity({ products: cartItems, qty: newQty }));
     } else {
       setTotalQty(total);
     }
   };
 
   useEffect(() => {
+    // @calculate-total(qty)
     calculateTotalQty();
 
     // @merge-updated(Cart)
     const isMerged = getCombineArr(isCartProduct, isCart);
     setProducts(isMerged);
+
+    handleIntzPreline();
 
     return () => {
       undefined;
@@ -217,25 +243,6 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
     setValue('emailAttndee1', emailBilling);
     setValue('companyAttndee1', companyBilling);
   };
-
-  // @hook-preline
-  const handleInzSelect = async () => {
-    await import('@preline/select');
-
-    if (typeof window !== 'undefined' && window.HSSelect) {
-      window.HSSelect.autoInit();
-    }
-  };
-
-  useEffect(() => {
-    if (isTotalQty) {
-      handleInzSelect();
-    }
-
-    return () => {
-      undefined;
-    };
-  }, [isTotalQty]);
 
   // @submit
   const onSubmitForm = async (data) => {
@@ -444,6 +451,9 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
     <>
       {/* @head */}
       <HeadGraphSeo title={`Checkout`} otherPage={true} />
+
+      {/* @script */}
+      <PrelineScript />
 
       {/* @main */}
       <Main className="flex flex-col pb-12">
@@ -665,9 +675,6 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
 
       {/* @footer */}
       <Footer />
-
-      {/* @script */}
-      <PrelineScript />
     </>
   );
 };

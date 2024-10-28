@@ -15,42 +15,39 @@ const OrderDetailCheckouts = ({ products, children }) => {
   const dispatch = useDispatch();
 
   // @quantity
-  const decreaseQty = async (cartItems) => {
+  const decreaseQty = (cartItems) => {
     if (cartItems?.quantity >= 1 && cartItems?.quantity <= 1) {
       return;
     } else if (cartItems?.quantity >= 1 && cartItems?.quantity <= 5) {
       const newQty = cartItems?.quantity - 1;
 
       if (newQty > Number(cartItems.stock)) return;
-      dispatch(updateQuantity({ products: cartItems }));
+      dispatch(updateQuantity({ products: cartItems, qty: newQty }));
     } else if (cartItems?.quantity >= 5) {
       const newQty = 5;
 
       if (newQty > Number(cartItems.stock)) return;
-      dispatch(updateQuantity({ products: cartItems }));
+      dispatch(updateQuantity({ products: cartItems, qty: newQty }));
     } else {
       return;
     }
   };
 
-  const increaseQty = async (cartItems, iQty) => {
+  const increaseQty = (cartItems) => {
     if (cartItems?.quantity <= 5) {
       const newQty = cartItems?.quantity + 1;
 
       if (newQty > Number(cartItems.stock)) return;
-      dispatch(updateQuantity({ products: cartItems }));
+      dispatch(updateQuantity({ products: cartItems, qty: newQty }));
     } else if (cartItems?.quantity >= 5) {
       const newQty = 5;
 
       if (newQty > Number(cartItems.stock)) return;
-      dispatch(updateQuantity({ products: cartItems }));
+      dispatch(updateQuantity({ products: cartItems, qty: newQty }));
     } else {
       return;
     }
   };
-
-  // @get-total(currency: IDR)
-  const isTotalCart = getTotalCart(products);
 
   return (
     <>
@@ -211,7 +208,7 @@ const OrderDetailCheckouts = ({ products, children }) => {
             <div className="grid-cols-2 supports-grid:grid">
               <span className="text-start text-sm font-medium">{`Subtotal`}</span>
               <span className="text-end text-sm font-light">
-                {currencyConverter(isTotalCart)}
+                {currencyConverter(getTotalCart(products))}
               </span>
             </div>
 
@@ -225,7 +222,7 @@ const OrderDetailCheckouts = ({ products, children }) => {
             <div className="grid-cols-2 supports-grid:grid">
               <span className="text-start text-sm font-medium">{`Total (inc. Tax)`}</span>
               <span className="text-end text-sm font-light">
-                {converterTotalCart(isTotalCart)}
+                {converterTotalCart(getTotalCart(products))}
               </span>
             </div>
           </div>

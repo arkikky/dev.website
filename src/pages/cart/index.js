@@ -30,24 +30,44 @@ const Cart = ({ products }) => {
       '#ca25CartProduct_Checkout.ca25CartProduct_Checkout'
     );
 
-    const totalQty = isCart?.reduce((acc, item) => {
-      return acc + item.quantity;
-    }, 0);
+    const checkCokiesCart = hasCookie('_cart');
 
-    const products = {
-      id_product: product.documentId,
-    };
+    if (checkCokiesCart === false) {
+      const totalQty = isCart?.reduce((acc, item) => {
+        return acc + item.quantity;
+      }, 0);
 
-    if (isCart?.length >= 1 && isCart?.length <= 1) {
-      const existItems = isCart?.find(
-        (i) => i.id_product === products.id_product
-      );
+      const products = {
+        id_product: product.documentId,
+      };
 
-      if (existItems) {
-        if (totalQty <= 5) {
+      if (isCart?.length >= 1 && isCart?.length <= 1) {
+        const existItems = isCart?.find(
+          (i) => i.id_product === products.id_product
+        );
+
+        if (existItems) {
+          if (totalQty < 6) {
+            console.log(totalQty);
+
+            dispatch(addItemToCart(products));
+            // await authSession_Token(products.id_product);
+
+            if (handleRouteCheckout !== null) {
+              handleRouteCheckout.click();
+            } else {
+              router.push('/checkout');
+            }
+          } else {
+            console.info('[info] your ticket is max!');
+          }
+        } else {
+          console.info('[info] your cart is full!');
+        }
+      } else {
+        if (totalQty < 6) {
           dispatch(addItemToCart(products));
           // await authSession_Token(products.id_product);
-
           if (handleRouteCheckout !== null) {
             handleRouteCheckout.click();
           } else {
@@ -56,21 +76,9 @@ const Cart = ({ products }) => {
         } else {
           console.info('[info] your ticket is max!');
         }
-      } else {
-        console.info('[info] your cart is full!');
       }
     } else {
-      if (totalQty <= 5) {
-        dispatch(addItemToCart(products));
-        // await authSession_Token(products.id_product);
-        if (handleRouteCheckout !== null) {
-          handleRouteCheckout.click();
-        } else {
-          router.push('/checkout');
-        }
-      } else {
-        console.info('[info] your ticket is max!');
-      }
+      console.info('[info] your cart is full!');
     }
   };
 
