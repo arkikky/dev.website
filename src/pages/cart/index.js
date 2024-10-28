@@ -48,11 +48,11 @@ const Cart = ({ products }) => {
           dispatch(addItemToCart(products));
           // await authSession_Token(products.id_product);
 
-          handleRouteCheckout.click();
-          // if (handleRouteCheckout !== null) {
-          // } else {
-          //   router.push('/checkout');
-          // }
+          if (handleRouteCheckout !== null) {
+            handleRouteCheckout.click();
+          } else {
+            router.push('/checkout');
+          }
         } else {
           console.info('[info] your ticket is max!');
         }
@@ -63,12 +63,11 @@ const Cart = ({ products }) => {
       if (totalQty <= 5) {
         dispatch(addItemToCart(products));
         // await authSession_Token(products.id_product);
-        handleRouteCheckout.click();
-        // if (handleRouteCheckout !== null) {
-        //   handleRouteCheckout.click();
-        // } else {
-        //   router.push('/checkout');
-        // }
+        if (handleRouteCheckout !== null) {
+          handleRouteCheckout.click();
+        } else {
+          router.push('/checkout');
+        }
       } else {
         console.info('[info] your ticket is max!');
       }
