@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { hasCookie } from 'cookies-next';
 
 // @redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -34,7 +35,10 @@ const Cart = ({ products }) => {
 
       dispatch(addItemToCart(products));
 
-      router.push('/checkout');
+      if (hasCookie('_cart') === true) {
+        router.push('/checkout');
+      }
+
       // await authSession_Token(products.id_product);
       // if (existItems) {
       // } else {
@@ -59,8 +63,12 @@ const Cart = ({ products }) => {
       // console.log(rsAuth);
 
       dispatch(addItemToCart(products));
+      if (hasCookie('_cart') === true) {
+        router.push('/checkout');
+      }
+
       // await authSession_Token(products.id_product);
-      router.push('/checkout');
+      // router.push('/checkout');
     }
   };
 
