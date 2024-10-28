@@ -22,7 +22,7 @@ const Cart = ({ products }) => {
   const dispatch = useDispatch();
 
   // @add-items(Cart)
-  const handleAddToCart = (product) => {
+  const handleAddToCart = async (product) => {
     const products = {
       id_product: product.documentId,
     };
@@ -33,7 +33,7 @@ const Cart = ({ products }) => {
       );
 
       if (existItems) {
-        // dispatch(addItemToCart(products));
+        dispatch(addItemToCart(products));
 
         // await authSession_Token(products.id_product);
         router.push('/checkout');
@@ -41,7 +41,7 @@ const Cart = ({ products }) => {
         console.info('[info] your cart is full!');
       }
     } else {
-      // dispatch(addItemToCart(products));
+      dispatch(addItemToCart(products));
       // await authSession_Token(products.id_product);
       router.push('/checkout');
     }

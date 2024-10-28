@@ -10,12 +10,12 @@ export async function middleware(request) {
 
     const authToken = getCookie('_athutkca25', { req: request });
 
-    // const isCart =
-    //   cokiesCart !== undefined ? JSON.parse(cokiesCart).data.length > 0 : false;
+    const isCart =
+      cokiesCart !== undefined ? JSON.parse(cokiesCart).data.length > 0 : false;
 
-    // if (!isCart) {
-    //   return NextResponse.redirect(new URL('/cart', request.url));
-    // }
+    if (!isCart) {
+      return NextResponse.redirect(new URL('/cart', request.url));
+    }
   }
 
   return NextResponse.next();

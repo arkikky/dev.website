@@ -23,7 +23,7 @@ const cartSlice = createSlice({
         maxAge: 3600,
         // httpOnly: true,
         // secure: true,
-        // sameSite: 'strict',
+        sameSite: 'strict',
       });
     },
 
@@ -43,7 +43,7 @@ const cartSlice = createSlice({
         maxAge: 3600,
         // httpOnly: true,
         // secure: true,
-        // sameSite: 'strict',
+        sameSite: 'strict',
       });
     },
 
