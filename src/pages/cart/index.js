@@ -22,7 +22,7 @@ const Cart = ({ products }) => {
   const dispatch = useDispatch();
 
   // @add-items(Cart)
-  const handleAddToCart = async (product) => {
+  const handleAddToCart = (product) => {
     const products = {
       id_product: product.documentId,
     };

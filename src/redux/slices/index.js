@@ -27,11 +27,6 @@ const cartSlice = createSlice({
       });
     },
 
-    // Action untuk menghapus item dari cart
-    // removeFromCart: (state, action) => {
-    //   state.items = state.items.filter((item) => item.id !== action.payload);
-    // },
-
     // @update(qty)
     updateQuantity: (state, action) => {
       const d = action.payload;
@@ -51,6 +46,11 @@ const cartSlice = createSlice({
         // sameSite: 'strict',
       });
     },
+
+    // Action untuk menghapus item dari cart
+    // removeFromCart: (state, action) => {
+    //   state.items = state.items.filter((item) => item.id !== action.payload);
+    // },
 
     // // Action untuk menghapus semua item dari cart
     // clearCart: (state) => {
