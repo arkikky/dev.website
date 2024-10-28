@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { hasCookie } from 'cookies-next';
+import Link from 'next/link';
 
 // @redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,11 +20,16 @@ import Breadcrumb from '@components/UI/Breadcrumb';
 
 const Cart = ({ products }) => {
   const router = useRouter();
+
   const isCart = useSelector((state) => state.cart.data);
   const dispatch = useDispatch();
 
   // @add-items(Cart)
   const handleAddToCart = async (product) => {
+    const handleRouteCheckout = document.querySelector(
+      '#ca25CartProduct_Checkout.ca25CartProduct_Checkout'
+    );
+
     const products = {
       id_product: product.documentId,
     };
@@ -36,9 +42,13 @@ const Cart = ({ products }) => {
       dispatch(addItemToCart(products));
 
       if (hasCookie('_cart') === true) {
-        setTimeout(() => {
-          router.push('/checkout');
-        }, 100);
+        if (handleRouteCheckout) {
+          handleRouteCheckout.click();
+        } else {
+          setTimeout(() => {
+            router.push('/checkout');
+          }, 100);
+        }
       }
 
       // await authSession_Token(products.id_product);
@@ -66,9 +76,13 @@ const Cart = ({ products }) => {
 
       dispatch(addItemToCart(products));
       if (hasCookie('_cart') === true) {
-        setTimeout(() => {
-          router.push('/checkout');
-        }, 100);
+        if (handleRouteCheckout) {
+          handleRouteCheckout.click();
+        } else {
+          setTimeout(() => {
+            router.push('/checkout');
+          }, 100);
+        }
       }
 
       // await authSession_Token(products.id_product);
@@ -111,6 +125,15 @@ const Cart = ({ products }) => {
             </div>
           </div>
 
+          <div className="relative hidden w-max flex-col">
+            <Link
+              id="ca25CartProduct_Checkout"
+              className="ca25CartProduct_Checkout text-sm font-light underline"
+              href="/checkout"
+            >
+              Checkout
+            </Link>
+          </div>
           <div className="mt-10 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
             {isProducts?.map((gtRslt, i) => (
               <div

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { hasCookie, getCookie } from 'cookies-next';
+import { hasCookie, getCookie, deleteCookie } from 'cookies-next';
 
 export async function middleware(request) {
   // @checkouts
@@ -21,9 +21,15 @@ export async function middleware(request) {
           : false;
 
       if (!isCart) {
+        deleteCookie('_cart', {
+          req: request,
+        });
         return NextResponse.redirect(new URL('/cart', request.url));
       }
     } else {
+      deleteCookie('_cart', {
+        req: request,
+      });
       return NextResponse.redirect(new URL('/cart', request.url));
     }
   }
