@@ -121,7 +121,10 @@ const Cart = ({ products }) => {
 
                 <button
                   className="w-full rounded-lg bg-black-900 px-6 py-4 text-white"
-                  onClick={() => handleAddToCart(gtRslt)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleAddToCart(gtRslt);
+                  }}
                 >
                   Add to Cart
                 </button>
