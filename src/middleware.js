@@ -8,30 +8,32 @@ export async function middleware(request) {
       req: request,
     });
 
+    console.log(hashCokiesCart);
+
     // const authToken = getCookie('_athutkca25', { req: request });
 
-    if (hashCokiesCart === true) {
-      const cokiesCart = getCookie('_cart', {
-        req: request,
-      });
+    // if (hashCokiesCart === true) {
+    //   const cokiesCart = getCookie('_cart', {
+    //     req: request,
+    //   });
 
-      const isCart =
-        JSON.parse(cokiesCart).data !== undefined
-          ? JSON.parse(cokiesCart).data.length > 0
-          : false;
+    //   const isCart =
+    //     JSON.parse(cokiesCart).data !== undefined
+    //       ? JSON.parse(cokiesCart).data.length > 0
+    //       : false;
 
-      if (!isCart) {
-        deleteCookie('_cart', {
-          req: request,
-        });
-        return NextResponse.redirect(new URL('/cart', request.url));
-      }
-    } else {
-      deleteCookie('_cart', {
-        req: request,
-      });
-      return NextResponse.redirect(new URL('/cart', request.url));
-    }
+    //   if (!isCart) {
+    //     deleteCookie('_cart', {
+    //       req: request,
+    //     });
+    //     return NextResponse.redirect(new URL('/cart', request.url));
+    //   }
+    // } else {
+    //   deleteCookie('_cart', {
+    //     req: request,
+    //   });
+    //   return NextResponse.redirect(new URL('/cart', request.url));
+    // }
   }
 
   return NextResponse.next();
