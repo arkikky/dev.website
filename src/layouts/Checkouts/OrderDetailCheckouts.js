@@ -15,7 +15,7 @@ const OrderDetailCheckouts = ({ products, children }) => {
   const dispatch = useDispatch();
 
   // @quantity
-  const decreaseQty = (cartItems) => {
+  const decreaseQty = async (cartItems) => {
     if (cartItems?.quantity >= 1 && cartItems?.quantity <= 1) {
       return;
     } else if (cartItems?.quantity >= 1 && cartItems?.quantity <= 5) {
@@ -33,7 +33,7 @@ const OrderDetailCheckouts = ({ products, children }) => {
     }
   };
 
-  const increaseQty = (cartItems) => {
+  const increaseQty = async (cartItems) => {
     if (cartItems?.quantity <= 5) {
       const newQty = cartItems?.quantity + 1;
 

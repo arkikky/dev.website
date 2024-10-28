@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addItemToCart } from '@reduxState/slices';
 
 // @lib/controller & helper
-import { getFetch, submitForm } from '@lib/controller/API';
+import { getFetch } from '@lib/controller/API';
 // import { authSession_Token } from '@lib/helper/CartContext';
 
 // @components
@@ -20,9 +20,8 @@ import Breadcrumb from '@components/UI/Breadcrumb';
 
 const Cart = ({ products }) => {
   const router = useRouter();
-
-  const isCart = useSelector((state) => state.cart.data);
   const dispatch = useDispatch();
+  const isCart = useSelector((state) => state.cart.data);
 
   // @add-items(Cart)
   const handleAddToCart = async (product) => {
@@ -30,55 +29,52 @@ const Cart = ({ products }) => {
       '#ca25CartProduct_Checkout.ca25CartProduct_Checkout'
     );
 
-    const checkCokiesCart = hasCookie('_cart');
+    const totalQty = isCart?.reduce((acc, item) => {
+      return acc + item.quantity;
+    }, 0);
 
-    if (checkCokiesCart === false) {
-      const totalQty = isCart?.reduce((acc, item) => {
-        return acc + item.quantity;
-      }, 0);
+    const products = {
+      id_product: product.documentId,
+    };
 
-      const products = {
-        id_product: product.documentId,
-      };
+    if (isCart?.length >= 1 && isCart?.length <= 1) {
+      const existItems = isCart?.find(
+        (i) => i.id_product === products.id_product
+      );
 
-      if (isCart?.length >= 1 && isCart?.length <= 1) {
-        const existItems = isCart?.find(
-          (i) => i.id_product === products.id_product
-        );
-
-        if (existItems) {
-          if (totalQty < 6) {
-            console.log(totalQty);
-
-            dispatch(addItemToCart(products));
-            // await authSession_Token(products.id_product);
-
-            if (handleRouteCheckout !== null) {
-              handleRouteCheckout.click();
-            } else {
-              router.push('/checkout');
-            }
-          } else {
-            console.info('[info] your ticket is max!');
-          }
-        } else {
-          console.info('[info] your cart is full!');
-        }
-      } else {
-        if (totalQty < 6) {
+      if (existItems) {
+        if (totalQty < 5) {
           dispatch(addItemToCart(products));
           // await authSession_Token(products.id_product);
-          if (handleRouteCheckout !== null) {
+
+          if (handleRouteCheckout) {
             handleRouteCheckout.click();
           } else {
-            router.push('/checkout');
+            setTimeout(() => {
+              router.push('/checkout');
+            }, 100);
           }
         } else {
           console.info('[info] your ticket is max!');
         }
+      } else {
+        console.info('[info] your cart is full!');
       }
     } else {
-      console.info('[info] your cart is full!');
+      if (totalQty < 5) {
+        dispatch(addItemToCart(products));
+        // await authSession_Token(products.id_product);
+
+        if (handleRouteCheckout) {
+          handleRouteCheckout.click();
+        } else {
+          setTimeout(() => {
+            router.push('/checkout');
+          }, 100);
+        }
+      } else {
+        console.info('[info] your ticket is max!');
+      }
     }
   };
 

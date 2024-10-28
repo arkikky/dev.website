@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCookie, setCookie } from 'cookies-next';
+import { hasCookie, getCookie, setCookie } from 'cookies-next';
 
 const cartSlice = createSlice({
   name: '_cart',
   initialState: {
-    data: getCookie('_cart') ? JSON.parse(getCookie('_cart')).data : [],
+    data: hasCookie('_cart') ? JSON.parse(getCookie('_cart')).data : [],
   },
   reducers: {
     // @add-items(in Cart)
@@ -46,27 +46,6 @@ const cartSlice = createSlice({
     // },
   },
 });
-
-// export const addItemToCart = (items) => async () => {
-//   const d = items;
-
-//   const fetchAuth = await fetch('/api/cookie/get-cookie', {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'x-api-key': API_KEY,
-//     },
-//     body: JSON.stringify({ ...d, quantity: 1 }),
-//   });
-
-//   if (!fetchAuth) {
-//     throw new Error('Network response was not ok');
-//   }
-
-//   const rsAuth = await fetchAuth.json();
-
-//   console.log(rsAuth);
-// };
 
 export const { addItemToCart, updateQuantity } = cartSlice.actions;
 
