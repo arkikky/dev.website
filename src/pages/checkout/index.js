@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 // @lib/controller & helper
 import { getFetch, getFetchUrl, pushSubmitData } from '@lib/controller/API';
 import { getHbSptFetch, HbSptSubmitForm } from '@lib/controller/HubSpot';
-import { verifySession_Token } from '@lib/helper/CartContext';
+// import { verifySession_Token } from '@lib/helper/CartContext';
 import {
   getRandomCharacters,
   getSplitString,
@@ -155,24 +155,24 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
   const arrAttendee = Array.from({ length: isTotalQty }, (_, index) => index);
 
   // @hook-verify(token)
-  const authToken = getCookie('_athutkca25') ? getCookie('_athutkca25') : null;
+  // const authToken = getCookie('_athutkca25') ? getCookie('_athutkca25') : null;
 
-  const verifySessionToken = async () => {
-    const verifyToken = await verifySession_Token(authToken);
+  // const verifySessionToken = async () => {
+  //   const verifyToken = await verifySession_Token(authToken);
 
-    if (verifyToken === false) {
-      deleteCookie('_athutkca25');
-      deleteCookie('_cart');
-    }
-  };
+  //   if (verifyToken === false) {
+  //     deleteCookie('_athutkca25');
+  //     deleteCookie('_cart');
+  //   }
+  // };
 
-  useEffect(() => {
-    verifySessionToken();
+  // useEffect(() => {
+  //   verifySessionToken();
 
-    return () => {
-      undefined;
-    };
-  }, [authToken]);
+  //   return () => {
+  //     undefined;
+  //   };
+  // }, [authToken]);
 
   // @form-hook
   const {

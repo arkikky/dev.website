@@ -33,16 +33,16 @@ const Cart = ({ products }) => {
       );
 
       if (existItems) {
-        const prosesAddItemsCart = dispatch(addItemToCart(products));
+        dispatch(addItemToCart(products));
 
-        await authSession_Token(products.id_product);
+        // await authSession_Token(products.id_product);
         router.push('/checkout');
       } else {
         console.info('[info] your cart is full!');
       }
     } else {
-      const prosesAddItemsCart = dispatch(addItemToCart(products));
-      await authSession_Token(products.id_product);
+      dispatch(addItemToCart(products));
+      // await authSession_Token(products.id_product);
       router.push('/checkout');
     }
   };

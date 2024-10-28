@@ -47,7 +47,7 @@ const cartSlice = createSlice({
       setCookie('_cart', JSON.stringify(state), {
         maxAge: 3600,
         // httpOnly: true,
-        secure: true,
+        // secure: true,
         sameSite: 'strict',
       });
     },

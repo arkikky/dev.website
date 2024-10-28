@@ -7,12 +7,12 @@ export async function middleware(request) {
     const cokiesCart = getCookie('_cart', {
       req: request,
     });
-    const authToken = getCookie('_athutkca25', { req: request });
+    // const authToken = getCookie('_athutkca25', { req: request });
 
     const isCart =
       cokiesCart !== undefined ? JSON.parse(cokiesCart).data.length > 0 : false;
 
-    if ((!isCart && !authToken) || !isCart || !authToken) {
+    if (!isCart) {
       return NextResponse.redirect(new URL('/cart', request.url));
     }
   }
