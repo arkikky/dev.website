@@ -63,8 +63,7 @@
 .tktCA25Btn_Qty {
   @apply inline-flex size-6 items-center justify-center gap-x-2 rounded-md border border-gray-200;
   @apply bg-white text-sm font-medium text-gray-800;
-  @apply hover:border-primary hover:bg-primary hover:text-white focus:bg-primary;
-  @apply focus:border-primary focus:text-white;
+  @apply hover:border-primary hover:bg-primary hover:text-white;
   @apply focus:outline-none disabled:pointer-events-none disabled:bg-gray-300 disabled:opacity-60;
   @apply transition ease-in-out;
 }

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getCookie, hasCookie } from 'cookies-next';
+import { getCookie } from 'cookies-next';
 
 export async function middleware(request) {
   // @checkouts
@@ -8,9 +8,7 @@ export async function middleware(request) {
       req: request,
     });
 
-    console.log(cokiesCart);
-
-    const authToken = getCookie('_athutkca25', { req: request });
+    // const authToken = getCookie('_athutkca25', { req: request });
 
     const isCart =
       cokiesCart !== undefined ? JSON.parse(cokiesCart).data.length > 0 : false;

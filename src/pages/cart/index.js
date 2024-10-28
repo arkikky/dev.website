@@ -32,14 +32,14 @@ const Cart = ({ products }) => {
         (i) => i.id_product === products.id_product
       );
 
-      if (existItems) {
-        dispatch(addItemToCart(products));
+      dispatch(addItemToCart(products));
 
-        // await authSession_Token(products.id_product);
-        router.push('/checkout');
-      } else {
-        console.info('[info] your cart is full!');
-      }
+      // await authSession_Token(products.id_product);
+      router.push('/checkout');
+      // if (existItems) {
+      // } else {
+      //   console.info('[info] your cart is full!');
+      // }
     } else {
       dispatch(addItemToCart(products));
       // await authSession_Token(products.id_product);

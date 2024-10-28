@@ -9,25 +9,25 @@ import {
   currencyConverter,
   converterTotalCart,
 } from '@lib/helper/CalculateCartContext';
+import { getTotalCart } from '@lib/helper/CartContext';
 
-const OrderDetailCheckouts = ({ products, items, totalCart, children }) => {
+const OrderDetailCheckouts = ({ products, children }) => {
   const dispatch = useDispatch();
 
   // @quantity
   const decreaseQty = async (cartItems) => {
     if (cartItems?.quantity >= 1 && cartItems?.quantity <= 1) {
       return;
-      // setStatusCart({ quantity: { max: false, min: true } });
     } else if (cartItems?.quantity >= 1 && cartItems?.quantity <= 5) {
       const newQty = cartItems?.quantity - 1;
 
       if (newQty > Number(cartItems.stock)) return;
-      dispatch(updateQuantity({ products: cartItems, qty: newQty }));
+      dispatch(updateQuantity({ products: cartItems }));
     } else if (cartItems?.quantity >= 5) {
       const newQty = 5;
 
       if (newQty > Number(cartItems.stock)) return;
-      dispatch(updateQuantity({ products: cartItems, qty: newQty }));
+      dispatch(updateQuantity({ products: cartItems }));
     } else {
       return;
     }
@@ -38,22 +38,19 @@ const OrderDetailCheckouts = ({ products, items, totalCart, children }) => {
       const newQty = cartItems?.quantity + 1;
 
       if (newQty > Number(cartItems.stock)) return;
-      dispatch(updateQuantity({ products: cartItems, qty: newQty }));
+      dispatch(updateQuantity({ products: cartItems }));
     } else if (cartItems?.quantity >= 5) {
       const newQty = 5;
 
       if (newQty > Number(cartItems.stock)) return;
-      dispatch(updateQuantity({ products: cartItems, qty: newQty }));
+      dispatch(updateQuantity({ products: cartItems }));
     } else {
       return;
     }
   };
 
-  // const [isStatusCart, setStatusCart] = useState({
-  //   quantity: {
-  //     message: 'Out of limit',
-  //   },
-  // });
+  // @get-total(currency: IDR)
+  const isTotalCart = getTotalCart(products);
 
   return (
     <>
@@ -114,7 +111,6 @@ const OrderDetailCheckouts = ({ products, items, totalCart, children }) => {
                       Qty: {gtRslt.quantity}
                     </span>
 
-                    {/* @updated(qty) */}
                     <div className="hs-dropdown relative inline-flex [--auto-close:inside] [--placement:bottom-right] [--strategy:absolute]">
                       <button
                         id="hsCA25Dropdown_UpdatedQty"
@@ -215,7 +211,7 @@ const OrderDetailCheckouts = ({ products, items, totalCart, children }) => {
             <div className="grid-cols-2 supports-grid:grid">
               <span className="text-start text-sm font-medium">{`Subtotal`}</span>
               <span className="text-end text-sm font-light">
-                {currencyConverter(totalCart)}
+                {currencyConverter(isTotalCart)}
               </span>
             </div>
 
@@ -229,7 +225,7 @@ const OrderDetailCheckouts = ({ products, items, totalCart, children }) => {
             <div className="grid-cols-2 supports-grid:grid">
               <span className="text-start text-sm font-medium">{`Total (inc. Tax)`}</span>
               <span className="text-end text-sm font-light">
-                {converterTotalCart(totalCart)}
+                {converterTotalCart(isTotalCart)}
               </span>
             </div>
           </div>

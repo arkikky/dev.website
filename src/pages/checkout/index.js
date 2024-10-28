@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import { getCookie, hasCookie, deleteCookie } from 'cookies-next';
+import { getCookie, hasCookie } from 'cookies-next';
 import { useForm } from 'react-hook-form';
 import DOMPurify from 'dompurify';
 
 // @redux
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateQuantity } from '@reduxState/slices';
 
 // @lib/controller & helper
 import { getFetch, getFetchUrl, pushSubmitData } from '@lib/controller/API';
@@ -14,8 +15,8 @@ import { getHbSptFetch, HbSptSubmitForm } from '@lib/controller/HubSpot';
 // import { verifySession_Token } from '@lib/helper/CartContext';
 import {
   getRandomCharacters,
-  getSplitString,
   getSplitStringCapital,
+  getCombineArr,
 } from '@lib/helper/Configuration';
 import { getTotalCart } from '@lib/helper/CartContext';
 
@@ -54,6 +55,7 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
   const router = useRouter();
   const isCart = useSelector((state) => state.cart.data);
 
+  // @data
   const [isIpAddress, setIpAddress] = useState(ipAddress);
   const [isFormCheckouts, setFormCheckouts] = useState({
     fields: formCheckout.formFieldGroups,
@@ -62,97 +64,8 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
   const [isCountry, setCountry] = useState(country);
 
   // @cart
-  const [isCartProduct, setCartProducts] = useState();
-  const [isProducts, setProducts] = useState(
-    getCookie('_cart') ? JSON.parse(getCookie('_cart')).data : []
-  );
-
-  // @merge-updated(Cart)
-  const combineData = () => {
-    const mergedData = isCart?.map((gtRslt, i) => {
-      const productDetail = isCartProduct?.find(
-        (i) => i.data.documentId === gtRslt.id_product
-      );
-
-      return {
-        ...gtRslt,
-        ...productDetail?.data,
-      };
-    });
-
-    setProducts(mergedData);
-  };
-
-  useEffect(() => {
-    combineData();
-
-    return () => {
-      undefined;
-    };
-  }, [isCart, isCartProduct]);
-
-  // @hook-products
-  const fetchHookProducts = async () => {
-    try {
-      const productsPromises = isCart?.map(async (data) => {
-        const isHookProducts = await getFetch(
-          `/api/products/${data.id_product}`
-        );
-        return isHookProducts;
-      });
-
-      const allProducts = await Promise.all(productsPromises);
-
-      if (allProducts) {
-        setCartProducts(allProducts);
-      }
-    } catch (err) {
-      return;
-    }
-  };
-
-  useEffect(() => {
-    fetchHookProducts();
-
-    const handleRouteChange = async () => {
-      await fetchHookProducts();
-    };
-
-    router.events.on('routeChangeComplete', handleRouteChange);
-
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
-
-  // @hook-attendee(with qty)
-  const [isTotalQty, setTotalQty] = useState(0);
-
-  const calculateTotalQty = () => {
-    const total = isCart.reduce((acc, item) => {
-      return acc + item.quantity;
-    }, 0);
-
-    if (total >= 5) {
-      setTotalQty(5);
-    } else {
-      setTotalQty(total);
-    }
-  };
-
-  useEffect(() => {
-    calculateTotalQty();
-
-    return () => {
-      undefined;
-    };
-  }, [isCart]);
-
-  // @get-total(currency: IDR)
-  const isTotalCart = getTotalCart(isProducts);
-
-  // @hook-attendee(with qty)
-  const arrAttendee = Array.from({ length: isTotalQty }, (_, index) => index);
+  const [isCartProduct, setCartProducts] = useState([]);
+  const [isProducts, setProducts] = useState([]);
 
   // @hook-verify(token)
   // const authToken = getCookie('_athutkca25') ? getCookie('_athutkca25') : null;
@@ -174,6 +87,73 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
   //   };
   // }, [authToken]);
 
+  // @hook-products
+  const fetchHookProducts = async () => {
+    try {
+      const productsPromises = isCart?.map(async (data) => {
+        const isHookProducts = await getFetch(
+          `/api/products/${data.id_product}`
+        );
+        return isHookProducts.data;
+      });
+
+      const allProducts = await Promise.all(productsPromises);
+
+      if (allProducts) {
+        setCartProducts(allProducts);
+      }
+    } catch (err) {
+      return;
+    }
+  };
+
+  useEffect(() => {
+    fetchHookProducts();
+
+    const handleRouteChange = () => {
+      fetchHookProducts();
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
+  // @hook-attendee(with qty)
+  const [isTotalQty, setTotalQty] = useState(0);
+
+  const calculateTotalQty = () => {
+    const total = isCart.reduce((acc, item) => {
+      return acc + item.quantity;
+    }, 0);
+
+    if (total >= 5) {
+      const newQty = 5;
+
+      setTotalQty(newQty);
+      // dispatch(updateQuantity({ products: cartItems, qty: newQty }));
+    } else {
+      setTotalQty(total);
+    }
+  };
+
+  useEffect(() => {
+    calculateTotalQty();
+
+    // @merge-updated(Cart)
+    const isMerged = getCombineArr(isCartProduct, isCart);
+    setProducts(isMerged);
+
+    return () => {
+      undefined;
+    };
+  }, [isCart, isCartProduct]);
+
+  // @hook-attendee(with qty)
+  // const isAttendee = Array.from({ length: isTotalQty }, (_, index) => index);
+
   // @form-hook
   const {
     watch,
@@ -191,10 +171,10 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
   });
 
   // @watch
-  const firstnameBilling = watch('firstname');
-  const lastnameBilling = watch('lastname');
-  const emailBilling = watch('email');
-  const companyBilling = watch('company');
+  // const firstnameBilling = watch('firstname');
+  // const lastnameBilling = watch('lastname');
+  // const emailBilling = watch('email');
+  // const companyBilling = watch('company');
 
   // @init(billing)
   const [isBillingDetails, setBillingDetails] = useState({
@@ -204,25 +184,6 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
     phone: '',
     company: '',
   });
-
-  // @hook-preline
-  const handleButtonClick = async () => {
-    await import('@preline/select');
-
-    if (typeof window !== 'undefined' && window.HSSelect) {
-      window.HSSelect.autoInit();
-    }
-  };
-
-  useEffect(() => {
-    if (isTotalQty) {
-      handleButtonClick();
-    }
-
-    return () => {
-      undefined;
-    };
-  }, [isTotalQty]);
 
   // @handle-billing(validation)
   const [isBillingFilled, setIsBillingFilled] = useState(false);
@@ -251,18 +212,36 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
   const handleCopyBillingToAttendee = (e) => {
     e.preventDefault();
 
-    // @debug-data(Billing)
-    // console.log(isBillingDetails);
-
     setValue('firstnameAttndee1', firstnameBilling);
     setValue('lastnameAttndee1', lastnameBilling);
     setValue('emailAttndee1', emailBilling);
     setValue('companyAttndee1', companyBilling);
   };
 
+  // @hook-preline
+  const handleInzSelect = async () => {
+    await import('@preline/select');
+
+    if (typeof window !== 'undefined' && window.HSSelect) {
+      window.HSSelect.autoInit();
+    }
+  };
+
+  useEffect(() => {
+    if (isTotalQty) {
+      handleInzSelect();
+    }
+
+    return () => {
+      undefined;
+    };
+  }, [isTotalQty]);
+
   // @submit
   const onSubmitForm = async (data) => {
     if (!isValid === false) {
+      const isTotalCart = getTotalCart(isProducts);
+
       // @billing
       const setBillingId =
         data.firstname.toLowerCase() +
@@ -272,12 +251,12 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
 
       const setBillingConfigs = {
         data: {
-          customerId: setBillingId,
+          customerId: setBillingId.replace(/\s/g, ''),
           firstName: DOMPurify.sanitize(data.firstname),
           lastName: DOMPurify.sanitize(data.lastname),
           email: DOMPurify.sanitize(data.email.toLowerCase()),
           phone: DOMPurify.sanitize(data.phone),
-          // company: DOMPurify.sanitize(data.company),
+          company: DOMPurify.sanitize(data.company),
           websiteUrl: DOMPurify.sanitize(data.websiteUrl),
         },
       };
@@ -333,9 +312,10 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
 
       // const hbSptRes = await HbSptSubmitForm(hbSptBillingConfigs, hbSptKey);
 
-      // if (isCart && getCustomerRes) {
+      // console.log(setBillingConfigs);
+
+      // if (isCart && getCustomerRes && hbSptRes) {
       if (isCart) {
-        // if (isCart) {
         // const getIdCustomer = getCustomerRes.data.documentId;
         // const isIdProducts = isCartProduct[0].data.documentId;
         const isQtyProducts = isTotalQty;
@@ -381,39 +361,38 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
                 '_' +
                 getRandomCharacters(5).data || '';
 
-            const awdwad = ` + i + 1}`;
-
             const setAttendeeConfigs = {
               data: {
-                attendeeId: setAttendeeId,
+                attendeeId: setAttendeeId.replace(/\s/g, ''),
                 firstName:
-                  DOMPurify.sanitize(data[`firstnameAttndee${i + 1}`]) || '',
+                  DOMPurify.sanitize(data[`firstnameAttndee${i + 1}`]) || null,
                 lastName:
-                  DOMPurify.sanitize(data[`lastnameAttndee${i + 1}`]) || '',
+                  DOMPurify.sanitize(data[`lastnameAttndee${i + 1}`]) || null,
                 email:
                   DOMPurify.sanitize(
                     data[`emailAttndee${i + 1}`]?.toLowerCase()
-                  ) || '',
+                  ) || null,
                 telephone: DOMPurify.sanitize(data[`phone${i + 1}`] || []),
                 telegramAccount:
                   DOMPurify.sanitize(
                     data[`telegramAccountAttndee${i + 1}`]?.toLowerCase()
-                  ) || '',
+                  ) || null,
                 country:
-                  DOMPurify.sanitize(data[`countryAttndee${i + 1}`]) || '',
+                  DOMPurify.sanitize(data[`countryAttndee${i + 1}`]) || null,
                 company:
-                  DOMPurify.sanitize(data[`companyAttndee${i + 1}`]) || '',
-                position: DOMPurify.sanitize(data[`jobPosition${i + 1}`]) || '',
-                // companyFocus:
-                //   DOMPurify.sanitize(data[`companyFocus${i + 1}`]) || '',
-                // companySize:
-                //   DOMPurify.sanitize(data[`companySize${i + 1}`]) || '',
-                // whatTypeOfConnectionsAndNetworkingDoYouHopeToAchieveAtTheEvent:
-                //   DOMPurify.sanitize(
-                //     data[`whatTypeConnectionNetworking${i + 1}`]
-                //   ) || '',
-                // whereDidYouHearAboutCoinfestAsia2024:
-                //   DOMPurify.sanitize(data[`didYouHearAbout${i + 1}`]) || '',
+                  DOMPurify.sanitize(data[`companyAttndee${i + 1}`]) || null,
+                position:
+                  DOMPurify.sanitize(data[`jobPosition${i + 1}`]) || null,
+                companyFocus:
+                  DOMPurify.sanitize(data[`companyFocus${i + 1}`]) || null,
+                companySize:
+                  DOMPurify.sanitize(data[`companySize${i + 1}`]) || null,
+                whatTypeOfConnectionsAndNetworkingDoYouHopeToAchieveAtTheEvent:
+                  DOMPurify.sanitize(
+                    data[`whatTypeConnectionNetworking${i + 1}`]
+                  ) || null,
+                whereDidYouHearAboutCoinfestAsia2024:
+                  DOMPurify.sanitize(data[`didYouHearAbout${i + 1}`]) || null,
                 // customer: {
                 //   connect: [
                 //     {
@@ -449,6 +428,7 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
             // } catch (error) {
             //   console.error(`Error submitting attendee ${i + 1}:`, error);
             // }
+
             // reset();
           }
           // }
@@ -560,13 +540,13 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
                     </div>
 
                     {/* @attendee-detail */}
-                    {isProducts ? (
+                    {/* {isProducts ? (
                       <div className="block w-full space-y-6">
-                        {arrAttendee?.map((gtRslt, i) => {
-                          const attendeeNumber = i + 1;
+                        {isAttendee?.map((gtRslt, i) => {
+                          const arrIndex = i + 1;
 
                           return (
-                            <div className="blcok w-full" key={attendeeNumber}>
+                            <div className="blcok w-full" key={arrIndex}>
                               <>
                                 <div className="mb-4 flex w-full flex-row items-start justify-between">
                                   <div className="flex flex-col items-start justify-start">
@@ -616,15 +596,15 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
                           );
                         })}
                       </div>
-                    ) : null}
+                    ) : null} */}
                   </div>
                 </div>
                 <div className="col-span-full xl:col-span-5">
                   {/* @order-details */}
                   <OrderDetailCheckouts
                     products={isProducts}
-                    items={isCartProduct}
-                    totalCart={isTotalCart}
+                    // items={isCartProduct}
+                    // totalCart={isTotalCart}
                   >
                     <Card>
                       {/* @board-submit */}
