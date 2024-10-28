@@ -43,49 +43,35 @@ const Cart = ({ products }) => {
         (i) => i.id_product === products.id_product
       );
 
-      dispatch(addItemToCart(products));
-      if (hasCookie('_cart') === true) {
-        if (handleRouteCheckout !== null) {
-          handleRouteCheckout.click();
-        } else {
-          router.push('/checkout');
-        }
-      }
+      if (existItems) {
+        if (totalQty <= 5) {
+          dispatch(addItemToCart(products));
+          // await authSession_Token(products.id_product);
 
-      // await authSession_Token(products.id_product);
-      // if (existItems) {
-      // } else {
-      //   console.info('[info] your cart is full!');
-      // }
+          handleRouteCheckout.click();
+          // if (handleRouteCheckout !== null) {
+          // } else {
+          //   router.push('/checkout');
+          // }
+        } else {
+          console.info('[info] your ticket is max!');
+        }
+      } else {
+        console.info('[info] your cart is full!');
+      }
     } else {
-      // const fetchAuth = await fetch('/api/cookie/get-cookie', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'x-api-key': process.env.NEXT_PUBLIC_API_KEY,
-      //   },
-      //   body: JSON.stringify({ ...products, quantity: 1 }),
-      // });
-
-      // if (!fetchAuth) {
-      //   throw new Error('Network response was not ok');
-      // }
-
-      // const rsAuth = await fetchAuth.json();
-
-      // console.log(rsAuth);
-
-      dispatch(addItemToCart(products));
-      if (hasCookie('_cart') === true) {
-        if (handleRouteCheckout !== null) {
-          handleRouteCheckout.click();
-        } else {
-          router.push('/checkout');
-        }
+      if (totalQty <= 5) {
+        dispatch(addItemToCart(products));
+        // await authSession_Token(products.id_product);
+        handleRouteCheckout.click();
+        // if (handleRouteCheckout !== null) {
+        //   handleRouteCheckout.click();
+        // } else {
+        //   router.push('/checkout');
+        // }
+      } else {
+        console.info('[info] your ticket is max!');
       }
-
-      // await authSession_Token(products.id_product);
-      // router.push('/checkout');
     }
   };
 
