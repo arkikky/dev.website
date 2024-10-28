@@ -1,19 +1,29 @@
 import { NextResponse } from 'next/server';
-import { getCookie } from 'cookies-next';
+import { hasCookie, getCookie } from 'cookies-next';
 
 export async function middleware(request) {
   // @checkouts
   if (request.nextUrl.pathname === '/checkout') {
-    const cokiesCart = getCookie('_cart', {
+    const hashCokiesCart = hasCookie('_cart', {
       req: request,
     });
 
     // const authToken = getCookie('_athutkca25', { req: request });
 
-    const isCart =
-      cokiesCart !== undefined ? JSON.parse(cokiesCart).data.length > 0 : false;
+    if (hashCokiesCart === true) {
+      const cokiesCart = getCookie('_cart', {
+        req: request,
+      });
 
-    if (!isCart) {
+      const isCart =
+        JSON.parse(cokiesCart).data !== undefined
+          ? JSON.parse(cokiesCart).data.length > 0
+          : false;
+
+      if (!isCart) {
+        return NextResponse.redirect(new URL('/cart', request.url));
+      }
+    } else {
       return NextResponse.redirect(new URL('/cart', request.url));
     }
   }

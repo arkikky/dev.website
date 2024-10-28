@@ -7,7 +7,7 @@ import { addItemToCart } from '@reduxState/slices';
 
 // @lib/controller & helper
 import { getFetch, submitForm } from '@lib/controller/API';
-import { authSession_Token } from '@lib/helper/CartContext';
+// import { authSession_Token } from '@lib/helper/CartContext';
 
 // @components
 import HeadGraphSeo from '@components/Head';
@@ -34,13 +34,30 @@ const Cart = ({ products }) => {
 
       dispatch(addItemToCart(products));
 
-      // await authSession_Token(products.id_product);
       router.push('/checkout');
+      // await authSession_Token(products.id_product);
       // if (existItems) {
       // } else {
       //   console.info('[info] your cart is full!');
       // }
     } else {
+      // const fetchAuth = await fetch('/api/cookie/get-cookie', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'x-api-key': process.env.NEXT_PUBLIC_API_KEY,
+      //   },
+      //   body: JSON.stringify({ ...products, quantity: 1 }),
+      // });
+
+      // if (!fetchAuth) {
+      //   throw new Error('Network response was not ok');
+      // }
+
+      // const rsAuth = await fetchAuth.json();
+
+      // console.log(rsAuth);
+
       dispatch(addItemToCart(products));
       // await authSession_Token(products.id_product);
       router.push('/checkout');

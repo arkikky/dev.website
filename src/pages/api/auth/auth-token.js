@@ -9,7 +9,7 @@ export default async function POST(req, res) {
   const headersApiKey = req.headers['x-api-key'];
 
   // @notification(error)
-  const errLog = [
+  const logErr = [
     {
       data: null,
       error: {
@@ -22,9 +22,9 @@ export default async function POST(req, res) {
 
   if (req.method !== 'POST') {
     console.warn('[warning]: method not allowed');
-    return res.status(405).json(errLog);
+    return res.status(405).json(logErr);
   } else if (headersApiKey !== API_KEY) {
-    return res.status(403).json(errLog);
+    return res.status(403).json(logErr);
   } else {
     try {
       const products = res.req.body;

@@ -125,7 +125,7 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
   const [isTotalQty, setTotalQty] = useState(0);
 
   const calculateTotalQty = () => {
-    const total = isCart.reduce((acc, item) => {
+    const total = isCart?.reduce((acc, item) => {
       return acc + item.quantity;
     }, 0);
 

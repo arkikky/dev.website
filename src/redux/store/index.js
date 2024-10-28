@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import cartReducer from '@reduxState/slices';
-import securityMiddleware from '@reduxState/store/securityMiddleware';
+import { globalMiddleware } from '@reduxState/middleware/globalMiddleware';
 
 // @configuration-store(Redux)
 export const store = configureStore({
@@ -8,7 +8,7 @@ export const store = configureStore({
     cart: cartReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(securityMiddleware),
+    getDefaultMiddleware().concat(globalMiddleware),
   devTools: process.env.NODE_ENV !== 'production',
 });
 
