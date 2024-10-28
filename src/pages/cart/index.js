@@ -36,7 +36,9 @@ const Cart = ({ products }) => {
       dispatch(addItemToCart(products));
 
       if (hasCookie('_cart') === true) {
-        router.push('/checkout');
+        setTimeout(() => {
+          router.push('/checkout');
+        }, 100);
       }
 
       // await authSession_Token(products.id_product);
@@ -64,7 +66,9 @@ const Cart = ({ products }) => {
 
       dispatch(addItemToCart(products));
       if (hasCookie('_cart') === true) {
-        router.push('/checkout');
+        setTimeout(() => {
+          router.push('/checkout');
+        }, 100);
       }
 
       // await authSession_Token(products.id_product);
