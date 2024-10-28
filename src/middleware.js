@@ -8,6 +8,8 @@ export async function middleware(request) {
       req: request,
     });
 
+    console.log(cokiesCart);
+
     const authToken = getCookie('_athutkca25', { req: request });
 
     const isCart =
