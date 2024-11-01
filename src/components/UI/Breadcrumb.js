@@ -6,14 +6,14 @@ const Breadcrumb = ({ theme = 'default', listBreadcrumb = [] }) => {
   const [isBreadcrumb, setBreadcrumb] = useState(listBreadcrumb);
 
   const setPage = {
-    dark: 'text-black-900 hover:text-secondary',
-    light: 'text-white hover:text-secondary',
+    dark: 'text-black-900 hover:text-primary',
+    light: 'text-white hover:text-primary',
     default: 'text-gray-300 hover:text-white',
   };
   const setActivedPage = {
-    dark: 'text-secondary',
-    light: 'text-secondary',
-    default: 'text-secondary',
+    dark: 'text-primary',
+    light: 'text-primary',
+    default: 'text-primary',
   };
 
   const isPage = setPage[theme] || setPage.default;
@@ -44,10 +44,9 @@ const Breadcrumb = ({ theme = 'default', listBreadcrumb = [] }) => {
                 </Link>
 
                 <svg
-                  className={twMerge(
-                    'mx-2 size-4 shrink-0 text-current',
-                    isPage
-                  )}
+                  className={
+                    'mx-2.5 size-4 shrink-0 text-current text-gray-400'
+                  }
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"

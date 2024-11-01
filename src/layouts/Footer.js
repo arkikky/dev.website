@@ -45,7 +45,7 @@ const Footer = () => {
               </div>
 
               {/* @list-socialmedia */}
-              {/* <FooterSocialMedia
+              <FooterSocialMedia
                 list={[
                   {
                     label: 'Instagram',
@@ -68,7 +68,7 @@ const Footer = () => {
                     url: 'https://www.linkedin.com/showcase/coinfest/',
                   },
                 ]}
-              /> */}
+              />
             </div>
           </div>
         </Container>

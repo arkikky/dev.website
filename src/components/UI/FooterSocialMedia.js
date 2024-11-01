@@ -17,7 +17,7 @@ const FooterSocialMedia = ({ list = [] }) => {
             <Link
               className="outline-none focus-visible:outline-none"
               href={gtRslt.url}
-              title="Twitter"
+              title={gtRslt.label}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -28,6 +28,7 @@ const FooterSocialMedia = ({ list = [] }) => {
                 height={24}
                 width={24}
                 quality="87"
+                fetchPriority="auto"
               />
             </Link>
           </li>

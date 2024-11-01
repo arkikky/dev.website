@@ -34,6 +34,7 @@ const Alerts = dynamic(() => import('@components/UI/Alerts/Alerts'));
 import Card from '@components/UI/Card/Card';
 
 // @layouts
+import NavbarCheckout from '@layouts/Navbar/NavbarCheckout';
 import BillingDetailCheckout from '@layouts/Checkouts/BillingDetailCheckout';
 const AttendeeDetailCheckouts = dynamic(
   () => import('@layouts/Checkouts/AttendeeDetailCheckouts'),
@@ -107,6 +108,9 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
     }
   };
 
+  // @handle-qty
+  const [isTotalQty, setTotalQty] = useState(1);
+
   // @hook-preline
   const handleIntzPreline = async () => {
     await import('preline/preline');
@@ -114,22 +118,17 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
     if (window.HSStaticMethods) {
       window.HSStaticMethods.autoInit();
     }
-    // await import('@preline/select');
-
-    // if (typeof window !== 'undefined' && window.HSSelect) {
-    //   window.HSSelect.autoInit();
-    // }
   };
 
-  // useEffect(() => {
-  //   if (isTotalQty) {
-  //     handleIntzPreline();
-  //   }
+  useEffect(() => {
+    if (isTotalQty) {
+      handleIntzPreline();
+    }
 
-  //   return () => {
-  //     undefined;
-  //   };
-  // }, [isTotalQty]);
+    return () => {
+      undefined;
+    };
+  }, [isTotalQty]);
 
   useEffect(() => {
     fetchHookProducts();
@@ -148,7 +147,6 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
   }, [router.events]);
 
   // @hook-attendee(with qty)
-  const [isTotalQty, setTotalQty] = useState(0);
 
   const calculateTotalQty = () => {
     const total = isCart?.reduce((acc, item) => {
@@ -179,7 +177,7 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
   }, [isCart, isCartProduct]);
 
   // @hook-attendee(with qty)
-  // const isAttendee = Array.from({ length: isTotalQty }, (_, index) => index);
+  const isAttendee = Array.from({ length: isTotalQty }, (_, index) => index);
 
   // @form-hook
   const {
@@ -198,10 +196,10 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
   });
 
   // @watch
-  // const firstnameBilling = watch('firstname');
-  // const lastnameBilling = watch('lastname');
-  // const emailBilling = watch('email');
-  // const companyBilling = watch('company');
+  const firstnameBilling = watch('firstname');
+  const lastnameBilling = watch('lastname');
+  const emailBilling = watch('email');
+  const companyBilling = watch('company');
 
   // @init(billing)
   const [isBillingDetails, setBillingDetails] = useState({
@@ -471,225 +469,220 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
       {/* @script */}
       <PrelineScript />
 
+      {/* @navbar */}
+      <NavbarCheckout />
+
       {/* @main */}
-      <Main className="flex flex-col pb-12">
-        <header className="flex flex-col items-start bg-primary pb-4 pt-[148px] sm:pb-28">
-          <Container>
-            <div className="flex flex-col items-start justify-start">
-              <h1 className="text-base font-semibold text-white sm:text-3xl">
-                Checkout
-              </h1>
-              <div className="mt-2 block">
-                <Breadcrumb
-                  theme="light"
-                  listBreadcrumb={[
-                    {
-                      label: 'Home',
-                      url: '/',
-                    },
-                    {
-                      label: 'Cart',
-                      url: '/cart',
-                    },
-                    {
-                      label: 'Checkout',
-                      url: '/checkout',
-                    },
-                  ]}
-                />
-              </div>
-            </div>
-          </Container>
-        </header>
-
-        <div className="relative mt-0 inline-flex flex-col sm:-mt-[86px]">
-          <Container>
-            <form
-              id="tktCAForm_Checkout"
-              method="POST"
-              onSubmit={handleSubmit(onSubmitForm)}
-            >
-              <div className="grid-cols-1 gap-x-6 gap-y-12 rounded-[18px] border-[0px] border-gray-200 bg-white px-2 py-4 supports-grid:grid sm:grid-cols-12 sm:gap-y-20 sm:border sm:px-6 sm:py-6 lg:px-8 lg:pb-10 lg:pt-8">
-                <div className="col-span-full pr-0 xl:col-span-7 xl:pr-8">
-                  <div className="block w-full space-y-14">
-                    {/* @notification */}
-                    <div className="block w-full">
-                      <Notifications
-                        icons={
-                          <svg
-                            className="mt-0.5 size-4 lg:size-5"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 16v-4"></path>
-                            <path d="M12 8h.01"></path>
-                          </svg>
-                        }
-                        label={`<p><strong>Please fill in the attendee</strong> details with the actual data of the person attending the Event. Ticket transfers are not allowed once the purchase is finalized.</p>`}
-                        type="info"
-                      />
-
-                      {/* @biling-details */}
-                      <div className="mt-6 flex flex-col items-start gap-y-8">
-                        <div className="flex w-full flex-col items-start justify-start">
-                          <h2 className="text-xl font-medium capitalize">
-                            Billing details
-                          </h2>
-                          <span className="mt-1.5 text-sm font-light text-gray-400">
-                            Complate your purchase item by providing your
-                            payment detail order.
-                          </span>
-                        </div>
-                        <div className="inline-flex w-full flex-col">
-                          <BillingDetailCheckout
-                            ipAddress={
-                              isIpAddress.country !== undefined
-                                ? isIpAddress.country.toLowerCase()
-                                : 'id'
-                            }
-                            register={register}
-                            setValue={setValue}
-                            getValues={getValues}
-                            errors={errors}
-                            onValueChange={handleBillingChange}
-                          />
-                        </div>
+      <Main className="flex flex-col pb-8 sm:pb-12">
+        <Container className={'pt-[162px] sm:pt-32'}>
+          <form
+            id="tktCAForm_Checkout"
+            method="POST"
+            onSubmit={handleSubmit(onSubmitForm)}
+          >
+            <div className="grid-cols-1 gap-x-6 gap-y-12 supports-grid:grid sm:grid-cols-12 sm:gap-y-20">
+              <div className="col-span-full pr-0 xl:col-span-7 xl:pr-10">
+                <div className="block w-full space-y-8">
+                  <div className="block w-full">
+                    {/* @header */}
+                    <div className="mb-5 flex flex-col items-start justify-start">
+                      <h1 className="text-2xl font-semibold text-black-900 sm:text-3xl">
+                        Checkout
+                      </h1>
+                      <div className="mt-2 block">
+                        <Breadcrumb
+                          theme="dark"
+                          listBreadcrumb={[
+                            {
+                              label: 'Home',
+                              url: '/',
+                            },
+                            {
+                              label: 'Cart',
+                              url: '/cart',
+                            },
+                            {
+                              label: 'Checkout',
+                              url: '/checkout',
+                            },
+                          ]}
+                        />
                       </div>
                     </div>
 
-                    {/* @attendee-detail */}
-                    {/* {isProducts ? (
-                      <div className="block w-full space-y-6">
-                        {isAttendee?.map((gtRslt, i) => {
-                          const arrIndex = i + 1;
+                    {/* @notification */}
+                    <Notifications
+                      icons={
+                        <svg
+                          className="mt-0.5 size-4 lg:size-5"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <path d="M12 16v-4"></path>
+                          <path d="M12 8h.01"></path>
+                        </svg>
+                      }
+                      label={`<p><strong>Please fill in the attendee</strong> details with the actual data of the person attending the Event. Ticket transfers are not allowed once the purchase is finalized.</p>`}
+                      type="info"
+                    />
 
-                          return (
-                            <div className="blcok w-full" key={arrIndex}>
-                              <>
-                                <div className="mb-4 flex w-full flex-row items-start justify-between">
-                                  <div className="flex flex-col items-start justify-start">
-                                    <h2 className="text-xl font-medium capitalize">
-                                      Attendees {i + 1}
-                                    </h2>
-                                    <span className="mt-1.5 text-sm font-light text-gray-400">
-                                      Please fill out the form below, Enter your
-                                      account details.
-                                    </span>
-                                  </div>
-                                  <div>
-                                    {isBillingFilled && i <= 0 ? (
-                                      <>
-                                        <button
-                                          onClick={(e) =>
-                                            handleCopyBillingToAttendee(e)
-                                          }
-                                          variant="outline"
-                                          size="sm"
-                                          className="text-sm text-black-900 underline hover:text-primary"
-                                        >
-                                          Same as a Billing Details
-                                        </button>
-                                      </>
-                                    ) : null}
-                                  </div>
-                                </div>
-                                <Card>
-                                  <AttendeeDetailCheckouts
-                                    ipAddress={
-                                      isIpAddress.country !== undefined
-                                        ? isIpAddress.country.toLowerCase()
-                                        : 'id'
-                                    }
-                                    country={isCountry}
-                                    fieldForm={isFormCheckouts.fields}
-                                    register={register}
-                                    setValue={setValue}
-                                    getValues={getValues}
-                                    errors={errors}
-                                    arrIndex={i + 1}
-                                  />
-                                </Card>
-                              </>
-                            </div>
-                          );
-                        })}
+                    {/* @biling-details */}
+                    <div className="mt-8 flex flex-col items-start rounded-2xl border border-solid border-gray-200 bg-gray-100 px-2 pb-2 pt-4">
+                      <div className="mb-4 flex w-full flex-col items-start justify-start px-4">
+                        <h2 className="text-xl font-medium capitalize">
+                          Billing details
+                        </h2>
+                        <span className="mt-1 text-sm font-light text-gray-500">
+                          Complate your purchase item by providing your payment
+                          detail order.
+                        </span>
                       </div>
-                    ) : null} */}
+                      <div className="inline-flex w-full flex-col rounded-xl bg-white px-4 py-4">
+                        <BillingDetailCheckout
+                          ipAddress={
+                            isIpAddress.country !== undefined
+                              ? isIpAddress.country.toLowerCase()
+                              : 'id'
+                          }
+                          register={register}
+                          setValue={setValue}
+                          getValues={getValues}
+                          errors={errors}
+                          onValueChange={handleBillingChange}
+                        />
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="col-span-full xl:col-span-5">
-                  {/* @order-details */}
-                  <OrderDetailCheckouts
-                    products={isProducts}
-                    register={register}
-                    setValue={setValue}
-                    getValues={getValues}
-                    errors={errors}
-                    onEvents={handleCouponChange}
-                  >
-                    <Card>
-                      {/* @board-submit */}
-                      <BoardSubmitCheckout
-                        register={register}
-                        errors={errors}
-                      />
 
-                      {/* @submit-form */}
-                      <button
-                        id="tktCAForm_SubmitCheckout"
-                        type="submit"
-                        aria-label="Ticket Coinfest Asia - Submit (Checkout)"
-                        className={`inline-flex flex-row items-center justify-center rounded-lg ${
-                          isValid
-                            ? 'bg-black-900 text-white'
-                            : 'cursor-default bg-gray-200 text-black-900'
-                        } w-full cursor-pointer px-8 py-4 text-sm font-normal capitalize leading-inherit outline-none focus-visible:outline-none`}
-                        disabled={!isValid}
-                      >
-                        {isSubmitting ? (
-                          <span className="flex flex-row items-center">
-                            <svg
-                              className="mr-3 h-5 w-5 animate-spin text-white"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                            >
-                              <circle
-                                className="opacity-25"
-                                cx="12"
-                                cy="12"
-                                r="10"
-                                stroke="currentColor"
-                                strokeWidth="3"
-                              ></circle>
-                              <path
-                                className="opacity-75"
-                                fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                              ></path>
-                            </svg>
-                            Submitting...
-                          </span>
-                        ) : (
-                          <span>Proceed To Checkout</span>
-                        )}
-                      </button>
-                      <p className="mt-4 block">{isFormCheckouts.message}</p>
-                    </Card>
-                  </OrderDetailCheckouts>
+                  {/* @attendee-detail */}
+                  {isProducts ? (
+                    <div className="block w-full space-y-6">
+                      {isAttendee?.map((gtRslt, i) => {
+                        const arrIndex = i + 1;
+
+                        return (
+                          <div
+                            className="mt-8 flex flex-col items-start rounded-2xl border border-solid border-gray-200 bg-gray-100 px-2 pb-2 pt-4 first:mt-0"
+                            key={arrIndex}
+                          >
+                            <div className="mb-4 flex w-full flex-row items-start justify-between px-4">
+                              <div className="flex flex-col items-start justify-start">
+                                <h2 className="text-xl font-medium capitalize">
+                                  Attendees {i + 1}
+                                </h2>
+                                <span className="mt-1.5 text-sm font-light text-gray-400">
+                                  Please fill out the form below, Enter your
+                                  account details.
+                                </span>
+                              </div>
+                              <div>
+                                {isBillingFilled && i <= 0 ? (
+                                  <>
+                                    <button
+                                      onClick={(e) =>
+                                        handleCopyBillingToAttendee(e)
+                                      }
+                                      variant="outline"
+                                      size="sm"
+                                      className="text-sm text-black-900 underline hover:text-primary"
+                                    >
+                                      Same as a Billing Details
+                                    </button>
+                                  </>
+                                ) : null}
+                              </div>
+                            </div>
+                            <div className="inline-flex w-full flex-col rounded-xl bg-white px-4 py-4">
+                              <AttendeeDetailCheckouts
+                                ipAddress={
+                                  isIpAddress.country !== undefined
+                                    ? isIpAddress.country.toLowerCase()
+                                    : 'id'
+                                }
+                                country={isCountry}
+                                fieldForm={isFormCheckouts.fields}
+                                register={register}
+                                setValue={setValue}
+                                getValues={getValues}
+                                errors={errors}
+                                arrIndex={i + 1}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : null}
                 </div>
               </div>
-            </form>
-          </Container>
-        </div>
+              <div className="col-span-full pl-0 xl:col-span-5 xl:pl-6">
+                {/* @order-details */}
+                <OrderDetailCheckouts
+                  products={isProducts}
+                  register={register}
+                  setValue={setValue}
+                  getValues={getValues}
+                  errors={errors}
+                  onEvents={handleCouponChange}
+                >
+                  <Card>
+                    {/* @board-submit */}
+                    <BoardSubmitCheckout register={register} errors={errors} />
+
+                    {/* @submit-form */}
+                    <button
+                      id="tktCAForm_SubmitCheckout"
+                      type="submit"
+                      aria-label="Ticket Coinfest Asia - Submit (Checkout)"
+                      className={`inline-flex flex-row items-center justify-center rounded-lg ${
+                        isValid
+                          ? 'bg-black-900 text-white'
+                          : 'cursor-default bg-gray-200 text-black-900'
+                      } w-full cursor-pointer px-8 py-4 text-sm font-normal capitalize leading-inherit outline-none focus-visible:outline-none`}
+                      disabled={!isValid}
+                    >
+                      {isSubmitting ? (
+                        <span className="flex flex-row items-center">
+                          <svg
+                            className="mr-3 h-5 w-5 animate-spin text-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                            ></path>
+                          </svg>
+                          Submitting...
+                        </span>
+                      ) : (
+                        <span>Proceed To Payment</span>
+                      )}
+                    </button>
+                  </Card>
+                </OrderDetailCheckouts>
+              </div>
+            </div>
+          </form>
+        </Container>
       </Main>
 
       {/* @footer */}
