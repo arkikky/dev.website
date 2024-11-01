@@ -164,7 +164,6 @@ const AttendeeDetailCheckouts = ({
                   maxLength: 255,
                   pattern: {
                     value: /^@([a-zA-Z][a-zA-Z0-9_]{2,55})$/,
-                    message: 'Please enter a valid URL',
                   },
                 }),
               }}

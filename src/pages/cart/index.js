@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { hasCookie } from 'cookies-next';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
 // @redux
@@ -15,6 +15,9 @@ import { getFetch } from '@lib/controller/API';
 import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
+const Notifications = dynamic(
+  () => import('@components/UI/Alerts/Notifications')
+);
 
 import Breadcrumb from '@components/UI/Breadcrumb';
 
@@ -22,6 +25,7 @@ const Cart = ({ products }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const isCart = useSelector((state) => state.cart.data);
+  const [isCartMessage, setCartMessage] = useState('');
 
   // @add-items(Cart)
   const handleAddToCart = async (product) => {
@@ -56,9 +60,11 @@ const Cart = ({ products }) => {
           }
         } else {
           console.info('[info] your ticket is max!');
+          setCartMessage('your ticket is max!');
         }
       } else {
         console.info('[info] your cart is full!');
+        setCartMessage('your cart is full!');
       }
     } else {
       if (totalQty < 5) {
@@ -73,7 +79,8 @@ const Cart = ({ products }) => {
           }, 100);
         }
       } else {
-        console.info('[info] your ticket is max!');
+        console.info('[info] your cart is full!');
+        setCartMessage('your cart is full!');
       }
     }
   };
@@ -112,6 +119,33 @@ const Cart = ({ products }) => {
               />
             </div>
           </div>
+
+          {isCartMessage !== '' && (
+            <div className="block w-full">
+              <Notifications
+                icons={
+                  <svg
+                    className="mt-0.5 size-4 lg:size-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 16v-4"></path>
+                    <path d="M12 8h.01"></path>
+                  </svg>
+                }
+                label={`<p>${isCartMessage}</p>`}
+                type="info"
+              />
+            </div>
+          )}
 
           {/* @handle push(checkout) */}
           <div className="relative hidden w-max flex-col">

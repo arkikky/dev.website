@@ -30,6 +30,7 @@ import Breadcrumb from '@components/UI/Breadcrumb';
 const Notifications = dynamic(
   () => import('@components/UI/Alerts/Notifications')
 );
+const Alerts = dynamic(() => import('@components/UI/Alerts/Alerts'));
 import Card from '@components/UI/Card/Card';
 
 // @layouts
@@ -227,10 +228,10 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
   }, [isBillingDetails]);
 
   // @handle-event-onChange(components)
-  const handleBillingChange = (getVar, getValue) => {
+  const handleBillingChange = (vr, val) => {
     setBillingDetails({
       ...isBillingDetails,
-      [getVar]: getValue,
+      [vr]: val,
     });
   };
 
@@ -242,6 +243,21 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
     setValue('lastnameAttndee1', lastnameBilling);
     setValue('emailAttndee1', emailBilling);
     setValue('companyAttndee1', companyBilling);
+  };
+
+  // @handle-coupon
+  const [isAlertCoupon, setAlertCoupon] = useState({
+    status: false,
+    type: 'default',
+    message: '',
+  });
+
+  const handleCouponChange = (val, model, mess) => {
+    setAlertCoupon({ status: true, type: model, message: mess });
+  };
+
+  const handleCloseAlert = () => {
+    setAlertCoupon({ ...isAlertCoupon, status: false });
   };
 
   // @submit
@@ -457,7 +473,7 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
 
       {/* @main */}
       <Main className="flex flex-col pb-12">
-        <header className="flex flex-col items-start bg-primary pb-28 pt-[148px]">
+        <header className="flex flex-col items-start bg-primary pb-4 pt-[148px] sm:pb-28">
           <Container>
             <div className="flex flex-col items-start justify-start">
               <h1 className="text-base font-semibold text-white sm:text-3xl">
@@ -486,14 +502,14 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
           </Container>
         </header>
 
-        <div className="relative -mt-[86px] inline-flex flex-col">
+        <div className="relative mt-0 inline-flex flex-col sm:-mt-[86px]">
           <Container>
             <form
               id="tktCAForm_Checkout"
               method="POST"
               onSubmit={handleSubmit(onSubmitForm)}
             >
-              <div className="grid-cols-1 gap-x-6 gap-y-6 rounded-[18px] border border-gray-200 bg-white px-4 py-4 supports-grid:grid sm:grid-cols-12 sm:gap-y-10 sm:px-6 sm:py-6 lg:px-8 lg:pb-10 lg:pt-8">
+              <div className="grid-cols-1 gap-x-6 gap-y-12 rounded-[18px] border-[0px] border-gray-200 bg-white px-2 py-4 supports-grid:grid sm:grid-cols-12 sm:gap-y-20 sm:border sm:px-6 sm:py-6 lg:px-8 lg:pb-10 lg:pt-8">
                 <div className="col-span-full pr-0 xl:col-span-7 xl:pr-8">
                   <div className="block w-full space-y-14">
                     {/* @notification */}
@@ -613,8 +629,11 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
                   {/* @order-details */}
                   <OrderDetailCheckouts
                     products={isProducts}
-                    // items={isCartProduct}
-                    // totalCart={isTotalCart}
+                    register={register}
+                    setValue={setValue}
+                    getValues={getValues}
+                    errors={errors}
+                    onEvents={handleCouponChange}
                   >
                     <Card>
                       {/* @board-submit */}
@@ -633,7 +652,7 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
                             ? 'bg-black-900 text-white'
                             : 'cursor-default bg-gray-200 text-black-900'
                         } w-full cursor-pointer px-8 py-4 text-sm font-normal capitalize leading-inherit outline-none focus-visible:outline-none`}
-                        // disabled={!isValid}
+                        disabled={!isValid}
                       >
                         {isSubmitting ? (
                           <span className="flex flex-row items-center">
@@ -675,6 +694,14 @@ const Checkouts = ({ ipAddress, country, formCheckout }) => {
 
       {/* @footer */}
       <Footer />
+
+      {/* @alert */}
+      <Alerts
+        label={isAlertCoupon.message}
+        type={isAlertCoupon.type}
+        visible={isAlertCoupon.status}
+        onClose={handleCloseAlert}
+      />
     </>
   );
 };
