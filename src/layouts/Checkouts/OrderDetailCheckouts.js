@@ -1,0 +1,539 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import dayjs from 'dayjs';
+import { getCookie, hasCookie } from 'cookies-next';
+
+// @redux
+import { useSelector, useDispatch } from 'react-redux';
+import { updateQuantity, applyCoupon, removeCoupon } from '@reduxState/slices';
+
+// @lib/controller & helper
+import { getFetch } from '@lib/controller/API';
+import {
+  currencyConverter,
+  converterTotalCart,
+} from '@lib/helper/CalculateCartContext';
+import { getTotalCart } from '@lib/helper/CartContext';
+
+const OrderDetailCheckouts = ({
+  products,
+  register,
+  setValue,
+  getValues,
+  errors,
+  onEvents,
+  children,
+}) => {
+  const dispatch = useDispatch();
+  const isCoupon = useSelector((state) => state.cart.coupon);
+  const [isUseCoupon, setUseCoupon] = useState({
+    status: isCoupon ? true : false,
+    discount: 0,
+    totalWithDiscount: 0,
+    message: '',
+  });
+
+  // @use-effect
+  const handleUsedCoupon = useCallback(async () => {
+    const getDataCoupon = await getFetch(
+      `/api/coupons?populate=*&filters[couponCode][$eq]=${isCoupon}`
+    );
+
+    const isDataCoupon = getDataCoupon ? getDataCoupon.data[0] : null;
+
+    if (isDataCoupon && products[0] !== undefined) {
+      const isPrice = products[0].priceSale;
+      const isSubTotal = getTotalCart(products);
+
+      // @assumes discountType contains 'percentage' or 'amount'
+      const discntType = isDataCoupon.type;
+      const discntAmount = parseFloat(parseInt(isDataCoupon.amount)) || 0;
+
+      if (discntType === 'percentage') {
+        const calculatedDiscount =
+          parseInt(isDataCoupon.amount) === 100
+            ? isSubTotal * (discntAmount / 100)
+            : isPrice * (discntAmount / 100);
+
+        const totalAfterDiscount = isSubTotal - calculatedDiscount;
+
+        setUseCoupon({
+          discount: calculatedDiscount,
+          totalWithDiscount: totalAfterDiscount,
+        });
+      }
+    }
+  });
+
+  useEffect(() => {
+    const isCouponApplied = isCoupon !== null;
+
+    if (isCouponApplied) {
+      handleUsedCoupon();
+    }
+
+    return () => {
+      undefined;
+    };
+  }, [products]);
+
+  // @quantity
+  const decreaseQty = async (cartItems) => {
+    try {
+      if (cartItems?.quantity >= 1 && cartItems?.quantity <= 1) {
+        return;
+      } else if (cartItems?.quantity >= 1 && cartItems?.quantity <= 5) {
+        const newQty = cartItems?.quantity - 1;
+
+        if (newQty > Number(cartItems.stock)) return;
+        dispatch(updateQuantity({ products: cartItems, qty: newQty }));
+      } else if (cartItems?.quantity >= 5) {
+        const newQty = 5;
+
+        if (newQty > Number(cartItems.stock)) return;
+        dispatch(updateQuantity({ products: cartItems, qty: newQty }));
+      } else {
+        return;
+      }
+    } catch (error) {
+      console.error('Error fetching:', error);
+    }
+  };
+
+  const increaseQty = async (cartItems) => {
+    try {
+      if (cartItems?.quantity <= 5) {
+        const newQty = cartItems?.quantity + 1;
+
+        if (newQty > Number(cartItems.stock)) return;
+        dispatch(updateQuantity({ products: cartItems, qty: newQty }));
+      } else if (cartItems?.quantity >= 5) {
+        const newQty = 5;
+
+        if (newQty > Number(cartItems.stock)) return;
+        dispatch(updateQuantity({ products: cartItems, qty: newQty }));
+      } else {
+        return;
+      }
+    } catch (error) {
+      console.error('Error fetching:', error);
+    }
+  };
+
+  // @event(change - coupon)
+  const handleCoupon = async () => {
+    try {
+      const getCouponCode = getValues('coupon');
+
+      if (getCouponCode === '') {
+        return;
+      }
+
+      const isCokiesCoupon = hasCookie('_cart')
+        ? JSON.parse(getCookie('_cart')).coupon
+        : isCoupon;
+
+      if (isCokiesCoupon) {
+        onEvents(
+          getCouponCode,
+          'error',
+          'Sorry, you already have a coupon in use!'
+        );
+        return;
+      }
+
+      const getDataCoupon = await getFetch(
+        `/api/coupons?populate=*&filters[couponCode][$eq]=${getCouponCode}`
+      );
+      const isDataCoupon = getDataCoupon ? getDataCoupon.data[0] : null;
+
+      if (isDataCoupon) {
+        const idProducts = products[0].documentId;
+        const isPrice = products[0].priceSale;
+        const isSubTotal = getTotalCart(products);
+
+        // @validasi(Expiration Date)
+        const expirationDate = isDataCoupon.expirationDate;
+        const isExpired = dayjs().isAfter(dayjs(expirationDate));
+        if (isExpired) {
+          onEvents(getCouponCode, 'error', 'Sorry, coupon has expired!');
+          return;
+        }
+
+        // @validasi Included Products
+        const isIncludedProducts = isDataCoupon.includedProducts || [];
+        const isProductIncluded = isIncludedProducts.some(
+          (product) => product.documentId === idProducts
+        );
+        if (!isProductIncluded) {
+          onEvents(
+            getCouponCode,
+            'error',
+            'Sorry, coupon is not valid for this product!'
+          );
+          return;
+        }
+
+        // @assumes discountType contains 'percentage' or 'amount'
+        const discntType = isDataCoupon.type;
+        const discntAmount = parseFloat(parseInt(isDataCoupon.amount)) || 0;
+        if (discntType === 'percentage') {
+          const calculatedDiscount =
+            parseInt(isDataCoupon.amount) === 100
+              ? isSubTotal * (discntAmount / 100)
+              : isPrice * (discntAmount / 100);
+
+          const totalAfterDiscount = isSubTotal - calculatedDiscount;
+
+          setUseCoupon({
+            discount: calculatedDiscount,
+            totalWithDiscount: totalAfterDiscount,
+          });
+
+          dispatch(applyCoupon(getCouponCode));
+          onEvents(
+            getCouponCode,
+            'success',
+            `<strong>Coupon applied!</strong> You saved ${discntAmount}%`
+          );
+
+          setValue('coupon', '');
+          return;
+        } else {
+          // setMessage(
+          //   'This coupon is not applicable as a percentage discount.'
+          // );
+        }
+      } else {
+        onEvents(getCouponCode, 'error', 'Sorry, coupon not found or invalid!');
+      }
+    } catch (error) {
+      console.error('Error fetching coupons:', error);
+      console.error('An error occurred. Please try again.');
+    }
+  };
+
+  // @event(remove - coupon)
+  const clearCoupon = () => {
+    try {
+      dispatch(removeCoupon());
+    } catch (error) {
+      console.error('Error fetching:', error);
+    }
+  };
+
+  return (
+    <>
+      <div className="relative block h-full min-h-full w-full">
+        <div className="mb-4 block w-full">
+          <h2 className="text-xl font-medium capitalize">Order summary</h2>
+          <span className="mt-1.5 text-sm font-light text-gray-400">
+            Checkout your ticket for better experience order item.
+          </span>
+        </div>
+
+        {/* @coupon-code */}
+        {products.length >= 1 && (
+          <>
+            <div className="mb-6 flex w-full flex-row items-center justify-between">
+              <div className="flex flex-row items-center justify-start">
+                <div className="flex h-10 w-10 flex-col items-center justify-center rounded-lg bg-primary/20">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15 5V7V5ZM15 11V13V11ZM15 17V19V17ZM5 5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V10C3.53043 10 4.03914 10.2107 4.41421 10.5858C4.78929 10.9609 5 11.4696 5 12C5 12.5304 4.78929 13.0391 4.41421 13.4142C4.03914 13.7893 3.53043 14 3 14V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V14C20.4696 14 19.9609 13.7893 19.5858 13.4142C19.2107 13.0391 19 12.5304 19 12C19 11.4696 19.2107 10.9609 19.5858 10.5858C19.9609 10.2107 20.4696 10 21 10V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5Z"
+                      stroke="#2458F1"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+                <span className="ms-3 text-sm font-normal text-black-900">{`Have a coupon code?`}</span>
+              </div>
+              <div className="hs-dropdown relative inline-flex [--auto-close:inside] [--placement:bottom-right] [--strategy:absolute]">
+                <button
+                  id="hsCA25Dropdown_EnterCouponCode"
+                  type="button"
+                  className="hs-dropdown-toggle inline-flex items-center gap-x-2 text-sm font-normal text-primary underline focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                  aria-haspopup="menu"
+                  aria-label="Coinfest Asia 2025 (Dropdown - Coupon Code)"
+                  aria-labelledby="Coinfest Asia 2025 (Dropdown - Coupon Code)"
+                  aria-roledescription="Dropdown"
+                  aria-expanded="false"
+                >
+                  Enter code
+                </button>
+
+                <div
+                  className="hs-dropdown-menu duration mt-2.5 hidden rounded-xl border border-gray-200 bg-gray-50/60 px-1 py-1 opacity-0 transition-[opacity,margin] hs-dropdown-open:z-[5] hs-dropdown-open:opacity-100"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="hsCA25Dropdown_EnterCouponCode"
+                >
+                  <div className="inline-flex flex-row gap-x-1.5">
+                    <input
+                      className={`w-[189px] cursor-default border-0 ${errors[`coupon`] && 'bg-red-500'} bg-transparent p-0 px-2.5 py-2.5 pr-4 text-start text-sm font-normal text-black-900 focus:ring-0 focus-visible:outline-none focus-visible:ring-0`}
+                      type="text"
+                      aria-label="Coinfest Asia 2025 (Coupon Code)"
+                      aria-labelledby="Coinfest Asia 2025 (Coupon Code)"
+                      aria-roledescription="Coinfest Asia 2025 (Coupon Code)"
+                      placeholder="Enter a coupon code..."
+                      tabIndex="-1"
+                      minLength={1}
+                      {...register(`coupon`, {
+                        required: false,
+                        maxLength: 255,
+                        pattern: {
+                          value: /^[A-Za-z0-9]+$/,
+                        },
+                      })}
+                    />
+                    <button
+                      id="tcktCa25Btn_MaxQtyCheckouts"
+                      className={`tktCA25Btn_Coupon flex w-24 flex-col items-center justify-center rounded-lg bg-primary px-1 py-1 text-sm font-normal text-white`}
+                      type="button"
+                      aria-label="Button Coupon(Checkouts)"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleCoupon();
+                      }}
+                    >
+                      Apply
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* @group(sticky) */}
+        <div className="sticky top-[120px] z-[2] block">
+          {/* @ticket */}
+          <div className="mb-10 block w-full sm:mb-8">
+            <h2 className="mb-3 text-start text-base font-medium">
+              {`Your Tickets`}
+            </h2>
+            {products.length === 0 && (
+              <div className="flex flex-col items-center justify-center rounded-2xl bg-blue-50 px-6 py-8 text-center text-blue-700">
+                <div className="mb-4.5 flex h-14 w-14 flex-col items-center justify-center overflow-hidden rounded-full bg-blue-400/20">
+                  <svg
+                    className="h-8 w-8"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15 5V7V5ZM15 11V13V11ZM15 17V19V17ZM5 5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V10C3.53043 10 4.03914 10.2107 4.41421 10.5858C4.78929 10.9609 5 11.4696 5 12C5 12.5304 4.78929 13.0391 4.41421 13.4142C4.03914 13.7893 3.53043 14 3 14V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V14C20.4696 14 19.9609 13.7893 19.5858 13.4142C19.2107 13.0391 19 12.5304 19 12C19 11.4696 19.2107 10.9609 19.5858 10.5858C19.9609 10.2107 20.4696 10 21 10V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5Z"
+                      stroke="#2458F1"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+                <h3 className="text-base font-medium">
+                  Your ticket list is empty!
+                </h3>
+                <p className="mt-1 w-full max-w-[374px] text-sm font-light">
+                  Add tickets as you go, so they're ready to check later.
+                </p>
+              </div>
+            )}
+
+            {products?.slice(0, 1).map((gtRslt, i) => (
+              <div
+                className="mt-4 flex w-full flex-col items-start justify-start first:mt-0 sm:flex-row"
+                key={i}
+              >
+                <div className="mb-3 inline-flex h-[134px] w-full min-w-full flex-col items-center justify-center rounded-lg bg-gray-400/20 sm:mb-0 sm:h-[82px] sm:w-[134px] sm:min-w-[134px]"></div>
+
+                <div className="ms-0 block w-fill space-y-1.5 pt-1.5 sm:ms-5">
+                  <div className="inline-flex w-full flex-row items-start justify-between">
+                    <h3 className="text-base font-medium">{gtRslt.name}</h3>
+                    <span className="text-base font-medium">
+                      {currencyConverter(gtRslt.priceSale)}
+                    </span>
+                  </div>
+                  <div className="relative flex w-full flex-row items-center justify-between gap-y-0.5">
+                    <span className="me-3 text-sm font-light">
+                      Qty: {gtRslt.quantity}
+                    </span>
+
+                    <div className="hs-dropdown relative inline-flex [--auto-close:inside] [--placement:bottom-right] [--strategy:absolute]">
+                      <button
+                        id="hsCA25Dropdown_UpdatedQty"
+                        type="button"
+                        className="hs-dropdown-toggle inline-flex items-center gap-x-2 text-sm font-normal text-primary underline focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                        aria-haspopup="menu"
+                        aria-label="Coinfest Asia 2025 (Dropdown - Quantity)"
+                        aria-labelledby="Coinfest Asia 2025 (Dropdown - Quantity)"
+                        aria-roledescription="Dropdown"
+                        aria-expanded="false"
+                      >
+                        Add more
+                      </button>
+
+                      <div
+                        className="hs-dropdown-menu duration mt-1.5 hidden rounded-[10px] border border-gray-200 bg-gray-50 px-1 py-1 opacity-0 transition-[opacity,margin] hs-dropdown-open:opacity-100"
+                        role="menu"
+                        aria-orientation="vertical"
+                        aria-labelledby="hsCA25Dropdown_UpdatedQty"
+                      >
+                        <div className="inline-flex flex-row gap-x-1.5">
+                          <button
+                            id="tcktCa25Btn_MinQtyCheckouts"
+                            className="tktCA25Btn_Qty"
+                            type="button"
+                            aria-label="Button Quantity(Min - Checkouts)"
+                            aria-labelledby="Button Quantity(Min - Checkouts)"
+                            disabled={
+                              gtRslt.quantity >= 1 && gtRslt.quantity <= 1
+                            }
+                            onClick={(e) => {
+                              e.preventDefault();
+                              decreaseQty(gtRslt);
+                            }}
+                          >
+                            <svg
+                              className="size-3.5 shrink-0"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M5 12h14"></path>
+                            </svg>
+                          </button>
+                          <input
+                            className={`w-5 cursor-default border-0 bg-transparent p-0 text-center text-sm font-light text-gray-800 focus:ring-0 focus-visible:outline-none focus-visible:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none`}
+                            type="number"
+                            aria-roledescription="Number field"
+                            value={gtRslt.quantity}
+                            tabIndex="-1"
+                            maxLength="5"
+                            minLength={gtRslt.quantity || 1}
+                            readOnly={true}
+                            disabled={true}
+                          />
+                          <button
+                            id="tcktCa25Btn_MaxQtyCheckouts"
+                            className={`tktCA25Btn_Qty`}
+                            type="button"
+                            aria-label="Button Quantity(Max - Checkouts)"
+                            aria-labelledby="Button Quantity(Max - Checkouts)"
+                            disabled={gtRslt.quantity >= 5}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              increaseQty(gtRslt, gtRslt.quantity);
+                            }}
+                          >
+                            <svg
+                              className="size-3.5 shrink-0"
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M5 12h14"></path>
+                              <path d="M12 5v14"></path>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* @order-summary */}
+          <div className="mb-8 block space-y-4">
+            {/* @subtotal */}
+            <div className="grid-cols-2 supports-grid:grid">
+              <span className="text-start text-sm font-medium">{`Subtotal`}</span>
+              <span className="text-end text-base font-medium">
+                {currencyConverter(getTotalCart(products))}
+              </span>
+            </div>
+
+            {/* @coupon */}
+            {isCoupon && (
+              <div className="grid-cols-2 justify-between supports-grid:grid">
+                <span className="flex flex-col text-start text-sm font-medium">
+                  <span>Coupon:</span>
+                  <span className="font-semibold uppercase text-primary">
+                    ({isCoupon})
+                  </span>
+                </span>
+                <div className="inline-flex flex-row items-start justify-end pt-0.5">
+                  <span className="text-end text-base font-medium text-gray-400">{`-${currencyConverter(isUseCoupon.discount)}`}</span>
+                  <button
+                    className="ms-3 flex h-8 w-8 flex-col items-center justify-center rounded-lg border border-solid border-red-500 bg-red-500/10 focus-visible:outline-none"
+                    type="button"
+                    tabIndex={-1}
+                    aria-label="Coinfest Asia 2025 (Remove - Coupon)"
+                    aria-labelledby="Coinfest Asia 2025 (Remove - Coupon)"
+                    aria-roledescription="Coinfest Asia 2025 (Remove - Coupon)"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      clearCoupon();
+                    }}
+                  >
+                    <svg
+                      className="h-4 w-4 stroke-red-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M3 6h18" />
+                      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                      <line x1="10" x2="10" y1="11" y2="17" />
+                      <line x1="14" x2="14" y1="11" y2="17" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* @total with tax (11%) */}
+            <div className="grid-cols-2 supports-grid:grid">
+              <span className="text-start text-sm font-medium">{`Total (inc. Tax)`}</span>
+              <span className="text-end text-base font-medium">
+                {isCoupon
+                  ? converterTotalCart(isUseCoupon.totalWithDiscount)
+                  : converterTotalCart(getTotalCart(products))}
+              </span>
+            </div>
+          </div>
+
+          {/* @sub-component's */}
+          {children}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default OrderDetailCheckouts;
