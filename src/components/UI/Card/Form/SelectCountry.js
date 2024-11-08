@@ -13,16 +13,16 @@ const SelectCountry = ({
 
   // @method
   // useEffect(() => {
-  // const loadHSSelect = async () => {
-  //   // @import preline when the component mounts
-  //   await import('preline/dist/select');
+  //   const loadHSSelect = async () => {
+  //     // @import preline when the component mounts
+  //     await import('preline/dist/select');
 
-  //   const getElmnts = window.HSSelect?.getInstance(`#${id}`);
+  //     const getElmnts = window.HSSelect?.getInstance(`#${id}`);
 
-  //   if (getElmnts) {
-  //     getElmnts.setValue('Indonesia');
-  //   }
-  // };
+  //     if (getElmnts) {
+  //       getElmnts.setValue('Indonesia');
+  //     }
+  //   };
 
   //   loadHSSelect();
 

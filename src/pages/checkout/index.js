@@ -137,7 +137,21 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
     return () => {
       undefined;
     };
-  }, [router.reload]);
+  }, []);
+
+  useEffect(() => {
+    const handleRouteChange = (url, { shallow }) => {
+      console.log(
+        `App is changing to ${url} ${
+          shallow ? 'with' : 'without'
+        } shallow routing`
+      );
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router]);
 
   // @hook(Product)
   useEffect(() => {
@@ -198,7 +212,6 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
   });
 
   // @watch
-  const iHaveReadAgree = watch('i_have_read_and_agree');
   const firstnameBilling = watch('firstname');
   const lastnameBilling = watch('lastname');
   const emailBilling = watch('email');
@@ -245,6 +258,66 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
     setValue('dialcode-phone1', phone);
     setValue('phone1', phone);
     setValue('companyAttndee1', companyBilling);
+  };
+
+  // useEffect(() => {
+  //   const loadHSSelect = async () => {
+  //     // @import preline when the component mounts
+  //     await import('preline/dist/select');
+
+  //     const getElmnts = window.HSSelect?.getInstance(
+  //       `#tktCAForm_CompanyFocusAttndee1Checkout`
+  //     );
+
+  //     if (getElmnts) {
+  //       getElmnts.setValue('AI');
+  //     }
+  //   };
+
+  //   loadHSSelect();
+
+  //   return () => {
+  //     undefined;
+  //   };
+  // }, []);
+
+  const hndleCopy_CompanyDetail = async (data = []) => {
+    try {
+      console.log('awdawd');
+      // await import('preline/dist/select');
+
+      const getElmnts = window.HSSelect?.getInstance(
+        `#tktCAForm_CompanyFocusAttndee1Checkout`
+      );
+
+      if (getElmnts) {
+        getElmnts.setValue('AI');
+      }
+      // console.log(data);
+
+      // data?.forEach((id) => {
+      //   const elementInstance = window.HSSelect?.getInstance(`${id}`);
+
+      //   //   console.log(elementInstance);
+
+      //   if (elementInstance) {
+      //     elementInstance.setValue('AI');
+      //   } else {
+      //     console.warn(`HSSelect instance not found for id: ${id}`);
+      //   }
+      // });
+    } catch (error) {
+      console.error('[Error] failed to load HSSelect:', error);
+    }
+
+    // @import preline when the component mounts
+    // await import('preline/dist/select');
+
+    // const getElmnts = window.HSSelect?.getInstance(`#${id}`);
+
+    // if (getElmnts) {
+    //   getElmnts.setValue('Indonesia');
+    // }
   };
 
   // @submit(Checkout)
@@ -368,7 +441,12 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                               type="button"
                               aria-label="Button for Copy Billing Detail(Checkouts)"
                               aria-labelledby="Button for Copy Billing Detail(Checkouts)"
-                              // onClick={(e) => hndleCopy_BillingToAttendee(e)}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                hndleCopy_CompanyDetail([
+                                  `#tktCAForm_CompanyFocusAttndee1Checkout`,
+                                ]);
+                              }}
                               className="text-black-900"
                             >
                               <Badge

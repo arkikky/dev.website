@@ -45,7 +45,7 @@ const App = ({ Component, pageProps }) => {
         </Layouts>
 
         {/* @script */}
-        <PrelineScript />
+        {/* <PrelineScript /> */}
       </>
     ));
 
@@ -85,7 +85,7 @@ const App = ({ Component, pageProps }) => {
         {getLayout(<Component {...pageProps} />)}
 
         {/* @script */}
-        <PrelineScript />
+        {/* <PrelineScript /> */}
       </Provider>
     </>
   );

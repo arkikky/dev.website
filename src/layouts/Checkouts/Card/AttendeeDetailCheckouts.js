@@ -158,6 +158,7 @@ const AttendeeDetailCheckouts = ({
             <Label
               forId={`tktCAForm_TelegramAccountAttndee${arrIndex}Checkout`}
               label="Telegram Account"
+              required={true}
             />
             <Input
               id={`tktCAForm_TelegramAccountAttndee${arrIndex}Checkout`}
@@ -167,7 +168,7 @@ const AttendeeDetailCheckouts = ({
               ariaLabel={`Telegram Account Attendee${arrIndex} - Checkout`}
               config={{
                 ...register(`telegramAccountAttndee${arrIndex}`, {
-                  required: false,
+                  required: true,
                   maxLength: 255,
                   pattern: {
                     value: /^@([a-zA-Z][a-zA-Z0-9_]{2,55})$/,
