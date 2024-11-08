@@ -150,7 +150,7 @@ const Home = ({ products }) => {
 
                     <button
                       id={`ca25Btn_Product${gtRslt.name.replace(/\s/g, '')}`}
-                      className="relative inline-flex w-full items-center justify-center rounded-xl bg-primary px-6 py-4 uppercase text-white disabled:pointer-events-none disabled:opacity-90"
+                      className="relative inline-flex w-full items-center justify-center rounded-xl bg-primary px-6 py-4 font-medium uppercase text-white disabled:pointer-events-none disabled:opacity-90"
                       role="button"
                       aria-label={`Coinfest Asia 2025 (Button CTA - ${gtRslt.name.replace(/\s/g, '')} Products)`}
                       aria-labelledby={`Coinfest Asia 2025 (Button CTA - ${gtRslt.name.replace(/\s/g, '')} Products)`}

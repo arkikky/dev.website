@@ -36,15 +36,6 @@ const OrderDetailCheckouts = ({
     totalWithDiscount: 0,
   });
 
-  // @hook(Preline)
-  // const hndleIntzPreline = useCallback(async () => {
-  //   await import('preline/preline');
-
-  //   if (window.HSStaticMethods) {
-  //     window.HSStaticMethods.autoInit();
-  //   }
-  // }, [isCart]);
-
   const hndleIntzCoupon = async () => {
     try {
       const getDataCoupon = await getFetch(
@@ -113,6 +104,9 @@ const OrderDetailCheckouts = ({
       const getCouponCode = getValues('coupon').trim();
       if (!getCouponCode) return;
 
+      const idProducts = products[0].documentId;
+      const isSubTotal = getTotalCart(products);
+
       if (isCoupon !== null) {
         return onAlert('error', 'Sorry, you already have a coupon in use!');
       }
@@ -122,17 +116,13 @@ const OrderDetailCheckouts = ({
         `/api/coupons?populate=*&filters[couponCode][$eq]=${getCouponCode}`
       );
       const coupon = data?.[0];
-
       if (!coupon) {
         return onAlert('error', 'Sorry, coupon not found or invalid!');
       }
 
       const { expirationDate, includedProducts = [], type, amount } = coupon;
-      const idProducts = products[0].documentId;
-      const isSubTotal = getTotalCart(products);
-
       if (dayjs().isAfter(dayjs(expirationDate))) {
-        return onAlert(getCouponCode, 'error', 'Sorry, coupon has expired!');
+        return onAlert('error', 'Sorry, coupon has expired!');
       }
 
       if (

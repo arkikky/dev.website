@@ -1,5 +1,5 @@
 'use client';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 export default function PrelineScript() {
@@ -23,16 +23,10 @@ export default function PrelineScript() {
 
     loadPreline();
 
-    const handleRouteChangeComplete = () => {
-      loadPreline();
-    };
-
-    router.events.on('routeChangeComplete', handleRouteChangeComplete);
-
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChangeComplete);
+      null;
     };
-  }, [router]);
+  }, [router.pathname]);
 
   return null;
 }

@@ -2,6 +2,7 @@
 
 const nextConfig = {
   reactStrictMode: true,
+  poweredByHeader: true,
   images: {
     remotePatterns: [
       {
@@ -40,19 +41,23 @@ const nextConfig = {
     jwtSecretKey: process.env.JWT_SECRET,
     devNode: process.env.NODE_ENV,
   },
-  // async headers() {
-  //   return [
-  //     {
-  //       source: "/(.*)",
-  //       headers: [
-  //         {
-  //           key: "Cache-Control",
-  //           value: "public, max-age=900, immutable",
-  //         },
-  //       ],
-  //     },
-  //   ];
-  // },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=900, immutable',
+          },
+          {
+            key: 'x-powered-by',
+            value: 'Coinfest Asia',
+          },
+        ],
+      },
+    ];
+  },
   // async rewrites() {
   //   return [
   //     {

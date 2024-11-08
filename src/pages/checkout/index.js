@@ -8,6 +8,9 @@ import DOMPurify from 'dompurify';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItemToCart } from '@reduxState/slices';
 
+// @script
+import PrelineScript from '@components/Script/PrelineScript';
+
 // @lib/controller & helper
 import { getFetch, getFetchUrl, pushSubmitData } from '@lib/controller/API';
 import { getFecthHbSpt, submitFormHbSpt } from '@lib/controller/HubSpot';
@@ -130,29 +133,6 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
     ...Array(isFormCheckouts.totalQty ? isFormCheckouts.totalQty : 1).keys(),
   ];
 
-  // @hook(Reload)
-  useEffect(() => {
-    handleIntzPreline();
-
-    return () => {
-      undefined;
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleRouteChange = (url, { shallow }) => {
-      console.log(
-        `App is changing to ${url} ${
-          shallow ? 'with' : 'without'
-        } shallow routing`
-      );
-    };
-    router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router]);
-
   // @hook(Product)
   useEffect(() => {
     hndleHookProducts();
@@ -260,64 +240,29 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
     setValue('companyAttndee1', companyBilling);
   };
 
-  // useEffect(() => {
-  //   const loadHSSelect = async () => {
-  //     // @import preline when the component mounts
-  //     await import('preline/dist/select');
+  const hndleCopy_CompanyDetail = async (data = [], attendee = 1) => {
+    const vals = [
+      getValues('countryAttndee1'),
+      getValues('jobPositionAttndee1'),
+      getValues('companyFocusAttndee1'),
+      getValues('companySizeAttndee1'),
+      getValues('whatTypeConnectionNetworkingAttndee1'),
+      getValues('didYouHearAboutAttndee1'),
+    ];
 
-  //     const getElmnts = window.HSSelect?.getInstance(
-  //       `#tktCAForm_CompanyFocusAttndee1Checkout`
-  //     );
+    setValue(`companyAttndee${attendee}`, getValues('companyAttndee1'));
 
-  //     if (getElmnts) {
-  //       getElmnts.setValue('AI');
-  //     }
-  //   };
+    if (data.length > 0) {
+      data?.forEach((id, i) => {
+        const elmntInstance = window.HSSelect?.getInstance(id);
 
-  //   loadHSSelect();
-
-  //   return () => {
-  //     undefined;
-  //   };
-  // }, []);
-
-  const hndleCopy_CompanyDetail = async (data = []) => {
-    try {
-      console.log('awdawd');
-      // await import('preline/dist/select');
-
-      const getElmnts = window.HSSelect?.getInstance(
-        `#tktCAForm_CompanyFocusAttndee1Checkout`
-      );
-
-      if (getElmnts) {
-        getElmnts.setValue('AI');
-      }
-      // console.log(data);
-
-      // data?.forEach((id) => {
-      //   const elementInstance = window.HSSelect?.getInstance(`${id}`);
-
-      //   //   console.log(elementInstance);
-
-      //   if (elementInstance) {
-      //     elementInstance.setValue('AI');
-      //   } else {
-      //     console.warn(`HSSelect instance not found for id: ${id}`);
-      //   }
-      // });
-    } catch (error) {
-      console.error('[Error] failed to load HSSelect:', error);
+        if (elmntInstance) {
+          elmntInstance.setValue(vals[i]);
+        } else {
+          console.warn(`[Warning] HSSelect instance not found for id: ${id}`);
+        }
+      });
     }
-
-    // @import preline when the component mounts
-    // await import('preline/dist/select');
-
-    // const getElmnts = window.HSSelect?.getInstance(`#${id}`);
-
-    // if (getElmnts) {
-    //   getElmnts.setValue('Indonesia');
-    // }
   };
 
   // @submit(Checkout)
@@ -350,6 +295,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                 <div className="mb-6 flex w-full flex-col items-start justify-start px-4 sm:mb-4">
                   <h2 className="text-xl font-medium capitalize">
                     {`Billing details`}
+                    {firstnameBilling}
                   </h2>
                   <span className="mt-1 text-sm font-light text-gray-500">
                     {`Please complete your purchase by providing your billing and
@@ -443,9 +389,17 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                               aria-labelledby="Button for Copy Billing Detail(Checkouts)"
                               onClick={(e) => {
                                 e.preventDefault();
-                                hndleCopy_CompanyDetail([
-                                  `#tktCAForm_CompanyFocusAttndee1Checkout`,
-                                ]);
+                                hndleCopy_CompanyDetail(
+                                  [
+                                    `#tktCAForm_CountryAttndee${isFormCheckouts.stepForm}Checkout`,
+                                    `#tktCAForm_JobPositionAttndee${isFormCheckouts.stepForm}Checkout`,
+                                    `#tktCAForm_CompanyFocusAttndee${isFormCheckouts.stepForm}Checkout`,
+                                    `#tktCAForm_CompanySizeAttndee${isFormCheckouts.stepForm}Checkout`,
+                                    `#tktCAForm_WhatTypeOfConnectionsAttndee${isFormCheckouts.stepForm}Checkout`,
+                                    `#tktCAForm_DidYouHearAboutAttndee${isFormCheckouts.stepForm}Checkout`,
+                                  ],
+                                  isFormCheckouts.stepForm
+                                );
                               }}
                               className="text-black-900"
                             >
@@ -676,6 +630,9 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
         visible={isAlert.status}
         onClose={handleCloseAlert}
       />
+
+      {/* @script */}
+      <PrelineScript />
     </>
   );
 };

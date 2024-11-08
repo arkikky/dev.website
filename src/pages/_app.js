@@ -10,9 +10,6 @@ const { publicRuntimeConfig } = getConfig();
 import { Provider } from 'react-redux';
 import store from '@reduxState/store';
 
-// @script
-import PrelineScript from '@components/Script/PrelineScript';
-
 // @style-css
 import '@styles/globals.css';
 
@@ -43,9 +40,6 @@ const App = ({ Component, pageProps }) => {
         <Layouts>
           <Component {...pageProps} />
         </Layouts>
-
-        {/* @script */}
-        {/* <PrelineScript /> */}
       </>
     ));
 
@@ -83,9 +77,6 @@ const App = ({ Component, pageProps }) => {
         </Head>
 
         {getLayout(<Component {...pageProps} />)}
-
-        {/* @script */}
-        {/* <PrelineScript /> */}
       </Provider>
     </>
   );
