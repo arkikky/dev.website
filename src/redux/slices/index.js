@@ -1,13 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const savedState =
-  typeof window !== 'undefined' && sessionStorage.getItem('_cart')
-    ? JSON.parse(sessionStorage.getItem('_cart'))
-    : {
+const savedState = () => {
+  try {
+    if (typeof window !== 'undefined' && sessionStorage.getItem('_cart')) {
+      return JSON.parse(sessionStorage.getItem('_cart'));
+    } else {
+      return {
         data: [],
         coupon: null,
         session: new Date().toISOString(),
       };
+    }
+  } catch (error) {
+    console.error('[Error] Failed to parse sessionStorage data:', error);
+    return {
+      data: [],
+      coupon: null,
+      session: new Date().toISOString(),
+    };
+  }
+};
 
 const cartSlice = createSlice({
   name: '_cart',
@@ -21,8 +33,6 @@ const cartSlice = createSlice({
       if (exItms) {
         exItms.quantity += 1;
       } else {
-        console.log();
-
         state.data.push({
           ...action.payload,
           quantity: d.id_product === 'sn4ujm0d1ebbc8lme1ihzsa9' ? 5 : 1,
@@ -47,13 +57,13 @@ const cartSlice = createSlice({
     // @apply(Coupon)
     applyCoupon: (state, action) => {
       state.coupon = action.payload;
-      // setCookie('_cart', JSON.stringify(state), cookieConfig);
+      sessionStorage.setItem('_cart', JSON.stringify(state));
     },
 
     // @remove(Coupon)
     removeCoupon: (state) => {
       state.coupon = null;
-      // setCookie('_cart', JSON.stringify(state), cookieConfig);
+      sessionStorage.setItem('_cart', JSON.stringify(state));
     },
 
     // @remove(Cart)

@@ -148,8 +148,7 @@ const AttendeeDetailCheckouts = ({
                   required: true,
                   maxLength: 18,
                   pattern: {
-                    value: /^.{12,}/,
-                    message: 'Please enter a valid URL',
+                    value: /^.{5,}/,
                   },
                 }),
               }}
@@ -159,7 +158,6 @@ const AttendeeDetailCheckouts = ({
             <Label
               forId={`tktCAForm_TelegramAccountAttndee${arrIndex}Checkout`}
               label="Telegram Account"
-              required={true}
             />
             <Input
               id={`tktCAForm_TelegramAccountAttndee${arrIndex}Checkout`}
@@ -169,7 +167,7 @@ const AttendeeDetailCheckouts = ({
               ariaLabel={`Telegram Account Attendee${arrIndex} - Checkout`}
               config={{
                 ...register(`telegramAccountAttndee${arrIndex}`, {
-                  required: true,
+                  required: false,
                   maxLength: 255,
                   pattern: {
                     value: /^@([a-zA-Z][a-zA-Z0-9_]{2,55})$/,
@@ -180,7 +178,7 @@ const AttendeeDetailCheckouts = ({
             />
           </div>
         </div>
-        {/* <div
+        <div
           className={`"block ${errors[`countryAttndee${arrIndex}`] && 'error'}`}
         >
           <Label
@@ -199,7 +197,7 @@ const AttendeeDetailCheckouts = ({
               }),
             }}
           />
-        </div> */}
+        </div>
         <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
           <div className="block">
             <Label
@@ -225,7 +223,7 @@ const AttendeeDetailCheckouts = ({
             />
           </div>
           <div
-            className={`"block ${errors[`jobPosition${arrIndex}`] && 'error'}`}
+            className={`"block ${errors[`jobPositionAttndee${arrIndex}`] && 'error'}`}
           >
             <Label
               forId={`tktCAForm_JobPositionAttndee${arrIndex}Checkout`}
@@ -248,9 +246,9 @@ const AttendeeDetailCheckouts = ({
             />
           </div>
         </div>
-        {/* <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
+        <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
           <div
-            className={`"block ${errors[`companyFocus${arrIndex}`] && 'error'}`}
+            className={`"block ${errors[`companyFocusAttndee${arrIndex}`] && 'error'}`}
           >
             <Label
               forId={`tktCAForm_CompanyFocusAttndee${arrIndex}Checkout`}
@@ -273,7 +271,7 @@ const AttendeeDetailCheckouts = ({
             />
           </div>
           <div
-            className={`"block ${errors[`companySize${arrIndex}`] && 'error'}`}
+            className={`"block ${errors[`companySizeAttndee${arrIndex}`] && 'error'}`}
           >
             <Label
               forId={`tktCAForm_CompanySizeAttndee${arrIndex}Checkout`}
@@ -294,9 +292,9 @@ const AttendeeDetailCheckouts = ({
               }}
             />
           </div>
-        </div> */}
+        </div>
         <div
-          className={`"block ${errors[`whatTypeConnectionNetworking${arrIndex}`] && 'error'}`}
+          className={`"block ${errors[`whatTypeConnectionNetworkingAttndee${arrIndex}`] && 'error'}`}
         >
           <Label
             forId={`tktCAForm_WhatTypeOfConnectionsAttndee${arrIndex}Checkout`}
@@ -318,7 +316,7 @@ const AttendeeDetailCheckouts = ({
           />
         </div>
         <div
-          className={`"block ${errors[`didYouHearAbout${arrIndex}`] && 'error'}`}
+          className={`"block ${errors[`didYouHearAboutAttndee${arrIndex}`] && 'error'}`}
         >
           <Label
             forId={`tktCAForm_DidYouHearAboutAttndee${arrIndex}Checkout`}

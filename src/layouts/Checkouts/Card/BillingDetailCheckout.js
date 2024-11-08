@@ -151,8 +151,7 @@ const BillingDetailCheckout = ({
                   required: true,
                   maxLength: 18,
                   pattern: {
-                    value: /^.{12,}/,
-                    message: 'Please enter a valid URL',
+                    value: /^.{5,}/,
                   },
                 }),
               }}

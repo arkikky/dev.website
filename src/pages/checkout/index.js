@@ -26,8 +26,6 @@ import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
 import Badge from '@components/UI/Badge';
-import Breadcrumb from '@components/UI/Breadcrumb';
-import Notifications from '@components/UI/Alerts/Notifications';
 import Alerts from '@components/UI/Alerts/Alerts';
 import Card from '@components/UI/Card/Card';
 
@@ -100,10 +98,10 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
           };
         })
       );
-
       // @hook(Combine Merged)
       if (allProducts) {
-        const setMerged = getCombineMerged(allProducts, isCart);
+        const setMerged = getCombineMerged(allProducts.slice(0, 1), isCart);
+
         if (setMerged) {
           setProducts(setMerged);
         }
@@ -200,6 +198,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
   });
 
   // @watch
+  const iHaveReadAgree = watch('i_have_read_and_agree');
   const firstnameBilling = watch('firstname');
   const lastnameBilling = watch('lastname');
   const emailBilling = watch('email');
@@ -277,11 +276,11 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
               <div className="mt-8 flex flex-col items-start rounded-2xl border border-solid border-gray-200 bg-gray-100 px-2 pb-2 pt-4">
                 <div className="mb-6 flex w-full flex-col items-start justify-start px-4 sm:mb-4">
                   <h2 className="text-xl font-medium capitalize">
-                    Billing details {isFormCheckouts.stepForm}
+                    {`Billing details`}
                   </h2>
                   <span className="mt-1 text-sm font-light text-gray-500">
-                    Please complete your purchase by providing your billing and
-                    payment details.
+                    {`Please complete your purchase by providing your billing and
+                    payment details.`}
                   </span>
                 </div>
                 <div className="inline-flex w-full flex-col rounded-xl bg-white px-4 py-4">
@@ -301,7 +300,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
               </div>
 
               {/* @attendee(Detail) */}
-              <div className="mt-10 block w-full space-y-6">
+              <div className={`mt-10 block w-full space-y-6`}>
                 {isAttendee?.map((gtRslt, i) => {
                   return isFormCheckouts.stepForm === i + 1 ? (
                     <div
@@ -311,14 +310,14 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                       <div className="mb-6 flex w-full flex-col items-start justify-between px-4 sm:mb-4 sm:flex-row">
                         <div className="flex w-full max-w-[420px] flex-col items-start justify-start">
                           <h2 className="text-xl font-medium capitalize">
-                            Attendees {i + 1}
+                            {`Attendees ${i + 1}`}
                           </h2>
                           <span className="mt-1 text-sm font-light text-gray-500">
-                            Please complete the form with your attendee details.
+                            {`Please complete the form with your attendee details.`}
                           </span>
                         </div>
-                        <div className="mr-0 mt-3 sm:-mr-2 sm:mt-0">
-                          {isBillingFilled && i <= 0 ? (
+                        {isBillingFilled && i <= 0 ? (
+                          <div className="mr-0 mt-3 sm:-mr-2 sm:mt-0">
                             <button
                               id="ca25Btn_CopyBillingDetailCheckout"
                               type="button"
@@ -331,10 +330,81 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                                 label="Same as a Billing Details"
                                 withHover={true}
                                 withUnderline={true}
+                                icons={
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-4 w-4"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  >
+                                    <rect
+                                      width="8"
+                                      height="4"
+                                      x="8"
+                                      y="2"
+                                      rx="1"
+                                      ry="1"
+                                    />
+                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                                    <path d="M12 11h4" />
+                                    <path d="M12 16h4" />
+                                    <path d="M8 11h.01" />
+                                    <path d="M8 16h.01" />
+                                  </svg>
+                                }
                               />
                             </button>
-                          ) : null}
-                        </div>
+                          </div>
+                        ) : null}
+
+                        {isFormCheckouts.stepForm > 1 ? (
+                          <div className="mr-0 mt-3 sm:-mr-2 sm:mt-0">
+                            <button
+                              id="ca25Btn_CopyBillingDetailCheckout"
+                              type="button"
+                              aria-label="Button for Copy Billing Detail(Checkouts)"
+                              aria-labelledby="Button for Copy Billing Detail(Checkouts)"
+                              // onClick={(e) => hndleCopy_BillingToAttendee(e)}
+                              className="text-black-900"
+                            >
+                              <Badge
+                                label="Same Company Details"
+                                withHover={true}
+                                withUnderline={true}
+                                icons={
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-4 w-4"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  >
+                                    <rect
+                                      width="8"
+                                      height="4"
+                                      x="8"
+                                      y="2"
+                                      rx="1"
+                                      ry="1"
+                                    />
+                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                                    <path d="M12 11h4" />
+                                    <path d="M12 16h4" />
+                                    <path d="M8 11h.01" />
+                                    <path d="M8 16h.01" />
+                                  </svg>
+                                }
+                              />
+                            </button>
+                          </div>
+                        ) : null}
                       </div>
                       <div className="inline-flex w-full flex-col rounded-xl bg-white px-4 py-4">
                         <AttendeeDetailCheckouts
@@ -364,9 +434,20 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                         <Badge
                           label={`Next Attendee: ${isFormCheckouts.stepForm + 1}`}
                           type="light"
+                          size="sm"
+                          icons={
+                            <span className="mr-0.5 inline-block size-1.5 rounded-full bg-gray-800"></span>
+                          }
                         />
                       ) : (
-                        <Badge label="Last Attendee" type="light" />
+                        <Badge
+                          label={`Last Attendee`}
+                          type="light"
+                          size="sm"
+                          icons={
+                            <span className="mr-0.5 inline-block size-1.5 rounded-full bg-gray-800"></span>
+                          }
+                        />
                       )}
                     </div>
                     <div
@@ -466,7 +547,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                   {/* @submit(Form) */}
                   <button
                     id="tktCA25Form_SubmitCheckout"
-                    className={`inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-black-900 px-8 py-5 text-base font-normal capitalize leading-inherit text-white`}
+                    className={`inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-black-900 px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:bg-gray-200 disabled:text-black-900`}
                     type="submit"
                     role="button"
                     aria-label="Submit Checkout for Coinfest Asia 2025"

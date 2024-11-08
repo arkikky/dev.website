@@ -32,7 +32,6 @@ const Home = ({ products }) => {
   useEffect(() => {
     if (isCart.length >= 1) {
       dispatch(removeCart());
-      return;
     }
 
     return () => {

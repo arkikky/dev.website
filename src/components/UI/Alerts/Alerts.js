@@ -52,14 +52,15 @@ const Alerts = ({
       <div
         id="ca25Alert-Card"
         className={twMerge(
-          `fixed ${showAnimation === true ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'} bottom-2 left-2 right-2 top-auto z-[12] w-fill rounded-lg border px-3 py-3 text-sm duration-300 ease-in-out sm:bottom-6 sm:left-6 sm:right-auto sm:w-max sm:px-4 sm:py-4 lg:bottom-8 lg:left-8`,
+          `fixed ${showAnimation === true ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'} bottom-3 left-3 right-3 top-auto z-[12] w-fill rounded-lg border px-3 py-4 text-sm duration-300 ease-in-out sm:bottom-6 sm:left-6 sm:right-auto sm:w-max sm:px-4 lg:bottom-8 lg:left-8`,
           isType
         )}
         role="alert"
         tabIndex="-1"
+        aria-label="Coinfest Asia 2025(Alert)"
         aria-labelledby="Coinfest Asia 2025(Alert)"
       >
-        <div className="flex flex-col items-start justify-start px-1 sm:flex-row">
+        <div className="flex flex-row items-start justify-start px-1">
           <div className="shrink-0 pt-px">
             {type === 'success' ? (
               <svg
@@ -87,6 +88,7 @@ const Alerts = ({
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                className="h-5 w-5"
               >
                 <path d="M12 16h.01" />
                 <path d="M12 8v4" />
@@ -94,13 +96,13 @@ const Alerts = ({
               </svg>
             ) : null}
           </div>
-          <div className="ms-0 mt-2 flex-1 space-x-0 sm:ms-3 sm:mt-0 sm:space-x-1.5 md:flex md:justify-between">
+          <div className="ms-2 mt-0 flex flex-row space-x-1 sm:ms-3 sm:space-x-1.5">
             <div
               id="ca25Alert-label"
               className="text-sm prose-strong:font-semibold"
               dangerouslySetInnerHTML={{ __html: label }}
             ></div>
-            <span className="ml-2">({isCountdown}s) </span>
+            <span className="ml-2 font-medium">({isCountdown}s) </span>
           </div>
         </div>
       </div>
