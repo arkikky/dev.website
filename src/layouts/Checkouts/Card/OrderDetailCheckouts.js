@@ -64,20 +64,8 @@ const OrderDetailCheckouts = ({
   useEffect(() => {
     hndleIntzCoupon();
 
-    // @hook(Preline)
-    const timer = setTimeout(async () => {
-      if (!window.HSStaticMethods) {
-        try {
-          const { HSStaticMethods } = await import('preline/preline');
-          HSStaticMethods.autoInit();
-        } catch (error) {
-          console.error('[Error] loading Preline:', error);
-        }
-      }
-    }, 2000);
-
     return () => {
-      clearTimeout(timer);
+      undefined;
     };
   }, [products]);
 

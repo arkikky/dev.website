@@ -89,13 +89,10 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
 
   // @hook(Preline)
   const handleIntzPreline = useCallback(async () => {
-    if (!window.HSStaticMethods) {
-      try {
-        const { HSStaticMethods } = await import('preline/preline');
-        HSStaticMethods.autoInit();
-      } catch (error) {
-        console.error('[Error] loading Preline:', error);
-      }
+    await import('preline/preline');
+
+    if (window.HSStaticMethods) {
+      window.HSStaticMethods.autoInit();
     }
   }, [isCart]);
 

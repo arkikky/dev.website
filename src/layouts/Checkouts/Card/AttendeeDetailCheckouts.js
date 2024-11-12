@@ -211,7 +211,7 @@ const AttendeeDetailCheckouts = ({
           ariaLabel={`What Type Of Connections Attendee${arrIndex} - Checkout`}
           label="Choose a type connection networking..."
           listSelect={
-            fieldForm !== undefined ? fieldForm[6].fields[0].options : []
+            fieldForm !== undefined ? fieldForm[6].fields?.[0].options : []
           }
           config={{
             ...register(`whatTypeConnectionNetworkingAttndee${arrIndex}`, {
@@ -233,7 +233,7 @@ const AttendeeDetailCheckouts = ({
           ariaLabel={`What Type Of Connections Attendee${arrIndex} - Checkout`}
           label="Choose a did you hear about..."
           listSelect={
-            fieldForm !== undefined ? fieldForm[7].fields[0].options : []
+            fieldForm !== undefined ? fieldForm[7].fields?.[0].options : []
           }
           config={{
             ...register(`didYouHearAboutAttndee${arrIndex}`, {
