@@ -287,7 +287,7 @@ OrderReceived.getLayout = function PageLayout(page) {
   return <>{page}</>;
 };
 
-export async function getServerSideProps(context) {
+export const getServerSideProps = async (context) => {
   const { process } = context.query;
 
   const isValid_Process =
@@ -333,6 +333,6 @@ export async function getServerSideProps(context) {
       },
     };
   }
-}
+};
 
 export default OrderReceived;

@@ -210,7 +210,9 @@ const AttendeeDetailCheckouts = ({
           id={`tktCAForm_WhatTypeOfConnectionsAttndee${arrIndex}Checkout`}
           ariaLabel={`What Type Of Connections Attendee${arrIndex} - Checkout`}
           label="Choose a type connection networking..."
-          listSelect={fieldForm !== undefined && fieldForm[6].fields[0].options}
+          listSelect={
+            fieldForm !== undefined ? fieldForm[6].fields[0].options : []
+          }
           config={{
             ...register(`whatTypeConnectionNetworkingAttndee${arrIndex}`, {
               required: 'Please select a type connection networking',
@@ -230,7 +232,9 @@ const AttendeeDetailCheckouts = ({
           id={`tktCAForm_DidYouHearAboutAttndee${arrIndex}Checkout`}
           ariaLabel={`What Type Of Connections Attendee${arrIndex} - Checkout`}
           label="Choose a did you hear about..."
-          listSelect={fieldForm !== undefined && fieldForm[7].fields[0].options}
+          listSelect={
+            fieldForm !== undefined ? fieldForm[7].fields[0].options : []
+          }
           config={{
             ...register(`didYouHearAboutAttndee${arrIndex}`, {
               required: 'Please select a choise did you hear about',

@@ -58,6 +58,8 @@ const CompnayDetailCheckouts = dynamic(
   }
 );
 
+// import OrderDetailCheckouts from '@layouts/Checkouts//Card/OrderDetailCheckouts';
+
 const OrderDetailCheckouts = dynamic(
   () => import('@layouts/Checkouts//Card/OrderDetailCheckouts'),
   {
@@ -95,11 +97,6 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
         console.error('[Error] loading Preline:', error);
       }
     }
-    // await import('preline/preline');
-
-    // if (window.HSStaticMethods) {
-    //   window.HSStaticMethods.autoInit();
-    // }
   }, [isCart]);
 
   // @hook(Product)
@@ -984,7 +981,16 @@ Checkout.getLayout = function PageLayout(page) {
   return <>{page}</>;
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async (context) => {
+  if (Object.keys(context.query).length > 0) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: true,
+      },
+    };
+  }
+
   try {
     const [rsIpAddress, rsCountry, rsCheckoutHbSpt] = await Promise.all([
       getFetchUrl(
@@ -1000,8 +1006,6 @@ export const getStaticProps = async () => {
         country: rsCountry || [],
         formCheckout: rsCheckoutHbSpt.formFieldGroups || [],
       },
-
-      revalidate: 900,
     };
   } catch (err) {
     return {

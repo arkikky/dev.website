@@ -1,15 +1,9 @@
-'use client';
 import React, { useState, useEffect, useCallback } from 'react';
 import dayjs from 'dayjs';
 
 // @redux
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  updateQuantity,
-  applyCoupon,
-  removeCoupon,
-  removeCart,
-} from '@reduxState/slices';
+import { updateQuantity, applyCoupon, removeCoupon } from '@reduxState/slices';
 
 // @lib/controller & helper
 import { getFetch } from '@lib/controller/API';
@@ -34,30 +28,8 @@ const OrderDetailCheckouts = ({
   const [isUseCoupon, setUseCoupon] = useState({
     discount: 0,
     totalWithDiscount: 0,
+    loading: false,
   });
-
-  // @hook(Preline)
-  const handleIntzPreline = useCallback(async () => {
-    if (!window.HSStaticMethods) {
-      try {
-        const { HSStaticMethods } = await import('preline/preline');
-        HSStaticMethods.autoInit();
-      } catch (error) {
-        console.error('[Error] loading Preline:', error);
-      }
-    }
-  }, [isCart]);
-
-  useEffect(() => {
-    handleIntzPreline();
-    console.log("AWDAWdawdawd");
-    console.log("AWDAWdawdawd23223");
-    
-
-    return () => {
-      undefined;
-    };
-  }, []);
 
   const hndleIntzCoupon = async () => {
     try {
@@ -78,6 +50,7 @@ const OrderDetailCheckouts = ({
         const totalAfterDiscount = isSubTotal - calculatedDiscount;
 
         setUseCoupon({
+          ...isUseCoupon,
           discount: calculatedDiscount,
           totalWithDiscount: totalAfterDiscount,
         });
@@ -91,8 +64,20 @@ const OrderDetailCheckouts = ({
   useEffect(() => {
     hndleIntzCoupon();
 
+    // @hook(Preline)
+    const timer = setTimeout(async () => {
+      if (!window.HSStaticMethods) {
+        try {
+          const { HSStaticMethods } = await import('preline/preline');
+          HSStaticMethods.autoInit();
+        } catch (error) {
+          console.error('[Error] loading Preline:', error);
+        }
+      }
+    }, 2000);
+
     return () => {
-      undefined;
+      clearTimeout(timer);
     };
   }, [products]);
 
@@ -127,10 +112,13 @@ const OrderDetailCheckouts = ({
       const getCouponCode = getValues('coupon').trim();
       if (!getCouponCode) return;
 
+      setUseCoupon({ ...isUseCoupon, loading: true });
+
       const idProducts = products[0].documentId;
       const isSubTotal = getTotalCart(products);
 
       if (isCoupon !== null) {
+        setUseCoupon({ ...isUseCoupon, loading: false });
         return onAlert('error', 'Sorry, you already have a coupon in use!');
       }
 
@@ -140,17 +128,20 @@ const OrderDetailCheckouts = ({
       );
       const coupon = data?.[0];
       if (!coupon) {
+        setUseCoupon({ ...isUseCoupon, loading: false });
         return onAlert('error', 'Sorry, coupon not found or invalid!');
       }
 
       const { expirationDate, includedProducts = [], type, amount } = coupon;
       if (dayjs().isAfter(dayjs(expirationDate))) {
+        setUseCoupon({ ...isUseCoupon, loading: false });
         return onAlert('error', 'Sorry, coupon has expired!');
       }
 
       if (
         !includedProducts.some((product) => product.documentId === idProducts)
       ) {
+        setUseCoupon({ ...isUseCoupon, loading: false });
         return onAlert('error', 'Sorry, coupon is not valid for this product!');
       }
 
@@ -164,8 +155,10 @@ const OrderDetailCheckouts = ({
             : products[0].priceSale * (discntAmount / 100);
 
         setUseCoupon({
+          ...isUseCoupon,
           discount: calculatedDiscount,
           totalWithDiscount: isSubTotal - calculatedDiscount,
+          loading: false,
         });
 
         dispatch(applyCoupon(getCouponCode));
@@ -178,10 +171,14 @@ const OrderDetailCheckouts = ({
       }
 
       setValue('coupon', '');
+      // setUseCoupon({ ...isUseCoupon, loading: false });
     } catch (error) {
-      console.error('[Error] fetching coupons:', error);
+      // setUseCoupon({ ...isUseCoupon, loading: false });
       onAlert('error', 'An error occurred. Please try again.');
+      console.error('[Error] fetching coupons:', error);
     }
+
+    // setUseCoupon({ ...isUseCoupon, loading: false });
   };
 
   // // @event(remove - coupon)
@@ -197,83 +194,90 @@ const OrderDetailCheckouts = ({
           </span>
         </div>
 
-        {products.length >= 1 && (
-          <div className="mb-6 flex w-full flex-row items-center justify-between">
-            <div className="flex flex-row items-center justify-start">
-              <div className="flex h-10 w-10 flex-col items-center justify-center rounded-lg bg-primary/20">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15 5V7V5ZM15 11V13V11ZM15 17V19V17ZM5 5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V10C3.53043 10 4.03914 10.2107 4.41421 10.5858C4.78929 10.9609 5 11.4696 5 12C5 12.5304 4.78929 13.0391 4.41421 13.4142C4.03914 13.7893 3.53043 14 3 14V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V14C20.4696 14 19.9609 13.7893 19.5858 13.4142C19.2107 13.0391 19 12.5304 19 12C19 11.4696 19.2107 10.9609 19.5858 10.5858C19.9609 10.2107 20.4696 10 21 10V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5Z"
-                    stroke="#2458F1"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
-              </div>
-              <span className="ms-3 text-sm font-normal text-black-900">{`Have a coupon code?`}</span>
+        <div
+          className={`mb-5 flex w-full flex-row items-center justify-between`}
+        >
+          <div className="flex flex-row items-center justify-start">
+            <div className="flex h-10 w-10 flex-col items-center justify-center rounded-lg bg-primary/20">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15 5V7V5ZM15 11V13V11ZM15 17V19V17ZM5 5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V10C3.53043 10 4.03914 10.2107 4.41421 10.5858C4.78929 10.9609 5 11.4696 5 12C5 12.5304 4.78929 13.0391 4.41421 13.4142C4.03914 13.7893 3.53043 14 3 14V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V14C20.4696 14 19.9609 13.7893 19.5858 13.4142C19.2107 13.0391 19 12.5304 19 12C19 11.4696 19.2107 10.9609 19.5858 10.5858C19.9609 10.2107 20.4696 10 21 10V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5Z"
+                  stroke="#2458F1"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></path>
+              </svg>
             </div>
-            <div className="hs-dropdown relative inline-flex [--auto-close:inside] [--placement:bottom-right] [--strategy:absolute]">
-              <button
-                id="hsCA25Dropdown_EnterCouponCode"
-                type="button"
-                className="hs-dropdown-toggle inline-flex items-center gap-x-2 text-sm font-normal text-primary underline focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-                aria-haspopup="menu"
-                aria-label="Coinfest Asia 2025 (Dropdown - Coupon Code)"
-                aria-labelledby="Coinfest Asia 2025 (Dropdown - Coupon Code)"
-                aria-roledescription="Dropdown"
-                aria-expanded="false"
-              >
-                Enter code
-              </button>
+            <span className="ms-3 text-sm font-normal text-black-900">{`Have a coupon code?`}</span>
+          </div>
+          <button
+            id="hsCA25Dropdown_EnterCouponCode"
+            className="hs-collapse-toggle inline-flex items-center gap-x-2 text-sm font-normal text-primary underline focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+            type="button"
+            aria-expanded="false"
+            aria-label="Coinfest Asia 2025 (Dropdown - Coupon Code)"
+            data-hs-collapse="#hs-basic-collapse-heading"
+          >
+            Enter code
+          </button>
+        </div>
 
-              <div
-                className="hs-dropdown-menu duration mt-2.5 hidden rounded-xl border border-gray-200 bg-white px-1 py-1 opacity-0 transition-[opacity,margin] hs-dropdown-open:z-[5] hs-dropdown-open:opacity-100"
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="hsCA25Dropdown_EnterCouponCode"
+        <div
+          id="hs-basic-collapse-heading"
+          className="hs-collapse hidden w-full overflow-hidden transition-[height] duration-300 hs-collapse-open:mb-6"
+          aria-label="Coinfest Asia 2025 Group (Dropdown - Coupon Code)"
+        >
+          <div className="rounded-[10px] border border-gray-200 bg-gray-50 px-1 py-1 opacity-100">
+            <div className="inline-flex w-full flex-row gap-x-1.5">
+              <input
+                className={`w-fill cursor-default border-0 ${errors[`coupon`] && 'bg-red-500'} bg-transparent p-0 px-3.5 py-3 pr-4 text-start text-sm font-normal text-black-900 focus:ring-0 focus-visible:outline-none focus-visible:ring-0`}
+                type="text"
+                aria-label="Coinfest Asia 2025 (Coupon Code)"
+                aria-roledescription="Coinfest Asia 2025 (Coupon Code)"
+                placeholder="Enter a coupon code..."
+                tabIndex="-1"
+                minLength={1}
+                {...register(`coupon`, {
+                  required: false,
+                  maxLength: 255,
+                  pattern: {
+                    value: /^[A-Za-z0-9]+$/,
+                  },
+                })}
+              />
+              <button
+                id="tcktCa25Btn_MaxQtyCheckouts"
+                className={`tktCA25Btn_Coupon flex w-[159px] flex-col items-center justify-center rounded-lg bg-primary px-1 py-1 text-sm font-normal text-white`}
+                type="button"
+                aria-label="Button Coupon(Checkouts)"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleCoupon();
+                }}
               >
-                <div className="inline-flex flex-row gap-x-1.5">
-                  <input
-                    className={`w-[189px] cursor-default border-0 ${errors[`coupon`] && 'bg-red-500'} bg-transparent p-0 px-2.5 py-2.5 pr-4 text-start text-sm font-normal text-black-900 focus:ring-0 focus-visible:outline-none focus-visible:ring-0`}
-                    type="text"
-                    aria-label="Coinfest Asia 2025 (Coupon Code)"
-                    aria-labelledby="Coinfest Asia 2025 (Coupon Code)"
-                    aria-roledescription="Coinfest Asia 2025 (Coupon Code)"
-                    placeholder="Enter a coupon code..."
-                    tabIndex="-1"
-                    minLength={1}
-                    {...register(`coupon`, {
-                      required: false,
-                      maxLength: 255,
-                      pattern: {
-                        value: /^[A-Za-z0-9]+$/,
-                      },
-                    })}
-                  />
-                  <button
-                    id="tcktCa25Btn_MaxQtyCheckouts"
-                    className={`tktCA25Btn_Coupon flex w-24 flex-col items-center justify-center rounded-lg bg-primary px-1 py-1 text-sm font-normal text-white`}
-                    type="button"
-                    aria-label="Button Coupon(Checkouts)"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleCoupon();
-                    }}
+                {isUseCoupon.loading === false ? (
+                  'Apply'
+                ) : (
+                  <div
+                    className="block size-5 animate-spin items-center justify-center rounded-full border-[2.5px] border-current border-t-transparent font-medium text-white opacity-80"
+                    role="status"
+                    aria-label="Coinfest Asia 2025 (Loading - Coupon Usage)"
+                    aria-labelledby="Coinfest Asia 2025 (Loading - Coupon Usage)"
                   >
-                    Apply
-                  </button>
-                </div>
-              </div>
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                )}
+              </button>
             </div>
           </div>
-        )}
+        </div>
 
         {/* @group(sticky) */}
         <div className="sticky top-[120px] z-[2] block">
@@ -302,23 +306,8 @@ const OrderDetailCheckouts = ({
                     </span>
 
                     {gtRslt.documentId !== 'sn4ujm0d1ebbc8lme1ihzsa9' ? (
-                      // <div className="hs-dropdown relative inline-flex [--auto-close:inside] [--placement:bottom-right] [--strategy:absolute]">
-                      //   <button
-                      //     id="hsCA25Dropdown_UpdatedQty"
-                      //     type="button"
-                      //     className="hs-dropdown-toggle inline-flex items-center gap-x-2 text-sm font-normal text-primary underline focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-                      //     aria-haspopup="menu"
-                      //     aria-label="Coinfest Asia 2025 (Dropdown - Quantity)"
-                      //     aria-roledescription="Dropdown"
-                      //     aria-expanded="false"
-                      //   >
-                      //     Add more
-                      //   </button>
-
-                      //   </div>
-                      // </div>
                       <div
-                        className="hs-dropdown-menu duration mt-1.5 flex rounded-[10px] border border-gray-200 bg-gray-50 px-1 py-1 opacity-100 transition-[opacity,margin] hs-dropdown-open:opacity-100"
+                        className="hs-dropdown-menu duration mt-0 rounded-[10px] border border-gray-200 bg-gray-50 px-1 py-1 opacity-100 *:flex"
                         role="menu"
                         aria-orientation="vertical"
                         aria-labelledby="hsCA25Dropdown_UpdatedQty"
