@@ -1,11 +1,6 @@
-import getConfig from 'next/config';
-
-// @get .config
-const { publicRuntimeConfig } = getConfig();
-
 // @init
 const baseUrl = `https://api.hubapi.com`;
-const tokenKey = publicRuntimeConfig.hbspot_token_api;
+const tokenKey = 'pat-na1-68646d39-14c0-4c60-a133-11611743c279';
 
 export async function getFecthHbSpt(url) {
   const res = await fetch(`${baseUrl}${url}`, {

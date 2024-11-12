@@ -33,10 +33,8 @@ const Header = () => {
         <Notifications
           icons={
             <svg
-              className="mt-0.5 size-4 lg:size-5"
+              className="mt-0.5 size-4 shrink-0 lg:size-5"
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -44,9 +42,9 @@ const Header = () => {
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <circle cx="12" cy="12" r="10"></circle>
-              <path d="M12 16v-4"></path>
-              <path d="M12 8h.01"></path>
+              <path d="M12 16h.01" />
+              <path d="M12 8v4" />
+              <path d="M15.312 2a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586l-4.688-4.688A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2z" />
             </svg>
           }
           label={`<p><strong>Please fill in the attendee</strong> details with the actual data of the person attending the Event. Ticket transfers are not allowed once the purchase is finalized.</p>`}

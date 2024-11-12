@@ -28,6 +28,18 @@ export function getRandomCharacters(q) {
   return { data: randomString };
 }
 
+// @generate(Order Code)
+export function generateCreateOrderCode() {
+  const randomNumber = Math.floor(1000000000 + Math.random() * 9000000000);
+  return `C-${randomNumber}`;
+}
+
+// @generate(Ticket Attendee Code)
+export function generateTicketAttendeeCode() {
+  const randomNumber = Math.floor(1000000000 + Math.random() * 9000000000);
+  return `T-${randomNumber}`;
+}
+
 // @combine(Array)
 export function getCombineMerged(data1, data2) {
   const a = data1;

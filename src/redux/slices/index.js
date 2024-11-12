@@ -23,7 +23,7 @@ const savedState = () => {
 
 const cartSlice = createSlice({
   name: '_cart',
-  initialState: savedState,
+  initialState: savedState(),
   reducers: {
     // @add-items(in Cart)
     addItemToCart: (state, action) => {

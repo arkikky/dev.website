@@ -23,6 +23,24 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  serverRuntimeConfig: {
+    version: process.env.SITE_APP_VERSION,
+
+    // @form(HubSpot)
+    hbSptCheckout: process.env.FORM_CHECKOUT,
+
+    // @currency
+    currencyUSD: process.env.NEXT_SECRET_CURRENCY_USD,
+
+    // @token
+    token_api: process.env.API_TOKEN_KEY,
+    hbspot_token_api: process.env.API_TOKEN_HUBSPOT,
+    ipAddress_token: process.env.API_IPADDRESS_TOKEN,
+
+    secretToken: process.env.SECRET_TOKEN,
+    secretTokenEncrypt: process.env.SECRET_TOKEN_ENCRYPT,
+    devNode: process.env.NODE_ENV,
+  },
   publicRuntimeConfig: {
     domain: process.env.NEXT_PUBLIC_DOMAIN,
     siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
@@ -31,15 +49,6 @@ const nextConfig = {
     siteDesc: process.env.NEXT_PUBLIC_SITE_DESC,
     author: process.env.NEXT_PUBLIC_AUTHOR,
     tags: process.env.NEXT_PUBLIC_TAGS,
-    version: process.env.NEXT_PUBLIC_SITE_APP_VERSION,
-
-    currencyUSD: process.env.NEXT_PUBLIC_CURRENCY_USD,
-
-    token_api: process.env.NEXT_PUBLIC_API_TOKEN_KEY,
-    hbspot_token_api: process.env.NEXT_PUBLIC_API_TOKEN_HUBSPOT,
-
-    jwtSecretKey: process.env.JWT_SECRET,
-    devNode: process.env.NODE_ENV,
   },
   async headers() {
     return [

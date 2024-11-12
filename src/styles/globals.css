@@ -39,6 +39,7 @@ button {
 /* attribute */
 .bxShadow-none {
   box-shadow: none;
+  @apply focus:outline-none focus:ring-0 focus-visible:outline-none;
 }
 
 /* @scrollbar(y) */
@@ -86,6 +87,19 @@ button {
   @apply prose-h2:mb-3.5 prose-h2:mt-8 prose-h2:text-xl prose-h2:font-semibold first:prose-h2:mt-0 sm:prose-h2:mt-10;
   @apply prose-p:font-light prose-strong:font-semibold;
   @apply prose-a:text-primary prose-a:underline prose-ul:list-disc prose-ul:pl-8 prose-li:font-light;
+}
+
+.ca25MarkdwnFrmattd {
+  @apply prose-li:pointer-events-none prose-li:relative prose-li:mb-2.5 prose-li:flex prose-li:select-none prose-li:flex-row prose-li:items-start prose-li:gap-x-3 prose-li:text-base prose-li:font-light prose-li:text-gray-500 last:prose-li:mb-0;
+  @apply prose-ul:flex prose-ul:flex-col prose-ul:pl-0;
+}
+
+.ca25MarkdwnFrmattd ul li::before {
+  content: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='18'%20height='18'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='currentColor'%20stroke-width='2.5'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpolyline%20points='20%206%209%2017%204%2012'%3E%3C/polyline%3E%3C/svg%3E");
+  @apply flex flex-col items-center justify-center;
+  @apply stroke-gray-500 text-gray-500;
+  @apply pt-2.5;
+  @apply h-6 w-6 min-w-6;
 }
 
 /* @debug */

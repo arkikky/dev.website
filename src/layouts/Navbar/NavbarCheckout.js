@@ -20,7 +20,7 @@ const NavbarCheckout = ({ progress = 'last' }) => {
             <div className="flex w-full flex-row items-center justify-between sm:w-max">
               <Link className="block w-max" href="/">
                 <Image
-                  className="h-9.5 mx-auto my-auto w-auto"
+                  className="mx-auto my-auto h-9.5 w-auto"
                   src={'/assets/images/ca2025Brand.svg'}
                   alt={`${publicRuntimeConfig.siteAppName} (Primary Brand - Navbar Checkout)`}
                   height={58}
@@ -67,7 +67,7 @@ const NavbarCheckout = ({ progress = 'last' }) => {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        strokeWidth="3"
+                        strokeWidth="4"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       >
@@ -89,7 +89,7 @@ const NavbarCheckout = ({ progress = 'last' }) => {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="3"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
@@ -113,7 +113,7 @@ const NavbarCheckout = ({ progress = 'last' }) => {
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="currentColor"
-                          strokeWidth="3"
+                          strokeWidth="4"
                           strokeLinecap="round"
                           strokeLinejoin="round"
                         >
@@ -124,7 +124,7 @@ const NavbarCheckout = ({ progress = 'last' }) => {
                     <span
                       className={`${isProgress !== 'last' ? 'text-gray-600' : 'text-green-800'} ms-2 w-max text-sm font-normal sm:ms-2.5`}
                     >
-                      Complete Order
+                      Order Received
                     </span>
                   </div>
                   <div className="h-px w-8 flex-1 bg-gray-200 group-last:hidden"></div>
@@ -134,7 +134,7 @@ const NavbarCheckout = ({ progress = 'last' }) => {
             <div className="hidden sm:block">
               <Link
                 href="/"
-                title="Coinfest Asia 2025 (Back to Home - Checkout)"
+                title="Button Back to Home Checkout Coinfest Asia 2025"
                 className="inline-flex flex-row items-center rounded-xl bg-primary px-4 py-3 text-base text-white"
               >
                 <svg

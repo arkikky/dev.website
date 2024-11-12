@@ -36,6 +36,29 @@ const OrderDetailCheckouts = ({
     totalWithDiscount: 0,
   });
 
+  // @hook(Preline)
+  const handleIntzPreline = useCallback(async () => {
+    if (!window.HSStaticMethods) {
+      try {
+        const { HSStaticMethods } = await import('preline/preline');
+        HSStaticMethods.autoInit();
+      } catch (error) {
+        console.error('[Error] loading Preline:', error);
+      }
+    }
+  }, [isCart]);
+
+  useEffect(() => {
+    handleIntzPreline();
+    console.log("AWDAWdawdawd");
+    console.log("AWDAWdawdawd23223");
+    
+
+    return () => {
+      undefined;
+    };
+  }, []);
+
   const hndleIntzCoupon = async () => {
     try {
       const getDataCoupon = await getFetch(
@@ -136,7 +159,7 @@ const OrderDetailCheckouts = ({
 
       if (type === 'percentage') {
         calculatedDiscount =
-          discntAmount === 100
+          parseInt(discntAmount) === 100
             ? isSubTotal
             : products[0].priceSale * (discntAmount / 100);
 

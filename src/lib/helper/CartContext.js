@@ -1,5 +1,3 @@
-// import { setCookie, hasCookie } from 'cookies-next';
-
 // @total(Cart)
 export function getTotalCart(data) {
   const getTotal_IDR = data?.reduce(
@@ -11,18 +9,21 @@ export function getTotalCart(data) {
 }
 
 // // @calculate(discont)
-// export function calculateDiscountCheckout(setCoupon, totalCart, setPrice) {
-//   if (setCoupon && setCoupon.type === 'percentage') {
-//     const discountAmount = parseFloat(setCoupon.amount) || 0;
-//     const calculatedDiscount =
-//       discountAmount === 100
-//         ? totalCart * (discountAmount / 100)
-//         : setPrice * (discountAmount / 100);
+export function calculateDiscountCheckout(setCoupon, totalCart, setPrice) {
+  const setTax_Rate = 0.11;
 
-//     return totalCart - calculatedDiscount;
-//   }
-//   return totalCart;
-// }
+  const discountAmount = parseFloat(setCoupon.amount) || 0;
+  const calculatedDiscount =
+    discountAmount === 100
+      ? totalCart * (discountAmount / 100)
+      : setPrice * (discountAmount / 100);
+
+  const totalDiscount = totalCart - calculatedDiscount;
+  const taxAmount = totalDiscount * setTax_Rate;
+  const totalWithTax = totalDiscount + taxAmount;
+
+  return totalWithTax;
+}
 
 // // @auth-token
 // export async function authSession_Token(products) {

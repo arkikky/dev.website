@@ -7,10 +7,9 @@ const SelectCountry = ({
   ariaLabel = '',
   listSelect = [],
   withIcons = false,
+  disabled = false,
   config = [],
 }) => {
-  const [isListSelect, setListSelect] = useState(listSelect);
-
   // @method
   // useEffect(() => {
   //   const loadHSSelect = async () => {
@@ -58,16 +57,16 @@ const SelectCountry = ({
           optionTemplate:
             '<div class="flex items-center"><div class="me-2.5" data-icon></div><div><div class="hs-selected:font-medium text-sm text-black-900 " data-title></div></div><div class="ms-auto mr-1 "><span class="hidden hs-selected:block"><svg class="shrink-0 size-4.5 text-blue-600" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg></span></div></div>',
           extraMarkup: [
-            '<div class="hidden hs-error:block absolute top-1/2 end-10 -translate-y-1/2"><svg class="shrink-0 size-4 text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></div>',
+            '<div class="hidden hs-error:block absolute top-1/2 end-10 -translate-y-1/2"><svg class="shrink-0 size-4 sm:size-4.5 text-red-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg></div>',
             '<div class="absolute block top-1/2 end-4 -translate-y-1/2"><svg class="shrink-0 size-4 text-gray-500 " xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg></div>',
           ],
         })}
         {...config}
       >
-        <option value="">Choose a ...</option>
+        <option value="-">Choose a Country ...</option>
         {withIcons === false ? (
           <>
-            {isListSelect?.map((gtRslt, i) => (
+            {listSelect?.map((gtRslt, i) => (
               <option value={gtRslt.name.common} key={i}>
                 {gtRslt.name.common}
               </option>
@@ -75,7 +74,7 @@ const SelectCountry = ({
           </>
         ) : (
           <>
-            {isListSelect?.map((gtRslt, i) => (
+            {listSelect?.map((gtRslt, i) => (
               <option
                 data-hs-select-option={JSON.stringify({
                   icon: `<img class="shrink-0 h-4.5 w-6 object-cover object-center border border-solid border-gray-200 rounded" src="${gtRslt.flags.svg}" alt="Country - ${gtRslt.name.common}" />`,

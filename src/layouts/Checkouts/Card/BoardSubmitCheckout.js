@@ -1,8 +1,7 @@
-'use client';
 import React from 'react';
 
 // @components
-import Checkbox from '@components/UI/Card/Form/Checkbox';
+import Checkbox from '@components/UI/Form/Checkbox';
 
 const BoardSubmitCheckout = ({ register, errors }) => {
   return (

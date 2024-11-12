@@ -1,5 +1,4 @@
-'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import getConfig from 'next/config';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,12 +7,10 @@ import Link from 'next/link';
 const { publicRuntimeConfig } = getConfig();
 
 const FooterSocialMedia = ({ list = [] }) => {
-  const [isListSocialMedia, setListSocialMedia] = useState(list);
-
   return (
     <>
       <ul className="relative mt-4 flex flex-row pl-0 lg:mt-0">
-        {isListSocialMedia?.map((gtRslt, i) => (
+        {list?.map((gtRslt, i) => (
           <li className="mr-4 last:mr-0" key={i}>
             <Link
               className="outline-none focus-visible:outline-none"

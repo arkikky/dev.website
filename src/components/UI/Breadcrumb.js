@@ -3,8 +3,6 @@ import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';
 
 const Breadcrumb = ({ theme = 'default', listBreadcrumb = [] }) => {
-  const [isBreadcrumb, setBreadcrumb] = useState(listBreadcrumb);
-
   const styles = {
     dark: { base: 'text-black-900 hover:text-primary', active: 'text-primary' },
     light: { base: 'text-white hover:text-primary', active: 'text-primary' },
@@ -17,7 +15,7 @@ const Breadcrumb = ({ theme = 'default', listBreadcrumb = [] }) => {
   return (
     <>
       <ol className="flex items-center whitespace-nowrap">
-        {isBreadcrumb?.map((gtRslt, i) => (
+        {listBreadcrumb?.map((gtRslt, i) => (
           <li
             className={twMerge(
               `group inline-flex items-center text-sm font-normal transition duration-300 ease-in-out`,
@@ -26,7 +24,7 @@ const Breadcrumb = ({ theme = 'default', listBreadcrumb = [] }) => {
             aria-current="page"
             key={i}
           >
-            {i !== isBreadcrumb.length - 1 ? (
+            {i !== listBreadcrumb.length - 1 ? (
               <>
                 <Link
                   className={twMerge(
@@ -47,7 +45,7 @@ const Breadcrumb = ({ theme = 'default', listBreadcrumb = [] }) => {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="3"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >

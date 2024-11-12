@@ -9,6 +9,7 @@ const Input = ({
   ariaLabel = '',
   value = '',
   hidden = false,
+  disabled = false,
   config = [],
   errors = {},
   useEvent = false,
@@ -39,6 +40,7 @@ const Input = ({
             placeholder={placeholder}
             aria-describedby={ariaLabel}
             defaultValue={value}
+            disabled={disabled}
             onKeyUp={(e) => {
               handleInputChange(e);
             }}
@@ -58,6 +60,7 @@ const Input = ({
             placeholder={placeholder}
             aria-describedby={ariaLabel}
             defaultValue={value}
+            disabled={disabled}
             {...config}
           />
         )}
@@ -65,7 +68,7 @@ const Input = ({
         {Object.keys(errors).length > 0 && (
           <div className="pointer-events-none absolute inset-y-0 end-0 flex items-center pe-4">
             <svg
-              className="size-4 shrink-0 text-red-500"
+              className="size-4 shrink-0 text-red-500 sm:size-4.5"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"

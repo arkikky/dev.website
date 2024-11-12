@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
 // @redux
@@ -9,12 +8,13 @@ import { addItemToCart, removeCart } from '@reduxState/slices';
 
 // @lib/controller & helper
 import { getFetch } from '@lib/controller/API';
+import { currencyConverter } from '@lib/helper/CalculateCartContext';
 
 // @components
 import HeadGraphSeo from '@components/Head';
+import MarkdownRenderer from '@components/MarkdownRenderer';
 import Main from '@components/Main';
 import Container from '@components/Container';
-import Notifications from '@components/UI/Alerts/Notifications';
 
 const Home = ({ products }) => {
   const dispatch = useDispatch();
@@ -38,18 +38,6 @@ const Home = ({ products }) => {
       undefined;
     };
   }, []);
-
-  // @redirect(Page)
-  const redirectToPage = (path) => {
-    setTimeout(() => {
-      setSession((prev) => ({
-        ...prev,
-        id_product: null,
-        loading: false,
-      }));
-      router.push(path);
-    }, 500);
-  };
 
   // @add-items(Cart)
   const hndleCreate_Session = async (product) => {
@@ -78,12 +66,12 @@ const Home = ({ products }) => {
 
     if (existItems) {
       dispatch(addItemToCart(products));
-      redirectToPage('/checkout');
+      router.push('/checkout');
     } else if (isCart.length < 1) {
       dispatch(addItemToCart(products));
-      redirectToPage('/checkout');
+      router.push('/checkout');
     } else {
-      dispatch(removeCart()); // console.info('[warning] your cart is full!');
+      dispatch(removeCart());
     }
   };
 
@@ -95,38 +83,16 @@ const Home = ({ products }) => {
       {/* @main */}
       <Main className="pb-8 pt-[178px] sm:pb-12 sm:pt-[138px]">
         <Container>
-          <h1 className="text-base font-semibold text-black-900 sm:text-3xl">
-            Tickets
-          </h1>
+          <div className="mb-14 flex flex-col text-start">
+            <h1 className="w-ful max-w-full text-start text-[44px] font-bold uppercase leading-[52px] text-black-900 sm:max-w-[445px] sm:text-[54px] sm:leading-[74px] lg:max-w-[677px] lg:text-[80px] lg:leading-[90px]">
+              GET YOUR TICKETS NOW
+            </h1>
+            <p className="mt-2.5 font-bevietnamPro text-xl font-normal text-gray-500">
+              Prices exclude VAT
+            </p>
+          </div>
 
-          {isSession.message !== null && (
-            <div className="block w-full">
-              <Notifications
-                icons={
-                  <svg
-                    className="mt-0.5 size-4 lg:size-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M12 16v-4"></path>
-                    <path d="M12 8h.01"></path>
-                  </svg>
-                }
-                label={`<p>${isSession.message}</p>`}
-                type="info"
-              />
-            </div>
-          )}
-
-          {/* @handle push(checkout) */}
+          {/* @handle-push(checkout) */}
           <div className="relative hidden w-max flex-col">
             <Link
               id="ca25CartProduct_Checkout"
@@ -136,21 +102,52 @@ const Home = ({ products }) => {
               Checkout
             </Link>
           </div>
+
           <div className="mt-10 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2 lg:grid-cols-3">
             {isProducts?.map((gtRslt, i) => {
               const isLoading =
                 isSession.id_product === gtRslt.documentId && isSession.loading;
               return (
                 <div
-                  className="flex h-[537px] flex-col space-y-6 rounded-3xl bg-gray-200 px-1.5 py-1.5"
+                  className="flex h-[629px] flex-col space-y-6 rounded-3xl bg-gray-200 px-1.5 py-1.5"
                   key={i}
                 >
                   <div className="relative flex h-fill flex-col items-start justify-between rounded-[18px] bg-white px-6 py-6">
-                    <h2 className="text-xl text-black-900">{gtRslt.name}</h2>
+                    <div className="flex w-full flex-col items-start">
+                      <div className="block w-full">
+                        <h2 className="mb-1 text-xl font-normal text-black-900 sm:mb-2">
+                          {gtRslt.name}
+                        </h2>
+                        <div className="inline-flex items-start space-x-2">
+                          <span className="text-3xl font-semibold text-black-900">
+                            {gtRslt.name === 'Group Package Tickets'
+                              ? currencyConverter(
+                                  (gtRslt.priceSale ?? gtRslt.price) * 5
+                                )
+                              : currencyConverter(
+                                  gtRslt.priceSale ?? gtRslt.price
+                                )}
+                          </span>
+                          {gtRslt.price && (
+                            <span className="text-lg font-normal text-gray-400 line-through">
+                              {gtRslt.name === 'Group Package Tickets'
+                                ? currencyConverter(gtRslt.price * 5)
+                                : currencyConverter(gtRslt.price)}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="my-5 block w-full border-t border-dashed border-gray-200"></div>
+
+                      <div className="block w-full">
+                        <MarkdownRenderer content={gtRslt.description} />
+                      </div>
+                    </div>
 
                     <button
                       id={`ca25Btn_Product${gtRslt.name.replace(/\s/g, '')}`}
-                      className="relative inline-flex w-full items-center justify-center rounded-xl bg-primary px-6 py-4 font-medium uppercase text-white disabled:pointer-events-none disabled:opacity-90"
+                      className="relative inline-flex w-full items-center justify-center rounded-xl bg-primary px-6 py-5 font-medium uppercase text-white disabled:pointer-events-none disabled:opacity-90"
                       role="button"
                       aria-label={`Coinfest Asia 2025 (Button CTA - ${gtRslt.name.replace(/\s/g, '')} Products)`}
                       aria-labelledby={`Coinfest Asia 2025 (Button CTA - ${gtRslt.name.replace(/\s/g, '')} Products)`}
@@ -203,4 +200,5 @@ export const getStaticProps = async () => {
     };
   }
 };
+
 export default Home;

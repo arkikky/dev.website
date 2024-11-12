@@ -10,13 +10,24 @@ const Badge = ({
   withUnderline = false,
 }) => {
   const styles = {
-    dark: { base: 'bg-white text-black-900', active: 'text-primary' },
+    dark: {
+      base: `border-gray-300/70 bg-gray-300/50 text-gray-600 ${withHover === true && 'hover:bg-black-900 hover:border-black-900 hover:text-white'}`,
+      active: 'text-primary',
+    },
     light: {
       base: 'border-gray-200 bg-gray-100 text-gray-800',
       active: 'text-primary',
     },
+    success: {
+      base: 'bg-green-50 border-green-500/40 text-green-800',
+      active: 'text-primary',
+    },
+    info: {
+      base: 'bg-blue-50 border-blue-500/40 text-blue-800',
+      active: 'text-primary',
+    },
     default: {
-      base: `border-gray-200 bg-gray-300/60 text-gray-800 ${withHover === true && 'hover:bg-black-900 hover:text-white'}`,
+      base: `border-gray-200 bg-gray-100 text-gray-800 ${withHover === true && 'hover:bg-black-900 hover:border-black-900 hover:text-white'}`,
       active: 'text-primary',
     },
   };
@@ -25,6 +36,7 @@ const Badge = ({
 
   // @sizing
   const sizing = {
+    xs: 'px-1.5 py-1 text-xs leading-initial rounded-[6px]',
     sm: 'px-2 py-1.5 text-[13px] leading-initial rounded-lg',
     default: 'px-2.5 py-2 text-[13px] leading-initial rounded-lg',
   };

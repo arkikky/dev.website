@@ -11,7 +11,7 @@ import Input from '@components/UI/Form/Input';
 import Select from '@components/UI/Form/Select';
 import SelectCountry from '@components/UI/Form/SelectCountry';
 
-const AttendeeDetailCheckouts = ({
+const AttendeeDetailUpdated = ({
   ipAddress,
   fieldForm,
   country,
@@ -19,26 +19,27 @@ const AttendeeDetailCheckouts = ({
   control,
   setValue,
   getValues,
+  edited,
   errors,
-  arrIndex = 0,
 }) => {
   return (
     <>
       <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
         <div className="block">
           <Label
-            forId={`tktCAForm_FirstnameAttndee${arrIndex}Checkout`}
+            forId={`tktCAForm_FirstnameAttndeeUpdated`}
             label="Firstname"
             required={true}
           />
           <Input
-            id={`tktCAForm_FirstnameAttndee${arrIndex}Checkout`}
+            id={`tktCAForm_FirstnameAttndeeUpdated`}
             type="text"
-            name={`firstnameAttndee${arrIndex}`}
+            name={`firstnameAttndee`}
             placeholder="Eg: Alexandre"
-            ariaLabel={`Firstname Attendee${arrIndex} - Checkout`}
+            ariaLabel={`Firstname Attendee - Checkout`}
+            disabled={edited}
             config={{
-              ...register(`firstnameAttndee${arrIndex}`, {
+              ...register(`firstnameAttndee`, {
                 required: true,
                 maxLength: 255,
                 pattern: {
@@ -46,23 +47,24 @@ const AttendeeDetailCheckouts = ({
                 },
               }),
             }}
-            errors={errors[`firstnameAttndee${arrIndex}`]}
+            errors={errors[`firstnameAttndee`]}
           />
         </div>
         <div className="block">
           <Label
-            forId={`tktCAForm_LastnameAttndee${arrIndex}Checkout`}
+            forId={`tktCAForm_LastnameAttndeeUpdated`}
             label="Lastname"
             required={true}
           />
           <Input
-            id={`tktCAForm_LastnameAttndee${arrIndex}Checkout`}
+            id={`tktCAForm_LastnameAttndeeUpdated`}
             type="text"
-            name={`lastnameAttndee${arrIndex}`}
+            name={`lastnameAttndee`}
             placeholder="Eg: Doe"
-            ariaLabel={`Lastname Attendee${arrIndex} - Checkout`}
+            ariaLabel={`Lastname Attendee - Checkout`}
+            disabled={edited}
             config={{
-              ...register(`lastnameAttndee${arrIndex}`, {
+              ...register(`lastnameAttndee`, {
                 required: true,
                 maxLength: 255,
                 pattern: {
@@ -70,24 +72,25 @@ const AttendeeDetailCheckouts = ({
                 },
               }),
             }}
-            errors={errors[`lastnameAttndee${arrIndex}`]}
+            errors={errors[`lastnameAttndee`]}
           />
         </div>
       </div>
       <div className="block">
         <Label
-          forId={`tktCAForm_EmailAttndee${arrIndex}Checkout`}
+          forId={`tktCAForm_EmailAttndeeUpdated`}
           label="Email"
           helpText="The email entered must match the information of the attendee who is attending!"
           required={true}
         />
         <Input
-          id={`tktCAForm_EmailAttndee${arrIndex}Checkout`}
+          id={`tktCAForm_EmailAttndeeUpdated`}
           type="email"
           placeholder="Eg: example@email.com"
-          ariaLabel={`Email Attendee${arrIndex} - Checkout`}
+          ariaLabel={`Email Attendee - Checkout`}
+          disabled={edited}
           config={{
-            ...register(`emailAttndee${arrIndex}`, {
+            ...register(`emailAttndee`, {
               required: true,
               maxLength: 255,
               pattern: {
@@ -95,35 +98,36 @@ const AttendeeDetailCheckouts = ({
               },
             }),
           }}
-          errors={errors[`emailAttndee${arrIndex}`]}
+          errors={errors[`emailAttndee`]}
         />
       </div>
       <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
         <div className="block">
           <Label
-            forId={`tktCAForm_PhoneAttende${arrIndex}Checkout`}
+            forId={`tktCAForm_PhoneAttendeCheckout`}
             label={`Phone Number`}
             required={true}
           />
           <Controller
-            name={`dialcode-phone${arrIndex}`}
+            name={`dialcode-phone`}
             control={control}
+            disabled={edited}
             render={({ field }) => (
               <PhoneInput
                 {...field}
                 country={ipAddress}
                 onChange={(value, phone) => {
-                  setValue(`phone${arrIndex}`, value);
+                  setValue(`phone`, value);
                 }}
                 inputProps={{
                   required: false,
-                  name: `dialcode-phone${arrIndex}`,
+                  name: `dialcode-phone`,
                   autoFocus: false,
                   maxLength: 18,
                 }}
                 containerClass="w-full"
-                inputClass={`tktCAForm_PhoneInput ${errors[`phone${arrIndex}`] && 'errors'}`}
-                buttonClass={`tktCAForm_PhoneInputBtn ${errors[`phone${arrIndex}`] && 'errors'}`}
+                inputClass={`tktCAForm_PhoneInput ${errors[`phone`] && 'errors'}`}
+                buttonClass={`tktCAForm_PhoneInputBtn ${errors[`phone`] && 'errors'}`}
                 dropdownClass="tktCAForm_PhoneInputDropdown"
                 countryCodeEditable={false}
                 enableSearch={true}
@@ -136,14 +140,15 @@ const AttendeeDetailCheckouts = ({
 
           {/* @hidden-validation-phonenumber */}
           <Input
-            id={`tktCAForm_PhoneAttende${arrIndex}Checkout`}
+            id={`tktCAForm_PhoneAttendeCheckout`}
             type="text"
             placeholder="Eg: 081823124213"
             ariaLabel="Phone Number - Attendee Checkout"
+            disabled={edited}
             hidden={true}
             config={{
-              ...register(`phone${arrIndex}`, {
-                value: getValues(`phone${arrIndex}`),
+              ...register(`phone`, {
+                value: getValues(`phone`),
                 required: true,
                 maxLength: 18,
                 pattern: {
@@ -155,18 +160,19 @@ const AttendeeDetailCheckouts = ({
         </div>
         <div className="block">
           <Label
-            forId={`tktCAForm_TelegramAccountAttndee${arrIndex}Checkout`}
+            forId={`tktCAForm_TelegramAccountAttndeeUpdated`}
             label="Telegram Account"
             required={true}
           />
           <Input
-            id={`tktCAForm_TelegramAccountAttndee${arrIndex}Checkout`}
+            id={`tktCAForm_TelegramAccountAttndeeUpdated`}
             addClassName="lowercase"
             type="text"
             placeholder="Eg: @telegram_username"
-            ariaLabel={`Telegram Account Attendee${arrIndex} - Checkout`}
+            ariaLabel={`Telegram Account Attendee - Checkout`}
+            disabled={edited}
             config={{
-              ...register(`telegramAccountAttndee${arrIndex}`, {
+              ...register(`telegramAccountAttndee`, {
                 required: true,
                 maxLength: 255,
                 pattern: {
@@ -174,95 +180,72 @@ const AttendeeDetailCheckouts = ({
                 },
               }),
             }}
-            errors={errors[`telegramAccountAttndee${arrIndex}`]}
+            errors={errors[`telegramAccountAttndee`]}
           />
         </div>
       </div>
       <div
-        className={`"block ${errors[`countryAttndee${arrIndex}`] && 'error'}`}
+        className={`"block ${errors[`countryAttndee`] && 'error'} ${edited && 'disabled'}`}
       >
         <Label
-          forId={`tktCAForm_CountryAttndee${arrIndex}Checkout`}
+          forId={`tktCAForm_CountryAttndeeUpdated`}
           label="Country"
           required={true}
         />
         <SelectCountry
-          id={`tktCAForm_CountryAttndee${arrIndex}Checkout`}
-          ariaLabel={`Country Attendee${arrIndex} - Checkout`}
+          id={`tktCAForm_CountryAttndeeUpdated`}
+          ariaLabel={`Country Attendee - Checkout`}
           listSelect={country}
           withIcons={true}
           config={{
-            ...register(`countryAttndee${arrIndex}`, {
+            ...register(`countryAttndee`, {
               required: 'Please select a country',
             }),
           }}
         />
       </div>
       <div
-        className={`"block ${errors[`whatTypeConnectionNetworkingAttndee${arrIndex}`] && 'error'}`}
+        className={`"block ${errors[`whatTypeConnectionNetworkingAttndee`] && 'error'} ${edited && 'disabled'}`}
       >
         <Label
-          forId={`tktCAForm_WhatTypeOfConnectionsAttndee${arrIndex}Checkout`}
+          forId={`tktCAForm_WhatTypeOfConnectionsAttndeeUpdated`}
           label="What type of connections & networking do you hope to achieve at Coinfest Asia?"
           required={true}
         />
         <Select
-          id={`tktCAForm_WhatTypeOfConnectionsAttndee${arrIndex}Checkout`}
-          ariaLabel={`What Type Of Connections Attendee${arrIndex} - Checkout`}
+          id={`tktCAForm_WhatTypeOfConnectionsAttndeeUpdated`}
+          ariaLabel={`What Type Of Connections Attendee - Checkout`}
           label="Choose a type connection networking..."
           listSelect={fieldForm !== undefined && fieldForm[6].fields[0].options}
           config={{
-            ...register(`whatTypeConnectionNetworkingAttndee${arrIndex}`, {
+            ...register(`whatTypeConnectionNetworkingAttndee`, {
               required: 'Please select a type connection networking',
             }),
           }}
         />
       </div>
       <div
-        className={`"block ${errors[`didYouHearAboutAttndee${arrIndex}`] && 'error'}`}
+        className={`"block ${errors[`didYouHearAboutAttndee`] && 'error'} ${edited && 'disabled'}`}
       >
         <Label
-          forId={`tktCAForm_DidYouHearAboutAttndee${arrIndex}Checkout`}
+          forId={`tktCAForm_DidYouHearAboutAttndeeUpdated`}
           label="Where did you hear about Coinfest Asia 2024?"
           required={true}
         />
         <Select
-          id={`tktCAForm_DidYouHearAboutAttndee${arrIndex}Checkout`}
-          ariaLabel={`What Type Of Connections Attendee${arrIndex} - Checkout`}
+          id={`tktCAForm_DidYouHearAboutAttndeeUpdated`}
+          ariaLabel={`What Type Of Connections Attendee - Checkout`}
           label="Choose a did you hear about..."
           listSelect={fieldForm !== undefined && fieldForm[7].fields[0].options}
           config={{
-            ...register(`didYouHearAboutAttndee${arrIndex}`, {
+            ...register(`didYouHearAboutAttndee`, {
               required: 'Please select a choise did you hear about',
             }),
           }}
         />
       </div>
-      <div className={`flex flex-row items-center justify-between`}>
-        <Label
-          forId={`tktCAForm_HaveCompanyAttndee${arrIndex}Checkout`}
-          label="Do you have a company?"
-          required={false}
-        />
-        <div className="relative inline-block">
-          <input
-            id={`tktCAForm_HaveCompanyAttndee${arrIndex}Checkout`}
-            className="bxShadow-none peer form-checkbox relative h-6 w-12 shrink-0 cursor-pointer rounded-full border-transparent bg-gray-100 py-0.5 pl-0.5 pr-px text-transparent transition-colors duration-200 ease-in-out before:inline-block before:size-4.5 before:translate-x-0 before:transform before:rounded-full before:bg-white before:shadow before:ring-0 before:transition before:duration-200 before:ease-in-out checked:border-blue-600 checked:bg-none checked:text-blue-600 checked:before:translate-x-[130%] checked:before:bg-white disabled:pointer-events-none"
-            type="checkbox"
-            {...register(`haveCompanyAttndee${arrIndex}`, {
-              required: false,
-            })}
-          />
-          <label
-            htmlFor={`tktCAForm_HaveCompanyAttndeeLabel${arrIndex}Checkout`}
-            className="sr-only"
-          >
-            switch
-          </label>
-        </div>
-      </div>
     </>
   );
 };
 
-export default AttendeeDetailCheckouts;
+export default AttendeeDetailUpdated;

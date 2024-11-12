@@ -1,31 +1,55 @@
-const exchangeRate_USD = process.env.NEXT_PUBLIC_CURRENCY_USD;
+const exchangeRate_USD = 0.0000647929;
 
 export function currencyConverter(number) {
-  const getNominal_IDR = number;
-  const getExchangeRate_USD = exchangeRate_USD;
+  const getNominal_IDR = Number(number);
+  const getExchangeRate_USD = Number(exchangeRate_USD);
 
-  const getCurrency = Number(getNominal_IDR) * Number(getExchangeRate_USD);
+  const getCurrency = getNominal_IDR * getExchangeRate_USD;
 
-  if (getCurrency) {
-    return `$${Number(getCurrency.toFixed(2))}`;
-  }
+  const formattedTotalUSD = getCurrency.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
 
-  return `$${Number(0)}`;
+  return formattedTotalUSD;
 }
 
 export function converterTotalCart(number) {
-  const getNominal_IDR = number;
+  const getNominal_IDR = Number(number);
 
   const setTax_Rate = 0.11; // @tax 11%
-  const getExchangeRate_USD = exchangeRate_USD;
+  const getExchangeRate_USD = Number(exchangeRate_USD);
 
   const totalWithTaxIDR = getNominal_IDR + getNominal_IDR * setTax_Rate;
+  const totalUSD = Number(totalWithTaxIDR) * getExchangeRate_USD;
 
-  if (totalWithTaxIDR) {
-    const totalUSD = Number(totalWithTaxIDR) * Number(getExchangeRate_USD);
+  const formattedTotalUSD = totalUSD.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
 
-    return `$${Number(totalUSD.toFixed(2))}`;
-  }
+  return formattedTotalUSD;
+}
 
-  return `$${Number(0)}`;
+export function converterTotal(number) {
+  const getNominal_IDR = Number(number);
+  const getExchangeRate_USD = Number(exchangeRate_USD);
+
+  const setTax_Rate = 0.11; // @tax 11%
+
+  const totalWithTaxIDR = getNominal_IDR + getNominal_IDR * setTax_Rate;
+  const totalUSD = Number(totalWithTaxIDR) * getExchangeRate_USD;
+
+  const formattedTotalUSD = totalUSD.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  });
+
+  return formattedTotalUSD;
 }

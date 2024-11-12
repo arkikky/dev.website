@@ -14,7 +14,7 @@ const Alerts = ({
   const typeConfigs = {
     success: 'bg-green-50 border-green-500/40 text-green-700',
     info: 'bg-blue-50 border-blue-500/40 text-blue-700',
-    warning: 'bg-yellow-50 border-yellow-500/40 text-yellow-700',
+    warning: 'bg-yellow-50 border-yellow-700/50 text-yellow-700',
     error: 'bg-red-50 border-red-500/40 text-red-700',
     default: 'bg-gray-50 border-gray-200/40',
   };

@@ -2,7 +2,8 @@ import React from 'react';
 
 const Label = ({
   forId = 'tktCA25Form_Label',
-  label = 'Label Form',
+  isClassName = '',
+  label = null,
   helpText = '',
   required = false,
 }) => {
@@ -10,7 +11,7 @@ const Label = ({
     <>
       <label
         htmlFor={forId}
-        className={`mb-2 flex flex-col text-sm font-medium text-black-900`}
+        className={`mb-2 flex flex-col text-sm font-medium text-black-900 ${isClassName && isClassName}`}
       >
         <span className="inline-flex items-center justify-start">
           {label}
