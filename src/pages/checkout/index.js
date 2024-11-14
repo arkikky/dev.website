@@ -179,7 +179,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
 
   // @handle(Alert)
   const hndleAlert_Change = (model, mess) => {
-    setAlert({ ...prev, status: true, type: model, message: mess });
+    setAlert({ status: true, type: model, message: mess });
   };
 
   // @handle(Close Alert)
@@ -916,7 +916,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                   {/* @submit(Form) */}
                   <button
                     id="tktCA25Form_SubmitCheckout"
-                    className={`inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-black-900 px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:bg-gray-200 disabled:text-black-900`}
+                    className={`inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:bg-gray-200 disabled:text-black-900`}
                     type="submit"
                     role="button"
                     aria-label="Submit Checkout for Coinfest Asia 2025"

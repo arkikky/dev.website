@@ -64,6 +64,7 @@ const Attendee = ({}) => {
           `/api/attendees?filters[attendeeId][$eq]=${data.ticketAttndee}&filters[email][$eq]=${data.emailAttndee}`
         );
 
+        // @check(Attendee)
         if (!rsAttendee?.data?.length > 0) {
           return hndleAlert_Change(
             'error',
@@ -71,11 +72,13 @@ const Attendee = ({}) => {
           );
         }
 
+        // @get(Key)
         const { key } = await fetch('/api/env/note', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
         }).then((res) => res.json());
 
+        // @send(Email)
         const emailResponse = await fetch('/api/email/send-attendee-confrim', {
           method: 'POST',
           headers: {
@@ -89,7 +92,6 @@ const Attendee = ({}) => {
           }),
         }).then((res) => res.json());
 
-        // Tampilkan hasil email
         if (emailResponse.message === 'Email sent successfully!') {
           reset();
           hndleAlert_Change(
