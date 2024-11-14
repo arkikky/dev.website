@@ -6,11 +6,11 @@ import dynamic from 'next/dynamic';
 import getConfig from 'next/config';
 
 // # @get .config
-const { publicRuntimeConfig } = getConfig();
+const { serverRuntimeConfig } = getConfig();
 
 // @lib/controller & helper
 import { getFetch, getFetchUrl, updateSubmitData } from '@lib/controller/API';
-import { getFecthHbSpt, submitFormHbSpt } from '@lib/controller/HubSpot';
+import { getFecthHbSpt } from '@lib/controller/HubSpot';
 
 // @script
 import PrelineScript from '@components/Script/PrelineScript';
@@ -155,21 +155,6 @@ const Attendee = ({ attendee, ipAddress, country, formCheckout }) => {
                   <h1 className="text-2xl font-semibold text-black-900 sm:text-3xl">
                     Attendee
                   </h1>
-                  <div className="mt-2 block">
-                    <Breadcrumb
-                      theme="dark"
-                      listBreadcrumb={[
-                        {
-                          label: 'Home',
-                          url: '/',
-                        },
-                        {
-                          label: 'Attendee',
-                          url: '/Attendee',
-                        },
-                      ]}
-                    />
-                  </div>
                 </div>
 
                 {/* @notification */}
@@ -222,7 +207,7 @@ const Attendee = ({ attendee, ipAddress, country, formCheckout }) => {
                 <div className="my-4 flex w-full flex-col items-start justify-between px-4 sm:flex-row">
                   <div className="flex w-full max-w-[399px] flex-col items-start justify-start">
                     <h2 className="text-lg font-medium capitalize">
-                      {`Company`}
+                      {`Company Details`}
                     </h2>
                   </div>
                 </div>
@@ -322,7 +307,7 @@ export async function getServerSideProps(context) {
   const isValid_Process =
     typeof vw === 'string' &&
     /^[a-zA-Z0-9]+$/.test(vw.trim()) &&
-    vw.trim().length <= 31;
+    vw.trim().length <= 35;
   if (!isValid_Process) {
     return {
       redirect: {
@@ -337,10 +322,10 @@ export async function getServerSideProps(context) {
       await Promise.all([
         getFetch(`/api/attendees/${vw}?sort[0]=createdAt:desc&populate=*`),
         getFetchUrl(
-          `https://ipinfo.io/json?token=${publicRuntimeConfig.ipAddress_token}`
+          `https://ipinfo.io/json?token=${serverRuntimeConfig.ipAddress_token}`
         ),
         getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
-        getFecthHbSpt(`/forms/v2/forms/${publicRuntimeConfig.hbSptCheckout}`),
+        getFecthHbSpt(`/forms/v2/forms/${serverRuntimeConfig.hbSptCheckout}`),
       ]);
 
     // @check-res(Order Recived)
