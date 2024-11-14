@@ -28,6 +28,12 @@ const Attendee = ({}) => {
     message: '',
   });
 
+  // @processing(Form)
+  const [isProcessing, setProcessing] = useState({
+    status: false,
+    message: ``,
+  });
+
   // @handle(Alert)
   const hndleAlert_Change = (model, mess) => {
     setAlert({ status: true, type: model, message: mess });
@@ -54,16 +60,21 @@ const Attendee = ({}) => {
       try {
         const [rsAttendee] = await Promise.all([
           getFetch(
-            `/api/attendees?filters[attendeeId][$eq]=${data.ticketAttndee}`
+            `/api/attendees?filters[attendeeId][$eq]=${data.ticketAttndee}&filters[email][$eq]=${data.emailAttndee}`
           ),
         ]);
 
         if (!rsAttendee?.data.length > 0) {
           hndleAlert_Change(
             'error',
-            `Sorry, We couldn't find your ticket. Please double-check your ticket ID!`
+            `We're sorry, but there seems to be an issue with your ticket ID or email!`
           );
         } else {
+          setProcessing({
+            ...isProcessing,
+            message: `Sending email to : ${rsAttendee?.data[0].email}`,
+          });
+
           fetch('/api/env/note', {
             method: 'POST',
             headers: {
@@ -105,7 +116,7 @@ const Attendee = ({}) => {
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo title={`Confirmation Ticket Attendee`} otherPage={true} />
+      <HeadGraphSeo title={`Confirmation Attendee`} otherPage={true} />
 
       {/* @main */}
       <Main className="fixed inset-x-0 inset-y-0 flex h-svh min-h-svh flex-col items-center justify-center self-center">
@@ -124,7 +135,7 @@ const Attendee = ({}) => {
                       Confirmation
                     </span>
                     <h1 className="text-lg font-medium capitalize leading-initial sm:text-xl">
-                      Ticket Attendee
+                      Attendee
                     </h1>
                   </div>
                   <div>
@@ -139,19 +150,20 @@ const Attendee = ({}) => {
                     />
                   </div>
                 </div>
-                <div className="mb-4 inline-flex w-full flex-col space-y-7 rounded-xl bg-white px-4 py-4">
+                <div className="mb-4 inline-flex w-full flex-col space-y-4 rounded-xl bg-white px-4 py-4">
                   <div className="block">
                     <div className="w-full max-w-full sm:max-w-[391px]">
                       <Label
-                        forId={`tktCAForm_EmailAttendeeConfrim`}
+                        forId={`tktCAForm_TicketAttendeeConfrim`}
+                        label="Ticket ID"
                         helpText={`The Ticket ID must match the one on the attendee’s ticket, for example, 'A-12321312'!`}
                       />
                     </div>
                     <Input
-                      id={`tktCAForm_EmailAttendeeConfrim`}
+                      id={`tktCAForm_TicketAttendeeConfrim`}
                       type="text"
                       placeholder="Eg: A-23423423423"
-                      ariaLabel={`Email Attendee Confrim`}
+                      ariaLabel={`Ticket Attendee Confrim`}
                       config={{
                         ...register(`ticketAttndee`, {
                           required: true,
@@ -162,6 +174,30 @@ const Attendee = ({}) => {
                         }),
                       }}
                       errors={errors[`ticketAttndee`]}
+                    />
+                  </div>
+                  <div className="block">
+                    <Label
+                      forId={`tktCAForm_EmailAttendeeConfrim`}
+                      label="Email"
+                      helpText="The email entered must match the information of the attendee who is attending!"
+                    />
+                    <Input
+                      id={`tktCAForm_EmailAttendeeConfrim`}
+                      type="text"
+                      placeholder="Eg: example@email.com"
+                      ariaLabel={`Email Attendee Confrim`}
+                      config={{
+                        ...register(`emailAttndee`, {
+                          required: true,
+                          maxLength: 255,
+                          pattern: {
+                            value:
+                              /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                          },
+                        }),
+                      }}
+                      errors={errors[`emailAttndee`]}
                     />
                   </div>
                 </div>
