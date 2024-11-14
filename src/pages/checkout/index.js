@@ -179,7 +179,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
 
   // @handle(Alert)
   const hndleAlert_Change = (model, mess) => {
-    setAlert({ status: true, type: model, message: mess });
+    setAlert({ ...prev, status: true, type: model, message: mess });
   };
 
   // @handle(Close Alert)

@@ -59,10 +59,6 @@ const nextConfig = {
             key: 'Cache-Control',
             value: 'public, max-age=900, immutable',
           },
-          {
-            key: 'x-powered-by',
-            value: 'Coinfest Asia',
-          },
         ],
       },
     ];
