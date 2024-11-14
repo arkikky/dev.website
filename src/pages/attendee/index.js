@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import getConfig from 'next/config';
 import Image from 'next/image';
@@ -21,6 +22,7 @@ import Label from '@components/UI/Form/Label';
 import Input from '@components/UI/Form/Input';
 
 const Attendee = ({}) => {
+  const router = useRouter();
   // @hook(Alert)
   const [isAlert, setAlert] = useState({
     status: false,
@@ -58,54 +60,48 @@ const Attendee = ({}) => {
   const onSubmitForm = async (data) => {
     if (!isValid === false) {
       try {
-        const [rsAttendee] = await Promise.all([
-          getFetch(
-            `/api/attendees?filters[attendeeId][$eq]=${data.ticketAttndee}&filters[email][$eq]=${data.emailAttndee}`
-          ),
-        ]);
+        const rsAttendee = await getFetch(
+          `/api/attendees?filters[attendeeId][$eq]=${data.ticketAttndee}&filters[email][$eq]=${data.emailAttndee}`
+        );
 
-        if (!rsAttendee?.data.length > 0) {
-          hndleAlert_Change(
+        if (!rsAttendee?.data?.length > 0) {
+          return hndleAlert_Change(
             'error',
-            `We're sorry, but there seems to be an issue with your ticket ID or email!`
+            `Sorry, there seems to be an issue with your ticket ID or email!`
           );
-        } else {
-          setProcessing({
-            ...isProcessing,
-            message: `Sending email to : ${rsAttendee?.data[0].email}`,
-          });
+        }
 
-          fetch('/api/env/note', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              fetch('/api/email/send-attendee-confrim', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'x-api-key': data.key,
-                },
-                body: JSON.stringify({
-                  to: 'ikky.andreansyah@gmail.com',
-                  id: rsAttendee?.data[0].documentId,
-                  name: `${rsAttendee?.data[0].firstName} ${rsAttendee?.data[0].lastName}`,
-                }),
-              })
-                .then((response) => response.json())
-                .then((data) => {
-                  if (data.message === 'Email sent successfully!') {
-                    console.log('Email sent!');
-                  } else {
-                    console.error('Failed to send email:', data.error);
-                  }
-                })
-                .catch((error) => console.error('Error:', error));
-            })
-            .catch((error) => console.error('Error:', error));
+        const { key } = await fetch('/api/env/note', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+        }).then((res) => res.json());
+
+        const emailResponse = await fetch('/api/email/send-attendee-confrim', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': key,
+          },
+          body: JSON.stringify({
+            to: 'ikky.andreansyah@gmail.com',
+            id: rsAttendee?.data[0].documentId,
+            name: `${rsAttendee?.data[0].firstName} ${rsAttendee?.data[0].lastName}`,
+          }),
+        }).then((res) => res.json());
+
+        // Tampilkan hasil email
+        if (emailResponse.message === 'Email sent successfully!') {
+          reset();
+          hndleAlert_Change(
+            'success',
+            `<strong>Thanks</strong>, Email sent successfully!`
+          );
+
+          setTimeout(() => {
+            router.replace(`/attendee/success`);
+          }, 7000);
+        } else {
+          hndleAlert_Change('error', `Sorry, failed to send email!`);
         }
       } catch (error) {
         console.error('[error] processing submission:', error);
@@ -295,12 +291,6 @@ export const getServerSideProps = async (context) => {
   }
 
   try {
-    // const [rsOrderRecived] = await Promise.all([
-    //   // getFetch(
-    //   //   `/api/orders/${process}?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount`
-    //   // ),
-    // ]);
-
     return {
       props: {},
     };
