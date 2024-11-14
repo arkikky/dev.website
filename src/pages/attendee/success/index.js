@@ -23,7 +23,7 @@ const OrderReceived = () => {
       <NavbarCheckout progress="last" />
 
       {/* @main */}
-      <Main className="flex h-[76svh] flex-col items-center justify-center pb-16 pt-[209px] sm:h-[70svh] sm:pb-20 xl:pb-24 sm:pt-[189px] xl:h-[80svh] 2xl:h-auto">
+      <Main className="flex h-[76svh] flex-col items-center justify-center pb-16 pt-[209px] sm:h-[70svh] sm:pb-20 sm:pt-[189px] xl:h-[80svh] xl:pb-24 2xl:h-auto">
         <Container>
           <div className="flex flex-col items-center justify-center">
             <div className="flex flex-col text-center">
@@ -34,8 +34,8 @@ const OrderReceived = () => {
                 Thank you for reaching out!
               </h1>
             </div>
-            <div className="mt-8 flex w-full max-w-full flex-col items-center justify-center text-center sm:max-w-[733px]">
-              <p className="px-0 font-bevietnamPro text-base font-light text-black-900 sm:px-4 sm:text-lg">
+            <div className="mt-8 flex w-full max-w-full flex-col items-center justify-center text-center sm:max-w-[651px]">
+              <p className="px-0 font-bevietnamPro text-base font-light text-black-900 sm:px-4">
                 Your email has been sent successfully, Please check your inbox
                 for confirmation. If you don't see it, kindly check your spam
                 folder.

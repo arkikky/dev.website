@@ -38,7 +38,8 @@ export default async function handler(req, res) {
     // console.log('awdwad');
 
     await transporter.sendMail({
-      from: 'dicky@indonesiacrypto.network',
+      // from: 'dicky@indonesiacrypto.network',
+      from: '"Coinfest Asia 2025" <dicky@indonesiacrypto.network>',
       to,
       subject: 'Attendee Confirmation - Coinfest Asia 2025',
       html: emailHtml,

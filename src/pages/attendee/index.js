@@ -99,7 +99,7 @@ const Attendee = ({}) => {
 
           setTimeout(() => {
             router.replace(`/attendee/success`);
-          }, 7000);
+          }, 6000);
         } else {
           hndleAlert_Change('error', `Sorry, failed to send email!`);
         }

@@ -131,7 +131,7 @@ const AttendeeConfrim = ({
         <Section className="mb-6 mt-4 px-6 py-2">
           <Img
             className="mx-auto my-auto h-10 w-auto"
-            src={`${baseUrl}/assets/images/ca2025Brand.svg`}
+            src={`${baseUrl}/static/images/ca2025Brand.svg`}
             alt={`Coinfest Asia 2025 (Primary Brand)`}
             height={58}
             width={170}
