@@ -1,0 +1,65 @@
+{
+  "name": "2025.coinfest.asia",
+  "version": "5.25.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "email": "email dev -p 3005",
+    "email-build": "email build",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ICN-DEV/coinfest-2025.git"
+  },
+  "keywords": [
+    "website"
+  ],
+  "bugs": {
+    "url": "https://github.com/ICN-DEV/coinfest-2025/issues"
+  },
+  "dependencies": {
+    "@react-email/render": "^1.0.2",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.13",
+    "dompurify": "^3.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "next": "14.2.15",
+    "nodemailer": "^6.9.16",
+    "qrcode": "^1.5.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-email": "^3.0.2"
+  },
+  "devDependencies": {
+    "@popperjs/core": "^2.11.8",
+    "@preline/collapse": "^2.5.0",
+    "@preline/dropdown": "^2.5.0",
+    "@preline/overlay": "^2.5.0",
+    "@preline/select": "^2.5.0",
+    "@react-email/components": "^0.0.28",
+    "@react-email/tailwind": "^1.0.2",
+    "@reduxjs/toolkit": "^2.3.0",
+    "@tailwindcss/forms": "^0.5.9",
+    "@tailwindcss/typography": "^0.5.15",
+    "autoprefixer": "^10.0.1",
+    "crypto-js": "^4.2.0",
+    "postcss": "^8",
+    "preline": "^2.5.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "react-hook-form": "^7.53.0",
+    "react-markdown": "^9.0.1",
+    "react-phone-input-2": "^2.15.1",
+    "react-redux": "^9.1.2",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1",
+    "tailwind-merge": "^2.5.3",
+    "tailwind-scrollbar-hide": "^1.1.7",
+    "tailwindcss": "^3.3.0"
+  },
+  "author": "Coinfest Asia (Dicky Pratama A, Faras Pratama)",
+  "license": "MIT"
+}

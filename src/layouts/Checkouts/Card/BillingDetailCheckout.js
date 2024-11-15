@@ -1,0 +1,261 @@
+import React from 'react';
+import PhoneInput from 'react-phone-input-2';
+
+// @style
+import 'react-phone-input-2/lib/high-res.css';
+
+// @form
+import Label from '@components/UI/Form/Label';
+import Input from '@components/UI/Form/Input';
+
+const BillingDetailCheckout = ({
+  ipAddress,
+  watch,
+  register,
+  setValue,
+  getValues,
+  errors,
+  onValueChange,
+}) => {
+  // @event(change - phone)
+  const handleInputChange = (value) => {
+    const isVar = 'phone';
+    const getValue = value;
+
+    if (value.length >= 5) {
+      onValueChange(isVar, getValue);
+    } else {
+      onValueChange(isVar, '');
+    }
+  };
+
+  // @handle(Company Toggle Change)
+  const handleToggleCompay_Change = () => {
+    if (getValues('haveCompany') === true) {
+      setValue('company', '');
+      setValue('companyAttndee1', '');
+      setValue('haveCompanyAttndee1', true);
+    } else {
+      setValue('company', 'N/A');
+      setValue('companyAttndee1', 'N/A');
+      setValue('haveCompanyAttndee1', false);
+    }
+  };
+
+  return (
+    <>
+      <div className="block w-full space-y-4">
+        <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
+          <div className="block">
+            <Label
+              forId="tktCAForm_FirstnameCheckout"
+              label="Firstname"
+              required={true}
+            />
+            <Input
+              id="tktCAForm_FirstnameCheckout"
+              type="text"
+              placeholder="Eg: Alexandre"
+              ariaLabel="Firstname Billing - Checkout"
+              config={{
+                ...register('firstname', {
+                  required: true,
+                  maxLength: 255,
+                  pattern: {
+                    value: /^[a-zA-Z0-9\s-_]{2,255}$/,
+                  },
+                }),
+              }}
+              errors={errors.firstname}
+              useEvent={true}
+              eventOnChange={onValueChange}
+            />
+          </div>
+          <div className="block">
+            <Label
+              forId="tktCAForm_LastnameCheckout"
+              label="Lastname"
+              required={true}
+            />
+            <Input
+              id="tktCAForm_LastnameCheckout"
+              type="text"
+              placeholder="Eg: Doe"
+              ariaLabel="Lastname Billing - Checkout"
+              config={{
+                ...register('lastname', {
+                  required: true,
+                  maxLength: 255,
+                  pattern: {
+                    value: /^[a-zA-Z0-9\s-_]{2,255}$/,
+                  },
+                }),
+              }}
+              errors={errors.lastname}
+              useEvent={true}
+              eventOnChange={onValueChange}
+            />
+          </div>
+        </div>
+        <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
+          <div className="block">
+            <Label
+              forId="tktCAForm_EmailCheckout"
+              label="Email"
+              required={true}
+            />
+            <Input
+              id="tktCAForm_EmailCheckout"
+              type="email"
+              placeholder="Eg: example@email.com"
+              ariaLabel="Email Billing - Checkout"
+              config={{
+                ...register('email', {
+                  required: true,
+                  maxLength: 255,
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  },
+                }),
+              }}
+              errors={errors.email}
+              useEvent={true}
+              eventOnChange={onValueChange}
+            />
+          </div>
+          <div className="block">
+            <Label
+              forId="tktCAForm_PhoneCheckout"
+              label={`Phone Number`}
+              required={true}
+            />
+            <PhoneInput
+              country={ipAddress}
+              onChange={(value, phone) => {
+                handleInputChange(value);
+                setValue('phone', value);
+              }}
+              inputProps={{
+                required: false,
+                name: 'dialcode-phone',
+                autoFocus: false,
+                maxLength: 18,
+              }}
+              containerClass="w-full"
+              inputClass={`tktCAForm_PhoneInput ${errors.phone && 'errors'}`}
+              buttonClass={`tktCAForm_PhoneInputBtn ${errors.phone && 'errors'}`}
+              dropdownClass="tktCAForm_PhoneInputDropdown"
+              countryCodeEditable={false}
+              enableSearch={true}
+              disableSearchIcon={true}
+              searchPlaceholder="Search..."
+              searchNotFound="Country not found"
+            />
+
+            {/* @hidden-validation-phonenumber */}
+            <Input
+              id="tktCAForm_PhoneCheckout"
+              type="text"
+              placeholder="Eg: 081823124213"
+              ariaLabel="Phone Number - Checkout"
+              hidden={true}
+              config={{
+                ...register('phone', {
+                  value: getValues('phone'),
+                  required: true,
+                  maxLength: 18,
+                  pattern: {
+                    value: /^.{5,}/,
+                  },
+                }),
+              }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* @company */}
+      <div className="mt-4 block space-y-4">
+        <div className="block">
+          <div className={`flex flex-row items-end justify-between`}>
+            <Label
+              forId={`tktCAForm_CompanyCheckout`}
+              isClassName={`mb-3`}
+              label="Company Name"
+              helpText="Do you have a company?"
+              required={watch}
+            />
+            <div className="relative inline-block pb-3">
+              <input
+                id={`tktCAForm_HaveCompanyAttndeeCheckout`}
+                className="bxShadow-none peer form-checkbox relative h-6 w-12 shrink-0 cursor-pointer rounded-full border-transparent bg-gray-100 py-0.5 pl-0.5 pr-px text-transparent transition-colors duration-200 ease-in-out before:inline-block before:size-4.5 before:translate-x-0 before:transform before:rounded-full before:bg-white before:ring-0 before:transition before:duration-200 before:ease-in-out checked:border-blue-600 checked:bg-none checked:text-blue-600 checked:before:translate-x-[130%] checked:before:bg-white disabled:pointer-events-none"
+                type="checkbox"
+                {...register(`haveCompany`, {
+                  required: false,
+                  onChange: handleToggleCompay_Change,
+                })}
+              />
+              <label
+                htmlFor={`tktCAForm_HaveCompanyLabelCheckout`}
+                className="sr-only"
+              >
+                switch
+              </label>
+            </div>
+          </div>
+
+          <Input
+            id={`tktCAForm_CompanyCheckout`}
+            type="text"
+            placeholder="Eg: Coinfest Asia"
+            ariaLabel={`Company - Checkout`}
+            disabled={watch === true ? false : true}
+            config={{
+              ...register(`company`, {
+                required: watch,
+                maxLength: 80,
+                pattern: {
+                  value: /^(N\/A|[a-zA-Z0-9\s-_]{2,80})$/,
+                },
+              }),
+            }}
+            value={watch === true ? '' : 'N/A'}
+            errors={errors[`company`]}
+            useEvent={true}
+            eventOnChange={onValueChange}
+          />
+        </div>
+        {watch === true ? (
+          <div className="block">
+            <Label
+              forId="tktCAForm_WebsiteUrlCheckout"
+              label="Website URL"
+              required={watch}
+            />
+            <Input
+              id="tktCAForm_WebsiteUrlCheckout"
+              type="text"
+              placeholder="Eg: https://..."
+              ariaLabel="Website Billing - Checkout"
+              disabled={watch === true ? false : true}
+              config={{
+                ...register('websiteUrl', {
+                  required: watch,
+                  maxLength: 255,
+                  pattern: {
+                    value:
+                      /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\w\d\-.\/]*)*\/?$|^N\/A$/,
+                    message: 'Please enter a valid URL',
+                  },
+                }),
+              }}
+              errors={errors.websiteUrl}
+            />
+          </div>
+        ) : null}
+      </div>
+    </>
+  );
+};
+
+export default BillingDetailCheckout;
