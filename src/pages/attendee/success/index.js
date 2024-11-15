@@ -7,7 +7,7 @@ import Main from '@components/Main';
 import Container from '@components/Container';
 
 // @layouts
-import NavbarCheckout from '@layouts/Navbar/NavbarCheckout';
+import NavbarCheckout from '@layouts/Navbar/NavbarOther';
 import Footer from '@layouts/Footer';
 
 const OrderReceived = () => {

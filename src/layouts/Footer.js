@@ -13,7 +13,7 @@ const Footer = () => {
         <Container className="pb-11 pt-12 sm:pt-17">
           <div className="relative flex flex-col items-start justify-start">
             <div>
-              <div className="flex w-full flex-col pr-0 text-sm font-medium sm:pr-12 lg:pr-0 xl:pr-[128px]">
+              <div className="flex w-full flex-col pr-2.5 text-sm font-medium sm:pr-12 lg:pr-0 xl:pr-[128px]">
                 {`Coinfest Asia adalah acara tertutup yang berfokus pada edukasi
                 dan pengembangan industri, dengan tujuan memberi dampak positif
                 terhadap perekonomian Indonesia. Partisipasi terbatas hanya

@@ -14,9 +14,10 @@ import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
 import Badge from '@components/UI/Badge';
+// import StepCheckout from '@components/UI/StepCheckout';
 
 // @layouts
-import NavbarCheckout from '@layouts/Navbar/NavbarCheckout';
+import NavbarOther from '@layouts/Navbar/NavbarOther';
 import Footer from '@layouts/Footer';
 
 const OrderReceived = ({ orderReceived }) => {
@@ -86,13 +87,17 @@ const OrderReceived = ({ orderReceived }) => {
       <HeadGraphSeo title={`Order Received`} otherPage={true} />
 
       {/* @navbar */}
-      <NavbarCheckout progress="last" />
+      <NavbarOther />
 
       {/* @main */}
-      <Main className="flex flex-col pb-10 pt-[188px] sm:pb-16 sm:pt-[149px]">
+      <Main className="flex flex-col pb-10 pt-[121px] sm:pb-16 sm:pt-[139px]">
         <Container>
+          {/* <div className="flex flex-col items-start rounded-2xl border border-solid border-gray-200 bg-gray-100 px-2 py-2">
+            <StepCheckout progress="last" />
+          </div> */}
+
           <div className="grid-cols-1 gap-x-6 gap-y-10 supports-grid:grid sm:grid-cols-12 sm:gap-y-12 lg:gap-y-16">
-            <div className="col-span-full pl-0 xl:col-span-6 xl:pr-10">
+            <div className="col-span-full pl-0 xl:col-span-6 xl:pr-[134px]">
               <div className="inline-flex flex-row items-center space-x-2">
                 <svg
                   className="h-12 w-12 sm:h-16 sm:w-16"
@@ -183,38 +188,38 @@ const OrderReceived = ({ orderReceived }) => {
                 </div>
                 <div className="inline-flex w-full flex-col space-y-7 rounded-xl bg-white px-4 py-4">
                   <div className="block w-full space-y-5">
-                    <div className="grid-cols-1 gap-y-1 supports-grid:grid sm:grid-cols-2 sm:gap-y-0">
-                      <div className="text-start text-sm font-normal text-gray-600">{`Date`}</div>
-                      <div className="flex flex-row text-start text-base font-light text-black-900 sm:text-start">
+                    <div className="grid-cols-1 gap-y-1 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
+                      <div className="text-start text-sm font-normal text-gray-600">{`Transaction Date`}</div>
+                      <div className="col-span-full flex flex-row text-start text-base font-light text-black-900 sm:col-span-2 sm:text-start">
                         <span className="mr-2.5 hidden w-max sm:block">:</span>
                         <span>
                           {dayjs(isOrderRecived?.createdAt).format(
-                            'DD MMMM YYYY'
+                            'ddd, MMMM D, YYYY'
                           )}
                         </span>
                       </div>
                     </div>
-                    <div className="grid-cols-1 gap-y-1 supports-grid:grid sm:grid-cols-2 sm:gap-y-0">
+                    <div className="grid-cols-1 gap-y-1 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
                       <div className="text-start text-sm font-normal text-gray-600">{`Ticket`}</div>
-                      <div className="flex flex-row text-start text-base font-light text-black-900 sm:text-start">
+                      <div className="col-span-full flex flex-row text-start text-base font-light text-black-900 sm:col-span-2 sm:text-start">
                         <span className="mr-2.5 hidden w-max sm:block">:</span>
                         <span className="font-medium">
                           {isOrderRecived?.products[0].name}
                         </span>
                       </div>
                     </div>
-                    <div className="grid-cols-1 gap-y-1 supports-grid:grid sm:grid-cols-2 sm:gap-y-0">
+                    <div className="grid-cols-1 gap-y-1 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
                       <div className="text-start text-sm font-normal text-gray-600">{`Name`}</div>
-                      <div className="flex flex-row text-start text-base font-light capitalize text-black-900 sm:text-start">
+                      <div className="col-span-full flex flex-row text-start text-base font-light capitalize text-black-900 sm:col-span-2 sm:text-start">
                         <span className="mr-2.5 hidden w-max sm:block">:</span>
                         <span>{isCustomer.fullname}</span>
                       </div>
                     </div>
-                    <div className="grid-cols-1 gap-y-1 supports-grid:grid sm:grid-cols-2 sm:gap-y-0">
+                    <div className="grid-cols-1 gap-y-1 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
                       <div className="text-start text-sm font-normal text-gray-600">{`Email`}</div>
-                      <div className="flex flex-row text-start text-base font-light text-black-900 sm:text-start">
+                      <div className="col-span-full flex flex-row text-start text-base font-light text-black-900 sm:col-span-2 sm:text-start">
                         <span className="mr-2.5 hidden w-max sm:block">:</span>
-                        <span className="lowercase">
+                        <span className="overflow-hidden text-ellipsis lowercase">
                           {isOrderRecived?.customer.email}
                         </span>
                       </div>
@@ -224,9 +229,9 @@ const OrderReceived = ({ orderReceived }) => {
                   <div className="my-2 border-t border-dashed border-gray-200"></div>
 
                   <div className="block w-full space-y-4">
-                    <div className="grid-cols-1 gap-y-2.5 supports-grid:grid sm:grid-cols-2 sm:gap-y-0">
+                    <div className="grid-cols-1 gap-y-2.5 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
                       <div className="self-center text-start text-sm font-normal text-gray-600">{`Payment Method`}</div>
-                      <div className="flex flex-row items-center text-start text-base font-light text-black-900 sm:text-start">
+                      <div className="col-span-full flex flex-row items-center text-start text-base font-light text-black-900 sm:col-span-2 sm:text-start">
                         <span className="mr-2.5 hidden w-max sm:block">:</span>
                         {isOrderRecived?.paymentStatus === 'Success' ||
                           (isOrderRecived?.paymentStatus === 'Pending' && (
@@ -235,14 +240,14 @@ const OrderReceived = ({ orderReceived }) => {
                       </div>
                     </div>
                     {isOrderRecived?.coupons.length > 0 && (
-                      <div className="grid-cols-1 items-start gap-y-1 supports-grid:grid sm:grid-cols-2 sm:gap-y-0">
+                      <div className="grid-cols-1 items-start gap-y-1 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
                         <div className="flex flex-col self-center text-start text-sm font-normal text-gray-600">
                           {`Coupon Usage`}
                           <span className="font-semibold uppercase text-primary">
                             ({isOrderRecived?.coupons[0].couponCode})
                           </span>
                         </div>
-                        <div className="flex flex-row items-center text-start text-base font-light sm:text-start">
+                        <div className="col-span-full flex flex-row items-center text-start text-base font-light sm:col-span-2 sm:text-start">
                           <span className="mr-2.5 hidden w-max text-black-900 sm:block">
                             :
                           </span>
@@ -252,9 +257,9 @@ const OrderReceived = ({ orderReceived }) => {
                         </div>
                       </div>
                     )}
-                    <div className="grid-cols-1 gap-y-1 supports-grid:grid sm:grid-cols-2 sm:gap-y-0">
+                    <div className="grid-cols-1 gap-y-1 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
                       <div className="self-center text-start text-sm font-normal text-gray-600">{`Total (inc. Tax)`}</div>
-                      <div className="flex flex-row items-center text-start text-base font-light text-black-900 sm:text-start">
+                      <div className="col-span-full flex flex-row items-center text-start text-base font-light text-black-900 sm:col-span-2 sm:text-start">
                         <span className="mr-2.5 hidden w-max sm:block">:</span>
                         <span className="font-medium">
                           {currencyConverter(isOrderRecived?.orderTotal)}

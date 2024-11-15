@@ -36,7 +36,7 @@ import Alerts from '@components/UI/Alerts/Alerts';
 import Card from '@components/UI/Card/Card';
 
 // @layouts
-import NavbarCheckout from '@layouts/Navbar/NavbarCheckout';
+import NavbarOther from '@layouts/Navbar/NavbarOther';
 import Header from '@layouts/Checkouts/Header';
 const BillingDetailCheckout = dynamic(
   () => import('@layouts/Checkouts//Card/BillingDetailCheckout'),
@@ -484,6 +484,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
               totalWithDiscount = totalWithTax;
             }
 
+            // @create(Order)
             const createOrder = setCreateOrder(
               Math.floor(totalWithDiscount),
               setIdCustomer,
@@ -496,6 +497,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
               createOrder
             );
 
+            // @processing(Order & Ticket)
             if (rsCreateOrder) {
               const setIdOrderRecived = rsCreateOrder.data.documentId;
 
@@ -541,6 +543,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                   product: { connect: [{ documentId: setIdProducts }] },
                 };
 
+                // @hubspot(Attendee)
                 const hbSptAttendee = setHbSpt_Attendee(
                   data,
                   i,
@@ -554,12 +557,46 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                     }),
                     submitFormHbSpt(hbSptAttendee, hbSptAttndeeKey),
                   ]);
+
+                  if (rsAttendee) {
+                    // @get(Key)
+                    const { key } = await fetch('/api/env/note', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                    }).then((res) => res.json());
+
+                    // @send(Email)
+                    const emailResponse = await fetch(
+                      '/api/email/send-attendee-ticket',
+                      {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                          'x-api-key': key,
+                        },
+                        body: JSON.stringify({
+                          to: rsAttendee?.data.email,
+                          attId: rsAttendee?.data.attendeeId,
+                          name: `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`,
+                          company: `${rsAttendee?.data.company}`,
+                        }),
+                      }
+                    ).then((res) => res.json());
+
+                    // @debug(Email)
+                    // if (emailResponse.message === 'Email sent successfully!') {
+                    //   console.log('Email sent successfully!');
+                    // } else {
+                    //   console.log('Sorry, failed to send email!');
+                    // }
+                  }
                 } catch (error) {
                   console.error(`[error] submitting attendee ${i + 1}:`, error);
                   break;
                 }
               }
 
+              // @last(Proccesing Point)
               setFormCheckouts({
                 ...isFormCheckouts,
                 message: 'Berhasil Terkirim',
@@ -584,10 +621,10 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
       <HeadGraphSeo title={`Checkout`} otherPage={true} />
 
       {/* @navbar */}
-      <NavbarCheckout progress="first" />
+      <NavbarOther />
 
       {/* @main */}
-      <Main className="pb-8 pt-[178px] sm:pb-12 sm:pt-[138px]">
+      <Main className="relative pb-8 pt-[101px] sm:pb-12 sm:pt-[118px] lg:pt-[126px]">
         <Container>
           <form
             id="tktCA25Form_Checkout"
@@ -916,11 +953,11 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                   {/* @submit(Form) */}
                   <button
                     id="tktCA25Form_SubmitCheckout"
-                    className={`inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:bg-gray-200 disabled:text-black-900`}
+                    className={`inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 pointer-events-auto`}
                     type="submit"
                     role="button"
                     aria-label="Submit Checkout for Coinfest Asia 2025"
-                    // disabled={!isValid}
+                    disabled={isSubmitting}
                   >
                     {isSubmitting ? (
                       <span className="flex flex-row items-center">

@@ -90,7 +90,7 @@ button {
 }
 
 .ca25MarkdwnFrmattd {
-  @apply prose-li:pointer-events-none prose-li:relative prose-li:mb-2.5 prose-li:flex prose-li:select-none prose-li:flex-row prose-li:items-start prose-li:gap-x-3 prose-li:text-base prose-li:font-light prose-li:text-gray-500 last:prose-li:mb-0;
+  @apply prose-li:pointer-events-none prose-li:relative prose-li:mb-2 prose-li:flex prose-li:select-none prose-li:flex-row prose-li:items-start prose-li:gap-x-3 prose-li:text-base prose-li:font-light prose-li:text-gray-500 last:prose-li:mb-0;
   @apply prose-ul:flex prose-ul:flex-col prose-ul:pl-0;
 }
 

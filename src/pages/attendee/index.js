@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 // @get .config
-const { publicRuntimeConfig, serverRuntimeConfig } = getConfig();
+const { publicRuntimeConfig } = getConfig();
 
 // @lib/controller & helper
 import { getFetch } from '@lib/controller/API';
@@ -28,12 +28,6 @@ const Attendee = ({}) => {
     status: false,
     type: 'default',
     message: '',
-  });
-
-  // @processing(Form)
-  const [isProcessing, setProcessing] = useState({
-    status: false,
-    message: ``,
   });
 
   // @handle(Alert)
@@ -86,7 +80,7 @@ const Attendee = ({}) => {
             'x-api-key': key,
           },
           body: JSON.stringify({
-            to: 'ikky.andreansyah@gmail.com',
+            to: rsAttendee?.data[0].email,
             id: rsAttendee?.data[0].documentId,
             name: `${rsAttendee?.data[0].firstName} ${rsAttendee?.data[0].lastName}`,
           }),
@@ -129,16 +123,16 @@ const Attendee = ({}) => {
               <div className="flex w-full max-w-[568px] flex-col items-start rounded-2xl border border-solid border-gray-200 bg-gray-100 px-2 pb-2 pt-4 sm:mt-0">
                 <div className="mb-4 flex w-full flex-row items-start justify-between px-2 sm:px-4">
                   <div className="block w-max">
-                    <span className="text-sm font-light text-gray-500">
+                    {/* <span className="text-sm font-light text-gray-500">
                       Confirmation
-                    </span>
+                    </span> */}
                     <h1 className="text-lg font-medium capitalize leading-initial sm:text-xl">
                       Attendee
                     </h1>
                   </div>
                   <div>
                     <Image
-                      className="mx-auto my-auto h-8 w-auto"
+                      className="mx-auto my-auto h-8.5 w-auto"
                       src={'/assets/images/ca2025Brand.svg'}
                       alt={`${publicRuntimeConfig.siteAppName} (Primary Brand - Navbar Checkout)`}
                       height={58}
@@ -182,7 +176,7 @@ const Attendee = ({}) => {
                     />
                     <Input
                       id={`tktCAForm_EmailAttendeeConfrim`}
-                      type="text"
+                      type="email"
                       placeholder="Eg: example@email.com"
                       ariaLabel={`Email Attendee Confrim`}
                       config={{
@@ -202,7 +196,7 @@ const Attendee = ({}) => {
 
                 <div className="inline-flex w-full items-start justify-between">
                   <Link
-                    className="mt-1 flex flex-row items-center gap-x-2 text-sm text-black-900 underline transition duration-300 ease-in-out hover:text-primary sm:gap-x-3"
+                    className="mt-0.5 flex flex-row items-center gap-x-2 text-sm text-black-900 underline transition duration-300 ease-in-out hover:text-primary sm:gap-x-2"
                     href={'/'}
                     title="Button for Back to Home (Attendee Confirmation)"
                   >
@@ -220,22 +214,20 @@ const Attendee = ({}) => {
                       <path d="M19 12H5" />
                     </svg>
                     Back
-                    <span className="-ml-2.5 hidden w-max sm:flex">
-                      to Home
-                    </span>
+                    <span className="-ml-1 hidden w-max sm:flex">to Home</span>
                   </Link>
                   <button
                     id="tktCA25Form_SubmitAttendeeConfrim"
-                    className={`inline-flex w-[199px] cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-6 py-4 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 ${isSubmitting && 'pointer-events-none opacity-70'} pointer-events-auto`}
+                    className={`pointer-events-auto inline-flex w-[199px] cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-6 py-4 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
                     type="submit"
                     role="button"
                     aria-label="Submit Attendee Confrim for Coinfest Asia 2025"
-                    disabled={!isValid}
+                    disabled={!isValid || isSubmitting}
                   >
                     {isSubmitting ? (
                       <span className="flex flex-row items-center">
                         <svg
-                          className="mr-3 h-5 w-5 animate-spin text-white"
+                          className="mr-3 h-5 w-5 animate-spin text-black-900"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"

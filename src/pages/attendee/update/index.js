@@ -29,7 +29,7 @@ import Breadcrumb from '@components/UI/Breadcrumb';
 import Checkbox from '@components/UI/Form/Checkbox';
 
 // @layouts
-import NavbarCheckout from '@layouts/Navbar/NavbarCheckout';
+import NavbarOther from '@layouts/Navbar/NavbarOther';
 const AttendeeDetailUpdated = dynamic(
   () => import('@layouts/Attendee/Card/AttendeeDetailUpdated'),
   {
@@ -138,10 +138,10 @@ const Attendee = ({ attendee, ipAddress, country, formCheckout }) => {
       <HeadGraphSeo title={`Attendee`} otherPage={true} />
 
       {/* @navbar */}
-      <NavbarCheckout progress="last" />
+      <NavbarOther />
 
       {/* @main */}
-      <Main className="flex flex-col pb-10 pt-[188px] sm:pb-14 sm:pt-[149px]">
+      <Main className="relative pb-8 pt-[101px] sm:pb-12 sm:pt-[118px] lg:pt-[126px]">
         <Container>
           <form
             id="tktCA25Form_AttendeeUpdated"

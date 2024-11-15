@@ -40,9 +40,9 @@ const AttendeeDetailCheckouts = ({
             config={{
               ...register(`firstnameAttndee${arrIndex}`, {
                 required: true,
-                maxLength: 255,
+                maxLength: 120,
                 pattern: {
-                  value: /^[a-zA-Z0-9\s-_]{2,255}$/,
+                  value: /^[a-zA-Z0-9\s-_]{2,120}$/,
                 },
               }),
             }}
@@ -64,9 +64,9 @@ const AttendeeDetailCheckouts = ({
             config={{
               ...register(`lastnameAttndee${arrIndex}`, {
                 required: true,
-                maxLength: 255,
+                maxLength: 120,
                 pattern: {
-                  value: /^[a-zA-Z0-9\s-_]{2,255}$/,
+                  value: /^[a-zA-Z0-9\s-_]{2,120}$/,
                 },
               }),
             }}
@@ -89,7 +89,7 @@ const AttendeeDetailCheckouts = ({
           config={{
             ...register(`emailAttndee${arrIndex}`, {
               required: true,
-              maxLength: 255,
+              maxLength: 120,
               pattern: {
                 value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
               },
@@ -168,9 +168,9 @@ const AttendeeDetailCheckouts = ({
             config={{
               ...register(`telegramAccountAttndee${arrIndex}`, {
                 required: true,
-                maxLength: 255,
+                maxLength: 55,
                 pattern: {
-                  value: /^@([a-zA-Z][a-zA-Z0-9_]{2,55})$/,
+                  value: /^@([a-zA-Z][a-zA-Z0-9_\.]{2,55})$/,
                 },
               }),
             }}

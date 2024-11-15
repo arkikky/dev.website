@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import AttendeeConfrim from '@email/Attendee/Confirm';
+import QRCode from 'qrcode';
+import AttendeeTicket from '@email/Attendee/Ticket';
 import { render } from '@react-email/render';
 
 export default async function handler(req, res) {
@@ -28,18 +29,24 @@ export default async function handler(req, res) {
     return res.status(405).json(logErr);
   }
 
-  const { to, id, name } = req.body;
+  const { to, attId, name, company } = req.body;
+  const gnrteQrCode = await QRCode.toDataURL(attId);
+
   const emailHtml = await render(
-    <AttendeeConfrim name={name} email={to} docId={id} />
+    <AttendeeTicket
+      qrCode={gnrteQrCode}
+      attendeeId={attId}
+      name={name}
+      email={to}
+      company={company}
+    />
   );
 
   try {
-    // console.log('awdwad');
-
     await transporter.sendMail({
       from: '"Coinfest Asia 2025" <dicky@indonesiacrypto.network>',
       to,
-      subject: 'Attendee Confirmation',
+      subject: `[#${attId}] Ticket Coinfest Asia 2025`,
       html: emailHtml,
     });
 

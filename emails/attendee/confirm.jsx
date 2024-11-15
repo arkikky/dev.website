@@ -170,29 +170,13 @@ const AttendeeConfrim = ({
             </Text>
           </Section>
           <Section className="px-6 py-2">
-            {/* <Text className="text-xs text-gray-500">
-              Disclaimer: Coinfest Asia is a networking and educational festival
-              focused on Web3, crypto, blockchain, NFTs, and the Metaverse. It
-              is not an event for price forecasting, and materials presented are
-              for informational purposes only, not financial or investment
-              advice. Entry is first-come, first-served. NFC cards will be used
-              as Event Passes for check-ins, networking, and capturing attendee
-              contact information. By attending, you consent to the Organizer,
-              Indonesia Crypto Network, and affiliates using and distributing
-              your image, contact, and data for event purposes. Attendees assume
-              all risks associated with participation and release the Organizer
-              from liability for any injury or damages. Passes are
-              non-transferable, with no refunds or exchanges. Remember to always
-              conduct your own research before making financial decisions.
-            </Text> */}
-
             <Text className="text-sm text-gray-500">
               <span className="font-semibold text-black-900">Important:</span>{' '}
               This link can only be used once. Once you access the update page,
               make sure to fill in all the information correctly as you will not
               be able to make any changes after that.
             </Text>
-            <Text className="text-sm text-gray-500">
+            <Text className="text-sm text-black-900">
               This message was sent to verify your email address. If you have
               any questions and can’t find the answers on our FAQ page, reach
               out to{' '}
@@ -206,12 +190,13 @@ const AttendeeConfrim = ({
               </Link>{' '}
               - we’re always happy to help.
             </Text>
-            <Text className="text-sm text-gray-500">
+
+            <Text className="text-sm text-black-900">
               <span className="font-medium text-black-900">Thanks,</span> <br />
               Coinfest Support Team
             </Text>
 
-            <Text className="pt-12 text-sm text-gray-500">
+            <Text className="pt-12 text-xs text-black-900">
               Copyright ©{' '}
               <span className="font-medium text-primary">Coinfest Asia</span>.
               All rights reserved. Coinfest is organized by{' '}
