@@ -29,7 +29,7 @@ import Breadcrumb from '@components/UI/Breadcrumb';
 import Checkbox from '@components/UI/Form/Checkbox';
 
 // @layouts
-import NavbarOther from '@layouts/Navbar/NavbarOther';
+import NavbarOther from '@layouts/Navbar/NavbarTop';
 const AttendeeDetailUpdated = dynamic(
   () => import('@layouts/Attendee/Card/AttendeeDetailUpdated'),
   {

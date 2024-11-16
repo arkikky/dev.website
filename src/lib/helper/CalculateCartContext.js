@@ -9,8 +9,8 @@ export function currencyConverter(number) {
   const formattedTotalUSD = getCurrency.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
   });
 
   return formattedTotalUSD;
@@ -23,13 +23,13 @@ export function converterTotalCart(number) {
   const getExchangeRate_USD = Number(exchangeRate_USD);
 
   const totalWithTaxIDR = getNominal_IDR + getNominal_IDR * setTax_Rate;
-  const totalUSD = Number(totalWithTaxIDR) * getExchangeRate_USD;
+  const totalUSD = totalWithTaxIDR * getExchangeRate_USD;
 
   const formattedTotalUSD = totalUSD.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
   });
 
   return formattedTotalUSD;
@@ -42,13 +42,13 @@ export function converterTotal(number) {
   const setTax_Rate = 0.11; // @tax 11%
 
   const totalWithTaxIDR = getNominal_IDR + getNominal_IDR * setTax_Rate;
-  const totalUSD = Number(totalWithTaxIDR) * getExchangeRate_USD;
+  const totalUSD = totalWithTaxIDR * getExchangeRate_USD;
 
   const formattedTotalUSD = totalUSD.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
   });
 
   return formattedTotalUSD;

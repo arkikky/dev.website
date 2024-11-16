@@ -7,7 +7,7 @@ import Main from '@components/Main';
 import Container from '@components/Container';
 
 // @layouts
-import NavbarCheckout from '@layouts/Navbar/NavbarOther';
+import NavbarCheckout from '@layouts/Navbar/NavbarTop';
 import Footer from '@layouts/Footer';
 
 const OrderReceived = () => {
@@ -35,10 +35,17 @@ const OrderReceived = () => {
               </h1>
             </div>
             <div className="mt-8 flex w-full max-w-full flex-col items-center justify-center text-center sm:max-w-[651px]">
-              <p className="px-0 font-bevietnamPro text-base font-light text-black-900 sm:px-4">
-                Your email has been sent successfully, Please check your inbox
+              <p className="px-0 font-bevietnamPro text-base font-light text-black-900 prose-a:text-primary prose-a:underline sm:px-4">
+                Your email has been sent successfully!, Please check your inbox
                 for confirmation. If you don't see it, kindly check your spam
-                folder.
+                folder. If you haven't received them within 24 hours after
+                completion, please reach out to{' '}
+                <Link
+                  href="mailto:support@coinfest.asia"
+                  title="Link to contact Coinfest Asia 2025 support"
+                >
+                  support@coinfest.asia
+                </Link>
               </p>
               <div className="mb-8 mt-6">
                 <Link

@@ -83,6 +83,7 @@ button {
 
 /* @article */
 .ca25Article_Frmatt {
+  @apply tracking-[-0.1px] font-light;
   @apply prose-h1:text-[28px] prose-h1:font-bold prose-h1:leading-[38px] sm:prose-h1:text-[40px] sm:prose-h1:leading-[48px];
   @apply prose-h2:mb-3.5 prose-h2:mt-8 prose-h2:text-xl prose-h2:font-semibold first:prose-h2:mt-0 sm:prose-h2:mt-10;
   @apply prose-p:font-light prose-strong:font-semibold;

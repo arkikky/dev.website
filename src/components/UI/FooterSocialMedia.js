@@ -9,7 +9,7 @@ const { publicRuntimeConfig } = getConfig();
 const FooterSocialMedia = ({ list = [] }) => {
   return (
     <>
-      <ul className="relative mt-4 flex flex-row pl-0 lg:mt-0">
+      <ul className="relative mt-5 flex flex-row pl-0 lg:mt-0">
         {list?.map((gtRslt, i) => (
           <li className="mr-4 last:mr-0" key={i}>
             <Link

@@ -128,7 +128,7 @@ const Home = ({ products }) => {
                                   gtRslt.priceSale ?? gtRslt.price
                                 )}
                           </span>
-                          {gtRslt.price && (
+                          {gtRslt.price && gtRslt.priceSale && (
                             <span className="text-lg font-normal text-gray-400 line-through">
                               {gtRslt.name === 'Group Package Tickets'
                                 ? currencyConverter(gtRslt.price * 5)

@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 
 const Badge = ({
   type = 'default',
-  label = 'Badge',
+  label = '',
   size = 'default',
   icons,
   withHover = false,

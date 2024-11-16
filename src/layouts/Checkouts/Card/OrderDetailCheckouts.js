@@ -39,7 +39,7 @@ const OrderDetailCheckouts = ({
       const isDataCoupon = getDataCoupon?.data[0];
 
       if (isDataCoupon && products.length > 0) {
-        const isPrice = products[0].priceSale;
+        const isPrice = products[0].price ?? products[0].priceSale;
         const isSubTotal = getTotalCart(products);
         const discntAmount = parseFloat(isDataCoupon.amount) || 0;
 
@@ -140,7 +140,7 @@ const OrderDetailCheckouts = ({
         calculatedDiscount =
           parseInt(discntAmount) === 100
             ? isSubTotal
-            : products[0].priceSale * (discntAmount / 100);
+            : (products[0].price ?? products[0].priceSale) * (discntAmount / 100);
 
         setUseCoupon({
           ...isUseCoupon,
@@ -285,7 +285,7 @@ const OrderDetailCheckouts = ({
                   <div className="inline-flex w-full flex-row items-start justify-between">
                     <h3 className="text-base font-medium">{gtRslt.name}</h3>
                     <span className="text-base font-medium">
-                      {currencyConverter(gtRslt.priceSale)}
+                      {currencyConverter(gtRslt.price ?? gtRslt.priceSale)}
                     </span>
                   </div>
                   <div className="relative flex w-full flex-row items-start justify-between gap-y-0.5">

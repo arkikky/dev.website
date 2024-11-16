@@ -43,7 +43,7 @@ const Select = ({
         })}
         {...config}
       >
-        <option value="-">{label}</option>
+        <option value="">Choose a ...</option>
         {listSelect?.map((gtRslt, i) => (
           <option value={gtRslt.value} key={i}>
             {gtRslt.label}

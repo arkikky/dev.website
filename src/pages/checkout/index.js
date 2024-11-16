@@ -36,7 +36,7 @@ import Alerts from '@components/UI/Alerts/Alerts';
 import Card from '@components/UI/Card/Card';
 
 // @layouts
-import NavbarOther from '@layouts/Navbar/NavbarOther';
+import NavbarOther from '@layouts/Navbar/NavbarTop';
 import Header from '@layouts/Checkouts/Header';
 const BillingDetailCheckout = dynamic(
   () => import('@layouts/Checkouts//Card/BillingDetailCheckout'),
@@ -57,9 +57,6 @@ const CompnayDetailCheckouts = dynamic(
     loading: () => <p>Loading...</p>,
   }
 );
-
-// import OrderDetailCheckouts from '@layouts/Checkouts//Card/OrderDetailCheckouts';
-
 const OrderDetailCheckouts = dynamic(
   () => import('@layouts/Checkouts//Card/OrderDetailCheckouts'),
   {
@@ -273,6 +270,8 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
       getValues('companySizeAttndee1'),
     ];
 
+    setValue(`companyAttndee${attendee}`, getValues('companyAttndee1'));
+
     if (el.length > 0) {
       el?.forEach((id, i) => {
         const elmntInstance = window.HSSelect.getInstance(id);
@@ -451,7 +450,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
           //   // if (isCart) {
           const setIdCustomer = rsCustomer.data.documentId;
           const setIdProducts = isProducts[0].documentId;
-          const setPrice = isProducts[0].priceSale;
+          const setPrice = isProducts[0].price ?? isProducts[0].priceSale;
           const qtyProducts = isFormCheckouts.totalQty;
 
           const [getCoupon, rsCustomerDtl] = await Promise.all([
@@ -566,22 +565,22 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                     }).then((res) => res.json());
 
                     // @send(Email)
-                    const emailResponse = await fetch(
-                      '/api/email/send-attendee-ticket',
-                      {
-                        method: 'POST',
-                        headers: {
-                          'Content-Type': 'application/json',
-                          'x-api-key': key,
-                        },
-                        body: JSON.stringify({
-                          to: rsAttendee?.data.email,
-                          attId: rsAttendee?.data.attendeeId,
-                          name: `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`,
-                          company: `${rsAttendee?.data.company}`,
-                        }),
-                      }
-                    ).then((res) => res.json());
+                    // const emailResponse = await fetch(
+                    //   '/api/email/send-attendee-ticket',
+                    //   {
+                    //     method: 'POST',
+                    //     headers: {
+                    //       'Content-Type': 'application/json',
+                    //       'x-api-key': key,
+                    //     },
+                    //     body: JSON.stringify({
+                    //       to: rsAttendee?.data.email,
+                    //       attId: rsAttendee?.data.attendeeId,
+                    //       name: `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`,
+                    //       company: `${rsAttendee?.data.company}`,
+                    //     }),
+                    //   }
+                    // ).then((res) => res.json());
 
                     // @debug(Email)
                     // if (emailResponse.message === 'Email sent successfully!') {
@@ -953,7 +952,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                   {/* @submit(Form) */}
                   <button
                     id="tktCA25Form_SubmitCheckout"
-                    className={`inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 pointer-events-auto`}
+                    className={`pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
                     type="submit"
                     role="button"
                     aria-label="Submit Checkout for Coinfest Asia 2025"
@@ -962,7 +961,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                     {isSubmitting ? (
                       <span className="flex flex-row items-center">
                         <svg
-                          className="mr-3 h-5 w-5 animate-spin text-white"
+                          className="mr-3 h-5 w-5 animate-spin text-black-900"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
@@ -1034,10 +1033,14 @@ export const getServerSideProps = async (context) => {
       getFecthHbSpt(`/forms/v2/forms/${serverRuntimeConfig.hbSptCheckout}`),
     ]);
 
+    const sortedCountries = rsCountry.sort((a, b) =>
+      a.name.common.localeCompare(b.name.common)
+    );
+
     return {
       props: {
         ipAddress: rsIpAddress || [],
-        country: rsCountry || [],
+        country: sortedCountries || [],
         formCheckout: rsCheckoutHbSpt.formFieldGroups || [],
       },
     };

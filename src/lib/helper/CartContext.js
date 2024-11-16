@@ -1,7 +1,8 @@
 // @total(Cart)
 export function getTotalCart(data) {
   const getTotal_IDR = data?.reduce(
-    (acc, items) => acc + parseInt(items.priceSale) * items.quantity,
+    (acc, items) =>
+      acc + parseInt(items.price ?? items.priceSale) * items.quantity,
     0
   );
 

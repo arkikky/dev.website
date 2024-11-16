@@ -13,15 +13,15 @@ const TermsAndConditions = ({}) => {
       <HeadGraphSeo title={`Terms And Conditions`} otherPage={true} />
 
       {/* @main */}
-      <Main className="relative flex flex-col pb-28 pt-[158px]">
+      <Main className="relative flex flex-col pb-12 pt-[141px] sm:pb-12 sm:pt-[151px]">
         <Container>
           <div className="relative grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-full col-start-1 sm:col-span-10 sm:col-start-2">
-              <div className="mb-16 flex flex-col items-center justify-center text-center">
-                <h1 className="w-full max-w-[416px] text-[28px] font-bold leading-[38px] sm:text-[36px] sm:leading-[48px]">
+              <div className="mb-12 flex flex-col items-center justify-center text-center sm:mb-16">
+                <h1 className="w-full max-w-full text-[28px] font-bold leading-[38px] sm:text-[36px] sm:leading-[48px]">
                   Terms & Conditions
                 </h1>
-                <p className="mt-2.5 font-light text-gray-400">
+                <p className="mt-2 font-light text-gray-400">
                   Last updated: March 01, 2024
                 </p>
               </div>

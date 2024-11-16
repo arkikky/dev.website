@@ -63,7 +63,7 @@ const SelectCountry = ({
         })}
         {...config}
       >
-        <option value="-">Choose a Country ...</option>
+        <option value="">Choose a Country ...</option>
         {withIcons === false ? (
           <>
             {listSelect?.map((gtRslt, i) => (

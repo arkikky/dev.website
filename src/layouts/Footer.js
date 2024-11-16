@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 
 // @components
@@ -9,11 +8,11 @@ import FooterSocialMedia from '@components/UI/FooterSocialMedia';
 const Footer = () => {
   return (
     <>
-      <footer className="ca2024Footer ca2024SectionEnd relative justify-end overflow-x-hidden bg-white">
-        <Container className="pb-11 pt-12 sm:pt-17">
+      <footer className="ca2024Footer ca2024SectionEnd relative justify-end overflow-x-hidden bg-white pb-8 pt-10 sm:pb-10 sm:pt-12">
+        <Container>
           <div className="relative flex flex-col items-start justify-start">
             <div>
-              <div className="flex w-full flex-col pr-2.5 text-sm font-medium sm:pr-12 lg:pr-0 xl:pr-[128px]">
+              <div className="flex w-full flex-col text-balance xl:text-pretty pr-0 text-sm font-medium sm:pr-4 lg:pr-0 xl:pr-[98px]">
                 {`Coinfest Asia adalah acara tertutup yang berfokus pada edukasi
                 dan pengembangan industri, dengan tujuan memberi dampak positif
                 terhadap perekonomian Indonesia. Partisipasi terbatas hanya
@@ -21,7 +20,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="mt-8 flex w-full flex-col items-start justify-start sm:mt-10 lg:mt-12 lg:flex-row lg:items-center lg:justify-between">
-              <div className="w-full max-w-[545px] font-bevietnamPro text-sm font-light text-black-900 prose-a:text-primary prose-a:underline prose-strong:font-medium prose-strong:text-primary xl:max-w-max">
+              <div className="w-full max-w-[567px] font-bevietnamPro text-sm font-light text-black-900 prose-a:text-primary prose-a:underline prose-strong:font-medium prose-strong:text-primary xl:max-w-max">
                 Copyright © <strong>Coinfest Asia</strong>. All rights
                 reserved. Coinfest is organized by{' '}
                 <Link
