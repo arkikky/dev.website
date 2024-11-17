@@ -80,6 +80,13 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
     totalQty: 1,
     message: null,
   });
+  const [isStepToggledCompany, setIsStepToggledCompany] = useState({
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+  });
 
   // @cart
   const [isProducts, setProducts] = useState([]);
@@ -242,7 +249,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
     });
   };
 
-  // @handle-copydata(billing)
+  // @handle-copy(Billing)
   const hndleCopy_BillingToAttendee = (e) => {
     e.preventDefault();
     setValue('firstnameAttndee1', firstnameBilling);
@@ -255,22 +262,56 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
     }
   };
 
-  const hndleCopy_CompanyDetail = (el = [], attendee = 1) => {
+  // @handle-copy(Company - Attendee)
+  const hndleCopy_OtherDetail = (el = [], attendee = 1) => {
     const reg = [
       `countryAttndee${attendee}`,
+      `whatTypeConnectionNetworkingAttndee${attendee}`,
+      `didYouHearAboutAttndee${attendee}`,
+    ];
+
+    const vals = [
+      getValues(`countryAttndee${attendee - 1}`),
+      getValues(`whatTypeConnectionNetworkingAttndee${attendee - 1}`),
+      getValues(`didYouHearAboutAttndee${attendee - 1}`),
+    ];
+
+    if (el.length > 0) {
+      el?.forEach((id, i) => {
+        const elmntInstance = window.HSSelect.getInstance(id);
+
+        if (elmntInstance) {
+          elmntInstance.setValue(vals[i]);
+          setValue(reg[i], vals[i]);
+        } else {
+          console.warn(`[Warning] HSSelect instance not found for id: ${id}`);
+        }
+      });
+    }
+  };
+
+  // @handle-copy(Company - Attendee)
+  const hndleCopy_CompanyDetail = (
+    el = [],
+    attendee = 1,
+    isActiveToggle = 1
+  ) => {
+    const reg = [
       `jobPositionAttndee${attendee}`,
       `companyFocusAttndee${attendee}`,
       `companySizeAttndee${attendee}`,
     ];
 
     const vals = [
-      getValues('countryAttndee1'),
-      getValues('jobPositionAttndee1'),
-      getValues('companyFocusAttndee1'),
-      getValues('companySizeAttndee1'),
+      getValues(`jobPositionAttndee${isActiveToggle}`),
+      getValues(`companyFocusAttndee${isActiveToggle}`),
+      getValues(`companySizeAttndee${isActiveToggle}`),
     ];
 
-    setValue(`companyAttndee${attendee}`, getValues('companyAttndee1'));
+    setValue(
+      `companyAttndee${attendee}`,
+      getValues(`companyAttndee${isActiveToggle}`)
+    );
 
     if (el.length > 0) {
       el?.forEach((id, i) => {
@@ -728,6 +769,61 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                             </button>
                           </div>
                         ) : null}
+                        {isFormCheckouts.stepForm >= 2 ? (
+                          <div className="mr-0 mt-3 sm:-mr-4 sm:mt-0">
+                            <button
+                              id="ca25Btn_CopyOtherDetailCheckout"
+                              type="button"
+                              aria-label="Button for Copy Other Detail(Checkouts)"
+                              aria-labelledby="Button for Copy Other Detail(Checkouts)"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                hndleCopy_OtherDetail(
+                                  [
+                                    `#tktCAForm_CountryAttndee${isFormCheckouts.stepForm}Checkout`,
+                                    `#tktCAForm_WhatTypeOfConnectionsAttndee${isFormCheckouts.stepForm}Checkout`,
+                                    `#tktCAForm_DidYouHearAboutAttndee${isFormCheckouts.stepForm}Checkout`,
+                                  ],
+                                  isFormCheckouts.stepForm
+                                );
+                              }}
+                              className="text-black-900"
+                            >
+                              <Badge
+                                label="Some details are the same"
+                                type="dark"
+                                withHover={true}
+                                withUnderline={true}
+                                icons={
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-4 w-4"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  >
+                                    <rect
+                                      width="8"
+                                      height="4"
+                                      x="8"
+                                      y="2"
+                                      rx="1"
+                                      ry="1"
+                                    />
+                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                                    <path d="M12 11h4" />
+                                    <path d="M12 16h4" />
+                                    <path d="M8 11h.01" />
+                                    <path d="M8 16h.01" />
+                                  </svg>
+                                }
+                              />
+                            </button>
+                          </div>
+                        ) : null}
                       </div>
                       <div className="inline-flex w-full flex-col space-y-4 rounded-xl bg-white px-4 py-4">
                         <AttendeeDetailCheckouts
@@ -757,30 +853,37 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                           details of the participants in attendance.`}
                           </span>
                         </div>
-                        {isFormCheckouts.stepForm > 1 &&
-                        haveCompantAttendee === true ? (
+                        {isFormCheckouts.stepForm >= 2 &&
+                        getValues(`haveCompanyAttndee${i + 1}`) === true &&
+                        Object.values(isStepToggledCompany).some(
+                          (toggled) => toggled
+                        ) ? (
                           <div className="mr-0 mt-3 sm:-mr-4 sm:mt-0">
                             <button
-                              id="ca25Btn_CopyBillingDetailCheckout"
+                              id="ca25Btn_CopyCompanyDetailCheckout"
                               type="button"
-                              aria-label="Button for Copy Billing Detail(Checkouts)"
-                              aria-labelledby="Button for Copy Billing Detail(Checkouts)"
+                              aria-label="Button for Copy Company Detail(Checkouts)"
+                              aria-labelledby="Button for Copy Company Detail(Checkouts)"
                               onClick={(e) => {
                                 e.preventDefault();
                                 hndleCopy_CompanyDetail(
                                   [
-                                    `#tktCAForm_CountryAttndee${isFormCheckouts.stepForm}Checkout`,
                                     `#tktCAForm_JobPositionAttndee${isFormCheckouts.stepForm}Checkout`,
                                     `#tktCAForm_CompanyFocusAttndee${isFormCheckouts.stepForm}Checkout`,
                                     `#tktCAForm_CompanySizeAttndee${isFormCheckouts.stepForm}Checkout`,
                                   ],
-                                  isFormCheckouts.stepForm
+                                  isFormCheckouts.stepForm,
+                                  Object.entries(isStepToggledCompany)
+                                    .filter(([key, value]) => value)
+                                    .map(([key]) => Number(key))
+                                    .sort((a, b) => a - b)
+                                    .pop()
                                 );
                               }}
                               className="text-black-900"
                             >
                               <Badge
-                                label="Same Company Details"
+                                label="Same as Company Details"
                                 type="dark"
                                 withHover={true}
                                 withUnderline={true}
@@ -913,6 +1016,12 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                             setFormCheckouts((prev) => ({
                               ...prev,
                               stepForm: isFormCheckouts.stepForm + 1,
+                            }));
+                            setIsStepToggledCompany((prev) => ({
+                              ...prev,
+                              [isFormCheckouts.stepForm]: getValues(
+                                `haveCompanyAttndee${isFormCheckouts.stepForm}`
+                              ),
                             }));
                           }
                         }}

@@ -60,13 +60,13 @@ const App = ({ Component, pageProps }) => {
           <meta name="author" content={'Coinfest Asia'} />
           <link rel="mask-icon" href="/favicon.ico" color="#015AFD" />
           <meta name="msapplication-TileColor" content="#015AFD" />
-          <meta name="theme-color" content="#015AFD" />
-          <meta name="msapplication-navbutton-color" content="#015AFD" />
+          <meta name="theme-color" content="#F8FAFC" />
+          <meta name="msapplication-navbutton-color" content="#F8FAFC" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta
             name="apple-mobile-web-app-status-bar-style"
-            content="#015AFD"
+            content="#F8FAFC"
           />
           <link
             rel="preconnect"

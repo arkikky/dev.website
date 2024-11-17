@@ -112,7 +112,7 @@ const Home = ({ products }) => {
                   className="flex h-[629px] flex-col space-y-6 rounded-3xl bg-gray-200 px-1.5 py-1.5"
                   key={i}
                 >
-                  <div className="relative flex h-fill flex-col items-start justify-between rounded-[18px] bg-white px-6 py-6">
+                  <div className="relative flex h-full flex-col items-start justify-between rounded-[18px] bg-white px-6 py-6">
                     <div className="flex w-full flex-col items-start">
                       <div className="block w-full">
                         <h2 className="mb-1 text-xl font-normal text-black-900 sm:mb-2">
