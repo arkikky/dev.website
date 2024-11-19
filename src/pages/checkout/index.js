@@ -592,7 +592,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
 
                 try {
                   const [rsAttendee, rsHbSptAttendee] = await Promise.all([
-                    pushSubmitData('/api/attendees', {
+                    pushSubmitData('/api/attendees?populate=*', {
                       data: attendeeData,
                     }),
                     submitFormHbSpt(hbSptAttendee, hbSptAttndeeKey),
@@ -606,22 +606,23 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                     }).then((res) => res.json());
 
                     // @send(Email)
-                    // const emailResponse = await fetch(
-                    //   '/api/email/send-attendee-ticket',
-                    //   {
-                    //     method: 'POST',
-                    //     headers: {
-                    //       'Content-Type': 'application/json',
-                    //       'x-api-key': key,
-                    //     },
-                    //     body: JSON.stringify({
-                    //       to: rsAttendee?.data.email,
-                    //       attId: rsAttendee?.data.attendeeId,
-                    //       name: `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`,
-                    //       company: `${rsAttendee?.data.company}`,
-                    //     }),
-                    //   }
-                    // ).then((res) => res.json());
+                    const emailResponse = await fetch(
+                      '/api/email/send-attendee-ticket',
+                      {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                          'x-api-key': key,
+                        },
+                        body: JSON.stringify({
+                          toEmail: rsAttendee?.data.email,
+                          attId: rsAttendee?.data.attendeeId,
+                          fullname: `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`,
+                          company: `${rsAttendee?.data.company}`,
+                          productTickets: `${rsAttendee?.data.product?.name}`,
+                        }),
+                      }
+                    ).then((res) => res.json());
 
                     // @debug(Email)
                     // if (emailResponse.message === 'Email sent successfully!') {

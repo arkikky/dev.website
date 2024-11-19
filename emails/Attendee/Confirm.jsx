@@ -1,5 +1,6 @@
 import {
   Tailwind,
+  Font,
   Html,
   Head,
   Preview,
@@ -131,7 +132,7 @@ const AttendeeConfrim = ({
         <Section className="mb-6 mt-4 px-6 py-2">
           <Img
             className="mx-auto my-auto h-10 w-auto"
-            src={`${baseUrl}/emails/ca2025Brand.png`}
+            src={`https://api.coinfest.asia/uploads/ca2025_Brand_a32d2e5691.png`}
             alt={`Coinfest Asia 2025 (Primary Brand)`}
             height={58}
             width={170}
@@ -141,11 +142,13 @@ const AttendeeConfrim = ({
         {/* @main */}
         <Container className="mx-auto max-w-[579px] bg-white px-0 py-0">
           <Section className="mt-4 px-6 py-0">
-            <Heading className="text-sm text-black-900">Halo, {name}!</Heading>
+            <Heading className="text-base text-black-900">Hii, {name}!</Heading>
             <Text>
-              We are sending you this email to give you access to the
-              participant data update page. Please note that you can only update
-              your data once. Please click the button below to update your data:
+              Thank you for participating with us at Coinfest Asia. We are
+              pleased to provide you access to the participant data update page.
+              Kindly note that updates can only be made once, so please ensure
+              all information is accurate before submission. To proceed, please
+              click the button below to update your data:
             </Text>
 
             <Button
@@ -172,14 +175,13 @@ const AttendeeConfrim = ({
           <Section className="px-6 py-2">
             <Text className="text-sm text-gray-500">
               <span className="font-semibold text-black-900">Important:</span>{' '}
-              This link can only be used once. Once you access the update page,
-              make sure to fill in all the information correctly as you will not
-              be able to make any changes after that.
+              This link is valid for one-time use only. Please ensure that all
+              information is completed accurately on the update page, as changes
+              will not be possible once submitted.
             </Text>
             <Text className="text-sm text-black-900">
-              This message was sent to verify your email address. If you have
-              any questions and can’t find the answers on our FAQ page, reach
-              out to{' '}
+              If you have any questions or need further assistance, please visit
+              our FAQ page. Alternatively, feel free to reach out to us at{' '}
               <Link
                 className="text-primary underline"
                 href="mailto:support@coinfest.asia"
@@ -188,38 +190,12 @@ const AttendeeConfrim = ({
               >
                 support@coinfest.asia
               </Link>{' '}
-              - we’re always happy to help.
+              —our team is always happy to help.
             </Text>
 
-            <Text className="text-sm text-black-900">
-              <span className="font-medium text-black-900">Thanks,</span> <br />
+            <Text className="text-sm font-semibold text-black-900">
+              <span className="font-normal text-black-900">Thanks,</span> <br />
               Coinfest Support Team
-            </Text>
-
-            <Text className="pt-12 text-xs text-black-900">
-              Copyright ©{' '}
-              <span className="font-medium text-primary">Coinfest Asia</span>.
-              All rights reserved. Coinfest is organized by{' '}
-              <Link
-                className="text-primary underline"
-                href="https://coinvestasi.com/"
-                title="Coinfest Asia 2025 (Coinvestasi)"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Coinvestasi
-              </Link>
-              , a subsidiary of{' '}
-              <Link
-                href="https://indonesiacrypto.network/"
-                title="Coinfest Asia 2025 (Indonesia Crypto Network)"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary underline"
-              >
-                Indonesia Crypto Network
-              </Link>
-              .
             </Text>
           </Section>
           <Section className="mt-1 bg-primary px-4 py-1 text-center text-white">
@@ -227,11 +203,31 @@ const AttendeeConfrim = ({
           </Section>
         </Container>
 
-        <Section className="mx-auto mt-2 w-full max-w-[353px] text-center">
-          <Text className="text-sm text-gray-500">
-            The email was sent to{' '}
-            <span className="text-primary underline">{email}</span>. To no
-            longer receive these emails
+        <Section className="mx-auto mt-4 w-full max-w-[453px] text-center">
+          <Text className="text-balance text-sm text-gray-500">
+            Copyright ©{' '}
+            <span className="font-medium text-primary">Coinfest Asia</span>. All
+            rights reserved. Coinfest is organized by{' '}
+            <Link
+              className="text-primary underline"
+              href="https://coinvestasi.com/"
+              title="Coinfest Asia 2025 (Coinvestasi)"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Coinvestasi
+            </Link>
+            , a subsidiary of{' '}
+            <Link
+              href="https://indonesiacrypto.network/"
+              title="Coinfest Asia 2025 (Indonesia Crypto Network)"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary underline"
+            >
+              Indonesia Crypto Network
+            </Link>
+            .
           </Text>
         </Section>
       </Body>
@@ -241,12 +237,4 @@ const AttendeeConfrim = ({
 
 export default AttendeeConfrim;
 
-// Styles
-const main = { backgroundColor: '#f6f9fc', padding: '10px' };
-const container = {
-  backgroundColor: '#ffffff',
-  padding: '20px',
-  borderRadius: '8px',
-};
-const h1 = { fontSize: '24px', color: '#333' };
-const text = { fontSize: '16px', color: '#555' };
+// @styles

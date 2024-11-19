@@ -73,7 +73,7 @@ const Attendee = ({}) => {
         }).then((res) => res.json());
 
         // @send(Email)
-        const emailResponse = await fetch('/api/email/send-attendee-confrim', {
+        const rsEmail = await fetch('/api/email/send-attendee-confrim', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ const Attendee = ({}) => {
           }),
         }).then((res) => res.json());
 
-        if (emailResponse.message === 'Email sent successfully!') {
+        if (rsEmail.message === 'Email sent successfully!') {
           reset();
           hndleAlert_Change(
             'success',

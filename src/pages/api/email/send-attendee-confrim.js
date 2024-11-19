@@ -16,6 +16,11 @@ export default async function handler(req, res) {
     },
   ];
 
+  if (req.method !== 'POST') {
+    return res.status(405).json(logErr);
+  }
+
+  // @gmail
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -24,18 +29,13 @@ export default async function handler(req, res) {
     },
   });
 
-  if (req.method !== 'POST') {
-    return res.status(405).json(logErr);
-  }
-
+  // @render(Email)
   const { to, id, name } = req.body;
   const emailHtml = await render(
     <AttendeeConfrim name={name} email={to} docId={id} />
   );
 
   try {
-    // console.log('awdwad');
-
     await transporter.sendMail({
       from: '"Coinfest Asia 2025" <dicky@indonesiacrypto.network>',
       to,
