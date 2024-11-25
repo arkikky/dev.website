@@ -5,7 +5,7 @@ const Alerts = ({
   icons = {},
   type = 'default',
   label = `A new software update is available. See what's new in version 3.0.7`,
-  position = 'bottom-3 left-3 right-3 top-auto',
+  position = 'bottom-3 inset-x-2.5 sm:inset-x-3 top-auto',
   visible,
   onClose,
 }) => {
@@ -26,20 +26,20 @@ const Alerts = ({
     setCountdown(5);
     setShowAnimation(true);
 
-    const timer = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(timer);
-          setShowAnimation(false);
+    // const timer = setInterval(() => {
+    setCountdown((prev) => {
+      if (prev <= 1) {
+        // clearInterval(timer);
+        setShowAnimation(false);
 
-          setTimeout(onClose(), 300);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+        // setTimeout(onClose(), 300);
+        return 0;
+      }
+      return prev - 1;
+    });
+    // }, 1000);
 
-    return () => clearInterval(timer);
+    // return () => clearInterval(timer);
   }, [visible]);
 
   if (!visible) return null;
@@ -49,7 +49,7 @@ const Alerts = ({
       <div
         id="ca25Alert-Card"
         className={twMerge(
-          `fixed ${showAnimation === true ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'} ${position} z-[12] w-auto rounded-lg border px-3 py-4 text-sm duration-300 ease-in-out sm:bottom-6 sm:left-6 sm:right-auto sm:w-max sm:px-4 lg:bottom-8 lg:left-8`,
+          `fixed ${showAnimation === true ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'} ${position} z-[12] w-auto rounded-lg border px-2.5 py-4 text-sm duration-300 ease-in-out sm:bottom-6 sm:left-6 sm:right-auto sm:w-max sm:px-3 lg:bottom-8 lg:left-8 lg:px-4`,
           isType
         )}
         role="alert"
@@ -109,13 +109,13 @@ const Alerts = ({
               </svg>
             ) : null}
           </div>
-          <div className="ms-2 mt-0 flex flex-row space-x-1 sm:ms-3 sm:space-x-1.5">
+          <div className="ms-2.5 mt-0 flex w-full flex-row justify-between sm:ms-3">
             <div
               id="ca25Alert-label"
-              className="text-sm prose-strong:font-semibold"
+              className="max-w-[227px] text-sm prose-strong:font-semibold lg:max-w-[427px]"
               dangerouslySetInnerHTML={{ __html: label }}
             ></div>
-            <span className="ml-2 font-medium">({isCountdown}s) </span>
+            <span className="ml-2 font-medium lg:ml-2.5">({isCountdown}s)</span>
           </div>
         </div>
       </div>

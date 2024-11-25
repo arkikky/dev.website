@@ -110,7 +110,7 @@ const Home = ({ products }) => {
       setTimeout(() => {
         hndleAlert_Change(
           'info',
-          `Your cart is full! Complete your order or update your cart.`
+          `Your Cart is full!, complete your order or update your cart.`
         );
         setSession((prev) => ({ ...prev, loading: false }));
       }, 1500);
@@ -251,7 +251,7 @@ const Home = ({ products }) => {
 
       {/* @alert */}
       <Alerts
-        position="bottom-[78px] left-3 right-3 top-auto"
+        position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
         type={isAlert.type}
         label={isAlert.message}
         visible={isAlert.status}
