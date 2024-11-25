@@ -10,6 +10,9 @@ const { publicRuntimeConfig } = getConfig();
 import { Provider } from 'react-redux';
 import store from '@reduxState/store';
 
+// @script
+import PrelineScript from '@components/Script/PrelineScript';
+
 // @style-css
 import '@styles/globals.css';
 
@@ -19,18 +22,18 @@ import Layouts from '@layouts/Layouts';
 const App = ({ Component, pageProps }) => {
   const router = useRouter();
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const chckSession = sessionStorage.getItem('_cart');
-      if (router.pathname !== '/checkout' && chckSession !== null) {
-        sessionStorage.removeItem('_cart');
-      }
-    }
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     const chckSession = sessionStorage.getItem('_cart');
+  //     if (router.pathname !== '/checkout' && chckSession !== null) {
+  //       sessionStorage.removeItem('_cart');
+  //     }
+  //   }
 
-    return () => {
-      undefined;
-    };
-  }, [router]);
+  //   return () => {
+  //     undefined;
+  //   };
+  // }, [router]);
 
   // @with-layouts
   const getLayout =
@@ -40,6 +43,9 @@ const App = ({ Component, pageProps }) => {
         <Layouts>
           <Component {...pageProps} />
         </Layouts>
+
+        {/* @script */}
+        <PrelineScript />
       </>
     ));
 
@@ -77,6 +83,9 @@ const App = ({ Component, pageProps }) => {
         </Head>
 
         {getLayout(<Component {...pageProps} />)}
+
+        {/* @script */}
+        <PrelineScript />
       </Provider>
     </>
   );

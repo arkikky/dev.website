@@ -12,7 +12,7 @@ const savedState = () => {
       };
     }
   } catch (error) {
-    console.error('[Error] Failed to parse sessionStorage data:', error);
+    console.error('[Error] failed to parse sessionStorage data:', error);
     return {
       data: [],
       coupon: null,
@@ -54,6 +54,21 @@ const cartSlice = createSlice({
       sessionStorage.setItem('_cart', JSON.stringify(state));
     },
 
+    // @remove-items(Cart)
+    removeItemCart: (state, action) => {
+      const d = action.payload;
+      state.data = state?.data.filter((item) => item.id_product !== d);
+
+      sessionStorage.setItem('_cart', JSON.stringify(state));
+    },
+
+    // @remove(Cart)
+    removeCart: (state) => {
+      state.data = [];
+      state.coupon = null;
+      sessionStorage.removeItem('_cart');
+    },
+
     // @apply(Coupon)
     applyCoupon: (state, action) => {
       state.coupon = action.payload;
@@ -65,22 +80,16 @@ const cartSlice = createSlice({
       state.coupon = null;
       sessionStorage.setItem('_cart', JSON.stringify(state));
     },
-
-    // @remove(Cart)
-    removeCart: (state) => {
-      state.data = [];
-      state.coupon = null;
-      sessionStorage.removeItem('_cart');
-    },
   },
 });
 
 export const {
   addItemToCart,
   updateQuantity,
+  removeItemCart,
+  removeCart,
   applyCoupon,
   removeCoupon,
-  removeCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

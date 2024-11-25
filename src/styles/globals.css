@@ -17,7 +17,7 @@ body {
 }
 
 body::-webkit-scrollbar {
-  @apply w-2;
+  @apply w-[7px];
 }
 
 body::-webkit-scrollbar-track {
@@ -44,7 +44,7 @@ button {
 
 /* @scrollbar(y) */
 .scrollbar-y::-webkit-scrollbar {
-  @apply w-0.5 sm:w-1;
+  @apply w-1.5 sm:w-1.5;
 }
 
 .scrollbar-y::-webkit-scrollbar-track {
@@ -59,7 +59,7 @@ button {
 
 /* @scrollbar(x) */
 .scrollbar-x::-webkit-scrollbar {
-  @apply h-0.5 sm:h-1;
+  @apply h-1.5 sm:h-1.5;
 }
 
 .scrollbar-x::-webkit-scrollbar-track {
@@ -78,12 +78,15 @@ button {
 /* @backdrop */
 @import './components/backdrop.module';
 
+/* @navbar */
+@import './components/navbar.module';
+
 /* @form */
 @import './components/form.module';
 
 /* @article */
 .ca25Article_Frmatt {
-  @apply tracking-[-0.1px] font-light;
+  @apply font-light tracking-[-0.1px];
   @apply prose-h1:text-[28px] prose-h1:font-bold prose-h1:leading-[38px] sm:prose-h1:text-[40px] sm:prose-h1:leading-[48px];
   @apply prose-h2:mb-3.5 prose-h2:mt-8 prose-h2:text-xl prose-h2:font-semibold first:prose-h2:mt-0 sm:prose-h2:mt-10;
   @apply prose-p:font-light prose-strong:font-semibold;

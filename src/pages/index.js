@@ -1,43 +1,94 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 // @redux
 import { useSelector, useDispatch } from 'react-redux';
-import { addItemToCart, removeCart } from '@reduxState/slices';
+import { addItemToCart } from '@reduxState/slices';
 
 // @lib/controller & helper
 import { getFetch } from '@lib/controller/API';
 import { currencyConverter } from '@lib/helper/CalculateCartContext';
+import { getCombineMerged } from '@lib/helper/Configuration';
 
 // @components
 import HeadGraphSeo from '@components/Head';
 import MarkdownRenderer from '@components/MarkdownRenderer';
 import Main from '@components/Main';
 import Container from '@components/Container';
+import Alerts from '@components/UI/Alerts/Alerts';
+
+// @layouts
+import NavbarBottom from '@layouts/Navbar/NavbarBottom';
 
 const Home = ({ products }) => {
-  const dispatch = useDispatch();
   const router = useRouter();
-  const isCart = useSelector((state) => state.cart.data);
+  const dispatch = useDispatch();
+  const { data: isCart } = useSelector((state) => state.cart);
+  const [isCartProducts, setCartProducts] = useState({
+    products: products.data,
+    cart: [],
+  });
 
-  const [isProducts, setProducts] = useState(products.data);
+  // @hook(Alert)
   const [isSession, setSession] = useState({
     id_product: null,
     loading: false,
     message: null,
   });
 
+  // @hook(Alert)
+  const [isAlert, setAlert] = useState({
+    status: false,
+    type: 'default',
+    message: '',
+  });
+
+  // @handle(Alert)
+  const hndleAlert_Change = (model, mess) => {
+    setAlert({ status: true, type: model, message: mess });
+  };
+
+  // @handle(Close Alert)
+  const handleCloseAlert = () =>
+    setAlert((prev) => ({ ...prev, status: false }));
+
   // @initialize(Cart)
-  useEffect(() => {
-    if (isCart.length >= 1) {
-      dispatch(removeCart());
+  const hndleHookProducts = useCallback(async () => {
+    if (!isCart || isCart.length > 3) return;
+
+    try {
+      const allProducts = await Promise.all(
+        isCart?.map(async (data) => {
+          const rsHook = await getFetch(`/api/products/${data.id_product}`);
+          return {
+            id: rsHook.data.id,
+            documentId: rsHook.data.documentId,
+            productId: rsHook.data.productId,
+            name: rsHook.data.name,
+            price: rsHook.data.price,
+            priceSale: rsHook.data.priceSale,
+            qty: rsHook.data.qty,
+          };
+        })
+      );
+
+      // @hook(Combine Merged)
+      const setMerged = getCombineMerged(allProducts, isCart);
+      if (setMerged) setCartProducts((prev) => ({ ...prev, cart: setMerged }));
+    } catch (err) {
+      return;
     }
+  }, [isCart]);
+
+  // @hook(Product)
+  useEffect(() => {
+    hndleHookProducts();
 
     return () => {
       undefined;
     };
-  }, []);
+  }, [isCart]);
 
   // @add-items(Cart)
   const hndleCreate_Session = async (product) => {
@@ -56,23 +107,38 @@ const Home = ({ products }) => {
     }, 0);
 
     if (totalQty >= 5) {
-      console.info('[info] your cart is full!');
+      setTimeout(() => {
+        hndleAlert_Change(
+          'info',
+          `Your cart is full! Complete your order or update your cart.`
+        );
+        setSession((prev) => ({ ...prev, loading: false }));
+      }, 1500);
       return;
     }
 
-    const existItems = isCart?.find(
-      (i) => i.id_product === products.id_product
-    );
+    // const existItems = isCart?.find(
+    //   (i) => i.id_product === products.id_product
+    // );
 
-    if (existItems) {
+    setTimeout(() => {
       dispatch(addItemToCart(products));
-      router.push('/checkout');
-    } else if (isCart.length < 1) {
-      dispatch(addItemToCart(products));
-      router.push('/checkout');
-    } else {
-      dispatch(removeCart());
-    }
+      setSession((prev) => ({ ...prev, loading: false }));
+
+      hndleAlert_Change(
+        'success',
+        `The item has been successfully added to your cart.`
+      );
+    }, 1500);
+    // if (existItems) {
+    // } else if (isCart.length < 1) {
+    //   setTimeout(() => {
+    //     dispatch(addItemToCart(products));
+    //     setSession((prev) => ({ ...prev, loading: false }));
+    //   }, 2000);
+    // } else {
+    //   dispatch(removeCart());
+    // }
   };
 
   return (
@@ -81,9 +147,9 @@ const Home = ({ products }) => {
       <HeadGraphSeo />
 
       {/* @main */}
-      <Main className="pb-8 pt-[178px] sm:pb-12 sm:pt-[138px]">
+      <Main className="pb-8 pt-[121px] sm:pb-12 sm:pt-[134px] lg:pt-[158px]">
         <Container>
-          <div className="mb-14 flex flex-col text-start">
+          <div className="mb-8 flex flex-col text-start sm:mb-12">
             <h1 className="w-ful max-w-full text-start text-[44px] font-bold uppercase leading-[52px] text-black-900 sm:max-w-[445px] sm:text-[54px] sm:leading-[74px] lg:max-w-[677px] lg:text-[80px] lg:leading-[90px]">
               GET YOUR TICKETS NOW
             </h1>
@@ -103,17 +169,17 @@ const Home = ({ products }) => {
             </Link>
           </div>
 
-          <div className="mt-10 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2 lg:grid-cols-3">
-            {isProducts?.map((gtRslt, i) => {
+          <div className="mt-4 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:mt-8 sm:grid-cols-2 xl:grid-cols-3">
+            {isCartProducts?.products?.map((gtRslt, i) => {
               const isLoading =
                 isSession.id_product === gtRslt.documentId && isSession.loading;
               return (
                 <div
-                  className="flex h-[629px] flex-col space-y-6 rounded-3xl bg-gray-200 px-1.5 py-1.5"
+                  className="flex h-auto flex-col space-y-6 rounded-3xl bg-gray-200 px-1.5 py-1.5 sm:h-[641px]"
                   key={i}
                 >
                   <div className="relative flex h-full flex-col items-start justify-between rounded-[18px] bg-white px-6 py-6">
-                    <div className="flex w-full flex-col items-start">
+                    <div className="flex w-full flex-col items-start pb-14 sm:pb-0">
                       <div className="block w-full">
                         <h2 className="mb-1 text-xl font-normal text-black-900 sm:mb-2">
                           {gtRslt.name}
@@ -179,6 +245,18 @@ const Home = ({ products }) => {
           </div>
         </Container>
       </Main>
+
+      {/* @navbar */}
+      <NavbarBottom cartProducts={isCartProducts.cart} />
+
+      {/* @alert */}
+      <Alerts
+        position="bottom-[78px] left-3 right-3 top-auto"
+        type={isAlert.type}
+        label={isAlert.message}
+        visible={isAlert.status}
+        onClose={handleCloseAlert}
+      />
     </>
   );
 };

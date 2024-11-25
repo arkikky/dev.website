@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 
 // @redux
@@ -24,7 +24,7 @@ const OrderDetailCheckouts = ({
   children,
 }) => {
   const dispatch = useDispatch();
-  const { data: isCart, coupon: isCoupon } = useSelector((state) => state.cart);
+  const { coupon: isCoupon } = useSelector((state) => state.cart);
   const [isUseCoupon, setUseCoupon] = useState({
     discount: 0,
     totalWithDiscount: 0,
@@ -140,7 +140,8 @@ const OrderDetailCheckouts = ({
         calculatedDiscount =
           parseInt(discntAmount) === 100
             ? isSubTotal
-            : (products[0].price ?? products[0].priceSale) * (discntAmount / 100);
+            : (products[0].price ?? products[0].priceSale) *
+              (discntAmount / 100);
 
         setUseCoupon({
           ...isUseCoupon,
@@ -274,7 +275,8 @@ const OrderDetailCheckouts = ({
               {`Your Tickets`}
             </h2>
 
-            {products?.slice(0, 1).map((gtRslt, i) => (
+            {/* {products?.slice(0, 1).map((gtRslt, i) => ( */}
+            {products?.map((gtRslt, i) => (
               <div
                 className="mt-4 flex w-full flex-col items-start justify-start first:mt-0 sm:flex-row"
                 key={i}

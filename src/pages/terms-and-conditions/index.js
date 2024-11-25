@@ -22,7 +22,7 @@ const TermsAndConditions = ({}) => {
                   Terms & Conditions
                 </h1>
                 <p className="mt-2 font-light text-gray-400">
-                  Last updated: March 01, 2024
+                  Last updated: November 01, 2024
                 </p>
               </div>
               <div className="ca25Article_Frmatt relative flex flex-col">

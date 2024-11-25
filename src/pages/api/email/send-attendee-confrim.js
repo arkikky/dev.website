@@ -38,8 +38,8 @@ export default async function handler(req, res) {
   try {
     await transporter.sendMail({
       from: '"Coinfest Asia 2025" <dicky@indonesiacrypto.network>',
-      to,
-      subject: 'Attendee Confirmation',
+      to: to,
+      subject: 'Attendee Confirmation Access Update',
       html: emailHtml,
     });
 

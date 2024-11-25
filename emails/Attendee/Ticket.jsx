@@ -5,13 +5,12 @@ import {
   Preview,
   Body,
   Container,
-  Section,
   Row,
   Column,
-  Heading,
+  Section,
   Hr,
+  Heading,
   Img,
-  Button,
   Text,
   Link,
 } from '@react-email/components';
@@ -26,26 +25,24 @@ const AttendeeTicket = ({
   email = '{email}',
   company = '{company}',
 }) => {
-  const eventSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Event',
-    name: 'CA',
-    startDate: null,
-    location: {
-      '@type': 'Place',
-      name: 'Bali, Indonesia',
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: '',
-      },
-    },
-    description: 'awdwadwad',
-  };
+  // @format-dateTime(ISO 8601)
+  const startDateTime1 = new Date(`2025-08-22T13:00:00Z`).toISOString();
+  const endDateTime1 = new Date(`2025-08-22T19:30:00Z`).toISOString();
+  const startDateTime2 = new Date(`2025-08-23T13:00:00Z`).toISOString();
+  const endDateTime2 = new Date(`2025-08-23T19:30:00Z`).toISOString();
+
+  // @encode
+  const encodedTitle = encodeURIComponent('Coinfest Asia 2025');
+  const encodedDescription = encodeURIComponent(
+    'This is the largest crypto festival in the world!'
+  );
+  const encodedLocation = encodeURIComponent('Bali, Indonesia');
+  const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodedTitle}&dates=${startDateTime1}/${endDateTime1},${startDateTime2}/${endDateTime2}&details=${encodedDescription}&location=${encodedLocation}&sf=true&output=xml`;
 
   return (
     <Html lang="en" dir="ltr">
       <Head>
-        <title>Attendee Confirmation - Coinfest Asia 2025</title>
+        <title>Ticket - Coinfest Asia 2025</title>
         <style>
           {`
           a {
@@ -90,10 +87,6 @@ const AttendeeTicket = ({
           }
         `}
         </style>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }}
-        />
       </Head>
       <Preview>
         We are sending you this email to give you access to the participant data
@@ -252,14 +245,9 @@ const AttendeeTicket = ({
                       <Text className="m-[0px] text-[14px] text-sm font-light leading-[20px] text-gray-400">
                         Date
                       </Text>
-                      <Link
-                        className="m-[0px] text-[12px] text-base font-semibold leading-[14px] text-primary underline"
-                        href=""
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
+                      <Text className="m-[0px] text-[12px] text-base font-semibold leading-[14px] text-primary underline">
                         22 - 23 August 2025
-                      </Link>
+                      </Text>
                     </span>
                   </Column>
                 </Row>
@@ -270,7 +258,7 @@ const AttendeeTicket = ({
             <Section className="px-0 py-0">
               <Link
                 className="inline-flex w-fill !items-center !justify-center bg-[#DEE813] px-4 py-5 text-center text-base font-medium uppercase text-primary no-underline"
-                href=""
+                href={googleCalendarUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -313,7 +301,7 @@ const AttendeeTicket = ({
               >
                 <Heading
                   as="h2"
-                  className="splitColumn2_Text !mb-2 !mt-0 !text-base !leading-initial"
+                  className="splitColumn2_Text !mb-2 !mt-0 !pt-2.5 !text-base !leading-initial"
                   style={styles.splitColumn2_Text}
                 >
                   Ticket Details
@@ -375,10 +363,13 @@ const AttendeeTicket = ({
             </Row>
 
             <Section className="px-6 py-2 text-black-900">
-              <Heading as="h4" className="!mb-1 !mt-3 text-start text-sm">
+              <Heading as="h4" className="!mb-0 !mt-3 text-start text-sm">
                 CHECK IN TO COINFEST ASIA 2025
               </Heading>
-              <Heading as="h4" className="!mb-1.5 !mt-0 text-start text-sm">
+              <Heading
+                as="h4"
+                className="!mb-1.5 !mt-0 !pt-0 text-start text-sm"
+              >
                 IMPORTANT NOTE
               </Heading>
               <Hr className="!my-3 border-gray-300" />
@@ -415,6 +406,27 @@ const AttendeeTicket = ({
                 information.
               </Text>
               <Heading as="h4" className="!mb-1.5 !mt-3 text-start text-sm">
+                HOW TO CHECK-IN
+              </Heading>
+              <Text className="!mb-0 !mt-0 text-xs">
+                Check-in time will be updated on our official channels.
+                <ul className="!list-decimal text-balance !pl-6 text-xs">
+                  <li>Check-in starts at 1 PM (GMT+8)</li>
+                  <li>
+                    All attendees checked in on both Day 1 and Day 2 of the
+                    event. The name on this ticket must match a
+                    government-issued ID to access the event.
+                  </li>
+                  <li>
+                    You may show this QR code on your phone or a print out.
+                    Please bring a government-issued proof of ID with you.
+                  </li>
+                  <li>
+                    You will be provided with an ID card to access the event.
+                  </li>
+                </ul>
+              </Text>
+              <Heading as="h4" className="!mb-1.5 !mt-3 text-start text-sm">
                 IDENTIFICATION
               </Heading>
               <Text className="!mb-0 !mt-0 text-xs">
@@ -426,7 +438,7 @@ const AttendeeTicket = ({
               <Heading as="h4" className="!mb-1.5 !mt-3 text-start text-sm">
                 Terms and Conditions
               </Heading>
-              <Text className="!mb-2 !mt-0 text-xs text-gray-500">
+              <Text className="!mb-2 !mt-0 text-xs text-black-900">
                 Please read the full Terms & Conditions{' '}
                 <Link
                   className="text-primary underline"
@@ -438,7 +450,7 @@ const AttendeeTicket = ({
                   Here
                 </Link>
               </Text>
-              <Text className="!mb-0 !mt-0 text-balance text-xs text-gray-500">
+              <Text className="!mb-0 !mt-0 text-balance text-xs text-black-900">
                 <span className="font-medium">Disclaimer:</span> Coinfest Asia
                 is a networking and educational festival focused on Web3,
                 crypto, blockchain, NFTs, and the Metaverse. It is not an event
@@ -456,16 +468,15 @@ const AttendeeTicket = ({
                 decisions.
               </Text>
             </Section>
-            <Section className="!mt-4 bg-primary px-4 py-1 text-center text-white">
+            <Section className="!mt-5 bg-primary px-4 py-1 text-center text-white">
               <Text>Coinfest Asia 2025</Text>
             </Section>
           </Container>
 
-          <Section className="mx-auto mt-4 w-full max-w-[453px] text-center">
-            <Text className="text-balance text-sm text-gray-500">
-              Copyright ©{' '}
-              <span className="font-medium text-primary">Coinfest Asia</span>.
-              All rights reserved. Coinfest is organized by{' '}
+          <Section className="mx-auto mt-4 w-full max-w-[413px] text-center">
+            <Text className="text-balance text-xs text-gray-500">
+              © <span className="font-medium text-primary">Coinfest Asia</span>
+              , All rights reserved. Coinfest is organized by{' '}
               <Link
                 className="text-primary underline"
                 href="https://coinvestasi.com/"
@@ -511,6 +522,6 @@ const styles = {
   },
 
   splitColumn2_Text: {
-    paddingLeft: '64px',
+    paddingLeft: '40px',
   },
 };

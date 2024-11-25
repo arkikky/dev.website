@@ -1,11 +1,12 @@
 import {
   Tailwind,
-  Font,
   Html,
   Head,
   Preview,
   Body,
   Container,
+  Row,
+  Column,
   Section,
   Heading,
   Img,
@@ -24,10 +25,37 @@ const AttendeeConfrim = ({
   <Html lang="en" dir="ltr">
     <Head>
       <title>Attendee Confirmation - Coinfest Asia 2025</title>
+      <style>
+        {`
+          .im ,
+          div.im {
+            color: #000000 !important;
+          }
+
+          .gs li {
+            margin-left: 6px !important;
+          }
+
+          .ca25TableIn_Flexible tbody {
+            display: flex !important;
+          }
+          .ca25TableIn_Flexible.ca25TableIn_FlexibleBetween tbody td {
+            justify-content: space-between !important;
+          }
+
+          @media only screen and (max-width: 640px) {
+            .ca25CardEmail {
+              padding-left: 18px !important;
+              padding-right: 18px !important;
+            }
+          }
+        `}
+      </style>
     </Head>
     <Preview>
-      We are sending you this email to give you access to the participant data
-      update page. Please note that you can only update your data once.
+      We are pleased to provide you access to the participant data update page.
+      Kindly note that updates can only be made once, so please ensure all
+      information is accurate before submission.
     </Preview>
     <Tailwind
       config={{
@@ -127,9 +155,9 @@ const AttendeeConfrim = ({
         },
       }}
     >
-      <Body className="mx-auto my-auto bg-gray-100 px-2 py-8 font-sans">
+      <Body className="mx-auto my-auto bg-gray-100 px-2 pb-16 pt-12 font-sans">
         {/* @header(Logo) */}
-        <Section className="mb-6 mt-4 px-6 py-2">
+        <Section className="!mt-0 mb-8 !py-0 px-6">
           <Img
             className="mx-auto my-auto h-10 w-auto"
             src={`https://api.coinfest.asia/uploads/ca2025_Brand_a32d2e5691.png`}
@@ -140,15 +168,18 @@ const AttendeeConfrim = ({
         </Section>
 
         {/* @main */}
-        <Container className="mx-auto max-w-[579px] bg-white px-0 py-0">
-          <Section className="mt-4 px-6 py-0">
-            <Heading className="text-base text-black-900">Hii, {name}!</Heading>
-            <Text>
+        <Container
+          className="ca25CardEmail mx-auto max-w-[579px] bg-white !py-0"
+          style={styles.ca25CardEmail}
+        >
+          <Section className="mt-4 !py-0">
+            <Heading className="text-sm text-black-900">Hi {name},</Heading>
+            <Text className="!mt-0 text-balance text-sm text-black-900">
               Thank you for participating with us at Coinfest Asia. We are
               pleased to provide you access to the participant data update page.
               Kindly note that updates can only be made once, so please ensure
-              all information is accurate before submission. To proceed, please
-              click the button below to update your data:
+              all information is accurate before submission. Please click the
+              button below :
             </Text>
 
             <Button
@@ -160,8 +191,8 @@ const AttendeeConfrim = ({
               Update Attendee
             </Button>
 
-            <Text className="text-black text-[14px] leading-[24px]">
-              Or copy and paste this URL into your browser: <br />
+            <Text className="text-black !mb-0 text-sm">
+              or copy and paste this URL into your browser: <br />
               <Link
                 className="text-primary underline"
                 href={`${baseUrl}/attendee/update?vw=${docId}`}
@@ -172,14 +203,21 @@ const AttendeeConfrim = ({
               </Link>
             </Text>
           </Section>
-          <Section className="px-6 py-2">
+          <Section className="!pb-0 pt-2">
             <Text className="text-sm text-gray-500">
               <span className="font-semibold text-black-900">Important:</span>{' '}
               This link is valid for one-time use only. Please ensure that all
               information is completed accurately on the update page, as changes
               will not be possible once submitted.
             </Text>
-            <Text className="text-sm text-black-900">
+
+            <Text className="text-sm font-semibold text-black-900">
+              <span className="font-normal text-black-900">Thanks,</span> <br />
+              Coinfest Support Team
+            </Text>
+          </Section>
+          <Section className="!pt-5">
+            <Text className="text-xs text-black-900">
               If you have any questions or need further assistance, please visit
               our FAQ page. Alternatively, feel free to reach out to us at{' '}
               <Link
@@ -192,44 +230,111 @@ const AttendeeConfrim = ({
               </Link>{' '}
               —our team is always happy to help.
             </Text>
-
-            <Text className="text-sm font-semibold text-black-900">
-              <span className="font-normal text-black-900">Thanks,</span> <br />
-              Coinfest Support Team
+            <Text className="max-w-[417px] text-xs text-black-900">
+              © <span className="font-medium text-primary">Coinfest Asia</span>
+              , All rights reserved. Coinfest is organized by{' '}
+              <Link
+                className="text-primary underline"
+                href="https://coinvestasi.com/"
+                title="Coinfest Asia 2025 (Coinvestasi)"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Coinvestasi
+              </Link>
+              , a subsidiary of{' '}
+              <Link
+                href="https://indonesiacrypto.network/"
+                title="Coinfest Asia 2025 (Indonesia Crypto Network)"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary underline"
+              >
+                Indonesia Crypto Network
+              </Link>
+              .
             </Text>
-          </Section>
-          <Section className="mt-1 bg-primary px-4 py-1 text-center text-white">
-            <Text>Coinfest Asia 2025</Text>
+
+            {/* @footer */}
+            <Row className="ca25TableIn_Flexible inline-block pb-6 pt-4">
+              <Column className="inline-block w-full">
+                <span className="float-left block w-max">
+                  <Img
+                    className="mx-auto my-auto h-7.5 w-auto"
+                    src={`https://api.coinfest.asia/uploads/ca2025_Brand_a32d2e5691.png`}
+                    alt={`Coinfest Asia 2025 (Primary Brand)`}
+                    height={58}
+                    width={170}
+                  />
+                </span>
+                <span className="float-right !my-0 w-max !pt-[5px] pl-0">
+                  <ul className="!my-0 inline-flex !list-none flex-row !pl-0 text-xs">
+                    <li className="!ml-1.5">
+                      <Link
+                        href="https://www.instagram.com/coinfest.asia/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Img
+                          className="mx-auto my-auto mt-0 h-5 w-5"
+                          src={`https://api.coinfest.asia/uploads/ca2025_Instagram_1c21b62be6.png`}
+                          alt={`Coinfest Asia 2025 (Instagram Social Media)`}
+                          height={70}
+                          width={70}
+                        />
+                      </Link>
+                    </li>
+                    <li className="!ml-1.5">
+                      <Link
+                        href="https://twitter.com/coinfestasia"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Img
+                          className="mx-auto my-auto mt-0 h-5 w-5"
+                          src={`https://api.coinfest.asia/uploads/ca2025_Twitter_52a4fbb72b.png`}
+                          alt={`Coinfest Asia 2025 (Twitter Social Media)`}
+                          height={70}
+                          width={70}
+                        />
+                      </Link>
+                    </li>
+                    <li className="!ml-1.5">
+                      <Link
+                        href="https://t.me/coinfestasiaofficial"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Img
+                          className="mx-auto my-auto mt-0 h-5 w-5"
+                          src={`https://api.coinfest.asia/uploads/ca2025_Telegram_62c2e048ed.png`}
+                          alt={`Coinfest Asia 2025 (Telegram Social Media)`}
+                          height={70}
+                          width={70}
+                        />
+                      </Link>
+                    </li>
+                    <li className="!ml-1.5">
+                      <Link
+                        href="https://www.linkedin.com/showcase/coinfest/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Img
+                          className="mx-auto my-auto mt-0 h-5 w-5"
+                          src={`https://api.coinfest.asia/uploads/ca2025_Linked_In_9480c4dfb0.png`}
+                          alt={`Coinfest Asia 2025 (LinkedIn Social Media)`}
+                          height={70}
+                          width={70}
+                        />
+                      </Link>
+                    </li>
+                  </ul>
+                </span>
+              </Column>
+            </Row>
           </Section>
         </Container>
-
-        <Section className="mx-auto mt-4 w-full max-w-[453px] text-center">
-          <Text className="text-balance text-sm text-gray-500">
-            Copyright ©{' '}
-            <span className="font-medium text-primary">Coinfest Asia</span>. All
-            rights reserved. Coinfest is organized by{' '}
-            <Link
-              className="text-primary underline"
-              href="https://coinvestasi.com/"
-              title="Coinfest Asia 2025 (Coinvestasi)"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Coinvestasi
-            </Link>
-            , a subsidiary of{' '}
-            <Link
-              href="https://indonesiacrypto.network/"
-              title="Coinfest Asia 2025 (Indonesia Crypto Network)"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary underline"
-            >
-              Indonesia Crypto Network
-            </Link>
-            .
-          </Text>
-        </Section>
       </Body>
     </Tailwind>
   </Html>
@@ -238,3 +343,9 @@ const AttendeeConfrim = ({
 export default AttendeeConfrim;
 
 // @styles
+const styles = {
+  ca25CardEmail: {
+    paddingLeft: '26px',
+    paddingRight: '26px',
+  },
+};

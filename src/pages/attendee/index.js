@@ -196,7 +196,7 @@ const Attendee = ({}) => {
 
                 <div className="inline-flex w-full items-start justify-between">
                   <Link
-                    className="mt-0.5 flex flex-row items-center gap-x-2 text-sm text-black-900 underline transition duration-300 ease-in-out hover:text-primary sm:gap-x-2"
+                    className="ml-0.5 mt-0.5 flex flex-row items-center gap-x-2 text-sm text-black-900 underline transition duration-300 ease-in-out hover:text-primary sm:gap-x-2"
                     href={'/'}
                     title="Button for Back to Home (Attendee Confirmation)"
                   >
@@ -218,8 +218,9 @@ const Attendee = ({}) => {
                   </Link>
                   <button
                     id="tktCA25Form_SubmitAttendeeConfrim"
-                    className={`pointer-events-auto inline-flex w-[199px] cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-6 py-4 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
+                    className={`pointer-events-auto inline-flex w-[169px] cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-4 py-4 text-sm font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 sm:w-[199px] sm:px-6 sm:py-4 sm:text-base`}
                     type="submit"
+                    tabIndex={-1}
                     role="button"
                     aria-label="Submit Attendee Confrim for Coinfest Asia 2025"
                     disabled={!isValid || isSubmitting}

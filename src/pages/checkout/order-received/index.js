@@ -19,7 +19,7 @@ import Container from '@components/Container';
 import Badge from '@components/UI/Badge';
 
 // @layouts
-import NavbarOther from '@layouts/Navbar/NavbarTop';
+import NavbarTop from '@layouts/Navbar/NavbarTop';
 import Footer from '@layouts/Footer';
 
 const OrderReceived = ({ orderReceived, orderCustomer }) => {
@@ -93,12 +93,13 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
       <HeadGraphSeo title={`Order Received`} otherPage={true} />
 
       {/* @navbar */}
-      <NavbarOther />
+      <NavbarTop />
 
       {/* @main */}
       <Main className="flex flex-col pb-12 pt-[141px] sm:pb-4 sm:pt-[151px]">
         <Container>
           <div className="grid-cols-1 gap-x-6 gap-y-6 supports-grid:grid sm:grid-cols-12 sm:gap-y-10 lg:gap-y-16">
+            {/* @sidebar(left) */}
             <div className="col-span-full flex flex-col items-start justify-between pl-0 xl:col-span-6 xl:pr-[134px]">
               <div className="block w-full">
                 <div className="inline-flex flex-row items-center space-x-2">
@@ -182,43 +183,21 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
                 </Link>
               </div>
             </div>
+
+            {/* @sidebar(right) */}
             <div className="col-span-full pr-0 xl:col-span-6 xl:pl-6">
               <div className="mt-4 flex flex-col items-start rounded-2xl border border-solid border-gray-200 bg-gray-100 px-2 pb-2 pt-2 sm:mt-0 sm:pt-4">
-                <div className="mb-3 flex w-full flex-row items-start justify-between px-2 sm:px-4">
-                  <div className="block w-max">
-                    <span className="mb-1 text-sm text-gray-600">
-                      {'Order ID : '}
-                    </span>
+                <div className="mb-3 mt-1 flex w-full flex-row items-start justify-between px-2 sm:px-4">
+                  <div className="flex w-max">
+                    <h2 className="text-sm text-gray-600">{'Order ID : '}</h2>
+                  </div>
+                  <div className="flex w-max flex-col items-end">
                     {isOrderRecived && (
-                      <h2 className="text-lg font-medium capitalize leading-initial sm:text-base sm:leading-initial">
+                      <span className="text-lg font-medium capitalize leading-initial sm:text-base sm:leading-initial">
                         {`#${isCustomer?.orderId}`}
-                      </h2>
+                      </span>
                     )}
                   </div>
-                  {/* <div className="flex w-max flex-col items-end">
-                    <span className="mb-1 text-sm text-gray-600">Status</span>
-                    <Badge
-                      label={`Paid`}
-                      type="success"
-                      size="xs"
-                      icons={
-                        <span className="flex shrink-0 items-center justify-center text-green-700">
-                          <svg
-                            className="block size-3 shrink-0"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                          </svg>
-                        </span>
-                      }
-                    />
-                  </div> */}
                 </div>
                 <div className="inline-flex w-full flex-col space-y-7 rounded-xl bg-white px-4 py-4">
                   <div className="block w-full space-y-5">

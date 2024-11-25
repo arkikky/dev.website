@@ -23,19 +23,19 @@ const OrderReceived = () => {
       <NavbarCheckout progress="last" />
 
       {/* @main */}
-      <Main className="flex h-[76svh] flex-col items-center justify-center pb-16 pt-[209px] sm:h-[70svh] sm:pb-20 sm:pt-[189px] xl:h-[80svh] xl:pb-24 2xl:h-auto">
+      <Main className="flex h-auto flex-col items-center justify-center pb-16 pt-[199px] sm:h-auto sm:pb-24 sm:pt-[265px] lg:pb-20 lg:pt-[239px] xl:pb-14 xl:pt-[209px] 2xl:h-auto">
         <Container>
           <div className="flex flex-col items-center justify-center">
             <div className="flex flex-col text-center">
               <span className="mb-2 text-[74px] leading-[80px] text-black-900 sm:text-[82px]">
                 🎉
               </span>
-              <h1 className="mx-auto mt-2 max-w-full font-bevietnamPro text-xl font-semibold uppercase text-black-900 sm:mt-4 sm:max-w-[493px] sm:text-2xl">
+              <h1 className="mx-auto mt-4 max-w-full font-bevietnamPro text-[18px] font-semibold uppercase leading-[18px] text-black-900 sm:max-w-[493px] sm:text-2xl">
                 Thank you for reaching out!
               </h1>
             </div>
             <div className="mt-8 flex w-full max-w-full flex-col items-center justify-center text-center sm:max-w-[651px]">
-              <p className="px-0 font-bevietnamPro text-base font-light text-black-900 prose-a:text-primary prose-a:underline sm:px-4">
+              <p className="text-balance px-0 font-bevietnamPro text-base font-light text-black-900 prose-a:text-primary prose-a:underline sm:px-4">
                 Your email has been sent successfully!, Please check your inbox
                 for confirmation. If you don't see it, kindly check your spam
                 folder. If you haven't received them within 24 hours after

@@ -12,7 +12,7 @@ const { serverRuntimeConfig } = getConfig();
 import { useSelector, useDispatch } from 'react-redux';
 
 // @script
-import PrelineScript from '@components/Script/PrelineScript';
+// import PrelineScript from '@components/Script/PrelineScript';
 
 // @lib/controller & helper
 import { getFetch, getFetchUrl, pushSubmitData } from '@lib/controller/API';
@@ -36,7 +36,7 @@ import Alerts from '@components/UI/Alerts/Alerts';
 import Card from '@components/UI/Card/Card';
 
 // @layouts
-import NavbarOther from '@layouts/Navbar/NavbarTop';
+import NavbarTop from '@layouts/Navbar/NavbarTop';
 import Header from '@layouts/Checkouts/Header';
 const BillingDetailCheckout = dynamic(
   () => import('@layouts/Checkouts//Card/BillingDetailCheckout'),
@@ -119,7 +119,8 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
       );
       // @hook(Combine Merged)
       if (allProducts) {
-        const setMerged = getCombineMerged(allProducts.slice(0, 1), isCart);
+        // const setMerged = getCombineMerged(allProducts.slice(0, 1), isCart);
+        const setMerged = getCombineMerged(allProducts, isCart);
 
         if (setMerged) {
           setProducts(setMerged);
@@ -606,7 +607,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                     }).then((res) => res.json());
 
                     // @send(Email)
-                    const emailResponse = await fetch(
+                    const rsEmail = await fetch(
                       '/api/email/send-attendee-ticket',
                       {
                         method: 'POST',
@@ -625,7 +626,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                     ).then((res) => res.json());
 
                     // @debug(Email)
-                    // if (emailResponse.message === 'Email sent successfully!') {
+                    // if (rsEmail.message === 'Email sent successfully!') {
                     //   console.log('Email sent successfully!');
                     // } else {
                     //   console.log('Sorry, failed to send email!');
@@ -662,7 +663,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
       <HeadGraphSeo title={`Checkout`} otherPage={true} />
 
       {/* @navbar */}
-      <NavbarOther />
+      <NavbarTop />
 
       {/* @main */}
       <Main className="relative pb-8 pt-[101px] sm:pb-12 sm:pt-[118px] lg:pt-[126px]">
@@ -1113,9 +1114,6 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
         visible={isAlert.status}
         onClose={handleCloseAlert}
       />
-
-      {/* @script */}
-      <PrelineScript />
     </>
   );
 };

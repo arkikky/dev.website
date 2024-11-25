@@ -32,62 +32,78 @@ export default async function handler(req, res) {
 
   // @get(body)
   const { toEmail, attId, fullname, company, productTickets } = req.body;
-  const formatDate = (date) =>
-    new Date(date).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
 
   // @invitation(Event)
-  const icsTicketProducts = `
-BEGIN:VCALENDAR
+  const icsInvTicketDay1 = `BEGIN:VCALENDAR
+PRODID:-//coinfest.asia//NONSGML v1.0//EN
 VERSION:2.0
-PRODID:${attId}/ics
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-PUBLISHED-TTL:PT1H
+X-PUBLISHED-TTL:PT8760H
+BEGIN:VTIMEZONE
+TZID:Asia/Makassar
+LAST-MODIFIED:20240422T053450Z
+TZURL:https://www.tzurl.org/zoneinfo-outlook/Asia/Makassar
+X-LIC-LOCATION:Asia/Makassar
+BEGIN:STANDARD
+TZNAME:WITA
+TZOFFSETFROM:+0800
+TZOFFSETTO:+0800
+DTSTART:19700101T000000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
 BEGIN:VEVENT
 SUMMARY:[Day 1] Coinfest Asia 2025
-UID:${Date.now()}@coinfest.asia
-SEQUENCE:0
-PRIORITY:1
-CLASS:PUBLIC
+UID:${Date.now()}-Day1@coinfest.asia
+TZID:Asia/Makassar
+CLASS:PRIVATE
 STATUS:CONFIRMED
 TRANSP:OPAQUE
-DTSTART:20250822T130000Z
-DTEND:20250823T210000Z
 DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z
+DTSTART:20250822T130000Z
+DTEND:20250822T210000Z
 CATEGORIES:Meet Up,Conference
 LOCATION:Bali\, Indonesia
 GEO:-8.3405;115.0920
 DESCRIPTION:This is the largest crypto festival in the world!
-URL:https://coinfest.asia
-ORGANIZER;CN="hi@ticket.coinfest.asia":MAILTO:hi@ticket.coinfest.asia
-CONTACT:Coinfest Asia\, hi@ticket.coinfest.asia
-ATTENDEE;RSVP=TRUE;CN=${fullname}:MAILTO:ikky.andreansyah@gmail.com
-X-MICROSOFT-CDO-BUSYSTATUS:FREE
+URL:https://coinfest.asia/
+ORGANIZER;CN="Coinfest Asia (hi@ticket.coinfest.asia)":MAILTO:hi@ticket.coinfest.asia
+X-MICROSOFT-CDO-BUSYSTATUS:BUSY
+ATTENDEE;ROLE=REQ-PARTICIPANT;CN=${fullname}:MAILTO:${toEmail}
+BEGIN:VALARM
+TRIGGER:-PT25M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
 END:VEVENT
 BEGIN:VEVENT
 SUMMARY:[Day 2] Coinfest Asia 2025
-UID:${Date.now()}@coinfest.asia
-SEQUENCE:0
-PRIORITY:1
-CLASS:PUBLIC
+UID:${Date.now()}-Day1@coinfest.asia
+TZID:Asia/Makassar
+CLASS:PRIVATE
 STATUS:CONFIRMED
 TRANSP:OPAQUE
-DTSTART:20250822T130000Z
-DTEND:20250823T210000Z
 DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z
+DTSTART:20250823T130000Z
+DTEND:20250823T210000Z
 CATEGORIES:Meet Up,Conference
 LOCATION:Bali\, Indonesia
 GEO:-8.3405;115.0920
 DESCRIPTION:This is the largest crypto festival in the world!
-URL:https://coinfest.asia
-ORGANIZER;CN="hi@ticket.coinfest.asia":MAILTO:hi@ticket.coinfest.asia
-CONTACT:Coinfest Asia\, hi@ticket.coinfest.asia
-ATTENDEE;RSVP=TRUE;CN=${fullname}:MAILTO:ikky.andreansyah@gmail.com
-X-MICROSOFT-CDO-BUSYSTATUS:FREE
+URL:https://coinfest.asia/
+ORGANIZER;CN="Coinfest Asia (hi@ticket.coinfest.asia)":MAILTO:hi@ticket.coinfest.asia
+X-MICROSOFT-CDO-BUSYSTATUS:BUSY
+ATTENDEE;ROLE=REQ-PARTICIPANT;CN=${fullname}:MAILTO:${toEmail}
+BEGIN:VALARM
+TRIGGER:-PT25M
+ACTION:DISPLAY
+DESCRIPTION:Reminder
+END:VALARM
 END:VEVENT
 END:VCALENDAR
 
-    `;
+      `;
 
   // @generate(QrCode) & render(Email)
   const gnrteQrCode = await QRCode.toDataURL(attId);
@@ -110,8 +126,8 @@ END:VCALENDAR
       html: emailHtml,
       attachments: [
         {
-          filename: `${attId}.ics`,
-          content: icsTicketProducts,
+          filename: `${attId}@CoinfestAsia.ics`,
+          content: icsInvTicketDay1,
           contentType: 'text/calendar',
         },
       ],

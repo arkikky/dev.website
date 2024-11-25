@@ -9,7 +9,7 @@ export function getTotalCart(data) {
   return getTotal_IDR;
 }
 
-// // @calculate(discont)
+// @calculate(discont)
 export function calculateDiscountCheckout(setCoupon, totalCart, setPrice) {
   const setTax_Rate = 0.11;
 

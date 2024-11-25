@@ -1,0 +1,19 @@
+.ca2025BckdrpOverflay_PopUp.nonActive {
+  backface-visibility: hidden;
+  @apply pointer-events-none opacity-0;
+}
+
+.ca2025BckdrpOverflay_PopUp.active {
+  backface-visibility: auto;
+  @apply pointer-events-auto z-[120] opacity-100;
+}
+
+.ca2025Overflay_PopUp.nonActive {
+  backface-visibility: hidden;
+  @apply pointer-events-none translate-y-[40%] opacity-0;
+}
+
+.ca2025Overflay_PopUp.active {
+  backface-visibility: visible;
+  @apply pointer-events-auto translate-y-[0%] opacity-100;
+}

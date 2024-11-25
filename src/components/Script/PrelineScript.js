@@ -1,32 +1,54 @@
+// 'use client';
+// import React, { useEffect } from 'react';
+// import { useRouter } from 'next/router';
+
+// export default function PrelineScript() {
+//   const router = useRouter();
+
+//   useEffect(() => {
+//     const loadPreline = async () => {
+//       if (typeof window !== 'undefined') {
+//         try {
+//           await import('preline/preline');
+
+//           if (window.HSStaticMethods) {
+//             window.HSStaticMethods.autoInit();
+//             return;
+//           }
+//         } catch (error) {
+//           console.error('[Error] loading Preline:', error);
+//         }
+//       }
+//     };
+
+//     loadPreline();
+
+//     return () => {
+//       null;
+//     };
+//   }, [router.pathname]);
+
+//   return null;
+// }
+
 'use client';
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function PrelineScript() {
-  const router = useRouter();
+  const path = usePathname();
 
   useEffect(() => {
     const loadPreline = async () => {
-      if (typeof window !== 'undefined') {
-        try {
-          await import('preline/preline');
+      await import('preline/preline');
 
-          if (window.HSStaticMethods) {
-            window.HSStaticMethods.autoInit();
-            return;
-          }
-        } catch (error) {
-          console.error('[Error] loading Preline:', error);
-        }
+      if (window.HSStaticMethods) {
+        window.HSStaticMethods.autoInit();
       }
     };
 
     loadPreline();
-
-    return () => {
-      null;
-    };
-  }, [router.pathname]);
+  }, [path]);
 
   return null;
 }

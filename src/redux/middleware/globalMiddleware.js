@@ -6,19 +6,21 @@ export const globalMiddleware = (store) => (next) => (action) => {
     typeof action.payload === 'string' &&
     action.payload.includes('<script>')
   ) {
-    console.warn('[Warning] We detected an unsafe Action!');
+    console.warn('[Warning] we detected an unsafe Action!');
     return;
   }
 
   const allowedActions = [
     '_cart/addItemToCart',
     '_cart/updateQuantity',
+    '_cart/removeItemCart',
+    '_cart/removeCart',
     '_cart/applyCoupon',
     '_cart/removeCoupon',
-    '_cart/removeCart',
   ];
+
   if (!allowedActions.includes(action.type)) {
-    console.warn(`[Warning] Action not allowed!`);
+    console.warn(`[Warning] action not allowed!`);
     return;
   }
 
