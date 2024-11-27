@@ -40,7 +40,7 @@ const App = ({ Component, pageProps }) => {
     Component.getLayout ||
     ((page) => (
       <>
-        <Layouts>
+        <Layouts cartStore={pageProps?.products}>
           <Component {...pageProps} />
         </Layouts>
 

@@ -1,16 +1,19 @@
 import React from 'react';
 import Link from 'next/link';
 
+// @lib/controller & helper
+import { getFetch } from '@lib/controller/API';
+
 // @components
 import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
 
 // @layouts
-import NavbarCheckout from '@layouts/Navbar/NavbarTop';
+import NavbarTop from '@layouts/Navbar/NavbarTop';
 import Footer from '@layouts/Footer';
 
-const OrderReceived = () => {
+const AttendeeConfrimSuccess = () => {
   return (
     <>
       {/* @head */}
@@ -20,7 +23,7 @@ const OrderReceived = () => {
       />
 
       {/* @navbar */}
-      <NavbarCheckout progress="last" />
+      <NavbarTop nonStore={false} />
 
       {/* @main */}
       <Main className="flex h-auto flex-col items-center justify-center pb-16 pt-[199px] sm:h-auto sm:pb-24 sm:pt-[265px] lg:pb-20 lg:pt-[239px] xl:pb-14 xl:pt-[209px] 2xl:h-auto">
@@ -73,11 +76,13 @@ const OrderReceived = () => {
   );
 };
 
-OrderReceived.getLayout = function PageLayout(page) {
+AttendeeConfrimSuccess.getLayout = function PageLayout(page) {
   return <>{page}</>;
 };
 
 export const getServerSideProps = async (context) => {
+  const isProducts = await getFetch(`/api/products`);
+
   if (Object.keys(context.query).length > 0) {
     return {
       redirect: {
@@ -89,7 +94,7 @@ export const getServerSideProps = async (context) => {
 
   try {
     return {
-      props: {},
+      props: { products: isProducts || [] },
     };
   } catch (error) {
     return {
@@ -101,4 +106,4 @@ export const getServerSideProps = async (context) => {
   }
 };
 
-export default OrderReceived;
+export default AttendeeConfrimSuccess;

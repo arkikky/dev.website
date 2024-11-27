@@ -23,23 +23,26 @@ const Alerts = ({
 
   useEffect(() => {
     if (!visible) return;
+
     setCountdown(5);
     setShowAnimation(true);
 
-    // const timer = setInterval(() => {
-    setCountdown((prev) => {
-      if (prev <= 1) {
-        // clearInterval(timer);
-        setShowAnimation(false);
+    const timer = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          setShowAnimation(false);
 
-        // setTimeout(onClose(), 300);
-        return 0;
-      }
-      return prev - 1;
-    });
-    // }, 1000);
+          setTimeout(() => {
+            onClose();
+          }, 300);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
 
-    // return () => clearInterval(timer);
+    return () => clearInterval(timer);
   }, [visible]);
 
   if (!visible) return null;
@@ -49,7 +52,7 @@ const Alerts = ({
       <div
         id="ca25Alert-Card"
         className={twMerge(
-          `fixed ${showAnimation === true ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'} ${position} z-[12] w-auto rounded-lg border px-2.5 py-4 text-sm duration-300 ease-in-out sm:bottom-6 sm:left-6 sm:right-auto sm:w-max sm:px-3 lg:bottom-8 lg:left-8 lg:px-4`,
+          `fixed ${showAnimation === true ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'} ${position} z-[12] w-auto rounded-lg border px-2.5 py-4 text-sm duration-300 ease-in-out sm:bottom-6 sm:left-6 sm:right-auto sm:w-[341px] sm:px-3 lg:bottom-7 lg:left-8 lg:px-4`,
           isType
         )}
         role="alert"
@@ -112,7 +115,7 @@ const Alerts = ({
           <div className="ms-2.5 mt-0 flex w-full flex-row justify-between sm:ms-3">
             <div
               id="ca25Alert-label"
-              className="max-w-[227px] text-sm prose-strong:font-semibold lg:max-w-[427px]"
+              className="max-w-[227px] text-sm prose-strong:font-semibold lg:max-w-[227px]"
               dangerouslySetInnerHTML={{ __html: label }}
             ></div>
             <span className="ml-2 font-medium lg:ml-2.5">({isCountdown}s)</span>

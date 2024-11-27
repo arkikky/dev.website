@@ -8,7 +8,7 @@ import FooterSocialMedia from '@components/UI/FooterSocialMedia';
 const Footer = () => {
   return (
     <>
-      <footer className="ca2024Footer ca2024SectionEnd relative justify-end overflow-x-hidden bg-white pb-[104px] pt-10 sm:pb-28 sm:pt-12 lg:pb-8">
+      <footer className="ca2024Footer ca2024SectionEnd relative justify-end overflow-x-hidden bg-white pb-[92px] pt-10 sm:pb-28 sm:pt-12 lg:pb-8">
         <Container>
           <div className="relative flex flex-col items-start justify-start">
             <div>

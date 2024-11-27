@@ -8,12 +8,22 @@
   @apply pointer-events-auto z-[120] opacity-100;
 }
 
-.ca2025Overflay_PopUp.nonActive {
+.ca2025Overflay_PopUpGeneral.nonActive {
+  backface-visibility: hidden;
+  @apply pointer-events-none translate-y-[-80%] opacity-0;
+}
+
+.ca2025Overflay_PopUpGeneral.active {
+  backface-visibility: visible;
+  @apply pointer-events-auto translate-y-[0%] opacity-100;
+}
+
+.ca2025Overflay_PopUpMobile.nonActive {
   backface-visibility: hidden;
   @apply pointer-events-none translate-y-[40%] opacity-0;
 }
 
-.ca2025Overflay_PopUp.active {
+.ca2025Overflay_PopUpMobile.active {
   backface-visibility: visible;
   @apply pointer-events-auto translate-y-[0%] opacity-100;
 }

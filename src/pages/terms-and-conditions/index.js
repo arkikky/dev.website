@@ -1,6 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 
+// @lib/controller & helper
+import { getFetch } from '@lib/controller/API';
+
 // @components
 import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
@@ -413,9 +416,13 @@ const TermsAndConditions = ({}) => {
 };
 
 export const getStaticProps = async () => {
+  const isProducts = await getFetch(`/api/products`);
+
   try {
     return {
-      props: {},
+      props: {
+        products: isProducts || [],
+      },
 
       revalidate: 900,
     };

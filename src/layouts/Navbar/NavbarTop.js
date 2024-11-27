@@ -12,11 +12,17 @@ import '@splidejs/react-splide/css/core';
 
 // @lib/controller & helper
 import calculateCountdown from '@lib/helper/CalculateCountdown';
+import { useCart } from '@lib/hooks/Cart';
+import { useMethod } from '@lib/hooks/Method';
 
 // @components
 import Container from '@components/Container';
+import CartStore from '@components/CartStore';
 
-const NavbarTop = ({}) => {
+const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
+  const { getTotalCart } = useCart();
+  const { toggleOverlayPopUp } = useMethod();
+
   const rfMainSplde = useRef(null);
   const [isCountdown, setCountdown] = useState({
     days: 0,
@@ -55,7 +61,51 @@ const NavbarTop = ({}) => {
               </Link>
             </div>
 
-            <div className="block w-max">
+            <div className="flex w-max flex-row">
+              {nonStore == true && (
+                <div className="col relative mr-2 hidden items-center justify-center lg:flex">
+                  <button
+                    className="relative flex h-[80%] flex-col items-center justify-center rounded-lg bg-black-900 px-3 py-3 text-sm leading-initial text-white sm:h-auto sm:rounded-[10px] sm:text-base"
+                    type="button"
+                    tabIndex={-1}
+                    role="button"
+                    aria-label="Button Cart (Coinfest Asia 2025)"
+                    aria-roledescription="Button Cart (Coinfest Asia 2025)"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toggleOverlayPopUp('.ca2025Overflay_PopUpGeneral');
+                    }}
+                  >
+                    {cartProducts?.length > 0 && (
+                      <span className="absolute end-0 top-0 me-2.5 mt-3 flex size-2 ">
+                        <span className="absolute inline-flex size-full animate-ping rounded-full bg-red-300 opacity-75"></span>
+                        <span className="relative inline-flex size-2 rounded-full bg-red-500"></span>
+                      </span>
+                    )}
+                    <svg
+                      className="size-5.5 shrink-0 sm:size-6"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M5.4 5L5 3H3M5.4 5H21L17 13H7M5.4 5L7 13M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z"
+                        stroke="white"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></path>
+                    </svg>
+                  </button>
+
+                  <CartStore
+                    id="ca2025Overflay_PopUpGeneral"
+                    type="general"
+                    store={cartProducts}
+                    totalCart={getTotalCart(cartProducts)}
+                  />
+                </div>
+              )}
               <div
                 className={`pointer-events-none relative flex h-[59px] w-full min-w-[178px] max-w-[178px] cursor-default flex-col rounded-lg bg-primary px-2.5 py-2 sm:h-[68px] sm:min-w-[221px] sm:max-w-[221px] sm:rounded-xl sm:px-3 sm:py-2.5`}
               >

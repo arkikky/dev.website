@@ -93,7 +93,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
       <HeadGraphSeo title={`Order Received`} otherPage={true} />
 
       {/* @navbar */}
-      <NavbarTop />
+      <NavbarTop nonStore={false} />
 
       {/* @main */}
       <Main className="flex flex-col pb-12 pt-[141px] sm:pb-4 sm:pt-[151px]">

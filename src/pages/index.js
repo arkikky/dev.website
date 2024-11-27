@@ -18,9 +18,6 @@ import Main from '@components/Main';
 import Container from '@components/Container';
 import Alerts from '@components/UI/Alerts/Alerts';
 
-// @layouts
-import NavbarBottom from '@layouts/Navbar/NavbarBottom';
-
 const Home = ({ products }) => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -53,43 +50,6 @@ const Home = ({ products }) => {
   const handleCloseAlert = () =>
     setAlert((prev) => ({ ...prev, status: false }));
 
-  // @initialize(Cart)
-  const hndleHookProducts = useCallback(async () => {
-    if (!isCart || isCart.length > 3) return;
-
-    try {
-      const allProducts = await Promise.all(
-        isCart?.map(async (data) => {
-          const rsHook = await getFetch(`/api/products/${data.id_product}`);
-          return {
-            id: rsHook.data.id,
-            documentId: rsHook.data.documentId,
-            productId: rsHook.data.productId,
-            name: rsHook.data.name,
-            price: rsHook.data.price,
-            priceSale: rsHook.data.priceSale,
-            qty: rsHook.data.qty,
-          };
-        })
-      );
-
-      // @hook(Combine Merged)
-      const setMerged = getCombineMerged(allProducts, isCart);
-      if (setMerged) setCartProducts((prev) => ({ ...prev, cart: setMerged }));
-    } catch (err) {
-      return;
-    }
-  }, [isCart]);
-
-  // @hook(Product)
-  useEffect(() => {
-    hndleHookProducts();
-
-    return () => {
-      undefined;
-    };
-  }, [isCart]);
-
   // @add-items(Cart)
   const hndleCreate_Session = async (product) => {
     setSession((prev) => ({
@@ -113,7 +73,7 @@ const Home = ({ products }) => {
           `Your Cart is full!, complete your order or update your cart.`
         );
         setSession((prev) => ({ ...prev, loading: false }));
-      }, 1500);
+      }, 1000);
       return;
     }
 
@@ -129,7 +89,7 @@ const Home = ({ products }) => {
         'success',
         `The item has been successfully added to your cart.`
       );
-    }, 1500);
+    }, 1000);
     // if (existItems) {
     // } else if (isCart.length < 1) {
     //   setTimeout(() => {
@@ -245,9 +205,6 @@ const Home = ({ products }) => {
           </div>
         </Container>
       </Main>
-
-      {/* @navbar */}
-      <NavbarBottom cartProducts={isCartProducts.cart} />
 
       {/* @alert */}
       <Alerts
