@@ -9,6 +9,8 @@ export function useMethod() {
     const elBckdrp = document.querySelector('.ca2025BckdrpOverflay_PopUp');
     const elOverflayPopUp = document.querySelector(setElmnt);
 
+    elBckdrp.setAttribute('data-target', setElmnt);
+
     if (elBckdrp && elOverflayPopUp) {
       toggleClass(elBckdrp, 'active', 'nonActive');
       toggleClass(elOverflayPopUp, 'active', 'nonActive');

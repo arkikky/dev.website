@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 import getConfig from 'next/config';
 import Head from 'next/head';
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
+
+// @style-css
+import '@styles/globals.css';
 
 // @redux
 import { Provider } from 'react-redux';
@@ -13,28 +15,10 @@ import store from '@reduxState/store';
 // @script
 import PrelineScript from '@components/Script/PrelineScript';
 
-// @style-css
-import '@styles/globals.css';
-
 // @layouts
 import Layouts from '@layouts/Layouts';
 
 const App = ({ Component, pageProps }) => {
-  const router = useRouter();
-
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     const chckSession = sessionStorage.getItem('_cart');
-  //     if (router.pathname !== '/checkout' && chckSession !== null) {
-  //       sessionStorage.removeItem('_cart');
-  //     }
-  //   }
-
-  //   return () => {
-  //     undefined;
-  //   };
-  // }, [router]);
-
   // @with-layouts
   const getLayout =
     Component.getLayout ||

@@ -4,9 +4,9 @@ const EmptyCart = ({}) => {
   return (
     <>
       <div className="flex w-full flex-col items-center justify-center rounded-2xl bg-blue-50 px-6 py-6 text-center text-blue-700">
-        <div className="mb-4.5 flex h-14 w-14 flex-col items-center justify-center overflow-hidden rounded-full bg-blue-400/20">
+        <div className="mb-4.5 flex h-11 w-11 flex-col items-center justify-center overflow-hidden rounded-full bg-blue-400/20">
           <svg
-            className="h-8 w-8"
+            className="h-7 w-7"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

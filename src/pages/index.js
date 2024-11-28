@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
@@ -9,7 +9,6 @@ import { addItemToCart } from '@reduxState/slices';
 // @lib/controller & helper
 import { getFetch } from '@lib/controller/API';
 import { currencyConverter } from '@lib/helper/CalculateCartContext';
-import { getCombineMerged } from '@lib/helper/Configuration';
 
 // @components
 import HeadGraphSeo from '@components/Head';
@@ -19,7 +18,6 @@ import Container from '@components/Container';
 import Alerts from '@components/UI/Alerts/Alerts';
 
 const Home = ({ products }) => {
-  const router = useRouter();
   const dispatch = useDispatch();
   const { data: isCart } = useSelector((state) => state.cart);
   const [isCartProducts, setCartProducts] = useState({
@@ -51,7 +49,9 @@ const Home = ({ products }) => {
     setAlert((prev) => ({ ...prev, status: false }));
 
   // @add-items(Cart)
-  const hndleCreate_Session = async (product) => {
+  const hndleAddProduct_Cart = async (product) => {
+    if (isSession.loading === true) return;
+
     setSession((prev) => ({
       ...prev,
       id_product: products.id_product,
@@ -70,35 +70,37 @@ const Home = ({ products }) => {
       setTimeout(() => {
         hndleAlert_Change(
           'info',
-          `Your Cart is full!, complete your order or update your cart.`
+          `Your cart is full, Complete your order or update your cart!`
         );
         setSession((prev) => ({ ...prev, loading: false }));
-      }, 1000);
+      }, 800);
       return;
     }
 
-    // const existItems = isCart?.find(
-    //   (i) => i.id_product === products.id_product
-    // );
+    // @check(Product)
+    const hasQtyOne =
+      isCart?.some((d) => d.quantity === 1) ||
+      isCart?.some((d) => d.quantity > 1);
+    if (products.id_product === 'sn4ujm0d1ebbc8lme1ihzsa9' && hasQtyOne) {
+      setTimeout(() => {
+        hndleAlert_Change(
+          'info',
+          `Your cart is full, Complete your order or update your cart!`
+        );
+        setSession((prev) => ({ ...prev, loading: false }));
+      }, 800);
+      return;
+    }
 
+    // @proses(Add to Cart)
     setTimeout(() => {
-      dispatch(addItemToCart(products));
       setSession((prev) => ({ ...prev, loading: false }));
-
       hndleAlert_Change(
         'success',
         `The item has been successfully added to your cart.`
       );
-    }, 1000);
-    // if (existItems) {
-    // } else if (isCart.length < 1) {
-    //   setTimeout(() => {
-    //     dispatch(addItemToCart(products));
-    //     setSession((prev) => ({ ...prev, loading: false }));
-    //   }, 2000);
-    // } else {
-    //   dispatch(removeCart());
-    // }
+      dispatch(addItemToCart(products));
+    }, 800);
   };
 
   return (
@@ -173,14 +175,14 @@ const Home = ({ products }) => {
 
                     <button
                       id={`ca25Btn_Product${gtRslt.name.replace(/\s/g, '')}`}
-                      className="relative inline-flex w-full items-center justify-center rounded-xl bg-primary px-6 py-5 font-medium uppercase text-white disabled:pointer-events-none disabled:opacity-90"
+                      className={`"relative inline-flex w-full items-center justify-center rounded-xl bg-primary px-6 py-5 font-medium uppercase text-white disabled:pointer-events-none disabled:opacity-90 ${isSession.loading === true ? 'cursor-default' : 'cursor-pointer'}`}
                       role="button"
                       aria-label={`Coinfest Asia 2025 (Button CTA - ${gtRslt.name.replace(/\s/g, '')} Products)`}
                       aria-labelledby={`Coinfest Asia 2025 (Button CTA - ${gtRslt.name.replace(/\s/g, '')} Products)`}
                       disabled={isLoading}
                       onClick={(e) => {
                         e.preventDefault();
-                        hndleCreate_Session(gtRslt);
+                        hndleAddProduct_Cart(gtRslt);
                       }}
                     >
                       {isLoading ? (

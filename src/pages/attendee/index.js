@@ -62,7 +62,7 @@ const Attendee = ({}) => {
         if (!rsAttendee?.data?.length > 0) {
           return hndleAlert_Change(
             'error',
-            `Sorry, there seems to be an issue with your ticket ID or email!`
+            `Invalid ticket id or email,<br/> Please check and try again.`
           );
         }
 
@@ -144,13 +144,11 @@ const Attendee = ({}) => {
                 </div>
                 <div className="mb-4 inline-flex w-full flex-col space-y-4 rounded-xl bg-white px-4 py-4">
                   <div className="block">
-                    <div className="w-full max-w-full sm:max-w-[391px]">
-                      <Label
-                        forId={`tktCAForm_TicketAttendeeConfrim`}
-                        label="Ticket ID"
-                        helpText={`The Ticket ID must match the one on the attendee’s ticket, for example, 'A-12321312'!`}
-                      />
-                    </div>
+                    <Label
+                      forId={`tktCAForm_TicketAttendeeConfrim`}
+                      label="Ticket ID"
+                      helpText={`The Ticket ID must match the attendee's ticket, e.g., 'A-12321312'!`}
+                    />
                     <Input
                       id={`tktCAForm_TicketAttendeeConfrim`}
                       type="text"
@@ -172,7 +170,7 @@ const Attendee = ({}) => {
                     <Label
                       forId={`tktCAForm_EmailAttendeeConfrim`}
                       label="Email"
-                      helpText="The email entered must match the information of the attendee who is attending!"
+                      helpText="The email provided must match the attendee's registration details!"
                     />
                     <Input
                       id={`tktCAForm_EmailAttendeeConfrim`}

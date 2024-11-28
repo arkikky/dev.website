@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 // @lib/controller & helper
 import { useCart } from '@lib/hooks/Cart';
@@ -9,8 +10,20 @@ import Container from '@components/Container';
 import CartStore from '@components/CartStore';
 
 const NavbarBottom = ({ cartProducts = [] }) => {
+  const router = useRouter();
   const { checkTotalQtyCart, getTotalCart } = useCart();
   const { toggleOverlayPopUp } = useMethod();
+  const [isLoading, setIsLoading] = useState(false);
+
+  // @redirect(Checkout)
+  const reCheckout = async () => {
+    setIsLoading(true);
+
+    setTimeout(async () => {
+      await router.push('/checkout');
+      setIsLoading(false);
+    }, 500);
+  };
 
   return (
     <>
@@ -63,18 +76,35 @@ const NavbarBottom = ({ cartProducts = [] }) => {
             </div>
             <div className="flex w-max flex-row items-center space-x-2">
               <button
-                href="/"
-                className={`h-full cursor-pointer rounded-lg bg-primary px-5 py-3.5 text-sm leading-initial text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 sm:rounded-[10px] sm:px-6 sm:py-4 sm:text-base`}
+                className={`h-[46px] w-[106px] cursor-pointer rounded-lg bg-primary px-5 py-3.5 text-sm leading-initial text-white disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-black-900 sm:rounded-[10px] sm:px-6 sm:py-4 sm:text-base`}
                 type="button"
                 tabIndex={-1}
                 aria-label="Button on Processed Checkout (Coinfest Asia 2025)"
                 aria-roledescription="Button on Processed Checkout (Coinfest Asia 2025)"
                 disabled={
                   (cartProducts?.length > 0 ? false : true) ||
-                  checkTotalQtyCart(cartProducts, 'submit')
+                  checkTotalQtyCart(cartProducts, 'submit') ||
+                  isLoading
                 }
+                onClick={(e) => {
+                  e.preventDefault();
+                  reCheckout();
+                }}
               >
-                Checkout
+                {isLoading ? (
+                  <>
+                    <div
+                      className="mx-auto block size-5 animate-spin items-center justify-center rounded-full border-[2.5px] border-current border-t-transparent font-medium text-black-900 opacity-80"
+                      role="status"
+                      aria-label="Coinfest Asia 2025 (Loading - Products)"
+                      aria-labelledby="Coinfest Asia 2025 (Loading - Products)"
+                    >
+                      <span className="sr-only">Loading...</span>
+                    </div>
+                  </>
+                ) : (
+                  'Checkout'
+                )}
               </button>
             </div>
           </div>
@@ -84,10 +114,10 @@ const NavbarBottom = ({ cartProducts = [] }) => {
       {/* @banner-ticket(backcover) */}
       <div
         id="ca2025BckdrpOverflay_PopUp"
-        className="ca2025BckdrpOverflay_PopUp nonActive fixed inset-x-0 inset-y-0 z-[80] block h-svh cursor-pointer bg-black-900/50 backdrop-blur-[3px] transition-[opacity,backdrop-filter] duration-[0.3s] ease-in-out"
+        className="ca2025BckdrpOverflay_PopUp nonActive fixed inset-x-0 inset-y-0 z-[80] block h-svh cursor-pointer bg-black-900/60 backdrop-blur-[2px] transition-[opacity,backdrop-filter] duration-[0.3s] ease-in-out"
         onClick={(e) => {
           e.preventDefault();
-          toggleOverlayPopUp('.ca2025Overflay_PopUpMobile');
+          toggleOverlayPopUp(e.target.getAttribute('data-target'));
         }}
       ></div>
     </>

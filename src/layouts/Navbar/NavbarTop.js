@@ -63,7 +63,7 @@ const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
 
             <div className="flex w-max flex-row">
               {nonStore == true && (
-                <div className="col relative mr-2 hidden items-center justify-center lg:flex">
+                <div className="col relative mr-2.5 hidden items-center justify-center lg:flex">
                   <button
                     className="relative flex h-[80%] flex-col items-center justify-center rounded-lg bg-black-900 px-3 py-3 text-sm leading-initial text-white sm:h-auto sm:rounded-[10px] sm:text-base"
                     type="button"
@@ -77,7 +77,7 @@ const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
                     }}
                   >
                     {cartProducts?.length > 0 && (
-                      <span className="absolute end-0 top-0 me-2.5 mt-3 flex size-2 ">
+                      <span className="absolute end-0 top-0 me-2.5 mt-3 flex size-2">
                         <span className="absolute inline-flex size-full animate-ping rounded-full bg-red-300 opacity-75"></span>
                         <span className="relative inline-flex size-2 rounded-full bg-red-500"></span>
                       </span>

@@ -51,12 +51,7 @@ const AttendeeDetailCheckouts = dynamic(
     loading: () => <p>Loading...</p>,
   }
 );
-const CompnayDetailCheckouts = dynamic(
-  () => import('@layouts/Checkouts/Card/CompanyDetailCheckout'),
-  {
-    loading: () => <p>Loading...</p>,
-  }
-);
+import CompanyDetailCheckout from '@layouts/Checkouts/Card/CompanyDetailCheckout';
 const OrderDetailCheckouts = dynamic(
   () => import('@layouts/Checkouts//Card/OrderDetailCheckouts'),
   {
@@ -92,13 +87,13 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
   const [isProducts, setProducts] = useState([]);
 
   // @hook(Preline)
-  const handleIntzPreline = useCallback(async () => {
-    await import('preline/preline');
+  // const handleIntzPreline = useCallback(async () => {
+  //   await import('preline/preline');
 
-    if (window.HSStaticMethods) {
-      window.HSStaticMethods.autoInit();
-    }
-  }, [isCart]);
+  //   if (window.HSStaticMethods) {
+  //     window.HSStaticMethods.autoInit();
+  //   }
+  // }, [isCart]);
 
   // @hook(Product)
   const hndleHookProducts = useCallback(async () => {
@@ -161,7 +156,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
   }, [hndleHookProducts]);
 
   useEffect(() => {
-    handleIntzPreline();
+    // handleIntzPreline();
 
     if (isFormCheckouts.totalQty < isFormCheckouts.stepForm) {
       setFormCheckouts((prev) => ({
@@ -663,7 +658,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
       <HeadGraphSeo title={`Checkout`} otherPage={true} />
 
       {/* @navbar */}
-      <NavbarTop />
+      <NavbarTop nonStore={false} />
 
       {/* @main */}
       <Main className="relative pb-8 pt-[101px] sm:pb-12 sm:pt-[118px] lg:pt-[126px]">
@@ -923,7 +918,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                       <div
                         className={`${haveCompantAttendee === true ? 'pointer-events-auto' : 'pointer-events-none'} inline-flex w-full flex-col space-y-4 rounded-xl bg-white px-4 py-4`}
                       >
-                        <CompnayDetailCheckouts
+                        <CompanyDetailCheckout
                           fieldForm={isFormCheckouts.fields}
                           watch={haveCompantAttendee}
                           register={register}

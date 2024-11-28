@@ -13,9 +13,11 @@
   @apply pointer-events-none translate-y-[-80%] opacity-0;
 }
 
-.ca2025Overflay_PopUpGeneral.active {
-  backface-visibility: visible;
-  @apply pointer-events-auto translate-y-[0%] opacity-100;
+@screen lg {
+  .ca2025Overflay_PopUpGeneral.active {
+    backface-visibility: visible;
+    @apply pointer-events-auto translate-y-[0%] opacity-100;
+  }
 }
 
 .ca2025Overflay_PopUpMobile.nonActive {

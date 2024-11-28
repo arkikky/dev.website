@@ -16,7 +16,7 @@ const CartProduct = ({ cartStore, products }) => {
     <>
       <div className="flex flex-row space-x-3">
         <div className="h-full w-4.5 rounded-md bg-primary"></div>
-        <div className="flex flex-col">
+        <div className="mb-1 flex flex-col">
           <h3 className="mb-3 text-base font-medium">{products.name}</h3>
 
           <div
@@ -57,7 +57,7 @@ const CartProduct = ({ cartStore, products }) => {
                 </button>
               ) : null}
               <input
-                className={`w-5 cursor-default border-0 bg-transparent p-0 text-center text-sm font-light text-gray-800 focus:ring-0 focus-visible:outline-none focus-visible:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none`}
+                className={`w-5 cursor-default border-0 bg-transparent p-0 text-center text-sm font-light text-black-900 focus:ring-0 focus-visible:outline-none focus-visible:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none`}
                 type="number"
                 aria-roledescription="Number field"
                 value={products.quantity}
@@ -110,7 +110,7 @@ const CartProduct = ({ cartStore, products }) => {
           {currencyConverter(products.price ?? products.priceSale)}
         </span>
         <button
-          className="ms-3 flex h-8 w-8 flex-col items-center justify-center rounded-lg border border-solid border-red-500 bg-red-500/10 focus-visible:outline-none"
+          className="mb-1 ms-3 flex h-8 w-8 flex-col items-center justify-center rounded-lg border border-solid border-red-500 bg-red-500/10 focus-visible:outline-none"
           type="button"
           tabIndex={-1}
           aria-label="Coinfest Asia 2025 (Remove - Coupon)"
