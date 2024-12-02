@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 
+// @redux
+import { useDispatch } from 'react-redux';
+import { removeCart } from '@reduxState/slices';
+
 // @lib/controller & helper
 import { getFetch } from '@lib/controller/API';
 import {
@@ -23,6 +27,7 @@ import NavbarTop from '@layouts/Navbar/NavbarTop';
 import Footer from '@layouts/Footer';
 
 const OrderReceived = ({ orderReceived, orderCustomer }) => {
+  const dispatch = useDispatch();
   const [isOrderRecived, setOrderRecived] = useState({
     order: orderReceived ? orderReceived.data : [],
     customer: orderCustomer?.data?.attendees.length,
@@ -57,9 +62,11 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
 
     setOrderRecived({ ...isOrderRecived, discount: calculatedDiscount });
   };
-  useEffect(() => {
-    hndleIntzCoupon();
 
+  // @initialize(Store)
+  useEffect(() => {
+    dispatch(removeCart());
+    hndleIntzCoupon();
     return () => {
       undefined;
     };
@@ -93,7 +100,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
       <HeadGraphSeo title={`Order Received`} otherPage={true} />
 
       {/* @navbar */}
-      <NavbarTop nonStore={false} />
+      <NavbarTop nonStore={true} />
 
       {/* @main */}
       <Main className="flex flex-col pb-12 pt-[141px] sm:pb-4 sm:pt-[151px]">
@@ -131,7 +138,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
                     ></path>
                   </svg>
                   <h1 className="text-xl font-bold sm:text-2xl">
-                    YOUR ORDER IS COMPLETE!
+                    {`YOUR ORDER IS COMPLETE!`}
                   </h1>
                 </div>
                 <div className="mt-4 text-base font-light text-gray-500 prose-a:text-primary prose-a:underline">

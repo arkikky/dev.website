@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { toast } from 'sonner';
 import { twMerge } from 'tailwind-merge';
 
 // @lib/controller & helper
 import { getDOMParseCount } from '@lib/helper/Configuration';
 
-const Alerts = ({
-  icons = {},
+const ToastAlerts = ({
+  id,
   type = 'default',
   label = `A new software update is available. See what's new in version 3.0.7`,
   position = 'bottom-3 inset-x-2.5 sm:inset-x-3 top-auto',
@@ -13,7 +14,6 @@ const Alerts = ({
   onClose,
 }) => {
   const [isCountdown, setCountdown] = useState(5);
-  const [showAnimation, setShowAnimation] = useState(false);
 
   const typeStyle = {
     success: 'bg-green-50 border-green-500/40 text-green-700',
@@ -35,17 +35,14 @@ const Alerts = ({
   useEffect(() => {
     if (!visible) return;
     setCountdown(5);
-    setShowAnimation(true);
 
     const timer = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(timer);
-          setShowAnimation(false);
-
           setTimeout(() => {
-            onClose();
-          }, 300);
+            toast.dismiss(id);
+          }, 500);
           return 0;
         }
         return prev - 1;
@@ -60,13 +57,13 @@ const Alerts = ({
       <div
         id="ca25Alert-Card"
         className={twMerge(
-          `fixed ${showAnimation === true ? 'translate-x-0 scale-100 opacity-100' : '-translate-x-10 scale-90 opacity-0'} ${position} z-[12] w-auto rounded-lg border px-2.5 py-4 text-sm duration-300 ease-in-out sm:bottom-6 sm:left-6 sm:right-auto sm:w-[331px] sm:px-3 lg:bottom-7 lg:left-8 lg:px-4`,
+          `w-auto rounded-lg border px-2.5 py-4 text-sm shadow-lg duration-300 ${position} ease-in-out sm:w-[347px] sm:px-3 lg:px-4`,
           isType
         )}
         role="alert"
         tabIndex="-1"
-        aria-label="Coinfest Asia 2025(Alert)"
-        aria-labelledby="Coinfest Asia 2025(Alert)"
+        aria-label="Coinfest Asia 2025(Toats Alert)"
+        aria-labelledby="Coinfest Asia 2025(Toats Alert)"
       >
         <div
           className={`flex flex-row ${getDOMParseCount(label) < 30 ? 'items-center justify-center' : 'items-start justify-start'}`}
@@ -131,7 +128,7 @@ const Alerts = ({
           </div>
           <div className="ms-2.5 mt-0 flex w-full flex-row justify-between">
             <div
-              id="ca25Alert-label"
+              id="ca25ToastAlertLabel"
               className="max-w-[227px] text-balance text-sm prose-strong:font-semibold"
               dangerouslySetInnerHTML={{ __html: label }}
             ></div>
@@ -143,4 +140,4 @@ const Alerts = ({
   );
 };
 
-export default Alerts;
+export default ToastAlerts;

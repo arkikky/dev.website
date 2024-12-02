@@ -1,4 +1,5 @@
 import React from 'react';
+import { Controller } from 'react-hook-form';
 import PhoneInput from 'react-phone-input-2';
 
 // @style
@@ -12,10 +13,12 @@ const BillingDetailCheckout = ({
   ipAddress,
   watch,
   register,
+  control,
   setValue,
   getValues,
   errors,
   onValueChange,
+  asCompany = false,
 }) => {
   // @event(change - phone)
   const handleInputChange = (value) => {
@@ -31,7 +34,7 @@ const BillingDetailCheckout = ({
 
   // @handle(Company Toggle Change)
   const handleToggleCompay_Change = () => {
-    if (getValues('haveCompany') === true) {
+    if (watch === 'true') {
       setValue('company', '');
       setValue('companyAttndee1', '');
       setValue('haveCompanyAttndee1', true);
@@ -44,6 +47,52 @@ const BillingDetailCheckout = ({
 
   return (
     <>
+      {/* @role(Billing Details) */}
+      <div className="mb-4 flex items-center rounded-xl border border-solid border-gray-200 bg-gray-100 px-1 py-1 sm:px-1.5 sm:py-1.5">
+        <Controller
+          name={`haveCompany`}
+          control={control}
+          render={({ field }) => (
+            <>
+              <label
+                className={`inline-flex grow basis-0 cursor-pointer items-center justify-center gap-x-2 rounded-lg px-4 py-5 text-center text-sm font-normal text-gray-500 transition duration-300 ease-in-out focus:outline-none disabled:pointer-events-none disabled:opacity-50 ${
+                  field.value === 'false'
+                    ? 'bg-black-900 text-white hover:text-white'
+                    : 'bg-transparent hover:text-black-900 hover:underline'
+                }`}
+              >
+                <span className="relative z-10 inline-block cursor-pointer text-sm font-normal">
+                  Personal's
+                </span>
+                <input
+                  {...field}
+                  type="radio"
+                  value={false}
+                  className="pointer-events-none hidden select-none"
+                />
+              </label>
+              <label
+                className={`inline-flex grow basis-0 cursor-pointer items-center justify-center gap-x-2 rounded-lg px-4 py-5 text-center text-sm font-normal text-gray-500 transition duration-300 ease-in-out focus:outline-none disabled:pointer-events-none disabled:opacity-50 ${
+                  field.value === 'true'
+                    ? 'bg-black-900 text-white hover:text-white'
+                    : 'bg-transparent hover:text-black-900 hover:underline'
+                }`}
+              >
+                <span className="relative z-10 inline-block cursor-pointer text-sm font-normal">
+                  As Company
+                </span>
+                <input
+                  {...field}
+                  type="radio"
+                  value={true}
+                  className="pointer-events-none hidden select-none"
+                />
+              </label>
+            </>
+          )}
+        />
+      </div>
+
       <div className="block w-full space-y-4">
         <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
           <div className="block">
@@ -175,76 +224,58 @@ const BillingDetailCheckout = ({
       </div>
 
       {/* @company */}
-      <div className="mt-4 block space-y-4">
-        <div className="block">
-          <div className={`flex flex-row items-end justify-between`}>
+      {watch === 'true' && (
+        <div
+          className={`mt-3 grid-cols-1 gap-x-4 gap-y-4 ${watch === 'true' ? 'pointer-events-auto select-auto supports-grid:grid' : 'pointer-events-none hidden select-none'} sm:grid-cols-2`}
+        >
+          <div className="block">
             <Label
               forId={`tktCAForm_CompanyCheckout`}
-              isClassName={`mb-3`}
+              isClassName={`mb-2`}
               label="Company Name"
-              helpText="Do you have a company?"
-              required={watch}
+              required={watch === 'true' ? true : false}
             />
-            <div className="relative inline-block pb-3">
-              <input
-                id={`tktCAForm_HaveCompanyAttndeeCheckout`}
-                className="bxShadow-none peer form-checkbox relative h-6 w-12 shrink-0 cursor-pointer rounded-full border-transparent bg-gray-100 py-0.5 pl-0.5 pr-px text-transparent transition-colors duration-200 ease-in-out before:inline-block before:size-4.5 before:translate-x-0 before:transform before:rounded-full before:bg-white before:ring-0 before:transition before:duration-200 before:ease-in-out checked:border-blue-600 checked:bg-none checked:text-blue-600 checked:before:translate-x-[130%] checked:before:bg-white disabled:pointer-events-none"
-                type="checkbox"
-                {...register(`haveCompany`, {
-                  required: false,
-                  onChange: handleToggleCompay_Change,
-                })}
-              />
-              <label
-                htmlFor={`tktCAForm_HaveCompanyLabelCheckout`}
-                className="sr-only"
-              >
-                switch
-              </label>
-            </div>
-          </div>
 
-          <Input
-            id={`tktCAForm_CompanyCheckout`}
-            type="text"
-            placeholder="Eg: Coinfest Asia"
-            ariaLabel={`Company - Checkout`}
-            disabled={watch === true ? false : true}
-            config={{
-              ...register(`company`, {
-                required: watch,
-                maxLength: 80,
-                pattern: {
-                  value: /^(N\/A|[a-zA-Z0-9\s-_]{2,80})$/,
-                },
-              }),
-            }}
-            value={watch === true ? '' : 'N/A'}
-            errors={errors[`company`]}
-            useEvent={true}
-            eventOnChange={onValueChange}
-          />
-        </div>
-        {watch === true ? (
+            <Input
+              id={`tktCAForm_CompanyCheckout`}
+              type="text"
+              placeholder="Eg: Coinfest Asia"
+              ariaLabel={`Company - Checkout`}
+              disabled={watch === 'true' ? false : true}
+              config={{
+                ...register(`company`, {
+                  required: watch === 'true' ? true : false,
+                  maxLength: 80,
+                  pattern: {
+                    value: /^(N\/A|[a-zA-Z0-9\s-_]{2,80})$/,
+                  },
+                }),
+              }}
+              value={watch === 'true' ? '' : 'N/A'}
+              errors={errors[`company`]}
+              useEvent={true}
+              eventOnChange={onValueChange}
+            />
+          </div>
           <div className="block">
             <Label
               forId="tktCAForm_WebsiteUrlCheckout"
               label="Website URL"
-              required={watch}
+              required={watch === 'true' ? true : false}
             />
             <Input
               id="tktCAForm_WebsiteUrlCheckout"
               type="text"
               placeholder="Eg: https://..."
               ariaLabel="Website Billing - Checkout"
-              disabled={watch === true ? false : true}
+              disabled={watch === 'true' ? false : true}
               config={{
                 ...register('websiteUrl', {
-                  required: watch,
+                  required: watch === 'true' ? true : false,
                   maxLength: 255,
                   pattern: {
                     value:
-                      /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\w\d\-.\/]*)*\/?$|^N\/A$/,
+                      /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\w\d\-.\/]*)*\/?$|^N\/A$|^-$/,
                     message: 'Please enter a valid URL',
                   },
                 }),
@@ -252,8 +283,8 @@ const BillingDetailCheckout = ({
               errors={errors.websiteUrl}
             />
           </div>
-        ) : null}
-      </div>
+        </div>
+      )}
     </>
   );
 };

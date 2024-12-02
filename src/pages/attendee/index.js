@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'sonner';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import getConfig from 'next/config';
@@ -15,7 +16,7 @@ import { getFetch } from '@lib/controller/API';
 import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
-import Alerts from '@components/UI/Alerts/Alerts';
+import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 
 // @form
 import Label from '@components/UI/Form/Label';
@@ -23,21 +24,7 @@ import Input from '@components/UI/Form/Input';
 
 const Attendee = ({}) => {
   const router = useRouter();
-  // @hook(Alert)
-  const [isAlert, setAlert] = useState({
-    status: false,
-    type: 'default',
-    message: '',
-  });
-
-  // @handle(Alert)
-  const hndleAlert_Change = (model, mess) => {
-    setAlert({ status: true, type: model, message: mess });
-  };
-
-  // @handle(Close Alert)
-  const handleCloseAlert = () =>
-    setAlert((prev) => ({ ...prev, status: false }));
+  const [isSessionAttendee, setSessionAttendee] = useState(false);
 
   // @form-hook(Checkout)
   const {
@@ -60,10 +47,19 @@ const Attendee = ({}) => {
 
         // @check(Attendee)
         if (!rsAttendee?.data?.length > 0) {
-          return hndleAlert_Change(
-            'error',
-            `Invalid ticket id or email,<br/> Please check and try again.`
+          toast.custom(
+            (t) => (
+              <ToastAlerts
+                id={t}
+                position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+                type="info"
+                visible={true}
+                label={`<strong>Invalid ticket id or email</strong>,<br/> Please check and try again.`}
+              />
+            ),
+            { duration: 5000 }
           );
+          return;
         }
 
         // @get(Key)
@@ -88,16 +84,36 @@ const Attendee = ({}) => {
 
         if (rsEmail.message === 'Email sent successfully!') {
           reset();
-          hndleAlert_Change(
-            'success',
-            `<strong>Thanks</strong>, Email sent successfully!`
+          setSessionAttendee(true);
+          toast.custom(
+            (t) => (
+              <ToastAlerts
+                id={t}
+                position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+                type="success"
+                visible={true}
+                label={`<strong>Thanks</strong>, Email sent successfully!`}
+              />
+            ),
+            { duration: 5000 }
           );
-
           setTimeout(() => {
+            setSessionAttendee(false);
             router.replace(`/attendee/success`);
           }, 6000);
         } else {
-          hndleAlert_Change('error', `Sorry, failed to send email!`);
+          toast.custom(
+            (t) => (
+              <ToastAlerts
+                id={t}
+                position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+                type="error"
+                visible={true}
+                label={`<strong>Sorry</strong>, failed to send email!`}
+              />
+            ),
+            { duration: 5000 }
+          );
         }
       } catch (error) {
         console.error('[error] processing submission:', error);
@@ -221,7 +237,7 @@ const Attendee = ({}) => {
                     tabIndex={-1}
                     role="button"
                     aria-label="Submit Attendee Confrim for Coinfest Asia 2025"
-                    disabled={!isValid || isSubmitting}
+                    disabled={!isValid || isSubmitting || isSessionAttendee}
                   >
                     {isSubmitting ? (
                       <span className="flex flex-row items-center">
@@ -257,14 +273,6 @@ const Attendee = ({}) => {
           </form>
         </Container>
       </Main>
-
-      {/* @alert */}
-      <Alerts
-        type={isAlert.type}
-        label={isAlert.message}
-        visible={isAlert.status}
-        onClose={handleCloseAlert}
-      />
     </>
   );
 };

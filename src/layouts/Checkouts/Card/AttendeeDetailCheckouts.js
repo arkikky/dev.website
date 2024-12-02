@@ -13,6 +13,7 @@ import SelectCountry from '@components/UI/Form/SelectCountry';
 
 const AttendeeDetailCheckouts = ({
   ipAddress,
+  watch,
   fieldForm,
   country,
   register,
@@ -21,9 +22,56 @@ const AttendeeDetailCheckouts = ({
   getValues,
   errors,
   arrIndex = 0,
+  children,
 }) => {
   return (
     <>
+      {/* @role(Billing Details) */}
+      <div className="mb-4 flex items-center rounded-xl border border-solid border-gray-200 bg-gray-100 px-1 py-1 sm:px-1.5 sm:py-1.5">
+        <Controller
+          name={`haveCompanyAttndee${arrIndex}`}
+          control={control}
+          render={({ field }) => (
+            <>
+              <label
+                className={`inline-flex grow basis-0 cursor-pointer items-center justify-center gap-x-2 rounded-lg px-4 py-5 text-center text-sm font-normal text-gray-500 transition duration-300 ease-in-out focus:outline-none disabled:pointer-events-none disabled:opacity-50 ${
+                  field.value === 'false'
+                    ? 'bg-primary text-white hover:text-white'
+                    : 'bg-transparent hover:text-primary hover:underline'
+                }`}
+              >
+                <span className="relative z-10 inline-block cursor-pointer text-sm font-normal">
+                  Personal's
+                </span>
+                <input
+                  {...field}
+                  className="pointer-events-none hidden select-none"
+                  type="radio"
+                  value={false}
+                />
+              </label>
+              <label
+                className={`inline-flex grow basis-0 cursor-pointer items-center justify-center gap-x-2 rounded-lg px-4 py-5 text-center text-sm font-normal text-gray-500 transition duration-300 ease-in-out focus:outline-none disabled:pointer-events-none disabled:opacity-50 ${
+                  field.value === 'true'
+                    ? 'bg-primary text-white hover:text-white'
+                    : 'bg-transparent hover:text-primary hover:underline'
+                }`}
+              >
+                <span className="relative z-10 inline-block cursor-pointer text-sm font-normal">
+                  As Company
+                </span>
+                <input
+                  {...field}
+                  className="pointer-events-none hidden select-none"
+                  type="radio"
+                  value={true}
+                />
+              </label>
+            </>
+          )}
+        />
+      </div>
+
       <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
         <div className="block">
           <Label
@@ -242,27 +290,117 @@ const AttendeeDetailCheckouts = ({
           }}
         />
       </div>
-      <div className={`flex flex-row items-center justify-between`}>
-        <Label
-          forId={`tktCAForm_HaveCompanyAttndee${arrIndex}Checkout`}
-          label="Do you have a company?"
-          required={false}
-        />
-        <div className="relative inline-block">
-          <input
-            id={`tktCAForm_HaveCompanyAttndee${arrIndex}Checkout`}
-            className="bxShadow-none peer form-checkbox relative h-6 w-12 shrink-0 cursor-pointer rounded-full border-transparent bg-gray-100 py-0.5 pl-0.5 pr-px text-transparent transition-colors duration-200 ease-in-out before:inline-block before:size-4.5 before:translate-x-0 before:transform before:rounded-full before:bg-white before:shadow before:ring-0 before:transition before:duration-200 before:ease-in-out checked:border-blue-600 checked:bg-none checked:text-blue-600 checked:before:translate-x-[130%] checked:before:bg-white disabled:pointer-events-none"
-            type="checkbox"
-            {...register(`haveCompanyAttndee${arrIndex}`, {
-              required: false,
-            })}
-          />
-          <label
-            htmlFor={`tktCAForm_HaveCompanyAttndeeLabel${arrIndex}Checkout`}
-            className="sr-only"
+
+      {/* @company */}
+      <div
+        className={`${watch === 'true' ? 'pointer-events-auto select-auto supports-grid:grid' : 'pointer-events-none hidden select-none'}`}
+      >
+        <div className="mb-4 mt-2 flex w-full flex-col items-start justify-between sm:flex-row">
+          <div className="flex w-full max-w-[399px] flex-col items-start justify-start">
+            <span className="text-balance text-sm font-light text-gray-500">
+              {`Please enter the company information to match the
+                          details of the participants in attendance.`}
+            </span>
+          </div>
+          {children}
+        </div>
+
+        <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
+          <div className="block">
+            <Label
+              forId={`tktCAForm_CompanyAttndee${arrIndex}Checkout`}
+              label="Company Name"
+              required={watch === 'true' ? true : false}
+            />
+            <Input
+              id={`tktCAForm_CompanyAttndee${arrIndex}Checkout`}
+              type="text"
+              placeholder="Eg: Coinfest Asia"
+              ariaLabel={`Company Attendee${arrIndex} - Checkout`}
+              disabled={watch === 'true' ? false : true}
+              config={{
+                ...register(`companyAttndee${arrIndex}`, {
+                  required: watch === 'true' ? true : false,
+                  maxLength: 80,
+                  pattern: {
+                    value: /^(N\/A|[a-zA-Z0-9\s-_]{2,80})$/,
+                  },
+                }),
+              }}
+              errors={errors[`companyAttndee${arrIndex}`]}
+            />
+          </div>
+          <div
+            className={`"block ${errors[`jobPositionAttndee${arrIndex}`] ? 'error' : ''} ${watch === 'true' ? '' : 'disabled'}`}
           >
-            switch
-          </label>
+            <Label
+              forId={`tktCAForm_JobPositionAttndee${arrIndex}Checkout`}
+              label="Position"
+              required={watch === 'true' ? true : false}
+            />
+            <Select
+              id={`tktCAForm_JobPositionAttndee${arrIndex}Checkout`}
+              ariaLabel={`Job Position Attendee${arrIndex} - Checkout`}
+              label="Choose a position..."
+              listSelect={
+                fieldForm !== undefined && fieldForm[4].fields[1].options
+              }
+              withSearch={true}
+              disabled={watch === 'true' ? false : true}
+              config={{
+                ...register(`jobPositionAttndee${arrIndex}`, {
+                  required: watch === 'true' ? true : false,
+                }),
+              }}
+            />
+          </div>
+        </div>
+        <div className="mt-4 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
+          <div
+            className={`block ${errors[`companyFocusAttndee${arrIndex}`] ? 'error' : ''} ${watch === 'true' ? '' : 'disabled'}`}
+          >
+            <Label
+              forId={`tktCAForm_CompanyFocusAttndee${arrIndex}Checkout`}
+              label="Company Focus"
+              required={watch === 'true' ? true : false}
+            />
+            <Select
+              id={`tktCAForm_CompanyFocusAttndee${arrIndex}Checkout`}
+              ariaLabel={`Company Focus Attendee${arrIndex} - Checkout`}
+              label="Choose a company focus..."
+              listSelect={
+                fieldForm !== undefined && fieldForm[5].fields[0].options
+              }
+              withSearch={true}
+              config={{
+                ...register(`companyFocusAttndee${arrIndex}`, {
+                  required: watch === 'true' ? true : false,
+                }),
+              }}
+            />
+          </div>
+          <div
+            className={`"block ${errors[`companySizeAttndee${arrIndex}`] ? 'error' : ''} ${watch === 'true' ? '' : 'disabled'}`}
+          >
+            <Label
+              forId={`tktCAForm_CompanySizeAttndee${arrIndex}Checkout`}
+              label="Company Size"
+              required={watch === 'true' ? true : false}
+            />
+            <Select
+              id={`tktCAForm_CompanySizeAttndee${arrIndex}Checkout`}
+              ariaLabel={`Company Focus Attendee${arrIndex} - Checkout`}
+              label="Choose a company size..."
+              listSelect={
+                fieldForm !== undefined && fieldForm[5].fields[1].options
+              }
+              config={{
+                ...register(`companySizeAttndee${arrIndex}`, {
+                  required: watch === 'true' ? true : false,
+                }),
+              }}
+            />
+          </div>
         </div>
       </div>
     </>

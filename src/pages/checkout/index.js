@@ -9,7 +9,7 @@ import dynamic from 'next/dynamic';
 const { serverRuntimeConfig } = getConfig();
 
 // @redux
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // @script
 // import PrelineScript from '@components/Script/PrelineScript';
@@ -26,13 +26,13 @@ import {
   getTotalCart,
   calculateDiscountCheckout,
 } from '@lib/helper/CartContext';
+import { useMethod } from '@lib/hooks/Method';
 
 // @components
 import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
 import Badge from '@components/UI/Badge';
-import Alerts from '@components/UI/Alerts/Alerts';
 import Card from '@components/UI/Card/Card';
 
 // @layouts
@@ -45,25 +45,14 @@ const BillingDetailCheckout = dynamic(
     ssr: false,
   }
 );
-const AttendeeDetailCheckouts = dynamic(
-  () => import('@layouts/Checkouts/Card/AttendeeDetailCheckouts'),
-  {
-    loading: () => <p>Loading...</p>,
-  }
-);
-import CompanyDetailCheckout from '@layouts/Checkouts/Card/CompanyDetailCheckout';
-const OrderDetailCheckouts = dynamic(
-  () => import('@layouts/Checkouts//Card/OrderDetailCheckouts'),
-  {
-    loading: () => <p>Loading...</p>,
-  }
-);
+import AttendeeDetailCheckouts from '@layouts/Checkouts/Card/AttendeeDetailCheckouts';
+import OrderDetailCheckouts from '@layouts/Checkouts//Card/OrderDetailCheckouts';
 import BoardSubmitCheckout from '@layouts/Checkouts/Card/BoardSubmitCheckout';
 import Footer from '@layouts/Footer';
 
 const Checkout = ({ ipAddress, country, formCheckout }) => {
-  const dispatch = useDispatch();
   const router = useRouter();
+  const { toggleOverlayPopUp } = useMethod();
   const { data: isCart, coupon: isCoupon } = useSelector((state) => state.cart);
 
   // @data
@@ -86,14 +75,27 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
   // @cart
   const [isProducts, setProducts] = useState([]);
 
-  // @hook(Preline)
-  // const handleIntzPreline = useCallback(async () => {
-  //   await import('preline/preline');
+  // @handle(Auto Close PopUp)
+  useEffect(() => {
+    const elBckdrp = document.querySelector(
+      '.ca2025BckdrpOverflay_PopUpMobile'
+    );
+    if (elBckdrp.classList.contains('active')) {
+      toggleOverlayPopUp(
+        '.ca2025BckdrpOverflay_PopUpMobile',
+        '.ca2025CartPopUp_Mobile'
+      );
+    }
+    return () => {};
+  }, []);
 
-  //   if (window.HSStaticMethods) {
-  //     window.HSStaticMethods.autoInit();
-  //   }
-  // }, [isCart]);
+  // @hook(Preline)
+  const handleIntzPreline = useCallback(async () => {
+    await import('preline/preline');
+    if (window.HSStaticMethods) {
+      window.HSStaticMethods.autoInit();
+    }
+  }, [isCart]);
 
   // @hook(Product)
   const hndleHookProducts = useCallback(async () => {
@@ -114,9 +116,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
       );
       // @hook(Combine Merged)
       if (allProducts) {
-        // const setMerged = getCombineMerged(allProducts.slice(0, 1), isCart);
-        const setMerged = getCombineMerged(allProducts, isCart);
-
+        const setMerged = getCombineMerged(allProducts.slice(0, 3), isCart);
         if (setMerged) {
           setProducts(setMerged);
         }
@@ -139,52 +139,30 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
       setFormCheckouts((prev) => ({ ...prev, totalQty: totalQ }));
     }
   }, [isCart]);
-
   // @hook(Attendee with Qty)
   const isAttendee = [
     ...Array(isFormCheckouts.totalQty ? isFormCheckouts.totalQty : 1).keys(),
   ];
-
   // @hook(Product)
   useEffect(() => {
     hndleHookProducts();
     calculateTotalQty();
-
     return () => {
       undefined;
     };
   }, [hndleHookProducts]);
-
   useEffect(() => {
-    // handleIntzPreline();
-
+    handleIntzPreline();
     if (isFormCheckouts.totalQty < isFormCheckouts.stepForm) {
       setFormCheckouts((prev) => ({
         ...prev,
         stepForm: isFormCheckouts.stepForm - 1,
       }));
     }
-
     return () => {
       undefined;
     };
   }, [isFormCheckouts.stepForm, isFormCheckouts.totalQty]);
-
-  // @hook(Alert)
-  const [isAlert, setAlert] = useState({
-    status: false,
-    type: 'default',
-    message: '',
-  });
-
-  // @handle(Alert)
-  const hndleAlert_Change = (model, mess) => {
-    setAlert({ status: true, type: model, message: mess });
-  };
-
-  // @handle(Close Alert)
-  const handleCloseAlert = () =>
-    setAlert((prev) => ({ ...prev, status: false }));
 
   // @form-hook(Checkout)
   const {
@@ -201,10 +179,16 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
     defaultValues: {
       phone: '',
       company: 'N/A',
+      websiteUrl: '-',
       companyAttndee1: 'N/A',
+      haveCompany: 'false',
+      haveCompanyAttndee1: 'false',
+      haveCompanyAttndee2: 'false',
+      haveCompanyAttndee3: 'false',
+      haveCompanyAttndee4: 'false',
+      haveCompanyAttndee5: 'false',
     },
   });
-
   // @watch
   const firstnameBilling = watch('firstname');
   const lastnameBilling = watch('lastname');
@@ -253,7 +237,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
     setValue('emailAttndee1', emailBilling);
     setValue('dialcode-phone1', phone);
     setValue('phone1', phone);
-    if (haveCompantAttendee === true && haveCompantAttendee1) {
+    if (haveCompantAttendee === 'true' && haveCompantAttendee1) {
       setValue('companyAttndee1', companyBilling);
     }
   };
@@ -473,7 +457,6 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
 
       // @hubspot(Customer)
       const hbSptKey = '96572ab0-5958-4cc4-8357-9c65de42cab6';
-
       // @hubspot(Attendee)
       const hbSptAttndeeKey = 'c9347ef6-664d-4b7a-892b-a1cabaa2bc30';
 
@@ -482,9 +465,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
           pushSubmitData('/api/customers', setBilling(data)),
           submitFormHbSpt(setHbSpt_Customer(data, isIpAddress.ip), hbSptKey),
         ]);
-
         if (isCart && rsCustomer && rsHbSpt) {
-          //   // if (isCart) {
           const setIdCustomer = rsCustomer.data.documentId;
           const setIdProducts = isProducts[0].documentId;
           const setPrice = isProducts[0].price ?? isProducts[0].priceSale;
@@ -499,7 +480,6 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
 
           const setCoupon =
             getCoupon.data.length > 0 ? getCoupon.data[0] : null;
-
           if (rsCustomerDtl) {
             let totalWithDiscount;
             if (
@@ -527,16 +507,13 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
               setIdProducts,
               setCoupon
             );
-
             const rsCreateOrder = await pushSubmitData(
               '/api/orders',
               createOrder
             );
-
             // @processing(Order & Ticket)
             if (rsCreateOrder) {
               const setIdOrderRecived = rsCreateOrder.data.documentId;
-
               for (let i = 0; i < qtyProducts; i++) {
                 const attendeeData = {
                   attendeeId: sntzeFld(generateTicketAttendeeCode()),
@@ -578,7 +555,6 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                   customer: { connect: [{ documentId: setIdCustomer }] },
                   product: { connect: [{ documentId: setIdProducts }] },
                 };
-
                 // @hubspot(Attendee)
                 const hbSptAttendee = setHbSpt_Attendee(
                   data,
@@ -593,7 +569,6 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                     }),
                     submitFormHbSpt(hbSptAttendee, hbSptAttndeeKey),
                   ]);
-
                   if (rsAttendee) {
                     // @get(Key)
                     const { key } = await fetch('/api/env/note', {
@@ -632,13 +607,11 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                   break;
                 }
               }
-
               // @last(Proccesing Point)
               setFormCheckouts({
                 ...isFormCheckouts,
                 message: 'Berhasil Terkirim',
               });
-              sessionStorage.removeItem('_cart');
               reset();
               router.replace(
                 `/checkout/order-received?process=${setIdOrderRecived}`
@@ -658,7 +631,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
       <HeadGraphSeo title={`Checkout`} otherPage={true} />
 
       {/* @navbar */}
-      <NavbarTop nonStore={false} />
+      <NavbarTop nonStore={true} />
 
       {/* @main */}
       <Main className="relative pb-8 pt-[101px] sm:pb-12 sm:pt-[118px] lg:pt-[126px]">
@@ -673,7 +646,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
               <Header />
 
               {/* @biling(Details) */}
-              <div className="mt-8 flex flex-col items-start rounded-2xl border border-solid border-gray-200 bg-gray-100 px-2 pb-2 pt-4">
+              <div className="ssm:px-2 sm:pb- mt-8 flex flex-col items-start rounded-2xl border border-solid border-gray-200 bg-gray-100 px-1.5 pb-1.5 pt-4">
                 <div className="mb-6 flex w-full flex-col items-start justify-start px-4 sm:mb-4">
                   <h2 className="text-xl font-medium capitalize">
                     {`Billing details`}
@@ -683,7 +656,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                     payment details.`}
                   </span>
                 </div>
-                <div className="inline-flex w-full flex-col rounded-xl bg-white px-4 py-4">
+                <div className="inline-flex w-full flex-col rounded-xl bg-white px-3 py-3 sm:px-4 sm:py-4">
                   <BillingDetailCheckout
                     ipAddress={
                       isIpAddress.country !== undefined
@@ -692,6 +665,7 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                     }
                     watch={haveCompantAttendee}
                     register={register}
+                    control={control}
                     setValue={setValue}
                     getValues={getValues}
                     errors={errors}
@@ -709,126 +683,137 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
 
                   return isFormCheckouts.stepForm === i + 1 ? (
                     <div
-                      className="mt-8 flex flex-col items-start rounded-2xl border border-solid border-gray-200 bg-gray-100 px-2 pb-2 pt-4 first:mt-0"
+                      className="mt-8 flex flex-col items-start rounded-2xl border border-solid border-blue-500 bg-primary px-2 pb-2 pt-4 first:mt-0"
                       key={i}
                     >
-                      <div className="mb-6 flex w-full flex-col items-start justify-between px-4 sm:mb-4 sm:flex-row">
-                        <div className="flex w-full max-w-[420px] flex-col items-start justify-start">
-                          <h2 className="text-xl font-medium capitalize">
-                            {`Attendees ${i + 1}`}
+                      <div className="mb-5 flex w-full flex-col items-start justify-between px-4 sm:flex-row">
+                        <div className="block w-full text-center">
+                          <h2 className="text-xl font-medium capitalize text-white">
+                            {`Festival Ticket`}
                           </h2>
-                          <span className="mt-1 text-sm font-light text-gray-500">
-                            {`Please complete the form with your attendee details.`}
-                          </span>
                         </div>
-                        {isBillingFilled && i <= 0 ? (
-                          <div className="mr-0 mt-3 sm:-mr-2 sm:mt-0">
-                            <button
-                              id="ca25Btn_CopyBillingDetailCheckout"
-                              type="button"
-                              aria-label="Button for Copy Billing Detail(Checkouts)"
-                              aria-labelledby="Button for Copy Billing Detail(Checkouts)"
-                              onClick={(e) => hndleCopy_BillingToAttendee(e)}
-                              className="text-black-900"
-                            >
-                              <Badge
-                                label="Same as a Billing Details"
-                                type="dark"
-                                withHover={true}
-                                withUnderline={true}
-                                icons={
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-4 w-4"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  >
-                                    <rect
-                                      width="8"
-                                      height="4"
-                                      x="8"
-                                      y="2"
-                                      rx="1"
-                                      ry="1"
-                                    />
-                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-                                    <path d="M12 11h4" />
-                                    <path d="M12 16h4" />
-                                    <path d="M8 11h.01" />
-                                    <path d="M8 16h.01" />
-                                  </svg>
-                                }
-                              />
-                            </button>
-                          </div>
-                        ) : null}
-                        {isFormCheckouts.stepForm >= 2 ? (
-                          <div className="mr-0 mt-3 sm:-mr-4 sm:mt-0">
-                            <button
-                              id="ca25Btn_CopyOtherDetailCheckout"
-                              type="button"
-                              aria-label="Button for Copy Other Detail(Checkouts)"
-                              aria-labelledby="Button for Copy Other Detail(Checkouts)"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                hndleCopy_OtherDetail(
-                                  [
-                                    `#tktCAForm_CountryAttndee${isFormCheckouts.stepForm}Checkout`,
-                                    `#tktCAForm_WhatTypeOfConnectionsAttndee${isFormCheckouts.stepForm}Checkout`,
-                                    `#tktCAForm_DidYouHearAboutAttndee${isFormCheckouts.stepForm}Checkout`,
-                                  ],
-                                  isFormCheckouts.stepForm
-                                );
-                              }}
-                              className="text-black-900"
-                            >
-                              <Badge
-                                label="Some details are the same"
-                                type="dark"
-                                withHover={true}
-                                withUnderline={true}
-                                icons={
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-4 w-4"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  >
-                                    <rect
-                                      width="8"
-                                      height="4"
-                                      x="8"
-                                      y="2"
-                                      rx="1"
-                                      ry="1"
-                                    />
-                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-                                    <path d="M12 11h4" />
-                                    <path d="M12 16h4" />
-                                    <path d="M8 11h.01" />
-                                    <path d="M8 16h.01" />
-                                  </svg>
-                                }
-                              />
-                            </button>
-                          </div>
-                        ) : null}
                       </div>
+
                       <div className="inline-flex w-full flex-col space-y-4 rounded-xl bg-white px-4 py-4">
+                        <div className="flex w-full flex-col items-start justify-between sm:flex-row">
+                          <div className="flex w-full max-w-[420px] flex-col items-start justify-start">
+                            <h2 className="text-xl font-medium capitalize">
+                              {`Attendees ${i + 1}`}
+                            </h2>{' '}
+                            <span className="mt-1 text-sm font-light text-gray-500">
+                              {`Please complete the form with your attendee details.`}
+                            </span>
+                          </div>
+                          {isBillingFilled && i <= 0 ? (
+                            <div className="mr-0 mt-3 sm:mt-1">
+                              <button
+                                id="ca25Btn_CopyBillingDetailCheckout"
+                                type="button"
+                                aria-label="Button for Copy Billing Detail(Checkouts)"
+                                aria-labelledby="Button for Copy Billing Detail(Checkouts)"
+                                onClick={(e) => hndleCopy_BillingToAttendee(e)}
+                                className="text-black-900"
+                              >
+                                <Badge
+                                  label="Same as a Billing Details"
+                                  type="dark"
+                                  withHover={true}
+                                  withUnderline={true}
+                                  icons={
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      className="h-4 w-4"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeWidth="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                    >
+                                      <rect
+                                        width="8"
+                                        height="4"
+                                        x="8"
+                                        y="2"
+                                        rx="1"
+                                        ry="1"
+                                      />
+                                      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                                      <path d="M12 11h4" />
+                                      <path d="M12 16h4" />
+                                      <path d="M8 11h.01" />
+                                      <path d="M8 16h.01" />
+                                    </svg>
+                                  }
+                                />
+                              </button>
+                            </div>
+                          ) : null}
+                          {isFormCheckouts.stepForm >= 2 ? (
+                            <div className="mr-0 mt-3 sm:mt-0">
+                              <button
+                                id="ca25Btn_CopyOtherDetailCheckout"
+                                type="button"
+                                aria-label="Button for Copy Other Detail(Checkouts)"
+                                aria-labelledby="Button for Copy Other Detail(Checkouts)"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  hndleCopy_OtherDetail(
+                                    [
+                                      `#tktCAForm_CountryAttndee${isFormCheckouts.stepForm}Checkout`,
+                                      `#tktCAForm_WhatTypeOfConnectionsAttndee${isFormCheckouts.stepForm}Checkout`,
+                                      `#tktCAForm_DidYouHearAboutAttndee${isFormCheckouts.stepForm}Checkout`,
+                                    ],
+                                    isFormCheckouts.stepForm
+                                  );
+                                }}
+                                className="text-black-900"
+                              >
+                                <Badge
+                                  label="Some details are the same"
+                                  type="dark"
+                                  withHover={true}
+                                  withUnderline={true}
+                                  icons={
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      className="h-4 w-4"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeWidth="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                    >
+                                      <rect
+                                        width="8"
+                                        height="4"
+                                        x="8"
+                                        y="2"
+                                        rx="1"
+                                        ry="1"
+                                      />
+                                      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                                      <path d="M12 11h4" />
+                                      <path d="M12 16h4" />
+                                      <path d="M8 11h.01" />
+                                      <path d="M8 16h.01" />
+                                    </svg>
+                                  }
+                                />
+                              </button>
+                            </div>
+                          ) : null}
+                        </div>
+
+                        <div className="mb-5 mt-4 flex w-full border-t border-dashed border-gray-200"></div>
                         <AttendeeDetailCheckouts
                           ipAddress={
                             isIpAddress.country !== undefined
                               ? isIpAddress.country.toLowerCase()
                               : 'id'
                           }
+                          watch={haveCompantAttendee}
                           fieldForm={isFormCheckouts.fields}
                           country={isCountry}
                           register={register}
@@ -837,96 +822,72 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                           getValues={getValues}
                           errors={errors}
                           arrIndex={i + 1}
-                        />
-                      </div>
-
-                      <div className="my-4 flex w-full flex-col items-start justify-between px-4 sm:flex-row">
-                        <div className="flex w-full max-w-[399px] flex-col items-start justify-start">
-                          <h2 className="text-lg font-medium capitalize">
-                            {`Company`}
-                          </h2>
-                          <span className="mt-1 text-sm font-light text-gray-500">
-                            {`Please enter the company information to match the
-                          details of the participants in attendance.`}
-                          </span>
-                        </div>
-                        {isFormCheckouts.stepForm >= 2 &&
-                        getValues(`haveCompanyAttndee${i + 1}`) === true &&
-                        Object.values(isStepToggledCompany).some(
-                          (toggled) => toggled
-                        ) ? (
-                          <div className="mr-0 mt-3 sm:-mr-4 sm:mt-0">
-                            <button
-                              id="ca25Btn_CopyCompanyDetailCheckout"
-                              type="button"
-                              aria-label="Button for Copy Company Detail(Checkouts)"
-                              aria-labelledby="Button for Copy Company Detail(Checkouts)"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                hndleCopy_CompanyDetail(
-                                  [
-                                    `#tktCAForm_JobPositionAttndee${isFormCheckouts.stepForm}Checkout`,
-                                    `#tktCAForm_CompanyFocusAttndee${isFormCheckouts.stepForm}Checkout`,
-                                    `#tktCAForm_CompanySizeAttndee${isFormCheckouts.stepForm}Checkout`,
-                                  ],
-                                  isFormCheckouts.stepForm,
-                                  Object.entries(isStepToggledCompany)
-                                    .filter(([key, value]) => value)
-                                    .map(([key]) => Number(key))
-                                    .sort((a, b) => a - b)
-                                    .pop()
-                                );
-                              }}
-                              className="text-black-900"
-                            >
-                              <Badge
-                                label="Same as Company Details"
-                                type="dark"
-                                withHover={true}
-                                withUnderline={true}
-                                icons={
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-4 w-4"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  >
-                                    <rect
-                                      width="8"
-                                      height="4"
-                                      x="8"
-                                      y="2"
-                                      rx="1"
-                                      ry="1"
-                                    />
-                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-                                    <path d="M12 11h4" />
-                                    <path d="M12 16h4" />
-                                    <path d="M8 11h.01" />
-                                    <path d="M8 16h.01" />
-                                  </svg>
-                                }
-                              />
-                            </button>
-                          </div>
-                        ) : null}
-                      </div>
-                      <div
-                        className={`${haveCompantAttendee === true ? 'pointer-events-auto' : 'pointer-events-none'} inline-flex w-full flex-col space-y-4 rounded-xl bg-white px-4 py-4`}
-                      >
-                        <CompanyDetailCheckout
-                          fieldForm={isFormCheckouts.fields}
-                          watch={haveCompantAttendee}
-                          register={register}
-                          setValue={setValue}
-                          getValues={getValues}
-                          errors={errors}
-                          arrIndex={i + 1}
-                        />
+                        >
+                          {isFormCheckouts.stepForm >= 2 &&
+                          getValues(`haveCompanyAttndee${i + 1}`) === 'true' &&
+                          Object.values(isStepToggledCompany).some(
+                            (toggled) => toggled
+                          ) ? (
+                            <div className="mr-0 mt-3 sm:mt-0">
+                              <button
+                                id="ca25Btn_CopyCompanyDetailCheckout"
+                                type="button"
+                                aria-label="Button for Copy Company Detail(Checkouts)"
+                                aria-labelledby="Button for Copy Company Detail(Checkouts)"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  hndleCopy_CompanyDetail(
+                                    [
+                                      `#tktCAForm_JobPositionAttndee${isFormCheckouts.stepForm}Checkout`,
+                                      `#tktCAForm_CompanyFocusAttndee${isFormCheckouts.stepForm}Checkout`,
+                                      `#tktCAForm_CompanySizeAttndee${isFormCheckouts.stepForm}Checkout`,
+                                    ],
+                                    isFormCheckouts.stepForm,
+                                    Object.entries(isStepToggledCompany)
+                                      .filter(([key, value]) => value)
+                                      .map(([key]) => Number(key))
+                                      .sort((a, b) => a - b)
+                                      .pop()
+                                  );
+                                }}
+                                className="text-black-900"
+                              >
+                                <Badge
+                                  label="Same as Company Details"
+                                  type="dark"
+                                  withHover={true}
+                                  withUnderline={true}
+                                  icons={
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      className="h-4 w-4"
+                                      viewBox="0 0 24 24"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeWidth="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                    >
+                                      <rect
+                                        width="8"
+                                        height="4"
+                                        x="8"
+                                        y="2"
+                                        rx="1"
+                                        ry="1"
+                                      />
+                                      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                                      <path d="M12 11h4" />
+                                      <path d="M12 16h4" />
+                                      <path d="M8 11h.01" />
+                                      <path d="M8 16h.01" />
+                                    </svg>
+                                  }
+                                />
+                              </button>
+                            </div>
+                          ) : null}
+                        </AttendeeDetailCheckouts>
                       </div>
                     </div>
                   ) : null;
@@ -1050,7 +1011,6 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
                 setValue={setValue}
                 getValues={getValues}
                 errors={errors}
-                onAlert={hndleAlert_Change}
               >
                 <Card>
                   <BoardSubmitCheckout register={register} errors={errors} />
@@ -1101,14 +1061,6 @@ const Checkout = ({ ipAddress, country, formCheckout }) => {
 
       {/* @footer */}
       <Footer />
-
-      {/* @alert */}
-      <Alerts
-        type={isAlert.type}
-        label={isAlert.message}
-        visible={isAlert.status}
-        onClose={handleCloseAlert}
-      />
     </>
   );
 };

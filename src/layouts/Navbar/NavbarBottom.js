@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 // @lib/controller & helper
@@ -9,16 +9,36 @@ import { useMethod } from '@lib/hooks/Method';
 import Container from '@components/Container';
 import CartStore from '@components/CartStore';
 
-const NavbarBottom = ({ cartProducts = [] }) => {
+const NavbarBottom = ({ cartProducts = [], nonStore = true }) => {
   const router = useRouter();
   const { checkTotalQtyCart, getTotalCart } = useCart();
   const { toggleOverlayPopUp } = useMethod();
   const [isLoading, setIsLoading] = useState(false);
 
+  // @handle(Auto Close PopUp)
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (nonStore === false) {
+        const elBckdrp = document.querySelector(
+          '.ca2025BckdrpOverflay_PopUpMobile'
+        );
+        if (elBckdrp.classList.contains('active')) {
+          toggleOverlayPopUp(
+            '.ca2025BckdrpOverflay_PopUpMobile',
+            '.ca2025CartPopUp_Mobile'
+          );
+        }
+      }
+    };
+    router.events.on('routeChangeStart', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+    };
+  }, [router.events, toggleOverlayPopUp]);
+
   // @redirect(Checkout)
   const reCheckout = async () => {
     setIsLoading(true);
-
     setTimeout(async () => {
       await router.push('/checkout');
       setIsLoading(false);
@@ -31,8 +51,9 @@ const NavbarBottom = ({ cartProducts = [] }) => {
         className={`ca25NavbarBottom pointer-events-auto fixed inset-x-0 bottom-0 top-auto z-base flex h-auto w-full flex-col items-center justify-center pb-2 opacity-100 lg:pointer-events-none lg:hidden lg:opacity-0`}
       >
         <CartStore
-          id="ca2025Overflay_PopUpMobile"
+          id="ca2025CartPopUp_Mobile"
           type="mobile"
+          backdrop=".ca2025BckdrpOverflay_PopUpMobile"
           store={cartProducts}
           totalCart={getTotalCart(cartProducts)}
         />
@@ -49,7 +70,10 @@ const NavbarBottom = ({ cartProducts = [] }) => {
                 aria-roledescription="Button Cart (Coinfest Asia 2025)"
                 onClick={(e) => {
                   e.preventDefault();
-                  toggleOverlayPopUp('.ca2025Overflay_PopUpMobile');
+                  toggleOverlayPopUp(
+                    '.ca2025BckdrpOverflay_PopUpMobile',
+                    '.ca2025CartPopUp_Mobile'
+                  );
                 }}
               >
                 {cartProducts?.length > 0 && (
@@ -74,9 +98,9 @@ const NavbarBottom = ({ cartProducts = [] }) => {
                 </svg>
               </button>
             </div>
-            <div className="flex w-max flex-row items-center space-x-2">
+            <div className="block w-max">
               <button
-                className={`h-[46px] w-[106px] cursor-pointer rounded-lg bg-primary px-5 py-3.5 text-sm leading-initial text-white disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-black-900 sm:rounded-[10px] sm:px-6 sm:py-4 sm:text-base`}
+                className={`h-[46px] w-[106px] cursor-pointer rounded-lg bg-primary px-5 py-3.5 text-sm leading-initial text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 sm:h-[56px] sm:w-[138px] sm:rounded-[10px] sm:px-6 sm:py-0 sm:text-base lg:py-4`}
                 type="button"
                 tabIndex={-1}
                 aria-label="Button on Processed Checkout (Coinfest Asia 2025)"
@@ -110,16 +134,6 @@ const NavbarBottom = ({ cartProducts = [] }) => {
           </div>
         </Container>
       </nav>
-
-      {/* @banner-ticket(backcover) */}
-      <div
-        id="ca2025BckdrpOverflay_PopUp"
-        className="ca2025BckdrpOverflay_PopUp nonActive fixed inset-x-0 inset-y-0 z-[80] block h-svh cursor-pointer bg-black-900/60 backdrop-blur-[2px] transition-[opacity,backdrop-filter] duration-[0.3s] ease-in-out"
-        onClick={(e) => {
-          e.preventDefault();
-          toggleOverlayPopUp(e.target.getAttribute('data-target'));
-        }}
-      ></div>
     </>
   );
 };

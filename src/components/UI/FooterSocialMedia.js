@@ -14,21 +14,20 @@ const FooterSocialMedia = ({ list = [] }) => {
           <li className="mr-4 last:mr-0" key={i}>
             <Link
               className="outline-none focus-visible:outline-none"
-              href={gtRslt.url}
-              title={`List Social Media ${publicRuntimeConfig.siteAppName}`}
-              aria-label={`List Social Media ${publicRuntimeConfig.siteAppName}`}
-              target="_blank"
+              href={gtRslt?.url || '#'}
+              title={`${publicRuntimeConfig?.siteAppName} List Social Media ${gtRslt?.label}`}
+              aria-label={`${publicRuntimeConfig?.siteAppName} List Social Media ${gtRslt?.label}`}
               rel="noopener noreferrer"
+              target="_blank"
             >
               <Image
                 className="mx-auto my-auto aspect-auto h-6 w-6"
-                src={gtRslt.icons}
-                alt={`${publicRuntimeConfig.siteAppName} (${gtRslt.label} - Icon Social Media)`}
-                aria-label={`Icon Social Media ${publicRuntimeConfig.siteAppName}`}
+                src={gtRslt?.icons}
+                alt={`${publicRuntimeConfig?.siteAppName} Social Media ${gtRslt?.label} Icons`}
+                aria-label={`${publicRuntimeConfig?.siteAppName} Social Media ${gtRslt?.label} Icons`}
                 height={24}
                 width={24}
                 quality="87"
-                fetchPriority="auto"
               />
             </Link>
           </li>

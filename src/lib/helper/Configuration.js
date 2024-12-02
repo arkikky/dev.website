@@ -1,3 +1,14 @@
+// @dom-count
+export function getDOMParseCount(t) {
+  if (typeof t === 'undefined' || t === null) return;
+
+  const parser = new DOMParser();
+  const parsedDocument = parser.parseFromString(t, 'text/html');
+  const plainText = parsedDocument.body.textContent || '';
+
+  return plainText.trim().length;
+}
+
 // @split(String)
 export function getSplitString(d) {
   const getString = d;

@@ -1,18 +1,22 @@
 export function useMethod() {
   // @toggle(Overflay PopUp)
-  const toggleOverlayPopUp = (setElmnt) => {
+  const toggleOverlayPopUp = (elmntBackdrop, setElmnt) => {
     const toggleClass = (el, activeClass, inactiveClass) => {
-      el.classList.toggle(activeClass);
-      el.classList.toggle(inactiveClass);
+      if (el) {
+        el.classList.toggle(activeClass);
+        el.classList.toggle(inactiveClass);
+      }
     };
 
-    const elBckdrp = document.querySelector('.ca2025BckdrpOverflay_PopUp');
+    const elBckdrp = document.querySelector(elmntBackdrop);
     const elOverflayPopUp = document.querySelector(setElmnt);
 
-    elBckdrp.setAttribute('data-target', setElmnt);
-
-    if (elBckdrp && elOverflayPopUp) {
+    if (elBckdrp) {
       toggleClass(elBckdrp, 'active', 'nonActive');
+    }
+
+    if (elOverflayPopUp) {
+      elBckdrp.setAttribute('data-target', setElmnt);
       toggleClass(elOverflayPopUp, 'active', 'nonActive');
     }
   };

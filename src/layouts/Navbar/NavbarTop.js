@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { useRouter } from 'next/router';
 import getConfig from 'next/config';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -20,6 +21,7 @@ import Container from '@components/Container';
 import CartStore from '@components/CartStore';
 
 const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
+  const router = useRouter();
   const { getTotalCart } = useCart();
   const { toggleOverlayPopUp } = useMethod();
 
@@ -30,13 +32,35 @@ const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
     minutes: 0,
     seconds: 0,
   });
+
+  // @handle(Auto Close PopUp)
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (nonStore === false) {
+        const elBckdrp = document.querySelector(
+          '.ca2025BckdrpOverflay_PopUpGeneral'
+        );
+
+        if (elBckdrp.classList.contains('active')) {
+          toggleOverlayPopUp(
+            '.ca2025BckdrpOverflay_PopUpGeneral',
+            '.ca2025CartPopUp_General'
+          );
+        }
+      }
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
   // @countdown(Date)
   const setDate = new Date('2025-08-22T12:00:00').getTime();
   useEffect(() => {
     const timer = setInterval(() => {
       setCountdown(calculateCountdown(setDate));
     }, 1000);
-
     return () => {
       clearInterval(timer);
     };
@@ -47,12 +71,12 @@ const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
       <nav className="fixed inset-x-0 bottom-auto top-0 z-base flex h-auto w-full flex-col items-center justify-center py-2">
         <Container>
           <div className="flex flex-row items-center justify-between gap-y-6 rounded-xl border-2 border-solid border-gray-400/[0.18] bg-gray-300/25 px-1 py-1 backdrop-blur-md sm:gap-y-0 sm:rounded-2xl sm:px-1.5 sm:py-1.5">
-            <div className="flex w-full flex-row items-center justify-between sm:w-max">
+            <div className="block w-full sm:w-max">
               <Link className="ml-2 block w-max sm:ml-3 lg:ml-3" href="/">
                 <Image
                   className="mx-auto my-auto h-7.5 w-auto sm:h-9"
                   src={'/assets/images/ca2025Brand.svg'}
-                  alt={`${publicRuntimeConfig.siteAppName} (Primary Brand - Navbar Checkout)`}
+                  alt={`${publicRuntimeConfig.siteAppName} Primary Brand LOGO Navbar`}
                   height={58}
                   width={170}
                   quality="87"
@@ -61,8 +85,10 @@ const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
               </Link>
             </div>
 
+            {/* @content */}
             <div className="flex w-max flex-row">
-              {nonStore == true && (
+              {/* @cart(store) */}
+              {nonStore === false && (
                 <div className="col relative mr-2.5 hidden items-center justify-center lg:flex">
                   <button
                     className="relative flex h-[80%] flex-col items-center justify-center rounded-lg bg-black-900 px-3 py-3 text-sm leading-initial text-white sm:h-auto sm:rounded-[10px] sm:text-base"
@@ -73,7 +99,10 @@ const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
                     aria-roledescription="Button Cart (Coinfest Asia 2025)"
                     onClick={(e) => {
                       e.preventDefault();
-                      toggleOverlayPopUp('.ca2025Overflay_PopUpGeneral');
+                      toggleOverlayPopUp(
+                        '.ca2025BckdrpOverflay_PopUpGeneral',
+                        '.ca2025CartPopUp_General'
+                      );
                     }}
                   >
                     {cartProducts?.length > 0 && (
@@ -99,13 +128,16 @@ const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
                   </button>
 
                   <CartStore
-                    id="ca2025Overflay_PopUpGeneral"
+                    id="ca2025CartPopUp_General"
+                    backdrop=".ca2025BckdrpOverflay_PopUpGeneral"
                     type="general"
                     store={cartProducts}
                     totalCart={getTotalCart(cartProducts)}
                   />
                 </div>
               )}
+
+              {/* @event(date) */}
               <div
                 className={`pointer-events-none relative flex h-[59px] w-full min-w-[178px] max-w-[178px] cursor-default flex-col rounded-lg bg-primary px-2.5 py-2 sm:h-[68px] sm:min-w-[221px] sm:max-w-[221px] sm:rounded-xl sm:px-3 sm:py-2.5`}
               >
@@ -141,19 +173,19 @@ const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
                   <SplideSlide data-splide-interval="5000">
                     <div className="relative flex h-12 flex-col items-start justify-start overflow-hidden">
                       <span className={`text-sm font-light text-white/70`}>
-                        Event Date
+                        {`Event Date`}
                       </span>
                       <div
                         className={`absolute inset-x-0 bottom-1 top-auto min-w-max font-bevietnamPro text-base font-normal leading-inherit text-white sm:bottom-0 sm:text-xl`}
                       >
-                        22-23 August 2025
+                        {`22-23 August 2025`}
                       </div>
                     </div>
                   </SplideSlide>
                   <SplideSlide data-splide-interval="6000">
                     <div className="relative flex h-12 flex-col items-start justify-start overflow-hidden">
                       <span className={`text-sm font-light text-white/70`}>
-                        Starting in
+                        {`Starting in`}
                       </span>
                       <div
                         className={`absolute inset-x-0 bottom-1 top-auto min-w-max font-bevietnamPro text-base font-normal leading-inherit text-white sm:bottom-0 sm:text-xl`}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Toaster } from 'sonner';
 import getConfig from 'next/config';
 import Head from 'next/head';
 
@@ -12,6 +13,9 @@ import '@styles/globals.css';
 import { Provider } from 'react-redux';
 import store from '@reduxState/store';
 
+// @lib/controller & helper
+import { useMethod } from '@lib/hooks/Method';
+
 // @script
 import PrelineScript from '@components/Script/PrelineScript';
 
@@ -19,6 +23,8 @@ import PrelineScript from '@components/Script/PrelineScript';
 import Layouts from '@layouts/Layouts';
 
 const App = ({ Component, pageProps }) => {
+  const { toggleOverlayPopUp } = useMethod();
+
   // @with-layouts
   const getLayout =
     Component.getLayout ||
@@ -27,9 +33,6 @@ const App = ({ Component, pageProps }) => {
         <Layouts cartStore={pageProps?.products}>
           <Component {...pageProps} />
         </Layouts>
-
-        {/* @script */}
-        <PrelineScript />
       </>
     ));
 
@@ -67,6 +70,38 @@ const App = ({ Component, pageProps }) => {
         </Head>
 
         {getLayout(<Component {...pageProps} />)}
+        <Toaster
+          position="bottom-left"
+          richColors
+          gap="10"
+          dismissible={false}
+          pauseWhenPageIsHidden={true}
+        />
+
+        {/* @pop-up(backcover) */}
+        <div
+          id="ca2025BckdrpOverflay_PopUpGeneral"
+          className="ca2025BckdrpOverflay_PopUpGeneral nonActive fixed inset-x-0 inset-y-0 z-[80] block h-svh cursor-pointer bg-black-900/60 backdrop-blur-[2px] transition-[opacity,backdrop-filter] duration-[0.3s] ease-in-out"
+          onClick={(e) => {
+            e.preventDefault();
+            toggleOverlayPopUp(
+              '.ca2025BckdrpOverflay_PopUpGeneral',
+              e.target.getAttribute('data-target')
+            );
+          }}
+        ></div>
+        {/* @pop-up(backcover) */}
+        <div
+          id="ca2025BckdrpOverflay_PopUpMobile"
+          className="ca2025BckdrpOverflay_PopUpMobile nonActive fixed inset-x-0 inset-y-0 z-[80] block h-svh cursor-pointer bg-black-900/60 backdrop-blur-[2px] transition-[opacity,backdrop-filter] duration-[0.3s] ease-in-out"
+          onClick={(e) => {
+            e.preventDefault();
+            toggleOverlayPopUp(
+              '.ca2025BckdrpOverflay_PopUpMobile',
+              e.target.getAttribute('data-target')
+            );
+          }}
+        ></div>
 
         {/* @script */}
         <PrelineScript />

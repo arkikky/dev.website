@@ -87,7 +87,7 @@ const Layouts = ({ cartStore, children }) => {
       </Head>
 
       {/* @navbar */}
-      <NavbarTop cartProducts={isCartProducts.cart} />
+      <NavbarTop cartProducts={isCartProducts.cart} nonStore={false} />
 
       {/* @main */}
       {children}
