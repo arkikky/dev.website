@@ -1,17 +1,18 @@
-// @init
-const baseUrl = `https://api.hubapi.com`;
-const tokenKey = 'pat-na1-68646d39-14c0-4c60-a133-11611743c279';
+const bseURL = `https://api.hubapi.com`;
+const tokenApp = "pat-na1-68646d39-14c0-4c60-a133-11611743c279";
+// const tokenApp = "pat-na1-59dabf54-1691-4486-8df3-767f45999cd1"; @v2
 
-export async function getFecthHbSpt(url) {
-  const res = await fetch(`${baseUrl}${url}`, {
-    method: 'GET',
+// @fetch-api
+export async function getFetch(url) {
+  const rs = await fetch(`${bseURL}${url}`, {
+    method: "GET",
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Origin: '*',
-      Authorization: `Bearer ${tokenKey}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Origin: "*",
+      Authorization: `Bearer ${tokenApp}`,
     },
-    cache: 'no-store',
+    cache: "no-store",
   })
     .then((res) => {
       if (res.ok) {
@@ -22,23 +23,21 @@ export async function getFecthHbSpt(url) {
       return false;
     });
 
-  return res;
+  return rs;
 }
 
-export async function submitFormHbSpt(data, key) {
-  const res = await fetch(
-    `https://api.hsforms.com/submissions/v3/integration/submit/21063184/${key}`,
+export async function SubmitForm(isData, isKey) {
+  const rs = await fetch(
+    `https://api.hsforms.com/submissions/v3/integration/submit/21063184/${isKey}`,
     {
-      method: 'POST',
+      method: "POST",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Origin: '*',
-        Authorization: `Bearer ${tokenKey}`,
+        Authorization: `Bearer ${tokenApp}`,
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
-      cache: 'no-store',
-    }
+      body: JSON.stringify(isData),
+      cache: "no-store",
+    },
   )
     .then((res) => {
       if (res.ok) {
@@ -49,5 +48,5 @@ export async function submitFormHbSpt(data, key) {
       return false;
     });
 
-  return res;
+  return rs;
 }

@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
 const Main = ({ className = null, children }) => {
-  const isDfltClss = `tktCA25Main`;
-  const isAddClss = className ? `${isDfltClss} ${className}` : `${isDfltClss}`;
+  const dfltClss = `caMain`;
+  const addClss = className ? `${dfltClss} ${className}` : `${dfltClss}`;
 
   return (
     <>
-      <main className={`${isAddClss}`}>{children}</main>
+      <main className={`${addClss}`}>{children}</main>
     </>
   );
 };

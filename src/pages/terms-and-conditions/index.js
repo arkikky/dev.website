@@ -1,39 +1,86 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import getConfig from "next/config";
+import Head from "next/head";
+import Link from "next/link";
 
-// @lib/controller & helper
-import { getFetch } from '@lib/controller/API';
+// @get .config
+const { publicRuntimeConfig } = getConfig();
 
 // @components
-import HeadGraphSeo from '@components/Head';
-import Main from '@components/Main';
-import Container from '@components/Container';
+import Main from "@components/Main";
+import Container from "@components/Container";
+import FooterBanner from "@layouts/SponsorshipBanner";
 
-const TermsAndConditions = ({}) => {
+// @layouts
+import Navbar from "@layouts/Navbar";
+import Footer from "@layouts/Footer";
+
+const TermAndConditions = (props) => {
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo title={`Terms And Conditions`} otherPage={true} />
+      <Head>
+        <title>{`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}</title>
+        <meta
+          name="title"
+          content={`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}
+        />
+        <meta name="description" content={`${publicRuntimeConfig.siteDesc}`} />
+
+        {/* @open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${publicRuntimeConfig.siteUrl}`} />
+        <meta
+          property="og:title"
+          content={`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}
+        />
+        <meta
+          property="og:description"
+          content={`${publicRuntimeConfig.siteDesc}`}
+        />
+        <meta property="og:image" content="/assets/caGeneral-Thumbnails.png" />
+        <meta
+          property="og:site_name"
+          content={`${publicRuntimeConfig.siteTitle}`}
+        />
+
+        {/* @twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content={`${publicRuntimeConfig.siteUrl}`}
+        />
+        <meta
+          property="twitter:title"
+          content={`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}
+        />
+        <meta
+          property="twitter:description"
+          content={`${publicRuntimeConfig.siteDesc}`}
+        />
+        <meta
+          property="twitter:image"
+          content="/assets/caGeneral-Thumbnails.png"
+        />
+      </Head>
+
+      {/* @navbar */}
+      <Navbar back={true} />
 
       {/* @main */}
-      <Main className="relative flex flex-col pb-12 pt-[141px] sm:pb-12 sm:pt-[151px]">
-        <Container>
+      <Main className="relative pt-[169px] xl:pt-[149px] 2xl:pt-[195px]">
+        <Container className="relative">
           <div className="relative grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-full col-start-1 sm:col-span-10 sm:col-start-2">
-              <div className="mb-12 flex flex-col items-center justify-center text-center sm:mb-16">
-                <h1 className="w-full max-w-full text-[28px] font-bold leading-[38px] sm:text-[36px] sm:leading-[48px]">
-                  Terms & Conditions
+              <div className="ca2024ArtcleFrmattd mb-8 font-bevietnamPro text-base font-light leading-relaxed text-black-900 sm:mb-0">
+                <h1 className="mb-12 text-start sm:mb-18 sm:text-center">
+                  TERMS & CONDITIONS
                 </h1>
-                <p className="mt-2 font-light text-gray-400">
-                  Last updated: November 01, 2024
-                </p>
-              </div>
-              <div className="ca25Article_Frmatt relative flex flex-col">
                 <p>
-                  <strong>Welcome to Coinfest Asia!</strong>, its subsidiaries,
-                  and affiliates (collectively, “Company”) own and operate the
-                  websites coinfest.asia, ticket.coinfest.asia, and related
-                  websites and mobile applications (collectively, the
+                  <strong>Welcome to Coinfest Asia!</strong> Coinfest Asia, its
+                  subsidiaries, and affiliates (collectively, “Company”) own and
+                  operate the websites coinfest.asia, ticket.coinfest.asia, and
+                  related websites and mobile applications (collectively, the
                   “Properties” and, each, a “Property”). These include all
                   information, documents, text, audio, visual, and graphics
                   (excluding Third-Party Content) on the Properties
@@ -44,12 +91,8 @@ const TermsAndConditions = ({}) => {
                   subject to the terms and conditions set forth in this document
                   (collectively, the “Terms of Use”). <br></br> <br></br>
                   <strong>Contact Information.</strong> If you have any
-                  questions regarding these Terms, please contact us at{' '}
-                  <Link
-                    href="mailto:hi@coinfest.asia"
-                    target="_blank"
-                    title="Coinfest Asia 2025 (Email)"
-                  >
+                  questions regarding these Terms, please contact us at{" "}
+                  <Link href="mailto:hi@coinfest.asia" target="_blank">
                     hi@coinfest.asia.
                   </Link>
                   <br></br>
@@ -117,7 +160,7 @@ const TermsAndConditions = ({}) => {
                   acts or threats of terrorism, cyber-attacks, government
                   actions, travel-related problems, loss of employment, and/or
                   duplicate purchases. Company will not issue refunds,
-                  deferrals, or credits for Credentials that have been revoked.{' '}
+                  deferrals, or credits for Credentials that have been revoked.{" "}
                   <br></br>
                   <br></br>
                   Company will not issue refunds or credits due to failure to
@@ -145,7 +188,7 @@ const TermsAndConditions = ({}) => {
                 <p>
                   <strong>
                     Intellectual Property; Limited License to Users.
-                  </strong>{' '}
+                  </strong>{" "}
                   The Properties, the Materials, and the Products and/or
                   Services are protected by copyright, trademark, patent, and/or
                   other intellectual property laws. Any unauthorized use of the
@@ -205,7 +248,7 @@ const TermsAndConditions = ({}) => {
                   voice, and statements (whether in writing or orally) for any
                   purpose, including, without limitation, commercial purposes,
                   without compensation or credit to the Participant, in any and
-                  all media, worldwide, now known or hereafter devised.{' '}
+                  all media, worldwide, now known or hereafter devised.{" "}
                   <br></br>
                   <br></br>
                 </p>
@@ -321,7 +364,7 @@ const TermsAndConditions = ({}) => {
                   individuals with mobility impairments. Company is committed to
                   making the event as accessible as possible and will provide
                   assistance where feasible. Please contact us in advance if you
-                  have specific accessibility needs through{' '}
+                  have specific accessibility needs through{" "}
                   <Link href="mailto:hi@coinfest.asia" target="_blank">
                     hi@coinfest.asia.
                   </Link>
@@ -410,19 +453,23 @@ const TermsAndConditions = ({}) => {
             </div>
           </div>
         </Container>
+
+        {/* @banner-email (Subscrbe) */}
+        <FooterBanner />
       </Main>
+
+      {/* @footer */}
+      <Footer />
     </>
   );
 };
 
-export const getStaticProps = async () => {
-  const isProducts = await getFetch(`/api/products`);
+export default TermAndConditions;
 
+export const getStaticProps = async () => {
   try {
     return {
-      props: {
-        products: isProducts || [],
-      },
+      props: {},
 
       revalidate: 900,
     };
@@ -433,4 +480,6 @@ export const getStaticProps = async () => {
   }
 };
 
-export default TermsAndConditions;
+TermAndConditions.getLayout = function PageLayout(page) {
+  return <>{page}</>;
+};

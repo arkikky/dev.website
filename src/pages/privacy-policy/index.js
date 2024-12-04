@@ -1,42 +1,93 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import getConfig from "next/config";
+import Head from "next/head";
+import Link from "next/link";
 
-// @lib/controller & helper
-import { getFetch } from '@lib/controller/API';
+// @get .config
+const { publicRuntimeConfig } = getConfig();
 
 // @components
-import HeadGraphSeo from '@components/Head';
-import Main from '@components/Main';
-import Container from '@components/Container';
+import Main from "@components/Main";
+import Container from "@components/Container";
+import FooterBanner from "@layouts/SponsorshipBanner";
 
-const PrivacyPolicy = ({}) => {
+import Navbar from "@layouts/Navbar";
+import Footer from "@layouts/Footer";
+
+const PrivacyPolicy = (props) => {
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo title={`Privacy Policy`} otherPage={true} />
+      <Head>
+        <title>{`Privacy Policy | ${publicRuntimeConfig.siteTitle}`}</title>
+        <meta
+          name="title"
+          content={`Privacy Policy | ${publicRuntimeConfig.siteTitle}`}
+        />
+        <meta name="description" content={`${publicRuntimeConfig.siteDesc}`} />
+
+        {/* @open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${publicRuntimeConfig.siteUrl}`} />
+        <meta
+          property="og:title"
+          content={`Privacy Policy | ${publicRuntimeConfig.siteTitle}`}
+        />
+        <meta
+          property="og:description"
+          content={`${publicRuntimeConfig.siteDesc}`}
+        />
+        <meta property="og:image" content="/assets/caGeneral-Thumbnails.png" />
+        <meta
+          property="og:site_name"
+          content={`${publicRuntimeConfig.siteTitle}`}
+        />
+
+        {/* @twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content={`${publicRuntimeConfig.siteUrl}`}
+        />
+        <meta
+          property="twitter:title"
+          content={`Privacy Policy | ${publicRuntimeConfig.siteTitle}`}
+        />
+        <meta
+          property="twitter:description"
+          content={`${publicRuntimeConfig.siteDesc}`}
+        />
+        <meta
+          property="twitter:image"
+          content="/assets/caGeneral-Thumbnails.png"
+        />
+      </Head>
+
+      {/* @navbar */}
+      <Navbar back={true} />
 
       {/* @main */}
-      <Main className="relative flex flex-col pb-12 pt-[141px] sm:pb-12 sm:pt-[151px]">
-        <Container>
+      <Main className="relative pt-[169px] xl:pt-[149px] 2xl:pt-[195px]">
+        <Container className="relative">
           <div className="relative grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-full col-start-1 sm:col-span-10 sm:col-start-2">
-              <div className="mb-12 flex flex-col items-center justify-center text-center sm:mb-16">
-                <h1 className="w-full max-w-[416px] text-[28px] font-bold leading-[38px] sm:text-[36px] sm:leading-[48px]">
+              <div className="ca2024ArtcleFrmattd mb-14 font-bevietnamPro text-base font-light leading-relaxed text-black-900 sm:mb-0">
+                <h1 className="mx-auto mb-6 w-full max-w-full text-start sm:mb-18 sm:max-w-[440px] sm:text-center">
                   Privacy Policy for Coinfest Asia
                 </h1>
-                <p className="mt-2 font-light text-gray-400">
-                  Last updated: November 01, 2024
-                </p>
-              </div>
-              <div className="ca25Article_Frmatt relative flex flex-col">
                 <p>
-                  <strong>Welcome to at Coinfest Asia</strong>, accessible from{' '}
+                  At Coinfest Asia, accessible from{" "}
                   <Link href="/">https://coinfest.asia</Link>, we prioritize the
                   privacy of our visitors. This Privacy Policy document outlines
                   the information collected and recorded by Coinfest Asia and
-                  how it is utilized.
+                  how it is utilized. <br></br> <br></br>If you have further
+                  questions or need additional information about our Privacy
+                  Policy, feel free to contact us through{" "}
+                  <Link href="mailto:hi@coinfest.asia" target="_blank">
+                    hi@coinfest.asia.
+                  </Link>
                 </p>
-                <h2>Log Files</h2>
+                <h2 className="uppercase">Log Files</h2>
                 <p>
                   Coinfest Asia employs standard log file procedures. These
                   files log visitors when they access websites. This practice is
@@ -50,15 +101,15 @@ const PrivacyPolicy = ({}) => {
                   administer the site, track users' movement on the website, and
                   gather demographic data.
                 </p>
-                <h2>Cookies And Web Beacons</h2>
+                <h2 className="uppercase">Cookies And Web Beacons</h2>
                 <p>
                   Like many other websites, Coinfest Asia utilizes 'cookies'.
                   These cookies store information such as visitors' preferences
                   and the pages visited on the website. This information is used
                   to enhance users' experiences by customizing webpage content
-                  based on their browser types and other data. <br></br>{' '}
+                  based on their browser types and other data. <br></br>{" "}
                   <br></br>For more general information on cookies, please refer
-                  to this{' '}
+                  to this{" "}
                   <Link
                     href="https://www.privacypolicyonline.com/what-are-cookies/"
                     target="_blank"
@@ -66,7 +117,7 @@ const PrivacyPolicy = ({}) => {
                     article.
                   </Link>
                 </p>
-                <h2>Third Party Advertisers</h2>
+                <h2 className="uppercase">Third Party Advertisers</h2>
                 <p>
                   Third-party ad servers or ad networks employ technologies like
                   cookies, JavaScript, or Web Beacons in their advertisements
@@ -84,7 +135,7 @@ const PrivacyPolicy = ({}) => {
                   about cookie management with specific web browsers, visit the
                   respective browsers' websites.
                 </p>
-                <h2>Children's Information</h2>
+                <h2 className="uppercase">Children's Information</h2>
                 <p>
                   In line with our commitment to prioritizing the protection of
                   children using the internet, we encourage parents and
@@ -96,7 +147,7 @@ const PrivacyPolicy = ({}) => {
                   make every effort to promptly remove such information from our
                   records.
                 </p>
-                <h2>Online Privacy Policy Only</h2>
+                <h2 className="uppercase">Online Privacy Policy Only</h2>
                 <p>
                   This Privacy Policy exclusively applies to our online
                   activities and pertains to visitors to our website in relation
@@ -104,11 +155,11 @@ const PrivacyPolicy = ({}) => {
                   This policy does not apply to information collected offline or
                   through channels other than this website.
                 </p>
-                <h2>Consent</h2>
+                <h2 className="uppercase">Consent</h2>
                 <p>
-                  By using our website, you hereby consent to our{' '}
+                  By using our website, you hereby consent to our{" "}
                   <Link href="/privacy-policy">Privacy Policy</Link> and agree
-                  to its{' '}
+                  to its{" "}
                   <Link href="/terms-and-conditions">
                     Terms and Conditions.
                   </Link>
@@ -117,19 +168,23 @@ const PrivacyPolicy = ({}) => {
             </div>
           </div>
         </Container>
+
+        {/* @banner-email (Subscrbe) */}
+        <FooterBanner />
       </Main>
+
+      {/* @footer */}
+      <Footer />
     </>
   );
 };
 
-export const getStaticProps = async () => {
-  const isProducts = await getFetch(`/api/products`);
+export default PrivacyPolicy;
 
+export const getStaticProps = async () => {
   try {
     return {
-      props: {
-        products: isProducts || [],
-      },
+      props: {},
 
       revalidate: 900,
     };
@@ -140,4 +195,6 @@ export const getStaticProps = async () => {
   }
 };
 
-export default PrivacyPolicy;
+PrivacyPolicy.getLayout = function PageLayout(page) {
+  return <>{page}</>;
+};

@@ -1,111 +1,96 @@
-import React from 'react';
-import { Toaster } from 'sonner';
-import getConfig from 'next/config';
-import Head from 'next/head';
+import React, { useEffect } from "react";
+import getConfig from "next/config";
+import Head from "next/head";
 
-// @get .config
+// # @get .config
 const { publicRuntimeConfig } = getConfig();
 
-// @style-css
-import '@styles/globals.css';
-
-// @redux
-import { Provider } from 'react-redux';
-import store from '@reduxState/store';
-
-// @lib/controller & helper
-import { useMethod } from '@lib/hooks/Method';
-
-// @script
-import PrelineScript from '@components/Script/PrelineScript';
+import "@styles/globals.css";
 
 // @layouts
-import Layouts from '@layouts/Layouts';
+import SuccessModal2025 from "@components/UI/Modal/SuccessModal2025";
+import InterestModal2025 from "@components/UI/Modal/InterestModal";
+import Layouts from "@layouts/Layout";
 
-const App = ({ Component, pageProps }) => {
-  const { toggleOverlayPopUp } = useMethod();
-
-  // @with-layouts
-  const getLayout =
-    Component.getLayout ||
-    ((page) => (
-      <>
-        <Layouts cartStore={pageProps?.products}>
-          <Component {...pageProps} />
-        </Layouts>
-      </>
-    ));
-
-  // @without-layouts
+// @head
+const ca2024Head = () => {
   return (
     <>
-      <Provider store={store}>
-        <Head>
-          <meta charSet="UTF-8" />
-          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-          <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-          <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
-          <meta name="description" content={publicRuntimeConfig.siteDesc} />
-          <meta name="author" content={'Coinfest Asia'} />
-          <link rel="mask-icon" href="/favicon.ico" color="#015AFD" />
-          <meta name="msapplication-TileColor" content="#015AFD" />
-          <meta name="theme-color" content="#F8FAFC" />
-          <meta name="msapplication-navbutton-color" content="#F8FAFC" />
-          <meta name="apple-mobile-web-app-capable" content="yes" />
-          <meta name="mobile-web-app-capable" content="yes" />
-          <meta
-            name="apple-mobile-web-app-status-bar-style"
-            content="#F8FAFC"
-          />
-          <link
-            rel="preconnect"
-            href="https://fonts.gstatic.com"
-            crossOrigin="true"
-          />
-          <link rel="manifest" href="/manifest.json" />
-        </Head>
-
-        {getLayout(<Component {...pageProps} />)}
-        <Toaster
-          position="bottom-left"
-          richColors
-          gap="10"
-          dismissible={false}
-          pauseWhenPageIsHidden={true}
+      <Head>
+        <meta charSet="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
+        <meta
+          name="keywords"
+          content="coinfestasia 2022, coinfestasia 2023, coinfestasia event, bigges crypto event, big crypto event, crypto event 2022, crypto event 2023, event, event website, website event, event planner, party planner, event planner website, planner conference, bali, web3, web3 news, web3 technology, crypto, crypto market, cryptonomics, blockchain, what is blockchain, blockchain technology, blockchain explained, blockchain news, metaverse, metaverse explained, metaverse expansion, metaverse news, nft, nft explained, nft meaning, nft art, nft crypto, nft crypto, how to sell nft art, nft exhibition"
         />
 
-        {/* @pop-up(backcover) */}
-        <div
-          id="ca2025BckdrpOverflay_PopUpGeneral"
-          className="ca2025BckdrpOverflay_PopUpGeneral nonActive fixed inset-x-0 inset-y-0 z-[80] block h-svh cursor-pointer bg-black-900/60 backdrop-blur-[2px] transition-[opacity,backdrop-filter] duration-[0.3s] ease-in-out"
-          onClick={(e) => {
-            e.preventDefault();
-            toggleOverlayPopUp(
-              '.ca2025BckdrpOverflay_PopUpGeneral',
-              e.target.getAttribute('data-target')
-            );
-          }}
-        ></div>
-        {/* @pop-up(backcover) */}
-        <div
-          id="ca2025BckdrpOverflay_PopUpMobile"
-          className="ca2025BckdrpOverflay_PopUpMobile nonActive fixed inset-x-0 inset-y-0 z-[80] block h-svh cursor-pointer bg-black-900/60 backdrop-blur-[2px] transition-[opacity,backdrop-filter] duration-[0.3s] ease-in-out"
-          onClick={(e) => {
-            e.preventDefault();
-            toggleOverlayPopUp(
-              '.ca2025BckdrpOverflay_PopUpMobile',
-              e.target.getAttribute('data-target')
-            );
-          }}
-        ></div>
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
 
-        {/* @script */}
-        <PrelineScript />
-      </Provider>
+        <meta name="author" content={`${publicRuntimeConfig.author}`} />
+        <link rel="mask-icon" href="/favicon.svg" color="#015AFD" />
+        <meta name="msapplication-TileColor" content="#015AFD" />
+        <meta name="theme-color" content="#015AFD" />
+        <meta name="msapplication-navbutton-color" content="#015AFD" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#015AFD" />
+
+        <link rel="canonical" href={publicRuntimeConfig.siteUrl} />
+      </Head>
+    </>
+  );
+};
+
+const App = ({ Component, pageProps }) => {
+  // @preline (Add Plugins)
+  useEffect(() => {
+    import("preline");
+
+    return () => {
+      undefined;
+    };
+  }, []);
+
+  // Wihtout (Navbar & Footer)
+  if (Component.getLayout) {
+    return Component.getLayout(
+      <>
+        {ca2024Head()}
+
+        <Component {...pageProps} />
+
+        {/* @modal */}
+        <SuccessModal2025 />
+        <InterestModal2025 />
+
+        {/* @backdrop (modal) */}
+        <div id="bckdrpModalActve"></div>
+      </>
+    );
+  }
+
+  return (
+    <>
+      {ca2024Head()}
+
+      <Layouts>
+        <Component {...pageProps} />
+      </Layouts>
+
+      {/* @modal */}
+      <SuccessModal2025 />
+      <InterestModal2025 />
+
+      {/* @backdrop (modal) */}
+      <div id="bckdrpModalActve"></div>
     </>
   );
 };

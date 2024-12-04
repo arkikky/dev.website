@@ -1,14 +1,11 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@reduxState/*": ["./src/redux/*"],
-      "@email/*": ["./emails/*"],
       "@lib/*": ["./src/lib/*"],
       "@styles/*": ["./src/styles/*"],
-      "@layouts/*": ["./src/layouts/*"],
       "@components/*": ["./src/components/*"],
-      "@controller/*": ["./src/lib/controller/*"]
+      "@layouts/*": ["./src/layouts/*"]
     }
   }
 }

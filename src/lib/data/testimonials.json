@@ -1,0 +1,50 @@
+[
+  {
+    "id": 5,
+    "picture": "/assets/images/testimonials/user/caTestimonials-NischintSanghavi.jpg",
+    "nama": "Nischint Sanghavi",
+    "label": "Head of Digital Currencies, AP at VISA",
+    "brand": "/assets/images/testimonials/brand/caTestimonialsBrand-NischintSanghavi.svg",
+    "bio": "You see a diverse mix of people here—developers, startup founders, exchanges, and even web2 companies and banks. It’s a great blend of the crowd."
+  },
+  {
+    "id": 6,
+    "picture": "/assets/images/testimonials/user/caTestimonials-EuniceGiarta.jpg",
+    "nama": "Eunice Giarta",
+    "label": "Co-Founder & COO of Monad",
+    "brand": "/assets/images/testimonials/brand/caTestimonialsBrand-EuniceGiarta.svg",
+    "bio": "Anyone interested in learning more about the Web3 space and doing so at a really cool venue, I highly recommend coming out here."
+  },
+  {
+    "id": 1,
+    "picture": "/assets/images/testimonials/user/caTestimonials-GwendolynRegina.jpg",
+    "nama": "Gwendolyn Regina",
+    "label": "Investment Director, BNB Chain",
+    "brand": "/assets/images/testimonials/brand/caTestimonialsBrand-GwendolynRegina.svg",
+    "bio": "What I like most about Coinfest is I’ve been able to connect with a diverse range of people and it’s very interesting."
+  },
+  {
+    "id": 2,
+    "picture": "/assets/images/testimonials/user/caTestimonials-KarlMohan.jpg",
+    "nama": "Karl Mohan",
+    "label": "GM APAC, Crypto.com",
+    "brand": "/assets/images/testimonials/brand/caTestimonialsBrand-KarlMohan.svg",
+    "bio": "The event has been fantastic, well-organized. It has elevated the conversation of crypto, Web3, metaverse, and DeFi that we all believe so strongly. I'm looking forward to Coinfest next year."
+  },
+  {
+    "id": 3,
+    "picture": "/assets/images/testimonials/user/caTestimonials-ReneMichau.jpg",
+    "nama": "Rene Michau",
+    "label": "Global Head of Digital Assets, Standard Chartered",
+    "brand": "/assets/images/testimonials/brand/caTestimonialsBrand-ReneMichau.svg",
+    "bio": "Did 4 of my planned meetings in the first hour of Meet for Speed (A Go-Kart race side event). Most effective networking event in ages."
+  },
+  {
+    "id": 4,
+    "picture": "/assets/images/testimonials/user/caTestimonials-RahulAdvani.jpg",
+    "nama": "Rahul Advani",
+    "label": "APAC Policy Director, Ripple",
+    "brand": "/assets/images/testimonials/brand/caTestimonialsBrand-RahulAdvani.svg",
+    "bio": "The highlight has been meeting so many different people from the ecosystem all under one venue. And that's the great thing about Coinfest."
+  }
+]
