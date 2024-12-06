@@ -1,18 +1,18 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
-import getConfig from "next/config";
-import Head from "next/head";
-
-// @get .config
-const { publicRuntimeConfig } = getConfig();
 
 // @lib
 import { getFetch, SubmitForm } from "@lib/controller/HubSpot";
 import { getFetchUrl } from "@lib/controller/Api";
 
+// @components
+// @form
+import Label from "@components/UI/Form/Label";
+import Input from "@components/UI/Form/Input";
+
 // @layouts
-import PartnershipLayouts from "@layouts/PartnershipLayouts";
+import PanelLayouts from "@layouts/PanelLayouts";
 
 const Interest = ({ ipAddrs, formInterest }) => {
   const router = useRouter();
@@ -25,16 +25,12 @@ const Interest = ({ ipAddrs, formInterest }) => {
     watch,
     register,
     control,
-    formState: { isValid },
+    formState: { errors, isValid, isSubmitting },
     handleSubmit,
     reset,
   } = useForm({
     mode: "all",
   });
-
-  // @debug
-  // console.log(frmInterest.formFieldGroups);
-  // console.log(frmInterest.formFieldGroups[7].fields[0].options);
 
   // @submit
   const onSubmit = async (data) => {
@@ -58,7 +54,7 @@ const Interest = ({ ipAddrs, formInterest }) => {
         },
       ],
       context: {
-        pageUri: "https://coinfest.asia/get-involved/interest",
+        pageUri: "https://coinfest.asia/interest",
         pageName: "2025 Interest | Coinfest Asia 2024",
         ipAddress: ipAddrs.ip,
       },
@@ -79,51 +75,9 @@ const Interest = ({ ipAddrs, formInterest }) => {
 
   return (
     <>
-      {/* @head */}
-      <Head>
-        <title>{`Interest | ${publicRuntimeConfig.siteTitle}`}</title>
-        <meta
-          name="title"
-          content={`Interest | ${publicRuntimeConfig.siteTitle}`}
-        />
-        <meta name="description" content={publicRuntimeConfig.siteUrl} />
-
-        {/* @open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
-        <meta
-          property="og:title"
-          content={`Interest | ${publicRuntimeConfig.siteTitle}`}
-        />
-        <meta property="og:description" content={publicRuntimeConfig.siteUrl} />
-        <meta
-          property="og:image"
-          content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
-        />
-        <meta
-          property="og:site_name"
-          content={`${publicRuntimeConfig.siteTitle}`}
-        />
-
-        {/* @twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
-        <meta
-          property="twitter:title"
-          content={`Interest | ${publicRuntimeConfig.siteTitle}`}
-        />
-        <meta
-          property="twitter:description"
-          content={publicRuntimeConfig.siteUrl}
-        />
-        <meta
-          property="twitter:image"
-          content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
-        />
-      </Head>
-
       {/* @main */}
-      <PartnershipLayouts
+      <PanelLayouts
+        headTitle="Interest"
         title="Coinfest asia 2025 Attendees Interest"
         shortDesc={
           "Stop lurking! Get the latest updates on the largest crypto festival in the world and get yourself ready for a festival unlike any other under the full moon."
@@ -204,19 +158,40 @@ const Interest = ({ ipAddrs, formInterest }) => {
           <div className="flex flex-col">
             <button
               type="submit"
-              className={`mt-6 flex w-full flex-col items-center justify-center rounded-[14px] ${
-                isValid
-                  ? "bg-primary text-white"
-                  : "bg-gray-300 cursor-default text-black-900"
-              }  py-4 font-bevietnamPro text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none`}
+              className={`mt-6 flex w-full flex-col items-center justify-center rounded-[14px] bg-black-900 text-white py-6 font-bevietnamPro text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none`}
               aria-label="Submit (Interest)"
-              disabled={!isValid}
             >
-              Submit
+              {isSubmitting ? (
+                <span className="flex flex-row items-center">
+                  <svg
+                    className="mr-3 h-5 w-5 animate-spin text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                    ></path>
+                  </svg>
+                  Processing ...
+                </span>
+              ) : (
+                "Sumbit"
+              )}
             </button>
           </div>
         </form>
-      </PartnershipLayouts>
+      </PanelLayouts>
     </>
   );
 };

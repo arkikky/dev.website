@@ -1,74 +1,75 @@
 @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-/* Tailwind CSS */
+/* @tailwinds-css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Configuration */
-::selection {
-  @apply bg-primary text-white;
-}
+/* @add(Preline) */
+@import "/node_modules/preline/dist/preline.css";
 
+/* @init */
+::selection {
+  @apply bg-gray-300/60 text-black-900;
+}
 body {
-  @apply bg-white;
   @apply font-bevietnamPro text-base font-normal;
 }
-
 body::-webkit-scrollbar {
-  @apply w-2;
+  @apply w-[7px];
 }
-
 body::-webkit-scrollbar-track {
-  /* @apply bg-blue-200/30; */
-  @apply bg-blue-300/20;
+  @apply bg-gray-200;
 }
-
 body::-webkit-scrollbar-thumb {
-  @apply bg-gray-500/50;
+  @apply bg-gray-400/70;
   @apply rounded-full;
   @apply border-none;
 }
-
-/* Modal Active in Body */
-/* body.mdlActive .caNavbar {
-  @apply z-10;
-} */
-
-a {
+a,
+button {
   @apply text-inherit;
-  @apply outline-none hocus:outline-none;
+  @apply outline-none focus-visible:outline-none hocus:outline-none;
 }
 
-/* ScrollbarY */
+/* attribute */
+.bxShadow-none {
+  box-shadow: none;
+  @apply focus:outline-none focus:ring-0 focus-visible:outline-none;
+}
+
+/* @scrollbar(y) */
 .scrollbar-y::-webkit-scrollbar {
-  @apply w-0.5 sm:w-1;
+  @apply w-1.5 sm:w-1.5;
 }
-
 .scrollbar-y::-webkit-scrollbar-track {
-  @apply bg-blue-300/20;
+  @apply bg-gray-200;
 }
-
 .scrollbar-y::-webkit-scrollbar-thumb {
-  @apply bg-gray-500/50;
+  @apply bg-gray-400/70;
   @apply rounded-full;
   @apply border-none;
 }
-
-/* ScrollbarX */
+/* @scrollbar(x) */
 .scrollbar-x::-webkit-scrollbar {
-  @apply h-0.5 sm:h-1;
+  @apply h-1.5 sm:h-1.5;
 }
-
 .scrollbar-x::-webkit-scrollbar-track {
-  @apply bg-blue-300/20;
+  @apply bg-gray-200;
 }
-
 .scrollbar-x::-webkit-scrollbar-thumb {
-  @apply bg-gray-500/50;
+  @apply bg-gray-400/70;
   @apply rounded-full;
   @apply border-none;
 }
+
+/* @panel-layouts */
+.ca25PanelLayouts-Side {
+  @apply bg-[url('/assets/images/caGeneral-SidebarForms.jpg')] object-cover bg-cover bg-center;
+}
+
+/* @form */
+@import "./components/form.module";
 
 /* Splide (Box) */
 .splide.caSpldeBox .splide__track .splide__list .splide__slide {
@@ -289,7 +290,7 @@ a {
 
 .caNavbar .caNavbarMain ul.caNavbarMainLinks > li > a.active,
 .caNavbar .caNavbarMain ul.caNavbarMainLinks > li:hover > a {
-  @apply bg-primary text-white;
+  @apply bg-black-900 text-white;
 }
 
 /* Article Markdown Desc */
@@ -373,39 +374,8 @@ a {
   }
 }
 
-/* Footer */
-.caFootr .caFootrEnd::before {
-  @apply content-[''];
-  @apply bg-gray-50;
-  @apply absolute top-1 bottom-auto inset-x-0;
-  @apply mx-auto;
-  @apply h-px w-full;
-}
-
-/* Footer (Nav Menu) */
-ul.footrMenu {
-  @apply flex flex-col;
-}
-
-ul.footrMenu li {
-  @apply relative;
-  @apply mb-2 last:mb-0;
-}
-
-ul.footrMenu li > a {
-  @apply flex flex-col items-start;
-  @apply text-black-900 hocus:text-primary font-bevietnamPro text-base font-normal hocus:underline capitalize;
-  @apply w-full;
-
-  @apply transition duration-300 ease-in-out;
-}
-
-/* Footer (Nav Menu - With Tooltip) */
-ul.footrMenu li.hs-tooltip .hs-tooltip-toggle {
-  @apply text-black-900 hocus:text-primary font-bevietnamPro text-base font-normal hocus:underline capitalize;
-
-  @apply transition duration-300 ease-in-out;
-}
+/* @footer */
+@import "./components/footer.module";
 
 /* Past Speaker */
 .caPastSpeakerMain::before {
@@ -444,11 +414,11 @@ ul.footrMenu li.hs-tooltip .hs-tooltip-toggle {
 }
 
 /* @article */
-.ca2024ArtcleFrmattd {
+.caGeneralArtcleFrmattd {
   @apply prose-h1:text-[32px] prose-h1:font-bold prose-h1:leading-[38px] sm:prose-h1:text-[40px] sm:prose-h1:leading-[48px];
   @apply prose-h2:mb-4 prose-h2:mt-8 prose-h2:text-2xl prose-h2:font-semibold first:prose-h2:mt-0 sm:prose-h2:mt-10;
   @apply prose-strong:font-semibold;
-  @apply prose-a:text-secondary prose-a:underline prose-ul:list-disc prose-ul:pl-8;
+  @apply prose-a:text-primary prose-a:underline prose-ul:list-disc prose-ul:pl-8;
 }
 
 /* @select */
@@ -466,3 +436,7 @@ ul.footrMenu li.hs-tooltip .hs-tooltip-toggle {
 .css-1nmdiq5-menu {
   @apply !z-[5];
 }
+
+/* .ca25PanelLayouts-Side {
+  @apply bg-red-500;
+} */

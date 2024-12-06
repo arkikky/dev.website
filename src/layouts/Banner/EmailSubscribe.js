@@ -12,9 +12,9 @@ const BannerEmailSubscribe = () => {
   const [intDtEmail, setDtEmail] = useState("");
 
   // @preline (Add Plugins)
-  useEffect(() => {
-    import("preline");
-  }, []);
+  // useEffect(() => {
+  //   import("preline");
+  // }, []);
 
   // @Modal Init
   useEffect(() => {

@@ -139,6 +139,8 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-fullthemoon":
+          "linear-gradient(to right, #1F1F1F 0%, #005AFF 33%, #A0CCF7 67%, #ED4F35 100%)",
       },
       animation: {
         "spin-slow": "spin 7.5s linear infinite",
@@ -152,16 +154,29 @@ module.exports = {
     require("@tailwindcss/forms")({
       strategy: "class", // only generate global styles
     }),
-    // Or with a custom prefix:
     require("@headlessui/tailwindcss")({ prefix: "ui" }),
 
-    // Variant's
+    // @variant
     ({ addVariant }) => {
       addVariant("hocus", ["&:hover", "&:focus"]);
       addVariant("supports-grid", "@supports (display: grid)");
     },
 
-    // Typography
+    // @variant
+    ({ addUtilities }) => {
+      addUtilities({
+        ".bg-gradient-fullthemoon": {
+          backgroundImage:
+            "linear-gradient(to right, #1F1F1F 0%, #005AFF 33%, #A0CCF7 67%, #ED4F35 100%)",
+        },
+        ".bg-gradient-rotate-fullthemoon": {
+          backgroundImage:
+            "linear-gradient(180deg, #1F1F1F 0%, #005AFF 33%, #A0CCF7 67%, #ED4F35 100%)",
+        },
+      });
+    },
+
+    // @typography
     ({ addBase, theme }) => {
       addBase({
         ".h2": {
@@ -177,97 +192,97 @@ module.exports = {
             },
           ],
         },
-        ".body": {
-          fontFamily: theme("fontFamily.bevietnamPro"),
-          fontSize: theme("fontSize.base"),
-          lineHeight: theme("lineHeight.6"),
-          fontWeight: theme("fontWeight.normal"),
+        //     ".body": {
+        //       fontFamily: theme("fontFamily.bevietnamPro"),
+        //       fontSize: theme("fontSize.base"),
+        //       lineHeight: theme("lineHeight.6"),
+        //       fontWeight: theme("fontWeight.normal"),
 
-          "@screen sm": [
-            {
-              fontSize: theme("fontSize.2xl"),
-              lineHeight: theme("lineHeight.8"),
-            },
-          ],
-        },
-        ".body-sm": {
-          fontFamily: theme("fontFamily.bevietnamPro"),
-          fontSize: theme("fontSize.base"),
-          lineHeight: theme("lineHeight.6"),
-          fontWeight: theme("fontWeight.normal"),
+        //       "@screen sm": [
+        //         {
+        //           fontSize: theme("fontSize.2xl"),
+        //           lineHeight: theme("lineHeight.8"),
+        //         },
+        //       ],
+        //     },
+        //     ".body-sm": {
+        //       fontFamily: theme("fontFamily.bevietnamPro"),
+        //       fontSize: theme("fontSize.base"),
+        //       lineHeight: theme("lineHeight.6"),
+        //       fontWeight: theme("fontWeight.normal"),
 
-          "@screen sm": [
-            {
-              fontSize: theme("fontSize.xl"),
-              lineHeight: theme("lineHeight.8"),
-            },
-          ],
-        },
+        //       "@screen sm": [
+        //         {
+        //           fontSize: theme("fontSize.xl"),
+        //           lineHeight: theme("lineHeight.8"),
+        //         },
+        //       ],
+        //     },
       });
     },
 
-    // Buttons
-    ({ addComponents, theme }) => {
-      addComponents({
-        ".btn": {
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: theme("borderRadius.sm"),
-          fontFamily: theme("fontFamily.bevietnam/pro"),
-          fontSize: theme("fontSize.sm"),
-          fontWeight: "700",
-          lineHeight: theme("lineHeight.normal"),
-          letterSpacing: theme("letterSpacing.wide"),
-          outline: "none",
-          position: "relative",
-          paddingTop: theme("padding.4"),
-          paddingBottom: theme("padding.4"),
-          paddingLeft: theme("padding.6"),
-          paddingRight: theme("padding.6"),
-          width: theme("width.max"),
-        },
-        ".btn-sm": {
-          fontSize: theme("fontSize.xs"),
-          paddingTop: theme("padding.2"),
-          paddingBottom: theme("padding.2"),
-          paddingLeft: theme("padding.2"),
-          paddingRight: theme("padding.2"),
-        },
-        ".btn-lg": {
-          fontSize: theme("fontSize.sm"),
-          paddingTop: theme("padding.4"),
-          paddingBottom: theme("padding.4"),
-          paddingLeft: theme("padding.6"),
-          paddingRight: theme("padding.6"),
-        },
-        ".btn-pill": {
-          borderRadius: theme("borderRadius.full"),
-        },
-        ".btn-square": {
-          borderRadius: theme("borderRadius.none"),
-        },
-        ".btn-block": {
-          width: theme("width.full"),
-        },
-        ".btn-max": {
-          width: theme("width.max"),
-        },
-      });
-    },
+    // @buttons
+    // ({ addComponents, theme }) => {
+    //   addComponents({
+    //     ".btn": {
+    //       display: "inline-flex",
+    //       alignItems: "center",
+    //       justifyContent: "center",
+    //       borderRadius: theme("borderRadius.sm"),
+    //       fontFamily: theme("fontFamily.bevietnam/pro"),
+    //       fontSize: theme("fontSize.sm"),
+    //       fontWeight: "700",
+    //       lineHeight: theme("lineHeight.normal"),
+    //       letterSpacing: theme("letterSpacing.wide"),
+    //       outline: "none",
+    //       position: "relative",
+    //       paddingTop: theme("padding.4"),
+    //       paddingBottom: theme("padding.4"),
+    //       paddingLeft: theme("padding.6"),
+    //       paddingRight: theme("padding.6"),
+    //       width: theme("width.max"),
+    //     },
+    //     ".btn-sm": {
+    //       fontSize: theme("fontSize.xs"),
+    //       paddingTop: theme("padding.2"),
+    //       paddingBottom: theme("padding.2"),
+    //       paddingLeft: theme("padding.2"),
+    //       paddingRight: theme("padding.2"),
+    //     },
+    //     ".btn-lg": {
+    //       fontSize: theme("fontSize.sm"),
+    //       paddingTop: theme("padding.4"),
+    //       paddingBottom: theme("padding.4"),
+    //       paddingLeft: theme("padding.6"),
+    //       paddingRight: theme("padding.6"),
+    //     },
+    //     ".btn-pill": {
+    //       borderRadius: theme("borderRadius.full"),
+    //     },
+    //     ".btn-square": {
+    //       borderRadius: theme("borderRadius.none"),
+    //     },
+    //     ".btn-block": {
+    //       width: theme("width.full"),
+    //     },
+    //     ".btn-max": {
+    //       width: theme("width.max"),
+    //     },
+    //   });
+    // },
 
-    // Buttons (Variants)
-    ({ addComponents, theme }) => {
-      addComponents({
-        ".btn-primary": {
-          color: theme("textColor.white"),
-          backgroundColor: theme("backgroundColor.primary"),
-        },
-        ".btn-secondary": {
-          color: theme("textColor.black.900"),
-          backgroundColor: theme("backgroundColor.secondary"),
-        },
-      });
-    },
+    // @buttons (Variants)
+    // ({ addComponents, theme }) => {
+    //   addComponents({
+    //     ".btn-primary": {
+    //       color: theme("textColor.white"),
+    //       backgroundColor: theme("backgroundColor.primary"),
+    //     },
+    //     ".btn-secondary": {
+    //       color: theme("textColor.black.900"),
+    //       backgroundColor: theme("backgroundColor.secondary"),
+    //     },
+    //   });
+    // },
   ],
 };

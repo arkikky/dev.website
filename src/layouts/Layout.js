@@ -1,6 +1,6 @@
 import React from "react";
 
-// Layouts - Components
+// @components
 import Navbar from "@layouts/Navbar";
 import Footer from "@layouts/Footer";
 

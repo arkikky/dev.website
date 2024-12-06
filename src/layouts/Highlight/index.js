@@ -3,47 +3,32 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import Link from "next/link";
 import Image from "next/image";
 
-// CSS Style
+// @style
 import "@splidejs/react-splide/css/core";
 
-// Component's
+// @components
 import Container from "@components/Container";
 
-// Lib's
+// @lib's
 import dtHighlights from "@lib/data/highlights.json";
 
 const Highlight = () => {
   const refMainSplde = useRef(null);
-  const [getHighlight, setHighlight] = useState(dtHighlights);
-  const [intGrabDown, setGrabDown] = useState(false);
+  const [isHighlight, setHighlight] = useState(dtHighlights);
+  const sortedHighlights = isHighlight.sort((a, b) => b.id - a.id);
+  const [isGrabbing, setGrabbing] = useState(false);
 
-  const sortedHighlights = getHighlight.sort((a, b) => b.id - a.id);
-
-  // @Mouse (Grab - Event)
-  const intMouseDown = (e) => {
+  // @mouse (Grab)
+  const handleMouseEvent = (e, isDown) => {
     e.preventDefault();
-
-    setGrabDown(true);
+    if (isGrabbing !== isDown) setGrabbing(isDown);
   };
 
-  const intMouseDefault = (e) => {
-    e.preventDefault();
-
-    setGrabDown(false);
-  };
-
-  const intMouseMove = (e) => {
-    if (!intGrabDown) return;
-    e.preventDefault();
-
-    setGrabDown(true);
-  };
-
-  // @Controller Splide
-  const arrwPrevCntnt = (e) => {
+  // @controller (Splide)
+  const arrwPrev = (e) => {
     refMainSplde.current.splide.go("<");
   };
-  const arrwNextCntnt = (e) => {
+  const arrwNext = (e) => {
     refMainSplde.current.splide.go(">");
   };
 
@@ -51,48 +36,50 @@ const Highlight = () => {
     <>
       <section
         id="caHightlight"
-        className="bg-primary overflow-hidden relative mt-13 pt-18 sm:pt-22 pb-20 sm:pb-24"
+        className="bg-gradient-fullthemoon overflow-hidden relative mt-20 pt-18 sm:pt-22 pb-20 sm:pb-24"
       >
         <Container className="px-0 sm:px-auto">
           <div className="supports-grid:grid grid-cols-4 sm:grid-cols-10 lg:grid-cols-12 gap-y-2 sm:gap-y-4 gap-x-2 sm:gap-x-4 relative z-10">
             <div className="col-span-2 sm:col-span-4 lg:col-span-4 px-4 sm:pl-0 sm:pr-6">
               <div className="flex flex-col justify-between h-full">
-                <div className="flex flex-col">
-                  <h2 className="text-white font-bevietnamPro h2 font-bold uppercase">
+                <div className="block w-full">
+                  <h2 className="text-white text-lg sm:text-[40px] leading-[24px] sm:leading-[48px] font-bold uppercase">
                     Sneak peek of the event
                   </h2>
                   <Link
-                    className="flex flex-row items-center text-white font-bevietnamPro text-sm sm:text-base font-normal underline mt-3 sm:mt-6"
-                    href="https://flic.kr/s/aHBqjATP6X"
+                    className="flex flex-row items-center text-white text-sm sm:text-base font-normal underline mt-1 sm:mt-3"
+                    title="Coinfest Asia General Gallery"
+                    href="/gallery"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     See more gallery
                     <svg
-                      className="ml-1 sm:ml-2.5 h-auto w-5 sm:w-6"
-                      viewBox="0 0 25 24"
-                      fill="none"
+                      className="ml-1 sm:ml-2.5 shrink-0 h-4 w-4 sm:h-5 sm:w-5"
                       xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
-                      <path
-                        d="M21.5 12H3.5H21.5ZM17.5 8L21.5 12L17.5 8ZM21.5 12L17.5 16L21.5 12Z"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
                     </svg>
                   </Link>
                 </div>
                 <div className="flex flex-row items-center justify-start relative z-10">
                   <button
+                    id="caGeneralBtn_LeftHightlight"
                     className="outline-none mr-2 last:mr-0"
-                    id="btnLeftHightlight"
-                    aria-label="Btn Left Hightlight"
-                    onClick={(e) => arrwPrevCntnt(e)}
+                    aria-label="Coinfest Asia General Highlight Button Left"
+                    onClick={(e) => arrwPrev(e)}
                   >
                     <svg
-                      className="h-8 sm:h-12 w-8 sm:w-12"
+                      className="shirnk-0 h-8 sm:h-12 w-8 sm:w-12"
                       viewBox="0 0 32 32"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -112,13 +99,13 @@ const Highlight = () => {
                     </svg>
                   </button>
                   <button
-                    id="btnRightHightlight"
+                    id="caGeneralBtn_RightHightlight"
                     className="outline-none mr-2 last:mr-0"
-                    aria-label="Btn Right Hightlight"
-                    onClick={(e) => arrwNextCntnt(e)}
+                    aria-label="Coinfest Asia General Highlight Button Right"
+                    onClick={(e) => arrwNext(e)}
                   >
                     <svg
-                      className="h-8 sm:h-12 w-8 sm:w-12"
+                      className="shirnk-0 h-8 sm:h-12 w-8 sm:w-12"
                       viewBox="0 0 48 48"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -143,12 +130,11 @@ const Highlight = () => {
             <div className="col-span-2 sm:col-span-6 lg:col-span-8">
               <div
                 className={`${
-                  intGrabDown === true ? "cursor-grabbing" : "cursor-grab"
+                  isGrabbing === true ? "cursor-grabbing" : "cursor-grab"
                 } w-full`}
-                onMouseDown={(e) => intMouseDown(e)}
-                onMouseUp={(e) => intMouseDefault(e)}
-                onMouseLeave={(e) => intMouseDefault(e)}
-                onMouseMove={(e) => intMouseMove(e)}
+                onMouseDown={(e) => handleMouseEvent(e, true)}
+                onMouseUp={(e) => handleMouseEvent(e, false)}
+                onMouseMove={(e) => isGrabbing && e.preventDefault()}
               >
                 <Splide
                   ref={(slider) => (refMainSplde.current = slider)}
@@ -205,6 +191,7 @@ const Highlight = () => {
             </div>
           </div>
 
+          {/* @backdrop */}
           <div className="container absolute inset-y-0 inset-x-0 select-none pointer-events-none z-px">
             <Image
               className="absolute top-auto -bottom-[145px] sm:-bottom-[215px] lg:-bottom-[208px] left-auto -right-[44px] sm:-right-[99px] lg:-right-[131px] xl:-right-[134px] 2xl:-right-[137px] h-auto w-[201px] sm:w-[301px] lg:w-[401px]"

@@ -224,16 +224,86 @@ const Navbar = ({
               </>
             )}
             <div className="flex flex-row items-center justify-end">
-              <Links
-                className={`py-2 sm:py-4 px-3 sm:px-4 flex flex-col items-center text-sm sm:text-base justify-center ${
-                  modeDifferent === true ? "bg-white" : "bg-secondary"
+              {/* <Links
+                className={`py-2 sm:py-4 px-3 sm:px-4 flex flex-row items-center text-sm sm:text-base justify-center ${
+                  modeDifferent === true
+                    ? "bg-white"
+                    : "bg-black-900 text-white"
                 } w-max mx-auto rounded-2xl ${
                   back === true ? "mr-0" : "mr-4 lg:mr-0"
                 } outline-none`}
                 href="/2025-sponsorship"
               >
                 Get Involved
-              </Links>
+                <svg
+                  className="ml-2.5 h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </Links> */}
+              <div className="hs-dropdown [--placement:bottom-right] relative inline-flex">
+                <button
+                  id="hs-dropright"
+                  type="button"
+                  className={`hs-dropdown-toggle py-2 sm:py-4 px-3 sm:px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-2xl border border-gray-200 ${
+                    modeDifferent === true
+                      ? "bg-white"
+                      : "bg-black-900 text-white"
+                  } shadow-sm disabled:opacity-50 disabled:pointer-events-none`}
+                  aria-haspopup="menu"
+                  aria-expanded="false"
+                  aria-label="Dropdown"
+                >
+                  Get Involved
+                  <svg
+                    className="ml-2.5 h-5 w-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </button>
+
+                <div
+                  className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-[233px] bg-white shadow-md rounded-lg mt-2 z-[120]"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="hs-dropright"
+                >
+                  <div className="p-1 space-y-0.5">
+                    <a
+                      class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-black-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                      href="/2025-sponsorship"
+                    >
+                      Sponsorship Inquiry
+                    </a>
+                    <a
+                      class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-black-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                      href="/speaker"
+                    >
+                      Apply as Speaker
+                    </a>
+                    <a
+                      class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-black-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                      href="/interest"
+                    >
+                      Ticket
+                    </a>
+                  </div>
+                </div>
+              </div>
               {back === false && (
                 <button
                   ref={intNavBtnToggle}
