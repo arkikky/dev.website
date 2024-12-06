@@ -252,7 +252,7 @@ const Navbar = ({
                 className={`hs-dropdown-toggle py-2 sm:py-4 px-3 sm:px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-2xl border border-gray-200 ${
                   modeDifferent === true
                     ? "bg-white"
-                    : "bg-black-900 text-white"
+                    : "bg-secondary text-white"
                 } shadow-sm disabled:opacity-50 disabled:pointer-events-none`}
                 aria-haspopup="menu"
                 aria-expanded="false"

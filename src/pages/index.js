@@ -20,7 +20,7 @@ import Highlight from "@layouts/Highlight";
 import PastSpeakers from "@layouts/PastSpeakers";
 import Testimonials from "@layouts/Testimonials";
 import PrevSite from "@layouts/PrevCoinfestAsia";
-// import SponsorshipBanner from "@layouts/SponsorshipBanner";
+import SponsorshipBanner from "@layouts/SponsorshipBanner";
 import Partners from "@layouts/Partners";
 import SocialMentions from "@layouts/SocialMentions";
 import FooterBanner from "@layouts/FooterBanner";
@@ -120,7 +120,7 @@ const App = (props) => {
           <section className="mt-10 lg:mt-18">
             <div className="block w-full">
               <h1 className="text-black-900 text-[32px] sm:text-[46px] lg:text-[56px] leading-[42px] sm:leading-[62px] lg:leading-[70px] font-bold uppercase text-balance">
-                {`THIS IS THE LARGEST CRYPTO FESTIVAL IN THE WORLD WHERE INNOVATION MEETS ADOPTION`}
+                {`COINFEST ASIA EMBRACES TRUE CRYPTO CULTURE`}
               </h1>
               <p className="text-black-500 text-lg sm:text-xl font-normal mt-3">
                 {`Our unique concept at Coinfest Asia ensures memorable engagement valuable insights every year.`}
@@ -139,6 +139,8 @@ const App = (props) => {
         <Container>
           <PrevSite />
         </Container>
+
+        <SponsorshipBanner />
 
         {/* @Layout Section (Past Speakers) */}
         <PastSpeakers {...intSpeaker} />

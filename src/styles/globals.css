@@ -290,7 +290,7 @@ button {
 
 .caNavbar .caNavbarMain ul.caNavbarMainLinks > li > a.active,
 .caNavbar .caNavbarMain ul.caNavbarMainLinks > li:hover > a {
-  @apply bg-black-900 text-white;
+  @apply bg-primary text-white;
 }
 
 /* Article Markdown Desc */

@@ -41,7 +41,7 @@ const SponsorshipBanner = () => {
     <>
       <section
         ref={intScBanner}
-        className="caBnnrShdw flex items-center justify-center relative mt-[108px] min-h-[351px] sm:min-h-[483px] xl:min-h-[618px]"
+        className="flex items-center justify-center relative mt-[108px] min-h-[351px] sm:min-h-[483px] xl:min-h-[618px]"
       >
         <div
           ref={bgBannerImgs}

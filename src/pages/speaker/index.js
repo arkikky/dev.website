@@ -144,8 +144,6 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
     const rs = await SubmitForm(isConfig, isKey);
 
     // @debug
-    console.log(isConfig);
-
     if (rs === true) {
       reset();
       router.replace("/speaker/success");
@@ -157,9 +155,9 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
       {/* @main */}
       <PanelLayouts
         headTitle="Speakers"
-        title="Coinfest asia 2025 Attendees Speakers"
+        title="COINFEST ASIA 2025 SPEAKER SUBMISSION"
         shortDesc={
-          "Stop lurking! Get the latest updates on the largest crypto festival in the world and get yourself ready for a festival unlike any other under the full moon."
+          "Show and tell your impact-driven ideas, not just theories, on experiential stages."
         }
         btnBack={true}
         brandLogo="white"
@@ -635,7 +633,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
                   Processing ...
                 </span>
               ) : (
-                "Sumbit"
+                "Submit"
               )}
             </button>
           </div>

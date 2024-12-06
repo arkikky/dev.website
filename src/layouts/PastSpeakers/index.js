@@ -165,7 +165,7 @@ export default function App({ data }) {
         <div className="flex items-center justify-center mt-10">
           <Link
             href="/2025-sponsorship"
-            className="rounded-lg sm:rounded-xl bg-black-900 text-white font-bevietnamPro text-sm sm:text-base font-normal py-4 sm:py-5 px-4 sm:px-6"
+            className="rounded-lg sm:rounded-xl bg-gradient-fullthemoon text-white font-bevietnamPro text-sm sm:text-base font-normal py-4 sm:py-6 px-4 sm:px-8"
             aria-label="And Many More Past Speaker"
           >
             Apply as 2025 Speaker

@@ -252,10 +252,10 @@ const Navbar = ({
                 <button
                   id="hs-dropright"
                   type="button"
-                  className={`hs-dropdown-toggle py-2 sm:py-4 px-3 sm:px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-2xl border border-gray-200 ${
+                  className={`hs-dropdown-toggle py-2 sm:py-4 px-3 sm:px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-2xl ${
                     modeDifferent === true
                       ? "bg-white"
-                      : "bg-black-900 text-white"
+                      : "bg-secondary text-black-900"
                   } shadow-sm disabled:opacity-50 disabled:pointer-events-none`}
                   aria-haspopup="menu"
                   aria-expanded="false"
