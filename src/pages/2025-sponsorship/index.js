@@ -533,7 +533,7 @@ const SponsorshipGetInvolved = ({
                   Processing ...
                 </span>
               ) : (
-                "Sumbit"
+                "Submit"
               )}
             </button>
           </div>

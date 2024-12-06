@@ -186,7 +186,7 @@ const Interest = ({ ipAddrs, formInterest }) => {
                   Processing ...
                 </span>
               ) : (
-                "Sumbit"
+                "Submit"
               )}
             </button>
           </div>
