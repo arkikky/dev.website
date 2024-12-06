@@ -14,7 +14,7 @@ const BrandSponsor = ({ attributes }) => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center border border-solid border-[#E6E6E6] hocus:border-primary rounded-[5px] sm:rounded-[10px] grayscale hocus:grayscale-0 transition duration-300 ease-in-out px-0 min-h-[118px] sm:min-h-[155px] xl:min-h-[176px]">
+      <div className="flex flex-col items-center justify-center border-2 border-solid border-[#E6E6E6] hocus:border-primary rounded-[5px] sm:rounded-[10px] grayscale hocus:grayscale-0 transition duration-300 ease-in-out px-0 min-h-[118px] sm:min-h-[155px] xl:min-h-[176px]">
         <Image
           className="aspect-auto my-auto mx-auto h-auto w-full"
           src={getLogo}

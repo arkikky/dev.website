@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import getConfig from "next/config";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,11 +10,6 @@ const { publicRuntimeConfig } = getConfig();
 import Container from "@components/Container";
 
 const Footer = () => {
-  // @preline (Plugins)
-  useEffect(() => {
-    import("preline");
-  }, []);
-
   return (
     <>
       <Container>
@@ -25,17 +20,17 @@ const Footer = () => {
                 <Image
                   className="h-12 w-max"
                   src="/assets/images/coinfest.asia.svg"
-                  alt={`${publicRuntimeConfig.siteAppName} (Primary - LOGO Brand)`}
+                  alt={`${publicRuntimeConfig.siteAppName} Primary - LOGO Brand`}
                   height={58}
                   width={154}
                 />
               </div>
-              <p className="text-black-900/70 font-bevietnam-pro text-sm lg:text-base font-normal mt-4 max-w-full sm:max-w-[447px] lg:max-w-full">
-                Coinfest Asia is the largest crypto festival in the world
+              <p className="text-black-900 text-base font-light mt-3 max-w-full sm:max-w-[447px] lg:max-w-full">
+                {`Coinfest Asia is the largest crypto festival in the world`}
               </p>
               <div className="flex flex-col items-start justify-start mt-6">
-                <h2 className="text-black-900 font-bevietnamPro text-base font-medium capitalize">
-                  Stay connected
+                <h2 className="text-black-900 text-base font-semibold capitalize">
+                  {`Stay connected`}
                 </h2>
                 <ul className="inline-flex flex-row flex-wrap mt-2">
                   <li className="mr-3.5 last:mr-0">
@@ -43,7 +38,7 @@ const Footer = () => {
                       <Image
                         className="h-6 w-6"
                         src="/assets/svg/caTwitter-black.svg"
-                        alt={`${publicRuntimeConfig.siteAppName} (Twitter - Social Media)`}
+                        alt={`${publicRuntimeConfig.siteAppName} Twitter Social Media`}
                         height={28}
                         width={28}
                       />
@@ -54,7 +49,7 @@ const Footer = () => {
                       <Image
                         className="h-6 w-6"
                         src="/assets/svg/caInstagram-black.svg"
-                        alt={`${publicRuntimeConfig.siteAppName} (Instagram - Social Media)`}
+                        alt={`${publicRuntimeConfig.siteAppName} Instagram Social Media`}
                         height={28}
                         width={28}
                       />
@@ -65,7 +60,7 @@ const Footer = () => {
                       <Image
                         className="h-6 w-6"
                         src="/assets/svg/caTelegram-black.svg"
-                        alt={`${publicRuntimeConfig.siteAppName} (Telegram - Social Media)`}
+                        alt={`${publicRuntimeConfig.siteAppName} Telegram Social Media`}
                         height={28}
                         width={28}
                       />
@@ -76,7 +71,7 @@ const Footer = () => {
                       <Image
                         className="h-6 w-6"
                         src="/assets/svg/caLinkedin-black.svg"
-                        alt={`${publicRuntimeConfig.siteAppName} (LinkedIn - Social Media)`}
+                        alt={`${publicRuntimeConfig.siteAppName} LinkedIn Social Media`}
                         height={28}
                         width={28}
                       />
@@ -89,8 +84,8 @@ const Footer = () => {
               <div className="supports-grid:grid grid-cols-4 sm:grid-cols-8 xl:grid-cols-11 gap-y-6 lg:gap-y-8 gap-x-12 pl-0 xl:pl-16">
                 <div className="col-span-full lg:col-span-2 xl:col-span-3">
                   <div className="flex flex-col">
-                    <h2 className="text-black-900 font-bevietnamPro text-base font-bold uppercase">
-                      Past events
+                    <h2 className="text-black-900 font-bevietnamPro text-base font-semibold capitalize">
+                      {`Past events`}
                     </h2>
                     <ul className="footrMenu mt-3">
                       <li>
@@ -179,7 +174,7 @@ const Footer = () => {
                 </div>
                 <div className="col-span-full lg:col-span-2 xl:col-span-4">
                   <div className="flex flex-col">
-                    <h2 className="text-black-900 font-bevietnamPro text-base font-bold uppercase">
+                    <h2 className="text-black-900 font-bevietnamPro text-base font-semibold capitalize">
                       Coinfest asia
                     </h2>
                     <ul className="footrMenu mt-3">
@@ -189,55 +184,27 @@ const Footer = () => {
                         </Link>
                       </li>
                       <li className="inline-block">
-                        <Link
-                          target="_blank"
-                          href="https://share.hsforms.com/1BWjZV4YnSTmOiIK7uMU-Ugcjggg"
-                        >
-                          Apply as Speaker
-                        </Link>
+                        <Link href="/speaker">Apply as Speaker</Link>
                       </li>
                       <li className="inline-block">
-                        <Link
-                          target="_blank"
-                          href="https://share.hsforms.com/1h60NJ9-ATGGSA_KEXoiMVgcjggg"
-                        >
-                          Ticket
-                        </Link>
+                        <Link href="/interest">Ticket</Link>
                       </li>
                     </ul>
                   </div>
                 </div>
                 <div className="col-span-full lg:col-span-2 xl:col-span-4">
                   <div className="flex flex-col">
-                    <h2 className="text-black-900 font-bevietnamPro text-base font-bold uppercase">
-                      Others
+                    <h2 className="text-black-900 font-bevietnamPro text-base font-semibold capitalize">
+                      {`Others`}
                     </h2>
                     <ul className="footrMenu mt-3">
                       <li>
                         <Link href="/terms-and-conditions">
                           Terms & Conditions
                         </Link>
-                        {/* <div className="hs-tooltip-toggle cursor-default w-max">
-                          Terms & Conditions
-                          <span
-                            className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible inline-block bg-black-800/80 rounded-lg text-white font-bevietnamPro text-xs leading-initial absolute py-[5px] px-2 opacity-0 invisible transition-opacity z-10"
-                            role="tooltip"
-                          >
-                            Coming Soon
-                          </span>
-                        </div> */}
                       </li>
                       <li>
                         <Link href="/privacy-policy">Privacy Policy</Link>
-                        {/* <div className="hs-tooltip-toggle cursor-default w-max">
-                          Privacy Policy
-                          <span
-                            className="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible inline-block bg-black-800/80 rounded-lg text-white font-bevietnamPro text-xs leading-initial absolute py-[5px] px-2 opacity-0 invisible transition-opacity z-10"
-                            role="tooltip"
-                          >
-                            Coming Soon
-                          </span>
-                        </div> */}
                       </li>
                       <li>
                         <Link
@@ -254,12 +221,13 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="caFootrEnd flex flex-col items-center justify-center mt-14 py-8 px-0 sm:px-4 relative mx-auto w-full max-w-[553px] xl:max-w-full">
-            <p className="text-gray-400 font-bevietnam-pro text-sm font-medium text-center">
-              Copyright © Coinfest Asia. All rights reserved. Coinfest Asia is
-              organized by{" "}
+          <div className="caFootrEnd flex flex-col items-start justify-start mt-18 sm:mt-20 pb-10 relative mx-auto w-full">
+            <p className="text-black-900 text-sm font-normal text-start">
+              © <span className="text-primary">Coinfest Asia</span>. All rights
+              reserved. Coinfest Asia is organized by{" "}
               <Link
                 className="text-primary underline capitalize"
+                title="Coinfest Asia Coinvestasi Website"
                 href="https://coinvestasi.com/"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -269,6 +237,7 @@ const Footer = () => {
               , a subsidiary of{" "}
               <Link
                 className="text-primary underline capitalize"
+                title="Coinfest Asia Indonesia Crypto Network Website"
                 href="https://indonesiacrypto.network/"
                 target="_blank"
                 rel="noopener noreferrer"

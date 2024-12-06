@@ -155,11 +155,8 @@ const Header = () => {
             </SplideSlide>
           </Splide>
         </div>
-        <Container className="relative -mt-[305px] sm:-mt-[391px] lg:-mt-[359px] px-0 z-100">
+        <Container className="relative -mt-[105px] sm:-mt-[191px] lg:-mt-[189px] px-0 z-100">
           <section id="caHeaderMain" className="flex flex-col">
-            <h1 className="text-white font-bevietnamPro text-[32px] sm:text-[46px] lg:text-[56px] leading-[42px] sm:leading-[66px] lg:leading-[78px] font-bold uppercase px-4 sm:px-0">
-              World's Largest Web3 Festival. Where Innovation Meets Adoption
-            </h1>
             <div className="relative mt-4">
               <Splide
                 tag="section"

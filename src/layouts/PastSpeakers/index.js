@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import getConfig from "next/config";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import Link from "next/link";
 
 // @Get .config
 const { publicRuntimeConfig } = getConfig();
@@ -162,12 +163,13 @@ export default function App({ data }) {
           </div>
         </Container>
         <div className="flex items-center justify-center mt-10">
-          <span
-            className="rounded-lg sm:rounded-xl bg-primary text-white font-bevietnamPro text-sm sm:text-base font-normal py-3 sm:py-4 px-4 sm:px-6"
+          <Link
+            href="/2025-sponsorship"
+            className="rounded-lg sm:rounded-xl bg-black-900 text-white font-bevietnamPro text-sm sm:text-base font-normal py-4 sm:py-5 px-4 sm:px-6"
             aria-label="And Many More Past Speaker"
           >
             Apply as 2025 Speaker
-          </span>
+          </Link>
         </div>
       </section>
     </>

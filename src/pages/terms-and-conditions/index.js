@@ -1,12 +1,8 @@
 import React from "react";
-import getConfig from "next/config";
-import Head from "next/head";
 import Link from "next/link";
 
-// @get .config
-const { publicRuntimeConfig } = getConfig();
-
 // @components
+import HeadGraphSeo from "@components/Head";
 import Main from "@components/Main";
 import Container from "@components/Container";
 import FooterBanner from "@layouts/SponsorshipBanner";
@@ -15,54 +11,15 @@ import FooterBanner from "@layouts/SponsorshipBanner";
 import Navbar from "@layouts/Navbar";
 import Footer from "@layouts/Footer";
 
-const TermAndConditions = (props) => {
+const TermAndConditions = ({}) => {
   return (
     <>
       {/* @head */}
-      <Head>
-        <title>{`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}</title>
-        <meta
-          name="title"
-          content={`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}
-        />
-        <meta name="description" content={`${publicRuntimeConfig.siteDesc}`} />
-
-        {/* @open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${publicRuntimeConfig.siteUrl}`} />
-        <meta
-          property="og:title"
-          content={`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}
-        />
-        <meta
-          property="og:description"
-          content={`${publicRuntimeConfig.siteDesc}`}
-        />
-        <meta property="og:image" content="/assets/caGeneral-Thumbnails.png" />
-        <meta
-          property="og:site_name"
-          content={`${publicRuntimeConfig.siteTitle}`}
-        />
-
-        {/* @twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:url"
-          content={`${publicRuntimeConfig.siteUrl}`}
-        />
-        <meta
-          property="twitter:title"
-          content={`Terms & Conditions | ${publicRuntimeConfig.siteTitle}`}
-        />
-        <meta
-          property="twitter:description"
-          content={`${publicRuntimeConfig.siteDesc}`}
-        />
-        <meta
-          property="twitter:image"
-          content="/assets/caGeneral-Thumbnails.png"
-        />
-      </Head>
+      <HeadGraphSeo
+        title="Privacy Policy"
+        otherPage={true}
+        siteThunbnails={"/assets/caGeneral-Thumbnails.png"}
+      />
 
       {/* @navbar */}
       <Navbar back={true} />
@@ -72,15 +29,24 @@ const TermAndConditions = (props) => {
         <Container className="relative">
           <div className="relative grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-full col-start-1 sm:col-span-10 sm:col-start-2">
-              <div className="ca2024ArtcleFrmattd mb-8 font-bevietnamPro text-base font-light leading-relaxed text-black-900 sm:mb-0">
-                <h1 className="mb-12 text-start sm:mb-18 sm:text-center">
-                  TERMS & CONDITIONS
+              <div className="mb-12 flex flex-col items-center justify-center text-center sm:mb-16">
+                <h1 className="w-full max-w-full text-[28px] font-bold leading-[38px] sm:text-[36px] sm:leading-[48px]">
+                  Terms & Conditions
                 </h1>
+                <p className="mt-2 font-light text-gray-400">
+                  Last updated: November 01, 2024
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="relative grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
+            <div className="col-span-full col-start-1 sm:col-span-10 sm:col-start-2">
+              <div className="caGeneralArtcleFrmattd relative flex flex-col">
                 <p>
-                  <strong>Welcome to Coinfest Asia!</strong> Coinfest Asia, its
-                  subsidiaries, and affiliates (collectively, “Company”) own and
-                  operate the websites coinfest.asia, ticket.coinfest.asia, and
-                  related websites and mobile applications (collectively, the
+                  <strong>Welcome to Coinfest Asia!</strong>, its subsidiaries,
+                  and affiliates (collectively, “Company”) own and operate the
+                  websites coinfest.asia, ticket.coinfest.asia, and related
+                  websites and mobile applications (collectively, the
                   “Properties” and, each, a “Property”). These include all
                   information, documents, text, audio, visual, and graphics
                   (excluding Third-Party Content) on the Properties
@@ -92,7 +58,11 @@ const TermAndConditions = (props) => {
                   (collectively, the “Terms of Use”). <br></br> <br></br>
                   <strong>Contact Information.</strong> If you have any
                   questions regarding these Terms, please contact us at{" "}
-                  <Link href="mailto:hi@coinfest.asia" target="_blank">
+                  <Link
+                    href="mailto:hi@coinfest.asia"
+                    target="_blank"
+                    title="Coinfest Asia 2025 (Email)"
+                  >
                     hi@coinfest.asia.
                   </Link>
                   <br></br>
@@ -464,13 +434,14 @@ const TermAndConditions = (props) => {
   );
 };
 
-export default TermAndConditions;
+TermAndConditions.getLayout = function PageLayout(page) {
+  return <>{page}</>;
+};
 
 export const getStaticProps = async () => {
   try {
     return {
       props: {},
-
       revalidate: 900,
     };
   } catch (err) {
@@ -480,6 +451,4 @@ export const getStaticProps = async () => {
   }
 };
 
-TermAndConditions.getLayout = function PageLayout(page) {
-  return <>{page}</>;
-};
+export default TermAndConditions;

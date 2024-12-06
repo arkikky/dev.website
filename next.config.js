@@ -3,16 +3,43 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      process.env.NEXT_PUBLIC_DOMAIN,
-      "ticket.coinfest.asia",
-      "hub.coinvestasi.com",
-      "farm66.staticflickr.com",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: process.env.NEXT_PUBLIC_DOMAIN,
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "ticket.coinfest.asia",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "hub.coinvestasi.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "farm66.staticflickr.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
+  serverRuntimeConfig: {
+    api: process.env.NEXT_PUBLIC_API,
+    upload: process.env.NEXT_PUBLIC_UPLOAD,
+
+    // @google-tags-manager
+    gtmId: process.env.NEXT_PUBLIC_GTM_ID,
   },
   publicRuntimeConfig: {
     domain: process.env.NEXT_PUBLIC_DOMAIN,
@@ -24,13 +51,12 @@ const nextConfig = {
     tags: process.env.NEXT_PUBLIC_TAGS,
     version: process.env.NEXT_PUBLIC_SITE_APP_VERSION,
 
+    // @assets
+    staticFolderImgs: process.env.NEXT_PUBLIC_STATIC_FOLDER_IMAGES,
+    staticThumbnailsApp: process.env.NEXT_PUBLIC_STATIC_THUMBNAILS_APP,
     // Api
     caApi: process.env.NEXT_PUBLIC_API,
     caUpload: process.env.NEXT_PUBLIC_UPLOAD,
-
-    // Assets
-    staticFolderImgs: process.env.NEXT_PUBLIC_STATIC_FOLDER_IMAGES,
-    staticThumbnailsApp: process.env.NEXT_PUBLIC_STATIC_THUMBNAILS_APP,
 
     // Google Tag Manager
     gtmId: process.env.NEXT_PUBLIC_GTM_ID,

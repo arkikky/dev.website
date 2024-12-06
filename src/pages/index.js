@@ -9,22 +9,23 @@ const { publicRuntimeConfig } = getConfig();
 import { getFetch } from "@lib/controller/Api";
 
 // @components
+import HeadGraphSeo from "@components/Head";
 import Main from "@components/Main";
 import Container from "@components/Container";
 
 // @layouts
 import Header from "@layouts/Header/Header";
-import ChartInsights from "@layouts/ChartInsights";
+import BoardInsights from "@layouts/BoardInsights";
 import Highlight from "@layouts/Highlight";
 import PastSpeakers from "@layouts/PastSpeakers";
 import Testimonials from "@layouts/Testimonials";
 import PrevSite from "@layouts/PrevCoinfestAsia";
-import SponsorshipBanner from "@layouts/SponsorshipBanner";
+// import SponsorshipBanner from "@layouts/SponsorshipBanner";
 import Partners from "@layouts/Partners";
-// import SocialMentions from "@layouts/SocialMentions";
+import SocialMentions from "@layouts/SocialMentions";
 import FooterBanner from "@layouts/FooterBanner";
 
-const AppCoinfestAsia = (props) => {
+const App = (props) => {
   // @schema (Website Application)
   const schmaWebApp = {
     "@context": "https://schema.org",
@@ -108,47 +109,7 @@ const AppCoinfestAsia = (props) => {
   return (
     <>
       {/* @head */}
-      <Head>
-        <title>{`${publicRuntimeConfig.siteTitle}`}</title>
-        <meta name="title" content={`${publicRuntimeConfig.siteTitle}`} />
-        <meta name="description" content={`${publicRuntimeConfig.siteDesc}`} />
-
-        {/* @open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${publicRuntimeConfig.siteUrl}`} />
-        <meta
-          property="og:title"
-          content={`${publicRuntimeConfig.siteTitle}`}
-        />
-        <meta
-          property="og:description"
-          content={`${publicRuntimeConfig.siteDesc}`}
-        />
-        <meta property="og:image" content="/assets/caGeneral-Thumbnails.png" />
-        <meta
-          property="og:site_name"
-          content={`${publicRuntimeConfig.siteTitle}`}
-        />
-
-        {/* @twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:url"
-          content={`${publicRuntimeConfig.siteUrl}`}
-        />
-        <meta
-          property="twitter:title"
-          content={`${publicRuntimeConfig.siteTitle}`}
-        />
-        <meta
-          property="twitter:description"
-          content={`${publicRuntimeConfig.siteDesc}`}
-        />
-        <meta
-          property="twitter:image"
-          content="/assets/caGeneral-Thumbnails.png"
-        />
-      </Head>
+      <HeadGraphSeo siteThunbnails={"/assets/caGeneral-Thumbnails.png"} />
 
       {/* @header (Layouts) */}
       <Header />
@@ -157,32 +118,27 @@ const AppCoinfestAsia = (props) => {
       <Main className="relative z-100">
         <Container className="relative">
           <section className="mt-10 lg:mt-18">
-            <div className="flex flex-col items-start justify-start">
-              <h2 className="text-black-800 font-bevietnamPro h2 font-bold uppercase">
-                Coinfest Asia is{" "}
-                <span className="italic sm:not-italic">NOT</span> a Traditional
-                Conference
-              </h2>
-              <p className="text-black-400 body">
-                Our unique concept at Coinfest Asia ensures memorable engagement
-                and valuable insights every year.
+            <div className="block w-full">
+              <h1 className="text-black-900 text-[32px] sm:text-[46px] lg:text-[56px] leading-[42px] sm:leading-[62px] lg:leading-[70px] font-bold uppercase text-balance">
+                {`THIS IS THE LARGEST CRYPTO FESTIVAL IN THE WORLD WHERE INNOVATION MEETS ADOPTION`}
+              </h1>
+              <p className="text-black-500 text-lg sm:text-xl font-normal mt-3">
+                {`Our unique concept at Coinfest Asia ensures memorable engagement valuable insights every year.`}
               </p>
             </div>
 
-            {/* @Layout Section (Chart Insights) */}
-            <ChartInsights />
+            {/* @board */}
+            <BoardInsights />
           </section>
         </Container>
 
         {/* @Layout Section (Highlight) */}
         <Highlight />
 
-        {/* @Layout Section (Prev Sponsor) */}
+        {/* @prev-website */}
         <Container>
           <PrevSite />
         </Container>
-
-        <SponsorshipBanner />
 
         {/* @Layout Section (Past Speakers) */}
         <PastSpeakers {...intSpeaker} />
@@ -191,11 +147,11 @@ const AppCoinfestAsia = (props) => {
         <Testimonials />
 
         <Container>
-          {/* @Layout Section (Sponsor) */}
+          {/* @sponsor */}
           <Partners {...intSponsorPartner} />
 
           {/* @Layout Section (PeopleSaying) */}
-          {/* <SocialMentions {...intSocialMentions} /> */}
+          <SocialMentions {...intSocialMentions} />
         </Container>
 
         {/* @Layout Section (Banner - Email Subscrbe) */}
@@ -205,27 +161,23 @@ const AppCoinfestAsia = (props) => {
   );
 };
 
-export default AppCoinfestAsia;
-
 export const getStaticProps = async () => {
-  const gCaSpeaker = await getFetch(
-    `/speaker-generals?populate=*&pagination[pageSize]=100&sort=rank:asc`
-  );
-
-  const gCaSponsorPartner = await getFetch(
-    `/sponsor-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
-  );
-
-  const gCaSocialMentions = await getFetch(
-    `/people-says?sort=rank:asc&populate=*&pagination[pageSize]=100`
-  );
+  const [rsSpeakers, rsSponsorPartner, rsSocialMentions] = await Promise.all([
+    getFetch(
+      `/speaker-generals?populate=*&pagination[pageSize]=100&sort=rank:asc`
+    ),
+    getFetch(
+      `/sponsor-generals?sort=rank:asc&populate=*&pagination[pageSize]=100`
+    ),
+    getFetch(`/people-says?sort=rank:asc&populate=*&pagination[pageSize]=100`),
+  ]);
 
   try {
     return {
       props: {
-        speaker: gCaSpeaker || [],
-        sponsorPartner: gCaSponsorPartner || [],
-        socialMentions: gCaSocialMentions || [],
+        speaker: rsSpeakers || [],
+        sponsorPartner: rsSponsorPartner || [],
+        socialMentions: rsSocialMentions || [],
       },
 
       revalidate: 10,
@@ -237,5 +189,6 @@ export const getStaticProps = async () => {
   }
 };
 
+export default App;
 
 // deploy
