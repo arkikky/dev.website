@@ -400,7 +400,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
                     id={`caGeneralForm_WhatTopicOtherSpeakersForms`}
                     type="text"
                     name={`company`}
-                    placeholder="Eg: Alexandre"
+                    placeholder="Eg: Memecoins"
                     ariaLabel={`What Topic Other - SponsorshipForms`}
                     config={{
                       ...register(
@@ -432,7 +432,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
                   id={`caGeneralForm_CompanySpeakersForms`}
                   type="text"
                   name={`company`}
-                  placeholder="Eg: Alexandre"
+                  placeholder="Eg: Indonesia Crypto Network"
                   ariaLabel={`Company Name - SponsorshipForms`}
                   config={{
                     ...register(`company`, {
@@ -460,7 +460,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
                   <Select
                     id={`caGeneralForm_CompanyFocusSpeakers`}
                     ariaLabel={`CompanyFocus Sponsorship`}
-                    label="Choose a Company Focus..."
+                    label="Choose a consulting..."
                     listSelect={
                       isFormSpeakers?.form?.formFieldGroups[7].fields[0].options
                     }
@@ -485,7 +485,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
                 <Select
                   id={`caGeneralForm_jobtitleSpeakers`}
                   ariaLabel={`Jobtitle Sponsorship`}
-                  label="Choose a jobtitle..."
+                  label="Choose a director..."
                   listSelect={
                     isFormSpeakers?.form?.formFieldGroups[7].fields[1].options
                   }
@@ -506,7 +506,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
                   id={`caGeneralForm_WCompanyWebsiteSpeakersForms`}
                   type="text"
                   name={`company_website`}
-                  placeholder="Eg: Doe"
+                  placeholder="Eg: https://indonesiacrypto.network"
                   ariaLabel={`company_website - SpeakersForms`}
                   config={{
                     ...register(`company_website`, {
@@ -533,7 +533,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
                 id={`caGeneralForm_LinkedInSpeakersForms`}
                 type="text"
                 name={`linkedin_profile`}
-                placeholder="Eg: Alexandre"
+                placeholder="Eg: Alexandre Doe"
                 ariaLabel={`linkedin_profile A - SpeakersForms`}
                 config={{
                   ...register(`linkedin_profile`, {
@@ -560,7 +560,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
                   id={`caGeneralForm_TwitterSpeakersForms`}
                   type="text"
                   name={`twitterhandle`}
-                  placeholder="Eg: Alexandre"
+                  placeholder="Eg: alexdoe"
                   ariaLabel={`twitterhandle A - SpeakersForms`}
                   config={{
                     ...register(`twitterhandle`, {
@@ -584,7 +584,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
                   id={`caGeneralForm_TelegramSpeakersForms`}
                   type="text"
                   name={`telegram_username`}
-                  placeholder="Eg: Doe"
+                  placeholder="Eg: doealex"
                   ariaLabel={`Lastname - SpeakersForms`}
                   config={{
                     ...register(`telegram_username`, {

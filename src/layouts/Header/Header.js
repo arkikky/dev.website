@@ -159,7 +159,7 @@ const Header = () => {
           <section id="caHeaderMain" className="flex flex-col">
             <h1 className="text-white font-bevietnamPro text-[32px] sm:text-[46px] lg:text-[56px] leading-[42px] sm:leading-[66px] lg:leading-[78px] font-bold uppercase px-4 sm:px-0">
               THIS IS THE LARGEST CRYPTO FESTIVAL IN THE WORLD WHERE INNOVATION
-              MEETS ADOPTIO
+              MEETS ADOPTION
             </h1>
             <div className="relative mt-4">
               <Splide

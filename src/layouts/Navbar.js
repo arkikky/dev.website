@@ -252,7 +252,7 @@ const Navbar = ({
                 <button
                   id="hs-dropright"
                   type="button"
-                  className={`hs-dropdown-toggle py-2 sm:py-4 px-3 sm:px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-2xl ${
+                  className={`hs-dropdown-toggle mr-2 py-2 sm:py-4 px-3 sm:px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-2xl ${
                     modeDifferent === true
                       ? "bg-white"
                       : "bg-secondary text-black-900"
