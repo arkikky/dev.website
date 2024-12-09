@@ -373,7 +373,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
               <Select
                 id={`caGeneralForm_WhatTopicsSpeakers`}
                 ariaLabel={`What topics Sponsorship`}
-                label="Choose a What topics Focus..."
+                label="Choose a memecoins..."
                 listSelect={
                   isFormSpeakers?.form?.formFieldGroups[5].fields[0].options
                 }
@@ -393,14 +393,14 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
                 <div className="block mt-4">
                   <Label
                     forId={`caGeneralForm_WhatTopicOtherSpeakersForms`}
-                    label="Company name"
+                    label="If you choose 'other', tell us what's in your mind"
                     required={true}
                   />
                   <Input
                     id={`caGeneralForm_WhatTopicOtherSpeakersForms`}
                     type="text"
-                    name={`company`}
-                    placeholder="Eg: Memecoins"
+                    name={`if_you_choose__other___tell_us_what_s_in_your_mind`}
+                    placeholder="Eg: If you choose 'other', tell us what's in your mind"
                     ariaLabel={`What Topic Other - SponsorshipForms`}
                     config={{
                       ...register(
@@ -414,7 +414,11 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
                         }
                       ),
                     }}
-                    errors={errors[`name`]}
+                    errors={
+                      errors[
+                        `if_you_choose__other___tell_us_what_s_in_your_mind`
+                      ]
+                    }
                   />
                 </div>
               </>
@@ -443,7 +447,7 @@ const Speakers = ({ ipAddrs, formSpeakers, countryRegion }) => {
                       },
                     }),
                   }}
-                  errors={errors[`name`]}
+                  errors={errors[`company`]}
                 />
               </div>
               {isFormSpeakers?.form && (
