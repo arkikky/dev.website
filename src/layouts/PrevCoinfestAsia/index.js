@@ -16,8 +16,8 @@ const PrevCoinfestAsia = () => {
           <div className="col-span-full sm:col-span-6">
             <div className="bg-[#E0E0E0] rounded-[14px] text-center overflow-hidden relative h-[193px] sm:h-[197px] lg:h-[263px] xl:h-[353px] w-full">
               <YouTubeEmbed
-                videoTitle="Highlights - Coinfest Asia 2022 Recap"
-                videoUrl="https://www.youtube.com/embed/-ENpdcDe8ZY?si=bseL5C9CZPjGamXB"
+                videoTitle="Highlights - Coinfest Asia 2024 Recap"
+                videoUrl="https://www.youtube.com/embed/ix8BcgpIGgA?si=xA_rt50sVECmkpgg"
               />
             </div>
           </div>
@@ -26,6 +26,14 @@ const PrevCoinfestAsia = () => {
               <YouTubeEmbed
                 videoTitle="Highlights - Coinfest Asia 2023 Recap"
                 videoUrl="https://www.youtube.com/embed/SsxoCIJW43M?si=23DcFtyOiTyCZDjP"
+              />
+            </div>
+          </div>
+          <div className="col-span-full sm:col-span-6">
+            <div className="bg-[#E0E0E0] rounded-[14px] text-center overflow-hidden relative h-[193px] sm:h-[197px] lg:h-[263px] xl:h-[353px] w-full">
+              <YouTubeEmbed
+                videoTitle="Highlights - Coinfest Asia 2022 Recap"
+                videoUrl="https://www.youtube.com/embed/-ENpdcDe8ZY?si=bseL5C9CZPjGamXB"
               />
             </div>
           </div>
