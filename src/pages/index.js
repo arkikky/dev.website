@@ -109,7 +109,7 @@ const App = (props) => {
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo siteThunbnails={"/assets/caGeneral-Thumbnails.png"} />
+      <HeadGraphSeo siteThumbnails="/assets/caThumbnailsApp.jpg" />
 
       {/* @header (Layouts) */}
       <Header />
@@ -123,7 +123,7 @@ const App = (props) => {
                 {`COINFEST ASIA EMBRACES TRUE CRYPTO CULTURE`}
               </h1>
               <p className="text-black-500 text-lg sm:text-xl font-normal mt-3">
-                {`Our unique concept at Coinfest Asia ensures memorable engagement valuable insights every year.`}
+                {`Our unique concept at Coinfest Asia ensures memorable engagement and valuable insights every year.`}
               </p>
             </div>
 
@@ -133,7 +133,7 @@ const App = (props) => {
         </Container>
 
         {/* @Layout Section (Highlight) */}
-        <Highlight />
+        {/* <Highlight /> */}
 
         {/* @prev-website */}
         <Container>

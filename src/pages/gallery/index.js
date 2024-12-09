@@ -9,6 +9,8 @@ const { publicRuntimeConfig } = getConfig();
 // @lib
 import { getFetchUrl, getFetch } from "@lib/controller/Api";
 
+import HeadGraphSeo from "@components/Head";
+
 const divideIntoCategories = (photos) => {
   const category1 = [];
   const category2 = [];
@@ -124,47 +126,11 @@ const SponsorshipGetInvolved = ({ getPhotos, getTotalPagePhotos }) => {
   return (
     <>
       {/* @head */}
-      <Head>
-        <title>{`Gallery | ${publicRuntimeConfig.siteTitle}`}</title>
-        <meta
-          name="title"
-          content={`Gallery | ${publicRuntimeConfig.siteTitle}`}
-        />
-        <meta name="description" content={publicRuntimeConfig.siteUrl} />
-
-        {/* @open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={publicRuntimeConfig.siteUrl} />
-        <meta
-          property="og:title"
-          content={`Gallery | ${publicRuntimeConfig.siteTitle}`}
-        />
-        <meta property="og:description" content={publicRuntimeConfig.siteUrl} />
-        <meta
-          property="og:image"
-          content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
-        />
-        <meta
-          property="og:site_name"
-          content={`${publicRuntimeConfig.siteTitle}`}
-        />
-
-        {/* @twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={publicRuntimeConfig.siteUrl} />
-        <meta
-          property="twitter:title"
-          content={`Gallery | ${publicRuntimeConfig.siteTitle}`}
-        />
-        <meta
-          property="twitter:description"
-          content={publicRuntimeConfig.siteUrl}
-        />
-        <meta
-          property="twitter:image"
-          content={`${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca2024_Thumbnails_Share_Link_App_9964b5c353.png`}
-        />
-      </Head>
+      <HeadGraphSeo
+        title="Gallery"
+        otherPage={true}
+        siteThumbnails="/assets/caThumbnailsApp.jpg"
+      />
 
       {/* @main */}
       <Main className="relative pt-[79px] xl:pt-[139px]">

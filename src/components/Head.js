@@ -1,6 +1,6 @@
-import React from 'react';
-import getConfig from 'next/config';
-import Head from 'next/head';
+import React from "react";
+import getConfig from "next/config";
+import Head from "next/head";
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
@@ -9,7 +9,7 @@ const HeadGraphSeo = ({
   title = publicRuntimeConfig.siteTitle,
   desc = publicRuntimeConfig.siteDesc,
   siteUrl = publicRuntimeConfig.siteUrl,
-  siteThunbnails = '/assets/caGeneral-Thumbnails.png',
+  siteThumbnails = "/assets/caGeneral-Thumbnails.png",
   otherPage = false,
 }) => {
   return (
@@ -18,7 +18,7 @@ const HeadGraphSeo = ({
       <Head>
         <title>{`${
           otherPage === true
-            ? title + ' | ' + publicRuntimeConfig.siteTitle
+            ? title + " | " + publicRuntimeConfig.siteTitle
             : title
         }`}</title>
         <meta name="title" content={title} />
@@ -29,7 +29,10 @@ const HeadGraphSeo = ({
         <meta property="og:url" content={siteUrl} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={desc} />
-        <meta property="og:image" content={siteThunbnails} />
+        <meta
+          pmoperty="og:image"
+          content={`https://api.coinfest.asia/uploads/ca25_Thumbnails_Full_The_Moon_64a7262311.png`}
+        />
         <meta property="og:site_name" content={title} />
 
         {/* @twitter */}
@@ -37,7 +40,10 @@ const HeadGraphSeo = ({
         <meta property="twitter:url" content={siteUrl} />
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={desc} />
-        <meta property="twitter:image" content={siteThunbnails} />
+        <meta
+          pmoperty="twitter:image"
+          content={`https://api.coinfest.asia/uploads/ca25_Thumbnails_Full_The_Moon_64a7262311.png`}
+        />
       </Head>
     </>
   );
