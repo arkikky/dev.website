@@ -30,9 +30,9 @@ const HeadGraphSeo = ({
         <meta property="og:title" content={title} />
         <meta property="og:description" content={desc} />
         <meta
-          pmoperty="og:image"
-          content={`https://api.coinfest.asia/uploads/ca25_Thumbnails_Full_The_Moon_64a7262311.png`}
-        />
+          property="og:image"
+          content="https://api.coinfest.asia/uploads/ca25_Thumbnails_Full_The_Moon_64a7262311.png"
+        ></meta>
         <meta property="og:site_name" content={title} />
 
         {/* @twitter */}
@@ -41,9 +41,9 @@ const HeadGraphSeo = ({
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={desc} />
         <meta
-          pmoperty="twitter:image"
-          content={`https://api.coinfest.asia/uploads/ca25_Thumbnails_Full_The_Moon_64a7262311.png`}
-        />
+          property="twitter:image"
+          content="https://api.coinfest.asia/uploads/ca25_Thumbnails_Full_The_Moon_64a7262311.png"
+        ></meta>
       </Head>
     </>
   );
