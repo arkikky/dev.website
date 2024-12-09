@@ -149,7 +149,7 @@ const Navbar = ({
                         About
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link
                         href="caHightlight"
                         activeClass="active"
@@ -162,7 +162,7 @@ const Navbar = ({
                       >
                         Highlights
                       </Link>
-                    </li>
+                    </li> */}
                     <li>
                       <Link
                         href="caPastSpeaker"
