@@ -280,24 +280,24 @@ const Navbar = ({
                 aria-labelledby="hs-dropright"
               >
                 <div className="p-1 space-y-0.5">
-                  <a
+                  <Links
                     class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-black-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
                     href="/2025-sponsorship"
                   >
                     Sponsorship Inquiry
-                  </a>
-                  <a
+                  </Links>
+                  <Links
                     class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-black-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
                     href="/speaker"
                   >
                     Apply as Speaker
-                  </a>
-                  <a
+                  </Links>
+                  <Links
                     class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-black-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
                     href="/interest"
                   >
                     Ticket
-                  </a>
+                  </Links>
                 </div>
               </div>
             </div>
