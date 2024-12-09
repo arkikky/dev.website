@@ -36,7 +36,11 @@ const PanelLayouts = ({
       />
 
       {/* @head */}
-      <HeadGraphSeo title={headTitle} otherPage={true} />
+      <HeadGraphSeo
+        title={headTitle}
+        siteThumbnails="/assets/caThumbnailsApp.jpg"
+        otherPage={true}
+      />
 
       {/* @main */}
       <main className="relative flex min-h-svh flex-col">

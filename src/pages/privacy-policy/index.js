@@ -17,7 +17,7 @@ const PrivacyPolicy = ({}) => {
       <HeadGraphSeo
         title="Privacy Policy"
         otherPage={true}
-        siteThunbnails={"/assets/caGeneral-Thumbnails.png"}
+        siteThumbnails="/assets/caThumbnailsApp.jpg"
       />
 
       {/* @navbar */}

@@ -56,7 +56,7 @@ export default function App({ data }) {
           <div className="flex flex-col lg:flex-row items-center justify-between">
             <div className="flex flex-col max-w-full lg:max-w-[625px] text-center lg:text-left">
               <h2 className="text-black-800 font-bevietnamPro h2 font-bold uppercase">
-                300+ Trailblazers
+                PREVIOUS SPEAKERS
               </h2>
             </div>
             <div className="hidden lg:flex sm:flex-row items-center justify-center relative z-10">
