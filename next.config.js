@@ -24,6 +24,12 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "https://api.coinfest.asia/",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "farm66.staticflickr.com",
         port: "",
         pathname: "/**",
