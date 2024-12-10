@@ -17,9 +17,9 @@ const Header = () => {
   const refSpldeThumbs = useRef(null);
 
   const intVideo1 = useRef(null);
-  const intVideo2 = useRef(null);
-  const intVideo3 = useRef(null);
-  const intVideo4 = useRef(null);
+  // const intVideo2 = useRef(null);
+  // const intVideo3 = useRef(null);
+  // const intVideo4 = useRef(null);
 
   useEffect(() => {
     if (refMainThumbs.current) {
@@ -28,29 +28,26 @@ const Header = () => {
 
     refSpldeThumbs.current.splide.on("click", (e) => {
       refSpldeThumbs.current.splide.go(e.index);
-
       if (e.index == 0) {
         if (intVideo1.current) {
           intVideo1.current.play();
         }
       }
-
-      if (e.index == 1) {
-        if (intVideo2.current) {
-          intVideo2.current.play();
-        }
-      }
-
-      if (e.index == 2) {
-        if (intVideo3.current) {
-          intVideo3.current.play();
-        }
-      }
-      if (e.index == 3) {
-        if (intVideo4.current) {
-          intVideo4.current.play();
-        }
-      }
+      // if (e.index == 1) {
+      //   if (intVideo2.current) {
+      //     intVideo2.current.play();
+      //   }
+      // }
+      // if (e.index == 2) {
+      //   if (intVideo3.current) {
+      //     intVideo3.current.play();
+      //   }
+      // }
+      // if (e.index == 3) {
+      //   if (intVideo4.current) {
+      //     intVideo4.current.play();
+      //   }
+      // }
     });
   }, [refSpldeThumbs]);
 
@@ -101,7 +98,7 @@ const Header = () => {
                 />
               </video>
             </SplideSlide>
-            <SplideSlide className="outline-none focus:outline-none overflow-hidden">
+            {/* <SplideSlide className="outline-none focus:outline-none overflow-hidden">
               <video
                 ref={intVideo2}
                 preload="auto"
@@ -152,7 +149,7 @@ const Header = () => {
                   type="video/mp4"
                 />
               </video>
-            </SplideSlide>
+            </SplideSlide> */}
           </Splide>
         </div>
         {/* <Container className="relative -mt-[315px] sm:-mt-[401px] lg:-mt-[399px] px-0 z-100"> */}
@@ -208,7 +205,7 @@ const Header = () => {
                     </h2>
                   </div>
                 </SplideSlide>
-                <SplideSlide className="rounded-2xl cursor-pointer outline-none focus:outline-none overflow-hidden">
+                {/* <SplideSlide className="rounded-2xl cursor-pointer outline-none focus:outline-none overflow-hidden">
                   <div className="caSpldeBoxImags absolute inset-y-0 inset-x-0 z-[8]">
                     <Image
                       className="object-cover object-center h-full w-full"
@@ -258,7 +255,7 @@ const Header = () => {
                       2022 Beach Club
                     </h2>
                   </div>
-                </SplideSlide>
+                </SplideSlide> */}
               </Splide>
             </div>
           </section>
