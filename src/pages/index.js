@@ -117,7 +117,7 @@ const App = (props) => {
       {/* @main */}
       <Main className="relative z-100">
         <Container className="relative">
-          <section className="mt-10 lg:mt-18">
+          <section className="mt-10 lg:mt-18 2xl:mt-24">
             <div className="block w-full">
               <h1 className="text-black-900 text-[32px] sm:text-[46px] lg:text-[56px] leading-[42px] sm:leading-[62px] lg:leading-[70px] font-bold uppercase text-balance">
                 {`COINFEST ASIA EMBRACES TRUE CRYPTO CULTURE`}

@@ -153,7 +153,7 @@ const Header = () => {
           </Splide>
         </div>
         {/* <Container className="relative -mt-[315px] sm:-mt-[401px] lg:-mt-[399px] px-0 z-100"> */}
-        <Container className="relative -mt-[215px] sm:-mt-[201px] lg:-mt-[239px] px-0 z-100">
+        <Container className="relative -mt-[215px] sm:-mt-[311px] lg:-mt-[315px] xl:-mt-[239px] 2xl:-mt-[209px] px-0 z-100">
           <section id="caHeaderMain" className="flex flex-col">
             <h1 className="text-white font-bevietnamPro text-[32px] sm:text-[46px] lg:text-[56px] leading-[42px] sm:leading-[66px] lg:leading-[78px] font-bold uppercase px-4 sm:px-0">
               WORLD'S LARGEST CRYPTO FESTIVAL. WHERE INNOVATION MEETS ADOPTION
