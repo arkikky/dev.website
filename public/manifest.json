@@ -1,0 +1,11 @@
+{
+  "name": "Ticket Coinfest Asia 2025",
+  "short_name": "Ticket Coinfest Asia 2025",
+  "description": "The largest crypto festival in the world | Bali, 21-22 August 2025!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1F1F1F",
+  "theme_color": "#1F1F1F",
+  "scope": "/",
+  "orientation": "portrait"
+}
