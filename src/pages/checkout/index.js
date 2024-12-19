@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import DOMPurify from 'dompurify';
 import { twMerge } from 'tailwind-merge';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
@@ -429,6 +430,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   };
 
   // @submit(Checkout)
+  const sntzeFld = (field) => DOMPurify.sanitize(field || '').trim();
   const onSubmitForm = async (data) => {
     if (!isValid === false) {
       const isTotalCart = getTotalCart(isProducts);
@@ -564,7 +566,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 );
                 // @attendee(with qty)
                 if (gtRslt?.quantity) {
-                  if (gtRslt?.quantity > 5) {
+                  if (gtRslt?.quantity > 15) {
                     break;
                   }
                   for (
