@@ -1,6 +1,6 @@
 .ca25TabAttendee {
   @apply overflow-hidden rounded-lg border-2 border-solid border-white bg-white/30;
-  @apply text-nowrap text-sm leading-initial text-white;
+  @apply text-nowrap text-xs leading-initial text-white sm:text-sm sm:leading-initial;
   @apply px-2.5 py-1.5;
   @apply opacity-40;
   @apply w-max min-w-max;

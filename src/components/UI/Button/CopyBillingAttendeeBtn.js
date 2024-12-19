@@ -6,7 +6,7 @@ import Badge from '@components/UI/Badge';
 const CopyBillingAttendeeBtn = ({ group, onEventClick }) => {
   return (
     <>
-      <div className="mr-0 mt-3 sm:mt-1">
+      <div className="mr-0 mt-3 lg:mt-1">
         <button
           id={`ca25Btn_CopyBillingDetail_${group}Checkout`}
           type="button"

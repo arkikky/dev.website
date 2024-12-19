@@ -5,7 +5,7 @@ import Link from 'next/link';
 const Breadcrumb = ({ theme = 'default', listBreadcrumb = [] }) => {
   const styles = {
     dark: { base: 'text-black-900 hover:text-primary', active: 'text-primary' },
-    light: { base: 'text-white hover:text-primary', active: 'text-primary' },
+    light: { base: 'text-white hover:text-white', active: 'text-white' },
     default: { base: 'text-gray-300 hover:text-white', active: 'text-primary' },
   };
   const currentStyle = styles[theme] || styles.default;
@@ -38,14 +38,12 @@ const Breadcrumb = ({ theme = 'default', listBreadcrumb = [] }) => {
                 </Link>
 
                 <svg
-                  className={
-                    'mx-2.5 size-4 shrink-0 text-current text-gray-400'
-                  }
+                  className={`mx-2.5 size-4 shrink-0 ${theme === 'light' ? 'stroke-white/60' : 'stroke-black-900/50'} text-current`}
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="3"
+                  strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >

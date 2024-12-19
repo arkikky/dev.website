@@ -19,7 +19,6 @@ const SelectCountry = ({
         data-hs-select={JSON.stringify({
           hasSearch: true,
           searchLimit: 6,
-          preventSearchFocus: true,
           searchPlaceholder: 'Search...',
           searchClasses:
             'block w-full text-sm border border-solid border-gray-200 rounded-lg focus:ring-0 focus:outline-none before:absolute before:inset-0 before:z-[1] py-2 px-3',

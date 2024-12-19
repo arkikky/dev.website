@@ -3,10 +3,19 @@ import React from 'react';
 // @components
 import Badge from '@components/UI/Badge';
 
-const CopyOtherDetailBtn = ({ attendee, group, onEventClick }) => {
+const CopyOtherDetailBtn = ({
+  items = {
+    firstItems: null,
+    attendee: 1,
+    group: null,
+  },
+  attendee,
+  group,
+  onEventClick,
+}) => {
   return (
     <>
-      <div className="mr-0 mt-3 sm:mt-0">
+      <div className="mr-0 mt-3 lg:mt-0">
         <button
           id="ca25Btn_CopyOtherDetailCheckout"
           type="button"
@@ -16,12 +25,15 @@ const CopyOtherDetailBtn = ({ attendee, group, onEventClick }) => {
             e.preventDefault();
             onEventClick(
               [
-                `#tktCAForm_CountryAttndee${attendee}_${group}Checkout`,
-                `#tktCAForm_WhatTypeOfConnectionsAttndee${attendee}_${group}Checkout`,
-                `#tktCAForm_DidYouHearAboutAttndee${attendee}_${group}Checkout`,
+                `#tktCAForm_CountryAttndee${items?.attendee}_${items?.group}Checkout`,
+                `#tktCAForm_WhatTypeOfConnectionsAttndee${items?.attendee}_${items?.group}Checkout`,
+                `#tktCAForm_DidYouHearAboutAttndee${items?.attendee}_${items?.group}Checkout`,
               ],
-              attendee,
-              group
+              (items = {
+                firstItems: items?.firstItems,
+                attendee: items?.attendee,
+                group: items?.group,
+              })
             );
           }}
           className="text-black-900"

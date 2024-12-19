@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import DOMPurify from 'dompurify';
 import getConfig from 'next/config';
 import dynamic from 'next/dynamic';
 
@@ -22,7 +21,6 @@ import {
 import { getFecthHbSpt, submitFormHbSpt } from '@lib/controller/HubSpot';
 import {
   getJoinString,
-  generateCreateOrderCode,
   generateTicketAttendeeCode,
   getCombineMerged,
 } from '@lib/helper/Configuration';
@@ -71,17 +69,20 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     fields: formCheckout,
     isCountry: country,
     isCoupons: coupons,
-    stepForm: 1,
+    isToggleCompany: false,
+    firstToggleCompany: {
+      product: 0,
+      attendee: 0,
+    },
     totalQty: 1,
     message: null,
   });
-  const [isStepToggledCompany, setIsStepToggledCompany] = useState({
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-    5: false,
-  });
+  const [isProducts, setProducts] = useState([]);
+  const [isStepToggledCompany, setIsStepToggledCompany] = useState(
+    isCart?.map((gtRslt) =>
+      Array.from({ length: gtRslt?.quantity || 0 }, () => false)
+    )
+  );
   const [currentStepAttendee, setCurrentStepAttendee] = useState(
     isCart?.map(() => 0)
   );
@@ -91,26 +92,20 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     sn4ujm0d1ebbc8lme1ihzsa9: 'bg-cyan-400',
     rc33x0dgm6tm707jghffuip4: 'bg-black-800',
   };
-
-  // @btn-step(Attendee)
-  const handleTabClick = (productIdx, tabIdx) => {
-    setCurrentStepAttendee((prev) =>
-      prev?.map((attendee, idx) => (idx === productIdx ? tabIdx : attendee))
-    );
-  };
-  const handlePrevAttendee = (productIdx) => {
-    setCurrentStepAttendee((prev) =>
-      prev?.map((attendee, idx) =>
-        idx === productIdx ? Math.max(attendee - 1, 0) : attendee
-      )
-    );
-  };
-  const handleNextAttendee = (productIdx, maxQuantity) => {
-    setCurrentStepAttendee((prev) =>
-      prev?.map((attendee, idx) =>
-        idx === productIdx ? Math.min(attendee + 1, maxQuantity - 1) : attendee
-      )
-    );
+  const findFirstTrue = () => {
+    for (
+      let productIdx = 0;
+      productIdx < isStepToggledCompany.length;
+      productIdx++
+    ) {
+      const attendeeIdx = isStepToggledCompany[productIdx].findIndex(
+        (toggle) => toggle === true
+      );
+      if (attendeeIdx !== -1) {
+        return { product: productIdx, attendee: attendeeIdx, status: true };
+      }
+    }
+    return null;
   };
 
   // @sticky(Scroll)
@@ -118,9 +113,10 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     const handleScroll = () => {
       const stickyScroll = document.querySelectorAll('.ca25StoreProductSticky');
       const scrollPosition = window.scrollY;
+
       stickyScroll.forEach((el) => {
         const targetOffsetTop = el.getBoundingClientRect().top + window.scrollY;
-        if (scrollPosition >= targetOffsetTop) {
+        if (scrollPosition > targetOffsetTop) {
           el.classList.add('isStickyActive');
         } else {
           el.classList.remove('isStickyActive');
@@ -133,8 +129,62 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     };
   }, []);
 
-  // @cart
-  const [isProducts, setProducts] = useState([]);
+  // @btn-step(Attendee)
+  const handleTabClick = (productIdx, tabIdx) => {
+    setCurrentStepAttendee((prev) =>
+      prev?.map((attendee, idx) => (idx === productIdx ? tabIdx : attendee))
+    );
+  };
+  const handleToggleChange = async (productIdx, attendeeIdx) => {
+    setIsStepToggledCompany((prev) =>
+      prev.map((product, pIdx) =>
+        pIdx === productIdx
+          ? product.map((toggle, aIdx) =>
+              aIdx === attendeeIdx ? !toggle : toggle
+            )
+          : product
+      )
+    );
+  };
+  useEffect(() => {
+    const result = findFirstTrue();
+    if (result) {
+      if (isFormCheckouts?.isToggleCompany === false) {
+        setFormCheckouts((prev) => ({
+          ...prev,
+          firstToggleCompany: {
+            product: result.product,
+            attendee: result.attendee,
+          },
+          isToggleCompany: result.status,
+        }));
+      }
+    } else {
+      setFormCheckouts((prev) => ({
+        ...prev,
+        firstToggleCompany: {
+          product: 0,
+          attendee: 0,
+        },
+        isToggleCompany: false,
+      }));
+    }
+    return () => {
+      undefined;
+    };
+  }, [isStepToggledCompany]);
+  const handlePrevAttendee = (prdctIdx) => {
+    setCurrentStepAttendee((prev) =>
+      prev?.map((a, idx) => (idx === prdctIdx ? Math.max(a - 1, 0) : a))
+    );
+  };
+  const handleNextAttendee = (prdctIdx, maxQty) => {
+    setCurrentStepAttendee((prev) =>
+      prev?.map((a, idx) =>
+        idx === prdctIdx ? Math.min(a + 1, maxQty - 1) : a
+      )
+    );
+  };
 
   // @handle(Auto Close PopUp)
   useEffect(() => {
@@ -192,7 +242,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     const totalQ = isCart?.reduce((acc, item) => {
       return acc + item.quantity;
     }, 0);
-
     if (totalQ >= 5) {
       const newQty = 5;
       setFormCheckouts((prev) => ({ ...prev, totalQty: newQty }));
@@ -210,6 +259,21 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   }, [hndleHookProducts]);
   useEffect(() => {
     handleIntzPreline();
+    // @hook-toogle(Company)
+    setIsStepToggledCompany((prev) =>
+      isCart.map((gtRslt, productIdx) => {
+        const currentToggles = prev[productIdx] || [];
+        const newQuantity = gtRslt?.quantity || 0;
+        return currentToggles
+          .slice(0, newQuantity)
+          .concat(
+            Array?.from(
+              { length: Math.max(newQuantity - currentToggles?.length, 0) },
+              () => false
+            )
+          );
+      })
+    );
     return () => {
       undefined;
     };
@@ -287,17 +351,24 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     }
   };
 
-  // @handle-copy(Company - Attendee)
-  const hndleCopy_OtherDetail = (el = [], attendee = 1, group) => {
+  // @handle-copy(Other Detail - Attendee)
+  const hndleCopyOtherDetail = (
+    el = [],
+    items = {
+      firstItems: null,
+      attendee: 1,
+      group: null,
+    }
+  ) => {
     const reg = [
-      `countryAttndee${attendee}_${group}`,
-      `whatTypeConnectionNetworkingAttndee${attendee}_${group}`,
-      `didYouHearAboutAttndee${attendee}_${group}`,
+      `countryAttndee${items?.attendee}_${items?.group}`,
+      `whatTypeConnectionNetworkingAttndee${items?.attendee}_${items?.group}`,
+      `didYouHearAboutAttndee${items?.attendee}_${items?.group}`,
     ];
     const vals = [
-      getValues(`countryAttndee${attendee - 1}_${group}`),
-      getValues(`whatTypeConnectionNetworkingAttndee${attendee - 1}_${group}`),
-      getValues(`didYouHearAboutAttndee${attendee - 1}_${group}`),
+      getValues(`countryAttndee1_${items?.firstItems}`),
+      getValues(`whatTypeConnectionNetworkingAttndee1_${items?.firstItems}`),
+      getValues(`didYouHearAboutAttndee1_${items?.firstItems}`),
     ];
     if (el.length > 0) {
       el?.forEach((id, i) => {
@@ -306,32 +377,43 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           elmntInstance?.setValue(vals[i]);
           setValue(reg[i], vals[i]);
         } else {
-          console.warn(`[Warning] HSSelect instance not found for id: ${id}`);
+          // console.warn(`[Warning] HSSelect instance not found for id: ${id}`);
         }
       });
     }
   };
 
   // @handle-copy(Company - Attendee)
-  const hndleCopy_CompanyDetail = (
+  const hndleCopyCompany = (
     el = [],
-    attendee = 1,
-    isActiveToggle = 1,
-    group
+    items = {
+      attendee: 1,
+      group: null,
+    },
+    values = {
+      activeGroup: null,
+      activeToggle: 1,
+    }
   ) => {
     const reg = [
-      `jobPositionAttndee${attendee}_${group}`,
-      `companyFocusAttndee${attendee}_${group}`,
-      `companySizeAttndee${attendee}_${group}`,
+      `jobPositionAttndee${items?.attendee}_${items?.group}`,
+      `companyFocusAttndee${items?.attendee}_${items?.group}`,
+      `companySizeAttndee${items?.attendee}_${items?.group}`,
     ];
     const vals = [
-      getValues(`jobPositionAttndee${isActiveToggle}_${group}`),
-      getValues(`companyFocusAttndee${isActiveToggle}_${group}`),
-      getValues(`companySizeAttndee${isActiveToggle}_${group}`),
+      getValues(
+        `jobPositionAttndee${values?.activeToggle}_${values?.activeGroup}`
+      ),
+      getValues(
+        `companyFocusAttndee${values?.activeToggle}_${values?.activeGroup}`
+      ),
+      getValues(
+        `companySizeAttndee${values?.activeToggle}_${values?.activeGroup}`
+      ),
     ];
     setValue(
-      `companyAttndee${attendee}_${group}`,
-      getValues(`companyAttndee${isActiveToggle}_${group}`)
+      `companyAttndee${items?.attendee}_${items?.group}`,
+      getValues(`companyAttndee${values?.activeToggle}_${values?.activeGroup}`)
     );
     if (el.length > 0) {
       el?.forEach((id, i) => {
@@ -340,7 +422,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           elmntInstance.setValue(vals[i]);
           setValue(reg[i], vals[i]);
         } else {
-          console.warn(`[Warning] HSSelect instance not found for id: ${id}`);
+          // console.warn(`[Warning] HSSelect instance not found for id: ${id}`);
         }
       });
     }
@@ -645,15 +727,15 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 ...isFormCheckouts,
                 message: 'Berhasil Terkirim',
               });
-              // reset();
-              // router.replace(
-              //   `/checkout/order-received?process=${setIdOrderRecived}`
-              // );
+              reset();
+              router.replace(
+                `/checkout/order-received?process=${setIdOrderRecived}`
+              );
             }
           }
         }
       } catch (error) {
-        console.error('[error] processing submission:', error);
+        // console.error('[error] processing submission:', error);
       }
     }
   };
@@ -667,7 +749,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       <NavbarTop nonStore={true} />
 
       {/* @main */}
-      <Main className="relative pb-8 pt-[101px] sm:pb-12 sm:pt-[118px] lg:pt-[126px]">
+      <Main className="relative pb-8 pt-[101px] sm:pb-12 sm:pt-[118px] lg:pt-[138px]">
         <Container>
           <form
             id="tktCA25Form_Checkout"
@@ -712,10 +794,10 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   </span>
                 </div>
                 <div
-                  className={`relative inline-flex w-full flex-col rounded-xl bg-white ${isSubmitting ? 'pointer-events-none select-none' : 'pointer-events-auto select-auto'} px-3 py-3 sm:px-4 sm:py-4`}
+                  className={`relative inline-flex w-full flex-col rounded-xl bg-white ${!isProducts?.length > 0 || isSubmitting ? 'pointer-events-none select-none' : 'pointer-events-auto select-auto'} px-3 py-3 sm:px-4 sm:py-4`}
                 >
                   <div
-                    className={`absolute inset-x-0 inset-y-0 bg-white/40 ${isSubmitting ? 'pointer-events-none z-10 select-none opacity-100 backdrop-blur-[2px]' : 'pointer-events-auto -z-px select-auto opacity-0'}`}
+                    className={`absolute inset-x-0 inset-y-0 bg-white/40 ${!isProducts?.length > 0 || isSubmitting ? 'pointer-events-none z-10 select-none opacity-100 backdrop-blur-[2px]' : 'pointer-events-auto -z-px select-auto opacity-0'}`}
                   ></div>
                   <BillingDetailCheckout
                     ipAddress={
@@ -736,34 +818,36 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               {/* @attendee(Detail) */}
               <div className={`mt-10 block w-full space-y-6`}>
                 {isProducts?.map((gtRslt, i) => {
+                  let groupName = getJoinString(gtRslt?.name);
                   return (
                     <div
                       className={twMerge(
-                        `relative mt-8 flex flex-col items-end overflow-clip rounded-[14px] px-1.5 pb-1.5 transition-[height] duration-300 ease-in-out first:mt-0 sm:rounded-2xl sm:px-2 sm:pb-2`,
+                        `relative mt-8 flex flex-col items-end rounded-[14px] px-1.5 pb-1.5 transition-[height] duration-300 ease-in-out first:mt-0 sm:rounded-2xl sm:px-2 sm:pb-2`,
                         style[gtRslt?.documentId] || 'bg-primary'
                       )}
                       key={gtRslt?.documentId}
                     >
                       <div className="relative flex w-full flex-col">
                         <div
-                          id="ca25StoreProductSticky"
+                          id={`ca25StoreProductSticky_${groupName}`}
                           className={twMerge(
-                            `ca25StoreProductSticky sticky inset-x-0 top-[75px] ${gtRslt?.quantity > 1 ? 'h-[98px]' : 'h-[58px]'} z-60 flex w-full flex-col items-start justify-between transition-[height] duration-300 ease-in-out sm:top-[86px]`,
+                            `ca25StoreProductSticky sticky inset-x-0 top-[75px] mt-1 ${gtRslt?.quantity > 1 ? 'h-[78px] sm:h-[94px]' : 'h-[45px] sm:h-[59px]'} z-60 flex w-full flex-col items-start justify-between transition-[height] duration-300 ease-in-out sm:top-[88px]`,
                             style[gtRslt?.documentId] || 'bg-primary'
                           )}
                         >
-                          <div className="ca25StoreProductSticky_Cards item-start flex w-full flex-col justify-start pb-3 pt-4.5 text-center">
-                            <div className="absolute inset-x-0 top-0 flex flex-col pt-3.5">
-                              <h2 className="mb-2 w-full text-base font-medium capitalize text-white sm:text-xl">
+                          <div className="ca25StoreProductSticky_Cards item-start flex w-full flex-col justify-start text-center">
+                            <div className="absolute inset-x-0 -top-0.5 flex flex-col pb-5.5 pt-3 sm:-top-1 sm:pt-4.5">
+                              <h2 className="ca25StoreProductSticky_TitleCards mb-2 w-full font-medium capitalize text-white">
                                 {gtRslt?.name}
                               </h2>
-                              {/* Tabs */}
+                              {/* @tabs */}
                               {gtRslt?.quantity > 1 && (
-                                <div className="tabs scrollbar-x inline-flex flex-row gap-x-1.5 overflow-x-auto">
+                                <div className="ca25Tabs scrollbar-x mt-0.5 inline-flex flex-row gap-x-1.5 overflow-x-auto scrollbar-hide sm:mt-1">
                                   {Array.from({
                                     length: gtRslt?.quantity || 0,
                                   }).map((_, tabIdx) => (
                                     <button
+                                      id={`ca25TabAttendee${tabIdx}_${groupName}`}
                                       className={`ca25TabAttendee ${
                                         currentStepAttendee[i] === tabIdx
                                           ? 'isActive'
@@ -775,7 +859,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                         handleTabClick(i, tabIdx);
                                       }}
                                     >
-                                      Attendee {tabIdx + 1}
+                                      {`Attendee ${tabIdx + 1}`}
                                     </button>
                                   ))}
                                 </div>
@@ -784,17 +868,22 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                           </div>
                         </div>
                         <div
-                          className={`relative inline-flex w-full flex-col overflow-hidden rounded-lg bg-white px-3 py-3 sm:rounded-xl sm:px-4 sm:py-4 ${isSubmitting ? 'pointer-events-none select-none' : 'pointer-events-auto select-auto'}`}
+                          className={`relative inline-flex w-full flex-col ${gtRslt?.quantity > 1 ? 'rounded-t-lg sm:rounded-t-xl' : 'rounded-lg sm:rounded-xl'} bg-white px-3 py-3 sm:px-4 sm:py-4 ${isSubmitting ? 'pointer-events-none select-none' : 'pointer-events-auto select-auto'}`}
                         >
                           <div
                             className={`absolute inset-x-0 inset-y-0 bg-white/40 ${isSubmitting ? 'pointer-events-none z-10 select-none opacity-100 backdrop-blur-[2px]' : 'pointer-events-auto -z-px select-auto opacity-0'}`}
                           ></div>
                           {Array?.from({ length: gtRslt?.quantity || 0 }).map(
                             (_, attndIdx) => {
-                              let groupName = getJoinString(gtRslt?.name);
                               const haveCompanyAttendeeGroup = watch(
                                 `haveCompanyAttndee${attndIdx + 1}_${getJoinString(gtRslt?.name)}`
                               );
+                              const isFirstToggleTrue =
+                                isFormCheckouts?.firstToggleCompany &&
+                                isFormCheckouts?.firstToggleCompany?.product ===
+                                  i &&
+                                isFormCheckouts?.firstToggleCompany
+                                  ?.attendee === attndIdx;
                               if (attndIdx === currentStepAttendee[i]) {
                                 return (
                                   <div
@@ -802,11 +891,11 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                     key={attndIdx}
                                   >
                                     <>
-                                      <div className="flex w-full flex-col items-start justify-between sm:flex-row">
+                                      <div className="flex w-full flex-col items-start justify-between lg:flex-row">
                                         <div className="flex w-full max-w-[420px] flex-col items-start justify-start">
                                           <h2 className="text-xl font-medium capitalize">
-                                            {`Attendees ${attndIdx + 1}`}
-                                          </h2>{' '}
+                                            {`Attendees ${attndIdx + 1}`}{' '}
+                                          </h2>
                                           <span className="mt-1 text-sm font-light text-gray-500">
                                             {`Please complete the form with your attendee details.`}
                                           </span>
@@ -821,36 +910,49 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                         )}
                                         {attndIdx + 1 > 1 && (
                                           <CopyOtherDetailBtn
-                                            attendee={attndIdx + 1}
-                                            group={groupName}
-                                            onEventClick={hndleCopy_OtherDetail}
+                                            items={{
+                                              firstItems: getJoinString(
+                                                isProducts[0]?.name
+                                              ),
+                                              attendee: attndIdx + 1,
+                                              group: groupName,
+                                            }}
+                                            onEventClick={hndleCopyOtherDetail}
                                           />
                                         )}
                                       </div>
                                       <div className="mb-5 mt-4 flex w-full border-t border-dashed border-gray-200"></div>
                                       <AttendeeDetailCheckouts
-                                        ipAddress={
-                                          isFormCheckouts?.isIpAddress
-                                            ?.country !== undefined
-                                            ? isFormCheckouts?.isIpAddress?.country.toLowerCase()
-                                            : 'id'
-                                        }
                                         watch={haveCompanyAttendeeGroup}
-                                        fieldForm={isFormCheckouts?.fields}
-                                        group={groupName}
-                                        country={isFormCheckouts?.isCountry}
+                                        forms={{
+                                          ipAddress:
+                                            isFormCheckouts?.isIpAddress
+                                              ?.country !== undefined
+                                              ? isFormCheckouts?.isIpAddress?.country.toLowerCase()
+                                              : 'id',
+                                          fieldForm: isFormCheckouts?.fields,
+                                          country: isFormCheckouts?.isCountry,
+                                        }}
+                                        items={{
+                                          isToggle: isStepToggledCompany ?? [],
+                                          product: i,
+                                          productItems: attndIdx,
+                                          attendee: attndIdx + 1,
+                                          group: groupName,
+                                        }}
                                         register={register}
                                         control={control}
                                         setValue={setValue}
                                         getValues={getValues}
                                         errors={errors}
-                                        arrIndex={attndIdx + 1}
+                                        onChangeToggle={handleToggleChange}
                                       >
-                                        {attndIdx + 1 > 1 &&
-                                        getValues(
+                                        {getValues(
                                           `haveCompanyAttndee${attndIdx + 1}_${groupName}`
-                                        ) === true ? (
-                                          <div className="mr-0 mt-3 sm:mt-0">
+                                        ) === true && !isFirstToggleTrue ? (
+                                          <div
+                                            className={`mr-0 mt-3 sm:mt-0 ${!isFirstToggleTrue ? 'opacity-100' : 'opacity-0'} transition-[opacity] duration-300`}
+                                          >
                                             <button
                                               id="ca25Btn_CopyCompanyDetailCheckout"
                                               type="button"
@@ -858,23 +960,29 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                               aria-labelledby="Button for Copy Company Detail(Checkouts)"
                                               onClick={(e) => {
                                                 e.preventDefault();
-                                                hndleCopy_CompanyDetail(
+                                                hndleCopyCompany(
                                                   [
                                                     `#tktCAForm_JobPositionAttndee${attndIdx + 1}_${groupName}Checkout`,
                                                     `#tktCAForm_CompanyFocusAttndee${attndIdx + 1}_${groupName}Checkout`,
                                                     `#tktCAForm_CompanySizeAttndee${attndIdx + 1}_${groupName}Checkout`,
                                                   ],
-                                                  attndIdx + 1,
-                                                  Object.entries(
-                                                    isStepToggledCompany
-                                                  )
-                                                    .filter(
-                                                      ([key, value]) => value
-                                                    )
-                                                    .map(([key]) => Number(key))
-                                                    .sort((a, b) => a - b)
-                                                    .pop(),
-                                                  groupName
+                                                  {
+                                                    attendee: attndIdx + 1,
+                                                    group: groupName,
+                                                  },
+                                                  {
+                                                    activeGroup: getJoinString(
+                                                      isProducts[
+                                                        isFormCheckouts
+                                                          ?.firstToggleCompany
+                                                          ?.product
+                                                      ]?.name
+                                                    ),
+                                                    activeToggle:
+                                                      isFormCheckouts
+                                                        ?.firstToggleCompany
+                                                        ?.attendee + 1,
+                                                  }
                                                 );
                                               }}
                                               className="text-black-900"
@@ -925,17 +1033,20 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                         </div>
                       </div>
                       {gtRslt?.quantity > 1 && (
-                        <div className={`mt-7 flex items-start justify-end`}>
+                        <div
+                          className={`flex w-full items-start justify-end rounded-b-lg bg-white pb-3 pr-3 pt-4 sm:rounded-b-xl sm:pb-4 sm:pr-4 sm:pt-5`}
+                        >
                           <div
                             className={`${currentStepAttendee[i] + 2 > 1 ? 'inline-flex' : 'hidden'} flex-row items-center gap-x-2`}
                           >
                             <button
-                              id={`ca25BtnStepForm_Prev${getJoinString(gtRslt?.name)}Checkout`}
+                              id={`ca25BtnStepForm_Prev${groupName}Checkout`}
                               className={twMerge(
-                                `inline-flex items-center gap-x-1 rounded-lg border border-transparent bg-white py-2 pl-2 pr-3 text-sm font-normal text-black-900 transition duration-300 ease-in-out focus:outline-none disabled:pointer-events-none disabled:opacity-60`
+                                `inline-flex items-center gap-x-1 rounded-lg border border-transparent bg-white py-2 pl-2 pr-3 text-sm font-normal text-white transition duration-300 ease-in-out focus:outline-none disabled:pointer-events-none disabled:opacity-60`,
+                                style[gtRslt?.documentId] || 'bg-primary'
                               )}
                               type="button"
-                              aria-label={`Coinfest Asia 2025 Button for Next Step Form ${getJoinString(gtRslt?.name)}`}
+                              aria-label={`Coinfest Asia 2025 Button for Next Step Form ${groupName}`}
                               disabled={currentStepAttendee[i] === 0}
                               onClick={(e) => {
                                 e.preventDefault();
@@ -959,12 +1070,13 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                               Prev
                             </button>
                             <button
-                              id={`ca25BtnStepForm_Next${getJoinString(gtRslt?.name)}Checkout`}
+                              id={`ca25BtnStepForm_Next${groupName}Checkout`}
                               className={twMerge(
-                                `inline-flex items-center gap-x-1 rounded-lg border border-transparent bg-white py-2 pl-3 pr-2 text-sm font-normal text-black-900 transition duration-300 ease-in-out focus:outline-none disabled:pointer-events-none disabled:opacity-60`
+                                `inline-flex items-center gap-x-1 rounded-lg border border-transparent bg-white py-2 pl-3 pr-2 text-sm font-normal text-white transition duration-300 ease-in-out focus:outline-none disabled:pointer-events-none disabled:opacity-60`,
+                                style[gtRslt?.documentId] || 'bg-primary'
                               )}
                               type="button"
-                              aria-label={`Coinfest Asia 2025 Button for Next Step Form ${getJoinString(gtRslt?.name)}`}
+                              aria-label={`Coinfest Asia 2025 Button for Next Step Form ${groupName}`}
                               disabled={
                                 currentStepAttendee[i] === gtRslt?.quantity - 1
                               }
@@ -999,18 +1111,18 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
               {/* @submit(Mobile) */}
               <div
-                className={`mt-10 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-4 ${isSubmitting ? 'pointer-events-none select-none' : 'pointer-events-auto select-auto'} sm:px-5 sm:py-5 xl:hidden`}
+                className={`mt-10 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-4 ${!isProducts?.length > 0 || isSubmitting ? 'pointer-events-none select-none' : 'pointer-events-auto select-auto'} sm:px-5 sm:py-5 xl:hidden`}
               >
                 <BoardSubmitCheckout register={register} errors={errors} />
 
                 {/* @submit(Form) */}
                 <button
                   id="tktCA25Form_SubmitMobileCheckout"
-                  className={`pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-black-900 px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
+                  className={`pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-black-900 px-8 py-5 text-sm font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 sm:text-base`}
                   type="submit"
                   role="button"
                   aria-label="Coinfest Asia 2025 Submit Mobile Checkout"
-                  disabled={isSubmitting}
+                  disabled={!isProducts?.length > 0 || isSubmitting}
                 >
                   {isSubmitting ? (
                     <span className="flex flex-row items-center">
@@ -1045,14 +1157,16 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
             {/* @order-summary */}
             <div className="col-span-full pl-0 xl:col-span-5 xl:pl-6">
-              <header className={`block w-full xl:hidden`}>
-                <div className="mb-5 block w-full">
-                  <h1 className="text-2xl font-semibold text-black-900 sm:text-3xl">
+              <header
+                className={`mb-5 block w-full rounded-xl bg-primary px-3 py-4 xl:hidden`}
+              >
+                <div className="mb-0 block w-full">
+                  <h1 className="text-xl font-semibold text-white sm:text-3xl">
                     Checkout
                   </h1>
-                  <div className="mt-2 block">
+                  <div className="mt-1.5 block">
                     <Breadcrumb
-                      theme="dark"
+                      theme="light"
                       listBreadcrumb={[
                         {
                           label: 'Home',
@@ -1078,7 +1192,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 errors={errors}
               >
                 <div
-                  className={`hidden w-full rounded-2xl border border-gray-200 bg-white ${isSubmitting ? 'pointer-events-none select-none' : 'pointer-events-auto select-auto'} px-4 py-4 sm:px-5 sm:py-5 xl:block`}
+                  className={`hidden w-full rounded-2xl border border-gray-200 bg-white ${!isProducts?.length > 0 || isSubmitting ? 'pointer-events-none select-none' : 'pointer-events-auto select-auto'} px-4 py-4 sm:px-5 sm:py-5 xl:block`}
                 >
                   <BoardSubmitCheckout register={register} errors={errors} />
                   {/* @submit(Form) */}
@@ -1088,7 +1202,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     type="submit"
                     role="button"
                     aria-label="Coinfest Asia 2025 Submit Desktop Checkout"
-                    disabled={isSubmitting}
+                    disabled={!isProducts?.length > 0 || isSubmitting}
                   >
                     {isSubmitting ? (
                       <span className="flex flex-row items-center">

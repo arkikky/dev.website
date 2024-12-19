@@ -108,12 +108,13 @@ button {
 /* @products */
 @import './components/products.module';
 
+.ca25StoreProductSticky .ca25StoreProductSticky_TitleCards {
+  @apply text-base leading-initial sm:text-xl sm:leading-initial;
+}
 .ca25StoreProductSticky.isStickyActive {
   @apply pb-3 sm:pb-4;
 }
-
-.tab.active {
-  @apply text-white;
+.ca25StoreProductSticky.isStickyActive .ca25StoreProductSticky_TitleCards {
+  @apply sm:text-base;
 }
-
 /* @debug */

@@ -32,10 +32,6 @@ const PromoCouponCode = ({ coupons, totalCart, onEventClick }) => {
           gap: '12px',
           mediaQuery: 'min',
           padding: { left: '0px', right: '0px' },
-          // breakpoints: {
-          //   640: {
-          //   },
-          // },
         }}
         className="ca2024BenefitSlider ca2024Grid w-full"
       >

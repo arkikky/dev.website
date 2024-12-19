@@ -1,6 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { toast } from 'sonner';
+import getConfig from 'next/config';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
+
+// @get .config
+const { publicRuntimeConfig } = getConfig();
 
 // @redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -204,20 +209,32 @@ const Home = ({ products }) => {
       <HeadGraphSeo />
 
       {/* @main */}
-      <Main className="pb-8 pt-[135px] sm:pb-16 sm:pt-[144px] lg:pt-[158px]">
-        <Container>
+      <Main className="overflow-hidden pb-8 pt-[135px] sm:pb-16 sm:pt-[144px] lg:pt-[178px]">
+        <Container className={'relative'}>
+          <div className="pointer-events-none absolute -right-[151px] -top-[98px] bottom-auto left-auto z-px sm:-right-[467px] sm:-top-[331px]">
+            <Image
+              className="h-[207px] w-auto object-cover sm:h-[593px]"
+              src={'/assets/images/backdrop/ca25Backdrop-TicketProducts.png'}
+              alt={`${publicRuntimeConfig.siteAppName} Ticket Product Backdrop`}
+              height={2269}
+              width={3211}
+              quality="87"
+              fetchPriority="auto"
+            />
+          </div>
+
           {/* @header */}
-          <div className="mb-8 flex flex-col text-start sm:mb-12">
-            <h1 className="w-ful max-w-full text-start text-[44px] font-bold uppercase leading-[52px] text-black-900 sm:max-w-[445px] sm:text-[54px] sm:leading-[74px] lg:max-w-[677px] lg:text-[80px] lg:leading-[90px]">
+          <div className="mb-10 flex flex-col text-start sm:mb-12">
+            <h1 className="w-ful max-w-[208px] text-start text-[24px] font-bold uppercase leading-[32px] text-black-900 sm:max-w-[445px] sm:text-[54px] sm:leading-[74px] lg:max-w-[677px] lg:text-[80px] lg:leading-[90px]">
               {`GET YOUR TICKETS NOW`}
             </h1>
-            <p className="mt-2.5 font-bevietnamPro text-xl font-light text-gray-400">
+            <p className="mt-2 font-bevietnamPro text-base font-light text-gray-400 sm:mt-3.5 sm:text-xl">
               {`Prices exclude VAT`}
             </p>
           </div>
 
           {/* @products */}
-          <div className="mt-4 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:mt-8 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-4 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:mt-10 sm:grid-cols-2 xl:grid-cols-3">
             {isCartProducts?.products?.map((gtRslt, i) => {
               const isLoading =
                 isSessionProducts.id_product === gtRslt.documentId &&

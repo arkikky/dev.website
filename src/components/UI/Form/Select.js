@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const Select = ({
   id = 'tktCA25Form_InputSelect',
@@ -20,7 +20,6 @@ const Select = ({
         data-hs-select={JSON.stringify({
           hasSearch: withSearch,
           searchLimit: 4,
-          preventSearchFocus: true,
           searchPlaceholder: 'Search...',
           searchClasses:
             'block w-full text-sm border border-solid border-gray-200 rounded-lg focus:ring-0 focus:outline-none before:absolute before:inset-0 before:z-[1] py-2 px-3',
