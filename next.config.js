@@ -70,7 +70,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Access-Control-Allow-Methods',
-            value: 'GET, POST, DELETE',
+            value: 'GET, POST, PUT, DELETE',
           },
         ],
       },
@@ -82,6 +82,10 @@ const nextConfig = {
             value: '*',
           },
           {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, POST, PUT, DELETE',
+          },
+          {
             key: 'Cache-Control',
             value: 'private, stale-while-revalidate=59',
           },
@@ -91,20 +95,33 @@ const nextConfig = {
           },
           {
             key: 'X-DNS-Prefetch-Control',
-            value: 'off',
+            value: 'on',
           },
           {
             key: 'Strict-Transport-Security',
-            value: 'max-age=15552000; includeSubDomains;',
+            value: 'max-age=15552000; includeSubDomains; preload',
           },
           {
             key: 'X-Frame-Options',
             value: 'SAMEORIGIN',
           },
           {
+            key: 'Content-Security-Policy',
+            value: `
+              default-src 'self';
+              script-src 'self' 'nonce-<random_value>';
+              style-src 'self' 'nonce-<random_value>';
+              img-src 'self';
+              font-src 'self';
+              connect-src 'self';
+              object-src 'none';
+              frame-src 'none';
+            `,
+          },
+          {
             key: 'Permissions-Policy',
             value:
-              'display-capture=(self), microphone=(), payment=(), geolocation=(self)',
+              'display-capture=(self), microphone=(), payment=(self), geolocation=(self)',
           },
           {
             key: 'X-Content-Type-Options',
@@ -113,6 +130,22 @@ const nextConfig = {
           {
             key: 'Referrer-Policy',
             value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Cross-Origin-Resource-Policy',
+            value: 'same-site',
+          },
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'same-origin',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
+            key: 'Expect-CT',
+            value: 'enforce, max-age=86400',
           },
         ],
       },

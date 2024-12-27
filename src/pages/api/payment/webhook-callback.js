@@ -22,11 +22,6 @@ export default async function handler(req, res) {
     let message;
 
     const callbackToken = req?.headers['x-callback-token'];
-
-    // if (callbackToken !== XENDIT_CALLBACK_TOKEN) {
-    //   return res?.status(403).json(logErr);
-    // }
-
     if (callbackData?.status === 'PAID') {
       message = 'Payment successful!';
     } else if (callbackData?.status === 'EXPIRED') {
@@ -34,10 +29,8 @@ export default async function handler(req, res) {
     } else if (callbackData?.status === 'FAILED') {
       message = 'Payment failed!';
     }
-
     res?.status(200).json(message);
   } catch (error) {
-    console.error('Error handling callback:', error);
-    res?.status(500).json({ error: 'Failed to handle callback' });
+    res?.status(500).json(logErr);
   }
 }

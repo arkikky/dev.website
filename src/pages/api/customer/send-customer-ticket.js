@@ -77,6 +77,7 @@ END:VCALENDAR
     <CustomerTickets attendeeId={attId} isAttendee={attendee} />
   );
   const icsInvTickets = generateICS();
+
   try {
     await transporter.sendMail({
       from: '"Ticket | Coinfest Asia" <ticket@coinfest.asia>',
@@ -93,8 +94,6 @@ END:VCALENDAR
     });
     res?.status(200).json({ message: `Email sent successfully!` });
   } catch (error) {
-    res
-      ?.status(500)
-      .json({ message: 'Failed to send email', error: error.message });
+    res?.status(500).json(logErr);
   }
 }

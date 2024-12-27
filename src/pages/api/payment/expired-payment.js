@@ -33,7 +33,6 @@ export default async function handler(req, res) {
     return res?.status(400).json(logErr);
   }
 
-  // @data(body)
   try {
     const basicAuth = Buffer.from(
       serverRuntimeConfig?.secretXenditToken
@@ -52,7 +51,7 @@ export default async function handler(req, res) {
     const rsExpired = await rs.json();
     res?.status(200).json({ data: rsExpired });
   } catch (error) {
-    console.error('Error creating invoice:', error);
-    res?.status(500).json({ error: 'Failed to create invoice' });
+    // console.error('Error creating invoice:', error);
+    res?.status(500).json(logErr);
   }
 }

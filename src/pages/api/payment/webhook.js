@@ -48,7 +48,7 @@ export default async function handler(req, res) {
     const rs = await rsGetWebhook.json();
     res?.status(200).json(rs);
   } catch (error) {
-    console.error('Error handling callback:', error);
-    res?.status(500).json({ error: 'Failed to handle callback' });
+    // console.error('Error handling callback:', error);
+    res?.status(500).json(logErr);
   }
 }

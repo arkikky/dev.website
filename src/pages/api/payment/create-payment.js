@@ -46,12 +46,12 @@ export default async function handler(req, res) {
         mobile_number: phone,
       },
       callback_url:
-        'https://e5a8-66-96-225-79.ngrok-free.app/api/payment/webhook-callback',
+        'httphttps://arkikky-dev0.vercel.app/api/payment/webhook-callback',
       currency: 'IDR',
       invoice_duration: 900,
       customer_notification_preference: {
         invoice_created: ['email', 'whatsapp'],
-        invoice_reminder: [],
+        invoice_reminder: ['whatsapp'],
         invoice_paid: ['whatsapp'],
       },
       should_authenticate_credit_card: true,
@@ -68,7 +68,7 @@ export default async function handler(req, res) {
     const rs = await rsInvoice.json();
     res?.status(200).json({ data: rs });
   } catch (error) {
-    console.error('Error creating invoice:', error);
-    res?.status(500).json({ error: 'Failed to create invoice' });
+    // console.error('Error creating invoice:', error);
+    res?.status(500).json(logErr);
   }
 }

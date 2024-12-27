@@ -49,16 +49,8 @@ export default async function handler(req, res) {
   });
 
   // @data(body)
-  const {
-    toEmail,
-    attId,
-    createDate,
-    fullname,
-    company,
-    products,
-    coupon,
-  } = req?.body;
-
+  const { toEmail, attId, createDate, fullname, company, products, coupon } =
+    req?.body;
   const isTotalCart = getTotalCart(products);
   let totalOrder, discntAmount;
 
@@ -119,8 +111,6 @@ export default async function handler(req, res) {
 
     res?.status(200).json({ message: `Email sent successfully!` });
   } catch (error) {
-    res
-      ?.status(500)
-      .json({ message: 'Failed to send email', error: error.message });
+    res?.status(500).json(logErr);
   }
 }
