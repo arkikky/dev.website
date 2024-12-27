@@ -112,7 +112,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: `script-src 'self' 'unsafe-eval' http:* https:*;script-src-attr 'none';object-src 'none';frame-src 'none';frame-ancestors 'self';form-action 'self';base-uri 'none';connect-src 'self' http: https:;report-uri https://arkikky-dev0.vercel.app;`,
+            value: `default-src http:*;script-src 'self' 'unsafe-eval' http:* https:*;script-src-attr 'none';object-src 'none';frame-src 'none';frame-ancestors 'self';form-action 'self';base-uri 'none';connect-src 'self' http: https:;report-uri https://arkikky-dev0.vercel.app;`,
           },
           {
             key: 'Permissions-Policy',
