@@ -139,17 +139,16 @@ const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
 
               {/* @event(date) */}
               <div
-                className={`pointer-events-none relative flex h-[59px] w-full min-w-[178px] max-w-[178px] cursor-default flex-col rounded-lg bg-[#005AFF] px-2.5 py-2 sm:h-[68px] sm:min-w-[221px] sm:max-w-[221px] sm:rounded-xl sm:px-3 sm:py-2.5`}
+                className={`pointer-events-none relative flex h-[59px] w-full min-w-[178px] max-w-[178px] cursor-default flex-col rounded-lg bg-primary px-2.5 py-2 sm:h-[68px] sm:min-w-[221px] sm:max-w-[221px] sm:rounded-xl sm:px-3 sm:py-2.5`}
               >
                 <Splide
                   ref={(slider) => (rfMainSplde.current = slider)}
-                  id="ca25MnBoard_Insights"
+                  id="ca25MnBoard_InsightsStore"
                   tag="section"
-                  role="carousel"
-                  aria-label="Coinfest Asia 2025 (Mini Board Information - Navbar Top)"
+                  role="region"
+                  aria-label="Coinfest Asia 2025 Mini Board Information Store"
                   options={{
-                    label:
-                      'Coinfest Asia 2025 (Mini Board Information - Navbar Top)',
+                    label: 'Coinfest Asia 2025 Mini Board Information Store',
                     updateOnMove: true,
                     type: 'loop',
                     perPage: 1,
@@ -172,7 +171,7 @@ const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
                 >
                   <SplideSlide data-splide-interval="5000">
                     <div className="relative flex h-12 flex-col items-start justify-start overflow-hidden">
-                      <span className={`text-sm font-light text-white/70`}>
+                      <span className={`text-sm font-light text-white/60`}>
                         {`Event Date`}
                       </span>
                       <div
@@ -184,7 +183,7 @@ const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
                   </SplideSlide>
                   <SplideSlide data-splide-interval="6000">
                     <div className="relative flex h-12 flex-col items-start justify-start overflow-hidden">
-                      <span className={`text-sm font-light text-white/70`}>
+                      <span className={`text-sm font-light text-white/60`}>
                         {`Starting in`}
                       </span>
                       <div

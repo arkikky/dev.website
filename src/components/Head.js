@@ -9,7 +9,7 @@ const HeadGraphSeo = ({
   title = publicRuntimeConfig.siteTitle,
   desc = publicRuntimeConfig.siteDesc,
   siteUrl = publicRuntimeConfig.siteUrl,
-  siteThunbnails = `${process.env.NEXT_PUBLIC_UPLOAD}/uploads/ca25_Thumbnails_Full_The_Moon_64a7262311.png`,
+  siteThunbnails = `${process.env.NEXT_PUBLIC_UPLOAD}uploads/ca25_Thumbnails_Full_The_Moon_64a7262311.png`,
   otherPage = false,
 }) => {
   return (

@@ -20,12 +20,15 @@ import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
 import ToastAlerts from '@components/UI/Alerts/ToastAlert';
-import StarryBackgroundHD from '@components/UI/Background/StarryBlinkBackground';
+// import StarryBackgroundHD from '@components/UI/Background/StarryBlinkBackground';
 import TicketProductsSkeleton from '@components/Skeleton/Products/TicketProducts';
 const TicketProducts = dynamic(() => import('@components/UI/TicketProducts'), {
   loading: () => <TicketProductsSkeleton />,
   ssr: false,
 });
+
+// @layouts
+import LayoutStore from '@layouts/LayoutStore';
 
 const Home = ({ products }) => {
   const dispatch = useDispatch();
@@ -199,7 +202,7 @@ const Home = ({ products }) => {
 
       {/* @main */}
       <Main className="relative overflow-hidden pb-8 pt-[135px] sm:pb-16 sm:pt-[144px] lg:pt-[183px]">
-        <StarryBackgroundHD starCount={85} width="100%" height="100%" />
+        {/* <StarryBackgroundHD starCount={85} width="100%" height="100%" /> */}
 
         <Container className={'relative'}>
           <div className="pointer-events-none absolute -right-[151px] -top-[98px] bottom-auto left-auto z-px sm:-right-[367px] sm:-top-[236px] lg:-right-[467px] lg:-top-[331px]">
@@ -216,7 +219,7 @@ const Home = ({ products }) => {
 
           {/* @header */}
           <div className="mb-8 flex flex-col text-start sm:mb-12">
-            <h1 className="w-ful max-w-[208px] text-start text-[24px] font-bold uppercase leading-[32px] text-white sm:max-w-[385px] sm:text-[41px] sm:leading-[53px] lg:max-w-[677px] lg:text-[80px] lg:leading-[90px]">
+            <h1 className="w-ful max-w-[208px] text-start text-[24px] font-bold uppercase leading-[30px] text-white sm:max-w-[385px] sm:text-[41px] sm:leading-[53px] lg:max-w-[677px] lg:text-[80px] lg:leading-[90px]">
               G
               <span className="ca25Fonts-Boren text-[25px] sm:text-[43px] lg:text-[84px]">
                 E
@@ -265,11 +268,24 @@ const Home = ({ products }) => {
   );
 };
 
+Home.getLayout = (page, { pageProps }) => {
+  const { layouts } = pageProps;
+  if (layouts) {
+    return (
+      <LayoutStore isLayouts={layouts} isTheme={'light'}>
+        {page}
+      </LayoutStore>
+    );
+  }
+  return { page };
+};
 export const getStaticProps = async () => {
+  const isStoreLayouts = true;
   const isProducts = await getFetch(`/api/products?sort[0]=rank:asc`);
   try {
     return {
       props: {
+        layouts: isStoreLayouts || false,
         products: isProducts || [],
       },
       revalidate: 900,
@@ -280,5 +296,4 @@ export const getStaticProps = async () => {
     };
   }
 };
-
 export default Home;

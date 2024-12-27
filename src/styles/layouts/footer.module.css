@@ -1,0 +1,9 @@
+.ca2024Footer.ca2024Footer_Light {
+  @apply text-white;
+}
+.ca2024Footer.ca2024Footer_Dark {
+  @apply text-black-900;
+}
+.ca2024Footer.ca2024Footer_Light .ca2024FooterEnd .ca2024FooterEnd_Cntent {
+  @apply prose-a:text-[#D38350] prose-strong:text-[#D38350];
+}

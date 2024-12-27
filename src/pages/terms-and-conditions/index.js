@@ -7,8 +7,7 @@ import Main from '@components/Main';
 import Container from '@components/Container';
 
 // @layouts
-import NavbarTop from '@layouts/NavbarStore/NavbarTop';
-import Footer from '@layouts/Footer';
+import LayoutStore from '@layouts/LayoutStore';
 
 const TermsAndConditions = ({}) => {
   return (
@@ -16,23 +15,20 @@ const TermsAndConditions = ({}) => {
       {/* @head */}
       <HeadGraphSeo title={`Terms And Conditions`} otherPage={true} />
 
-      {/* @navbar */}
-      <NavbarTop nonStore={true} />
-
       {/* @main */}
       <Main className="relative flex flex-col pb-12 pt-[141px] sm:pb-14 sm:pt-[161px]">
         <Container>
           <div className="relative grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-full col-start-1 sm:col-span-10 sm:col-start-2">
               <div className="mb-12 flex flex-col items-center justify-center text-center sm:mb-16">
-                <h1 className="w-full max-w-full text-[28px] font-bold leading-[38px] sm:text-[36px] sm:leading-[48px]">
+                <h1 className="w-full max-w-full text-[28px] font-bold leading-[38px] text-white sm:text-[36px] sm:leading-[48px]">
                   Terms & Conditions
                 </h1>
                 <p className="mt-2 font-light text-gray-400">
                   Last updated: January 07, 2025
                 </p>
               </div>
-              <div className="ca25Article_Frmatt relative flex flex-col">
+              <div className="ca25Article_Frmatt ca25Article_FrmattLight relative flex flex-col text-white">
                 <p>
                   <strong>Welcome to Coinfest Asia!</strong>, Coinfest Asia, its
                   subsidiaries, and affiliates (collectively, “Company”) own and
@@ -426,22 +422,28 @@ const TermsAndConditions = ({}) => {
           </div>
         </Container>
       </Main>
-
-      {/* @footer */}
-      <Footer nonStore={true} />
     </>
   );
 };
 
-TermsAndConditions.getLayout = function PageLayout(page) {
-  return <>{page}</>;
+TermsAndConditions.getLayout = (page, { pageProps }) => {
+  const { layouts } = pageProps;
+  if (layouts) {
+    return (
+      <LayoutStore layoutStore={layouts} isTheme={'light'}>
+        {page}
+      </LayoutStore>
+    );
+  }
+  return { page };
 };
-
 export const getStaticProps = async () => {
+  const isStoreLayouts = true;
   try {
     return {
-      props: {},
-
+      props: {
+        layouts: isStoreLayouts || false,
+      },
       revalidate: 900,
     };
   } catch (err) {
@@ -450,5 +452,4 @@ export const getStaticProps = async () => {
     };
   }
 };
-
 export default TermsAndConditions;

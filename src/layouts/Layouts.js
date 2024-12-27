@@ -13,9 +13,9 @@ import { getFetch } from '@lib/controller/API';
 import { getCombineMerged } from '@lib/helper/Configuration';
 
 // @layouts
-import NavbarTop from '@layouts/NavbarStore/NavbarTop';
-import NavbarBottom from './NavbarStore/NavbarBottom';
-import Footer from '@layouts/Footer';
+import NavbarTop from '@layouts/Navbar/NavbarTopStore';
+import NavbarBottom from './Navbar/NavbarBottomStore';
+import Footer from '@layouts/Footer/Footer';
 
 const Layouts = ({ cartStore, children }) => {
   const { data: isCart } = useSelector((state) => state.cart);

@@ -7,8 +7,8 @@ import Main from '@components/Main';
 import Container from '@components/Container';
 
 // @layouts
-import NavbarTop from '@layouts/NavbarStore/NavbarTop';
-import Footer from '@layouts/Footer';
+import NavbarTop from '@layouts/Navbar/NavbarTopStore';
+import Footer from '@layouts/Footer/Footer';
 
 const PrivacyPolicy = ({}) => {
   return (

@@ -54,7 +54,7 @@ import CopyBillingAttendeeBtn from '@components/UI/Button/CopyBillingAttendeeBtn
 import CopyOtherDetailBtn from '@components/UI/Button/CopyOtherDetailBtn';
 
 // @layouts
-import NavbarTop from '@layouts/NavbarStore/NavbarTop';
+import NavbarTop from '@layouts/Navbar/NavbarTopStore';
 import Header from '@layouts/Checkouts/Header';
 const BillingDetailCheckout = dynamic(
   () => import('@layouts/Checkouts//Card/BillingDetailCheckout'),
@@ -66,7 +66,7 @@ const BillingDetailCheckout = dynamic(
 import AttendeeDetailCheckouts from '@layouts/Checkouts/Card/AttendeeDetailCheckouts';
 import OrderDetailCheckouts from '@layouts/Checkouts//Card/OrderDetailCheckouts';
 import BoardSubmitCheckout from '@layouts/Checkouts/Card/BoardSubmitCheckout';
-import Footer from '@layouts/Footer';
+import Footer from '@layouts/Footer/Footer';
 
 const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   const dispatch = useDispatch();

@@ -15,10 +15,6 @@
 }
 
 /* @product(VIP) */
-/* .ca25Products.ca25Products_VIP {
-  @apply bg-gradient-primary;
-  @apply backdrop-blur;
-} */
 .ca25Products.ca25Products_VIP .ca25Products_Card {
   @apply bg-vip text-white;
 }

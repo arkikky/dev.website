@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Main = ({ className = null, children }) => {
-  const isDfltClss = `tktCA25Main`;
+  const isDfltClss = `ca25MainApps`;
   const isAddClss = className ? `${isDfltClss} ${className}` : `${isDfltClss}`;
 
   return (

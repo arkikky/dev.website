@@ -23,8 +23,8 @@ import Container from '@components/Container';
 import Badge from '@components/UI/Badge';
 
 // @layouts
-import NavbarTop from '@layouts/NavbarStore/NavbarTop';
-import Footer from '@layouts/Footer';
+import NavbarTop from '@layouts/Navbar/NavbarTopStore';
+import Footer from '@layouts/Footer/Footer';
 
 const OrderReceived = ({ orderReceived, orderCustomer }) => {
   const dispatch = useDispatch();

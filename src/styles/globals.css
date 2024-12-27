@@ -32,20 +32,6 @@ button {
   @apply text-inherit;
   @apply outline-none focus-visible:outline-none hocus:outline-none;
 }
-
-/* @fonts */
-@import './fonts.module';
-
-.ca25Fonts-Boren {
-  @apply font-boren leading-[0] sm:leading-[0] lg:leading-[0];
-}
-
-/* attribute */
-.bxShadow-none {
-  box-shadow: none;
-  @apply focus:outline-none focus:ring-0 focus-visible:outline-none;
-}
-
 /* @scrollbar(y) */
 .scrollbar-y::-webkit-scrollbar {
   @apply w-1.5 sm:w-1.5;
@@ -70,36 +56,22 @@ button {
   @apply rounded-full;
   @apply border-none;
 }
-
-/* @animation */
-@import './components/animate.module';
-
-/* @backdrop */
-@import './components/backdrop.module';
-
-/* @alert */
-@import './components/alert.module';
-
-/* @button */
-@import './components/buttons.module';
-
-/* @tabs */
-@import './components/tabs.module';
-
-/* @form */
-@import './components/form.module';
-
-/* @navbar */
-@import './components/navbar.module';
-
-/* @article */
-.ca25Article_Frmatt {
-  @apply font-light tracking-[-0.1px];
-  @apply prose-h1:text-[28px] prose-h1:font-bold prose-h1:leading-[38px] sm:prose-h1:text-[40px] sm:prose-h1:leading-[48px];
-  @apply prose-h2:mb-3.5 prose-h2:mt-8 prose-h2:text-xl prose-h2:font-semibold first:prose-h2:mt-0 sm:prose-h2:mt-10;
-  @apply prose-p:font-light prose-strong:font-semibold;
-  @apply prose-a:text-primary prose-a:underline prose-ul:list-disc prose-ul:pl-8 prose-li:font-light;
+/* attribute */
+.bxShadow-none {
+  box-shadow: none;
+  @apply focus:outline-none focus:ring-0 focus-visible:outline-none;
 }
+/* @fonts */
+@import './fonts.module.css';
+
+/* @components */
+@import './components/animate.module.css';
+@import './components/backdrop.module.css';
+@import './components/alert.module.css';
+@import './components/buttons.module.css';
+@import './components/tabs.module.css';
+@import './components/form.module.css';
+@import './components/article.module.css';
 
 /* @markdown */
 .ca25MarkdwnFrmattd {
@@ -112,10 +84,8 @@ button {
   @apply pt-px sm:pt-2.5;
   @apply h-6 w-6 min-w-[24px];
 }
-
+@import './components/products.module.css';
 /* @products */
-@import './components/products.module';
-
 .ca25StoreProductSticky .ca25StoreProductSticky_TitleCards {
   @apply text-base leading-initial sm:text-xl sm:leading-initial;
 }
@@ -125,5 +95,9 @@ button {
 .ca25StoreProductSticky.isStickyActive .ca25StoreProductSticky_TitleCards {
   @apply sm:text-base;
 }
+
+/* @layouts */
+@import './layouts/navbar.module.css';
+@import './layouts/footer.module.css';
 
 /* @debug */

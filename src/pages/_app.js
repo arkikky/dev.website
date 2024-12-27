@@ -28,29 +28,29 @@ const App = ({ Component, pageProps }) => {
   const { toggleOverlayPopUp } = useMethod();
 
   // @default(Body)
-  useEffect(() => {
-    const footr = document.querySelector('.ca2024Footer');
-    if (router.pathname === '/') {
-      if (footr) {
-        footr.classList.remove('ca2024Footer_Dark', 'text-black-900');
-        footr.classList.add('ca2024Footer_Light', 'text-white');
-      }
-      document.body.style.backgroundColor = '#1F1F1F';
-    } else {
-      if (footr) {
-        footr.classList.remove('ca2024Footer_Light', 'text-white');
-        footr.classList.add('ca2024Footer_Dark', 'text-black-900');
-      }
-      document.body.style.backgroundColor = '#FFFFFF';
-    }
-    return () => {
-      if (footr) {
-        footr.classList.remove('ca2024Footer_Light', 'text-white');
-        footr.classList.add('ca2024Footer_Dark', 'text-black-900');
-      }
-      document.body.style.backgroundColor = '';
-    };
-  }, [router.pathname]);
+  // useEffect(() => {
+  //   const footr = document.querySelector('.ca2024Footer');
+  //   if (router.pathname === '/') {
+  //     if (footr) {
+  //       footr.classList.remove('ca2024Footer_Dark', 'text-black-900');
+  //       footr.classList.add('ca2024Footer_Light', 'text-white');
+  //     }
+  //     document.body.style.backgroundColor = '#1F1F1F';
+  //   } else {
+  //     if (footr) {
+  //       footr.classList.remove('ca2024Footer_Light', 'text-white');
+  //       footr.classList.add('ca2024Footer_Dark', 'text-black-900');
+  //     }
+  //     document.body.style.backgroundColor = '#FFFFFF';
+  //   }
+  //   return () => {
+  //     if (footr) {
+  //       footr.classList.remove('ca2024Footer_Light', 'text-white');
+  //       footr.classList.add('ca2024Footer_Dark', 'text-black-900');
+  //     }
+  //     document.body.style.backgroundColor = '';
+  //   };
+  // }, [router.pathname]);
 
   // @with-layouts
   const getLayout =
@@ -58,13 +58,12 @@ const App = ({ Component, pageProps }) => {
     ((page) => {
       return (
         <>
-          <Layouts cartStore={pageProps?.products}>
+          <Layouts>
             <Component {...pageProps} />
           </Layouts>
         </>
       );
     });
-
   // @without-layouts
   return (
     <>
@@ -98,7 +97,17 @@ const App = ({ Component, pageProps }) => {
           <link rel="manifest" href="/manifest.json" />
         </Head>
 
-        {getLayout(<Component {...pageProps} />)}
+        {/* @layouts */}
+        {getLayout(
+          <>
+            <Component {...pageProps} />
+          </>,
+          {
+            pageProps: pageProps || {},
+          }
+        )}
+
+        {/* @alert(Toast)  */}
         <Toaster
           position="bottom-left"
           richColors
