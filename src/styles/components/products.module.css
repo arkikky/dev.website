@@ -1,0 +1,33 @@
+.ca25Products {
+  @apply bg-white;
+}
+.ca25Products .ca25Products_Card {
+  @apply bg-regular text-white;
+}
+.ca25Products .ca25MarkdwnFrmattd ul li::before {
+  content: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%2220%206%209%2017%204%2012%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E');
+}
+.ca25Products .ca25ProductsBtn {
+  @apply bg-black-900 text-white;
+}
+.ca25Products .ca25ProductsBtn .ca25ProductsBtn_Loading {
+  @apply text-white;
+}
+
+/* @product(VIP) */
+/* .ca25Products.ca25Products_VIP {
+  @apply bg-gradient-primary;
+  @apply backdrop-blur;
+} */
+.ca25Products.ca25Products_VIP .ca25Products_Card {
+  @apply bg-vip text-white;
+}
+.ca25Products.ca25Products_VIP .ca25MarkdwnFrmattd {
+  @apply prose-li:mb-4 prose-li:text-white;
+}
+.ca25Products.ca25Products_VIP .ca25MarkdwnFrmattd ul li::before {
+  content: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%2220%206%209%2017%204%2012%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E');
+}
+.ca25Products.ca25Products_VIP .ca25ProductsBtn {
+  @apply bg-black-900 text-white;
+}

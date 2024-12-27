@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* @tailwinds-css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @add(Preline) */
+@import '/node_modules/preline/dist/preline.css';
+
+/* @init */
+::selection {
+  @apply bg-black-900/40 text-white;
+}
+body {
+  @apply bg-dark;
+  @apply font-bevietnamPro text-base font-normal;
+}
+body::-webkit-scrollbar {
+  @apply w-[7px];
+}
+body::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
+body::-webkit-scrollbar-thumb {
+  @apply bg-gray-400/70;
+  @apply rounded-full;
+  @apply border-none;
+}
+a,
+button {
+  @apply text-inherit;
+  @apply outline-none focus-visible:outline-none hocus:outline-none;
+}
+
+/* @fonts */
+@import './fonts.module';
+
+.ca25Fonts-Boren {
+  @apply font-boren leading-[0] sm:leading-[0] lg:leading-[0];
+}
+
+/* attribute */
+.bxShadow-none {
+  box-shadow: none;
+  @apply focus:outline-none focus:ring-0 focus-visible:outline-none;
+}
+
+/* @scrollbar(y) */
+.scrollbar-y::-webkit-scrollbar {
+  @apply w-1.5 sm:w-1.5;
+}
+.scrollbar-y::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
+.scrollbar-y::-webkit-scrollbar-thumb {
+  @apply bg-gray-400/70;
+  @apply rounded-full;
+  @apply border-none;
+}
+/* @scrollbar(x) */
+.scrollbar-x::-webkit-scrollbar {
+  @apply h-1.5 sm:h-1.5;
+}
+.scrollbar-x::-webkit-scrollbar-track {
+  @apply rounded-full bg-gray-200/80;
+}
+.scrollbar-x::-webkit-scrollbar-thumb {
+  @apply bg-gray-400/70;
+  @apply rounded-full;
+  @apply border-none;
+}
+
+/* @animation */
+@import './components/animate.module';
+
+/* @backdrop */
+@import './components/backdrop.module';
+
+/* @alert */
+@import './components/alert.module';
+
+/* @button */
+@import './components/buttons.module';
+
+/* @tabs */
+@import './components/tabs.module';
+
+/* @form */
+@import './components/form.module';
+
+/* @navbar */
+@import './components/navbar.module';
+
+/* @article */
+.ca25Article_Frmatt {
+  @apply font-light tracking-[-0.1px];
+  @apply prose-h1:text-[28px] prose-h1:font-bold prose-h1:leading-[38px] sm:prose-h1:text-[40px] sm:prose-h1:leading-[48px];
+  @apply prose-h2:mb-3.5 prose-h2:mt-8 prose-h2:text-xl prose-h2:font-semibold first:prose-h2:mt-0 sm:prose-h2:mt-10;
+  @apply prose-p:font-light prose-strong:font-semibold;
+  @apply prose-a:text-primary prose-a:underline prose-ul:list-disc prose-ul:pl-8 prose-li:font-light;
+}
+
+/* @markdown */
+.ca25MarkdwnFrmattd {
+  @apply prose-li:pointer-events-none prose-li:relative prose-li:mb-3 prose-li:flex prose-li:select-none prose-li:flex-row prose-li:items-start prose-li:gap-x-3 prose-li:text-[15px] prose-li:font-light prose-li:leading-[22px] prose-li:text-white last:prose-li:mb-0 sm:prose-li:text-base sm:prose-li:leading-initial;
+  @apply prose-ul:flex prose-ul:flex-col prose-ul:pl-0;
+}
+.ca25MarkdwnFrmattd ul li::before {
+  content: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%2220%206%209%2017%204%2012%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E');
+  @apply flex flex-col items-center justify-center;
+  @apply pt-px sm:pt-2.5;
+  @apply h-6 w-6 min-w-[24px];
+}
+
+/* @products */
+@import './components/products.module';
+
+.ca25StoreProductSticky .ca25StoreProductSticky_TitleCards {
+  @apply text-base leading-initial sm:text-xl sm:leading-initial;
+}
+.ca25StoreProductSticky.isStickyActive {
+  @apply pb-3 sm:pb-4;
+}
+.ca25StoreProductSticky.isStickyActive .ca25StoreProductSticky_TitleCards {
+  @apply sm:text-base;
+}
+
+/* @debug */

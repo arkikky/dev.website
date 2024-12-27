@@ -1,0 +1,16 @@
+/* @button(Qty) */
+.tktCA25Btn_Qty {
+  @apply inline-flex size-6 items-center justify-center gap-x-2 rounded-md border border-gray-200;
+  @apply bg-white text-sm font-medium text-gray-800;
+  @apply hover:border-primary hover:bg-primary hover:text-white;
+  @apply focus:outline-none disabled:pointer-events-none disabled:border-gray-300 disabled:bg-gray-300 disabled:text-gray-600 disabled:opacity-80;
+  @apply transition ease-in-out;
+}
+
+.ca25BtnQtyDark {
+  @apply inline-flex size-6 items-center justify-center gap-x-2 rounded-md border border-gray-200;
+  @apply bg-white text-sm font-medium text-gray-800;
+  @apply hover:border-black-900 hover:bg-black-900 hover:text-white;
+  @apply focus:outline-none disabled:pointer-events-none disabled:border-gray-300 disabled:bg-gray-300 disabled:text-gray-600 disabled:opacity-80;
+  @apply transition ease-in-out;
+}
