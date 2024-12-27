@@ -112,8 +112,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            // value: `script-src 'strict-dynamic' 'nonce-CoinfestAsia25' 'unsafe-inline' http: https:;object-src 'none';frame-src 'none';base-uri 'none';require-trusted-types-for 'script';report-uri http://arkikky-dev0.vercel.app/;`,
-            value: `script-src-attr 'none';object-src 'none';frame-src 'none';frame-ancestors 'self';form-action 'self';base-uri 'none';connect-src 'self' http: https:;require-trusted-types-for 'script';report-uri http://arkikky-dev0.vercel.app/;`,
+            value: `script-src 'self' 'unsafe-eval' http:* https:*;script-src-attr 'none';object-src 'none';frame-src 'none';frame-ancestors 'self';form-action 'self';base-uri 'none';connect-src 'self' http: https:;report-uri https://arkikky-dev0.vercel.app;`,
           },
           {
             key: 'Permissions-Policy',
