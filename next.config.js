@@ -113,14 +113,16 @@ const nextConfig = {
           {
             key: 'Content-Security-Policy',
             value: `
-              default-src 'self';
-              script-src 'self' 'nonce-${nonce}';
-              style-src 'self' 'nonce-${nonce}';
-              img-src 'self';
-              font-src 'self';
-              connect-src 'self';
-              object-src 'none';
-              frame-src 'none';
+default-src 'self';
+script-src 'strict-dynamic' 'nonce-${nonce}' 'unsafe-inline' http: https:;
+object-src 'none';
+img-src 'self';
+font-src 'self';
+connect-src 'self';
+frame-src 'none';
+base-uri 'none';
+require-trusted-types-for 'script';
+report-uri https://arkikky-dev0.vercel.app/;
             `,
           },
           {
