@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-const CryptoJS = require('crypto-js');
-
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -66,9 +64,6 @@ const nextConfig = {
     tags: process.env.NEXT_PUBLIC_TAGS,
   },
   async headers() {
-    const nonce = CryptoJS.lib.WordArray.random(20).toString(
-      CryptoJS.enc.Base64
-    );
     return [
       {
         source: '/api/:path*',
@@ -112,7 +107,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: `default-src http:*;script-src 'self' 'unsafe-eval' http:* https:*;script-src-attr 'none';object-src 'none';frame-src 'none';frame-ancestors 'self';form-action 'self';base-uri 'none';connect-src 'self' http: https:;report-uri https://arkikky-dev0.vercel.app;`,
+            value: `default-src 'self';script-src 'self' 'unsafe-eval';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://api.coinfest.asia;img-src 'self' https://upload.wikimedia.org https://flagcdn.com data:;frame-src 'none';frame-ancestors 'self';form-action 'self';worker-src 'self';base-uri 'self';`,
           },
           {
             key: 'Permissions-Policy',
