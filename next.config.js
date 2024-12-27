@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 
+const CryptoJS = require('crypto-js');
+
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
@@ -64,6 +66,9 @@ const nextConfig = {
     tags: process.env.NEXT_PUBLIC_TAGS,
   },
   async headers() {
+    const nonce = CryptoJS.lib.WordArray.random(20).toString(
+      CryptoJS.enc.Base64
+    );
     return [
       {
         source: '/api/:path*',
@@ -109,8 +114,8 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: `
               default-src 'self';
-              script-src 'self' 'nonce-<random_value>';
-              style-src 'self' 'nonce-<random_value>';
+              script-src 'self' 'nonce-${nonce}';
+              style-src 'self' 'nonce-${nonce}';
               img-src 'self';
               font-src 'self';
               connect-src 'self';
