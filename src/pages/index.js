@@ -13,7 +13,7 @@ import { addItemToCart } from '@reduxState/slices';
 
 // @lib/controller & helper
 import { getFetch } from '@lib/controller/API';
-import { getCombineMerged } from '@lib/helper/Configuration';
+import { getCombineMerged, encodeData } from '@lib/helper/Configuration';
 
 // @components
 import HeadGraphSeo from '@components/Head';
@@ -50,21 +50,27 @@ const Home = ({ products }) => {
     try {
       const allProducts = await Promise.all(
         isCart?.map(async (data) => {
-          const rsHook = await getFetch(`/api/products/${data.id_product}`);
+          const rsHook = await fetch('/api/data/products?sv=coinfestasia', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: encodeData(data?.id_product) }),
+          }).then((res) => res.json());
           return {
-            id: rsHook?.data.id,
-            documentId: rsHook?.data.documentId,
-            productId: rsHook?.data.productId,
-            name: rsHook?.data.name,
-            price: rsHook?.data.price,
-            priceSale: rsHook?.data.priceSale,
-            stock: parseInt(rsHook?.data.stock),
+            id: rsHook?.id,
+            documentId: rsHook?.documentId,
+            productId: rsHook?.productId,
+            name: rsHook?.name,
+            price: rsHook?.price,
+            priceSale: rsHook?.priceSale,
+            stock: parseInt(rsHook?.stock),
           };
         })
       );
       // @hook(Combine Merged)
-      const setMerged = getCombineMerged(allProducts, isCart);
-      if (setMerged) setCartProducts((prev) => ({ ...prev, cart: setMerged }));
+      const merged = getCombineMerged(allProducts, isCart);
+      if (merged) setCartProducts((prev) => ({ ...prev, cart: merged }));
     } catch (err) {
       return;
     }
@@ -279,7 +285,16 @@ Home.getLayout = (page, { pageProps }) => {
   }
   return { page };
 };
-export const getStaticProps = async () => {
+export const getServerSideProps = async (context) => {
+  if (Object.keys(context.query).length > 0) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: true,
+      },
+    };
+  }
+
   const isStoreLayouts = true;
   const isProducts = await getFetch(`/api/products?sort[0]=rank:asc`);
   try {
@@ -288,7 +303,6 @@ export const getStaticProps = async () => {
         layouts: isStoreLayouts || false,
         products: isProducts || [],
       },
-      revalidate: 900,
     };
   } catch (err) {
     return {

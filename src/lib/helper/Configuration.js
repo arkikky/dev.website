@@ -1,3 +1,5 @@
+import CryptoJS from 'crypto-js';
+
 // @smooth-scroll
 export function smoothLeftScroll(container, targetScroll, duration = 1000) {
   const startScroll = container.scrollLeft;
@@ -102,14 +104,14 @@ export function getCombineMerged(data1, data2) {
     };
   });
   const filteredProducts = merged?.map((product) => ({
-    id: product.id,
-    documentId: product.documentId,
-    productId: product.productId,
-    name: product.name,
-    price: product.price,
-    priceSale: product.priceSale,
+    id: product?.id,
+    documentId: product?.documentId,
+    productId: product?.productId,
+    name: product?.name,
+    price: product?.price,
+    priceSale: product?.priceSale,
     stock: parseInt(product?.stock),
-    quantity: product.quantity >= 15 ? 15 : product.quantity,
+    quantity: product?.quantity >= 15 ? 15 : product?.quantity,
   }));
   return filteredProducts;
 }
@@ -122,4 +124,14 @@ export function isValidationMoreTimeMinutes(paidAt, duration = 6) {
   const differenceInMilliseconds = currentTime - paidAtTime;
   const rs = differenceInMilliseconds > duration * 60 * 1000;
   return rs;
+}
+
+// @encrypt
+export function encodeData(d) {
+  const wordArray = CryptoJS.enc.Utf8.parse(JSON.stringify(d));
+  return CryptoJS.enc.Base64.stringify(wordArray);
+}
+export function decodeData(ed) {
+  const wordArray = CryptoJS.enc.Base64.parse(ed);
+  return JSON.parse(CryptoJS.enc.Utf8.stringify(wordArray));
 }

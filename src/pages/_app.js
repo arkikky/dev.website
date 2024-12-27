@@ -58,9 +58,9 @@ const App = ({ Component, pageProps }) => {
     ((page) => {
       return (
         <>
-          <Layouts>
-            <Component {...pageProps} />
-          </Layouts>
+          {/* <Layouts> */}
+          <Component {...pageProps} />
+          {/* </Layouts> */}
         </>
       );
     });

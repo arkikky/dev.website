@@ -84,7 +84,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
-            value: '*',
+            value: 'http://arkikky-dev0.vercel.app',
           },
           {
             key: 'Access-Control-Allow-Methods',
@@ -112,7 +112,8 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: `script-src 'self' http: https:;object-src 'none';frame-src 'none';base-uri 'none';require-trusted-types-for 'script';report-uri http://localhost:3001;`,
+            // value: `script-src 'strict-dynamic' 'nonce-CoinfestAsia25' 'unsafe-inline' http: https:;object-src 'none';frame-src 'none';base-uri 'none';require-trusted-types-for 'script';report-uri http://arkikky-dev0.vercel.app/;`,
+            value: `script-src-attr 'none';object-src 'none';frame-src 'none';frame-ancestors 'self';form-action 'self';base-uri 'none';connect-src 'self' http: https:;require-trusted-types-for 'script';report-uri http://arkikky-dev0.vercel.app/;`,
           },
           {
             key: 'Permissions-Policy',

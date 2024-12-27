@@ -10,13 +10,12 @@ export async function getFetch(url) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Origin: '*',
       Authorization: `Bearer ${tokenApp}`,
     },
     cache: 'no-store',
   })
     .then((res) => {
-      if (res.ok) {
+      if (res?.ok) {
         return res.json();
       }
     })
@@ -26,19 +25,17 @@ export async function getFetch(url) {
 
   return res;
 }
-
 export async function getFetchUrl(url) {
   const res = await fetch(`${url}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Origin: '*',
     },
     cache: 'no-store',
   })
     .then((res) => {
-      if (res.ok) {
+      if (res?.ok) {
         return res.json();
       }
     })
@@ -59,7 +56,7 @@ export async function getFetchUrl_FormData(url, data) {
     cache: 'no-store',
   })
     .then((res) => {
-      if (res.ok) {
+      if (res?.ok) {
         return res.json();
       }
     })
@@ -77,14 +74,13 @@ export async function updateData(url, data) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Origin: '*',
       Authorization: `Bearer ${tokenApp}`,
     },
     body: JSON.stringify(data),
     cache: 'no-store',
   })
     .then((res) => {
-      if (res.ok) {
+      if (res?.ok) {
         return res.json();
       }
     })
@@ -100,14 +96,13 @@ export async function updateSubmitData(url, data) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Origin: '*',
       Authorization: `Bearer ${tokenApp}`,
     },
     body: JSON.stringify(data),
     cache: 'no-store',
   })
     .then((res) => {
-      if (res.ok) {
+      if (res?.ok) {
         return res.json();
       }
     })
@@ -125,14 +120,13 @@ export async function pushSubmitData(url, data) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Origin: '*',
       Authorization: `Bearer ${tokenApp}`,
     },
     body: JSON.stringify(data),
     cache: 'no-store',
   })
     .then((res) => {
-      if (res.ok) {
+      if (res?.ok) {
         return res.json();
       }
     })
@@ -148,14 +142,13 @@ export async function submitForm(url, data) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Origin: '*',
       Authorization: `Bearer ${tokenApp}`,
     },
     body: JSON.stringify(data),
     cache: 'no-store',
   })
     .then((res) => {
-      if (res.ok) {
+      if (res?.ok) {
         return res.json();
       }
     })
