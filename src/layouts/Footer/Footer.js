@@ -1,9 +1,16 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
 // @components
 import Container from '@components/Container';
-import FooterSocialMedia from '@components/UI/FooterSocialMedia';
+const FooterSocialMedia = dynamic(
+  () => import('@components/UI/FooterSocialMedia'),
+  {
+    loading: () => '',
+    ssr: false,
+  }
+);
 
 const Footer = ({ nonStore = false, theme = 'light' }) => {
   return (

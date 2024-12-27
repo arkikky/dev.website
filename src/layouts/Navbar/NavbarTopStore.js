@@ -169,7 +169,7 @@ const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
                   }}
                   className={`ca25MnBoard_SplideWhile w-full`}
                 >
-                  <SplideSlide data-splide-interval="5000">
+                  <SplideSlide data-splide-interval="5000" role="listitem">
                     <div className="relative flex h-12 flex-col items-start justify-start overflow-hidden">
                       <span className={`text-sm font-light text-white/60`}>
                         {`Event Date`}
@@ -181,7 +181,7 @@ const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
                       </div>
                     </div>
                   </SplideSlide>
-                  <SplideSlide data-splide-interval="6000">
+                  <SplideSlide data-splide-interval="6000" role="listitem">
                     <div className="relative flex h-12 flex-col items-start justify-start overflow-hidden">
                       <span className={`text-sm font-light text-white/60`}>
                         {`Starting in`}

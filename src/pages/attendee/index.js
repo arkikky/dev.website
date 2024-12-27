@@ -22,7 +22,6 @@ import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 // @form
 import Label from '@components/UI/Form/Label';
 import Input from '@components/UI/Form/Input';
-import { format } from 'prettier';
 
 const Attendee = ({}) => {
   const router = useRouter();
