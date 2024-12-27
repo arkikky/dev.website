@@ -2,6 +2,7 @@
 
 const nextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
   images: {
     remotePatterns: [
       {
@@ -102,7 +103,8 @@ const nextConfig = {
           },
           {
             key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), payment=(), geolocation=()',
+            value:
+              'display-capture=(self), microphone=(), payment=(), geolocation=(self)',
           },
           {
             key: 'X-Content-Type-Options',
@@ -110,7 +112,7 @@ const nextConfig = {
           },
           {
             key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin',
+            value: 'strict-origin-when-cross-origin',
           },
         ],
       },
