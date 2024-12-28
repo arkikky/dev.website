@@ -37,22 +37,16 @@ const nextConfig = {
   },
   serverRuntimeConfig: {
     version: process.env.SITE_APP_VERSION,
-
-    // @form(HubSpot)
     hbSptCheckout: process.env.FORM_CHECKOUT,
-
     // @currency
-    currencyUSD: process.env.NEXT_SECRET_CURRENCY_USD,
-
+    currencyUSD: process.env.CURRENCY_USD,
     // @token
     token_api: process.env.API_TOKEN_KEY,
     hbspot_token_api: process.env.API_TOKEN_HUBSPOT,
     ipAddress_token: process.env.API_IPADDRESS_TOKEN,
-
     secretToken: process.env.SECRET_TOKEN,
     secretTokenEncrypt: process.env.SECRET_TOKEN_ENCRYPT,
     secretXenditToken: process.env.SECRET_XENDIT_TOKEN,
-    devNode: process.env.NODE_ENV,
   },
   publicRuntimeConfig: {
     domain: process.env.NEXT_PUBLIC_DOMAIN,
