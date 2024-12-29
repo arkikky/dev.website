@@ -21,12 +21,6 @@ export default async function handler(req, res) {
   if (req?.method !== 'POST') {
     return res?.status(405).json(logErr);
   }
-  const allowedOrigins = ['http://arkikky-dev0.vercel.app/'];
-  const referer = req?.headers['referer'] || '';
-  const origin = new URL(referer).origin;
-  if (!allowedOrigins.includes(origin)) {
-    return res.status(403).json(logErr);
-  }
   try {
     const baseUrl = `https://api.coinfest.asia`;
     const tokenApp = serverRuntimeConfig?.token_api;
