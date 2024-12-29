@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Splide, SplideSlide } from '@splidejs/react-splide';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import getConfig from 'next/config';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,75 +12,79 @@ const { publicRuntimeConfig } = getConfig();
 import '@splidejs/react-splide/css/core';
 
 // @lib/controller & helper
-import { calculateCountdown } from '@lib/helper/Configuration';
 import { useCart } from '@lib/hooks/Cart';
 import { useMethod } from '@lib/hooks/Method';
 
 // @components
 import Container from '@components/Container';
-import CartStore from '@components/Store';
+const CartStore = dynamic(() => import('@components/Store'));
+const EventBoard = dynamic(() => import('@components/EventBoard'), {
+  loading: () => (
+    <div
+      className={`pointer-events-none relative flex h-[57px] w-full min-w-[178px] max-w-[178px] cursor-default flex-col overflow-hidden rounded-lg bg-primary px-2.5 py-1.5 sm:h-[64px] sm:min-w-[221px] sm:max-w-[221px] sm:rounded-xl sm:px-3 sm:py-2`}
+    ></div>
+  ),
+  ssr: false,
+});
 
-const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
+const NavbarTop = ({
+  isTheme = 'dark',
+  cartProducts = [],
+  nonStore = true,
+}) => {
   const router = useRouter();
   const { getTotalCart } = useCart();
   const { toggleOverlayPopUp } = useMethod();
 
-  const rfMainSplde = useRef(null);
-  const [isCountdown, setCountdown] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
   // @handle(Auto Close PopUp)
-  useEffect(() => {
-    const handleRouteChange = () => {
-      if (nonStore === false) {
-        const elBckdrp = document.querySelector(
-          '.ca2025BckdrpOverflay_PopUpGeneral'
-        );
-        if (elBckdrp.classList.contains('active')) {
-          toggleOverlayPopUp(
-            '.ca2025BckdrpOverflay_PopUpGeneral',
-            '.ca2025CartPopUp_General'
-          );
-        }
-      }
-    };
-    router.events.on('routeChangeComplete', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
-    };
-  }, [router.events]);
-
-  // @countdown(Date)
-  const setDate = new Date('2025-08-21T12:00:00').getTime();
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown(calculateCountdown(setDate));
-    }, 1000);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleRouteChange = () => {
+  //     if (nonStore === false) {
+  //       const elBckdrp = document.querySelector(
+  //         '.ca2025BckdrpOverflay_PopUpGeneral'
+  //       );
+  //       if (elBckdrp.classList.contains('active')) {
+  //         toggleOverlayPopUp(
+  //           '.ca2025BckdrpOverflay_PopUpGeneral',
+  //           '.ca2025CartPopUp_General'
+  //         );
+  //       }
+  //     }
+  //   };
+  //   router?.events.on('routeChangeComplete', handleRouteChange);
+  //   return () => {
+  //     router?.events.off('routeChangeComplete', handleRouteChange);
+  //   };
+  // }, [router?.events]);
 
   return (
     <>
       <nav className="fixed inset-x-0 bottom-auto top-0 z-base flex h-auto w-full flex-col items-center justify-center py-2">
         <Container>
-          <div className="flex flex-row items-center justify-between gap-y-6 rounded-xl border-2 border-solid border-gray-400/[0.18] bg-gray-200/25 px-1 py-1 backdrop-blur-md sm:gap-y-0 sm:rounded-2xl sm:px-1.5 sm:py-1.5">
+          <div className="bg-black-700/35 flex flex-row items-center justify-between gap-y-6 rounded-xl border-2 border-solid border-gray-400/[0.18] px-1 py-1 backdrop-blur-md sm:gap-y-0 sm:rounded-2xl sm:px-1.5 sm:py-1.5">
             <div className="block w-full sm:w-max">
-              <Link className="ml-2 block w-max sm:ml-3 lg:ml-3" href="/">
-                <Image
-                  className="mx-auto my-auto h-7.5 w-auto sm:h-9"
-                  src={'/assets/images/ca2025Brand.svg'}
-                  alt={`${publicRuntimeConfig.siteAppName} Primary Brand LOGO Navbar`}
-                  height={58}
-                  width={170}
-                  quality="87"
-                  fetchPriority="auto"
-                />
+              <Link className="ml-1.5 block w-max sm:ml-2.5 lg:ml-2.5" href="/">
+                {isTheme === 'dark' ? (
+                  <Image
+                    className="mx-auto my-auto h-8.5 w-auto sm:h-[38px]"
+                    src={'/assets/images/ca2025BrandLight.svg'}
+                    alt={`${publicRuntimeConfig?.siteAppName} Primary Brand LOGO Navbar`}
+                    height={58}
+                    width={170}
+                    quality="87"
+                    fetchPriority="auto"
+                  />
+                ) : (
+                  <Image
+                    className="mx-auto my-auto h-8.5 w-auto sm:h-[38px]"
+                    src={'/assets/images/ca2025Brand.svg'}
+                    alt={`${publicRuntimeConfig?.siteAppName} Primary Brand LOGO Navbar`}
+                    height={58}
+                    width={170}
+                    quality="87"
+                    fetchPriority="auto"
+                  />
+                )}
               </Link>
             </div>
 
@@ -138,63 +142,7 @@ const NavbarTop = ({ cartProducts = [], nonStore = true }) => {
               )}
 
               {/* @event(date) */}
-              <div
-                className={`pointer-events-none relative flex h-[59px] w-full min-w-[178px] max-w-[178px] cursor-default flex-col rounded-lg bg-primary px-2.5 py-2 sm:h-[68px] sm:min-w-[221px] sm:max-w-[221px] sm:rounded-xl sm:px-3 sm:py-2.5`}
-              >
-                <Splide
-                  ref={(slider) => (rfMainSplde.current = slider)}
-                  id="ca25MnBoard_InsightsStore"
-                  tag="section"
-                  role="region"
-                  aria-label="Coinfest Asia 2025 Mini Board Information Store"
-                  options={{
-                    label: 'Coinfest Asia 2025 Mini Board Information Store',
-                    updateOnMove: true,
-                    type: 'loop',
-                    perPage: 1,
-                    autoplay: true,
-                    direction: 'ttb',
-                    lazyLoad: 'nearby',
-                    keyboard: false,
-                    arrows: false,
-                    pagination: false,
-                    height: '48px',
-                    width: '100%',
-                    mediaQuery: 'min',
-                    breakpoints: {
-                      640: {
-                        destroy: false,
-                      },
-                    },
-                  }}
-                  className={`ca25MnBoard_SplideWhile w-full`}
-                >
-                  <SplideSlide data-splide-interval="5000" role="listitem">
-                    <div className="relative flex h-12 flex-col items-start justify-start overflow-hidden">
-                      <span className={`text-sm font-light text-white/60`}>
-                        {`Event Date`}
-                      </span>
-                      <div
-                        className={`absolute inset-x-0 bottom-1 top-auto min-w-max font-bevietnamPro text-base font-normal leading-inherit text-white sm:bottom-0 sm:text-xl`}
-                      >
-                        {`21-22 August 2025`}
-                      </div>
-                    </div>
-                  </SplideSlide>
-                  <SplideSlide data-splide-interval="6000" role="listitem">
-                    <div className="relative flex h-12 flex-col items-start justify-start overflow-hidden">
-                      <span className={`text-sm font-light text-white/60`}>
-                        {`Starting in`}
-                      </span>
-                      <div
-                        className={`absolute inset-x-0 bottom-1 top-auto min-w-max font-bevietnamPro text-base font-normal leading-inherit text-white sm:bottom-0 sm:text-xl`}
-                      >
-                        {`${isCountdown.days}d ${isCountdown.hours}h ${isCountdown.minutes}m ${isCountdown.seconds}s`}
-                      </div>
-                    </div>
-                  </SplideSlide>
-                </Splide>
-              </div>
+              <EventBoard />
             </div>
           </div>
         </Container>

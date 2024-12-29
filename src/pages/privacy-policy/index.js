@@ -6,33 +6,30 @@ import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
 
-// @layouts
-import NavbarTop from '@layouts/Navbar/NavbarTopStore';
-import Footer from '@layouts/Footer/Footer';
-
-const PrivacyPolicy = ({}) => {
+const PrivacyPolicy = ({ mode }) => {
   return (
     <>
       {/* @head */}
       <HeadGraphSeo title={`Privacy Policy`} otherPage={true} />
 
-      {/* @navbar */}
-      <NavbarTop nonStore={true} />
-
       {/* @main */}
-      <Main className="relative flex flex-col pb-12 pt-[141px] sm:pb-14 sm:pt-[161px]">
+      <Main className="relative flex flex-col pb-16 pt-[141px] sm:pb-24 sm:pt-[161px]">
         <Container>
           <div className="relative grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-full col-start-1 sm:col-span-10 sm:col-start-2">
               <div className="mb-12 flex flex-col items-center justify-center text-center sm:mb-16">
-                <h1 className="w-full max-w-[416px] text-[28px] font-bold leading-[38px] sm:text-[36px] sm:leading-[48px]">
+                <h1
+                  className={`w-full max-w-[416px] text-[28px] font-bold leading-[38px] sm:text-[36px] ${mode === 'light' ? 'text-black-900' : 'text-white'} sm:leading-[48px]`}
+                >
                   Privacy Policy for Coinfest Asia
                 </h1>
                 <p className="mt-2 font-light text-gray-400">
                   Last updated: January 07, 2025
                 </p>
               </div>
-              <div className="ca25Article_Frmatt relative flex flex-col">
+              <div
+                className={`ca25Article_Frmatt relative ${mode === 'light' ? 'ca25Article_FrmattLight text-black-900' : 'ca25Article_FrmattDark text-white'} flex flex-col`}
+              >
                 <p>
                   At Coinfest Asia, accessible from{' '}
                   <Link href="/">https://coinfest.asia</Link>, we prioritize the
@@ -128,22 +125,18 @@ const PrivacyPolicy = ({}) => {
           </div>
         </Container>
       </Main>
-
-      {/* @footer */}
-      <Footer nonStore={true} />
     </>
   );
 };
 
-PrivacyPolicy.getLayout = function PageLayout(page) {
-  return <>{page}</>;
-};
-
 export const getStaticProps = async () => {
   try {
+    const isStoreLayouts = false;
     return {
-      props: {},
-
+      props: {
+        mode: 'dark',
+        layouts: isStoreLayouts || false,
+      },
       revalidate: 900,
     };
   } catch (err) {
@@ -152,5 +145,4 @@ export const getStaticProps = async () => {
     };
   }
 };
-
 export default PrivacyPolicy;

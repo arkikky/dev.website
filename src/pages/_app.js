@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 import { Toaster } from 'sonner';
 import getConfig from 'next/config';
 import Head from 'next/head';
@@ -14,57 +13,26 @@ import '@styles/globals.css';
 import { Provider } from 'react-redux';
 import store from '@reduxState/store';
 
-// @lib/controller & helper
-import { useMethod } from '@lib/hooks/Method';
-
 // @script
 import PrelineScript from '@components/Script/PrelineScript';
 
 // @layouts
-import Layouts from '@layouts/Layouts';
+import LayoutDefaults from '@layouts/Layouts';
 
 const App = ({ Component, pageProps }) => {
-  const router = useRouter();
-  const { toggleOverlayPopUp } = useMethod();
-
-  // @default(Body)
-  // useEffect(() => {
-  //   const footr = document.querySelector('.ca2024Footer');
-  //   if (router.pathname === '/') {
-  //     if (footr) {
-  //       footr.classList.remove('ca2024Footer_Dark', 'text-black-900');
-  //       footr.classList.add('ca2024Footer_Light', 'text-white');
-  //     }
-  //     document.body.style.backgroundColor = '#1F1F1F';
-  //   } else {
-  //     if (footr) {
-  //       footr.classList.remove('ca2024Footer_Light', 'text-white');
-  //       footr.classList.add('ca2024Footer_Dark', 'text-black-900');
-  //     }
-  //     document.body.style.backgroundColor = '#FFFFFF';
-  //   }
-  //   return () => {
-  //     if (footr) {
-  //       footr.classList.remove('ca2024Footer_Light', 'text-white');
-  //       footr.classList.add('ca2024Footer_Dark', 'text-black-900');
-  //     }
-  //     document.body.style.backgroundColor = '';
-  //   };
-  // }, [router.pathname]);
-
   // @with-layouts
   const getLayout =
     Component.getLayout ||
     ((page) => {
       return (
         <>
-          {/* <Layouts> */}
-          <Component {...pageProps} />
-          {/* </Layouts> */}
+          <LayoutDefaults>
+            <Component {...pageProps} />
+          </LayoutDefaults>
         </>
       );
     });
-  // @without-layouts
+  // @default(layouts)
   return (
     <>
       <Provider store={store}>
@@ -77,7 +45,7 @@ const App = ({ Component, pageProps }) => {
           />
           <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
           <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
-          <meta name="description" content={publicRuntimeConfig.siteDesc} />
+          <meta name="description" content={publicRuntimeConfig?.siteDesc} />
           <meta name="author" content={'Coinfest Asia'} />
           <link rel="mask-icon" href="/favicon.ico" color="#1F1F1F" />
           <meta name="msapplication-TileColor" content="#1F1F1F" />
@@ -98,14 +66,9 @@ const App = ({ Component, pageProps }) => {
         </Head>
 
         {/* @layouts */}
-        {getLayout(
-          <>
-            <Component {...pageProps} />
-          </>,
-          {
-            pageProps: pageProps || {},
-          }
-        )}
+        {getLayout(<Component {...pageProps} />, {
+          pageProps: pageProps || {},
+        })}
 
         {/* @alert(Toast)  */}
         <Toaster
@@ -115,31 +78,6 @@ const App = ({ Component, pageProps }) => {
           dismissible={false}
           pauseWhenPageIsHidden={true}
         />
-
-        {/* @pop-up(backcover) */}
-        <div
-          id="ca2025BckdrpOverflay_PopUpGeneral"
-          className="ca2025BckdrpOverflay_PopUpGeneral nonActive fixed inset-x-0 inset-y-0 z-[80] block h-svh cursor-pointer bg-black-900/60 backdrop-blur-[3px] transition-[opacity,backdrop-filter] duration-[0.3s] ease-in-out"
-          onClick={(e) => {
-            e.preventDefault();
-            toggleOverlayPopUp(
-              '.ca2025BckdrpOverflay_PopUpGeneral',
-              e.target.getAttribute('data-target')
-            );
-          }}
-        ></div>
-        {/* @pop-up(backcover) */}
-        <div
-          id="ca2025BckdrpOverflay_PopUpMobile"
-          className="ca2025BckdrpOverflay_PopUpMobile nonActive fixed inset-x-0 inset-y-0 z-[80] block h-svh cursor-pointer bg-black-900/60 backdrop-blur-[3px] transition-[opacity,backdrop-filter] duration-[0.3s] ease-in-out"
-          onClick={(e) => {
-            e.preventDefault();
-            toggleOverlayPopUp(
-              '.ca2025BckdrpOverflay_PopUpMobile',
-              e.target.getAttribute('data-target')
-            );
-          }}
-        ></div>
 
         {/* @script */}
         <PrelineScript />

@@ -20,8 +20,8 @@ const EmptyCart = ({}) => {
             ></path>
           </svg>
         </div>
-        <h3 className="text-base font-medium">Your Cart is Empty!</h3>
-        <p className="mt-0.5 w-full max-w-[374px] text-balance text-sm font-light">
+        <span className="text-base font-medium">Your Cart is Empty!</span>
+        <p className="mt-0.5 w-full px-0 text-sm font-light sm:px-8">
           Secure your tickets now and don’t miss out!
         </p>
         <Link

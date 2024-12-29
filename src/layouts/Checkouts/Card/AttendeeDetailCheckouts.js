@@ -28,12 +28,12 @@ const AttendeeDetailCheckouts = ({
       <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
         <div className="block">
           <Label
-            forId={`tktCAForm_FirstnameAttndee${items?.attendee}_${items?.group}Checkout`}
+            forId={`ca25Form_FirstnameAttndee${items?.attendee}_${items?.group}Checkout`}
             label="Firstname"
             required={true}
           />
           <Input
-            id={`tktCAForm_FirstnameAttndee${items?.attendee}_${items?.group}Checkout`}
+            id={`ca25Form_FirstnameAttndee${items?.attendee}_${items?.group}Checkout`}
             type="text"
             name={`firstnameAttndee${items?.attendee}_${items?.group}`}
             placeholder="Eg: Alexander"
@@ -58,12 +58,12 @@ const AttendeeDetailCheckouts = ({
         </div>
         <div className="block">
           <Label
-            forId={`tktCAForm_LastnameAttndee${items?.attendee}_${items?.group}Checkout`}
+            forId={`ca25Form_LastnameAttndee${items?.attendee}_${items?.group}Checkout`}
             label="Lastname"
             required={true}
           />
           <Input
-            id={`tktCAForm_LastnameAttndee${items?.attendee}_${items?.group}Checkout`}
+            id={`ca25Form_LastnameAttndee${items?.attendee}_${items?.group}Checkout`}
             type="text"
             name={`lastnameAttndee${items?.attendee}_${items?.group}`}
             placeholder="Eg: Doe"
@@ -84,13 +84,13 @@ const AttendeeDetailCheckouts = ({
       </div>
       <div className="block">
         <Label
-          forId={`tktCAForm_EmailAttndee${items?.attendee}_${items?.group}Checkout`}
+          forId={`ca25Form_EmailAttndee${items?.attendee}_${items?.group}Checkout`}
           label="Email"
           helpText="The email entered must match the information of the attendee who is attending!"
           required={true}
         />
         <Input
-          id={`tktCAForm_EmailAttndee${items?.attendee}_${items?.group}Checkout`}
+          id={`ca25Form_EmailAttndee${items?.attendee}_${items?.group}Checkout`}
           type="email"
           placeholder="Eg: example@email.com"
           ariaLabel={`Email Attendee${items?.attendee}_${items?.group} - Checkout`}
@@ -110,7 +110,7 @@ const AttendeeDetailCheckouts = ({
       <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
         <div className="block">
           <Label
-            forId={`tktCAForm_PhoneAttende${items?.attendee}_${items?.group}Checkout`}
+            forId={`ca25Form_PhoneAttende${items?.attendee}_${items?.group}Checkout`}
             label={`Phone Number`}
             required={true}
           />
@@ -133,9 +133,9 @@ const AttendeeDetailCheckouts = ({
                   maxLength: 18,
                 }}
                 containerClass="w-full"
-                inputClass={`tktCAForm_PhoneInput ${errors[`phone${items?.attendee}_${items?.group}`] && 'errors'}`}
-                buttonClass={`tktCAForm_PhoneInputBtn ${errors[`phone${items?.attendee}_${items?.group}`] && 'errors'}`}
-                dropdownClass="tktCAForm_PhoneInputDropdown"
+                inputClass={`ca25Form_PhoneInput ${errors[`phone${items?.attendee}_${items?.group}`] && 'errors'}`}
+                buttonClass={`ca25Form_PhoneInputBtn ${errors[`phone${items?.attendee}_${items?.group}`] && 'errors'}`}
+                dropdownClass="ca25Form_PhoneInputDropdown"
                 countryCodeEditable={false}
                 enableSearch={true}
                 disableSearchIcon={true}
@@ -147,7 +147,7 @@ const AttendeeDetailCheckouts = ({
 
           {/* @hidden-validation-phonenumber */}
           <Input
-            id={`tktCAForm_PhoneAttende${items?.attendee}_${items?.group}Checkout`}
+            id={`ca25Form_PhoneAttende${items?.attendee}_${items?.group}Checkout`}
             type="text"
             placeholder="Eg: 081823124213"
             ariaLabel="Phone Number - Attendee Checkout"
@@ -167,12 +167,12 @@ const AttendeeDetailCheckouts = ({
         </div>
         <div className="block">
           <Label
-            forId={`tktCAForm_TelegramAccountAttndee${items?.attendee}_${items?.group}Checkout`}
+            forId={`ca25Form_TelegramAccountAttndee${items?.attendee}_${items?.group}Checkout`}
             label="Telegram Account"
             required={false}
           />
           <Input
-            id={`tktCAForm_TelegramAccountAttndee${items?.attendee}_${items?.group}Checkout`}
+            id={`ca25Form_TelegramAccountAttndee${items?.attendee}_${items?.group}Checkout`}
             addClassName="lowercase"
             type="text"
             placeholder="Eg: @username"
@@ -200,12 +200,12 @@ const AttendeeDetailCheckouts = ({
         className={`"block ${errors[`countryAttndee${items?.attendee}_${items?.group}`] && 'error'} ${forms?.isSubmited === false ? '' : 'disabled'}`}
       >
         <Label
-          forId={`tktCAForm_CountryAttndee${items?.attendee}_${items?.group}Checkout`}
+          forId={`ca25Form_CountryAttndee${items?.attendee}_${items?.group}Checkout`}
           label="Country"
           required={true}
         />
         <SelectCountry
-          id={`tktCAForm_CountryAttndee${items?.attendee}_${items?.group}Checkout`}
+          id={`ca25Form_CountryAttndee${items?.attendee}_${items?.group}Checkout`}
           ariaLabel={`Country Attendee${items?.attendee}_${items?.group} - Checkout`}
           listSelect={forms?.country}
           withIcons={true}
@@ -220,12 +220,12 @@ const AttendeeDetailCheckouts = ({
         className={`"block ${errors[`whatTypeConnectionNetworkingAttndee${items?.attendee}_${items?.group}`] && 'error'} ${forms?.isSubmited === false ? '' : 'disabled'}`}
       >
         <Label
-          forId={`tktCAForm_WhatTypeOfConnectionsAttndee${items?.attendee}_${items?.group}Checkout`}
+          forId={`ca25Form_WhatTypeOfConnectionsAttndee${items?.attendee}_${items?.group}Checkout`}
           label="What type of connections & networking do you hope to achieve at Coinfest Asia?"
           required={true}
         />
         <Select
-          id={`tktCAForm_WhatTypeOfConnectionsAttndee${items?.attendee}_${items?.group}Checkout`}
+          id={`ca25Form_WhatTypeOfConnectionsAttndee${items?.attendee}_${items?.group}Checkout`}
           ariaLabel={`What Type Of Connections Attendee${items?.attendee}_${items?.group} - Checkout`}
           label="I want to meet..."
           listSelect={
@@ -247,12 +247,12 @@ const AttendeeDetailCheckouts = ({
         className={`"block ${errors[`didYouHearAboutAttndee${items?.attendee}_${items?.group}`] && 'error'} ${forms?.isSubmited === false ? '' : 'disabled'}`}
       >
         <Label
-          forId={`tktCAForm_DidYouHearAboutAttndee${items?.attendee}_${items?.group}Checkout`}
+          forId={`ca25Form_DidYouHearAboutAttndee${items?.attendee}_${items?.group}Checkout`}
           label="Where did you hear about Coinfest Asia 2024?"
           required={true}
         />
         <Select
-          id={`tktCAForm_DidYouHearAboutAttndee${items?.attendee}_${items?.group}Checkout`}
+          id={`ca25Form_DidYouHearAboutAttndee${items?.attendee}_${items?.group}Checkout`}
           ariaLabel={`What Type Of Connections Attendee${items?.attendee}_${items?.group} - Checkout`}
           label="Heard from..."
           listSelect={
@@ -275,7 +275,7 @@ const AttendeeDetailCheckouts = ({
       <div className={`supports-grid:grid`}>
         <div className={`flex flex-row items-center justify-between`}>
           <Label
-            forId={`tktCAForm_HaveCompanyAttndee${items?.attendee}_${items?.group}Checkout`}
+            forId={`ca25Form_HaveCompanyAttndee${items?.attendee}_${items?.group}Checkout`}
             label="Are you working with a company?"
             required={false}
           />
@@ -284,7 +284,7 @@ const AttendeeDetailCheckouts = ({
               className={`relative ${forms?.isSubmited === true ? 'hidden' : 'inline-block'}`}
             >
               <input
-                id={`tktCAForm_HaveCompanyAttndee${items?.attendee}_${items?.group}Checkout`}
+                id={`ca25Form_HaveCompanyAttndee${items?.attendee}_${items?.group}Checkout`}
                 className="bxShadow-none form-checkbox relative h-6 w-12 shrink-0 cursor-pointer rounded-full border border-solid border-gray-200 bg-gray-100 py-0.5 pl-0.5 pr-px text-transparent transition-colors duration-200 ease-in-out before:inline-block before:size-4.5 before:translate-x-0 before:transform before:rounded-full before:border before:border-gray-200 before:bg-white before:ring-0 before:transition before:duration-200 before:ease-in-out checked:border-black-900 checked:bg-none checked:text-black-900 checked:before:translate-x-[130%] checked:before:border-white checked:before:bg-white disabled:pointer-events-none"
                 type="checkbox"
                 checked={
@@ -301,7 +301,7 @@ const AttendeeDetailCheckouts = ({
                 )}
               />
               <label
-                htmlFor={`tktCAForm_HaveCompanyAttndeeLabel${items?.attendee}_${items?.group}Checkout`}
+                htmlFor={`ca25Form_HaveCompanyAttndeeLabel${items?.attendee}_${items?.group}Checkout`}
                 className="sr-only"
               >
                 switch
@@ -321,12 +321,12 @@ const AttendeeDetailCheckouts = ({
         <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
           <div className="block">
             <Label
-              forId={`tktCAForm_CompanyAttndee${items?.attendee}_${items?.group}Checkout`}
+              forId={`ca25Form_CompanyAttndee${items?.attendee}_${items?.group}Checkout`}
               label="Company Name"
               required={watch}
             />
             <Input
-              id={`tktCAForm_CompanyAttndee${items?.attendee}_${items?.group}Checkout`}
+              id={`ca25Form_CompanyAttndee${items?.attendee}_${items?.group}Checkout`}
               type="text"
               placeholder="Eg: Coinfest Asia"
               ariaLabel={`Company Attendee${items?.attendee}_${items?.group} - Checkout`}
@@ -349,15 +349,15 @@ const AttendeeDetailCheckouts = ({
             />
           </div>
           <div
-            className={`"block ${errors[`jobPositionAttndee${items?.attendee}_${items?.group}`] ? 'error' : ''} ${watch === true || forms?.isSubmited === false ? '' : 'disabled'}`}
+            className={`"block ${errors[`jobPositionAttndee${items?.attendee}_${items?.group}`] ? 'error' : ''} ${watch === true && forms?.isSubmited === false ? '' : 'disabled'}`}
           >
             <Label
-              forId={`tktCAForm_JobPositionAttndee${items?.attendee}_${items?.group}Checkout`}
+              forId={`ca25Form_JobPositionAttndee${items?.attendee}_${items?.group}Checkout`}
               label="Position"
               required={watch}
             />
             <Select
-              id={`tktCAForm_JobPositionAttndee${items?.attendee}_${items?.group}Checkout`}
+              id={`ca25Form_JobPositionAttndee${items?.attendee}_${items?.group}Checkout`}
               ariaLabel={`Job Position Attendee${items?.attendee}_${items?.group} - Checkout`}
               label="Choose a position..."
               listSelect={
@@ -378,15 +378,15 @@ const AttendeeDetailCheckouts = ({
         </div>
         <div className="mt-4 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
           <div
-            className={`block ${errors[`companyFocusAttndee${items?.attendee}_${items?.group}`] ? 'error' : ''} ${watch === true || forms?.isSubmited === false ? '' : 'disabled'}`}
+            className={`block ${errors[`companyFocusAttndee${items?.attendee}_${items?.group}`] ? 'error' : ''} ${watch === true && forms?.isSubmited === false ? '' : 'disabled'}`}
           >
             <Label
-              forId={`tktCAForm_CompanyFocusAttndee${items?.attendee}_${items?.group}Checkout`}
+              forId={`ca25Form_CompanyFocusAttndee${items?.attendee}_${items?.group}Checkout`}
               label="Company Focus"
               required={watch}
             />
             <Select
-              id={`tktCAForm_CompanyFocusAttndee${items?.attendee}_${items?.group}Checkout`}
+              id={`ca25Form_CompanyFocusAttndee${items?.attendee}_${items?.group}Checkout`}
               ariaLabel={`Company Focus Attendee${items?.attendee}_${items?.group} - Checkout`}
               label="Choose a company focus..."
               listSelect={
@@ -405,15 +405,15 @@ const AttendeeDetailCheckouts = ({
             />
           </div>
           <div
-            className={`"block ${errors[`companySizeAttndee${items?.attendee}_${items?.group}`] ? 'error' : ''} ${watch === true || forms?.isSubmited === false ? '' : 'disabled'}`}
+            className={`"block ${errors[`companySizeAttndee${items?.attendee}_${items?.group}`] ? 'error' : ''} ${watch === true && forms?.isSubmited === false ? '' : 'disabled'}`}
           >
             <Label
-              forId={`tktCAForm_CompanySizeAttndee${items?.attendee}_${items?.group}Checkout`}
+              forId={`ca25Form_CompanySizeAttndee${items?.attendee}_${items?.group}Checkout`}
               label="Company Size"
               required={watch}
             />
             <Select
-              id={`tktCAForm_CompanySizeAttndee${items?.attendee}_${items?.group}Checkout`}
+              id={`ca25Form_CompanySizeAttndee${items?.attendee}_${items?.group}Checkout`}
               ariaLabel={`Company Focus Attendee${items?.attendee}_${items?.group} - Checkout`}
               label="Choose a company size..."
               listSelect={

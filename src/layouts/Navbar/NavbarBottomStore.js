@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
 // @lib/controller & helper
@@ -9,38 +9,38 @@ import { useMethod } from '@lib/hooks/Method';
 import Container from '@components/Container';
 import CartStore from '@components/Store';
 
-const NavbarBottom = ({ cartProducts = [], nonStore = true }) => {
+const NavbarBottomStore = ({ cartProducts = [], nonStore = true }) => {
   const router = useRouter();
   const { checkTotalQtyCart, getTotalCart } = useCart();
   const { toggleOverlayPopUp } = useMethod();
   const [isLoading, setIsLoading] = useState(false);
 
-  // @handle(Auto Close PopUp)
-  useEffect(() => {
-    const handleRouteChange = () => {
-      if (nonStore === false) {
-        const elBckdrp = document.querySelector(
-          '.ca2025BckdrpOverflay_PopUpMobile'
-        );
-        if (elBckdrp.classList.contains('active')) {
-          toggleOverlayPopUp(
-            '.ca2025BckdrpOverflay_PopUpMobile',
-            '.ca2025CartPopUp_Mobile'
-          );
-        }
-      }
-    };
-    router.events.on('routeChangeStart', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeStart', handleRouteChange);
-    };
-  }, [router.events, toggleOverlayPopUp]);
+  // @handle(auto close popUp)
+  // useEffect(() => {
+  //   const handleRouteChange = () => {
+  //     if (nonStore === false) {
+  //       const elBckdrp = document.querySelector(
+  //         '.ca2025BckdrpOverflay_PopUpMobile'
+  //       );
+  //       if (elBckdrp.classList.contains('active')) {
+  //         toggleOverlayPopUp(
+  //           '.ca2025BckdrpOverflay_PopUpMobile',
+  //           '.ca2025CartPopUp_Mobile'
+  //         );
+  //       }
+  //     }
+  //   };
+  //   router?.events.on('routeChangeStart', handleRouteChange);
+  //   return () => {
+  //     router?.events.off('routeChangeStart', handleRouteChange);
+  //   };
+  // }, [router?.events, toggleOverlayPopUp]);
 
-  // @redirect(Checkout)
+  // @redirect(checkout)
   const reCheckout = async () => {
     setIsLoading(true);
     setTimeout(async () => {
-      await router.push('/checkout');
+      await router?.push('/checkout');
       setIsLoading(false);
     }, 500);
   };
@@ -104,7 +104,7 @@ const NavbarBottom = ({ cartProducts = [], nonStore = true }) => {
             <div className="block w-max">
               <button
                 id="ca25BtnCartStore_Checkout"
-                className={`h-[46px] w-[106px] cursor-pointer rounded-lg bg-primary px-5 py-3.5 text-sm leading-initial text-white disabled:cursor-not-allowed disabled:bg-primary/70 disabled:text-white/40 sm:h-[56px] sm:w-[138px] sm:rounded-[10px] sm:px-6 sm:py-0 sm:text-base lg:py-4`}
+                className={`h-[46px] w-[106px] cursor-pointer rounded-lg bg-primary px-5 py-3.5 text-sm leading-initial text-white disabled:cursor-not-allowed disabled:bg-primary/80 disabled:text-white/40 sm:h-[56px] sm:w-[138px] sm:rounded-[10px] sm:px-6 sm:py-0 sm:text-base lg:py-4`}
                 type="button"
                 tabIndex={-1}
                 aria-label="Coinfest Asia 2025 Button on Processed Checkout"
@@ -142,4 +142,4 @@ const NavbarBottom = ({ cartProducts = [], nonStore = true }) => {
   );
 };
 
-export default NavbarBottom;
+export default NavbarBottomStore;

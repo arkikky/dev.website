@@ -13,9 +13,6 @@ import {
   converterTotalCart,
 } from '@lib/helper/CalculateCartContext';
 
-// @script
-import PrelineScript from '@components/Script/PrelineScript';
-
 // @components
 import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
@@ -23,8 +20,7 @@ import Container from '@components/Container';
 import Badge from '@components/UI/Badge';
 
 // @layouts
-import NavbarTop from '@layouts/Navbar/NavbarTopStore';
-import Footer from '@layouts/Footer/Footer';
+import LayoutDefaults from '@layouts/Layouts';
 
 const OrderReceived = ({ orderReceived, orderCustomer }) => {
   const dispatch = useDispatch();
@@ -63,7 +59,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
     setOrderRecived({ ...isOrderRecived, discount: calculatedDiscount });
   };
 
-  // @initialize(Store)
+  // @initialize(store)
   useEffect(() => {
     dispatch(removeCart());
     hndleIntzCoupon();
@@ -81,7 +77,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
       ? converterTotalCart(isOrderRecived?.discount)
       : currencyConverter(isOrderRecived?.discount);
 
-  // @btn(Share)
+  // @btn(share)
   const elBtnShareWin = () => {
     return (
       <Link
@@ -89,7 +85,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
         title="Button for Share & Win Competition Coinfest Asia 2025"
         href="/"
       >
-        Share your Twibbon
+        {`Share your Twibbon`}
       </Link>
     );
   };
@@ -99,11 +95,8 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
       {/* @head */}
       <HeadGraphSeo title={`Order Received`} otherPage={true} />
 
-      {/* @navbar */}
-      <NavbarTop nonStore={true} />
-
       {/* @main */}
-      <Main className="flex flex-col pb-12 pt-[141px] sm:pb-12 sm:pt-[171px]">
+      <Main className="flex flex-col pb-12 pt-[141px] sm:pb-24 sm:pt-[185px]">
         <Container>
           <div className="grid-cols-1 gap-x-6 gap-y-6 supports-grid:grid sm:grid-cols-12 sm:gap-y-10 lg:gap-y-16">
             {/* @sidebar(left) */}
@@ -194,14 +187,14 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
 
             {/* @sidebar(right) */}
             <div className="col-span-full pr-0 xl:col-span-6 xl:pl-6">
-              <div className="mt-4 flex flex-col items-start rounded-2xl border border-solid border-gray-200 bg-gray-100 px-2 pb-2 pt-2 sm:mt-0 sm:pt-4">
-                <div className="mb-3 mt-1 flex w-full flex-row items-start justify-between px-2 sm:px-4">
+              <div className="bg-gradient-primary45 mt-4 flex flex-col items-start rounded-2xl px-2 pb-2 pt-2 sm:mt-0 sm:pt-4">
+                <div className="mb-3 mt-1.5 flex w-full flex-row items-start justify-between px-2 sm:mb-4.5 sm:mt-1 sm:px-4">
                   <div className="flex w-max">
-                    <h2 className="text-sm text-gray-600">{'Order ID : '}</h2>
+                    <h2 className="text-sm text-white">{'Order ID : '}</h2>
                   </div>
                   <div className="flex w-max flex-col items-end">
                     {isOrderRecived && (
-                      <span className="text-lg font-medium capitalize leading-initial sm:text-base sm:leading-initial">
+                      <span className="text-lg font-medium capitalize leading-initial text-white sm:text-base sm:leading-initial">
                         {`#${isCustomer?.orderId}`}
                       </span>
                     )}
@@ -322,22 +315,23 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
           </div>
         </Container>
       </Main>
-
-      {/* @footer */}
-      <Footer />
-
-      {/* @script */}
-      <PrelineScript />
     </>
   );
 };
 
-OrderReceived.getLayout = function PageLayout(page) {
-  return <>{page}</>;
+OrderReceived.getLayout = (page, { pageProps }) => {
+  const { mode, layouts } = pageProps;
+  if (layouts) {
+    return (
+      <LayoutDefaults isTheme={mode} layoutStore={layouts}>
+        {page}
+      </LayoutDefaults>
+    );
+  }
+  return page;
 };
-
 export const getServerSideProps = async (context) => {
-  const { process } = context.query;
+  const { process } = context?.query;
   const isValid_Process =
     typeof process === 'string' &&
     /^[a-zA-Z0-9]+$/.test(process.trim()) &&
@@ -352,6 +346,7 @@ export const getServerSideProps = async (context) => {
   }
 
   try {
+    const isLayouts = true;
     const rsOrderRecived = await getFetch(
       `/api/orders/${process}?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount`
     );
@@ -364,7 +359,6 @@ export const getServerSideProps = async (context) => {
         },
       };
     }
-
     // @check-res(Customer)
     const rsCustmrId = rsOrderRecived?.data?.customer.documentId;
     const rsCustmr = await getFetch(
@@ -378,9 +372,10 @@ export const getServerSideProps = async (context) => {
         },
       };
     }
-
     return {
       props: {
+        mode: 'light',
+        layouts: isLayouts || false,
         orderReceived: rsOrderRecived || [],
         orderCustomer: rsCustmr || [],
       },
@@ -394,5 +389,4 @@ export const getServerSideProps = async (context) => {
     };
   }
 };
-
 export default OrderReceived;

@@ -1,7 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { toast } from 'sonner';
-import QRCode from 'qrcode';
 import { useForm } from 'react-hook-form';
 import getConfig from 'next/config';
 import Image from 'next/image';
@@ -26,7 +25,6 @@ import Input from '@components/UI/Form/Input';
 const Attendee = ({}) => {
   const router = useRouter();
   const [isSessionAttendee, setSessionAttendee] = useState(false);
-  const qrRef = useRef(null);
 
   // @form-hook(Checkout)
   const {
@@ -43,103 +41,83 @@ const Attendee = ({}) => {
   const onSubmitForm = async (data) => {
     if (!isValid === false) {
       try {
-        // const rsAttendee = await getFetch(
-        //   `/api/attendees?filters[attendeeId][$eq]=${data.ticketAttndee}&filters[email][$eq]=${data.emailAttndee}`
-        // );
-
-        // // @check(Attendee)
-        // if (!rsAttendee?.data?.length > 0) {
-        //   toast.custom(
-        //     (t) => (
-        //       <ToastAlerts
-        //         id={t}
-        //         position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
-        //         type="info"
-        //         visible={true}
-        //         label={`<strong>Invalid ticket id or email</strong>,<br/> Please check and try again.`}
-        //       />
-        //     ),
-        //     { duration: 5000 }
-        //   );
-        //   return;
-        // }
+        const rsAttendee = await getFetch(
+          `/api/attendees?filters[attendeeId][$eq]=${data.ticketAttndee}&filters[email][$eq]=${data.emailAttndee}`
+        );
+        // @check(Attendee)
+        if (!rsAttendee?.data?.length > 0) {
+          toast.custom(
+            (t) => (
+              <ToastAlerts
+                id={t}
+                position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+                type="info"
+                visible={true}
+                label={`<strong>Invalid ticket id or email</strong>,<br/> Please check and try again.`}
+              />
+            ),
+            { duration: 5000 }
+          );
+          return;
+        }
 
         // @get(Key)
         const { key } = await fetch('/api/env/note', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
         }).then((res) => res.json());
-
         // @send(Email)
-        // const rsEmail = await fetch('/api/email/send-attendee-confrim', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //     'x-api-key': key,
-        //   },
-        //   body: JSON.stringify({
-        //     to: rsAttendee?.data[0].email,
-        //     id: rsAttendee?.data[0].documentId,
-        //     name: `${rsAttendee?.data[0].firstName} ${rsAttendee?.data[0].lastName}`,
-        //   }),
-        // }).then((res) => res.json());
-
-        // @create-payment(Xendit)
-        const rsEmail = await fetch('/api/create-payment', {
+        const rsEmail = await fetch('/api/email/send-attendee-confrim', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'x-api-key': key,
           },
           body: JSON.stringify({
-            extrnlId: Date.now(),
-            amount: 1150000,
-            payerEmail: 'dickypratamaandreansyah@gmail.com',
+            to: rsAttendee?.data[0].email,
+            id: rsAttendee?.data[0].documentId,
+            name: `${rsAttendee?.data[0].firstName} ${rsAttendee?.data[0].lastName}`,
           }),
         }).then((res) => res.json());
-        console.log(rsEmail?.data?.invoice_url);
-
-        if (rsEmail?.data?.invoice_url) {
-          window.open(rsEmail?.data?.invoice_url, '_blank');
+        if (rsEmail?.message === 'Email sent successfully!') {
+          reset();
+          setSessionAttendee(true);
+          toast.custom(
+            (t) => (
+              <ToastAlerts
+                id={t}
+                position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+                type="success"
+                visible={true}
+                label={`<strong>Thanks</strong>, Email sent successfully!`}
+              />
+            ),
+            { duration: 5000 }
+          );
+          setTimeout(() => {
+            setSessionAttendee(false);
+            router.replace(`/attendee/success`);
+          }, 6000);
+          return;
         } else {
-          console.error('Failed to get invoice URL');
+          setSessionAttendee(false);
+          toast.custom(
+            (t) => (
+              <ToastAlerts
+                id={t}
+                position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+                type="error"
+                visible={true}
+                label={`<strong>Sorry</strong>, failed to send email!`}
+              />
+            ),
+            { duration: 5000 }
+          );
+          return;
         }
-
-        // if (rsEmail.message === 'Email sent successfully!') {
-        //   // reset();
-        //   // setSessionAttendee(true);
-        //   toast.custom(
-        //     (t) => (
-        //       <ToastAlerts
-        //         id={t}
-        //         position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
-        //         type="success"
-        //         visible={true}
-        //         label={`<strong>Thanks</strong>, Email sent successfully!`}
-        //       />
-        //     ),
-        //     { duration: 5000 }
-        //   );
-        //   // setTimeout(() => {
-        //   //   setSessionAttendee(false);
-        //   //   router.replace(`/attendee/success`);
-        //   // }, 6000);
-        // } else {
-        //   toast.custom(
-        //     (t) => (
-        //       <ToastAlerts
-        //         id={t}
-        //         position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
-        //         type="error"
-        //         visible={true}
-        //         label={`<strong>Sorry</strong>, failed to send email!`}
-        //       />
-        //     ),
-        //     { duration: 5000 }
-        //   );
-        // }
       } catch (error) {
-        console.error('[error] processing submission:', error);
+        // console.error('[error] processing submission:', error);
+        return;
       }
     }
   };
@@ -159,21 +137,18 @@ const Attendee = ({}) => {
             className="relative block w-full"
           >
             <div className="flex w-full flex-col items-center justify-center">
-              <div className="flex w-full max-w-[568px] flex-col items-start rounded-2xl border border-solid border-gray-200 bg-gray-100 px-2 pb-2 pt-4 sm:mt-0">
+              <div className="bg-gradient-primary45 border-black-700 flex w-full max-w-[568px] flex-col items-start rounded-2xl border-[3px] border-solid px-2 pb-2 pt-4 sm:mt-0">
                 <div className="mb-4 flex w-full flex-row items-start justify-between px-2 sm:px-4">
                   <div className="block w-max">
-                    {/* <span className="text-sm font-light text-gray-500">
-                      Confirmation
-                    </span> */}
-                    <h1 className="text-lg font-medium capitalize leading-initial sm:text-xl">
-                      Attendee
+                    <h1 className="text-lg font-normal capitalize leading-initial text-white sm:text-xl">
+                      {`Attendee`}
                     </h1>
                   </div>
                   <div>
                     <Image
-                      className="mx-auto my-auto h-8.5 w-auto"
-                      src={'/assets/images/ca2025Brand.svg'}
-                      alt={`${publicRuntimeConfig.siteAppName} (Primary Brand - Navbar Checkout)`}
+                      className="mx-auto my-auto h-8.5 w-auto sm:h-10"
+                      src={'/assets/images/ca2025BrandLight.svg'}
+                      alt={`${publicRuntimeConfig?.siteAppName} Primary Brand`}
                       height={58}
                       width={170}
                       quality="87"
@@ -186,13 +161,14 @@ const Attendee = ({}) => {
                     <Label
                       forId={`tktCAForm_TicketAttendeeConfrim`}
                       label="Ticket ID"
-                      helpText={`The Ticket ID must match the attendee's ticket, e.g., 'A-12321312'!`}
+                      helpText={`The Ticket ID must match the attendee's ticket!`}
+                      required={true}
                     />
                     <Input
                       id={`tktCAForm_TicketAttendeeConfrim`}
                       type="text"
-                      placeholder="Eg: A-23423423423"
-                      ariaLabel={`Ticket Attendee Confrim`}
+                      placeholder="Eg: 'A-12321312'"
+                      ariaLabel={`Ticket ID Attendee Confrim`}
                       config={{
                         ...register(`ticketAttndee`, {
                           required: true,
@@ -210,6 +186,7 @@ const Attendee = ({}) => {
                       forId={`tktCAForm_EmailAttendeeConfrim`}
                       label="Email"
                       helpText="The email provided must match the attendee's registration details!"
+                      required={true}
                     />
                     <Input
                       id={`tktCAForm_EmailAttendeeConfrim`}
@@ -233,9 +210,9 @@ const Attendee = ({}) => {
 
                 <div className="inline-flex w-full items-start justify-between">
                   <Link
-                    className="ml-0.5 mt-0.5 flex flex-row items-center gap-x-2 text-sm text-black-900 underline transition duration-300 ease-in-out hover:text-primary sm:gap-x-2"
+                    className="ml-0.5 mt-0.5 flex flex-row items-center gap-x-2 text-sm text-black-900 underline transition duration-300 ease-in-out sm:gap-x-2"
                     href={'/'}
-                    title="Button for Back to Home (Attendee Confirmation)"
+                    title="Coinfest Asia 2025 Button for Back to Home"
                   >
                     <svg
                       className="h-4.5 w-4.5 shrink-0"
@@ -255,17 +232,17 @@ const Attendee = ({}) => {
                   </Link>
                   <button
                     id="tktCA25Form_SubmitAttendeeConfrim"
-                    className={`pointer-events-auto inline-flex w-[169px] cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-4 py-4 text-sm font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 sm:w-[199px] sm:px-6 sm:py-4 sm:text-base`}
+                    className={`pointer-events-auto inline-flex w-[169px] cursor-pointer flex-row items-center justify-center rounded-xl bg-black-900 px-4 py-4 text-sm font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-black-900/60 disabled:text-white/50 sm:w-[199px] sm:px-6 sm:py-4 sm:text-base`}
                     type="submit"
-                    tabIndex={-1}
                     role="button"
+                    tabIndex={-1}
                     aria-label="Submit Attendee Confrim for Coinfest Asia 2025"
                     disabled={!isValid || isSubmitting || isSessionAttendee}
                   >
                     {isSubmitting ? (
                       <span className="flex flex-row items-center">
                         <svg
-                          className="mr-3 h-5 w-5 animate-spin text-black-900"
+                          className="mr-3 h-5 w-5 animate-spin text-white"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
@@ -303,9 +280,8 @@ const Attendee = ({}) => {
 Attendee.getLayout = function PageLayout(page) {
   return <>{page}</>;
 };
-
 export const getServerSideProps = async (context) => {
-  if (Object.keys(context.query).length > 0) {
+  if (Object.keys(context?.query).length > 0) {
     return {
       redirect: {
         destination: '/',
@@ -313,7 +289,6 @@ export const getServerSideProps = async (context) => {
       },
     };
   }
-
   try {
     return {
       props: {},
@@ -327,5 +302,4 @@ export const getServerSideProps = async (context) => {
     };
   }
 };
-
 export default Attendee;

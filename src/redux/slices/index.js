@@ -1,9 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'sonner';
+
+// @components
+import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 
 const savedState = () => {
   try {
     if (typeof window !== 'undefined' && sessionStorage.getItem('_cart')) {
-      return JSON.parse(sessionStorage.getItem('_cart'));
+      const parsedData = JSON.parse(sessionStorage.getItem('_cart'));
+      if (parsedData.data) {
+        parsedData.data = parsedData?.data.map((item) =>
+          item.id_product === 'sn4ujm0d1ebbc8lme1ihzsa9'
+            ? { ...item, quantity: 5 }
+            : item
+        );
+      }
+      return parsedData;
     } else {
       return {
         data: [],
@@ -20,7 +32,7 @@ const savedState = () => {
       coupon: null,
       order: null,
       orderSession: null,
-      session: new Date().toISOString(),
+      session: null,
     };
   }
 };
@@ -32,6 +44,29 @@ const cartSlice = createSlice({
     // @add-items(in Cart)
     addItemToCart: (state, action) => {
       const d = action.payload;
+      const currentTotalQty = state.data.reduce(
+        (total, item) => total + item?.quantity,
+        0
+      );
+      // @check(total qty)
+      const newQty =
+        d?.id_product === 'sn4ujm0d1ebbc8lme1ihzsa9' ? 5 : d?.quantity || 1;
+      if (currentTotalQty + newQty > 20) {
+        toast.custom(
+          (t) => (
+            <ToastAlerts
+              id={t}
+              position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+              type="info"
+              visible={true}
+              label={`<strong>Your Cart is full</strong>, Complete your order or update your Cart!`}
+            />
+          ),
+          { duration: 5000 }
+        );
+        return;
+      }
+
       const exItms = state?.data.find((i) => i.id_product === d?.id_product);
       if (exItms) {
         exItms.quantity =
@@ -46,6 +81,18 @@ const cartSlice = createSlice({
         });
       }
       sessionStorage.setItem('_cart', JSON.stringify(state));
+      toast.custom(
+        (t) => (
+          <ToastAlerts
+            id={t}
+            position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+            type="success"
+            visible={true}
+            label={`The item has been successfully added to your cart.`}
+          />
+        ),
+        { duration: 5000 }
+      );
     },
     // @update(Qty)
     updateQuantity: (state, action) => {

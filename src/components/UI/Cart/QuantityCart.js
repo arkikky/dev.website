@@ -47,10 +47,14 @@ const QuantityCart = ({ productsQty, cartStoreQty }) => {
           <input
             className={`pointer-events-none w-5 cursor-default select-none border-0 bg-transparent p-0 text-center text-sm font-light text-black-900 focus:ring-0 focus-visible:outline-none focus-visible:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none`}
             type="number"
-            value={productsQty?.quantity}
+            value={
+              productsQty?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9'
+                ? 5
+                : productsQty?.quantity
+            }
             tabIndex="-1"
             maxLength="15"
-            minLength={productsQty?.quantity || 1}
+            minLength={1}
             readOnly={true}
             disabled={true}
           />

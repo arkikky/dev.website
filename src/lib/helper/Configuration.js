@@ -18,6 +18,21 @@ export function smoothLeftScroll(container, targetScroll, duration = 1000) {
   requestAnimationFrame(animateScroll);
 }
 
+// @render(text using boren style)
+export function renderText(text, styledLetters, defaultClass, specialClass) {
+  return text.split('').map((char, index) =>
+    styledLetters.includes(char) ? (
+      <span key={index} className={specialClass}>
+        {char}
+      </span>
+    ) : (
+      <span key={index} className={defaultClass}>
+        {char}
+      </span>
+    )
+  );
+}
+
 // @dom-count
 export function getDOMParseCount(t) {
   if (typeof t === 'undefined' || t === null) return;
@@ -27,7 +42,7 @@ export function getDOMParseCount(t) {
   return plainText.trim().length;
 }
 
-// @split(String)
+// @split(string)
 export function getSplitString(d) {
   const getString = d;
   const resString = getString.split(' ').join('_');
@@ -47,7 +62,7 @@ export function getSplitStringCapital(d) {
   return resString;
 }
 
-// @random(Characters)
+// @random(characters)
 export function getRandomCharacters(q) {
   const chars =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -60,19 +75,18 @@ export function getRandomCharacters(q) {
   return { data: randomString };
 }
 
-// @generate(Order Code)
+// @generate(order code)
 export function generateCreateOrderCode() {
   const randomNumber = Math.floor(100000000000 + Math.random() * 900000000000);
   return `C-${randomNumber}`;
 }
-
-// @generate(Ticket Attendee Code)
+// @generate(ticket attendee code)
 export function generateTicketAttendeeCode() {
   const randomNumber = Math.floor(100000000000 + Math.random() * 900000000000);
   return `A-${randomNumber}`;
 }
 
-// @calculat-countdown(Date)
+// @calculat-countdown(date)
 export function calculateCountdown(date) {
   const mrgdDate = Math.max(0, date - new Date());
   const toTimeUnits = (unit) =>
@@ -92,7 +106,7 @@ export function getPriceDiscountDisplay(d) {
   return d.price;
 }
 
-// @combine(Array)
+// @combine(array)
 export function getCombineMerged(data1, data2) {
   const a = data1;
   const b = data2;
@@ -116,7 +130,7 @@ export function getCombineMerged(data1, data2) {
   return filteredProducts;
 }
 
-// @valid-time(Payment)
+// @valid-time(payment)
 export function isValidationMoreTimeMinutes(paidAt, duration = 6) {
   const paidAtTime = new Date(paidAt).getTime();
   const currentTime = new Date().getTime();
@@ -126,7 +140,7 @@ export function isValidationMoreTimeMinutes(paidAt, duration = 6) {
   return rs;
 }
 
-// @encrypt
+// @encrypt-code
 export function encodeData(d) {
   const wordArray = CryptoJS.enc.Utf8.parse(JSON.stringify(d));
   return CryptoJS.enc.Base64.stringify(wordArray);

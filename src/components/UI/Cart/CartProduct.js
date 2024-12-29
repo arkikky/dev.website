@@ -25,7 +25,7 @@ const CartProduct = ({ cartStore, products }) => {
       <div className="flex w-full flex-row justify-between space-x-3">
         <div
           className={twMerge(
-            `flex h-[94px] w-full max-w-[255px] flex-row space-x-3 rounded-xl px-3 py-2`,
+            `flex h-[94px] w-full max-w-[235px] flex-row space-x-3 rounded-xl px-3 py-2`,
             style[products?.documentId] || 'bg-regular45'
           )}
         >

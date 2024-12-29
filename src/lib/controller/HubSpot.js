@@ -1,15 +1,14 @@
-// @init
-const baseUrl = `https://api.hubapi.com`;
-const tokenKey = 'pat-na1-68646d39-14c0-4c60-a133-11611743c279';
+const bUrl = `https://api.hubapi.com`;
+const tApp = 'pat-na1-68646d39-14c0-4c60-a133-11611743c279';
 
 export async function getFecthHbSpt(url) {
-  const res = await fetch(`${baseUrl}${url}`, {
+  const rs = await fetch(`${bUrl}${url}`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       Origin: '*',
-      Authorization: `Bearer ${tokenKey}`,
+      Authorization: `Bearer ${tApp}`,
     },
     cache: 'no-store',
   })
@@ -21,12 +20,11 @@ export async function getFecthHbSpt(url) {
     .catch(() => {
       return false;
     });
-
-  return res;
+  return rs;
 }
 
 export async function submitFormHbSpt(data, key) {
-  const res = await fetch(
+  const rs = await fetch(
     `https://api.hsforms.com/submissions/v3/integration/submit/21063184/${key}`,
     {
       method: 'POST',
@@ -34,7 +32,7 @@ export async function submitFormHbSpt(data, key) {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Origin: '*',
-        Authorization: `Bearer ${tokenKey}`,
+        Authorization: `Bearer ${tApp}`,
       },
       body: JSON.stringify(data),
       cache: 'no-store',
@@ -48,6 +46,5 @@ export async function submitFormHbSpt(data, key) {
     .catch((e) => {
       return false;
     });
-
-  return res;
+  return rs;
 }

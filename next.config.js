@@ -2,15 +2,8 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  poweredByHeader: false,
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'http://localhost:3001',
-        port: '',
-        pathname: '/**',
-      },
       {
         protocol: 'https',
         hostname: process.env.NEXT_PUBLIC_DOMAIN,
@@ -30,7 +23,7 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
-    formats: ['image/avif', 'image/webp'],
+    // formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
@@ -64,7 +57,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Access-Control-Allow-Methods',
-            value: 'GET, POST, PUT, DELETE',
+            value: 'GET',
           },
         ],
       },
@@ -77,7 +70,7 @@ const nextConfig = {
           },
           {
             key: 'Access-Control-Allow-Methods',
-            value: 'GET, POST, PUT, DELETE',
+            value: 'GET',
           },
           {
             key: 'Cache-Control',
@@ -101,7 +94,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: `default-src 'self';script-src 'self' 'unsafe-eval';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://api.coinfest.asia;img-src 'self' https://upload.wikimedia.org https://flagcdn.com data:;frame-src 'none';frame-ancestors 'self';form-action 'self';worker-src 'self';base-uri 'self';`,
+            value: `default-src 'self';script-src 'self' 'unsafe-eval';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://api.coinfest.asia https://api.hsforms.com;img-src 'self' https://upload.wikimedia.org https://flagcdn.com data:;frame-src 'none';frame-ancestors 'self';form-action 'self';worker-src 'self';base-uri 'self';`,
           },
           {
             key: 'Permissions-Policy',
@@ -131,6 +124,15 @@ const nextConfig = {
           {
             key: 'Expect-CT',
             value: 'enforce, max-age=86400',
+          },
+        ],
+      },
+      {
+        source: '/checkout',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET,POST,PUT',
           },
         ],
       },

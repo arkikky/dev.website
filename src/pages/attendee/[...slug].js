@@ -7,7 +7,7 @@ const AttendeeSlugs = ({}) => {
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo title={`Order Received`} otherPage={true} />
+      <HeadGraphSeo title={`Confirmation Attendee`} otherPage={true} />
     </>
   );
 };
@@ -15,7 +15,6 @@ const AttendeeSlugs = ({}) => {
 AttendeeSlugs.getLayout = function PageLayout(page) {
   return <>{page}</>;
 };
-
 export const getServerSideProps = async (context) => {
   try {
     return {
@@ -33,5 +32,4 @@ export const getServerSideProps = async (context) => {
     };
   }
 };
-
 export default AttendeeSlugs;

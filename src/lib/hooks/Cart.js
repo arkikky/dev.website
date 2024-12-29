@@ -23,14 +23,14 @@ export function useCart() {
         (acc, item) => acc + item?.quantity,
         0
       );
-      var newQty = cartProducts.quantity;
-      if (newQty > Number(cartProducts.stock)) return;
+      var newQty = cartProducts?.quantity;
+      if (newQty > Number(cartProducts?.stock)) return;
       if (isIncrease) {
         if (toQtyCart <= 15) {
-          newQty = Math.min(cartProducts.quantity + 1, 15);
+          newQty = Math.min(cartProducts?.quantity + 1, 15);
         }
       } else {
-        newQty = Math.max(cartProducts.quantity - 1, 1);
+        newQty = Math.max(cartProducts?.quantity - 1, 1);
       }
       if (
         toQtyCart + (isIncrease ? 1 : -1) <=

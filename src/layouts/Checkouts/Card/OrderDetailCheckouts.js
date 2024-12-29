@@ -13,6 +13,7 @@ import {
   currencyConverter,
   converterTotalCart,
 } from '@lib/helper/CalculateCartContext';
+import { encodeData } from '@lib/helper/Configuration';
 import { getTotalProduct, getTotalCart } from '@lib/helper/CartContext';
 
 // @components
@@ -49,9 +50,13 @@ const OrderDetailCheckouts = ({
   const hndleIntzCoupon = async () => {
     try {
       if (isCoupon !== null) {
-        const getDataCoupon = await getFetch(
-          `/api/coupons?populate=*&filters[couponCode][$eq]=${isCoupon}`
-        );
+        const getDataCoupon = await fetch('/api/data/coupons?sv=coinfestasia', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ data: encodeData(isCoupon) }),
+        }).then((res) => res.json());
         const isDataCoupon = getDataCoupon?.data[0];
         // @check(Limit Coupon)
         if (
@@ -120,9 +125,16 @@ const OrderDetailCheckouts = ({
         if (!(stepForm[idx] + 1 >= cartItems?.quantity)) {
           // @check(coupon)
           if (isCoupon !== null) {
-            const getDataCoupon = await getFetch(
-              `/api/coupons?populate=*&filters[couponCode][$eq]=${isCoupon}`
-            );
+            const getDataCoupon = await fetch(
+              '/api/data/coupons?sv=coinfestasia',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ data: encodeData(isCoupon) }),
+              }
+            ).then((res) => res.json());
             const isDataCoupon = getDataCoupon?.data[0];
             if (isTotalCart < isDataCoupon?.minQtyPromo) {
               dispatch(removeCoupon());
@@ -162,7 +174,7 @@ const OrderDetailCheckouts = ({
       }
       dispatch(updateQuantity({ products: cartItems, qty: newQty }));
     } catch (error) {
-      console.error('[Error] fetching:', error);
+      // console.error('[Error] fetching:', error);
     }
   };
   const decreaseQty = (cartItems, i) => updateCartQuantity(cartItems, i, false);
@@ -171,6 +183,7 @@ const OrderDetailCheckouts = ({
   // // @handle(change - coupon)
   const handleCoupon = async (data) => {
     const getData = data;
+
     try {
       const getCouponCode =
         getData !== undefined ? getData : getValues('coupon').trim();
@@ -196,10 +209,14 @@ const OrderDetailCheckouts = ({
       }
 
       // @check(coupon)
-      const { data } = await getFetch(
-        `/api/coupons?populate=*&filters[couponCode][$eq]=${getCouponCode}`
-      );
-      const coupon = data?.[0];
+      const checkDataCoupon = await fetch('/api/data/coupons?sv=coinfestasia', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data: encodeData(getCouponCode) }),
+      }).then((res) => res.json());
+      const coupon = checkDataCoupon?.data[0];
       if (!coupon) {
         setUseCoupon({ ...isUseCoupon, loading: false });
         toast.custom(
@@ -366,12 +383,11 @@ const OrderDetailCheckouts = ({
         <div
           className={`relative top-auto z-[2] block xl:sticky xl:top-[109px] ${isSubmited === true ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'}`}
         >
-          <div
-            className={`absolute inset-x-0 inset-y-0 bg-white/40 ${isSubmited === true ? '!pointer-events-none z-50 !select-none opacity-100 backdrop-blur-[2px]' : '!pointer-events-auto -z-px !select-auto opacity-0'}`}
-          ></div>
-
           <div className="my-3 flex w-full border-t border-dashed border-gray-200 px-2.5"></div>
-          <div className="mb-7 block w-full px-2.5 sm:mb-6 sm:px-0">
+          <div className="relative mb-7 block w-full px-2.5 sm:mb-6 sm:px-0">
+            <div
+              className={`absolute inset-x-0 inset-y-0 bg-white/40 ${isSubmited === true ? '!pointer-events-none z-50 !select-none opacity-100 backdrop-blur-[2px]' : '!pointer-events-auto -z-px !select-auto opacity-0'}`}
+            ></div>
             <div
               className={`mb-3 flex w-full flex-row items-center justify-between`}
             >
@@ -536,12 +552,15 @@ const OrderDetailCheckouts = ({
             ))}
 
             {/* @products(Empty) */}
-            {products.length <= 0 && <EmptyCheckouts />}
+            {products?.length <= 0 && <EmptyCheckouts />}
           </div>
-          {products.length > 0 && (
+          {products?.length > 0 && (
             <>
               <div className="mx-0 my-4 flex w-full border-t border-dashed border-gray-200"></div>
               <div className="relative mb-6 block w-full">
+                <div
+                  className={`absolute inset-x-0 inset-y-0 bg-white/40 ${isSubmited === true ? '!pointer-events-none z-50 !select-none opacity-100 backdrop-blur-[2px]' : '!pointer-events-auto -z-px !select-auto opacity-0'}`}
+                ></div>
                 <h2 className="mb-3 px-2.5 text-start text-base font-medium sm:px-0">
                   {`Save More`}
                 </h2>
@@ -559,8 +578,11 @@ const OrderDetailCheckouts = ({
 
           {/* @coupon */}
           <div
-            className={`mb-4 w-full flex-row items-center justify-between px-2.5 sm:px-0 ${products?.length <= 0 ? 'hidden' : 'flex'}`}
+            className={`relative mb-4 w-full flex-row items-center justify-between px-2.5 sm:px-0 ${products?.length <= 0 ? 'hidden' : 'flex'}`}
           >
+            <div
+              className={`absolute inset-x-0 inset-y-0 bg-white/40 ${isSubmited === true ? '!pointer-events-none z-50 !select-none opacity-100 backdrop-blur-[2px]' : '!pointer-events-auto -z-px !select-auto opacity-0'}`}
+            ></div>
             <div className="flex flex-row items-center justify-start">
               <div className="flex h-10 w-10 flex-col items-center justify-center rounded-lg bg-primary/20">
                 <svg
@@ -644,7 +666,11 @@ const OrderDetailCheckouts = ({
           </div>
 
           {/* @order-summary */}
-          <div className="mb-0 block space-y-3 px-2.5 sm:px-0 xl:mb-8">
+          <div className="relative mb-0 block space-y-3 px-2.5 sm:px-0 xl:mb-8">
+            <div
+              className={`absolute inset-x-0 inset-y-0 bg-white/40 ${isSubmited === true ? '!pointer-events-none z-50 !select-none opacity-100 backdrop-blur-[2px]' : '!pointer-events-auto -z-px !select-auto opacity-0'}`}
+            ></div>
+
             {/* @subtotal */}
             <div className="grid-cols-2 supports-grid:grid">
               <span className="text-start text-sm font-normal">{`Subtotal`}</span>
@@ -670,12 +696,13 @@ const OrderDetailCheckouts = ({
                     className="ms-3 flex h-8 w-8 flex-col items-center justify-center rounded-lg border border-solid border-red-500 bg-red-500/10 focus-visible:outline-none"
                     type="button"
                     tabIndex={-1}
-                    aria-label="Coinfest Asia 2025 (Remove - Coupon)"
-                    aria-roledescription="Coinfest Asia 2025 (Remove - Coupon)"
+                    aria-label="Coinfest Asia 2025 Remove - Coupon"
+                    aria-roledescription="Coinfest Asia 2025 Remove - Coupon"
                     onClick={(e) => {
                       e.preventDefault();
                       clearCoupon();
                     }}
+                    disabled={isSubmited}
                   >
                     <svg
                       className="h-4 w-4 stroke-red-500"

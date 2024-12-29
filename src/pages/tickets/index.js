@@ -30,7 +30,7 @@ const TicketProducts = dynamic(() => import('@components/UI/TicketProducts'), {
 // @layouts
 import LayoutStore from '@layouts/LayoutStore';
 
-const Home = ({ mode, products }) => {
+const Tickets = ({ mode, products }) => {
   const dispatch = useDispatch();
   const { data: isCart } = useSelector((state) => state.cart);
   const [isStore, setStore] = useState({
@@ -237,7 +237,7 @@ const Home = ({ mode, products }) => {
   );
 };
 
-Home.getLayout = (page, { pageProps }) => {
+Tickets.getLayout = (page, { pageProps }) => {
   const { mode, layouts, products } = pageProps;
   if (layouts) {
     return (
@@ -277,4 +277,4 @@ export const getServerSideProps = async (context) => {
     };
   }
 };
-export default Home;
+export default Tickets;

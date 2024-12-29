@@ -15,7 +15,7 @@ const FooterSocialMedia = ({ list = [] }) => {
             <Link
               className="outline-none focus-visible:outline-none"
               href={gtRslt?.url || '#'}
-              title={`${publicRuntimeConfig?.siteAppName} List Social Media ${gtRslt?.label}`}
+              title={`${publicRuntimeConfig?.siteAppName} Social Media ${gtRslt?.label}`}
               rel="noopener noreferrer"
               target="_blank"
             >

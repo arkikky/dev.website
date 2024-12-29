@@ -43,12 +43,12 @@ const BillingDetailCheckout = ({
         <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
           <div className="block">
             <Label
-              forId="tktCAForm_FirstnameCheckout"
+              forId="ca25Form_FirstnameCheckout"
               label="Firstname"
               required={true}
             />
             <Input
-              id="tktCAForm_FirstnameCheckout"
+              id="ca25Form_FirstnameCheckout"
               type="text"
               placeholder="Eg: Alexander"
               ariaLabel="Firstname Billing - Checkout"
@@ -70,12 +70,12 @@ const BillingDetailCheckout = ({
           </div>
           <div className="block">
             <Label
-              forId="tktCAForm_LastnameCheckout"
+              forId="ca25Form_LastnameCheckout"
               label="Lastname"
               required={true}
             />
             <Input
-              id="tktCAForm_LastnameCheckout"
+              id="ca25Form_LastnameCheckout"
               type="text"
               placeholder="Eg: Doe"
               ariaLabel="Lastname Billing - Checkout"
@@ -99,12 +99,12 @@ const BillingDetailCheckout = ({
         <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
           <div className="flex flex-col">
             <Label
-              forId="tktCAForm_EmailCheckout"
+              forId="ca25Form_EmailCheckout"
               label="Email"
               required={true}
             />
             <Input
-              id="tktCAForm_EmailCheckout"
+              id="ca25Form_EmailCheckout"
               type="email"
               placeholder="Eg: example@email.com"
               ariaLabel="Email Billing - Checkout"
@@ -129,7 +129,7 @@ const BillingDetailCheckout = ({
           </div>
           <div className="block">
             <Label
-              forId="tktCAForm_PhoneCheckout"
+              forId="ca25Form_PhoneCheckout"
               label={`Phone Number`}
               required={true}
             />
@@ -145,9 +145,9 @@ const BillingDetailCheckout = ({
                 maxLength: 18,
               }}
               containerClass="w-full"
-              inputClass={`tktCAForm_PhoneInput ${errors.phone && 'errors'}`}
-              buttonClass={`tktCAForm_PhoneInputBtn ${errors.phone && 'errors'}`}
-              dropdownClass="tktCAForm_PhoneInputDropdown"
+              inputClass={`ca25Form_PhoneInput ${errors.phone && 'errors'}`}
+              buttonClass={`ca25Form_PhoneInputBtn ${errors.phone && 'errors'}`}
+              dropdownClass="ca25Form_PhoneInputDropdown"
               countryCodeEditable={false}
               enableSearch={true}
               autocompleteSearch={true}
@@ -159,7 +159,7 @@ const BillingDetailCheckout = ({
 
             {/* @hidden-validation-phonenumber */}
             <Input
-              id="tktCAForm_PhoneCheckout"
+              id="ca25Form_PhoneCheckout"
               type="text"
               placeholder="Eg: 081823124213"
               ariaLabel="Phone Number - Checkout"
@@ -184,7 +184,7 @@ const BillingDetailCheckout = ({
       <div className={`mt-5 block`}>
         <div className={`flex flex-row items-end justify-between`}>
           <Label
-            forId={`tktCAForm_CompanyCheckout`}
+            forId={`ca25Form_CompanyCheckout`}
             isClassName={`mb-3`}
             label="Company Name"
             helpText="Are you working with a company?"
@@ -194,7 +194,7 @@ const BillingDetailCheckout = ({
             className={`relative ${isSubmited === true ? 'hidden' : 'inline-block'} pb-3`}
           >
             <input
-              id={`tktCAForm_HaveCompanyCheckout`}
+              id={`ca25Form_HaveCompanyCheckout`}
               className="bxShadow-none checked:border-dark checked:text-dark form-checkbox relative h-6 w-12 shrink-0 cursor-pointer rounded-full border border-solid border-gray-200 bg-gray-100 py-0.5 pl-0.5 pr-px text-transparent transition-colors duration-200 ease-in-out before:inline-block before:size-4.5 before:translate-x-0 before:transform before:rounded-full before:border before:border-gray-200 before:bg-white before:ring-0 before:transition before:duration-200 before:ease-in-out checked:bg-none checked:before:translate-x-[130%] checked:before:border-white checked:before:bg-white disabled:pointer-events-none"
               type="checkbox"
               disabled={isSubmited === true ? true : false}
@@ -204,7 +204,7 @@ const BillingDetailCheckout = ({
               })}
             />
             <label
-              htmlFor={`tktCAForm_HaveCompanyLabelCheckout`}
+              htmlFor={`ca25Form_HaveCompanyLabelCheckout`}
               className="sr-only"
             >
               switch
@@ -213,7 +213,7 @@ const BillingDetailCheckout = ({
         </div>
 
         <Input
-          id={`tktCAForm_CompanyCheckout`}
+          id={`ca25Form_CompanyCheckout`}
           type="text"
           placeholder="Eg: Coinfest Asia"
           ariaLabel={`Company - Checkout`}
@@ -235,12 +235,12 @@ const BillingDetailCheckout = ({
       {watch === true ? (
         <div className="mt-4 block">
           <Label
-            forId="tktCAForm_WebsiteUrlCheckout"
+            forId="ca25Form_WebsiteUrlCheckout"
             label="Company Website"
             required={watch}
           />
           <Input
-            id="tktCAForm_WebsiteUrlCheckout"
+            id="ca25Form_WebsiteUrlCheckout"
             type="text"
             placeholder={`Eg: https://website.com`}
             ariaLabel="Website Billing - Checkout"

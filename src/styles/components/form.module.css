@@ -1,41 +1,41 @@
-.tktCAForm_PhoneInput {
+.ca25Form_PhoneInput {
   @apply !rounded-lg !border-gray-200 focus:!border-blue-500;
   @apply !font-normal;
   @apply !py-[13px] !ps-[80px];
   @apply !h-auto !w-full;
 }
-.tktCAForm_PhoneInput.errors {
+.ca25Form_PhoneInput.errors {
   @apply !border-red-500 focus:!border-red-500;
 }
-.tktCAForm_PhoneInputBtn {
+.ca25Form_PhoneInputBtn {
   @apply !bg-gray-100;
   @apply !rounded-s-lg !border-gray-200;
   @apply !w-[68px];
 }
-.tktCAForm_PhoneInputBtn.errors {
+.ca25Form_PhoneInputBtn.errors {
   @apply !border-red-500 focus:!border-red-500;
 }
 
 /* @dropdown(Flags */
-.tktCAForm_PhoneInputBtn .selected-flag {
+.ca25Form_PhoneInputBtn .selected-flag {
   @apply !bg-transparent hover:!bg-gray-100 focus:!border-blue-500 focus:!bg-gray-100;
   @apply !ps-3.5;
   @apply !w-full;
 }
-.tktCAForm_PhoneInputBtn.open .selected-flag {
+.ca25Form_PhoneInputBtn.open .selected-flag {
   @apply !bg-transparent;
 }
-.tktCAForm_PhoneInputBtn .selected-flag .flag {
+.ca25Form_PhoneInputBtn .selected-flag .flag {
   @apply !h-5 !w-6;
 }
-.tktCAForm_PhoneInputDropdown {
+.ca25Form_PhoneInputDropdown {
   @apply !rounded-lg border border-solid !border-gray-200 !bg-white;
   box-shadow: none !important;
 }
-.tktCAForm_PhoneInputDropdown .search {
+.ca25Form_PhoneInputDropdown .search {
   @apply !px-1.5 !py-1.5;
 }
-.tktCAForm_PhoneInputDropdown .search .search-box {
+.ca25Form_PhoneInputDropdown .search .search-box {
   @apply !rounded !border-gray-200;
   @apply !leading-inherit;
   @apply !mx-0;
@@ -44,10 +44,10 @@
 }
 
 /* @dropdown(Country & Dial-code) */
-.tktCAForm_PhoneInputDropdown .country .flag {
+.ca25Form_PhoneInputDropdown .country .flag {
   @apply !top-1.5;
 }
-.tktCAForm_PhoneInputDropdown .country-name,
-.tktCAForm_PhoneInputDropdown .dial-code {
+.ca25Form_PhoneInputDropdown .country-name,
+.ca25Form_PhoneInputDropdown .dial-code {
   @apply !text-sm;
 }

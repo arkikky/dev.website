@@ -28,6 +28,7 @@ import {
   getJoinString,
   getCombineMerged,
   isValidationMoreTimeMinutes,
+  encodeData,
 } from '@lib/helper/Configuration';
 import {
   getTotalCart,
@@ -39,7 +40,6 @@ import {
   setAttendeeData,
   getCreateOrder,
 } from '@lib/helper/CartContext';
-import { useMethod } from '@lib/hooks/Method';
 
 // @components
 import HeadGraphSeo from '@components/Head';
@@ -54,7 +54,7 @@ import CopyBillingAttendeeBtn from '@components/UI/Button/CopyBillingAttendeeBtn
 import CopyOtherDetailBtn from '@components/UI/Button/CopyOtherDetailBtn';
 
 // @layouts
-import NavbarTop from '@layouts/Navbar/NavbarTopStore';
+import LayoutDefaults from '@layouts/Layouts';
 import Header from '@layouts/Checkouts/Header';
 const BillingDetailCheckout = dynamic(
   () => import('@layouts/Checkouts//Card/BillingDetailCheckout'),
@@ -66,12 +66,10 @@ const BillingDetailCheckout = dynamic(
 import AttendeeDetailCheckouts from '@layouts/Checkouts/Card/AttendeeDetailCheckouts';
 import OrderDetailCheckouts from '@layouts/Checkouts//Card/OrderDetailCheckouts';
 import BoardSubmitCheckout from '@layouts/Checkouts/Card/BoardSubmitCheckout';
-import Footer from '@layouts/Footer/Footer';
 
 const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { toggleOverlayPopUp } = useMethod();
   const {
     data: isCart,
     coupon: isCoupon,
@@ -134,33 +132,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   //   };
   // }, []);
 
-  // @handle(Auto Close PopUp)
-  useEffect(() => {
-    const elBckdrp = document.querySelector(
-      '.ca2025BckdrpOverflay_PopUpMobile'
-    );
-    if (elBckdrp.classList.contains('active')) {
-      toggleOverlayPopUp(
-        '.ca2025BckdrpOverflay_PopUpMobile',
-        '.ca2025CartPopUp_Mobile'
-      );
-    }
-    // @block(Inspeac)
-    // document.addEventListener('contextmenu', (event) => event.preventDefault());
-    // (function () {
-    //   const devtools = /./;
-    //   devtools.toString = function () {
-    //     console.info(
-    //       'DevTools detected! Do not attempt to manipulate the page!'
-    //     );
-    //     return;
-    //   };
-    // })();
-    return () => {
-      undefined;
-    };
-  }, []);
-
   // @btn-step(Attendee)
   const handleTabClick = (e, productIdx, tabIdx) => {
     const btnAttendeeTabs = e?.currentTarget;
@@ -171,7 +142,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       );
       const targetScroll =
         btnAttendeeTabs.offsetLeft -
-        (containerTabs.clientWidth - btnAttendeeTabs.clientWidth) / 2;
+        (containerTabs.clientWidth - btnAttendeeTabs?.clientWidth) / 2;
       smoothLeftScroll(containerTabs, targetScroll);
     }
   };
@@ -190,10 +161,10 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   const findFirstTrue = () => {
     for (
       let productIdx = 0;
-      productIdx < isStepToggledCompany.length;
+      productIdx < isStepToggledCompany?.length;
       productIdx++
     ) {
-      const attendeeIdx = isStepToggledCompany[productIdx].findIndex(
+      const attendeeIdx = isStepToggledCompany[productIdx]?.findIndex(
         (toggle) => toggle === true
       );
       if (attendeeIdx !== -1) {
@@ -237,25 +208,30 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       window.HSStaticMethods.autoInit();
     }
   }, [isCart]);
-
-  // @hook(Product)
+  // @hook(store)
   const hndleHookProducts = useCallback(async () => {
     try {
       const allProducts = await Promise.all(
         isCart?.map(async (data) => {
-          const rsHook = await getFetch(`/api/products/${data.id_product}`);
+          const rsHook = await fetch('/api/data/products?sv=coinfestasia', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: encodeData(data?.id_product) }),
+          }).then((res) => res.json());
           return {
-            id: rsHook?.data.id,
-            documentId: rsHook?.data.documentId,
-            productId: rsHook?.data.productId,
-            name: rsHook?.data.name,
-            price: rsHook?.data.price,
-            priceSale: rsHook?.data.priceSale,
-            stock: parseInt(rsHook?.data.stock),
+            id: rsHook?.id,
+            documentId: rsHook?.documentId,
+            productId: rsHook?.productId,
+            name: rsHook?.name,
+            price: rsHook?.price,
+            priceSale: rsHook?.priceSale,
+            stock: parseInt(rsHook?.stock),
           };
         })
       );
-      // @hook(Combine Merged)
+      // @hook(combine merged)
       if (allProducts) {
         const setMerged = getCombineMerged(allProducts.slice(0, 3), isCart);
         if (setMerged) {
@@ -266,10 +242,10 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       return;
     }
   }, [isCart]);
-  // @hook(calulate Qty)
+  // @hook(calulate qty)
   const calculateTotalQty = useCallback(() => {
     const toQty = isCart?.reduce((acc, item) => {
-      return acc + item.quantity;
+      return acc + item?.quantity;
     }, 0);
     if (toQty >= 15) {
       const newQty = 15;
@@ -284,24 +260,27 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     return () => {
       undefined;
     };
-  }, [hndleHookProducts]);
+  }, [isCart]);
   // @hook(Calculate Total Order)
   const calculateTotalOrder = useCallback(
     async (data) => {
       const isTotalCart = getTotalCart(data);
-      const getCoupon = await getFetch(
-        `/api/coupons?populate=*&filters[couponCode][$eq]=${isCoupon}`
-      );
+      const getCoupon = await fetch('/api/data/coupons?sv=coinfestasia', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data: encodeData(isCoupon) }),
+      }).then((res) => res.json());
       const setCoupon = getCoupon?.data?.length > 0 ? getCoupon?.data[0] : null;
       const checkCoupon =
         setCoupon !== null && setCoupon !== 'null' && setCoupon !== undefined;
-
       if (checkCoupon) {
         const includedProductIds = setCoupon?.includedProducts?.map(
-          (product) => product.documentId
+          (product) => product?.documentId
         );
         const validProducts = data?.filter((product) =>
-          includedProductIds?.includes(product.documentId)
+          includedProductIds?.includes(product?.documentId)
         );
         const setPrice = validProducts[0]?.priceSale ?? validProducts[0]?.price;
         const totalDiscount = calculateDiscount(
@@ -341,9 +320,9 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   }, [isStore?.products, isCoupon]);
   useEffect(() => {
     handleIntzPreline();
-    // @hook-toogle(Company)
+    // @hook-toogle(company)
     setIsStepToggledCompany((prev) =>
-      isCart.map((gtRslt, productIdx) => {
+      isCart?.map((gtRslt, productIdx) => {
         const currentToggles = prev[productIdx] || [];
         const newQuantity = gtRslt?.quantity || 0;
         return currentToggles
@@ -380,7 +359,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   } = useForm({
     mode: 'all',
     defaultValues: {
-      company: 'N/A',
+      haveCompany: true,
+      company: '',
     },
   });
   // @watch
@@ -413,7 +393,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     phone: '',
     company: 'N/A',
   });
-
   // @handle-billing(validation)
   const [isBillingFilled, setIsBillingFilled] = useState(false);
   useEffect(() => {
@@ -426,7 +405,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     };
   }, [isBillingDetails]);
 
-  // @handle-event-onChange(components)
+  // @handle-change(components)
   const hndleBilling_Change = (vr, val) => {
     setBillingDetails({
       ...isBillingDetails,
@@ -445,7 +424,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     }
   };
 
-  // @handle-copy(Other Detail - Attendee)
+  // @handle-copy(other detail attendee)
   const hndleCopyOtherDetail = (
     el = [],
     items = {
@@ -549,11 +528,25 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
           // @discount&customer
           const [getCoupon, rsCustomerDtl] = await Promise.all([
-            getFetch(
-              `/api/coupons?populate=*&filters[couponCode][$eq]=${isCoupon}`
-            ),
-            getFetch(`/api/customers/${setIdCustomer}`),
+            fetch('/api/data/coupons?sv=coinfestasia', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ data: encodeData(isCoupon) }),
+            }).then((res) => res.json()),
+            fetch('/api/data/customer?sv=coinfestasia', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                url: `/api/customers/`,
+                data: encodeData(setIdCustomer),
+              }),
+            }).then((res) => res.json()),
           ]);
+
           const setIsCoupon =
             getCoupon?.data?.length > 0 ? getCoupon?.data[0] : null;
 
@@ -580,8 +573,9 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               createOrder
             );
 
-            // @processing(Order & Ticket Payment)
+            // @processing(payment)
             if (rsCreateOrder && Math.abs(isStore?.totalOrder) > 1e-10) {
+              setStore((prev) => ({ ...prev, isPaymentProcess: true }));
               const setIdOrderRecived = rsCreateOrder?.data.documentId;
               const rsPayment = await fetch('/api/payment/create-payment', {
                 method: 'POST',
@@ -601,22 +595,21 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 }),
               }).then((res) => res.json());
               if (rsPayment?.data?.invoice_url) {
-                window.open(rsPayment?.data?.invoice_url, '_blank');
                 dispatch(order(setIdOrderRecived));
                 dispatch(orderSession(rsPayment?.data?.id));
-                setStore((prev) => ({ ...prev, isPaymentProcess: true }));
+                window.open(rsPayment?.data?.invoice_url, '_blank');
               } else {
                 // console.error('Failed to get invoice URL');
                 return;
               }
             }
 
-            // @processing(Order & Ticket Free)
+            // @processing(order)
             if (rsCreateOrder && Math.abs(isStore?.totalOrder) < 1e-10) {
               const setIdOrderRecived = rsCreateOrder?.data.documentId;
               const arrAttendees = [];
 
-              // @update(Order)&hubspot(Customer)
+              // @update(order)&hubspot(customer)
               const updateStatusOrder = await updateData(
                 `/api/orders/${rsCreateOrder?.data?.documentId}?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount`,
                 {
@@ -721,7 +714,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                           width: 256,
                         }
                       );
-                      // @convertURL to Blob
+                      // @convert-url(to Blob)
                       const [header, base64Data] = qrCodeUrl?.split(',');
                       const mimeString = header.match(/:(.*?);/)[1];
                       const byteString = atob(base64Data);
@@ -755,7 +748,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                         'https://api.coinfest.asia/api/upload?',
                         formData
                       );
-
                       arrAttendees.push({
                         attendee: rsAttendee?.data,
                         qrCode: rsQrCodeGenerate[0]?.url,
@@ -792,8 +784,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   }
                 }
               }
-
-              // @send(Ticket Customer)
+              // @send(ticket-customer)
               if (
                 isStore?.products?.length > 1 ||
                 isStore?.products[0]?.quantity > 1
@@ -815,16 +806,15 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   }
                 ).then((res) => res.json());
               }
-
-              // @last(Proccesing Point)
+              // @last(proccesing)
               setFormCheckouts((prev) => ({
                 ...prev,
                 isSubmited: false,
               }));
-              reset();
-              router.replace(
-                `/checkout/order-received?process=${setIdOrderRecived}`
-              );
+              // reset();
+              // router.replace(
+              //   `/checkout/order-received?process=${setIdOrderRecived}`
+              // );
             }
           }
         }
@@ -1174,20 +1164,20 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     }
   }, [isOrderPayment_Session]);
 
+  const isDisabled =
+    !isStore?.products?.length > 0 || isFormCheckouts?.isSubmited === true;
+
   return (
     <>
       {/* @head */}
       <HeadGraphSeo title={`Checkout`} otherPage={true} />
 
-      {/* @navbar */}
-      <NavbarTop nonStore={true} />
-
       {/* @main */}
-      <Main className="relative pb-8 pt-[101px] sm:pb-12 sm:pt-[118px] lg:pt-[138px]">
+      <Main className="relative pb-8 pt-[113px] sm:pb-12 sm:pt-[128px] lg:pt-[138px]">
         <Container className={'sm:px-auto px-0'}>
           <form
-            id="tktCA25Form_Checkout"
-            className="relative grid-cols-1 gap-x-6 gap-y-12 supports-grid:grid sm:grid-cols-12 sm:gap-y-20"
+            id="ca25Form_Checkout"
+            className="relative grid-cols-1 gap-x-6 gap-y-12 supports-grid:grid sm:grid-cols-12 sm:gap-y-14 lg:gap-y-20"
             method="POST"
             onSubmit={handleSubmit(onSubmitForm)}
           >
@@ -1216,14 +1206,22 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   type="info"
                 />
               </div>
-              {/* @biling(Details) */}
+
+              {/* @billing(details) */}
               <div
-                className={`bg-gradient-primary45 relative mt-8 flex flex-col items-start rounded-2xl px-1.5 pb-1.5 pt-4 sm:px-2 sm:pb-2 ${isFormCheckouts?.isSubmited === true ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'}`}
+                className={`bg-gradient-primary45 relative mt-8 flex flex-col items-start rounded-2xl px-1.5 pb-1.5 pt-4 sm:px-2 sm:pb-2 ${
+                  isDisabled
+                    ? '!pointer-events-none !select-none'
+                    : '!pointer-events-auto !select-auto'
+                }`}
               >
-                {!isStore?.products?.length > 0 ||
-                isFormCheckouts?.isSubmited === true ? (
+                {isDisabled ? (
                   <div
-                    className={`absolute inset-x-0 inset-y-0 bg-white/40 ${!isStore?.products?.length > 0 || isFormCheckouts?.isSubmited === true ? '!pointer-events-none z-50 !select-none opacity-100 backdrop-blur-[2px]' : '!pointer-events-auto -z-px !select-auto opacity-0'}`}
+                    className={`absolute inset-x-0 inset-y-0 bg-white/40 ${
+                      isDisabled
+                        ? '!pointer-events-none z-50 !select-none opacity-100 backdrop-blur-[2px]'
+                        : '!pointer-events-auto -z-px !select-auto opacity-0'
+                    }`}
                   ></div>
                 ) : null}
                 <div className="mb-6 flex w-full flex-col items-start justify-start px-4 sm:mb-4">
@@ -1236,7 +1234,11 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   </span>
                 </div>
                 <div
-                  className={`relative inline-flex w-full flex-col rounded-xl bg-white ${!isStore?.products?.length > 0 || isFormCheckouts?.isSubmited === true ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'} px-3 py-3 sm:px-4 sm:py-4`}
+                  className={`relative inline-flex w-full flex-col rounded-xl bg-white ${
+                    isDisabled
+                      ? '!pointer-events-none !select-none'
+                      : '!pointer-events-auto !select-auto'
+                  } px-3 py-3 sm:px-4 sm:py-4`}
                 >
                   <BillingDetailCheckout
                     ipAddress={
@@ -1255,12 +1257,12 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   />
                 </div>
               </div>
+
               {/* @attendee(Detail) */}
               <div
-                className={`relative mt-10 block w-full space-y-6 ${!isStore?.products?.length > 0 || isFormCheckouts?.isSubmited === true ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'}`}
+                className={`relative mt-10 block w-full space-y-6 ${isDisabled ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'}`}
               >
-                {!isStore?.products?.length > 0 ||
-                isFormCheckouts?.isSubmited === true ? (
+                {isDisabled ? (
                   <div
                     className={`absolute inset-x-0 inset-y-0 bg-white/40 ${
                       !isStore?.products?.length > 0 ||
@@ -1270,18 +1272,19 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     }`}
                   ></div>
                 ) : null}
+
                 {isStore?.products?.map((gtRslt, i) => {
                   let groupName = getJoinString(gtRslt?.name);
                   return (
                     <div
                       className={twMerge(
-                        `relative mt-8 flex flex-col items-end rounded-[14px] px-1.5 pb-1.5 transition-[height] duration-300 ease-in-out first:mt-0 sm:rounded-2xl sm:px-2 sm:pb-2 ${isFormCheckouts?.isSubmited === true ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'}`,
+                        `relative mt-8 flex flex-col items-end rounded-[14px] px-1.5 pb-1.5 transition-[height] duration-300 ease-in-out first:mt-0 sm:rounded-2xl sm:px-2 sm:pb-2 ${isDisabled ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'}`,
                         style[gtRslt?.documentId] || 'bg-regular45'
                       )}
                       key={gtRslt?.documentId}
                     >
                       <div
-                        className={`relative flex w-full flex-col ${isFormCheckouts?.isSubmited === true ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'}`}
+                        className={`relative flex w-full flex-col ${isDisabled ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'}`}
                       >
                         <div
                           id={`ca25StoreProductSticky_${groupName}`}
@@ -1325,7 +1328,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                           </div>
                         </div>
                         <div
-                          className={`relative inline-flex w-full flex-col ${gtRslt?.quantity > 1 ? 'rounded-t-lg sm:rounded-t-xl' : 'rounded-lg sm:rounded-xl'} bg-white px-3 py-3 sm:px-4 sm:py-4 ${isFormCheckouts?.isSubmited === true ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'}`}
+                          className={`relative inline-flex w-full flex-col ${gtRslt?.quantity > 1 ? 'rounded-t-lg sm:rounded-t-xl' : 'rounded-lg sm:rounded-xl'} bg-white px-3 py-3 sm:px-4 sm:py-4 ${isDisabled ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'}`}
                         >
                           {Array?.from({ length: gtRslt?.quantity || 0 }).map(
                             (_, attndIdx) => {
@@ -1432,14 +1435,14 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                         <button
                                           id="ca25Btn_CopyCompanyDetailCheckout"
                                           type="button"
-                                          aria-label="Button for Copy Company Detail(Checkouts)"
-                                          aria-labelledby="Button for Copy Company Detail(Checkouts)"
+                                          aria-label="Button Copy Company Detail"
+                                          aria-labelledby="Button Copy Company Detail"
                                           onClick={(e) => {
                                             e.preventDefault();
                                             hndleCopyCompany(
                                               [
-                                                `#tktCAForm_CompanyFocusAttndee${attndIdx + 1}_${groupName}Checkout`,
-                                                `#tktCAForm_CompanySizeAttndee${attndIdx + 1}_${groupName}Checkout`,
+                                                `#ca25Form_CompanyFocusAttndee${attndIdx + 1}_${groupName}Checkout`,
+                                                `#ca25Form_CompanySizeAttndee${attndIdx + 1}_${groupName}Checkout`,
                                               ],
                                               {
                                                 attendee: attndIdx + 1,
@@ -1584,30 +1587,24 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 })}
               </div>
 
-              {/* @submit(Mobile) */}
+              {/* @submit(mobile) */}
               <div
-                className={`relative mt-10 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-4 ${!isStore?.products?.length > 0 || isFormCheckouts?.isSubmited === true ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'} sm:px-5 sm:py-5 xl:hidden`}
+                className={`relative mt-10 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-4 ${
+                  isDisabled
+                    ? '!pointer-events-none !select-none'
+                    : '!pointer-events-auto !select-auto'
+                } sm:px-5 sm:py-5 xl:hidden`}
               >
-                {!isStore?.products?.length > 0 ||
-                isFormCheckouts?.isSubmited === true ? (
-                  <div
-                    className={`absolute inset-x-0 inset-y-0 bg-white/40 ${!isStore?.products?.length > 0 || isFormCheckouts?.isSubmited === true ? '!pointer-events-none z-50 !select-none opacity-100 backdrop-blur-[2px]' : '!pointer-events-auto -z-px !select-auto opacity-0'}`}
-                  ></div>
-                ) : null}
-
                 <BoardSubmitCheckout register={register} errors={errors} />
 
                 {/* @submit(Form) */}
                 <button
-                  id="tktCA25Form_SubmitMobileCheckout"
+                  id="ca25Form_SubmitMobileCheckout"
                   className={`!pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-black-900 px-8 py-5 text-sm font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 sm:text-base`}
                   type="submit"
                   role="button"
                   aria-label="Coinfest Asia 2025 Submit Mobile Checkout"
-                  disabled={
-                    !isStore?.products?.length > 0 ||
-                    isFormCheckouts?.isSubmited === true
-                  }
+                  disabled={isDisabled}
                 >
                   {isFormCheckouts?.isSubmited === false ? (
                     <>
@@ -1616,7 +1613,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                         : 'Proceed To Payment'}
                     </>
                   ) : null}
-
                   {isFormCheckouts?.isSubmited === true ? (
                     <span className="flex flex-row items-center">
                       <svg
@@ -1648,10 +1644,10 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
             {/* @order-summary */}
             <div className="col-span-full pl-0 xl:col-span-5 xl:pl-6">
-              <header
-                className={`mb-5 block w-full rounded-xl bg-primary px-3 py-4 xl:hidden`}
-              >
-                <div className="mb-0 block w-full">
+              <div className="px-3 sm:px-0">
+                <header
+                  className={`bg-gradient-primary45 mb-5 block w-full rounded-xl px-3 py-4 xl:hidden`}
+                >
                   <h1 className="text-xl font-semibold text-white sm:text-3xl">
                     {`Checkout`}
                   </h1>
@@ -1670,8 +1666,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                       ]}
                     />
                   </div>
-                </div>
-              </header>
+                </header>
+              </div>
 
               <OrderDetailCheckouts
                 items={{
@@ -1687,27 +1683,18 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 errors={errors}
               >
                 <div
-                  className={`relative hidden w-full rounded-2xl border border-gray-200 bg-white ${!isStore?.products?.length > 0 || isFormCheckouts?.isSubmited === true ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'} px-4 py-4 sm:px-5 sm:py-5 xl:block`}
+                  className={`relative hidden w-full rounded-2xl border border-gray-200 bg-white ${isDisabled ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'} px-4 py-4 sm:px-5 sm:py-5 xl:block`}
                 >
-                  {!isStore?.products?.length > 0 ||
-                  isFormCheckouts?.isSubmited === true ? (
-                    <div
-                      className={`absolute inset-x-0 inset-y-0 bg-white/40 ${!isStore?.products?.length > 0 || isFormCheckouts?.isSubmited === true ? '!pointer-events-none z-50 !select-none opacity-100 backdrop-blur-[2px]' : '!pointer-events-auto -z-px !select-auto opacity-0'}`}
-                    ></div>
-                  ) : null}
-
                   <BoardSubmitCheckout register={register} errors={errors} />
+
                   {/* @submit(Form) */}
                   <button
-                    id="tktCA25Form_SubmitDesktopCheckout"
+                    id="ca25Form_SubmitDesktopCheckout"
                     className={`!pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-black-900 px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
                     type="submit"
                     role="button"
                     aria-label="Coinfest Asia 2025 Submit Desktop Checkout"
-                    disabled={
-                      !isStore?.products?.length > 0 ||
-                      isFormCheckouts?.isSubmited === true
-                    }
+                    disabled={isDisabled}
                   >
                     {isFormCheckouts?.isSubmited === false ? (
                       <>
@@ -1716,7 +1703,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                           : 'Proceed To Payment'}
                       </>
                     ) : null}
-
                     {isFormCheckouts?.isSubmited === true ? (
                       <span className="flex flex-row items-center">
                         <svg
@@ -1750,21 +1736,25 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
         </Container>
       </Main>
 
-      {/* @footer */}
-      <Footer nonStore={true} />
-
       {/* @modal */}
       {isStore?.isPaymentProcess === true ? <PaymentProcessModal /> : null}
     </>
   );
 };
 
-Checkout.getLayout = function PageLayout(page) {
-  return <>{page}</>;
+Checkout.getLayout = (page, { pageProps }) => {
+  const { mode, layouts } = pageProps;
+  if (layouts) {
+    return (
+      <LayoutDefaults isTheme={mode} layoutStore={layouts} isFooterMenu={false}>
+        {page}
+      </LayoutDefaults>
+    );
+  }
+  return page;
 };
-
 export const getServerSideProps = async (context) => {
-  if (Object.keys(context.query).length > 0) {
+  if (Object.keys(context?.query).length > 0) {
     return {
       redirect: {
         destination: '/',
@@ -1772,28 +1762,29 @@ export const getServerSideProps = async (context) => {
       },
     };
   }
-
   try {
+    const isLayouts = true;
     const [rsIpAddress, rsCountry, rsCoupons, rsCheckoutHbSpt] =
       await Promise.all([
         getFetchUrl(
-          `https://ipinfo.io/json?token=${serverRuntimeConfig.ipAddress_token}`
+          `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
         ),
         getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
         getFetch(`/api/coupons?filters[isPublic][$eq]=true&populate=*`),
-        getFecthHbSpt(`/forms/v2/forms/${serverRuntimeConfig.hbSptCheckout}`),
+        getFecthHbSpt(`/forms/v2/forms/${serverRuntimeConfig?.hbSptCheckout}`),
       ]);
 
     const sortedCountries = rsCountry.sort((a, b) =>
-      a.name.common.localeCompare(b.name.common)
+      a?.name.common.localeCompare(b?.name.common)
     );
-
     return {
       props: {
+        mode: 'light',
+        layouts: isLayouts || false,
         ipAddress: rsIpAddress || [],
         country: sortedCountries || [],
         coupons: rsCoupons || [],
-        formCheckout: rsCheckoutHbSpt.formFieldGroups || [],
+        formCheckout: rsCheckoutHbSpt?.formFieldGroups || [],
       },
     };
   } catch (err) {
@@ -1805,5 +1796,4 @@ export const getServerSideProps = async (context) => {
     };
   }
 };
-
 export default Checkout;

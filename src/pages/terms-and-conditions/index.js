@@ -6,29 +6,30 @@ import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
 
-// @layouts
-import LayoutStore from '@layouts/LayoutStore';
-
-const TermsAndConditions = ({}) => {
+const TermsAndConditions = ({ mode }) => {
   return (
     <>
       {/* @head */}
       <HeadGraphSeo title={`Terms And Conditions`} otherPage={true} />
 
       {/* @main */}
-      <Main className="relative flex flex-col pb-12 pt-[141px] sm:pb-14 sm:pt-[161px]">
+      <Main className="relative flex flex-col pb-16 pt-[141px] sm:pb-24 sm:pt-[161px]">
         <Container>
           <div className="relative grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-full col-start-1 sm:col-span-10 sm:col-start-2">
               <div className="mb-12 flex flex-col items-center justify-center text-center sm:mb-16">
-                <h1 className="w-full max-w-full text-[28px] font-bold leading-[38px] text-white sm:text-[36px] sm:leading-[48px]">
+                <h1
+                  className={`w-full max-w-full text-[28px] font-bold leading-[38px] ${mode === 'light' ? 'text-black-900' : 'text-white'} sm:text-[36px] sm:leading-[48px]`}
+                >
                   Terms & Conditions
                 </h1>
-                <p className="mt-2 font-light text-gray-400">
+                <p className="mt-1 font-light text-gray-400 sm:mt-2">
                   Last updated: January 07, 2025
                 </p>
               </div>
-              <div className="ca25Article_Frmatt ca25Article_FrmattLight relative flex flex-col text-white">
+              <div
+                className={`ca25Article_Frmatt relative flex flex-col ${mode === 'light' ? 'ca25Article_FrmattLight text-black-900' : 'ca25Article_FrmattDark text-white'}`}
+              >
                 <p>
                   <strong>Welcome to Coinfest Asia!</strong>, Coinfest Asia, its
                   subsidiaries, and affiliates (collectively, “Company”) own and
@@ -426,22 +427,12 @@ const TermsAndConditions = ({}) => {
   );
 };
 
-TermsAndConditions.getLayout = (page, { pageProps }) => {
-  const { layouts } = pageProps;
-  if (layouts) {
-    return (
-      <LayoutStore layoutStore={layouts} isTheme={'light'}>
-        {page}
-      </LayoutStore>
-    );
-  }
-  return { page };
-};
 export const getStaticProps = async () => {
-  const isStoreLayouts = true;
   try {
+    const isStoreLayouts = false;
     return {
       props: {
+        mode: 'dark',
         layouts: isStoreLayouts || false,
       },
       revalidate: 900,

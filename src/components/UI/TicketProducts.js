@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { twMerge } from 'tailwind-merge';
+import getConfig from 'next/config';
+import Image from 'next/image';
 import MarkdownRenderer from '@components/MarkdownRenderer';
+
+// # @get .config
+const { publicRuntimeConfig } = getConfig();
 
 // @redux
 import { useSelector } from 'react-redux';
@@ -97,13 +102,25 @@ const TicketProducts = ({
     <>
       <div
         className={twMerge(
-          `ca25Products flex h-auto flex-col overflow-hidden rounded-2xl bg-transparent sm:rounded-[20px] lg:h-[569px]`,
+          `ca25Products relative flex h-auto flex-col overflow-hidden rounded-2xl bg-transparent sm:rounded-[20px] lg:h-[569px]`,
           style[documentId] || ''
         )}
       >
         <div className="ca25Products_Card relative flex h-full flex-col items-start justify-between px-4 pb-4 pt-4.5 sm:px-4.5 sm:py-4.5 lg:px-6 lg:py-6">
+          {data?.documentId === 'g1ukadil4n4a3r0ndly7jl42' ? (
+            <span className="absolute bottom-auto left-auto right-4.5 top-0 z-[4]">
+              <Image
+                className="aspect-auto h-[78px] w-auto sm:h-[88px]"
+                src={'/assets/images/store/ca25SaveTicket_SuperEarlyBird.svg'}
+                alt={`${publicRuntimeConfig?.siteAppName} Save Super Early Bird Tickets`}
+                height={96}
+                width={81}
+                quality="87"
+              />
+            </span>
+          ) : null}
           <div className="flex w-full flex-col items-start pb-18 lg:pb-0">
-            <div className="block w-full">
+            <div className="relative block w-full">
               <h2 className="mb-1.5 text-xl font-normal leading-initial sm:mb-2 sm:text-[22px] sm:leading-initial">
                 {data?.name || 'Ticket Products'}
               </h2>
@@ -118,7 +135,7 @@ const TicketProducts = ({
                 )}
               </div>
             </div>
-            <div className="my-4 block w-full border-t border-dashed border-gray-200 sm:my-6"></div>
+            <div className="my-4 block w-full border-t border-dashed border-gray-200/70 sm:my-6"></div>
             <div className="block w-full">
               {documentId === 'rc33x0dgm6tm707jghffuip4' && (
                 <span className="mb-3.5 flex flex-row items-center justify-start text-base font-medium sm:text-lg">
@@ -144,7 +161,6 @@ const TicketProducts = ({
               <MarkdownRenderer content={data?.description} />
             </div>
           </div>
-
           <div
             className={`flex w-full flex-row items-end ${isSessionProducts?.checkProduct === true ? 'justify-between' : 'justify-end'}`}
           >
