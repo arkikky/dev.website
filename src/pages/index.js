@@ -29,6 +29,9 @@ const TicketProducts = dynamic(() => import('@components/UI/TicketProducts'), {
 
 // @layouts
 import LayoutStore from '@layouts/LayoutStore';
+import Partners from '@layouts/Partners';
+import Boards from '@layouts/Board';
+import WhatsHappening from '@layouts/WhatsHappening';
 
 const Home = ({ mode, products }) => {
   const dispatch = useDispatch();
@@ -170,16 +173,36 @@ const Home = ({ mode, products }) => {
 
       {/* @main */}
       <Main className="relative overflow-hidden pb-16 pt-[135px] sm:pb-24 sm:pt-[144px] lg:pt-[183px]">
-        <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 -z-px h-[425px] select-none">
-          <StarryBackground starCount={60} />
-        </div>
+        {/* @about-us */}
+        <section className="ca25AboutUs relative pb-20 pt-[122px] bg-gradient-section">
+          <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
+            <StarryBackground starCount={70} />
+          </div>
+          <Boards mode={mode} />
+        </section>
+
+        {/* @whats-happening */}
+        <section className="ca25WhatsHappening relative bg-dark pb-20 pt-[122px]">
+          <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
+            <StarryBackground starCount={90} />
+          </div>
+          <WhatsHappening mode={mode} />
+        </section>
+
+        {/* @partners */}
+        <section className="ca25Partners relative pb-20 pt-[122px] bg-gradient-section">
+          <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
+            <StarryBackground starCount={90} />
+          </div>
+          <Partners mode={mode} />
+        </section>
 
         {/* @tickets */}
-        <section className="ca25Ticket-Section">
+        <section className="ca25Ticket-Section pt-24">
           <Container className={'relative'}>
-            <div className="pointer-events-none absolute -right-[161px] -top-10 bottom-auto left-auto z-px sm:-right-[357px] sm:-top-[106px] lg:-right-[497px] lg:-top-[151px]">
+            <div className="pointer-events-none absolute -right-[213px] -top-[72px] bottom-auto left-auto z-px sm:-right-[387px] sm:-top-[86px] lg:-right-[387px] lg:-top-[91px] xl:-right-[611px] xl:-top-[151px]">
               <Image
-                className="h-[207px] w-auto object-cover sm:h-[433px] lg:h-[593px]"
+                className="h-[207px] w-auto object-cover sm:h-[357px] lg:h-[371px] xl:h-[593px]"
                 src={'/assets/images/backdrop/ca25Backdrop-TicketStore.png'}
                 alt={`${publicRuntimeConfig?.siteAppName} Ticket Store Backdrop`}
                 height={1764}
@@ -189,15 +212,15 @@ const Home = ({ mode, products }) => {
             </div>
 
             {/* @header */}
-            <div className="mb-8 flex flex-col text-start sm:mb-12">
-              <h1
-                className={`w-ful max-w-[208px] text-start text-[24px] font-bold uppercase leading-[30px] ${mode === 'light' ? 'text-black-900' : 'text-white'} sm:max-w-[385px] sm:text-[41px] sm:leading-[53px] lg:max-w-[677px] lg:text-[80px] lg:leading-[90px]`}
+            <div className="mb-8 flex flex-col items-center justify-center text-center sm:mb-12">
+              <h2
+                className={`w-ful max-w-[287px] text-center text-[36px] font-bold uppercase leading-[40px] ${mode === 'light' ? 'text-black-900' : 'text-white'} sm:max-w-[385px] sm:text-[44px] sm:leading-[53px] lg:max-w-[492px] lg:text-[62px] lg:leading-[70px] xl:max-w-[677px] xl:text-[80px] xl:leading-[90px]`}
               >
                 {'GET YOUR TICKETS NOW'?.split('').map((chr, i) =>
-                  ['E', 'O', 'E', 'O'].includes(chr) ? (
+                  ['E', 'O'].includes(chr) ? (
                     <span
+                      className={`ca25Fonts-Boren text-[37px] sm:text-[47px] lg:text-[66px] xl:text-[83px]`}
                       key={i}
-                      className={`ca25Fonts-Boren text-[25px] sm:text-[43px] lg:text-[84px]`}
                     >
                       {chr}
                     </span>
@@ -205,7 +228,7 @@ const Home = ({ mode, products }) => {
                     chr
                   )
                 )}
-              </h1>
+              </h2>
               <p className="mt-2 font-bevietnamPro text-base font-light text-gray-300 sm:mt-3.5 sm:text-xl">
                 {`Prices exclude VAT`}
               </p>
@@ -219,6 +242,7 @@ const Home = ({ mode, products }) => {
                   isSessionProducts?.loading === true;
                 return (
                   <TicketProducts
+                    useHeading={'h3'}
                     data={gtRslt}
                     cartProducts={isStore?.cart}
                     key={gtRslt.documentId}

@@ -23,7 +23,7 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
-    // formats: ['image/avif', 'image/webp'],
+    formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
@@ -66,7 +66,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
-            value: 'http://arkikky-dev0.vercel.app',
+            value: '*',
           },
           {
             key: 'Access-Control-Allow-Methods',

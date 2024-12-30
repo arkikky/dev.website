@@ -27,7 +27,7 @@ const Store = ({
   // @style
   const styles = {
     general:
-      'right-0 left-auto bottom-0 top-full mx-auto w-full sm:block lg:w-[359px]',
+      'right-0 left-auto bottom-0 top-full mx-auto w-full sm:block lg:w-[375px]',
     mobile:
       'inset-x-0 bottom-0 top-auto mx-auto w-full max-w-[640px] sm:bottom-full sm:block lg:max-w-[620px]',
   };

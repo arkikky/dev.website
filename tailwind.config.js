@@ -143,10 +143,10 @@ module.exports = {
             maxWidth: '640px',
           },
           '@screen md': {
-            maxWidth: '720px',
+            maxWidth: '732px',
           },
           '@screen lg': {
-            maxWidth: '958px',
+            maxWidth: '948px',
           },
           '@screen xl': {
             maxWidth: '1295px',
@@ -192,6 +192,10 @@ module.exports = {
         '.bg-vip45_Sticky': {
           backgroundImage:
             'linear-gradient(180deg, #D38350 30.46%, #D38350 102.99%)',
+        },
+        '.bg-gradient-section': {
+          backgroundImage:
+            'linear-gradient(3deg, #1F1F1F 21%, #005AFF 53%, #7AB1F9,#ADD8E6)',
         },
       });
     },

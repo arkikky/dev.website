@@ -169,17 +169,17 @@ const Tickets = ({ mode, products }) => {
       <HeadGraphSeo />
 
       {/* @main */}
-      <Main className="relative overflow-hidden pb-16 pt-[135px] sm:pb-24 sm:pt-[144px] lg:pt-[183px]">
+      <Main className="relative overflow-hidden pb-16 pt-[135px] sm:pb-24 sm:pt-[164px] lg:pt-[183px]">
         <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 -z-px h-[425px] select-none">
           <StarryBackground starCount={60} />
         </div>
 
         {/* @tickets */}
-        <section className="ca25Ticket-Section">
+        <section className="ca25Ticket-Section from-black bg-gradient-to-t via-blue-700 to-blue-200">
           <Container className={'relative'}>
-            <div className="pointer-events-none absolute -right-[161px] -top-10 bottom-auto left-auto z-px sm:-right-[357px] sm:-top-[106px] lg:-right-[497px] lg:-top-[151px]">
+            <div className="pointer-events-none absolute -right-[161px] -top-[52px] bottom-auto left-auto z-px sm:-right-[357px] sm:-top-[106px] lg:-right-[497px] lg:-top-[151px]">
               <Image
-                className="h-[207px] w-auto object-cover sm:h-[433px] lg:h-[593px]"
+                className="h-[207px] w-auto object-cover sm:h-[433px] lg:h-[543px] xl:h-[593px]"
                 src={'/assets/images/backdrop/ca25Backdrop-TicketStore.png'}
                 alt={`${publicRuntimeConfig?.siteAppName} Ticket Store Backdrop`}
                 height={1764}
@@ -197,7 +197,7 @@ const Tickets = ({ mode, products }) => {
                   ['E', 'O', 'E', 'O'].includes(chr) ? (
                     <span
                       key={i}
-                      className={`ca25Fonts-Boren text-[25px] sm:text-[43px] lg:text-[84px]`}
+                      className={`ca25Fonts-Boren text-[25px] sm:text-[43px] lg:text-[83px]`}
                     >
                       {chr}
                     </span>
