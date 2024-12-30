@@ -10,7 +10,6 @@ export async function getFecthHbSpt(url) {
       Origin: '*',
       Authorization: `Bearer ${tApp}`,
     },
-    cache: 'no-store',
   })
     .then((res) => {
       if (res.ok) {
@@ -35,7 +34,6 @@ export async function submitFormHbSpt(data, key) {
         Authorization: `Bearer ${tApp}`,
       },
       body: JSON.stringify(data),
-      cache: 'no-store',
     }
   )
     .then((res) => {

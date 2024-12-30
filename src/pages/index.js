@@ -328,15 +328,17 @@ export const getServerSideProps = async (context) => {
       },
     };
   }
+  const baseUrl = process.env.NEXT_PUBLIC_URL;
   try {
     const isStoreLayouts = true;
     const rsProducts = await getFetch(`/api/products?sort[0]=rank:asc`);
     const rsAboutUs = await getFetchUrl(
-      `http://localhost:3001/api/collections/about-us?sv=coinfestasia`
+      `${baseUrl}/api/collections/about-us?sv=coinfestasia`
     );
     const rsGetInvolved = await getFetchUrl(
-      `http://localhost:3001/api/collections/get-involved?sv=coinfestasia`
+      `${baseUrl}/api/collections/get-involved?sv=coinfestasia`
     );
+
     return {
       props: {
         mode: 'dark',
