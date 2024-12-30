@@ -1,6 +1,6 @@
 export function useMethod() {
-  // @toggle(Overflay PopUp)
-  const toggleOverlayPopUp = (elmntBackdrop, setElmnt) => {
+  // @toggle(overflay popup)
+  const toggleOverlayPopUp = (backdrp, elmnt) => {
     const toggleClass = (el, activeClass, inactiveClass) => {
       if (el) {
         el.classList.toggle(activeClass);
@@ -8,13 +8,13 @@ export function useMethod() {
       }
     };
 
-    const elBckdrp = document.querySelector(elmntBackdrop);
-    const elOverflayPopUp = document.querySelector(setElmnt);
+    const elBckdrp = document.querySelector(backdrp);
+    const elOverflayPopUp = document.querySelector(elmnt);
     if (elBckdrp) {
       toggleClass(elBckdrp, 'active', 'nonActive');
     }
     if (elOverflayPopUp) {
-      elBckdrp.setAttribute('data-target', setElmnt);
+      elBckdrp.setAttribute('data-target', elmnt);
       toggleClass(elOverflayPopUp, 'active', 'nonActive');
     }
   };

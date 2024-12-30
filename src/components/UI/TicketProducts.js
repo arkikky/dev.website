@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 // @lib/controller & helper
 import { getPriceDiscountDisplay } from '@lib/helper/Configuration';
 import { currencyConverter } from '@lib/helper/CalculateCartContext';
-import { useCart } from '@lib/hooks/Cart';
+import { useCart } from '@lib/hooks/cart/Cart';
 import { useMethod } from '@lib/hooks/Method';
 
 const TicketProducts = ({

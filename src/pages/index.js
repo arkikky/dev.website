@@ -12,7 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addItemToCart } from '@reduxState/slices';
 
 // @lib/controller & helper
-import { getFetch } from '@lib/controller/API';
+import { getFetch, getFetchUrl } from '@lib/controller/API';
 import { getCombineMerged, encodeData } from '@lib/helper/Configuration';
 
 // @components
@@ -22,6 +22,13 @@ import Container from '@components/Container';
 import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 import StarryBackground from '@components/UI/Background/StarryBackground';
 import TicketProductsSkeleton from '@components/Skeleton/Products/TicketProducts';
+const AboutUsCards = dynamic(
+  () => import('@components/UI/Cards/AboutUsCards'),
+  {
+    loading: () => '',
+    ssr: false,
+  }
+);
 const TicketProducts = dynamic(() => import('@components/UI/TicketProducts'), {
   loading: () => <TicketProductsSkeleton />,
   ssr: false,
@@ -31,9 +38,10 @@ const TicketProducts = dynamic(() => import('@components/UI/TicketProducts'), {
 import LayoutStore from '@layouts/LayoutStore';
 import Partners from '@layouts/Partners';
 import Boards from '@layouts/Board';
+import GetInvolved from '@layouts/GetInvolved';
 import WhatsHappening from '@layouts/WhatsHappening';
 
-const Home = ({ mode, products }) => {
+const Home = ({ mode, result, products }) => {
   const dispatch = useDispatch();
   const { data: isCart } = useSelector((state) => state.cart);
   const [isStore, setStore] = useState({
@@ -45,6 +53,10 @@ const Home = ({ mode, products }) => {
   const [isSessionProducts, setSessionProducts] = useState({
     id_product: null,
     loading: false,
+  });
+  const [isCollections, setCollections] = useState({
+    aboutus: result?.aboutus,
+    getinvolved: result?.getinvolved,
   });
 
   // @initialize(store)
@@ -103,7 +115,6 @@ const Home = ({ mode, products }) => {
           isQty: newTotalQty,
         };
       });
-    } else {
     }
   };
   // @hanlde-change(calculate product)
@@ -140,7 +151,7 @@ const Home = ({ mode, products }) => {
       quantity: qtyProduct,
     };
     // @check-stock(Product)
-    const stock = parseInt(product?.stock, 15);
+    const stock = +(product?.stock, 15);
     if (isNaN(stock) || stock <= 0) {
       setTimeout(() => {
         setSessionProducts((prev) => ({ ...prev, loading: false }));
@@ -173,34 +184,43 @@ const Home = ({ mode, products }) => {
 
       {/* @main */}
       <Main className="relative overflow-hidden pb-16 pt-[135px] sm:pb-24 sm:pt-[144px] lg:pt-[183px]">
+        <h1
+          className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-8 text-balance sm:mb-12`}
+        >
+          {'WHERE INNOVATION MEET AND ADOPTION'
+            ?.split('')
+            .map((chr, i) =>
+              ['E', 'O'].includes(chr) ? <span key={i}>{chr}</span> : chr
+            )}
+        </h1>
+
         {/* @about-us */}
-        <section className="ca25AboutUs relative pb-20 pt-[122px] bg-gradient-section">
-          <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
-            <StarryBackground starCount={70} />
+        <section className="ca25AboutUs bgGradient-sec relative pb-20 pt-[122px]">
+          <div className="pointer-events-none absolute inset-x-0 inset-y-0 z-px select-none">
+            <StarryBackground starCount={100} />
           </div>
-          <Boards mode={mode} />
+          <Container className={'z-[5]'}>
+            <Boards mode={mode} />
+            <div className="relative mt-6 w-full min-w-full max-w-full grid-cols-4 gap-x-3 gap-y-3 supports-grid:grid sm:mt-10 sm:grid-cols-12 sm:gap-x-4 sm:gap-y-4 lg:grid-cols-12">
+              {isCollections?.aboutus?.map((rslt, i) => (
+                <div
+                  className="col-span-full sm:col-span-6 lg:col-span-4"
+                  key={i}
+                >
+                  <AboutUsCards
+                    images={rslt?.images}
+                    title={rslt?.title}
+                    shortDesc={rslt?.shortDesc}
+                  />
+                </div>
+              ))}
+            </div>
+          </Container>
         </section>
-
-        {/* @whats-happening */}
-        <section className="ca25WhatsHappening relative bg-dark pb-20 pt-[122px]">
-          <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
-            <StarryBackground starCount={90} />
-          </div>
-          <WhatsHappening mode={mode} />
-        </section>
-
-        {/* @partners */}
-        <section className="ca25Partners relative pb-20 pt-[122px] bg-gradient-section">
-          <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
-            <StarryBackground starCount={90} />
-          </div>
-          <Partners mode={mode} />
-        </section>
-
         {/* @tickets */}
-        <section className="ca25Ticket-Section pt-24">
+        <section className="ca25Ticket-Section pt-24 sm:pt-32">
           <Container className={'relative'}>
-            <div className="pointer-events-none absolute -right-[213px] -top-[72px] bottom-auto left-auto z-px sm:-right-[387px] sm:-top-[86px] lg:-right-[387px] lg:-top-[91px] xl:-right-[611px] xl:-top-[151px]">
+            <div className="pointer-events-none absolute -right-[213px] -top-[72px] bottom-auto left-auto z-px sm:-right-[387px] sm:-top-[86px] lg:-right-[387px] lg:-top-[91px] xl:-right-[636px] xl:-top-[151px]">
               <Image
                 className="h-[207px] w-auto object-cover sm:h-[357px] lg:h-[371px] xl:h-[593px]"
                 src={'/assets/images/backdrop/ca25Backdrop-TicketStore.png'}
@@ -211,29 +231,20 @@ const Home = ({ mode, products }) => {
               />
             </div>
 
-            {/* @header */}
             <div className="mb-8 flex flex-col items-center justify-center text-center sm:mb-12">
               <h2
-                className={`w-ful max-w-[287px] text-center text-[36px] font-bold uppercase leading-[40px] ${mode === 'light' ? 'text-black-900' : 'text-white'} sm:max-w-[385px] sm:text-[44px] sm:leading-[53px] lg:max-w-[492px] lg:text-[62px] lg:leading-[70px] xl:max-w-[677px] xl:text-[80px] xl:leading-[90px]`}
+                className={`ca25HeadingTitle w-full max-w-[569px] text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} text-balance`}
               >
-                {'GET YOUR TICKETS NOW'?.split('').map((chr, i) =>
-                  ['E', 'O'].includes(chr) ? (
-                    <span
-                      className={`ca25Fonts-Boren text-[37px] sm:text-[47px] lg:text-[66px] xl:text-[83px]`}
-                      key={i}
-                    >
-                      {chr}
-                    </span>
-                  ) : (
-                    chr
-                  )
-                )}
+                {'GET YOUR TICKETS NOW'
+                  ?.split('')
+                  .map((chr, i) =>
+                    ['E', 'O'].includes(chr) ? <span key={i}>{chr}</span> : chr
+                  )}
               </h2>
               <p className="mt-2 font-bevietnamPro text-base font-light text-gray-300 sm:mt-3.5 sm:text-xl">
                 {`Prices exclude VAT`}
               </p>
             </div>
-
             {/* @products */}
             <div className="mt-4 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:mt-10 sm:grid-cols-2 xl:grid-cols-3">
               {isStore?.products?.slice(0, 6).map((gtRslt, i) => {
@@ -256,6 +267,38 @@ const Home = ({ mode, products }) => {
             </div>
           </Container>
         </section>
+
+        {/* @speakers */}
+        <section className="ca25Speakers relative bg-[linear-gradient(186deg,#1F1F1F_23%,#005AFF_47%,#7AB1F9_69%,#A0CCF7_94%)] pb-20 pt-[122px]">
+          <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
+            <StarryBackground starCount={110} />
+          </div>
+          <div>awdawdawd</div>
+        </section>
+
+        {/* @partners */}
+        <section className="ca25Partners relative bg-[linear-gradient(3deg,#1F1F1F_31%,#005AFF_64%,#7AB1F9_83%,#ADD8E6_102%)] pb-20 pt-[122px]">
+          <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
+            <StarryBackground starCount={90} />
+          </div>
+          <Partners mode={mode} />
+        </section>
+
+        {/* @getinvolved & whats-happening */}
+        <div className="relative bg-dark pb-20 pt-[122px]">
+          <div className="pointer-events-none absolute inset-x-0 inset-y-0 z-px select-none">
+            <StarryBackground starCount={145} />
+          </div>
+
+          {/* @getinvolved */}
+          <section className="ca25GetInvolved">
+            <GetInvolved mode={mode} result={isCollections?.getinvolved} />
+          </section>
+          {/* @whats-happening */}
+          <section className="ca25WhatsHappening pb-20 pt-[122px]">
+            <WhatsHappening mode={mode} />
+          </section>
+        </div>
       </Main>
     </>
   );
@@ -263,17 +306,17 @@ const Home = ({ mode, products }) => {
 
 Home.getLayout = (page, { pageProps }) => {
   const { mode, layouts, products } = pageProps;
-  if (layouts) {
-    return (
-      <LayoutStore
-        isTheme={mode}
-        layoutStore={layouts}
-        cartStore={products?.data}
-      >
-        {page}
-      </LayoutStore>
-    );
-  }
+  // if (layouts) {
+  //   return (
+  //     <LayoutStore
+  //       isTheme={mode}
+  //       layoutStore={layouts}
+  //       cartStore={products?.data}
+  //     >
+  //       {page}
+  //     </LayoutStore>
+  //   );
+  // }
   return page;
 };
 export const getServerSideProps = async (context) => {
@@ -287,12 +330,22 @@ export const getServerSideProps = async (context) => {
   }
   try {
     const isStoreLayouts = true;
-    const isProducts = await getFetch(`/api/products?sort[0]=rank:asc`);
+    const rsProducts = await getFetch(`/api/products?sort[0]=rank:asc`);
+    const rsAboutUs = await getFetchUrl(
+      `http://localhost:3001/api/collections/about-us?sv=coinfestasia`
+    );
+    const rsGetInvolved = await getFetchUrl(
+      `http://localhost:3001/api/collections/get-involved?sv=coinfestasia`
+    );
     return {
       props: {
         mode: 'dark',
         layouts: isStoreLayouts || false,
-        products: isProducts || [],
+        result: {
+          aboutus: rsAboutUs?.data,
+          getinvolved: rsGetInvolved?.data,
+        },
+        products: rsProducts || [],
       },
     };
   } catch (err) {

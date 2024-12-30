@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
 // @lib/controller & helper
-import { useCart } from '@lib/hooks/Cart';
+import { useCart } from '@lib/hooks/cart/Cart';
 import { useMethod } from '@lib/hooks/Method';
 
 // @components

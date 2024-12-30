@@ -9,7 +9,7 @@ const { publicRuntimeConfig } = getConfig();
 
 // @components
 import Container from '@components/Container';
-const EventBoard = dynamic(() => import('@components/EventBoard'), {
+const EventBoard = dynamic(() => import('@components/UI/EventBoard'), {
   loading: () => (
     <div
       className={`pointer-events-none relative flex h-[57px] w-full min-w-[178px] max-w-[178px] cursor-default flex-col overflow-hidden rounded-lg bg-primary px-2.5 py-1.5 sm:h-[64px] sm:min-w-[221px] sm:max-w-[221px] sm:rounded-xl sm:px-3 sm:py-2`}

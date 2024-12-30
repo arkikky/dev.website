@@ -17,20 +17,24 @@ export function smoothLeftScroll(container, targetScroll, duration = 1000) {
   };
   requestAnimationFrame(animateScroll);
 }
-
 // @render(text using boren style)
-export function renderText(text, styledLetters, defaultClass, specialClass) {
-  return text.split('').map((char, index) =>
-    styledLetters.includes(char) ? (
-      <span key={index} className={specialClass}>
+export function renderText(t, styLetters, dfltCls, specialCls) {
+  return t?.split('').map((char, i) =>
+    styLetters.includes(char) ? (
+      <span key={i} className={specialCls}>
         {char}
       </span>
     ) : (
-      <span key={index} className={defaultClass}>
+      <span key={i} className={dfltCls}>
         {char}
       </span>
     )
   );
+}
+// @format(count board)
+export function formatCount(c) {
+  let formatted = c?.toLocaleString();
+  return formatted + '+';
 }
 
 // @dom-count

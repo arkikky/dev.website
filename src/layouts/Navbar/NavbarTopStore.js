@@ -12,13 +12,13 @@ const { publicRuntimeConfig } = getConfig();
 import '@splidejs/react-splide/css/core';
 
 // @lib/controller & helper
-import { useCart } from '@lib/hooks/Cart';
+import { useCart } from '@lib/hooks/cart/Cart';
 import { useMethod } from '@lib/hooks/Method';
 
 // @components
 import Container from '@components/Container';
 const CartStore = dynamic(() => import('@components/Store'));
-const EventBoard = dynamic(() => import('@components/EventBoard'), {
+const EventBoard = dynamic(() => import('@components/UI/EventBoard'), {
   loading: () => (
     <div
       className={`pointer-events-none relative flex h-[57px] w-full min-w-[178px] max-w-[178px] cursor-default flex-col overflow-hidden rounded-lg bg-primary px-2.5 py-1.5 sm:h-[64px] sm:min-w-[221px] sm:max-w-[221px] sm:rounded-xl sm:px-3 sm:py-2`}
@@ -61,7 +61,7 @@ const NavbarTop = ({
     <>
       <nav className="fixed inset-x-0 bottom-auto top-0 z-base flex h-auto w-full flex-col items-center justify-center py-2">
         <Container>
-          <div className="bg-black-700/35 flex flex-row items-center justify-between gap-y-6 rounded-xl border-2 border-solid border-gray-400/[0.18] px-1 py-1 backdrop-blur-md sm:gap-y-0 sm:rounded-2xl sm:px-1.5 sm:py-1.5">
+          <div className="flex flex-row items-center justify-between gap-y-6 rounded-xl border-2 border-solid border-gray-400/[0.18] bg-black-700/35 px-1 py-1 backdrop-blur-md sm:gap-y-0 sm:rounded-2xl sm:px-1.5 sm:py-1.5">
             <div className="block w-full sm:w-max">
               <Link className="ml-1.5 block w-max sm:ml-2.5 lg:ml-2.5" href="/">
                 {isTheme === 'dark' ? (

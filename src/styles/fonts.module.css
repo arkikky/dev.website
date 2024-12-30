@@ -6,7 +6,3 @@
   font-weight: normal;
   font-style: normal;
 }
-
-.ca25Fonts-Boren {
-  @apply font-boren leading-[0] sm:leading-[0] lg:leading-[0];
-}

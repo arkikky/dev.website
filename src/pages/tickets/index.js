@@ -11,7 +11,7 @@ const { publicRuntimeConfig } = getConfig();
 import { useSelector, useDispatch } from 'react-redux';
 import { addItemToCart } from '@reduxState/slices';
 
-// @lib/controller & helper
+// @lib/controller,helper&hook
 import { getFetch } from '@lib/controller/API';
 import { getCombineMerged, encodeData } from '@lib/helper/Configuration';
 
@@ -124,7 +124,7 @@ const Tickets = ({ mode, products }) => {
     };
   }, [isCart]);
 
-  // @add-items(Cart)
+  // @add-items(cart)
   const hndleAddProduct_Cart = async (product, qtyProduct) => {
     if (isSessionProducts?.loading === true) return;
     setSessionProducts((prev) => ({

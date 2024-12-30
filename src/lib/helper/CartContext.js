@@ -10,11 +10,11 @@ export function getTotalProduct(quantity, price) {
 }
 // @total(Cart)
 export function getTotalCart(data) {
-  const getTotal_IDR = data?.reduce((acc, item) => {
-    const price = item.priceSale ?? item.price ?? 0;
-    return acc + parseInt(price, 10) * (item.quantity || 0);
+  const total = data?.reduce((acc, i) => {
+    const price = i?.priceSale ?? i?.price ?? 0;
+    return acc + +(price, 10) * (i?.quantity || 0);
   }, 0);
-  return getTotal_IDR;
+  return total;
 }
 
 // @calculate(discont)
@@ -58,53 +58,53 @@ export function setBillingData(data) {
   };
   return rs;
 }
-export function setHbSptCustomerData(rsCustomer, ipAdress) {
+export function setHbSptCustomerData(rslt, ip) {
   const rs = {
     fields: [
       {
         objectTypeId: '0-1',
         name: 'firstname',
-        value: rsCustomer?.firstName,
+        value: rslt?.firstName,
       },
       {
         objectTypeId: '0-1',
         name: 'lastname',
-        value: rsCustomer?.lastName,
+        value: rslt?.lastName,
       },
       {
         objectTypeId: '0-1',
         name: 'email',
-        value: rsCustomer?.email,
+        value: rslt?.email,
       },
       {
         objectTypeId: '0-1',
         name: 'phone',
-        value: rsCustomer?.phone,
+        value: rslt?.phone,
       },
       {
         objectTypeId: '0-2',
         name: 'name',
-        value: rsCustomer?.company,
+        value: rslt?.company,
       },
       {
         objectTypeId: '0-2',
         name: 'website',
-        value: rsCustomer?.websiteUrl,
+        value: rslt?.websiteUrl,
       },
     ],
     context: {
       pageUri: 'https://coinfest.asia/checkout',
       pageName: 'Checkout | Coinfest Asia 2025',
-      ipAddress: ipAdress,
+      ipAddress: ip,
     },
   };
   return rs;
 }
-export function setHbSptAttendeeData(data, i, group, ipAdress) {
+export function setHbSptAttendeeData(rslt, i, group, ip) {
   // @sanitize(Fields)
   const sntzeFld = (field) => DOMPurify.sanitize(field || '').trim();
   const prefix = `Attndee${i + 1}_${group}`;
-  const getField = (field) => sntzeFld(data[`${field}${prefix}`]);
+  const getField = (field) => sntzeFld(rslt[`${field}${prefix}`]);
   const rs = {
     fields: [
       {
@@ -165,7 +165,7 @@ export function setHbSptAttendeeData(data, i, group, ipAdress) {
     context: {
       pageUri: 'https://coinfest.asia/checkout',
       pageName: 'Attendee | Coinfest Asia 2025',
-      ipAddress: ipAdress,
+      ipAddress: ip,
     },
   };
   return rs;

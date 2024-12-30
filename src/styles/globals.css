@@ -6,72 +6,37 @@
 @tailwind utilities;
 
 /* @add(Preline) */
-@import '/node_modules/preline/dist/preline.css';
+@import url('/node_modules/preline/dist/preline.css');
 
-/* @init */
-::selection {
-  @apply bg-black-900/40 text-white;
-}
-body {
-  @apply bg-dark;
-  @apply font-bevietnamPro text-base font-normal;
-}
-body::-webkit-scrollbar {
-  @apply w-[7px];
-}
-body::-webkit-scrollbar-track {
-  @apply bg-gray-200;
-}
-body::-webkit-scrollbar-thumb {
-  @apply bg-gray-400/70;
-  @apply rounded-full;
-  @apply border-none;
-}
-a,
-button {
-  @apply text-inherit;
-  @apply outline-none focus-visible:outline-none hocus:outline-none;
-}
-/* @scrollbar(y) */
-.scrollbar-y::-webkit-scrollbar {
-  @apply w-1.5 sm:w-1.5;
-}
-.scrollbar-y::-webkit-scrollbar-track {
-  @apply bg-gray-200;
-}
-.scrollbar-y::-webkit-scrollbar-thumb {
-  @apply bg-gray-400/70;
-  @apply rounded-full;
-  @apply border-none;
-}
-/* @scrollbar(x) */
-.scrollbar-x::-webkit-scrollbar {
-  @apply h-1.5 sm:h-1.5;
-}
-.scrollbar-x::-webkit-scrollbar-track {
-  @apply rounded-full bg-gray-200/80;
-}
-.scrollbar-x::-webkit-scrollbar-thumb {
-  @apply bg-gray-400/70;
-  @apply rounded-full;
-  @apply border-none;
-}
-/* attribute */
-.bxShadow-none {
-  box-shadow: none;
-  @apply focus:outline-none focus:ring-0 focus-visible:outline-none;
-}
-/* @fonts */
-@import './fonts.module.css';
+@import url('./body.module');
+@import url('./fonts.module.css');
 
-/* @components */
-@import './components/animate.module.css';
-@import './components/backdrop.module.css';
-@import './components/alert.module.css';
-@import './components/buttons.module.css';
-@import './components/tabs.module.css';
-@import './components/form.module.css';
-@import './components/article.module.css';
+@import url('./components/animate.module.css');
+@import url('./components/backdrop.module.css');
+@import url('./components/alert.module.css');
+@import url('./components/buttons.module.css');
+@import url('./components/tabs.module.css');
+@import url('./components/form.module.css');
+@import url('./components/article.module.css');
+@import url('./components/products.module.css');
+
+@import './layouts/navbar.module.css';
+@import './layouts/footer.module.css';
+
+/* @typography */
+.ca25Fonts-Boren {
+  @apply font-boren leading-[0] sm:leading-[0] lg:leading-[0];
+}
+.ca25HeadingTitle {
+  @apply text-[40px] leading-[42px] max-[420px]:text-[36px] max-[420px]:leading-[40px];
+  @apply sm:text-[46px] sm:leading-[57.5px];
+  @apply lg:text-[62px] lg:leading-[70px];
+  @apply xl:text-[72px] xl:leading-[80px];
+}
+.ca25HeadingTitle span {
+  @apply font-boren leading-[0] sm:leading-[0] lg:leading-[0];
+  @apply text-[41.5px] max-[420px]:text-[38px] sm:text-[48.5px] lg:text-[64.5px] xl:text-[75.5px];
+}
 
 /* @markdown */
 .ca25MarkdwnFrmattd {
@@ -84,20 +49,5 @@ button {
   @apply pt-px sm:pt-2.5;
   @apply h-6 w-6 min-w-[24px];
 }
-@import './components/products.module.css';
-/* @products */
-.ca25StoreProductSticky .ca25StoreProductSticky_TitleCards {
-  @apply text-base leading-initial sm:text-xl sm:leading-initial;
-}
-.ca25StoreProductSticky.isStickyActive {
-  @apply pb-3 sm:pb-4;
-}
-.ca25StoreProductSticky.isStickyActive .ca25StoreProductSticky_TitleCards {
-  @apply sm:text-base;
-}
-
-/* @layouts */
-@import './layouts/navbar.module.css';
-@import './layouts/footer.module.css';
 
 /* @debug */

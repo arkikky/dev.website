@@ -1,7 +1,7 @@
 import React from 'react';
 
 // @lib/controller & helper
-import { useCart } from '@lib/hooks/Cart';
+import { useCart } from '@lib/hooks/cart/Cart';
 
 const QuantityCart = ({ productsQty, cartStoreQty }) => {
   const { checkTotalQtyCart, updateCartQuantity } = useCart();

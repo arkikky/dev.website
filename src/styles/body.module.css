@@ -1,0 +1,52 @@
+::selection {
+  @apply bg-black-900/40 text-white;
+}
+body {
+  @apply bg-dark;
+  @apply font-bevietnamPro text-base font-normal;
+}
+body::-webkit-scrollbar {
+  @apply w-[7px];
+}
+body::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
+body::-webkit-scrollbar-thumb {
+  @apply bg-gray-400/70;
+  @apply rounded-full;
+  @apply border-none;
+}
+a,
+button {
+  @apply text-inherit;
+  @apply outline-none focus-visible:outline-none hocus:outline-none;
+}
+/* @scrollbar(y) */
+.scrollbar-y::-webkit-scrollbar {
+  @apply w-1.5 sm:w-1.5;
+}
+.scrollbar-y::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
+.scrollbar-y::-webkit-scrollbar-thumb {
+  @apply bg-gray-400/70;
+  @apply rounded-full;
+  @apply border-none;
+}
+/* @scrollbar(x) */
+.scrollbar-x::-webkit-scrollbar {
+  @apply h-1.5 sm:h-1.5;
+}
+.scrollbar-x::-webkit-scrollbar-track {
+  @apply rounded-full bg-gray-200/80;
+}
+.scrollbar-x::-webkit-scrollbar-thumb {
+  @apply bg-gray-400/70;
+  @apply rounded-full;
+  @apply border-none;
+}
+/* attribute */
+.bxShadow-none {
+  box-shadow: none;
+  @apply focus:outline-none focus:ring-0 focus-visible:outline-none;
+}

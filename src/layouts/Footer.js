@@ -9,7 +9,7 @@ const { publicRuntimeConfig } = getConfig();
 
 // @components
 import Container from '@components/Container';
-import FooterMenu from '@components/FooterMenu';
+import FooterMenu from '@components/UI/FooterMenu';
 const FooterSocialMedia = dynamic(
   () => import('@components/UI/FooterSocialMedia'),
   {
