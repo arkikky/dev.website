@@ -37,6 +37,16 @@
   @apply font-boren leading-[0] sm:leading-[0] lg:leading-[0];
   @apply text-[41.5px] max-[420px]:text-[38px] sm:text-[48.5px] lg:text-[64.5px] xl:text-[75.5px];
 }
+.ca25HeadingTitle_M {
+  @apply text-[36px] leading-[40px] max-[420px]:text-[36px] max-[420px]:leading-[40px];
+  @apply sm:text-[56px] sm:leading-[62.5px];
+  @apply lg:text-[68px] lg:leading-[76px];
+  @apply xl:text-[82px] xl:leading-[88px];
+}
+.ca25HeadingTitle_M span {
+  @apply font-boren leading-[0] sm:leading-[0] lg:leading-[0];
+  @apply text-[37.5px] max-[420px]:text-[37.5px] sm:text-[59.5px] lg:text-[71.5px] xl:text-[84.5px];
+}
 
 /* @markdown */
 .ca25MarkdwnFrmattd {

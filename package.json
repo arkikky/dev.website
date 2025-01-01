@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@popperjs/core": "^2.11.8",
+    "@preline/accordion": "2.5.0",
     "@preline/collapse": "^2.5.0",
     "@preline/dropdown": "^2.5.0",
     "@preline/overlay": "^2.5.0",

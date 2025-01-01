@@ -9,6 +9,7 @@ const { publicRuntimeConfig } = getConfig();
 
 // @components
 import Container from '@components/Container';
+import StarryBackground from '@components/UI/Background/StarryBackground';
 import FooterMenu from '@components/UI/FooterMenu';
 const FooterSocialMedia = dynamic(
   () => import('@components/UI/FooterSocialMedia'),
@@ -24,6 +25,10 @@ const Footer = ({ nonStore = false, theme = 'light', menuUsage = true }) => {
       <footer
         className={`ca2024Footer ${theme === 'light' ? 'ca2024Footer_Light' : 'ca2024Footer_Dark'} relative justify-end overflow-x-hidden ${nonStore === true ? 'pb-6 sm:pb-8' : 'pb-[92px] sm:pb-28 lg:pb-8'} pt-10`}
       >
+        <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
+          <StarryBackground starCount={110} />
+        </div>
+
         <Container>
           <div className="relative flex flex-col items-start justify-start">
             <div className="block w-full">

@@ -7,7 +7,7 @@ import Image from 'next/image';
 const { publicRuntimeConfig } = getConfig();
 
 // @components
-import Loading from '@components/UI/Loading';
+import Loading from '@components/UI/Loading/Loading';
 
 const ImagesLoads = ({
   classname = '',

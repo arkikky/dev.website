@@ -38,8 +38,12 @@ const TicketProducts = dynamic(() => import('@components/UI/TicketProducts'), {
 import LayoutStore from '@layouts/LayoutStore';
 import Partners from '@layouts/Partners';
 import Boards from '@layouts/Board';
+import Speakers from '@layouts/Speakers';
+import PortalBanner from '@layouts/Banner/PortalBanner';
 import GetInvolved from '@layouts/GetInvolved';
 import WhatsHappening from '@layouts/WhatsHappening';
+import FAQ from '@layouts/FAQ';
+import MoonPortalBanner from '@layouts/Banner/MoonPortalBanner';
 
 const Home = ({ mode, result, products }) => {
   const dispatch = useDispatch();
@@ -56,7 +60,11 @@ const Home = ({ mode, result, products }) => {
   });
   const [isCollections, setCollections] = useState({
     aboutus: result?.aboutus,
+    speakers: result?.speakers,
+    partners: result?.partners,
     getinvolved: result?.getinvolved,
+    faq: result?.faq,
+    whatsHappening: result?.whatsHappening,
   });
 
   // @initialize(store)
@@ -184,18 +192,20 @@ const Home = ({ mode, result, products }) => {
 
       {/* @main */}
       <Main className="relative overflow-hidden pb-16 pt-[135px] sm:pb-24 sm:pt-[144px] lg:pt-[183px]">
-        <h1
-          className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-8 text-balance sm:mb-12`}
-        >
-          {'WHERE INNOVATION MEET AND ADOPTION'
-            ?.split('')
-            .map((chr, i) =>
-              ['E', 'O'].includes(chr) ? <span key={i}>{chr}</span> : chr
-            )}
-        </h1>
+        <header className="h-[1024px]">
+          <h1
+            className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-8 text-balance sm:mb-12`}
+          >
+            {'WHERE INNOVATION MEET AND ADOPTION'
+              ?.split('')
+              .map((chr, i) =>
+                ['E', 'O'].includes(chr) ? <span key={i}>{chr}</span> : chr
+              )}
+          </h1>
+        </header>
 
         {/* @about-us */}
-        <section className="ca25AboutUs bgGradient-sec relative pb-20 pt-[122px]">
+        <section className="ca25AboutUs relative bg-[linear-gradient(3deg,#1F1F1F_21%,#005AFF_53%,#7AB1F9,#ADD8E6)] pb-20 pt-[122px]">
           <div className="pointer-events-none absolute inset-x-0 inset-y-0 z-px select-none">
             <StarryBackground starCount={100} />
           </div>
@@ -218,7 +228,7 @@ const Home = ({ mode, result, products }) => {
           </Container>
         </section>
         {/* @tickets */}
-        <section className="ca25Ticket-Section pt-24 sm:pt-32">
+        <section className="ca25Ticket-Section pb-24 pt-24 sm:pt-32">
           <Container className={'relative'}>
             <div className="pointer-events-none absolute -right-[213px] -top-[72px] bottom-auto left-auto z-px sm:-right-[387px] sm:-top-[86px] lg:-right-[387px] lg:-top-[91px] xl:-right-[636px] xl:-top-[151px]">
               <Image
@@ -268,37 +278,32 @@ const Home = ({ mode, result, products }) => {
           </Container>
         </section>
 
+        {/* @banner(portal) */}
+        <PortalBanner mode={mode} id={'ca25PortalBanner0'} />
+
         {/* @speakers */}
-        <section className="ca25Speakers relative bg-[linear-gradient(186deg,#1F1F1F_23%,#005AFF_47%,#7AB1F9_69%,#A0CCF7_94%)] pb-20 pt-[122px]">
-          <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
-            <StarryBackground starCount={110} />
-          </div>
-          <div>awdawdawd</div>
-        </section>
+        <Speakers mode={mode} result={isCollections?.speakers} />
 
         {/* @partners */}
-        <section className="ca25Partners relative bg-[linear-gradient(3deg,#1F1F1F_31%,#005AFF_64%,#7AB1F9_83%,#ADD8E6_102%)] pb-20 pt-[122px]">
-          <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
-            <StarryBackground starCount={90} />
-          </div>
-          <Partners mode={mode} />
-        </section>
+        <Partners mode={mode} result={isCollections?.partners} />
 
         {/* @getinvolved & whats-happening */}
-        <div className="relative bg-dark pb-20 pt-[122px]">
-          <div className="pointer-events-none absolute inset-x-0 inset-y-0 z-px select-none">
-            <StarryBackground starCount={145} />
-          </div>
-
+        <div className="ca25Group ca25BgCirlcePortal relative bg-transparent pb-4 sm:pb-20">
           {/* @getinvolved */}
-          <section className="ca25GetInvolved">
-            <GetInvolved mode={mode} result={isCollections?.getinvolved} />
-          </section>
+          <GetInvolved mode={mode} result={isCollections?.getinvolved} />
+
           {/* @whats-happening */}
-          <section className="ca25WhatsHappening pb-20 pt-[122px]">
-            <WhatsHappening mode={mode} />
-          </section>
+          <WhatsHappening mode={mode} result={isCollections?.whatsHappening} />
         </div>
+
+        {/* @banner(portal 1) */}
+        <PortalBanner mode={mode} id={'ca25PortalBanner1'} />
+
+        {/* @partners */}
+        <FAQ mode={mode} result={isCollections?.faq} />
+
+        {/* @banner(footer) */}
+        <MoonPortalBanner mode={mode} />
       </Main>
     </>
   );
@@ -331,21 +336,36 @@ export const getServerSideProps = async (context) => {
   const baseUrl = process.env.NEXT_PUBLIC_URL;
   try {
     const isStoreLayouts = true;
-    const rsProducts = await getFetch(`/api/products?sort[0]=rank:asc`);
-    const rsAboutUs = await getFetchUrl(
-      `${baseUrl}/api/collections/about-us?sv=coinfestasia`
-    );
-    const rsGetInvolved = await getFetchUrl(
-      `${baseUrl}/api/collections/get-involved?sv=coinfestasia`
-    );
-
+    const [
+      rsProducts,
+      rsAboutUs,
+      rsSpeakers,
+      rsPartners,
+      rsGetInvolved,
+      rsFAQ,
+      rsWhatsHappening,
+    ] = await Promise.all([
+      getFetch(`/api/products?sort[0]=rank:asc`),
+      getFetchUrl(`${baseUrl}/api/v1/collections/about-us?sv=coinfestasia`),
+      getFetchUrl(`${baseUrl}/api/v1/collections/speakers?sv=coinfestasia`),
+      getFetchUrl(`${baseUrl}/api/v1/collections/partners?sv=coinfestasia`),
+      getFetchUrl(`${baseUrl}/api/v1/collections/get-involved?sv=coinfestasia`),
+      getFetchUrl(`${baseUrl}/api/v1/collections/faq?sv=coinfestasia`),
+      getFetchUrl(
+        `${baseUrl}/api/v1/collections/whats-happening?sv=coinfestasia`
+      ),
+    ]);
     return {
       props: {
         mode: 'dark',
         layouts: isStoreLayouts || false,
         result: {
           aboutus: rsAboutUs?.data,
+          speakers: rsSpeakers?.data,
+          partners: rsPartners?.data,
           getinvolved: rsGetInvolved?.data,
+          faq: rsFAQ?.data,
+          whatsHappening: rsWhatsHappening?.data,
         },
         products: rsProducts || [],
       },

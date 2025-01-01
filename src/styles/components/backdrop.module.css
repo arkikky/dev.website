@@ -1,12 +1,149 @@
 .bgSplitBackdrop_Group {
   @apply relative;
 }
-
 .bgSplitBackdrop_Primary::before {
   @apply content-[''];
   @apply inline-block;
   @apply absolute inset-y-0 bg-primary;
   @apply w-full;
-
   @apply -z-px;
+}
+
+/* @overflay */
+.ca25Overflay-Backdrop::before {
+  @apply content-[''];
+  @apply inline-block;
+  @apply bg-[linear-gradient(180deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0.8)_100%)];
+  @apply absolute inset-x-0 inset-y-0;
+  @apply z-px;
+}
+
+/* @diamond-portal */
+.ca25BgDiamondPortal::before {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25DiamondPortal.png')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute inset-x-0 inset-y-0;
+  @apply h-full w-full;
+  @apply -z-px;
+}
+.ca25BgDiamondPortal .ca25PortalBanner_Items {
+  @apply absolute inset-x-0 inset-y-0;
+  @apply -z-px;
+}
+.ca25BgDiamondPortal .ca25PortalBanner_Items::before {
+  @apply content-[''];
+  @apply block bg-[url('/assets/images/backdrop/ca25MemePortal_Left.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute -left-[55px] bottom-[18px] right-auto top-auto sm:-left-[45px] sm:bottom-[35px] lg:-left-[59px] lg:bottom-[75px];
+  @apply h-[136.29px] w-[215px];
+  @apply sm:h-[186.29px] sm:w-[285px];
+  @apply lg:h-[262.29px] lg:w-[411px];
+  @apply xl:h-[312.29px] xl:w-[501px];
+  @apply -z-px;
+}
+.ca25BgDiamondPortal .ca25PortalBanner_Items::after {
+  @apply content-[''];
+  @apply block bg-[url('/assets/images/backdrop/ca25MemePortal_Right.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute bottom-auto left-auto;
+  @apply -right-[109px] -top-[7px];
+  @apply lg:-right-[149px] lg:-top-[65px] xl:-top-[29px];
+  @apply h-[143.54px] w-[229.83px] sm:h-[193.54px] sm:w-[289.83px];
+  @apply lg:h-[332.29px] lg:w-[371px] xl:h-[312.29px] xl:w-[501px];
+  @apply -z-px rotate-[21deg] transform lg:rotate-[0deg];
+}
+
+/* @meme-items */
+.ca25BckMemeItems {
+  @apply absolute inset-x-0 inset-y-0;
+  @apply -z-px;
+}
+.ca25BckMemeItems::before {
+  @apply content-[''];
+  @apply block bg-[url('/assets/images/backdrop/ca25MemeItems_Left.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute -left-[59px] -top-[11px] bottom-auto right-auto sm:-left-[49px] sm:-top-[37px] lg:-left-[61px] lg:-top-[5px] xl:-left-[85px] xl:top-[31px];
+  @apply h-[126.14px] w-[122.68px];
+  @apply sm:h-[146.14px] sm:w-[142.68px];
+  @apply lg:h-[176.14px] lg:w-[172.68px];
+  @apply xl:h-[226.14px] xl:w-[242.68px];
+  @apply -z-px;
+}
+.ca25BckMemeItems::after {
+  @apply content-[''];
+  @apply block bg-[url('/assets/images/backdrop/ca25MemeItems_Right.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute -right-[63px] bottom-[109px] left-auto top-auto sm:-right-[69px] sm:bottom-[101px] lg:-right-[69px] lg:bottom-[115px] xl:-right-[103px] xl:bottom-[81px];
+  @apply h-[116.14px] w-[122.68px];
+  @apply sm:h-[156.14px] sm:w-[162.68px];
+  @apply lg:h-[186.14px] lg:w-[192.68px];
+  @apply xl:h-[247.34px] xl:w-[256.18px];
+  @apply -z-px;
+}
+
+/* @circle-portal */
+.ca25BgCirlcePortal::before {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25CirlcePortal.svg')];
+  @apply bg-cover bg-center bg-no-repeat lg:bg-contain;
+  @apply absolute inset-x-0 inset-y-0;
+  @apply opacity-100 sm:opacity-15;
+  @apply -z-px;
+}
+
+/* @blue-moon */
+.ca25BckBlueMoon::before {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25MoonPortal.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute inset-x-auto inset-y-0 mx-auto my-auto;
+  @apply h-[316px] w-[316px];
+  @apply sm:h-[549.54px] sm:w-[549.54px];
+  @apply lg:h-[709.54px] lg:w-[709.54px];
+  @apply xl:h-[879.54px] xl:w-[879.54px];
+  @apply opacity-100 sm:opacity-65;
+  @apply z-[2];
+}
+.ca25BckBlueMoon::after {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/ca25BlueMoon.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute inset-x-auto inset-y-0 mx-auto my-auto;
+  @apply h-[236px] w-[236px];
+  @apply sm:h-[379.54px] sm:w-[379.54px];
+  @apply lg:h-[449.54px] lg:w-[449.54px];
+  @apply xl:h-[529.54px] xl:w-[529.54px];
+  @apply z-10;
+}
+
+.ca25BckBlueMoon .ca25BckBlueMoon_Items::before {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25MoonRocket-Left.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute -bottom-[21px] right-auto top-auto mx-auto my-auto max-[420px]:-bottom-[31px] sm:-bottom-[80px] lg:-bottom-[161px] xl:-bottom-[191px];
+  @apply -left-[159px] max-[420px]:-left-[179px] sm:-left-[283px] lg:-left-[395px] xl:-left-[376px];
+  @apply h-[260px] w-[273px];
+  @apply sm:h-[422.85px] sm:w-[470.74px];
+  @apply lg:h-[602.85px] lg:w-[650.74px];
+  @apply xl:h-[702.85px] xl:w-[750.74px];
+  @apply z-[2];
+}
+.ca25BckBlueMoon .ca25BckBlueMoon_Items::after {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25MoonRocket-Right.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute -bottom-[21px] left-auto top-auto mx-auto my-auto max-[420px]:-bottom-[31px] sm:-bottom-[70px] lg:-bottom-[150px];
+  @apply -right-[159px] max-[420px]:-right-[179px] sm:-right-[325px] lg:-right-[425px] xl:-right-[416px];
+  @apply h-[260px] w-[273px];
+  @apply sm:h-[462.85px] sm:w-[510.74px];
+  @apply lg:h-[632.85px] lg:w-[680.74px];
+  @apply xl:h-[722.85px] xl:w-[770.74px];
+  @apply z-[2];
+}
+
+/* @backdrop-cover(speakers) */
+.ca25BckCover-Speakers {
+  @apply bg-[url('/assets/images/speakers/ca25BckCover-Speakers.svg')];
+  @apply bg-cover bg-center object-cover object-center;
 }

@@ -193,10 +193,6 @@ module.exports = {
           backgroundImage:
             'linear-gradient(180deg, #D38350 30.46%, #D38350 102.99%)',
         },
-        '.bgGradient-sec': {
-          backgroundImage:
-            'linear-gradient(3deg, #1F1F1F 21%, #005AFF 53%, #7AB1F9,#ADD8E6)',
-        },
       });
     },
   ],

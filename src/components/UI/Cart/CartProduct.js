@@ -58,8 +58,7 @@ const CartProduct = ({ cartStore, products }) => {
           className="ms-3 flex h-8 w-8 flex-col items-center justify-center rounded-lg border border-solid border-red-500 bg-red-100/20 focus-visible:outline-none"
           type="button"
           tabIndex={-1}
-          aria-label="Coinfest Asia 2025 (Remove Products)"
-          aria-roledescription="Coinfest Asia 2025 (Remove Products)"
+          aria-label="Coinfest Asia 2025 Remove Products"
           onClick={(e) => {
             e.preventDefault();
             dispatch(removeItemCart(products?.documentId));

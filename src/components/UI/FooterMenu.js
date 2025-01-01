@@ -9,7 +9,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
   return (
     <>
       <div className="xl:grid-cols-13 mt-8 grid-cols-4 gap-x-6 gap-y-8 supports-grid:grid sm:mt-13 sm:grid-cols-12 lg:grid-cols-12">
-        {/* <div className="col-span-full sm:col-span-4 lg:col-span-4 xl:col-span-2">
+        <div className="col-span-full sm:col-span-4 lg:col-span-4 xl:col-span-2">
           <div className="flex flex-col">
             <h2 className="text-base font-semibold capitalize text-current">
               Prepare your trip
@@ -19,9 +19,9 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/travel"
-                  title={`${publicRuntimeConfig?.siteAppName} Travel deals`}
+                  title={`${publicRuntimeConfig?.siteAppName} Travel Deals`}
                 >
-                  Travel deals
+                  Travel Deals
                 </Link>
               </li>
               <li className="group mb-4 last:mb-0">
@@ -33,7 +33,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
                   Getting to Coinfest
                 </Link>
               </li>
-              <li className="group mb-4 last:mb-0">
+              {/* <li className="group mb-4 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/venue"
@@ -41,7 +41,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
                 >
                   Venue map
                 </Link>
-              </li>
+              </li> */}
               <li className="group mb-4 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
@@ -53,7 +53,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               </li>
             </ul>
           </div>
-        </div> */}
+        </div>
         <div className="col-span-full sm:col-span-4 lg:col-span-4 xl:col-span-2">
           <div className="flex flex-col">
             <h2 className="text-base font-semibold capitalize text-current">
@@ -87,15 +87,6 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
                   Agenda
                 </Link>
               </li> */}
-              {/* <li className="group mb-4 last:mb-0">
-                <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  href="/speakers"
-                  title={`${publicRuntimeConfig?.siteAppName} Speakers`}
-                >
-                  Speakers
-                </Link>
-              </li> */}
               <li className="group mb-4 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
@@ -126,6 +117,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               <li className="group mb-4 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  prefetch={true}
                   href="https://flic.kr/s/aHBqjATP6X"
                   title={`${publicRuntimeConfig?.siteAppName} Gallery`}
                   target="_blank"
@@ -301,6 +293,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               <li className="group mb-4 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  prefetch={true}
                   href="https://2024.coinfest.asia/"
                   title={`Coinfest Asia 2024`}
                   target="_blank"
@@ -331,6 +324,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               <li className="group mb-4 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  prefetch={true}
                   href="https://2023.coinfest.asia/"
                   title={`Coinfest Asia 2023`}
                   target="_blank"
@@ -361,6 +355,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               <li className="group mb-4 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  prefetch={true}
                   href="https://2022.coinfest.asia/"
                   title={`Coinfest Asia 2022`}
                   target="_blank"
@@ -400,6 +395,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               <li className="group mb-4 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  prefetch={true}
                   href="/terms-and-conditions"
                   title={`${publicRuntimeConfig?.siteAppName} Terms & Conditions`}
                 >
@@ -409,6 +405,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               <li className="group mb-4 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  prefetch={true}
                   href="/privacy-policy"
                   title={`${publicRuntimeConfig?.siteAppName} Privacy Policy`}
                 >

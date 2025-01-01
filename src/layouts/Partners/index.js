@@ -2,33 +2,35 @@ import React from 'react';
 
 // @components
 import Container from '@components/Container';
+import StarryBackground from '@components/UI/Background/StarryBackground';
 import PartnerCards from '@components/UI/Cards/PartnerCards';
 
-const Partners = ({ mode }) => {
+const Partners = ({ mode, result = [] }) => {
   return (
     <>
-      <Container className={'z-[5]'}>
-        <h2
-          className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-8 text-balance sm:mb-12`}
-        >
-          {'PREVIUOS PARTNERS'
-            ?.split('')
-            .map((chr, i) =>
-              ['E', 'O', 'A'].includes(chr) ? <span key={i}>{chr}</span> : chr
-            )}
-        </h2>
-        <div className="relative w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 sm:gap-x-3 sm:gap-y-3 lg:grid-cols-10 xl:gap-x-3.5 xl:gap-y-3.5">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]?.map(
-            (rslt, i) => (
-              <div key={i} className="col-span-2 sm:col-span-3 lg:col-span-2">
-                <PartnerCards
-                  src={'/assets/images/partners/ca25Partner_Mandala.svg'}
-                />
-              </div>
-            )
-          )}
+      <section className="ca25Partners relative bg-[linear-gradient(-2deg,#1F1F1F_35%,#005AFF_63%,#7AB1F9_81%,#A0CCF7_100%)] pb-20 pt-[122px]">
+        <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
+          <StarryBackground starCount={90} />
         </div>
-      </Container>
+        <Container className={'relative z-[2]'}>
+          <h2
+            className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-8 text-balance sm:mb-12`}
+          >
+            {'PREVIUOS PARTNERS'
+              ?.split('')
+              .map((chr, i) =>
+                ['E', 'O', 'A'].includes(chr) ? <span key={i}>{chr}</span> : chr
+              )}
+          </h2>
+          <div className="relative w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 sm:gap-x-3 sm:gap-y-3 lg:grid-cols-10 xl:gap-x-3.5 xl:gap-y-3.5">
+            {result?.map((rslt, i) => (
+              <div key={i} className="col-span-2 sm:col-span-3 lg:col-span-2">
+                <PartnerCards {...rslt} />
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
     </>
   );
 };
