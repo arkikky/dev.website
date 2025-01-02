@@ -11,6 +11,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: { max: '420px' },
+      },
       colors: {
         transparent: 'transparent',
         current: 'currentColor',

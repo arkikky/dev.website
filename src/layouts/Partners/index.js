@@ -14,7 +14,7 @@ const Partners = ({ mode, result = [] }) => {
         </div>
         <Container className={'relative z-[2]'}>
           <h2
-            className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-8 text-balance sm:mb-12`}
+            className={`ca25HeadingTitle w-full text-center font-semibold uppercase sm:font-bold ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-8 text-balance sm:mb-12`}
           >
             {'PREVIUOS PARTNERS'
               ?.split('')

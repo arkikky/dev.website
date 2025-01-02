@@ -90,6 +90,16 @@ export function generateTicketAttendeeCode() {
   return `A-${randomNumber}`;
 }
 
+// @split-groups
+export function splitIntoGroups(d, grpCount) {
+  const groups = Array?.from({ length: grpCount }, () => []);
+  d?.forEach((items, i) => {
+    const groupIndex = i % grpCount;
+    groups[groupIndex].push(items);
+  });
+  return groups;
+}
+
 // @calculat-countdown(date)
 export function calculateCountdown(date) {
   const mrgdDate = Math.max(0, date - new Date());

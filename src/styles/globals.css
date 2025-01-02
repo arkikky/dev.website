@@ -18,6 +18,7 @@
 @import url('./components/tabs.module.css');
 @import url('./components/form.module.css');
 @import url('./components/article.module.css');
+@import url('./components/mansory.module.css');
 @import url('./components/products.module.css');
 
 @import './layouts/navbar.module.css';
@@ -27,31 +28,45 @@
 .ca25Fonts-Boren {
   @apply font-boren leading-[0] sm:leading-[0] lg:leading-[0];
 }
+.ca25HeadingHero {
+  @apply text-[64px] leading-[72px];
+  @apply sm:text-[76px] sm:leading-[78.5px];
+  @apply lg:text-[98px] lg:leading-[104px];
+  @apply xl:text-[134px] xl:leading-[136px];
+}
+.ca25HeadingHero span {
+  @apply font-boren font-normal leading-[0] sm:leading-[0] lg:leading-[0];
+  @apply text-[65.5px] sm:text-[77.5px] lg:text-[100.5px] xl:text-[137.5px];
+}
 .ca25HeadingTitle {
-  @apply text-[40px] leading-[42px] max-[420px]:text-[36px] max-[420px]:leading-[40px];
+  @apply xs:text-[36px] xs:leading-[42px] text-[40px] leading-[44px];
   @apply sm:text-[46px] sm:leading-[57.5px];
   @apply lg:text-[62px] lg:leading-[70px];
   @apply xl:text-[72px] xl:leading-[80px];
 }
 .ca25HeadingTitle span {
   @apply font-boren leading-[0] sm:leading-[0] lg:leading-[0];
-  @apply text-[41.5px] max-[420px]:text-[38px] sm:text-[48.5px] lg:text-[64.5px] xl:text-[75.5px];
+  @apply xs:text-[38px] text-[41.5px] sm:text-[48.5px] lg:text-[64.5px] xl:text-[75.5px];
 }
 .ca25HeadingTitle_M {
-  @apply text-[36px] leading-[40px] max-[420px]:text-[36px] max-[420px]:leading-[40px];
+  @apply xs:text-[36px] xs:leading-[40px] text-[36px] leading-[40px];
   @apply sm:text-[56px] sm:leading-[62.5px];
   @apply lg:text-[68px] lg:leading-[76px];
   @apply xl:text-[82px] xl:leading-[88px];
 }
 .ca25HeadingTitle_M span {
   @apply font-boren leading-[0] sm:leading-[0] lg:leading-[0];
-  @apply text-[37.5px] max-[420px]:text-[37.5px] sm:text-[59.5px] lg:text-[71.5px] xl:text-[84.5px];
+  @apply xs:text-[37.5px] text-[37.5px] sm:text-[59.5px] lg:text-[71.5px] xl:text-[84.5px];
 }
 
 /* @markdown */
 .ca25MarkdwnFrmattd {
   @apply prose-li:pointer-events-none prose-li:relative prose-li:mb-3 prose-li:flex prose-li:select-none prose-li:flex-row prose-li:items-start prose-li:gap-x-3 prose-li:text-[15px] prose-li:font-light prose-li:leading-[22px] prose-li:text-white last:prose-li:mb-0 sm:prose-li:text-base sm:prose-li:leading-initial;
   @apply prose-ul:flex prose-ul:flex-col prose-ul:pl-0;
+}
+.ca25MarkdwnFrmattd.ca25MarkdwnFrmattd_Mnsry img {
+  @apply mt-4;
+  @apply rounded-md object-cover object-center;
 }
 .ca25MarkdwnFrmattd ul li::before {
   content: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22currentColor%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%2220%206%209%2017%204%2012%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E');

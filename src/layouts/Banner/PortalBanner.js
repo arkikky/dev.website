@@ -41,7 +41,7 @@ const PortalBanner = ({ id = 'ca25PortalBanner0', mode }) => {
             SIA
           </h2>
           <Link
-            className={`relative mx-auto inline-flex w-max items-center justify-center rounded-full bg-[#ED4F35] px-3 py-2.5 text-sm font-semibold uppercase text-white disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5`}
+            className={`relative mx-auto inline-flex w-max items-center justify-center rounded-full bg-[#ED4F35] px-4 py-3 text-sm font-semibold uppercase text-white disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5`}
             prefetch={true}
             href="/"
             title={`Coinfest Asia 2025 Send Sponsorship Inquiry`}

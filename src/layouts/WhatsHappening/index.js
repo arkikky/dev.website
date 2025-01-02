@@ -1,8 +1,6 @@
 import React from 'react';
 
 // @components
-
-// @components
 import Container from '@components/Container';
 import StarryBackground from '@components/UI/Background/StarryBackground';
 import WhatsHappeningCards from '@components/UI/Cards/WhatsHappeningCards';
@@ -16,7 +14,7 @@ const WhatsHappening = ({ mode, result = [] }) => {
         </div>
         <Container className={'z-[5]'}>
           <h2
-            className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-8 text-balance sm:mb-12`}
+            className={`ca25HeadingTitle w-full text-center font-semibold uppercase sm:font-bold ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-8 text-balance sm:mb-12`}
           >
             {'WHATS HAPPENING'
               ?.split('')

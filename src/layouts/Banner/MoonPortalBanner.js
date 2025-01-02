@@ -35,7 +35,7 @@ const MoonPortalBanner = ({ mode }) => {
               )}
           </h2>
           <Link
-            className={`relative mx-auto inline-flex w-[138px] items-center justify-center rounded-full bg-[#ED4F35] px-3 py-2.5 text-sm font-semibold uppercase text-white disabled:pointer-events-none disabled:opacity-90 sm:w-[237px] sm:px-6 sm:py-5 xl:w-[257px]`}
+            className={`relative mx-auto inline-flex w-[138px] items-center justify-center rounded-full bg-[#ED4F35] px-3 py-2.5 text-sm font-semibold uppercase text-white disabled:pointer-events-none disabled:opacity-90 sm:w-[237px] sm:px-6 sm:py-5 xl:w-[237px]`}
             prefetch={true}
             href="/tickets"
             title={`Coinfest Asia 2025 Buy Tickets`}

@@ -13,7 +13,11 @@ import { addItemToCart } from '@reduxState/slices';
 
 // @lib/controller & helper
 import { getFetch, getFetchUrl } from '@lib/controller/API';
-import { getCombineMerged, encodeData } from '@lib/helper/Configuration';
+import {
+  getCombineMerged,
+  splitIntoGroups,
+  encodeData,
+} from '@lib/helper/Configuration';
 
 // @components
 import HeadGraphSeo from '@components/Head';
@@ -42,6 +46,7 @@ import Speakers from '@layouts/Speakers';
 import PortalBanner from '@layouts/Banner/PortalBanner';
 import GetInvolved from '@layouts/GetInvolved';
 import WhatsHappening from '@layouts/WhatsHappening';
+import SocialMentions from '@layouts/SocialMentions';
 import FAQ from '@layouts/FAQ';
 import MoonPortalBanner from '@layouts/Banner/MoonPortalBanner';
 
@@ -63,8 +68,9 @@ const Home = ({ mode, result, products }) => {
     speakers: result?.speakers,
     partners: result?.partners,
     getinvolved: result?.getinvolved,
-    faq: result?.faq,
     whatsHappening: result?.whatsHappening,
+    socialMentions: result?.socialMentions,
+    faq: result?.faq,
   });
 
   // @initialize(store)
@@ -191,23 +197,83 @@ const Home = ({ mode, result, products }) => {
       <HeadGraphSeo />
 
       {/* @main */}
-      <Main className="relative overflow-hidden pb-16 pt-[135px] sm:pb-24 sm:pt-[144px] lg:pt-[183px]">
-        <header className="h-[1024px]">
-          <h1
-            className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-8 text-balance sm:mb-12`}
+      <Main className="relative overflow-hidden pb-16 sm:pb-24">
+        <header className="relative flex h-svh w-full flex-col items-center justify-center overflow-x-hidden bg-[linear-gradient(180deg,#1F1F1F_37%,#005AFF_69%,#7AB1F9_87%,#A0CCF7_97%)] pt-[135px] sm:h-[1024px] sm:pt-[144px] lg:pt-[183px]">
+          <div className="pointer-events-none absolute inset-x-0 inset-y-0 z-px select-none">
+            <StarryBackground starCount={155} />
+          </div>
+
+          {/* @backdrop(moon special) */}
+          <div
+            className={
+              'ca25BckBlueMoon-Speacial pointer-events-none absolute inset-x-0 inset-y-0 z-[2] flex select-none flex-row items-center justify-center overflow-hidden'
+            }
           >
-            {'WHERE INNOVATION MEET AND ADOPTION'
-              ?.split('')
-              .map((chr, i) =>
-                ['E', 'O'].includes(chr) ? <span key={i}>{chr}</span> : chr
-              )}
-          </h1>
+            <div className="ca25BckBlueMoon-Speacial_RcktLeft absolute inset-x-0 inset-y-0 mx-auto w-full sm:w-[659.54px] xl:w-[1180px]"></div>
+            <div className="ca25BckBlueMoon-Speacial_RcktRight absolute inset-x-0 inset-y-0 mx-auto w-full sm:w-[659.54px] xl:w-[1180px]"></div>
+          </div>
+
+          <div
+            className={
+              'ca25BckBlueMoon-SpeacialMoon pointer-events-none absolute inset-x-0 inset-y-0 z-[23] flex select-none flex-row items-center justify-center overflow-hidden mix-blend-hard-light'
+            }
+          ></div>
+
+          <div
+            className={`absolute inset-x-0 inset-y-0 z-[22] mx-auto mb-8 flex w-full flex-col items-center justify-center text-balance text-center sm:mb-12 sm:w-[619.54px] lg:w-[749.54px] xl:w-[1116px]`}
+          >
+            <div
+              className={`ca25HeadingHero ${mode === 'light' ? 'text-black-900' : 'text-white'} [749.54px] mt-[35px] block w-full font-medium uppercase sm:-mt-[75px] sm:w-[619.54px] sm:font-semibold lg:w-[749.54px] xl:w-[1116px]`}
+            >
+              <div className="float-none pl-0 sm:float-left sm:pl-20">
+                {'WORLD`S'
+                  ?.split('')
+                  .map((chr, i) =>
+                    ['`', 'O'].includes(chr) ? <span key={i}>{chr}</span> : chr
+                  )}
+              </div>
+              <div className="float-none sm:float-right">
+                {'LARGEST'
+                  ?.split('')
+                  .map((chr, i) =>
+                    ['A', 'E'].includes(chr) ? <span key={i}>{chr}</span> : chr
+                  )}
+              </div>
+              <div className="float-none flex flex-row items-center justify-center gap-x-5 sm:float-left">
+                <div>
+                  {'CRYPTO'
+                    ?.split('')
+                    .map((chr, i) =>
+                      ['Y', 'O'].includes(chr) ? (
+                        <span key={i}>{chr}</span>
+                      ) : (
+                        chr
+                      )
+                    )}
+                </div>
+                <div className="hidden w-[285px] text-left font-bevietnamPro text-[13px] font-normal leading-[21px] tracking-[14px] sm:block lg:text-[14px] lg:leading-[26px] lg:tracking-[16px] xl:w-[415px] xl:text-[24px] xl:leading-[36px] xl:tracking-[18px]">
+                  BALI, <br />
+                  21 — 22 AUG 2025
+                </div>
+              </div>
+              <div className="float-none pr-0 sm:float-right sm:pr-3">
+                {'FESTIVAL'
+                  ?.split('')
+                  .map((chr, i) =>
+                    ['A', 'E'].includes(chr) ? <span key={i}>{chr}</span> : chr
+                  )}
+              </div>
+            </div>
+            <div className="mt-3 w-full text-center font-bevietnamPro text-[12px] font-medium leading-[16px] tracking-[5px] text-white sm:hidden">
+              {`BALI, 21—22 AUG 2025`}
+            </div>
+          </div>
         </header>
 
         {/* @about-us */}
-        <section className="ca25AboutUs relative bg-[linear-gradient(3deg,#1F1F1F_21%,#005AFF_53%,#7AB1F9,#ADD8E6)] pb-20 pt-[122px]">
+        <section className="ca25AboutUs relative bg-[linear-gradient(0deg,#1F1F1F_23%,#005AFF_49%,#7AB1F9_77%,#A0CCF7_100%)] pb-20 pt-[122px]">
           <div className="pointer-events-none absolute inset-x-0 inset-y-0 z-px select-none">
-            <StarryBackground starCount={100} />
+            <StarryBackground starCount={135} />
           </div>
           <Container className={'z-[5]'}>
             <Boards mode={mode} />
@@ -299,7 +365,10 @@ const Home = ({ mode, result, products }) => {
         {/* @banner(portal 1) */}
         <PortalBanner mode={mode} id={'ca25PortalBanner1'} />
 
-        {/* @partners */}
+        {/* @social-mentions */}
+        <SocialMentions mode={mode} result={isCollections?.socialMentions} />
+
+        {/* @faq */}
         <FAQ mode={mode} result={isCollections?.faq} />
 
         {/* @banner(footer) */}
@@ -311,17 +380,17 @@ const Home = ({ mode, result, products }) => {
 
 Home.getLayout = (page, { pageProps }) => {
   const { mode, layouts, products } = pageProps;
-  // if (layouts) {
-  //   return (
-  //     <LayoutStore
-  //       isTheme={mode}
-  //       layoutStore={layouts}
-  //       cartStore={products?.data}
-  //     >
-  //       {page}
-  //     </LayoutStore>
-  //   );
-  // }
+  if (layouts) {
+    return (
+      <LayoutStore
+        isTheme={mode}
+        layoutStore={layouts}
+        cartStore={products?.data}
+      >
+        {page}
+      </LayoutStore>
+    );
+  }
   return page;
 };
 export const getServerSideProps = async (context) => {
@@ -342,19 +411,24 @@ export const getServerSideProps = async (context) => {
       rsSpeakers,
       rsPartners,
       rsGetInvolved,
-      rsFAQ,
       rsWhatsHappening,
+      rsSocialMentions,
+      rsFAQ,
     ] = await Promise.all([
       getFetch(`/api/products?sort[0]=rank:asc`),
       getFetchUrl(`${baseUrl}/api/v1/collections/about-us?sv=coinfestasia`),
       getFetchUrl(`${baseUrl}/api/v1/collections/speakers?sv=coinfestasia`),
       getFetchUrl(`${baseUrl}/api/v1/collections/partners?sv=coinfestasia`),
       getFetchUrl(`${baseUrl}/api/v1/collections/get-involved?sv=coinfestasia`),
-      getFetchUrl(`${baseUrl}/api/v1/collections/faq?sv=coinfestasia`),
       getFetchUrl(
         `${baseUrl}/api/v1/collections/whats-happening?sv=coinfestasia`
       ),
+      getFetchUrl(
+        `https://hub.coinvestasi.com/api/people-says?sort=rank:asc&populate=*&pagination[pageSize]=100`
+      ),
+      getFetchUrl(`${baseUrl}/api/v1/collections/faq?sv=coinfestasia`),
     ]);
+
     return {
       props: {
         mode: 'dark',
@@ -364,8 +438,9 @@ export const getServerSideProps = async (context) => {
           speakers: rsSpeakers?.data,
           partners: rsPartners?.data,
           getinvolved: rsGetInvolved?.data,
-          faq: rsFAQ?.data,
           whatsHappening: rsWhatsHappening?.data,
+          socialMentions: rsSocialMentions?.data,
+          faq: rsFAQ?.data,
         },
         products: rsProducts || [],
       },

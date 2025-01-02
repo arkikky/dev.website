@@ -16,7 +16,7 @@ const Speakers = ({ mode, result = [] }) => {
         <Container className={'relative z-[2]'}>
           <div className="flex flex-col items-center justify-center pt-10 text-center">
             <h2
-              className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-4 text-balance sm:mb-7`}
+              className={`ca25HeadingTitle w-full text-center font-semibold uppercase sm:font-bold ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-4 text-balance sm:mb-7`}
             >
               {'PREVIOUS SPEAKERS'
                 ?.split('')
@@ -41,9 +41,19 @@ const Speakers = ({ mode, result = [] }) => {
           </div>
           <div className="flex flex-col items-center justify-center pt-20 text-center">
             <h2
-              className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-4 text-balance sm:mb-7`}
+              className={`ca25HeadingTitle w-full text-center font-semibold uppercase sm:font-bold ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-4 text-balance sm:mb-7`}
             >
-              {'2025 SPEAKERS ANNOUNCING SOON'
+              {'2025 SPEAKERS'
+                ?.split('')
+                ?.map((chr, i) =>
+                  ['E', 'O', 'A', '0'].includes(chr) ? (
+                    <span key={i}>{chr}</span>
+                  ) : (
+                    chr
+                  )
+                )}{' '}
+              A
+              {'NNOUNCING SOON'
                 ?.split('')
                 ?.map((chr, i) =>
                   ['E', 'O', 'A', '0'].includes(chr) ? (
@@ -54,7 +64,7 @@ const Speakers = ({ mode, result = [] }) => {
                 )}
             </h2>
             <Link
-              className={`relative mx-auto inline-flex w-max items-center justify-center rounded-full bg-[#ED4F35] px-3 py-2.5 text-sm font-semibold uppercase text-white disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5`}
+              className={`relative mx-auto inline-flex w-[174px] items-center justify-center rounded-full bg-[#ED4F35] px-3 py-3 text-sm font-semibold uppercase text-white disabled:pointer-events-none disabled:opacity-90 sm:w-[237px] sm:px-6 sm:py-5`}
               prefetch={true}
               href="/"
               title={`Coinfest Asia 2025 Apply As Speaker`}

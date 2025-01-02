@@ -43,8 +43,6 @@ export function useCart() {
       (acc, i) => acc + i?.quantity * +(i?.priceSale ?? i?.price),
       0
     );
-    console.log(total);
-
     return total;
   };
 

@@ -92,6 +92,70 @@
   @apply -z-px;
 }
 
+/* @blue-moon-special */
+.ca25BckBlueMoon-Speacial::before {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/ca25BlueMoonPortal-Primary.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute inset-x-auto inset-y-0 mx-auto my-auto;
+  @apply xs:h-[373px] xs:w-[373px] h-[413px] w-[413px];
+  @apply sm:h-[659.54px] sm:w-[659.54px];
+  @apply lg:h-[827.54px] lg:w-[827.54px];
+  @apply xl:h-[1180px] xl:w-[1180px];
+  @apply opacity-100 sm:opacity-55;
+  @apply z-[2];
+}
+.ca25BckBlueMoon-SpeacialMoon::after {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/ca25BlueMoon.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute inset-x-auto inset-y-0 mx-auto my-auto;
+  @apply xs:h-[284.69px] xs:w-[284.69px] h-[304.69px] w-[304.69px];
+  @apply sm:h-[449.54px] sm:w-[449.54px];
+  @apply lg:h-[579.54px] lg:w-[579.54px];
+  @apply xl:h-[667.94px] xl:w-[667.94px];
+  @apply z-10;
+}
+.ca25BckBlueMoon-Speacial .ca25BckBlueMoon-Speacial_RcktLeft::before {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25DogeRocket-TopLeft.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute right-auto top-auto;
+  @apply xs:bottom-[121px] bottom-[185px] sm:bottom-[135px] lg:bottom-[95px] xl:bottom-[167px];
+  @apply -left-[127px] sm:-left-[243px] lg:-left-[327px] xl:-left-[307px];
+  @apply h-[110px] w-[196.05px];
+  @apply sm:h-[210px] sm:w-[366.05px];
+  @apply lg:h-[220px] lg:w-[366.05px];
+  @apply xl:h-[230px] xl:w-[386.05px];
+  @apply z-[4];
+}
+.ca25BckBlueMoon-Speacial .ca25BckBlueMoon-Speacial_RcktRight::before {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25DogeRocket-TopRight.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute left-auto top-auto;
+  @apply xs:bottom-[131px] bottom-[185px] sm:bottom-[165px] lg:bottom-[105px] xl:bottom-[227px];
+  @apply -right-[127px] sm:-right-[263px] lg:-right-[347px] xl:-right-[307px];
+  @apply h-[110px] w-[196.05px];
+  @apply sm:h-[210px] sm:w-[366.05px];
+  @apply lg:h-[230px] lg:w-[386.05px];
+  @apply xl:h-[230px] xl:w-[386.05px];
+  @apply z-[4];
+}
+.ca25BckBlueMoon-Speacial .ca25BckBlueMoon-Speacial_RcktRight::after {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25DogeRocket-BottomRight.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute left-auto top-auto;
+  @apply xs:bottom-[131px] bottom-[185px] sm:bottom-[165px] lg:bottom-[105px] xl:-bottom-[263px];
+  @apply -right-[127px] sm:-right-[263px] lg:-right-[347px] xl:-right-[437px];
+  @apply h-[110px] w-[196.05px];
+  @apply sm:h-[210px] sm:w-[366.05px];
+  @apply lg:h-[230px] lg:w-[386.05px];
+  @apply xl:h-[447.39px] xl:w-[745.08px];
+  @apply z-[4];
+}
+
 /* @blue-moon */
 .ca25BckBlueMoon::before {
   @apply content-[''];
@@ -121,8 +185,8 @@
   @apply content-[''];
   @apply inline-block bg-[url('/assets/images/backdrop/ca25MoonRocket-Left.svg')];
   @apply bg-cover bg-center bg-no-repeat;
-  @apply absolute -bottom-[21px] right-auto top-auto mx-auto my-auto max-[420px]:-bottom-[31px] sm:-bottom-[80px] lg:-bottom-[161px] xl:-bottom-[191px];
-  @apply -left-[159px] max-[420px]:-left-[179px] sm:-left-[283px] lg:-left-[395px] xl:-left-[376px];
+  @apply xs:-bottom-[31px] absolute -bottom-[21px] right-auto top-auto mx-auto my-auto sm:-bottom-[80px] lg:-bottom-[161px] xl:-bottom-[191px];
+  @apply xs:-left-[179px] -left-[159px] sm:-left-[283px] lg:-left-[395px] xl:-left-[376px];
   @apply h-[260px] w-[273px];
   @apply sm:h-[422.85px] sm:w-[470.74px];
   @apply lg:h-[602.85px] lg:w-[650.74px];
@@ -133,8 +197,8 @@
   @apply content-[''];
   @apply inline-block bg-[url('/assets/images/backdrop/ca25MoonRocket-Right.svg')];
   @apply bg-cover bg-center bg-no-repeat;
-  @apply absolute -bottom-[21px] left-auto top-auto mx-auto my-auto max-[420px]:-bottom-[31px] sm:-bottom-[70px] lg:-bottom-[150px];
-  @apply -right-[159px] max-[420px]:-right-[179px] sm:-right-[325px] lg:-right-[425px] xl:-right-[416px];
+  @apply xs:-bottom-[31px] absolute -bottom-[21px] left-auto top-auto mx-auto my-auto sm:-bottom-[70px] lg:-bottom-[150px];
+  @apply xs:-right-[179px] -right-[159px] sm:-right-[325px] lg:-right-[425px] xl:-right-[416px];
   @apply h-[260px] w-[273px];
   @apply sm:h-[462.85px] sm:w-[510.74px];
   @apply lg:h-[632.85px] lg:w-[680.74px];

@@ -14,16 +14,12 @@ const FAQ = ({ mode, result = [] }) => {
         </div>
         <Container className={'relative z-[2]'}>
           <h2
-            className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-4 text-balance sm:mb-7`}
+            className={`ca25HeadingTitle w-full text-center font-semibold uppercase sm:font-bold ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-4 text-balance sm:mb-7`}
           >
             {'FREQUENTLY ASKED QUESTIONS'
               ?.split('')
               ?.map((chr, i) =>
-                ['E', 'O', 'A', '0'].includes(chr) ? (
-                  <span key={i}>{chr}</span>
-                ) : (
-                  chr
-                )
+                ['E', 'O', '0'].includes(chr) ? <span key={i}>{chr}</span> : chr
               )}
           </h2>
           <div className="relative w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 sm:gap-x-3 sm:gap-y-3 lg:grid-cols-10 xl:gap-x-3.5 xl:gap-y-3.5">

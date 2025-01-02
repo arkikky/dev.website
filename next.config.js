@@ -12,13 +12,19 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'https://api.coinfest.asia/',
+        hostname: 'api.coinfest.asia',
         port: '',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'https://flagcdn.com/',
+        hostname: 'hub.coinvestasi.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'flagcdn.com/',
         port: '',
         pathname: '/**',
       },
@@ -94,7 +100,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: `default-src 'self';script-src 'self' 'unsafe-eval';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://api.coinfest.asia https://api.hsforms.com;img-src 'self' https://upload.wikimedia.org https://flagcdn.com data:;frame-src 'none';frame-ancestors 'self';form-action 'self';worker-src 'self';base-uri 'self';`,
+            value: `default-src 'self';script-src 'self' 'unsafe-eval';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://api.coinfest.asia https://api.hsforms.com https://hub.coinvestasi.com;img-src 'self' https://upload.wikimedia.org https://hub.coinvestasi.com https://flagcdn.com data:;frame-src 'none';frame-ancestors 'self';form-action 'self';worker-src 'self';base-uri 'self';`,
           },
           {
             key: 'Permissions-Policy',
