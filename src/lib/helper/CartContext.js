@@ -11,8 +11,8 @@ export function getTotalProduct(quantity, price) {
 // @total(Cart)
 export function getTotalCart(data) {
   const total = data?.reduce((acc, i) => {
-    const price = i?.priceSale ?? i?.price ?? 0;
-    return acc + +(price, 10) * (i?.quantity || 0);
+    const price = i.priceSale ?? i.price ?? 0;
+    return acc + parseInt(price, 10) * (i.quantity || 0);
   }, 0);
   return total;
 }

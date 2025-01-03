@@ -40,7 +40,7 @@ export function useCart() {
   // @total(store)
   const getTotalCart = (data) => {
     const total = data?.reduce(
-      (acc, i) => acc + i?.quantity * +(i?.priceSale ?? i?.price),
+      (acc, i) => acc + i?.quantity * Number(i?.priceSale ?? i?.price),
       0
     );
     return total;
