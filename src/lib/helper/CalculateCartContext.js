@@ -1,4 +1,5 @@
-const exchangeRate_USD = 0.0000637929;
+// const exchangeRate_USD = 0.0000637929;
+const exchangeRate_USD = 0.0000615385;
 
 export function currencyConverter(number) {
   const getNominal_IDR = Number(number);

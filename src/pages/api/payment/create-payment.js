@@ -46,7 +46,7 @@ export default async function handler(req, res) {
         mobile_number: phone,
       },
       callback_url:
-        'httphttps://arkikky-dev0.vercel.app/api/payment/webhook-callback',
+        'https://arkikky-dev0.vercel.app/api/payment/webhook-callback',
       currency: 'IDR',
       invoice_duration: 900,
       customer_notification_preference: {

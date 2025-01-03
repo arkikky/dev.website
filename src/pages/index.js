@@ -32,6 +32,7 @@ const TicketProducts = dynamic(() => import('@components/UI/TicketProducts'), {
 });
 
 // @layouts
+// import LayoutDefaults from '@layouts/Layouts';
 import LayoutStore from '@layouts/LayoutStore';
 import Headers from '@layouts/Headers';
 import Abouts from '@layouts/Abouts';
@@ -275,17 +276,13 @@ const Home = ({ mode, result, products }) => {
 
 Home.getLayout = (page, { pageProps }) => {
   const { mode, layouts, products } = pageProps;
-  // if (layouts) {
-  //   return (
-  //     <LayoutStore
-  //       isTheme={mode}
-  //       layoutStore={layouts}
-  //       cartStore={products?.data}
-  //     >
-  //       {page}
-  //     </LayoutStore>
-  //   );
-  // }
+  if (layouts) {
+    return (
+      <LayoutStore isTheme={mode} layoutStore={layouts}>
+        {page}
+      </LayoutStore>
+    );
+  }
   return page;
 };
 export const getServerSideProps = async (context) => {

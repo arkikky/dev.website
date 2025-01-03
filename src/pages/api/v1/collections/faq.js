@@ -17,18 +17,15 @@ export default function handler(req, res) {
     data: [
       {
         title: 'What is Coinfest Asia?',
-        shortDesc:
-          'Coinfest immerses you directly into adoption, innovation, and emerging markets in Asia. Held in Bali - Indonesia, the event will be rather unique and not structured like a typical conference, giving all participants a platform to engage and network in a casual setting. Coinfest Asia is hosted by Coinvestasi, Indonesia’s #1 crypto media (an Indonesia Crypto Network company). Coinfest Asia is an insight & networking festival, sharing opportunities around Crypto, Blockchain & Web3 and NOT a price-forecasting event.',
+        shortDesc: `Coinfest Asia is a major Web3 and crypto festival in Asia, bringing together industry leaders, developers, investors, and enthusiasts to explore blockchain, DeFi, Web3, and more.`,
       },
       {
-        title: 'Who will attend Coinfest Asia 2024?',
-        shortDesc:
-          'This event is perfect for you who is a founder or C-level of your company, a crypto and Web3 enthusiast, a fund manager, a product manager, an NFT creator, a brand partnership leader, a VC analyst, a program developer, an art & NFT collector, a marketing expert—everyone who is interested in gaining insight & networking in Web3 industry.',
+        title: 'When and where is Coinfest Asia 2025?',
+        shortDesc: `Coinfest Asia 2025 will be held in Bali, Indonesia from August 21st to 22nd. Stay tuned for the venue detail!`,
       },
       {
-        title: 'Are there any side events happening?',
-        shortDesc:
-          'Prepare yourself for not only 2 days of Coinfest Asia but also a week full of side events during Coinfest Week.',
+        title: 'Who should attend?',
+        shortDesc: `Everyone who wants to celebrate crypto shall come! Crypto enthusiasts, developers and engineers, investors, web3 and crypto companies, government reps, media and influencers, and YOU!`,
       },
     ],
   };

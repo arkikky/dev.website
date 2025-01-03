@@ -87,9 +87,10 @@
   @apply content-[''];
   @apply inline-block bg-[url('/assets/images/backdrop/ca25MoonHalf-Cirlce_Portal.svg')];
   @apply bg-cover bg-center bg-no-repeat;
-  @apply absolute inset-x-0 inset-y-0;
-  @apply h-[805px] w-[1228px];
-  @apply opacity-100 sm:bg-opacity-35;
+  @apply xs:top-[76px] absolute inset-x-0 bottom-auto top-[65px] mx-auto sm:inset-y-0;
+  @apply xs:h-[321px] h-[381px] w-full sm:h-[631px] lg:h-[711px];
+  @apply xl:h-[805px] xl:w-[1228px];
+  @apply opacity-100 sm:opacity-35;
   @apply -z-px;
 }
 

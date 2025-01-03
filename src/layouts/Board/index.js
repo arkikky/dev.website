@@ -21,7 +21,7 @@ const Boards = ({ mode }) => {
           )}
       </h2>
       <div className="w-full max-w-full grid-cols-2 gap-x-2 gap-y-2 supports-grid:grid sm:gap-x-4 sm:gap-y-4 lg:gap-x-6 lg:gap-y-6 xl:gap-x-10 xl:gap-y-10">
-        <BoardCards count={10000} title={'Attendees'}>
+        <BoardCards count={12500} title={'Attendees'}>
           <div className="pointer-events-none absolute -right-[5px] -top-[5px] bottom-auto left-auto z-px sm:-right-[7px] sm:-top-2 lg:-right-[15px] lg:-top-[11px]">
             <Image
               className="h-[49px] w-auto object-cover sm:h-[87px] lg:h-[121px] xl:h-[131px]"
@@ -33,7 +33,7 @@ const Boards = ({ mode }) => {
             />
           </div>
         </BoardCards>
-        <BoardCards count={200} title={'Speakers'}>
+        <BoardCards count={300} title={'Speakers'}>
           <div className="pointer-events-none absolute -right-[5px] -top-[5px] bottom-auto left-auto z-px sm:-right-[7px] sm:-top-2 lg:-right-[15px] lg:-top-[11px]">
             <Image
               className="h-[49px] w-auto object-cover sm:h-[87px] lg:h-[121px] xl:h-[131px]"
@@ -45,7 +45,7 @@ const Boards = ({ mode }) => {
             />
           </div>
         </BoardCards>
-        <BoardCards count={3000} title={'Companies'}>
+        <BoardCards count={5000} title={'Companies'}>
           <div className="pointer-events-none absolute -right-[5px] -top-[5px] bottom-auto left-auto z-px sm:-right-[7px] sm:-top-2 lg:-right-[15px] lg:-top-[11px]">
             <Image
               className="h-[49px] w-auto object-cover sm:h-[87px] lg:h-[121px] xl:h-[131px]"
