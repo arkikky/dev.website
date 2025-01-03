@@ -8,7 +8,7 @@ const PortalBanner = ({ id = 'ca25PortalBanner0', mode }) => {
   return (
     <>
       <div
-        className={`${id} ca25BgDiamondPortal relative mx-auto flex h-[231px] w-full max-w-full flex-col items-center justify-center overflow-hidden sm:h-[343px] lg:h-[457px] xl:h-[516px] min-[1600px]:max-w-[1583px]`}
+        className={`${id} ca25BgDiamondPortal 3xl:!w-[1583px] 3xl:h-[617px] relative mx-auto flex h-[231px] w-full max-w-full flex-col items-center justify-center overflow-hidden sm:h-[343px] lg:h-[457px] xl:h-[516px]`}
       >
         <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 -z-px h-[425px] select-none">
           <StarryBackground starCount={90} />

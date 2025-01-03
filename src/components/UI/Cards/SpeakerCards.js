@@ -58,12 +58,12 @@ const SpeakerCards = ({
         </div>
 
         {/* @images */}
-        <div className="relative flex h-[221px] w-full min-w-full max-w-min flex-col overflow-hidden rounded-2xl bg-black-900/30 max-[420px]:h-[197px] sm:h-[273px] lg:h-[257px] xl:h-[336px]">
+        <div className="xs:h-[195px] relative flex h-[221px] w-full min-w-full max-w-min flex-col overflow-hidden rounded-2xl bg-black-900/30 max-[420px]:h-[197px] sm:h-[273px] lg:h-[257px] xl:h-[336px]">
           <div className="z-[16] h-full w-full">
             {images ? (
               isLoading ? (
                 <Image
-                  className="mx-auto h-auto w-full object-cover object-center"
+                  className="mx-auto h-full w-full object-cover object-center"
                   src={images}
                   alt={`Coinfest Asia 2025 ${name} Speakers)`}
                   height={336}

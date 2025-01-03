@@ -71,6 +71,34 @@ export default function handler(req, res) {
         position: 'Vice President',
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_8.svg',
       },
+      {
+        url: '/',
+        images: '/assets/images/speakers/as-speaker/ca25Speakers_9.png',
+        name: 'Rene Michau',
+        position: 'Global Head',
+        brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_9.svg',
+      },
+      {
+        url: '/',
+        images: '/assets/images/speakers/as-speaker/ca25Speakers_10.png',
+        name: 'Peter Demeo',
+        position: 'CPO',
+        brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_10.svg',
+      },
+      {
+        url: '/',
+        images: '/assets/images/speakers/as-speaker/ca25Speakers_11.png',
+        name: 'Lennix Lai',
+        position: 'CEO & Founder',
+        brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_11.svg',
+      },
+      {
+        url: '/',
+        images: '/assets/images/speakers/as-speaker/ca25Speakers_12.png',
+        name: 'Nischint Sanghavi',
+        position: 'Head of Digital Currencies',
+        brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_12.svg',
+      },
     ],
   };
   res?.status(200).json(rslt);

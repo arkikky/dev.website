@@ -69,7 +69,7 @@ const Speakers = ({ mode, result = [] }) => {
               href="/"
               title={`Coinfest Asia 2025 Apply As Speaker`}
             >
-              Apply As Speaker
+              {`Apply As Speaker`}
             </Link>
           </div>
         </Container>

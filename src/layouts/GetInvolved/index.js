@@ -8,11 +8,13 @@ import GetInvolvedCards from '@components/UI/Cards/GetInvolvedCards';
 const GetInvolved = ({ mode, result = [] }) => {
   return (
     <>
-      <section className="ca25GetInvolved relative block w-full pb-16 pt-[122px]">
+      <section className="ca25GetInvolved relative block w-full">
         <div className="pointer-events-none absolute inset-x-0 inset-y-0 z-px select-none">
           <StarryBackground starCount={135} />
         </div>
-        <Container className={'relative z-[2]'}>
+        <Container
+          className={'ca25MoonHalf-Cirlce_Portal relative z-[2] pb-16 pt-24'}
+        >
           <h2
             className={`ca25HeadingTitle w-full text-center font-semibold uppercase sm:font-bold ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-8 text-balance sm:mb-12 lg:mb-12`}
           >

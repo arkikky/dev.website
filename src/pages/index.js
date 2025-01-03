@@ -26,13 +26,6 @@ import Container from '@components/Container';
 import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 import StarryBackground from '@components/UI/Background/StarryBackground';
 import TicketProductsSkeleton from '@components/Skeleton/Products/TicketProducts';
-const AboutUsCards = dynamic(
-  () => import('@components/UI/Cards/AboutUsCards'),
-  {
-    loading: () => '',
-    ssr: false,
-  }
-);
 const TicketProducts = dynamic(() => import('@components/UI/TicketProducts'), {
   loading: () => <TicketProductsSkeleton />,
   ssr: false,
@@ -40,8 +33,9 @@ const TicketProducts = dynamic(() => import('@components/UI/TicketProducts'), {
 
 // @layouts
 import LayoutStore from '@layouts/LayoutStore';
+import Headers from '@layouts/Headers';
+import Abouts from '@layouts/Abouts';
 import Partners from '@layouts/Partners';
-import Boards from '@layouts/Board';
 import Speakers from '@layouts/Speakers';
 import PortalBanner from '@layouts/Banner/PortalBanner';
 import GetInvolved from '@layouts/GetInvolved';
@@ -198,114 +192,15 @@ const Home = ({ mode, result, products }) => {
 
       {/* @main */}
       <Main className="relative overflow-hidden pb-16 sm:pb-24">
-        <header className="relative flex h-svh w-full flex-col items-center justify-center overflow-x-hidden bg-[linear-gradient(180deg,#1F1F1F_37%,#005AFF_69%,#7AB1F9_87%,#A0CCF7_97%)] pt-[135px] sm:h-[1024px] sm:pt-[144px] lg:pt-[183px]">
-          <div className="pointer-events-none absolute inset-x-0 inset-y-0 z-px select-none">
-            <StarryBackground starCount={155} />
-          </div>
-
-          {/* @backdrop(moon special) */}
-          <div
-            className={
-              'ca25BckBlueMoon-Speacial pointer-events-none absolute inset-x-0 inset-y-0 z-[2] flex select-none flex-row items-center justify-center overflow-hidden'
-            }
-          >
-            <div className="ca25BckBlueMoon-Speacial_RcktLeft absolute inset-x-0 inset-y-0 mx-auto w-full sm:w-[659.54px] xl:w-[1180px]"></div>
-            <div className="ca25BckBlueMoon-Speacial_RcktRight absolute inset-x-0 inset-y-0 mx-auto w-full sm:w-[659.54px] xl:w-[1180px]"></div>
-          </div>
-
-          <div
-            className={
-              'ca25BckBlueMoon-SpeacialMoon pointer-events-none absolute inset-x-0 inset-y-0 z-[23] flex select-none flex-row items-center justify-center overflow-hidden mix-blend-hard-light'
-            }
-          ></div>
-
-          <div
-            className={`absolute inset-x-0 inset-y-0 z-[22] mx-auto mb-8 flex w-full flex-col items-center justify-center text-balance text-center sm:mb-12 sm:w-[619.54px] lg:w-[749.54px] xl:w-[1116px]`}
-          >
-            <div
-              className={`ca25HeadingHero ${mode === 'light' ? 'text-black-900' : 'text-white'} [749.54px] mt-[35px] block w-full font-medium uppercase sm:-mt-[75px] sm:w-[619.54px] sm:font-semibold lg:w-[749.54px] xl:w-[1116px]`}
-            >
-              <div className="float-none pl-0 sm:float-left sm:pl-20">
-                {'WORLD`S'
-                  ?.split('')
-                  .map((chr, i) =>
-                    ['`', 'O'].includes(chr) ? <span key={i}>{chr}</span> : chr
-                  )}
-              </div>
-              <div className="float-none sm:float-right">
-                {'LARGEST'
-                  ?.split('')
-                  .map((chr, i) =>
-                    ['A', 'E'].includes(chr) ? <span key={i}>{chr}</span> : chr
-                  )}
-              </div>
-              <div className="float-none flex flex-row items-center justify-center gap-x-5 sm:float-left">
-                <div>
-                  {'CRYPTO'
-                    ?.split('')
-                    .map((chr, i) =>
-                      ['Y', 'O'].includes(chr) ? (
-                        <span key={i}>{chr}</span>
-                      ) : (
-                        chr
-                      )
-                    )}
-                </div>
-                <div className="hidden w-[285px] text-left font-bevietnamPro text-[13px] font-normal leading-[21px] tracking-[14px] sm:block lg:text-[14px] lg:leading-[26px] lg:tracking-[16px] xl:w-[415px] xl:text-[24px] xl:leading-[36px] xl:tracking-[18px]">
-                  BALI, <br />
-                  21 — 22 AUG 2025
-                </div>
-              </div>
-              <div className="float-none pr-0 sm:float-right sm:pr-3">
-                {'FESTIVAL'
-                  ?.split('')
-                  .map((chr, i) =>
-                    ['A', 'E'].includes(chr) ? <span key={i}>{chr}</span> : chr
-                  )}
-              </div>
-            </div>
-            <div className="mt-3 w-full text-center font-bevietnamPro text-[12px] font-medium leading-[16px] tracking-[5px] text-white sm:hidden">
-              {`BALI, 21—22 AUG 2025`}
-            </div>
-          </div>
-        </header>
+        <Headers />
 
         {/* @about-us */}
-        <section className="ca25AboutUs relative bg-[linear-gradient(0deg,#1F1F1F_23%,#005AFF_49%,#7AB1F9_77%,#A0CCF7_100%)] pb-20 pt-[122px]">
-          <div className="pointer-events-none absolute inset-x-0 inset-y-0 z-px select-none">
-            <StarryBackground starCount={135} />
-          </div>
-          <Container className={'z-[5]'}>
-            <Boards mode={mode} />
-            <div className="relative mt-6 w-full min-w-full max-w-full grid-cols-4 gap-x-3 gap-y-3 supports-grid:grid sm:mt-10 sm:grid-cols-12 sm:gap-x-4 sm:gap-y-4 lg:grid-cols-12">
-              {isCollections?.aboutus?.map((rslt, i) => (
-                <div
-                  className="col-span-full sm:col-span-6 lg:col-span-4"
-                  key={i}
-                >
-                  <AboutUsCards
-                    images={rslt?.images}
-                    title={rslt?.title}
-                    shortDesc={rslt?.shortDesc}
-                  />
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
+        <Abouts mode={mode} result={isCollections?.aboutus} />
+
         {/* @tickets */}
-        <section className="ca25Ticket-Section pb-24 pt-24 sm:pt-32">
+        <section className="ca25Ticket-Section pb-24 pt-18 sm:pt-32">
           <Container className={'relative'}>
-            <div className="pointer-events-none absolute -right-[213px] -top-[72px] bottom-auto left-auto z-px sm:-right-[387px] sm:-top-[86px] lg:-right-[387px] lg:-top-[91px] xl:-right-[636px] xl:-top-[151px]">
-              <Image
-                className="h-[207px] w-auto object-cover sm:h-[357px] lg:h-[371px] xl:h-[593px]"
-                src={'/assets/images/backdrop/ca25Backdrop-TicketStore.png'}
-                alt={`${publicRuntimeConfig?.siteAppName} Ticket Store Backdrop`}
-                height={1764}
-                width={2508}
-                quality="87"
-              />
-            </div>
+            <div className="ca25MoonRckt !pointer-events-none absolute inset-x-0 inset-y-0 z-px mx-auto w-full !select-none"></div>
 
             <div className="mb-8 flex flex-col items-center justify-center text-center sm:mb-12">
               <h2
@@ -354,7 +249,7 @@ const Home = ({ mode, result, products }) => {
         <Partners mode={mode} result={isCollections?.partners} />
 
         {/* @getinvolved & whats-happening */}
-        <div className="ca25Group ca25BgCirlcePortal relative bg-transparent pb-4 sm:pb-20">
+        <div className="ca25Group relative bg-transparent pb-4 sm:pb-20">
           {/* @getinvolved */}
           <GetInvolved mode={mode} result={isCollections?.getinvolved} />
 
@@ -366,7 +261,7 @@ const Home = ({ mode, result, products }) => {
         <PortalBanner mode={mode} id={'ca25PortalBanner1'} />
 
         {/* @social-mentions */}
-        <SocialMentions mode={mode} result={isCollections?.socialMentions} />
+        {/* <SocialMentions mode={mode} result={isCollections?.socialMentions} /> */}
 
         {/* @faq */}
         <FAQ mode={mode} result={isCollections?.faq} />
@@ -380,17 +275,17 @@ const Home = ({ mode, result, products }) => {
 
 Home.getLayout = (page, { pageProps }) => {
   const { mode, layouts, products } = pageProps;
-  if (layouts) {
-    return (
-      <LayoutStore
-        isTheme={mode}
-        layoutStore={layouts}
-        cartStore={products?.data}
-      >
-        {page}
-      </LayoutStore>
-    );
-  }
+  // if (layouts) {
+  //   return (
+  //     <LayoutStore
+  //       isTheme={mode}
+  //       layoutStore={layouts}
+  //       cartStore={products?.data}
+  //     >
+  //       {page}
+  //     </LayoutStore>
+  //   );
+  // }
   return page;
 };
 export const getServerSideProps = async (context) => {
