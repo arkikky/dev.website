@@ -13,7 +13,7 @@ module.exports = {
     extend: {
       screens: {
         xs: { max: '420px' },
-        '3xl': { min: '1600px' },
+        '3xl': '1600px',
       },
       colors: {
         transparent: 'transparent',

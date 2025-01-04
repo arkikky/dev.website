@@ -13,7 +13,7 @@ const PartnerCards = ({ url, images, captions = '', openUrl }) => {
     <>
       {openUrl === true ? (
         <Link
-          className="relative block overflow-clip rounded-[10px] border border-solid border-white/55 transition-[border] duration-300 ease-in-out hover:border-primary sm:rounded-xl sm:border-2"
+          className="relative block overflow-clip rounded-[10px] border border-solid border-white/55 transition-[border] duration-300 ease-in-out hover:border-[#ED4F35] sm:rounded-xl sm:border-2"
           prefetch={true}
           href={url}
           title={`${publicRuntimeConfig?.siteAppName} ${captions}`}
@@ -38,7 +38,7 @@ const PartnerCards = ({ url, images, captions = '', openUrl }) => {
         </Link>
       ) : (
         <Link
-          className="relative block overflow-clip rounded-[10px] border border-solid border-white/55 transition-[border] duration-300 ease-in-out hover:border-primary sm:rounded-xl sm:border-2"
+          className="relative block overflow-clip rounded-[10px] border border-solid border-white/55 transition-[border] duration-300 ease-in-out hover:border-[#ED4F35] sm:rounded-xl sm:border-2"
           prefetch={true}
           href={url}
           title={`${publicRuntimeConfig?.siteAppName} ${captions}`}

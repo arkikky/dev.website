@@ -28,7 +28,7 @@ export default function handler(req, res) {
       {
         url: '/',
         images: '/assets/images/get-involved/ca24GetInvolved_3.jpg',
-        title: 'Co-host Program',
+        title: 'Co-Host Program',
       },
       {
         url: '/',

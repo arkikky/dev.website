@@ -40,7 +40,7 @@
     "@preline/dropdown": "^2.5.0",
     "@preline/overlay": "^2.5.0",
     "@preline/select": "^2.5.0",
-    "@preline/tabs": "2.5.0",
+    "@preline/tooltip": "2.5.0",
     "@react-email/components": "^0.0.28",
     "@react-email/tailwind": "^1.0.2",
     "@reduxjs/toolkit": "^2.3.0",

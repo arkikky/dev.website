@@ -81,7 +81,7 @@ export default function handler(req, res) {
       {
         url: '/',
         images: '/assets/images/speakers/as-speaker/ca25Speakers_10.png',
-        name: 'Peter Demeo',
+        name: 'Peter DeMeo',
         position: 'CPO',
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_10.svg',
       },

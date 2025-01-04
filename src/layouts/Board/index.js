@@ -14,7 +14,7 @@ const Boards = ({ mode }) => {
       <h2
         className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-8 text-balance sm:mb-6 xl:mb-10`}
       >
-        {'WHERE INNOVATION MEET AND ADOPTION'
+        {'WHERE INNOVATION MEETS ADOPTION'
           ?.split('')
           .map((chr, i) =>
             ['E', 'O'].includes(chr) ? <span key={i}>{chr}</span> : chr

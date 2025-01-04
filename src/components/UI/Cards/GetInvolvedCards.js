@@ -18,7 +18,9 @@ const GetInvolvedCards = ({ url, images, title = '' }) => {
         title={`${publicRuntimeConfig?.siteAppName} ${title}`}
       >
         <ImagesLoads
-          classname={'aspect-auto h-full w-full object-cover object-center'}
+          classname={
+            'aspect-auto h-full w-full group-hover:scale-105 object-center transition-[transform] transform duration-300 ease-in-out object-cover'
+          }
           src={images}
           alt={`${title} Get Involved`}
           height={180}

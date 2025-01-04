@@ -7,6 +7,20 @@
 .ca2024Footer.ca2024Footer_Light .ca2024FooterEnd .ca2024FooterEnd_Cntent {
   @apply prose-a:text-primary prose-strong:text-primary;
 }
+.ca2024Footer.ca2024Footer_Light .hs-tooltip-toggle {
+  @apply text-black-900;
+}
+.ca2024Footer.ca2024Footer_Light .hs-tooltip-toggle .hs-tooltip-content {
+  @apply bg-primary text-white;
+  @apply !ml-1.5;
+}
 .ca2024Footer.ca2024Footer_Dark .ca2024FooterEnd .ca2024FooterEnd_Cntent {
-  @apply prose-a:text-[#D38350] prose-strong:text-[#D38350];
+  @apply prose-a:text-[#ED4F35] prose-strong:text-[#ED4F35];
+}
+.ca2024Footer.ca2024Footer_Dark .hs-tooltip-toggle {
+  @apply text-white;
+}
+.ca2024Footer.ca2024Footer_Dark .hs-tooltip-toggle .hs-tooltip-content {
+  @apply bg-[#ED4F35] text-white;
+  @apply !ml-1.5;
 }

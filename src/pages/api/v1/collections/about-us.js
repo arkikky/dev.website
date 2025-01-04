@@ -25,7 +25,7 @@ export default function handler(req, res) {
         images: '/assets/images/about-us/ca25AboutUs-Adoption.jpg',
         title: 'Jump Straight to Adoption',
         shortDesc:
-          'Foster collaborations directly in Indonesia where there are 437k new crypto users each month',
+          'Foster collaborations directly in Indonesia where there are ??? new crypto users each month',
       },
       {
         images: '/assets/images/about-us/ca25AboutUs-Engaging.jpg',

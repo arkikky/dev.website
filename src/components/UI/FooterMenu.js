@@ -5,7 +5,7 @@ import Link from 'next/link';
 // @get .config
 const { publicRuntimeConfig } = getConfig();
 
-const FooterMenu = ({ isTheme = 'dark' }) => {
+const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
   return (
     <>
       <div className="xl:grid-cols-13 mt-8 grid-cols-4 gap-x-6 gap-y-8 supports-grid:grid sm:mt-13 sm:grid-cols-12 lg:grid-cols-12">
@@ -15,41 +15,50 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               Prepare your trip
             </h2>
             <ul className="mt-6 pl-0">
-              <li className="group mb-4 last:mb-0">
-                <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  href="/travel"
-                  title={`${publicRuntimeConfig?.siteAppName} Travel Deals`}
+              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
+                <button
+                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center font-bevietnamPro text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
+                  type="button"
+                  aria-label="Coinfest Asia 2025 Trabel Deals"
                 >
-                  Travel Deals
-                </Link>
+                  {`Travel Deals`}
+                  <span
+                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] px-2 py-1 text-xs font-normal opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                    role="tooltip"
+                  >
+                    {tooltip}
+                  </span>
+                </button>
               </li>
-              <li className="group mb-4 last:mb-0">
-                <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  href="/guide"
-                  title={`${publicRuntimeConfig?.siteAppName} Getting to Coinfest`}
+              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
+                <button
+                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center font-bevietnamPro text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
+                  type="button"
+                  aria-label="Coinfest Asia 2025 Getting to Coinfest"
                 >
-                  Getting to Coinfest
-                </Link>
+                  {`Getting to Coinfest`}
+                  <span
+                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] px-2 py-1 text-xs font-normal opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                    role="tooltip"
+                  >
+                    {tooltip}
+                  </span>
+                </button>
               </li>
-              {/* <li className="group mb-4 last:mb-0">
-                <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  href="/venue"
-                  title={`${publicRuntimeConfig?.siteAppName} Venue map`}
+              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
+                <button
+                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center font-bevietnamPro text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
+                  type="button"
+                  aria-label="Coinfest Asia 2025 FAQ"
                 >
-                  Venue map
-                </Link>
-              </li> */}
-              <li className="group mb-4 last:mb-0">
-                <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  href="/faq"
-                  title={`${publicRuntimeConfig?.siteAppName} FAQ`}
-                >
-                  FAQ
-                </Link>
+                  {`FAQ`}
+                  <span
+                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] px-2 py-1 text-xs font-normal opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                    role="tooltip"
+                  >
+                    {tooltip}
+                  </span>
+                </button>
               </li>
             </ul>
           </div>
@@ -62,7 +71,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
             <ul className="mt-6 pl-0">
               {/* <li className="group mb-4 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/guide"
                   title={`${publicRuntimeConfig?.siteAppName} Guide`}
                 >
@@ -71,7 +80,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               </li>
               <li className="group mb-4 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/activities"
                   title={`${publicRuntimeConfig?.siteAppName} Activities`}
                 >
@@ -80,7 +89,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               </li>
               <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/agenda"
                   title={`${publicRuntimeConfig?.siteAppName} Agenda`}
                 >
@@ -89,7 +98,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               </li> */}
               <li className="group mb-4 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/"
                   title={`${publicRuntimeConfig?.siteAppName} Sponsorship Inquiry`}
                 >
@@ -98,7 +107,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               </li>
               <li className="group mb-4 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/"
                   title={`${publicRuntimeConfig?.siteAppName} Apply As Speaker`}
                 >
@@ -107,7 +116,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               </li>
               <li className="group mb-4 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/tickets"
                   title={`${publicRuntimeConfig?.siteAppName} Tickets`}
                 >
@@ -116,7 +125,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               </li>
               <li className="group mb-4 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="https://flic.kr/s/aHBqjATP6X"
                   title={`${publicRuntimeConfig?.siteAppName} Gallery`}
@@ -128,7 +137,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               </li>
               {/* <li className="group mb-4 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/partners"
                   title={`${publicRuntimeConfig?.siteAppName} Partners`}
                 >
@@ -146,7 +155,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
             <ul className="mt-6 pl-0">
               <li className="group mb-4 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/coinfest-week"
                 >
                   Event List
@@ -156,7 +165,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
                 <button
                   type="button"
                   aria-label="menuSubmitSideEvnetCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#D38350] group-hover:underline"
+                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
                 >
                   Submit event
                   <span
@@ -171,7 +180,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
                 <button
                   type="button"
                   aria-label="menuCoHostCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#D38350] group-hover:underline"
+                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
                 >
                   Co-host an event
                   <span
@@ -195,7 +204,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
                 <button
                   type="button"
                   aria-label="menuGettingCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#D38350] group-hover:underline"
+                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
                 >
                   Apply to speak
                   <span
@@ -210,7 +219,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
                 <button
                   type="button"
                   aria-label="menuSponsorshipCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#D38350] group-hover:underline"
+                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
                 >
                   Enquire for sponsorship
                   <span
@@ -225,7 +234,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
                 <button
                   type="button"
                   aria-label="menuMediaPartnerCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#D38350] group-hover:underline"
+                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
                 >
                   Become a media partner
                   <span
@@ -240,7 +249,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
                 <button
                   type="button"
                   aria-label="menuCommunityPartnerCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#D38350] group-hover:underline"
+                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
                 >
                   Become a community partner
                   <span
@@ -255,7 +264,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
                 <button
                   type="button"
                   aria-label="menuSideEvnetCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#D38350] group-hover:underline"
+                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
                 >
                   Co-host a side event
                   <span
@@ -270,7 +279,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
                 <button
                   type="button"
                   aria-label="menuSubmitSideEvnetCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#D38350] group-hover:underline"
+                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
                 >
                   Submit your side event
                   <span
@@ -292,7 +301,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
             <ul className="mt-6 pl-0">
               <li className="group mb-4 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="https://2024.coinfest.asia/"
                   title={`Coinfest Asia 2024`}
@@ -323,7 +332,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               </li>
               <li className="group mb-4 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="https://2023.coinfest.asia/"
                   title={`Coinfest Asia 2023`}
@@ -354,7 +363,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               </li>
               <li className="group mb-4 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="https://2022.coinfest.asia/"
                   title={`Coinfest Asia 2022`}
@@ -394,7 +403,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
             <ul className="mt-6 pl-0">
               <li className="group mb-4 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="/terms-and-conditions"
                   title={`${publicRuntimeConfig?.siteAppName} Terms & Conditions`}
@@ -404,7 +413,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
               </li>
               <li className="group mb-4 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="/privacy-policy"
                   title={`${publicRuntimeConfig?.siteAppName} Privacy Policy`}
@@ -421,7 +430,7 @@ const FooterMenu = ({ isTheme = 'dark' }) => {
             <ul className="mt-3 pl-0">
               <li className="group mb-4 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base lowercase leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#D38350]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base lowercase leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="mailto:hi@coinfest.asia"
                   title={`${publicRuntimeConfig?.siteAppName} Email`}
                 >

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 // @layouts
-import NavbarTopDefault from '@layouts/Navbar/NavbarTopDefault';
+// import NavbarTopDefault from '@layouts/Navbar/NavbarTopDefault';
 import Footer from '@layouts/Footer';
 
 const LayoutDefaults = ({
@@ -38,7 +38,7 @@ const LayoutDefaults = ({
   return (
     <>
       {/* @navbar */}
-      <NavbarTopDefault theme={isTheme} />
+      {/* <NavbarTopDefault theme={isTheme} /> */}
 
       {/* @main */}
       {children}

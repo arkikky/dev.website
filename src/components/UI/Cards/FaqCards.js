@@ -18,7 +18,7 @@ const FaqCards = ({ list }) => {
               className="hs-accordion-toggle inline-flex w-full items-center gap-x-3.5 text-start text-white focus:outline-none disabled:pointer-events-none disabled:opacity-50 hs-accordion-active:text-white"
               aria-controls={`ca25FAQ_CollapseGeneral_${i + 1}`}
             >
-              <h3 className="inline-flex flex-row items-center justify-start gap-x-3.5 text-base font-medium hs-accordion-active:underline sm:gap-x-4 sm:text-lg sm:font-semibold lg:text-xl xl:gap-x-5">
+              <h3 className="inline-flex flex-row items-center justify-start gap-x-3.5 text-base font-medium hs-accordion-active:underline sm:gap-x-4 sm:text-lg sm:font-semibold lg:text-xl xl:gap-x-6">
                 <span className="flex h-7 w-7 shrink-0 flex-col items-center justify-center rounded-md bg-primary sm:h-8 sm:w-8 sm:rounded-lg lg:h-[36px] lg:w-[36px]">
                   <svg
                     className="block size-4.5 transform stroke-white transition-transform duration-300 ease-in-out hs-accordion-active:-rotate-180 lg:size-5"
@@ -42,7 +42,7 @@ const FaqCards = ({ list }) => {
               role="region"
               aria-labelledby={`ca25FAQ_General_${i + 1}`}
             >
-              <div className="ca25Article_Frmatt block pb-2 pl-[42px] pr-0 pt-3 text-base text-white sm:pb-0 sm:pl-[48px] sm:pr-[45px] sm:pt-6 lg:pl-[53px] lg:text-lg xl:pl-[57px] xl:pr-[75px]">
+              <div className="ca25Article_Frmatt block pb-2 pl-[42px] pr-0 pt-3 text-base text-white sm:pb-0 sm:pl-[48px] sm:pr-[45px] sm:pt-6 lg:pl-[53px] lg:text-lg xl:pl-[59px] xl:pr-[75px]">
                 {rslt?.shortDesc}
               </div>
             </div>

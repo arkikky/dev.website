@@ -23,9 +23,11 @@ const WhatsHappeningCards = ({
         href={url ?? '/'}
         title={`${publicRuntimeConfig?.siteAppName} ${captions}`}
       >
-        <div className="relative h-[89px] w-full shrink-0 sm:h-[173px] lg:h-[165px] xl:h-[186px]">
+        <div className="relative h-[89px] w-full shrink-0 overflow-clip sm:h-[173px] lg:h-[165px] xl:h-[186px]">
           <ImagesLoads
-            classname={'aspect-auto h-full w-full object-cover object-center'}
+            classname={
+              'aspect-auto h-full w-full object-cover group-hover:scale-105 object-center transition-[transform] transform duration-300 ease-in-out'
+            }
             src={images}
             alt={`Whats Happening ${captions}`}
             height={180}
