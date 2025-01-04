@@ -7,7 +7,7 @@ const Headers = ({ mode }) => {
   return (
     <>
       <header id="ca25Headers" className="relative block w-full">
-        <div className="ca25Headers_Hero relative flex h-svh w-full flex-col items-center justify-center overflow-x-hidden overflow-y-clip bg-[linear-gradient(180deg,#1F1F1F_37%,#005AFF_69%,#7AB1F9_87%,#A0CCF7_97%)] pt-[135px] sm:h-[1024px] sm:pt-[144px] lg:pt-[183px]">
+        <div className="ca25Headers_Hero relative flex h-svh w-full flex-col items-center justify-center overflow-x-hidden overflow-y-clip bg-[linear-gradient(180deg,#1F1F1F_37%,#005AFF_69%,#7AB1F9_87%,#A0CCF7_97%)] pt-[135px] sm:h-[1024px] sm:max-h-[1024px] sm:pt-[144px] lg:pt-[183px]">
           <h1 className="!pointer-events-none absolute inset-x-0 inset-y-0 -top-5 -z-[5] block h-max !select-none">
             {`WORLD'S LARGEST CRYPTO FESTIVAL`}
           </h1>
