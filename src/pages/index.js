@@ -40,7 +40,7 @@ import SocialMentions from '@layouts/SocialMentions';
 import FAQ from '@layouts/FAQ';
 import MoonPortalBanner from '@layouts/Banner/MoonPortalBanner';
 
-const Home = ({ mode, result, products }) => {
+const Home = ({ mode, collections, products }) => {
   const dispatch = useDispatch();
   const { data: isCart } = useSelector((state) => state.cart);
   const [isStore, setStore] = useState({
@@ -54,13 +54,13 @@ const Home = ({ mode, result, products }) => {
     loading: false,
   });
   const [isCollections, setCollections] = useState({
-    aboutus: result?.aboutus,
-    speakers: result?.speakers,
-    partners: result?.partners,
-    getinvolved: result?.getinvolved,
-    whatsHappening: result?.whatsHappening,
-    socialMentions: result?.socialMentions,
-    faq: result?.faq,
+    aboutus: collections?.aboutus,
+    speakers: collections?.speakers,
+    partners: collections?.partners,
+    getinvolved: collections?.getinvolved,
+    whatsHappening: collections?.whatsHappening,
+    socialMentions: collections?.socialMentions,
+    faq: collections?.faq,
   });
 
   // @initialize(store)
@@ -203,7 +203,7 @@ const Home = ({ mode, result, products }) => {
       },
       {
         '@type': 'ImageObject',
-        '@id': `${publicRuntimeConfig?.siteUrl}/#primaryimage`,
+        '@id': `${publicRuntimeConfig?.siteUrl}#primaryimage`,
         inLanguage: 'en-US',
         url: `${process.env.NEXT_PUBLIC_UPLOAD}uploads/favicon_512x512_90ee34e190.png`,
         width: 1200,
@@ -212,7 +212,7 @@ const Home = ({ mode, result, products }) => {
       },
       {
         '@type': 'WebPage',
-        '@id': `${publicRuntimeConfig?.siteUrl}/#webpage`,
+        '@id': `${publicRuntimeConfig?.siteUrl}#webpage`,
         url: `${publicRuntimeConfig?.siteUrl}`,
         name: `${publicRuntimeConfig?.siteAppName}`,
         isPartOf: {
@@ -228,7 +228,6 @@ const Home = ({ mode, result, products }) => {
       },
     ],
   };
-
   // @schema(brand logo)
   const schmaBrandLogo = {
     '@context': 'https://schema.org',
@@ -392,7 +391,7 @@ export const getServerSideProps = async (context) => {
       props: {
         mode: 'dark',
         layouts: isStoreLayouts || false,
-        result: {
+        collections: {
           aboutus: rsAboutUs?.data,
           speakers: rsSpeakers?.data,
           partners: rsPartners?.data,

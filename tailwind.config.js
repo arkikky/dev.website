@@ -173,6 +173,10 @@ module.exports = {
           backgroundImage:
             'linear-gradient(145deg, #1F1F1F 3%, #005AFF 39%, #A0CCF7 65%, #ED4F35 98% ,#ED4F35 100%)',
         },
+        '.bgGradient-Primary180': {
+          backgroundImage:
+            'linear-gradient(180deg, rgba(31,31,31,1) 9%, rgba(24,44,81,1) 17%, rgba(19,53,116,1) 21%, rgba(4,82,225,1) 33%, rgba(0,90,255,1) 37%, rgba(144,193,248,1) 64%, rgba(160,204,247,1) 67%, rgba(183,166,188,1) 79%, rgba(237,79,53,1) 100%)',
+        },
         '.bg-regular': {
           backgroundImage:
             'linear-gradient(180deg, #022159 30.46%, #005AFF 102.99%)',

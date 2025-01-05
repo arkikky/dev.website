@@ -19,7 +19,7 @@ const WhatsHappeningCards = ({
   return (
     <>
       <Link
-        className="group relative col-span-2 flex flex-col items-start justify-start overflow-clip rounded-lg border border-solid border-white/35 bg-black-900/[0.24] transition-[border] duration-300 ease-in-out hover:border-primary sm:col-span-6 sm:rounded-2xl sm:border-2 lg:col-span-4 lg:rounded-2xl"
+        className="group relative col-span-2 flex flex-col items-start justify-start overflow-clip rounded-lg border border-solid border-white/35 bg-black-900/[0.24] transition-[border] duration-300 ease-in-out hover:border-[#ED4F35] sm:col-span-6 sm:rounded-2xl sm:border-2 lg:col-span-4 lg:rounded-2xl"
         prefetch={true}
         href={url ?? '/'}
         title={`${publicRuntimeConfig?.siteAppName} ${captions}`}
@@ -41,7 +41,7 @@ const WhatsHappeningCards = ({
             {captions}
           </h3>
           <span
-            className={`flex h-5.5 w-5.5 flex-col items-center justify-center rounded bg-primary sm:h-7 sm:w-7 sm:rounded-md lg:h-9 lg:w-9 xl:h-10 xl:w-10 ${comingSoon ? 'opacity-0' : 'opacity-100'}`}
+            className={`flex h-5.5 w-5.5 flex-col items-center justify-center rounded bg-primary group-hover:bg-[#ED4F35] sm:h-7 sm:w-7 sm:rounded-md lg:h-9 lg:w-9 xl:h-10 xl:w-10 ${comingSoon ? 'opacity-0' : 'opacity-100'} transition-[background, opacity] duration-300 ease-in-out`}
           >
             <svg
               className="h-4.5 w-4.5 sm:h-[34px] sm:w-[34px]"

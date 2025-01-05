@@ -239,11 +239,15 @@
 }
 
 /* @moon-rocket */
-.ca25MoonRckt::before {
+.ca25MoonRckt::before,
+.ca25MoonRckt::after {
   @apply content-[''];
-  @apply inline-block bg-[url('/assets/images/backdrop/ca25Moon-Rocket_Left.svg')];
   @apply bg-cover bg-center bg-no-repeat;
   @apply absolute;
+}
+
+.ca25MoonRckt::before {
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25Moon-Rocket_Left.svg')];
   @apply xs:-left-[117px] xs:-top-[15px] -left-[159px] -top-[27px] bottom-auto right-auto z-px;
   @apply sm:-left-[337px] sm:-top-[63px];
   @apply lg:-left-[447px] lg:-top-[79px];
@@ -254,10 +258,7 @@
   @apply xl:h-[484.49px] xl:w-[799.23px];
 }
 .ca25MoonRckt::after {
-  @apply content-[''];
   @apply inline-block bg-[url('/assets/images/backdrop/ca25Moon-Rocket_Right.svg')];
-  @apply bg-cover bg-center bg-no-repeat;
-  @apply absolute;
   @apply xs:-right-[137px] xs:-top-[33px] -right-[129px] -top-[65px] bottom-auto left-auto z-px;
   @apply sm:-right-[311px] sm:-top-[127px];
   @apply lg:-right-[407px] lg:-top-[171px];
@@ -272,4 +273,57 @@
 .ca25BckCover-Speakers {
   @apply bg-[url('/assets/images/speakers/ca25BckCover-Speakers.svg')];
   @apply bg-cover bg-center object-cover object-center;
+}
+
+/* @backdrop(partnership) */
+.ca25MoonPartnershipLayouts-Top::before,
+.ca25MoonPartnershipLayouts-Top::after,
+.ca25MoonPartnershipLayouts-Bottom::before,
+.ca25MoonPartnershipLayouts-Bottom::after {
+  @apply content-[''];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute block;
+  @apply pointer-events-none z-[5] select-none;
+}
+.ca25MoonPartnershipLayouts-Top::before {
+  @apply bg-[url('/assets/images/partnership/ca25MoonPartnership-1.svg')];
+  @apply -left-6 -top-4 bottom-auto right-auto;
+  @apply sm:-left-[45px] sm:-top-[17px];
+  @apply lg:-top-[19px];
+  @apply xl:-left-[60px] xl:-top-[29px];
+  @apply h-[112px] w-[116px];
+  @apply sm:h-[149px] sm:w-[155.97px];
+  @apply lg:h-[176px] lg:w-[182.97px];
+  @apply xl:h-[199px] xl:w-[206.97px];
+}
+.ca25MoonPartnershipLayouts-Top::after {
+  @apply bg-[url('/assets/images/partnership/ca25MoonPartnership-2.svg')];
+  @apply -right-6 -top-4 bottom-auto left-auto;
+  @apply sm:-right-[29px] sm:-top-[29px] lg:-right-[36px];
+  @apply h-[95px] w-[95px];
+  @apply sm:h-[133px] sm:w-[132.97px];
+  @apply lg:h-[153px] lg:w-[152.97px];
+  @apply xl:h-[159px] xl:w-[159.51px];
+}
+.ca25MoonPartnershipLayouts-Bottom::before {
+  @apply bg-[url('/assets/images/partnership/ca25MoonPartnership-3.svg')];
+  @apply -bottom-1 -left-6 right-auto top-auto;
+  @apply sm:-bottom-[14px] sm:-left-[40px];
+  @apply lg:-bottom-[19px] lg:-left-[25px];
+  @apply xl:-left-[14px] xl:bottom-[119px];
+  @apply h-[91px] w-[86px];
+  @apply sm:h-[136px] sm:w-[128.97px];
+  @apply lg:h-[149px] lg:w-[141.41px];
+  @apply xl:h-[163px] xl:w-[153.41px];
+}
+.ca25MoonPartnershipLayouts-Bottom::after {
+  @apply bg-[url('/assets/images/partnership/ca25MoonPartnership-4.svg')];
+  @apply -bottom-[5px] -right-6 left-auto top-auto;
+  @apply sm:-bottom-[8px] sm:-right-[29px];
+  @apply lg:-bottom-[17px] lg:-right-[50px];
+  @apply xl:-bottom-[43px] xl:-right-[52px];
+  @apply h-[124px] w-[115px];
+  @apply sm:h-[173.21px] sm:w-[170.8px];
+  @apply lg:h-[233.21px] lg:w-[250.8px];
+  @apply xl:h-[321.21px] xl:w-[345.8px];
 }
