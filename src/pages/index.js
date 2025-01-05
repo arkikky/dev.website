@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { toast } from 'sonner';
 import getConfig from 'next/config';
 import dynamic from 'next/dynamic';
+import Script from 'next/script';
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
@@ -180,10 +181,82 @@ const Home = ({ mode, result, products }) => {
     }, 700);
   };
 
+  // @schema(homepage)
+  const schmaApp = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${publicRuntimeConfig?.siteUrl}#website`,
+        url: `${publicRuntimeConfig?.siteUrl}`,
+        name: `${publicRuntimeConfig?.siteAppName}`,
+        alternateName: `${publicRuntimeConfig?.siteAppName}`,
+        description: `${publicRuntimeConfig?.siteDesc}`,
+        potentialAction: [
+          {
+            '@type': 'SearchAction',
+            target: 'https://coinfest.asia/?s={search_term_string}',
+            'query-input': 'required name=search_term_string',
+          },
+        ],
+        inLanguage: 'en-US',
+      },
+      {
+        '@type': 'ImageObject',
+        '@id': `${publicRuntimeConfig?.siteUrl}/#primaryimage`,
+        inLanguage: 'en-US',
+        url: `${process.env.NEXT_PUBLIC_UPLOAD}uploads/favicon_512x512_90ee34e190.png`,
+        width: 1200,
+        height: 628,
+        caption: `${publicRuntimeConfig?.siteAppName} | ${publicRuntimeConfig?.siteDesc}`,
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${publicRuntimeConfig?.siteUrl}/#webpage`,
+        url: `${publicRuntimeConfig?.siteUrl}`,
+        name: `${publicRuntimeConfig?.siteAppName}`,
+        isPartOf: {
+          '@id': `${publicRuntimeConfig?.siteUrl}#website`,
+        },
+        primaryImageOfPage: {
+          '@id': `${publicRuntimeConfig?.siteUrl}#primaryimage`,
+        },
+        datePublished: '2025-01-07T12:45:42+00:00',
+        dateModified: '2025-01-07T12:14:35+00:00',
+        description: `${publicRuntimeConfig?.siteDesc}`,
+        inLanguage: 'en-US',
+      },
+    ],
+  };
+
+  // @schema(brand logo)
+  const schmaBrandLogo = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Coinfest Asia',
+    url: `${publicRuntimeConfig?.siteUrl}`,
+    logo: `${process.env.NEXT_PUBLIC_UPLOAD}uploads/favicon_512x512_90ee34e190.png`,
+    sameAs: [
+      `https://www.instagram.com/coinfest.asia/`,
+      `https://twitter.com/coinfestasia`,
+      `https://www.linkedin.com/showcase/coinfest/`,
+    ],
+  };
+
   return (
     <>
       {/* @head */}
       <HeadGraphSeo />
+
+      {/* @script(schema) */}
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schmaApp) }}
+      />
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schmaBrandLogo) }}
+      />
 
       {/* @main */}
       <Main className="relative overflow-hidden pb-16 sm:pb-24">

@@ -6,9 +6,9 @@ import Head from 'next/head';
 const { publicRuntimeConfig } = getConfig();
 
 const HeadGraphSeo = ({
-  title = publicRuntimeConfig.siteTitle,
-  desc = publicRuntimeConfig.siteDesc,
-  siteUrl = publicRuntimeConfig.siteUrl,
+  title = publicRuntimeConfig?.siteTitle,
+  desc = publicRuntimeConfig?.siteDesc,
+  siteUrl = publicRuntimeConfig?.siteUrl,
   siteThunbnails = `${process.env.NEXT_PUBLIC_UPLOAD}uploads/ca25_Thumbnails_Full_The_Moon_64a7262311.png`,
   otherPage = false,
 }) => {
@@ -18,7 +18,7 @@ const HeadGraphSeo = ({
       <Head>
         <title>{`${
           otherPage === true
-            ? title + ' | ' + publicRuntimeConfig.siteTitle
+            ? `${title} | ${publicRuntimeConfig?.siteTitle}`
             : title
         }`}</title>
         <meta name="title" content={title} />
