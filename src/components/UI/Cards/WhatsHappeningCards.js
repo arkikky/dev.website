@@ -9,6 +9,7 @@ const { publicRuntimeConfig } = getConfig();
 import ImagesLoads from '@components/ImagesLoads';
 
 const WhatsHappeningCards = ({
+  keyID,
   url,
   images,
   captions = '',
@@ -18,10 +19,11 @@ const WhatsHappeningCards = ({
   return (
     <>
       <Link
-        className="group relative flex flex-col items-start justify-start overflow-clip rounded-lg border border-solid border-white/35 bg-black-900/[0.24] transition-[border] duration-300 ease-in-out hover:border-primary sm:rounded-2xl sm:border-2 lg:rounded-2xl"
+        className="group relative col-span-2 flex flex-col items-start justify-start overflow-clip rounded-lg border border-solid border-white/35 bg-black-900/[0.24] transition-[border] duration-300 ease-in-out hover:border-primary sm:col-span-6 sm:rounded-2xl sm:border-2 lg:col-span-4 lg:rounded-2xl"
         prefetch={true}
         href={url ?? '/'}
         title={`${publicRuntimeConfig?.siteAppName} ${captions}`}
+        key={keyID}
       >
         <div className="relative h-[89px] w-full shrink-0 overflow-clip sm:h-[173px] lg:h-[165px] xl:h-[186px]">
           <ImagesLoads

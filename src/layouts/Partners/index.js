@@ -7,8 +7,12 @@ import StarryBackground from '@components/UI/Background/StarryBackground';
 const PartnerCards = dynamic(
   () => import('@components/UI/Cards/PartnerCards'),
   {
-    loading: () => '',
-    ssr: false,
+    loading: () => (
+      <div className="col-span-2 flex h-[400px] w-full items-center justify-center bg-red-500">
+        kokokoko
+      </div>
+    ),
+    ssr: true,
   }
 );
 
@@ -16,7 +20,7 @@ const Partners = ({ mode, result = [] }) => {
   return (
     <>
       <section className="ca25Partners relative bg-[linear-gradient(-2deg,#1F1F1F_35%,#005AFF_63%,#7AB1F9_81%,#A0CCF7_100%)] pb-20 pt-[122px]">
-        <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
+        <div className="ca25PointerNone absolute inset-x-0 bottom-auto top-0 z-px h-[425px]">
           <StarryBackground starCount={90} />
         </div>
         <Container className={'relative z-[2]'}>
@@ -29,10 +33,10 @@ const Partners = ({ mode, result = [] }) => {
                 ['E', 'O', 'A'].includes(chr) ? <span key={i}>{chr}</span> : chr
               )}
           </h2>
-          <div className="relative w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 sm:gap-x-3 sm:gap-y-3 lg:grid-cols-10 xl:gap-x-3.5 xl:gap-y-3.5">
+          <div className="relative w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 sm:gap-x-3 sm:gap-y-3 lg:grid-cols-10 xl:gap-x-4 xl:gap-y-4">
             {result?.map((rslt, i) => (
               <PartnerCards
-                id={`ca25Partners${i}`}
+                keyID={`ca25Partners${i}`}
                 {...rslt}
                 key={`ca25Partners${i}`}
               />

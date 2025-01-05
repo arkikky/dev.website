@@ -8,7 +8,7 @@ const { publicRuntimeConfig } = getConfig();
 // @components
 import ImagesLoads from '@components/ImagesLoads';
 
-const PartnerCards = ({ id, url, images, captions = '', openUrl }) => {
+const PartnerCards = ({ keyID, url, images, captions = '', openUrl }) => {
   return (
     <>
       {openUrl === true ? (
@@ -19,7 +19,7 @@ const PartnerCards = ({ id, url, images, captions = '', openUrl }) => {
           title={`${publicRuntimeConfig?.siteAppName} ${captions}`}
           target="_blank"
           rel="noopener noreferrer"
-          key={id}
+          key={keyID}
         >
           <ImagesLoads
             classname={
@@ -37,7 +37,7 @@ const PartnerCards = ({ id, url, images, captions = '', openUrl }) => {
           prefetch={true}
           href={url}
           title={`${publicRuntimeConfig?.siteAppName} ${captions}`}
-          key={id}
+          key={keyID}
         >
           <ImagesLoads
             classname={

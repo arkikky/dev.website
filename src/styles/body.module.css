@@ -50,6 +50,10 @@ button {
   box-shadow: none;
   @apply focus:outline-none focus:ring-0 focus-visible:outline-none;
 }
+.ca25PointerNone {
+  @apply pointer-events-none select-none;
+  
+}
 
 /* @line-break */
 .line-break-anywhere {
