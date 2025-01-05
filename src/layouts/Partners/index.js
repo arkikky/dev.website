@@ -4,17 +4,7 @@ import dynamic from 'next/dynamic';
 // @components
 import Container from '@components/Container';
 import StarryBackground from '@components/UI/Background/StarryBackground';
-const PartnerCards = dynamic(
-  () => import('@components/UI/Cards/PartnerCards'),
-  {
-    loading: () => (
-      <div className="col-span-2 flex h-[400px] w-full items-center justify-center bg-red-500">
-        kokokoko
-      </div>
-    ),
-    ssr: true,
-  }
-);
+const PartnerCards = dynamic(() => import('@components/UI/Cards/PartnerCards'));
 
 const Partners = ({ mode, result = [] }) => {
   return (
@@ -33,7 +23,7 @@ const Partners = ({ mode, result = [] }) => {
                 ['E', 'O', 'A'].includes(chr) ? <span key={i}>{chr}</span> : chr
               )}
           </h2>
-          <div className="relative w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 sm:gap-x-3 sm:gap-y-3 lg:grid-cols-10 xl:gap-x-4 xl:gap-y-4">
+          <div className="relative w-full grid-cols-4 gap-x-3 gap-y-3 supports-grid:grid sm:grid-cols-12 sm:gap-x-3 sm:gap-y-3 lg:grid-cols-10 xl:gap-x-4 xl:gap-y-4">
             {result?.map((rslt, i) => (
               <PartnerCards
                 keyID={`ca25Partners${i}`}

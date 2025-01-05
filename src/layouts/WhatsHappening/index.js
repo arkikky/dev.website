@@ -1,9 +1,10 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
+import dynamic from 'next/dynamic';
 
 // @components
 import Container from '@components/Container';
 import StarryBackground from '@components/UI/Background/StarryBackground';
-const WhatsHappeningCards = lazy(
+const WhatsHappeningCards = dynamic(
   () => import('@components/UI/Cards/WhatsHappeningCards')
 );
 
@@ -33,16 +34,11 @@ const WhatsHappening = ({ mode, result = [] }) => {
           </h2>
           <div className="relative w-full min-w-full max-w-full grid-cols-4 gap-x-3 gap-y-3 supports-grid:grid sm:grid-cols-12 sm:gap-x-4 sm:gap-y-4 lg:grid-cols-12">
             {result?.map((rslt, i) => (
-              <Suspense
-                fallback={<div>Loading...</div>}
+              <WhatsHappeningCards
+                keyID={`caWhatsHappening${i}`}
+                {...rslt}
                 key={`caWhatsHappening${i}`}
-              >
-                <WhatsHappeningCards
-                  keyID={`caWhatsHappening${i}`}
-                  {...rslt}
-                  key={`caWhatsHappening${i}`}
-                />
-              </Suspense>
+              />
             ))}
           </div>
         </Container>

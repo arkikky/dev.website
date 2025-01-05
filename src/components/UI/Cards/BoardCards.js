@@ -13,7 +13,7 @@ const BoardCards = ({ count, title, children }) => {
       if (rfCounter?.current) {
         gsap.to(rfCounter?.current, {
           innerText: count,
-          duration: 2,
+          duration: 1.7,
           scrollTrigger: {
             trigger: rfCounter?.current,
             start: 'top center+=195',

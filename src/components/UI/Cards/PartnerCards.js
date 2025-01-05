@@ -13,7 +13,7 @@ const PartnerCards = ({ keyID, url, images, captions = '', openUrl }) => {
     <>
       {openUrl === true ? (
         <Link
-          className={`relative col-span-2 block w-full overflow-clip rounded-[10px] border border-solid border-white/55 transition-[border] duration-300 ease-in-out hover:border-[#ED4F35] sm:col-span-3 sm:h-[123px] sm:rounded-xl sm:border-2 lg:col-span-2 lg:h-[126px] xl:h-[178px]`}
+          className={`xs:h-[122px] relative col-span-2 block h-[132px] w-full overflow-clip rounded-[10px] border border-solid border-white/55 transition-[border] duration-300 ease-in-out hover:border-[#ED4F35] sm:col-span-3 sm:h-[123px] sm:rounded-xl sm:border-2 lg:col-span-2 lg:h-[126px] xl:h-[178px]`}
           prefetch={true}
           href={url}
           title={`${publicRuntimeConfig?.siteAppName} ${captions}`}
@@ -33,7 +33,7 @@ const PartnerCards = ({ keyID, url, images, captions = '', openUrl }) => {
         </Link>
       ) : (
         <Link
-          className={`relative col-span-2 block w-full overflow-clip rounded-[10px] border border-solid border-white/55 transition-[border] duration-300 ease-in-out hover:border-[#ED4F35] sm:col-span-3 sm:h-[123px] sm:rounded-xl sm:border-2 lg:col-span-2 lg:h-[126px] xl:h-[178px]`}
+          className={`relative col-span-2 block h-[122px] w-full overflow-clip rounded-[10px] border border-solid border-white/55 transition-[border] duration-300 ease-in-out hover:border-[#ED4F35] sm:col-span-3 sm:h-[123px] sm:rounded-xl sm:border-2 lg:col-span-2 lg:h-[126px] xl:h-[178px]`}
           prefetch={true}
           href={url}
           title={`${publicRuntimeConfig?.siteAppName} ${captions}`}

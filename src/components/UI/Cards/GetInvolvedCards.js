@@ -8,14 +8,15 @@ const { publicRuntimeConfig } = getConfig();
 // @components
 import ImagesLoads from '@components/ImagesLoads';
 
-const GetInvolvedCards = ({ url, images, title = '' }) => {
+const GetInvolvedCards = ({ keyID, url, images, title = '' }) => {
   return (
     <>
       <Link
-        className="ca25Overflay-Backdrop group relative flex h-[115px] w-full flex-col items-start justify-start overflow-clip rounded-lg border border-solid border-white/55 bg-black-900/[0.24] transition-[border] duration-300 ease-in-out hover:border-primary sm:h-[155px] sm:rounded-2xl sm:border-2 lg:h-[185px] xl:h-[247px]"
+        className="ca25Overflay-Backdrop group relative col-span-2 flex h-[115px] w-full flex-col items-start justify-start overflow-clip rounded-lg border border-solid border-white/55 bg-black-900/[0.24] transition-[border] duration-300 ease-in-out hover:border-primary sm:col-span-2 sm:h-[155px] sm:rounded-2xl sm:border-2 lg:col-span-2 lg:h-[185px] xl:h-[247px]"
         prefetch={true}
         href={url ?? '/'}
         title={`${publicRuntimeConfig?.siteAppName} ${title}`}
+        key={keyID}
       >
         <ImagesLoads
           classname={
@@ -32,7 +33,7 @@ const GetInvolvedCards = ({ url, images, title = '' }) => {
           </h3>
           <span className="flex h-5.5 w-5.5 flex-col items-center justify-center rounded bg-primary sm:h-7 sm:w-7 sm:rounded-md lg:h-9 lg:w-9 xl:h-10 xl:w-10">
             <svg
-              className="h-4.5 w-4.5 sm:h-[34px] sm:w-[34px]"
+              className="ca25PointerNone h-4.5 w-4.5 shrink-0 sm:h-[34px] sm:w-[34px]"
               viewBox="0 0 34 34"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
