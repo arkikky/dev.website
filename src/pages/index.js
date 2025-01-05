@@ -2,7 +2,6 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { toast } from 'sonner';
 import getConfig from 'next/config';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
@@ -13,18 +12,13 @@ import { addItemToCart } from '@reduxState/slices';
 
 // @lib/controller & helper
 import { getFetch, getFetchUrl } from '@lib/controller/API';
-import {
-  getCombineMerged,
-  splitIntoGroups,
-  encodeData,
-} from '@lib/helper/Configuration';
+import { getCombineMerged, encodeData } from '@lib/helper/Configuration';
 
 // @components
 import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
 import ToastAlerts from '@components/UI/Alerts/ToastAlert';
-import StarryBackground from '@components/UI/Background/StarryBackground';
 import TicketProductsSkeleton from '@components/Skeleton/Products/TicketProducts';
 const TicketProducts = dynamic(() => import('@components/UI/TicketProducts'), {
   loading: () => <TicketProductsSkeleton />,

@@ -59,27 +59,29 @@
   @apply absolute inset-x-0 inset-y-0;
   @apply -z-px;
 }
-.ca25BckMemeItems::before {
+.ca25BckMemeItems::before,
+.ca25BckMemeItems::after {
   @apply content-[''];
-  @apply block bg-[url('/assets/images/backdrop/ca25MemeItems_Left.svg')];
+  @apply absolute;
   @apply bg-cover bg-center bg-no-repeat;
-  @apply absolute -left-[59px] -top-[11px] bottom-auto right-auto sm:-left-[49px] sm:-top-[37px] lg:-left-[61px] lg:-top-[5px] xl:-left-[85px] xl:top-[31px];
+  @apply -z-px;
+  @apply pointer-events-none select-none;
+}
+.ca25BckMemeItems::before {
+  @apply block bg-[url('/assets/images/backdrop/ca25MemeItems_Left.svg')];
+  @apply -left-[59px] -top-[11px] bottom-auto right-auto sm:-left-[49px] sm:-top-[37px] lg:-left-[61px] lg:-top-[5px] xl:-left-[85px] xl:top-[31px];
   @apply h-[126.14px] w-[122.68px];
   @apply sm:h-[146.14px] sm:w-[142.68px];
   @apply lg:h-[176.14px] lg:w-[172.68px];
   @apply xl:h-[226.14px] xl:w-[242.68px];
-  @apply -z-px;
 }
 .ca25BckMemeItems::after {
-  @apply content-[''];
   @apply block bg-[url('/assets/images/backdrop/ca25MemeItems_Right.svg')];
-  @apply bg-cover bg-center bg-no-repeat;
-  @apply absolute -right-[63px] bottom-[109px] left-auto top-auto sm:-right-[69px] sm:bottom-[101px] lg:-right-[69px] lg:bottom-[115px] xl:-right-[103px] xl:bottom-[81px];
+  @apply -right-[63px] bottom-[109px] left-auto top-auto sm:-right-[69px] sm:bottom-[101px] lg:-right-[69px] lg:bottom-[115px] xl:-right-[103px] xl:bottom-[81px];
   @apply h-[116.14px] w-[122.68px];
   @apply sm:h-[156.14px] sm:w-[162.68px];
   @apply lg:h-[186.14px] lg:w-[192.68px];
   @apply xl:h-[247.34px] xl:w-[256.18px];
-  @apply -z-px;
 }
 
 /* @circle-portal */
@@ -92,6 +94,7 @@
   @apply xl:h-[805px] xl:w-[1228px];
   @apply opacity-100 sm:opacity-35;
   @apply -z-px;
+  @apply pointer-events-none select-none;
 }
 
 /* @blue-moon-special */
@@ -148,11 +151,17 @@
 }
 
 /* @blue-moon-special(rocket) */
-.ca25BckBlueMoon-Speacial_Rckt::before {
+.ca25BckBlueMoon-Speacial_Rckt::before,
+.ca25BckBlueMoon-Speacial_Rckt::after {
   @apply content-[''];
-  @apply inline-block bg-[url('/assets/images/backdrop/ca25BlueMoonSpecial-LeftRocket.svg')];
+  @apply absolute;
   @apply bg-cover bg-center bg-no-repeat;
-  @apply absolute right-auto top-auto;
+  @apply pointer-events-none select-none;
+  @apply z-[4];
+}
+.ca25BckBlueMoon-Speacial_Rckt::before {
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25BlueMoonSpecial-LeftRocket.svg')];
+  @apply right-auto top-auto;
   @apply xs:bottom-[25px] bottom-[79px];
   @apply sm:-bottom-[25px] lg:-bottom-[149px] xl:-bottom-[223px];
   @apply xs:-left-[143px] -left-[133px];
@@ -163,13 +172,10 @@
   @apply xl:h-[448.03px] xl:w-[752.02px];
   @apply transform;
   @apply xs:-rotate-[5deg] -rotate-[9deg] sm:-rotate-[11deg] xl:-rotate-[5deg];
-  @apply z-[4];
 }
 .ca25BckBlueMoon-Speacial_Rckt::after {
-  @apply content-[''];
   @apply inline-block bg-[url('/assets/images/backdrop/ca25BlueMoonSpecial-RightRocket.svg')];
-  @apply bg-cover bg-center bg-no-repeat;
-  @apply absolute left-auto top-auto;
+  @apply left-auto top-auto;
   @apply xs:bottom-[31px] bottom-[81px];
   @apply sm:-bottom-[21px] lg:-bottom-[127px] xl:-bottom-[253px];
   @apply xs:-right-[147px] -right-[137px];
@@ -180,7 +186,6 @@
   @apply xl:h-[447.39px] xl:w-[745.08px];
   @apply transform;
   @apply rotate-[5deg] sm:rotate-[11deg] lg:rotate-[5deg] xl:rotate-[3deg];
-  @apply z-[4];
 }
 
 /* @blue-moon */

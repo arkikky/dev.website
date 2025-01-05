@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 
+// @lib/controller & helper
+import { truncateText } from '@lib/helper/Configuration';
+
 // @components
 import LoadStreams from '../Loading/LoadStreams';
 
@@ -111,16 +114,16 @@ const SpeakerCards = ({
         {/* @content */}
         <div className="mt-4 flex h-full max-h-[61px] min-h-[61px] w-full flex-col items-start justify-start rounded-xl bg-transparent sm:max-h-[84px] sm:min-h-[84px] sm:pb-4">
           {useHeading === 'h2' ? (
-            <h2 className="line-break-anywhere line-clamp-1 text-base font-medium text-white group-hover:underline sm:text-lg lg:text-xl">
+            <h2 className="line-break-anyware line-clamp-1 text-left text-base font-medium text-white group-hover:underline sm:text-lg lg:text-xl">
               {name}
             </h2>
           ) : (
-            <h3 className="line-break-anywhere line-clamp-1 text-base font-medium text-white group-hover:underline sm:text-lg lg:text-xl">
+            <h3 className="line-break-anyware line-clamp-1 text-left text-base font-medium text-white group-hover:underline sm:text-lg lg:text-xl">
               {name}
             </h3>
           )}
           {position && (
-            <p className="line-break-anywhere mt-0.5 line-clamp-1 text-sm font-normal text-white sm:mt-1 sm:text-base">
+            <p className="line-break-anyware mt-0.5 line-clamp-1 text-left text-sm font-normal text-white sm:mt-1 sm:text-base">
               {position}
             </p>
           )}

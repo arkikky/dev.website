@@ -5,7 +5,7 @@ const FaqCards = ({ list }) => {
     <>
       <div
         id="ca25FAQ_AccordionGeneral"
-        className="hs-accordion-group flex flex-col gap-y-4 pt-6 lg:pt-12 xl:pt-15"
+        className="hs-accordion-group col-span-full flex flex-col gap-y-4 pt-6 lg:pt-12 xl:pt-15"
       >
         {list?.slice(0, 4)?.map((rslt, i) => (
           <div

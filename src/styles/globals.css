@@ -6,7 +6,7 @@
 /* @add(Preline) */
 @import url('/node_modules/preline/dist/preline.css');
 
-@import url('./body.module');
+@import url('./body.module.css');
 @import url('./fonts.module.css');
 
 @import url('./components/animate.module.css');

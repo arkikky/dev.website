@@ -141,11 +141,11 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
                     receive them within 24 hours, please contact{' '}
                     <Link
                       href="mailto:support@coinfest.asia"
-                      title="Link to contact Coinfest Asia 2025 support"
+                      title="Coinfest Asia 2025 Email Support"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      support@coinfest.asia
+                      {`support@coinfest.asia`}
                     </Link>
                   </p>
                 </div>
@@ -160,7 +160,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
                   href="/"
                 >
                   <Badge
-                    type="light"
+                    type="dark"
                     icons={
                       <svg
                         className="h-4.5 w-4.5 shrink-0"
@@ -187,7 +187,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
 
             {/* @sidebar(right) */}
             <div className="col-span-full pr-0 xl:col-span-6 xl:pl-6">
-              <div className="bg-gradient-primary45 mt-4 flex flex-col items-start rounded-2xl px-2 pb-2 pt-2 sm:mt-0 sm:pt-4">
+              <div className="mt-4 flex flex-col items-start rounded-2xl px-2 pb-2 pt-2 bg-gradient-primary45 sm:mt-0 sm:pt-4">
                 <div className="mb-3 mt-1.5 flex w-full flex-row items-start justify-between px-2 sm:mb-4.5 sm:mt-1 sm:px-4">
                   <div className="flex w-max">
                     <h2 className="text-sm text-white">{'Order ID : '}</h2>
@@ -287,7 +287,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
                   href="/"
                 >
                   <Badge
-                    type="light"
+                    type="dark"
                     icons={
                       <svg
                         className="h-4.5 w-4.5 shrink-0"

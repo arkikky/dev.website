@@ -50,3 +50,8 @@ button {
   box-shadow: none;
   @apply focus:outline-none focus:ring-0 focus-visible:outline-none;
 }
+
+/* @line-break */
+.line-break-anywhere {
+  line-break: anywhere;
+}

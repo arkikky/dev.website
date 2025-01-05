@@ -1,9 +1,16 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 
 // @components
 import Container from '@components/Container';
 import StarryBackground from '@components/UI/Background/StarryBackground';
-import PartnerCards from '@components/UI/Cards/PartnerCards';
+const PartnerCards = dynamic(
+  () => import('@components/UI/Cards/PartnerCards'),
+  {
+    loading: () => '<p>Loading</p>',
+    ssr: false,
+  }
+);
 
 const Partners = ({ mode, result = [] }) => {
   return (

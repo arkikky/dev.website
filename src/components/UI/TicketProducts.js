@@ -17,6 +17,7 @@ import { useCart } from '@lib/hooks/cart/Cart';
 import { useMethod } from '@lib/hooks/Method';
 
 const TicketProducts = ({
+  useHeading = 'h3',
   data,
   cartProducts = [],
   isLoading,
@@ -121,9 +122,15 @@ const TicketProducts = ({
           ) : null}
           <div className="flex w-full flex-col items-start pb-18 lg:pb-0">
             <div className="relative block w-full">
-              <h2 className="mb-1.5 text-xl font-normal leading-initial sm:mb-2 sm:text-[22px] sm:leading-initial">
-                {data?.name || 'Ticket Products'}
-              </h2>
+              {useHeading === 'h2' ? (
+                <h2 className="mb-1.5 text-xl font-normal leading-initial sm:mb-2 sm:text-[22px] sm:leading-initial">
+                  {data?.name || 'Ticket Products'}
+                </h2>
+              ) : (
+                <h3 className="mb-1.5 text-xl font-normal leading-initial sm:mb-2 sm:text-[22px] sm:leading-initial">
+                  {data?.name || 'Ticket Products'}
+                </h3>
+              )}
               <div className="inline-flex items-start space-x-2.5">
                 <span className="text-[32px] font-bold leading-[38px]">
                   {currencyConverter(data?.priceSale ?? data?.price)}

@@ -27,9 +27,7 @@ const FAQ = ({ mode, result = [] }) => {
 
             <div className="col-span-full col-start-1 sm:col-span-10 sm:col-start-2 lg:col-span-8 lg:col-start-2">
               <div className="w-full grid-cols-4 gap-x-3 gap-y-3 supports-grid:grid sm:gap-x-4 sm:gap-y-4 lg:gap-x-6 lg:gap-y-6">
-                <div className="col-span-full">
-                  <FaqCards list={result} />
-                </div>
+                <FaqCards list={result} />
               </div>
             </div>
           </div>

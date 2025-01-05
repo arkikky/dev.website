@@ -19,28 +19,33 @@ export default function handler(req, res) {
         url: '/',
         images: '/assets/images/speakers/as-speaker/ca25Speakers_1.png',
         name: 'Yat Siu',
-        position: 'Founder',
+        position: 'Co-Founder and Executive Chairman of Animoca Brands',
+        shortDesc: `Meet Yat Siu, Co-founder and executive chairman of Animoca Brands, a powerhouse in blockchain and gaming pioneering virtual asset property rights.`,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_1.svg',
       },
       {
         url: '/',
         images: '/assets/images/speakers/as-speaker/ca25Speakers_2.png',
         name: 'Yoann Franck Turpin',
-        position: 'Co-Founder',
+        position: 'Co-Founder at Wintermute',
+        shortDesc: `Yoann, co-founder of Wintermute, a top crypto market maker. With a background in derivatives trading and 14+ years of entrepreneurship, he's driving Asian growth from Singapore.`,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_2.svg',
       },
       {
         url: '/',
         images: '/assets/images/speakers/as-speaker/ca25Speakers_3.png',
         name: 'Dominic Williams',
-        position: 'CEO & Founder',
+        position:
+          'Founder & Chief Scientist at DFINITY Foundation (Internet Computer)',
+        shortDesc: `Dominic Williams, Founder and Chief Scientist at DFINITY Foundation, is a leading figure in crypto theory and distributed systems. His innovations in Threshold Relay, PSC chains, and Sybil Resistance have advanced blockchain technology significantly.`,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_3.svg',
       },
       {
         url: '/',
         images: '/assets/images/speakers/as-speaker/ca25Speakers_4.png',
         name: 'Eunice Giarta',
-        position: 'Co-Founder',
+        position: 'Co-Founder, COO at MONAD',
+        shortDesc: `Eunice is Co-founder of Monad Labs, building the Monad blockchain to usher in a new and efficient design space for EVM developers and users alike.`,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_4.svg',
       },
       {
@@ -48,6 +53,7 @@ export default function handler(req, res) {
         images: '/assets/images/speakers/as-speaker/ca25Speakers_5.png',
         name: 'Bobby Lee',
         position: 'CEO & Founder',
+        shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_5.svg',
       },
       {
@@ -55,6 +61,7 @@ export default function handler(req, res) {
         images: '/assets/images/speakers/as-speaker/ca25Speakers_6.png',
         name: 'Thomas France',
         position: 'Co-Founder',
+        shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_6.svg',
       },
       {
@@ -62,6 +69,7 @@ export default function handler(req, res) {
         images: '/assets/images/speakers/as-speaker/ca25Speakers_7.png',
         name: 'Amy Zhang',
         position: 'Head of APAC',
+        shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_7.svg',
       },
       {
@@ -69,6 +77,7 @@ export default function handler(req, res) {
         images: '/assets/images/speakers/as-speaker/ca25Speakers_8.png',
         name: 'Nitin Jain',
         position: 'Vice President',
+        shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_8.svg',
       },
       {
@@ -76,6 +85,7 @@ export default function handler(req, res) {
         images: '/assets/images/speakers/as-speaker/ca25Speakers_9.png',
         name: 'Rene Michau',
         position: 'Global Head',
+        shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_9.svg',
       },
       {
@@ -83,6 +93,7 @@ export default function handler(req, res) {
         images: '/assets/images/speakers/as-speaker/ca25Speakers_10.png',
         name: 'Peter DeMeo',
         position: 'CPO',
+        shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_10.svg',
       },
       {
@@ -90,6 +101,7 @@ export default function handler(req, res) {
         images: '/assets/images/speakers/as-speaker/ca25Speakers_11.png',
         name: 'Lennix Lai',
         position: 'CEO & Founder',
+        shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_11.svg',
       },
       {
@@ -97,6 +109,7 @@ export default function handler(req, res) {
         images: '/assets/images/speakers/as-speaker/ca25Speakers_12.png',
         name: 'Nischint Sanghavi',
         position: 'Head of Digital Currencies',
+        shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_12.svg',
       },
     ],

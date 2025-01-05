@@ -46,6 +46,14 @@ export function getDOMParseCount(t) {
   return plainText.trim().length;
 }
 
+// @truncate(text)
+export function truncateText(t, maxLength) {
+  if (t?.length <= maxLength) {
+    return t;
+  }
+  return t?.slice(0, maxLength) + '...';
+}
+
 // @split(string)
 export function getSplitString(d) {
   const getString = d;
