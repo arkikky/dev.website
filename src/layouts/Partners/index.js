@@ -7,7 +7,7 @@ import StarryBackground from '@components/UI/Background/StarryBackground';
 const PartnerCards = dynamic(
   () => import('@components/UI/Cards/PartnerCards'),
   {
-    loading: () => '<p>Loading</p>',
+    loading: () => '',
     ssr: false,
   }
 );
@@ -31,9 +31,11 @@ const Partners = ({ mode, result = [] }) => {
           </h2>
           <div className="relative w-full grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 sm:gap-x-3 sm:gap-y-3 lg:grid-cols-10 xl:gap-x-3.5 xl:gap-y-3.5">
             {result?.map((rslt, i) => (
-              <div key={i} className="col-span-2 sm:col-span-3 lg:col-span-2">
-                <PartnerCards {...rslt} />
-              </div>
+              <PartnerCards
+                id={`ca25Partners${i}`}
+                {...rslt}
+                key={`ca25Partners${i}`}
+              />
             ))}
           </div>
         </Container>

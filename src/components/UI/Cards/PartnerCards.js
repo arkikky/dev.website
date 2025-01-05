@@ -8,17 +8,18 @@ const { publicRuntimeConfig } = getConfig();
 // @components
 import ImagesLoads from '@components/ImagesLoads';
 
-const PartnerCards = ({ url, images, captions = '', openUrl }) => {
+const PartnerCards = ({ id, url, images, captions = '', openUrl }) => {
   return (
     <>
       {openUrl === true ? (
         <Link
-          className="relative block w-full overflow-clip rounded-[10px] border border-solid border-white/55 transition-[border] duration-300 ease-in-out hover:border-[#ED4F35] sm:h-[123px] sm:rounded-xl sm:border-2 lg:h-[126px] xl:h-[178px]"
+          className={`relative col-span-2 block w-full overflow-clip rounded-[10px] border border-solid border-white/55 transition-[border] duration-300 ease-in-out hover:border-[#ED4F35] sm:col-span-3 sm:h-[123px] sm:rounded-xl sm:border-2 lg:col-span-2 lg:h-[126px] xl:h-[178px]`}
           prefetch={true}
           href={url}
           title={`${publicRuntimeConfig?.siteAppName} ${captions}`}
           target="_blank"
           rel="noopener noreferrer"
+          key={id}
         >
           <ImagesLoads
             classname={
@@ -32,10 +33,11 @@ const PartnerCards = ({ url, images, captions = '', openUrl }) => {
         </Link>
       ) : (
         <Link
-          className="relative block w-full overflow-clip rounded-[10px] border border-solid border-white/55 transition-[border] duration-300 ease-in-out hover:border-[#ED4F35] sm:h-[123px] sm:rounded-xl sm:border-2 lg:h-[126px] xl:h-[178px]"
+          className={`relative col-span-2 block w-full overflow-clip rounded-[10px] border border-solid border-white/55 transition-[border] duration-300 ease-in-out hover:border-[#ED4F35] sm:col-span-3 sm:h-[123px] sm:rounded-xl sm:border-2 lg:col-span-2 lg:h-[126px] xl:h-[178px]`}
           prefetch={true}
           href={url}
           title={`${publicRuntimeConfig?.siteAppName} ${captions}`}
+          key={id}
         >
           <ImagesLoads
             classname={
