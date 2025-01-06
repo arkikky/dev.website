@@ -12,7 +12,12 @@ export function getTotalProduct(quantity, price) {
 export function getTotalCart(data) {
   const total = data?.reduce((acc, i) => {
     const price = i.priceSale ?? i.price ?? 0;
-    return acc + parseInt(price, 10) * (i.quantity || 0);
+    return (
+      acc +
+      (i?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9'
+        ? parseInt(price, 10)
+        : i?.quantity * parseInt(price, 10))
+    );
   }, 0);
   return total;
 }

@@ -15,6 +15,7 @@ const SpeakerCards = ({
   name = 'Speakers',
   position,
   brandCompany,
+  comingSoon,
   children,
 }) => {
   const [ref, inView] = useInView({
@@ -38,7 +39,7 @@ const SpeakerCards = ({
     <>
       <div
         ref={ref}
-        className="group relative flex w-full min-w-full cursor-pointer flex-col items-center justify-center overflow-hidden px-0 group-hover:cursor-pointer"
+        className="group relative flex w-full min-w-full flex-col items-center justify-center overflow-hidden px-0"
       >
         {/* @brand-company */}
         <div className="mx-auto mb-2 flex w-full flex-col items-center justify-center sm:mb-3">
@@ -97,19 +98,21 @@ const SpeakerCards = ({
           ></div>
 
           {/* @btn (modal) */}
-          <span className="absolute bottom-auto left-auto right-3 top-3 z-[24] flex h-8 w-8 scale-75 transform flex-col items-center justify-center rounded-lg bg-white opacity-0 transition-[opacity,transform] duration-300 ease-in-out group-hover:scale-100 group-hover:opacity-100 sm:right-4 sm:top-4 sm:h-10 sm:w-10">
-            <svg
-              className="h-7 w-7 sm:h-[34px] sm:w-[34px]"
-              viewBox="0 0 34 34"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10.6655 21.9202L19.2709 13.3147H11.3655L11.3726 11.3136H22.6863V22.6273H20.6922L20.6852 14.7289L12.0797 23.3344L10.6655 21.9202Z"
-                fill="#000000"
-              />
-            </svg>
-          </span>
+          {!comingSoon ? (
+            <span className="absolute bottom-auto left-auto right-3 top-3 z-[24] flex h-8 w-8 scale-75 transform flex-col items-center justify-center rounded-lg bg-white opacity-0 transition-[opacity,transform] duration-300 ease-in-out group-hover:scale-100 group-hover:opacity-100 sm:right-4 sm:top-4 sm:h-10 sm:w-10">
+              <svg
+                className="h-7 w-7 sm:h-[34px] sm:w-[34px]"
+                viewBox="0 0 34 34"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.6655 21.9202L19.2709 13.3147H11.3655L11.3726 11.3136H22.6863V22.6273H20.6922L20.6852 14.7289L12.0797 23.3344L10.6655 21.9202Z"
+                  fill="#000000"
+                />
+              </svg>
+            </span>
+          ) : null}
         </div>
         {/* @content */}
         <div className="mt-4 flex h-full max-h-[61px] min-h-[61px] w-full flex-col items-start justify-start rounded-xl bg-transparent sm:max-h-[84px] sm:min-h-[84px] sm:pb-4">

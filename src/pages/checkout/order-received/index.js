@@ -53,7 +53,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
           ? isOrderRecived?.order?.coupons[0].amount
           : 0
       ) === 100
-        ? isPrice * isOrderRecived?.customer
+        ? isPrice
         : isPrice * (discntAmount / 100);
 
     setOrderRecived({ ...isOrderRecived, discount: calculatedDiscount });
@@ -74,7 +74,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
         ? isOrderRecived?.order?.coupons[0].amount
         : 0
     ) === 100
-      ? converterTotalCart(isOrderRecived?.discount)
+      ? currencyConverter(isOrderRecived?.discount)
       : currencyConverter(isOrderRecived?.discount);
 
   // @btn(share)

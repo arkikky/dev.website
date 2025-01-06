@@ -19,21 +19,25 @@ export default function handler(req, res) {
         url: '/',
         images: '/assets/images/get-involved/ca24GetInvolved_1.jpg',
         title: 'Speakers',
+        comingSoon: false,
       },
       {
         url: '/',
         images: '/assets/images/get-involved/ca24GetInvolved_2.jpg',
         title: 'Sponsors',
+        comingSoon: false,
       },
       {
         url: '/get-involved',
         images: '/assets/images/get-involved/ca24GetInvolved_3.jpg',
         title: 'Co-Host Program',
+        comingSoon: true,
       },
       {
         url: '/get-involved',
         images: '/assets/images/get-involved/ca24GetInvolved_4.jpg',
         title: 'Partner as Media',
+        comingSoon: true,
       },
     ],
   };

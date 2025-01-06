@@ -13,9 +13,9 @@ const GetInvolved = ({ mode, result = [] }) => {
     <>
       <section className="ca25GetInvolved ca25MoonHalf-Cirlce_Portal relative block w-full">
         <div className="ca25PointerNone absolute inset-x-0 inset-y-0 z-px">
-          <StarryBackground starCount={135} />
+          <StarryBackground starCount={105} />
         </div>
-        <Container className={'relative z-[2] pb-16 pt-24'}>
+        <Container className={'relative z-[2] pb-5 pt-24 sm:pb-16'}>
           <h2
             className={`ca25HeadingTitle w-full text-center font-semibold uppercase sm:font-bold ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-8 text-balance sm:mb-12 lg:mb-12`}
           >

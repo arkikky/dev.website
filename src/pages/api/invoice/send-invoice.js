@@ -67,7 +67,7 @@ export default async function handler(req, res) {
         (product) => product.documentId
       );
       const validProducts = products?.filter((product) =>
-        includedProductIds?.includes(product.documentId)
+        includedProductIds?.includes(product?.documentId)
       );
       const setPrice = validProducts[0]?.priceSale ?? validProducts[0]?.price;
       const totalDiscount = calculateDiscount(setCoupon, isTotalCart, setPrice);
@@ -76,6 +76,7 @@ export default async function handler(req, res) {
         isTotalCart,
         setPrice
       );
+      
       discntAmount = totalDiscount;
       totalOrder = totalAfterDiscount;
     } else {

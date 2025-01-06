@@ -335,7 +335,7 @@ const AttendeeDetailCheckouts = ({
                 ...register(
                   `companyAttndee${items?.attendee}_${items?.group}`,
                   {
-                    required: watch === 'true' ? true : false,
+                    required: watch === true ? true : false,
                     maxLength: 80,
                     pattern: {
                       value: /^(N\/A|[a-zA-Z0-9\s-_]{2,80})$/,

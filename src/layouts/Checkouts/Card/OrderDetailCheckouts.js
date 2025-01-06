@@ -464,14 +464,14 @@ const OrderDetailCheckouts = ({
                             <input
                               className={`w-5 cursor-default border-0 bg-transparent p-0 text-center text-sm font-light text-gray-800 focus:ring-0 focus-visible:outline-none focus-visible:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none`}
                               type="number"
-                              value={gtRslt.quantity}
+                              value={gtRslt?.quantity}
                               tabIndex="-1"
                               maxLength="5"
-                              minLength={gtRslt.quantity || 1}
+                              minLength={gtRslt?.quantity || 1}
                               readOnly={true}
                               disabled={true}
                             />
-                            {gtRslt.documentId !==
+                            {gtRslt?.documentId !==
                             'sn4ujm0d1ebbc8lme1ihzsa9' ? (
                               <button
                                 id="tcktCa25Btn_MaxQtyCheckouts"
@@ -479,7 +479,7 @@ const OrderDetailCheckouts = ({
                                 type="button"
                                 aria-label="Button for Quantity(Max - Checkouts)"
                                 disabled={
-                                  gtRslt.quantity >= 15 || totalQty >= 15
+                                  gtRslt?.quantity >= 15 || totalQty >= 15
                                 }
                                 onClick={(e) => {
                                   e.preventDefault();
@@ -510,14 +510,20 @@ const OrderDetailCheckouts = ({
                   </div>
                 </div>
                 <div className="flex flex-col items-end justify-between pt-1.5">
-                  <span className="text-base font-medium sm:text-lg">
-                    {currencyConverter(
-                      getTotalProduct(
-                        gtRslt.quantity,
-                        gtRslt.priceSale ?? gtRslt.price
-                      )
-                    )}
-                  </span>
+                  {gtRslt?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9' ? (
+                    <span className="text-base font-medium sm:text-lg">
+                      {currencyConverter(gtRslt?.priceSale ?? gtRslt?.price)}
+                    </span>
+                  ) : (
+                    <span className="text-base font-medium sm:text-lg">
+                      {currencyConverter(
+                        getTotalProduct(
+                          gtRslt?.quantity,
+                          gtRslt?.priceSale ?? gtRslt?.price
+                        )
+                      )}
+                    </span>
+                  )}
                   {/* {products?.length > 1 && (
                     <button
                       className="mb-1 ms-3 flex h-8 w-8 flex-col items-center justify-center rounded-lg border border-solid border-red-500 bg-red-500/20 focus-visible:outline-none"

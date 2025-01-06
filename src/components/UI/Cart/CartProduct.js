@@ -46,14 +46,20 @@ const CartProduct = ({ cartStore, products }) => {
         </div>
       </div>
       <div className="flex flex-col items-end justify-between py-2">
-        <span className="text-base font-medium text-white sm:text-lg">
-          {currencyConverter(
-            getTotalProduct(
-              products?.quantity,
-              products?.priceSale ?? products?.price
-            )
-          )}
-        </span>
+        {products?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9' ? (
+          <span className="text-base font-medium text-white sm:text-lg">
+            {currencyConverter(products?.priceSale ?? products?.price)}
+          </span>
+        ) : (
+          <span className="text-base font-medium text-white sm:text-lg">
+            {currencyConverter(
+              getTotalProduct(
+                products?.quantity,
+                products?.priceSale ?? products?.price
+              )
+            )}
+          </span>
+        )}
         <button
           className="ms-3 flex h-8 w-8 flex-col items-center justify-center rounded-lg border border-solid border-red-500 bg-red-100/20 focus-visible:outline-none"
           type="button"

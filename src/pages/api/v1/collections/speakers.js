@@ -22,6 +22,7 @@ export default function handler(req, res) {
         position: 'Co-Founder and Executive Chairman of Animoca Brands',
         shortDesc: `Meet Yat Siu, Co-founder and executive chairman of Animoca Brands, a powerhouse in blockchain and gaming pioneering virtual asset property rights.`,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_1.svg',
+        comingSoon: true,
       },
       {
         url: '/',
@@ -30,6 +31,7 @@ export default function handler(req, res) {
         position: 'Co-Founder at Wintermute',
         shortDesc: `Yoann, co-founder of Wintermute, a top crypto market maker. With a background in derivatives trading and 14+ years of entrepreneurship, he's driving Asian growth from Singapore.`,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_2.svg',
+        comingSoon: true,
       },
       {
         url: '/',
@@ -39,6 +41,7 @@ export default function handler(req, res) {
           'Founder & Chief Scientist at DFINITY Foundation (Internet Computer)',
         shortDesc: `Dominic Williams, Founder and Chief Scientist at DFINITY Foundation, is a leading figure in crypto theory and distributed systems. His innovations in Threshold Relay, PSC chains, and Sybil Resistance have advanced blockchain technology significantly.`,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_3.svg',
+        comingSoon: true,
       },
       {
         url: '/',
@@ -47,6 +50,7 @@ export default function handler(req, res) {
         position: 'Co-Founder, COO at MONAD',
         shortDesc: `Eunice is Co-founder of Monad Labs, building the Monad blockchain to usher in a new and efficient design space for EVM developers and users alike.`,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_4.svg',
+        comingSoon: true,
       },
       {
         url: '/',
@@ -55,6 +59,7 @@ export default function handler(req, res) {
         position: 'CEO & Founder',
         shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_5.svg',
+        comingSoon: true,
       },
       {
         url: '/',
@@ -63,6 +68,7 @@ export default function handler(req, res) {
         position: 'Co-Founder',
         shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_6.svg',
+        comingSoon: true,
       },
       {
         url: '/',
@@ -71,6 +77,7 @@ export default function handler(req, res) {
         position: 'Head of APAC',
         shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_7.svg',
+        comingSoon: true,
       },
       {
         url: '/',
@@ -79,6 +86,7 @@ export default function handler(req, res) {
         position: 'Vice President',
         shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_8.svg',
+        comingSoon: true,
       },
       {
         url: '/',
@@ -87,6 +95,7 @@ export default function handler(req, res) {
         position: 'Global Head',
         shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_9.svg',
+        comingSoon: true,
       },
       {
         url: '/',
@@ -95,6 +104,7 @@ export default function handler(req, res) {
         position: 'CPO',
         shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_10.svg',
+        comingSoon: true,
       },
       {
         url: '/',
@@ -103,6 +113,7 @@ export default function handler(req, res) {
         position: 'CEO & Founder',
         shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_11.svg',
+        comingSoon: true,
       },
       {
         url: '/',
@@ -111,6 +122,7 @@ export default function handler(req, res) {
         position: 'Head of Digital Currencies',
         shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_12.svg',
+        comingSoon: true,
       },
     ],
   };

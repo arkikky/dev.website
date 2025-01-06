@@ -364,15 +364,27 @@ const InvoiceCustomer = ({
                             >
                               {gtRslt.quantity}
                             </td>
-                            <td
-                              className="tableText px-2.5 py-2.5 text-right font-normal"
-                              style={styles.tableText}
-                            >
-                              {currencyConverter(
-                                (gtRslt.priceSale ?? gtRslt.price) *
-                                  gtRslt.quantity
-                              )}
-                            </td>
+                            {gtRslt?.documentId ===
+                            'sn4ujm0d1ebbc8lme1ihzsa9' ? (
+                              <td
+                                className="tableText px-2.5 py-2.5 text-right font-normal"
+                                style={styles.tableText}
+                              >
+                                {currencyConverter(
+                                  gtRslt.priceSale ?? gtRslt.price
+                                )}
+                              </td>
+                            ) : (
+                              <td
+                                className="tableText px-2.5 py-2.5 text-right font-normal"
+                                style={styles.tableText}
+                              >
+                                {currencyConverter(
+                                  (gtRslt.priceSale ?? gtRslt.price) *
+                                    gtRslt.quantity
+                                )}
+                              </td>
+                            )}
                           </tr>
                         ))}
                       </tbody>

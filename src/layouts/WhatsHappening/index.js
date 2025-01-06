@@ -11,7 +11,7 @@ const WhatsHappeningCards = dynamic(
 const WhatsHappening = ({ mode, result = [] }) => {
   return (
     <>
-      <section className="ca25WhatsHappening relative block w-full pb-20 pt-24">
+      <section className="ca25WhatsHappening relative block w-full pb-14 sm:pb-2 xl:pb-20 pt-14 xl:pt-24">
         <div className="ca25PointerNone absolute inset-x-0 inset-y-0 z-px">
           <StarryBackground starCount={165} />
         </div>
