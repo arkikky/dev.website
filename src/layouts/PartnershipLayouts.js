@@ -46,7 +46,7 @@ const PartnershipLayouts = ({
     <>
       <main className="relative inline-flex w-full flex-grow flex-col bg-white xl:flex-row">
         <div className="bgGradient-Primary180 relative top-0 flex h-[394px] w-full shrink-0 flex-col overflow-hidden sm:h-[467px] lg:h-[527px] xl:sticky xl:h-svh xl:w-[675px] 2xl:flex-1">
-          <div className="fixed inset-x-4 bottom-auto top-4 sm:top-5 z-base block sm:inset-x-11 xl:sticky">
+          <div className="fixed inset-x-4 bottom-auto top-4 z-base block sm:inset-x-11 sm:top-5 xl:sticky">
             <Link
               className="ca25BrandLogo-BckBlured relative flex w-max shrink-0 flex-row items-start"
               href={'/'}
@@ -110,7 +110,7 @@ const PartnershipLayouts = ({
               />
             </Link>
           </div>
-          <div className="absolute inset-x-0 inset-y-0 z-10 block h-full w-full overflow-hidden px-5 pt-[103px] sm:px-11 sm:pt-[136px] lg:pt-[166px] xl:pt-[196px]">
+          <div className="absolute inset-x-0 inset-y-0 z-10 block h-full w-full overflow-hidden px-5 pt-[103px] sm:px-11 sm:pt-[136px] lg:pt-[166px] xl:pt-[183px]">
             <h1 className="ca25Fonts-PartnershipCustom w-full max-w-[496px] uppercase text-white sm:max-w-[573px]">
               {title}
             </h1>
