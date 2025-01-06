@@ -23,9 +23,9 @@ const CopyOtherDetailBtn = ({
             e.preventDefault();
             onEventClick(
               [
-                `#tktCAForm_CountryAttndee${items?.attendee}_${items?.group}Checkout`,
-                `#tktCAForm_WhatTypeOfConnectionsAttndee${items?.attendee}_${items?.group}Checkout`,
-                `#tktCAForm_DidYouHearAboutAttndee${items?.attendee}_${items?.group}Checkout`,
+                `#ca25Form_CountryAttndee${items?.attendee}_${items?.group}Checkout`,
+                `#ca25Form_WhatTypeOfConnectionsAttndee${items?.attendee}_${items?.group}Checkout`,
+                `#ca25Form_DidYouHearAboutAttndee${items?.attendee}_${items?.group}Checkout`,
               ],
               (items = {
                 firstItems: items?.firstItems,

@@ -104,7 +104,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
               <div className="block w-full">
                 <div className="inline-flex flex-row items-center space-x-2">
                   <svg
-                    className="h-12 w-12 sm:h-16 sm:w-16"
+                    className="-ml-[5px] h-12 w-12 sm:ml-0 sm:h-16 sm:w-16"
                     viewBox="0 0 56 56"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -149,14 +149,14 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
                     </Link>
                   </p>
                 </div>
-                <div className="mt-6 hidden w-full flex-row gap-x-4 xl:inline-flex">
+                {/* <div className="mt-6 hidden w-full flex-row gap-x-4 xl:inline-flex">
                   {elBtnShareWin()}
-                </div>
+                </div> */}
               </div>
               <div className="hidden w-max xl:block">
                 <Link
                   className="inline-flex w-max flex-row items-center justify-start gap-x-3.5 rounded-xl pr-4 underline"
-                  title="Button for Back to Home Coinfest Asia 2025"
+                  title="Coinfest Asia 2025 Back to Home"
                   href="/"
                 >
                   <Badge
@@ -187,10 +187,10 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
 
             {/* @sidebar(right) */}
             <div className="col-span-full pr-0 xl:col-span-6 xl:pl-6">
-              <div className="mt-4 flex flex-col items-start rounded-2xl px-2 pb-2 pt-2 bg-gradient-primary45 sm:mt-0 sm:pt-4">
+              <div className="mt-4 flex flex-col items-start rounded-2xl px-1.5 pb-1.5 pt-2 bg-gradient-primary45 sm:mt-0 sm:px-2 sm:pb-2 sm:pt-4">
                 <div className="mb-3 mt-1.5 flex w-full flex-row items-start justify-between px-2 sm:mb-4.5 sm:mt-1 sm:px-4">
                   <div className="flex w-max">
-                    <h2 className="text-sm text-white">{'Order ID : '}</h2>
+                    <h2 className="text-base text-white">{'Order ID : '}</h2>
                   </div>
                   <div className="flex w-max flex-col items-end">
                     {isOrderRecived && (
@@ -283,8 +283,8 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
               <div className="mt-6 flex w-full flex-row items-start justify-between sm:mt-8 xl:hidden">
                 <Link
                   className="inline-flex w-max flex-row items-center justify-start gap-x-3.5 rounded-xl pr-4 underline"
-                  title="Button for Back to Home Coinfest Asia 2025"
                   href="/"
+                  title="Coinfest Asia 2025 Back to Home"
                 >
                   <Badge
                     type="dark"
@@ -309,7 +309,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
                     <span className="ml-1 hidden w-max sm:flex">to Home</span>
                   </span>
                 </Link>
-                {elBtnShareWin()}
+                {/* {elBtnShareWin()} */}
               </div>
             </div>
           </div>

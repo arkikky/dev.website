@@ -5,12 +5,12 @@
   @apply font-boren leading-[0] sm:leading-[0] lg:leading-[0];
 }
 .ca25Fonts-PartnershipCustom {
-  @apply text-[32px] font-bold leading-[40px];
+  @apply text-[28px] font-bold leading-[36px];
   @apply sm:text-[44px] sm:leading-[54px];
 }
 .ca25Fonts-PartnershipCustom span {
   @apply font-boren leading-[0] sm:leading-[0] lg:leading-[0];
-  @apply sm:text-[46.5px];
+  @apply text-[29.5px] sm:text-[46.5px];
 }
 
 .ca25HeadingHero {

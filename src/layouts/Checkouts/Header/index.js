@@ -23,6 +23,10 @@ const Header = ({ media = 'xl' }) => {
                   url: '/',
                 },
                 {
+                  label: 'Tickets',
+                  url: '/tickets',
+                },
+                {
                   label: 'Checkout',
                   url: '/checkout',
                 },

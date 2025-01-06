@@ -26,12 +26,12 @@ export default function handler(req, res) {
         title: 'Sponsors',
       },
       {
-        url: '/',
+        url: '/get-involved',
         images: '/assets/images/get-involved/ca24GetInvolved_3.jpg',
         title: 'Co-Host Program',
       },
       {
-        url: '/',
+        url: '/get-involved',
         images: '/assets/images/get-involved/ca24GetInvolved_4.jpg',
         title: 'Partner as Media',
       },

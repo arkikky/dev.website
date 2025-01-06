@@ -3,8 +3,8 @@ export function useMethod() {
   const toggleOverlayPopUp = (backdrp, elmnt) => {
     const toggleClass = (el, activeClass, inactiveClass) => {
       if (el) {
-        el.classList.toggle(activeClass);
-        el.classList.toggle(inactiveClass);
+        el?.classList.toggle(activeClass);
+        el?.classList.toggle(inactiveClass);
       }
     };
 
@@ -14,7 +14,7 @@ export function useMethod() {
       toggleClass(elBckdrp, 'active', 'nonActive');
     }
     if (elOverflayPopUp) {
-      elBckdrp.setAttribute('data-target', elmnt);
+      elBckdrp?.setAttribute('data-target', elmnt);
       toggleClass(elOverflayPopUp, 'active', 'nonActive');
     }
   };

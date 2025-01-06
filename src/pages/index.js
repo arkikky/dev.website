@@ -340,17 +340,21 @@ const Home = ({ mode, collections, products }) => {
   );
 };
 
-// Home.getLayout = (page, { pageProps }) => {
-//   const { mode, layouts, products } = pageProps;
-//   // if (layouts) {
-//   //   return (
-//   //     <LayoutStore isTheme={mode} layoutStore={layouts}>
-//   //       {page}
-//   //     </LayoutStore>
-//   //   );
-//   // }
-//   return page;
-// };
+Home.getLayout = (page, { pageProps }) => {
+  const { mode, layouts, products } = pageProps;
+  if (layouts) {
+    return (
+      <LayoutStore
+        isTheme={mode}
+        layoutStore={layouts}
+        cartStore={products?.data}
+      >
+        {page}
+      </LayoutStore>
+    );
+  }
+  return page;
+};
 export const getServerSideProps = async (context) => {
   if (Object.keys(context?.query).length > 0) {
     return {

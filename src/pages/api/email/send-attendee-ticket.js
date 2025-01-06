@@ -33,8 +33,8 @@ export default async function handler(req, res) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'dicky@indonesiacrypto.network',
-      pass: 'rcnv pdwu wqit xsda',
+      user: 'hi@coinfest.asia',
+      pass: 'cnhh xrlu aukn bphz',
     },
   });
 

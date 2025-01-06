@@ -100,66 +100,88 @@ export function setHbSptCustomerData(rslt, ip) {
   };
   return rs;
 }
-export function setHbSptAttendeeData(rslt, i, group, ip) {
+export function setHbSptAttendeeData(rslt, attendee, group, ip) {
   // @sanitize(Fields)
   const sntzeFld = (field) => DOMPurify.sanitize(field || '').trim();
-  const prefix = `Attndee${i + 1}_${group}`;
-  const getField = (field) => sntzeFld(rslt[`${field}${prefix}`]);
   const rs = {
     fields: [
       {
         objectTypeId: '0-1',
         name: 'firstname',
-        value: getField('firstname'),
+        value: sntzeFld(rslt[`firstnameAttndee${attendee}_${group}`]),
       },
-      { objectTypeId: '0-1', name: 'lastname', value: getField('lastname') },
+      {
+        objectTypeId: '0-1',
+        name: 'lastname',
+        value: sntzeFld(rslt[`lastnameAttndee${attendee}_${group}`]),
+      },
       {
         objectTypeId: '0-1',
         name: 'email',
-        value: getField('email').toLowerCase(),
+        value: sntzeFld(rslt[`emailAttndee${attendee}_${group}`].toLowerCase()),
       },
       {
         objectTypeId: '0-1',
         name: 'phone',
-        value: sntzeFld(`phone${i + 1}_${group}`),
+        value: sntzeFld(rslt[`phone${attendee}_${group}`]),
       },
       {
         objectTypeId: '0-1',
         name: 'telegram_account',
-        value: getField('telegramAccount'),
+        value: sntzeFld(rslt[`telegramAccountAttndee${attendee}_${group}`]),
       },
-      { objectTypeId: '0-1', name: 'country', value: getField('country') },
+      {
+        objectTypeId: '0-1',
+        name: 'country',
+        value: sntzeFld(rslt[`countryAttndee${attendee}_${group}`]),
+      },
       {
         objectTypeId: '0-2',
         name: 'name',
-        value: data.haveCompany ? getField('company') : 'N/A',
+        value: sntzeFld(
+          rslt[`haveCompanyAttndee${attendee}_${group}`]
+            ? rslt[`companyAttndee${attendee}_${group}`]
+            : 'N/A'
+        ),
       },
       {
         objectTypeId: '0-1',
         name: 'job_title_position',
-        value: data.haveCompany ? getField('jobPosition') : '-',
+        value: sntzeFld(
+          rslt[`haveCompanyAttndee${attendee}_${group}`]
+            ? rslt[`jobPositionAttndee${attendee}_${group}`]
+            : '-'
+        ),
       },
       {
         objectTypeId: '0-2',
         name: 'company_focus',
-        value: data.haveCompany ? getField('companyFocus') : '-',
+        value: sntzeFld(
+          rslt[`haveCompanyAttndee${attendee}_${group}`]
+            ? rslt[`companyFocusAttndee${attendee}_${group}`]
+            : '-'
+        ),
       },
       {
         objectTypeId: '0-1',
         name: 'company_size',
-        value: data.haveCompany ? getField('companySize') : '-',
+        value: sntzeFld(
+          rslt[`haveCompanyAttndee${attendee}_${group}`]
+            ? rslt[`companySizeAttndee${attendee}_${group}`]
+            : '-'
+        ),
       },
       {
         objectTypeId: '0-1',
         name: 'what_type_of_connections_and_networking_do_you_hope_to_achieve_at_coinfest_asia_',
-        value: getField('whatTypeConnectionNetworking'),
+        value: sntzeFld(
+          rslt[`whatTypeConnectionNetworkingAttndee${attendee}_${group}`]
+        ),
       },
       {
         objectTypeId: '0-1',
         name: 'where_did_you_hear_about_coinfest_asia_2024_',
-        value: Array.isArray(data[`didYouHearAbout${prefix}`])
-          ? data[`didYouHearAbout${prefix}`].join(';')
-          : getField('didYouHearAbout'),
+        value: sntzeFld(rslt[`didYouHearAboutAttndee${attendee}_${group}`]),
       },
     ],
     context: {

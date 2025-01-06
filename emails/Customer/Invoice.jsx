@@ -242,7 +242,7 @@ const InvoiceCustomer = ({
                   <Column align="top-right">
                     <Img
                       className="mb-auto ml-auto h-7.5 w-auto"
-                      src={`https://api.coinfest.asia/uploads/ca2025_Brand_a32d2e5691.png`}
+                      src={`https://api.coinfest.asia/uploads/ca25_Brand_f3d87b5401.png`}
                       alt={`Coinfest Asia 2025 (Primary Brand)`}
                       height={58}
                       width={170}
@@ -307,7 +307,7 @@ const InvoiceCustomer = ({
                           <Text className="!mb-[0px] !mt-2 text-[14px] font-medium leading-[14px] text-black-900">
                             {name}
                           </Text>
-                          <Text className="!mb-[0px] !mt-2 text-[14px] font-medium leading-[14px] text-black-900">
+                          <Text className="!mb-[0px] !mt-2 text-[13px] font-medium leading-[13px] text-black-900">
                             {email}
                           </Text>
                         </span>

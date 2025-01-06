@@ -289,7 +289,7 @@ const CustomerTickets = ({
           <Section className="mb-6 mt-4 px-6 py-2">
             <Img
               className="mx-auto my-auto h-10 w-auto"
-              src={`https://api.coinfest.asia/uploads/ca2025_Brand_a32d2e5691.png`}
+              src={`https://api.coinfest.asia/uploads/ca25_Brand_f3d87b5401.png`}
               alt={`Coinfest Asia 2025 (Primary Brand)`}
               height={58}
               width={170}
@@ -412,15 +412,15 @@ const CustomerTickets = ({
                           width={48}
                         />
                       </span>
-                      <span className="!mt-0.5">
+                      <span className="!mt-0.5 font-semibold">
                         {gtRslt?.attendee.product?.name}
                       </span>
                     </Text>
-                    <Text className="!mb-1.5 !mt-0 !text-[14px] !leading-initial">
+                    <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
                       Name :{' '}
                       {`${gtRslt?.attendee.firstName} ${gtRslt?.attendee.lastName}`}
                     </Text>
-                    <Text className="!mb-1.5 !mt-0 !text-[14px] !leading-initial">
+                    <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
                       Company : {gtRslt?.attendee.company}
                     </Text>
                     {/* <Text className="!mb-1.5 !mt-0 max-w-[128px] !text-[14px] !leading-[20px]">

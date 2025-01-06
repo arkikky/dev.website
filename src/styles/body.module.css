@@ -5,17 +5,32 @@ body {
   @apply bg-dark;
   @apply font-bevietnamPro text-base font-normal;
 }
-body::-webkit-scrollbar {
-  @apply w-[7px];
+body::-webkit-scrollbar,
+body.ca25MainApps-Light::-webkit-scrollbar {
+  @apply w-[8px];
 }
-body::-webkit-scrollbar-track {
-  @apply bg-gray-200;
+body::-webkit-scrollbar-track,
+body.ca25MainApps-Light::-webkit-scrollbar-track {
+  @apply bg-gray-300;
 }
-body::-webkit-scrollbar-thumb {
-  @apply bg-gray-400/70;
+body::-webkit-scrollbar-thumb,
+body.ca25MainApps-Light::-webkit-scrollbar-thumb {
+  @apply bg-gray-500/55;
   @apply rounded-full;
   @apply border-none;
 }
+body.ca25MainApps-Dark::-webkit-scrollbar {
+  @apply w-[8px];
+}
+body.ca25MainApps-Dark::-webkit-scrollbar-track {
+  @apply bg-black-700;
+}
+body.ca25MainApps-Dark::-webkit-scrollbar-thumb {
+  @apply bg-gray-400/60;
+  @apply rounded-full;
+  @apply border-none;
+}
+
 a,
 button {
   @apply text-inherit;
@@ -52,7 +67,6 @@ button {
 }
 .ca25PointerNone {
   @apply pointer-events-none select-none;
-  
 }
 
 /* @line-break */

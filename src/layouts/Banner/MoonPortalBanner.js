@@ -10,7 +10,7 @@ const MoonPortalBanner = ({ mode }) => {
     <>
       <section
         id="ca25MoonPortalBanner_Footer"
-        className="ca25BckBlueMoon relative flex h-[321px] w-full flex-col items-center justify-center sm:h-[437px] lg:h-[516px] xl:h-[606px]"
+        className="ca25BckBlueMoon relative flex h-[321px] w-full flex-col items-center justify-center overflow-hidden sm:h-[437px] lg:h-[516px] xl:h-[606px]"
       >
         <Container
           className={

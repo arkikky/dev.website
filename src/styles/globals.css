@@ -18,10 +18,11 @@
 @import url('./components/form.module.css');
 @import url('./components/article.module.css');
 @import url('./components/mansory.module.css');
+@import url('./components/cards.module.css');
 @import url('./components/products.module.css');
 
-@import './layouts/footer.module.css';
-@import './layouts/footer.module.css';
+@import url('./layouts/navbar.module.css');
+@import url('./layouts/footer.module.css');
 
 /* @markdown */
 .ca25MarkdwnFrmattd {
@@ -40,3 +41,9 @@
 }
 
 /* @debug */
+.ca25BrandLogo-BckBlured::before {
+  @apply content-[''];
+  @apply bg-white/15 blur-[6px] backdrop-blur-[2px];
+  @apply absolute inset-x-0 inset-y-0;
+  @apply -z-px opacity-80;
+}

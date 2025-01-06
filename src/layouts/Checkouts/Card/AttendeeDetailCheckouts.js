@@ -248,7 +248,7 @@ const AttendeeDetailCheckouts = ({
       >
         <Label
           forId={`ca25Form_DidYouHearAboutAttndee${items?.attendee}_${items?.group}Checkout`}
-          label="Where did you hear about Coinfest Asia 2024?"
+          label="Where did you hear about Coinfest Asia 2025?"
           required={true}
         />
         <Select

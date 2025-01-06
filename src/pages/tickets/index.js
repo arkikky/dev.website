@@ -177,7 +177,7 @@ const Tickets = ({ mode, products }) => {
         {/* @tickets */}
         <section className="ca25Ticket-Section from-black bg-gradient-to-t via-blue-700 to-blue-200">
           <Container className={'relative'}>
-            <div className="pointer-events-none absolute -right-[161px] -top-[52px] bottom-auto left-auto z-px sm:-right-[357px] sm:-top-[106px] lg:-right-[497px] lg:-top-[151px]">
+            {/* <div className="pointer-events-none absolute -right-[161px] -top-[52px] bottom-auto left-auto z-px sm:-right-[357px] sm:-top-[106px] lg:-right-[497px] lg:-top-[151px]">
               <Image
                 className="h-[207px] w-auto object-cover sm:h-[433px] lg:h-[543px] xl:h-[593px]"
                 src={'/assets/images/backdrop/ca25Backdrop-TicketStore.png'}
@@ -186,7 +186,7 @@ const Tickets = ({ mode, products }) => {
                 width={2508}
                 quality="87"
               />
-            </div>
+            </div> */}
 
             {/* @header */}
             <div className="mb-8 flex flex-col text-start sm:mb-12">

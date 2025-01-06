@@ -50,6 +50,7 @@ import Breadcrumb from '@components/UI/Breadcrumb';
 import Notifications from '@components/UI/Alerts/Notifications';
 import Badge from '@components/UI/Badge';
 import PaymentProcessModal from '@components/UI/Modal/PaymentProcess';
+import OrderProcessModal from '@components/UI/Modal/OrderProcess';
 import CopyBillingAttendeeBtn from '@components/UI/Button/CopyBillingAttendeeBtn';
 import CopyOtherDetailBtn from '@components/UI/Button/CopyOtherDetailBtn';
 
@@ -96,6 +97,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     totalOrder: 0,
     isPaymentStatus: null,
     isPaymentProcess: false,
+    isOrderProcess: false,
   });
   const [currentStepAttendee, setCurrentStepAttendee] = useState(
     isCart?.map(() => 0)
@@ -360,6 +362,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     mode: 'all',
     defaultValues: {
       haveCompany: true,
+      haveCompany1: true,
       company: '',
     },
   });
@@ -508,6 +511,12 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   // @submit(Checkout)
   const onSubmitForm = async (data) => {
     if (isValid === true) {
+      if (Math.abs(isStore?.totalOrder) > 1e-10) {
+        setStore((prev) => ({ ...prev, isPaymentProcess: true }));
+      } else if (Math.abs(isStore?.totalOrder) < 1e-10) {
+        setStore((prev) => ({ ...prev, isOrderProcess: true }));
+      }
+
       setFormCheckouts((prev) => ({
         ...prev,
         isFields: data,
@@ -523,7 +532,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           setBillingData(data)
         );
         if (isCart && rsCustomer) {
-          const setIdCustomer = rsCustomer.data.documentId;
+          const setIdCustomer = rsCustomer?.data.documentId;
           // const qtyProducts = isStore?.totalQty;
 
           // @discount&customer
@@ -575,7 +584,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
             // @processing(payment)
             if (rsCreateOrder && Math.abs(isStore?.totalOrder) > 1e-10) {
-              setStore((prev) => ({ ...prev, isPaymentProcess: true }));
               const setIdOrderRecived = rsCreateOrder?.data.documentId;
               const rsPayment = await fetch('/api/payment/create-payment', {
                 method: 'POST',
@@ -659,7 +667,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                       ? updateStatusOrder?.data?.coupons[0]
                       : null,
                 }),
-              }).then((res) => res.json());
+              }).then((rs) => rs?.json());
 
               // @attendee
               for (let i = 0; i < isStore?.products?.length; i++) {
@@ -683,7 +691,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   }
                   for (
                     let attndIdx = 0;
-                    attndIdx < gtRslt.quantity;
+                    attndIdx < gtRslt?.quantity;
                     attndIdx++
                   ) {
                     try {
@@ -700,7 +708,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                         submitFormHbSpt(
                           setHbSptAttendeeData(
                             data,
-                            attndIdx,
+                            attndIdx + 1,
                             groupName,
                             isFormCheckouts?.isIpAddress?.ip
                           ),
@@ -719,7 +727,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                       const mimeString = header.match(/:(.*?);/)[1];
                       const byteString = atob(base64Data);
                       const buffer = Uint8Array.from(byteString, (char) =>
-                        char.charCodeAt(0)
+                        char?.charCodeAt(0)
                       );
                       const pngBlobQrCode = new Blob([buffer], {
                         type: mimeString,
@@ -729,7 +737,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                         alternativeText: `Coinfest Asia 2025 ${isFullname} Attendee`,
                         caption: `Coinfest Asia 2025 ${isFullname} Attendee`,
                       };
-
                       const formData = new FormData();
                       formData.append(
                         'files',
@@ -743,7 +750,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                       formData.append('ref', 'api::attendee.attendee');
                       formData.append('refId', `${rsAttendee?.data.id}`);
                       formData.append('field', `qrCode`);
-
                       const rsQrCodeGenerate = await getFetchUrl_FormData(
                         'https://api.coinfest.asia/api/upload?',
                         formData
@@ -811,10 +817,10 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 ...prev,
                 isSubmited: false,
               }));
-              // reset();
-              // router.replace(
-              //   `/checkout/order-received?process=${setIdOrderRecived}`
-              // );
+              reset();
+              router.replace(
+                `/checkout/order-received?process=${setIdOrderRecived}`
+              );
             }
           }
         }
@@ -936,7 +942,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                       },
                     }
                   );
-
                   const rsHbSptCustomer = await submitFormHbSpt(
                     setHbSptCustomerData(
                       updateStatusOrder?.data?.customer,
@@ -963,7 +968,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                           ? updateStatusOrder?.data?.coupons[0]
                           : null,
                     }),
-                  }).then((res) => res.json());
+                  }).then((rs) => rs?.json());
                   // @attendee
                   const arrAttendees = [];
                   for (let i = 0; i < isStore?.products?.length; i++) {
@@ -1005,7 +1010,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                               submitFormHbSpt(
                                 setHbSptAttendeeData(
                                   isFormCheckouts?.isFields,
-                                  attndIdx,
+                                  attndIdx + 1,
                                   groupName,
                                   isFormCheckouts?.isIpAddress?.ip
                                 ),
@@ -1125,8 +1130,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 }));
                 dispatch(order(null));
                 dispatch(orderSession(null));
-                reset();
-                router.replace(`/checkout/order-received?process=${isOrder}`);
+                // reset();
+                // router.replace(`/checkout/order-received?process=${isOrder}`);
                 clearInterval(pollingInterval);
                 return;
               }
@@ -1156,7 +1161,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       };
       const pollingInterval = setInterval(() => {
         fetchOrderPayment(isFormCheckouts?.isFields, isStore?.products);
-      }, 25000);
+      }, 16000);
 
       return () => {
         clearInterval(pollingInterval);
@@ -1209,7 +1214,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
               {/* @billing(details) */}
               <div
-                className={`bg-gradient-primary45 relative mt-8 flex flex-col items-start rounded-2xl px-1.5 pb-1.5 pt-4 sm:px-2 sm:pb-2 ${
+                className={`relative mt-8 flex flex-col items-start rounded-2xl px-1.5 pb-1.5 pt-4 bg-gradient-primary45 sm:px-2 sm:pb-2 ${
                   isDisabled
                     ? '!pointer-events-none !select-none'
                     : '!pointer-events-auto !select-auto'
@@ -1466,7 +1471,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                         >
                                           <Badge
                                             label="Same as Company Details"
-                                            type="light"
+                                            type="secondary"
                                             withHover={true}
                                             withUnderline={true}
                                             icons={
@@ -1646,7 +1651,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             <div className="col-span-full pl-0 xl:col-span-5 xl:pl-6">
               <div className="px-3 sm:px-0">
                 <header
-                  className={`bg-gradient-primary45 mb-5 block w-full rounded-xl px-3 py-4 xl:hidden`}
+                  className={`mb-5 block w-full rounded-xl px-3 py-4 bg-gradient-primary45 xl:hidden`}
                 >
                   <h1 className="text-xl font-semibold text-white sm:text-3xl">
                     {`Checkout`}
@@ -1738,6 +1743,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
       {/* @modal */}
       {isStore?.isPaymentProcess === true ? <PaymentProcessModal /> : null}
+      {isStore?.isOrderProcess === true ? <OrderProcessModal /> : null}
     </>
   );
 };

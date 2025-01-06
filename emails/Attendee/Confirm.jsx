@@ -174,7 +174,7 @@ const AttendeeConfrim = ({
         <Section className="!mt-0 mb-8 !py-0 px-6">
           <Img
             className="mx-auto my-auto h-10 w-auto"
-            src={`https://api.coinfest.asia/uploads/ca2025_Brand_a32d2e5691.png`}
+            src={`https://api.coinfest.asia/uploads/ca25_Brand_f3d87b5401.png`}
             alt={`Coinfest Asia 2025 (Primary Brand)`}
             height={58}
             width={170}
