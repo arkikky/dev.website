@@ -67,72 +67,72 @@ const nextConfig = {
           },
         ],
       },
-      // {
-      //   source: '/(.*)',
-      //   headers: [
-      //     {
-      //       key: 'Access-Control-Allow-Origin',
-      //       value: '*',
-      //     },
-      //     {
-      //       key: 'Access-Control-Allow-Methods',
-      //       value: 'GET',
-      //     },
-      //     {
-      //       key: 'Cache-Control',
-      //       value: 'private, stale-while-revalidate=59',
-      //     },
-      //     {
-      //       key: 'Access-Control-Allow-Headers',
-      //       value: 'Content-Type, Authorization',
-      //     },
-      //     {
-      //       key: 'X-DNS-Prefetch-Control',
-      //       value: 'on',
-      //     },
-      //     {
-      //       key: 'Strict-Transport-Security',
-      //       value: 'max-age=15552000; includeSubDomains; preload',
-      //     },
-      //     {
-      //       key: 'X-Frame-Options',
-      //       value: 'SAMEORIGIN',
-      //     },
-      //     {
-      //       key: 'Content-Security-Policy',
-      //       value: `default-src 'self';script-src 'self' 'unsafe-eval';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://api.coinfest.asia http://coinfest-2025.vercel.app https://api.hsforms.com https://hub.coinvestasi.com;img-src 'self' https://upload.wikimedia.org https://hub.coinvestasi.com http://coinfest-2025.vercel.app https://flagcdn.com data:;frame-src 'none';frame-ancestors 'self';form-action 'self';worker-src 'self';base-uri 'self';`,
-      //     },
-      //     {
-      //       key: 'Permissions-Policy',
-      //       value:
-      //         'display-capture=(self), microphone=(), payment=(self), geolocation=(self)',
-      //     },
-      //     {
-      //       key: 'X-Content-Type-Options',
-      //       value: 'nosniff',
-      //     },
-      //     {
-      //       key: 'Referrer-Policy',
-      //       value: 'strict-origin-when-cross-origin',
-      //     },
-      //     {
-      //       key: 'Cross-Origin-Resource-Policy',
-      //       value: 'same-site',
-      //     },
-      //     {
-      //       key: 'Cross-Origin-Embedder-Policy',
-      //       value: 'same-origin',
-      //     },
-      //     {
-      //       key: 'X-XSS-Protection',
-      //       value: '1; mode=block',
-      //     },
-      //     {
-      //       key: 'Expect-CT',
-      //       value: 'enforce, max-age=86400',
-      //     },
-      //   ],
-      // },
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'private, stale-while-revalidate=59',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, Authorization',
+          },
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=15552000; includeSubDomains; preload',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: `default-src 'self';script-src 'self' 'unsafe-eval';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://api.coinfest.asia http://coinfest-2025.vercel.app https://api.hsforms.com https://hub.coinvestasi.com;img-src 'self' https://upload.wikimedia.org https://hub.coinvestasi.com http://coinfest-2025.vercel.app https://flagcdn.com data:;frame-src 'none';frame-ancestors 'self';form-action 'self';worker-src 'self';base-uri 'self';`,
+          },
+          {
+            key: 'Permissions-Policy',
+            value:
+              'display-capture=(self), microphone=(), payment=(self), geolocation=(self)',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Cross-Origin-Resource-Policy',
+            value: 'same-site',
+          },
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'same-origin',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
+            key: 'Expect-CT',
+            value: 'enforce, max-age=86400',
+          },
+        ],
+      },
       {
         source: '/checkout',
         headers: [
