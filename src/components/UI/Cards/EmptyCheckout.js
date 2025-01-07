@@ -27,7 +27,7 @@ const EmptyCheckouts = ({}) => {
           {`Please return to the homepage to select your tickets.`}
         </p>
         <Link
-          href="/"
+          href="/tik"
           className="mt-7 flex flex-row items-center justify-center gap-x-2 rounded-md text-sm font-medium leading-initial text-gray-800 underline"
         >
           Buy Tickets

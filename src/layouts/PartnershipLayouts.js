@@ -10,9 +10,8 @@ const PartnershipLayouts = ({
   isTheme = 'dark',
   title,
   shortDesc = null,
+  backUrl,
   btnBack = false,
-  urlBack = '',
-  childLayouts = false,
   children,
 }) => {
   const [isPanelLayouts, setPanelLayouts] = useState({
@@ -49,7 +48,7 @@ const PartnershipLayouts = ({
           <div className="fixed inset-x-4 bottom-auto top-4 z-base block sm:inset-x-11 sm:top-5 xl:sticky">
             <Link
               className="ca25BrandLogo-BckBlured relative flex w-max shrink-0 flex-row items-start"
-              href={'/'}
+              href={backUrl ?? '/'}
               title="Coinfest Asia 2025 Back to Home"
             >
               <div

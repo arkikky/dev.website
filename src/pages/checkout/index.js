@@ -523,6 +523,9 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
   // @submit(Checkout)
   const onSubmitForm = async (data) => {
+    const btnRdrctPymnt_Gtwy = document.querySelector(
+      '#ca25RdcrtPayment.ca25RdcrtPayment'
+    );
     if (isValid === true) {
       if (Math.abs(isStore?.totalOrder) > 1e-10) {
         setStore((prev) => ({ ...prev, isPaymentProcess: true }));
@@ -618,14 +621,11 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               if (rsPayment?.data?.invoice_url) {
                 dispatch(order(setIdOrderRecived));
                 dispatch(orderSession(rsPayment?.data?.id));
-                const btnRdrctPymnt_Gtwy = document.querySelector(
-                  '#ca25RdcrtPayment.ca25RdcrtPayment'
-                );
-                btnRdrctPymnt_Gtwy.setAttribute(
+                btnRdrctPymnt_Gtwy?.setAttribute(
                   'href',
-                  rsPayment?.data?.invoice_url
+                  `${rsPayment?.data?.invoice_url}`
                 );
-                btnRdrctPymnt_Gtwy.click();
+                btnRdrctPymnt_Gtwy?.click();
               } else {
                 // console.error('Failed to get invoice URL');
                 return;
@@ -1672,7 +1672,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             <div className="col-span-full pl-0 xl:col-span-5 xl:pl-6">
               <div className="px-3 sm:px-0">
                 <header
-                  className={`mb-5 block w-full rounded-xl px-3 py-4 bg-gradient-primary45 xl:hidden`}
+                  className={`mb-5 block w-full rounded-xl bg-dark px-3 py-4 xl:hidden`}
                 >
                   <h1 className="text-xl font-semibold text-white sm:text-3xl">
                     {`Checkout`}
@@ -1761,7 +1761,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           </form>
           <a
             id="ca25RdcrtPayment"
-            className="ca25RdcrtPayment !pointer-events-none fixed -bottom-2.5 -left-2.5 right-auto top-auto -z-px h-6 w-6 !select-none bg-white"
+            className="ca25RdcrtPayment fixed -bottom-2.5 -left-2.5 right-auto top-auto -z-[2] h-6 w-6 !select-none bg-white"
             href={'/'}
             title="Coinfest Asia 2025 Redirect Payment"
             target="_blank"
@@ -1791,14 +1791,14 @@ Checkout.getLayout = (page, { pageProps }) => {
   return page;
 };
 export const getServerSideProps = async (context) => {
-  if (Object.keys(context?.query).length > 0) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: true,
-      },
-    };
-  }
+  // if (Object.keys(context?.query).length > 0) {
+  //   return {
+  //     redirect: {
+  //       destination: '/',
+  //       permanent: true,
+  //     },
+  //   };
+  // }
   try {
     const isLayouts = true;
     const [rsIpAddress, rsCountry, rsCoupons, rsCheckoutHbSpt] =

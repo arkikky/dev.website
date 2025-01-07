@@ -99,7 +99,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               <li className="group mb-4 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
-                  href="/"
+                  href="/get-involved/sponsorship"
                   title={`${publicRuntimeConfig?.siteAppName} Sponsorship Inquiry`}
                 >
                   Sponsorship Inquiry
@@ -108,7 +108,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               <li className="group mb-4 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
-                  href="/"
+                  href="/get-involved/speakers"
                   title={`${publicRuntimeConfig?.siteAppName} Apply As Speaker`}
                 >
                   Apply As Speaker

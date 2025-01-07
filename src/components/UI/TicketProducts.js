@@ -321,7 +321,7 @@ const TicketProducts = ({
             ) : (
               <button
                 id={`ca25Btn_Product${data?.name.replace(/\s/g, '')}`}
-                className={`ca25ProductsBtn relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${isSessionLoading === true ? 'cursor-default' : 'cursor-pointer'}`}
+                className={`ca25ProductsBtn relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase leading-initial disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${isSessionLoading === true ? 'cursor-default' : 'cursor-pointer'}`}
                 role="button"
                 aria-label={`Button Coinfest Asia 2025 - ${data?.name.replace(/\s/g, '')} Products)`}
                 disabled={isLoading}

@@ -41,7 +41,7 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
                 ) : (
                   <Image
                     className="mx-auto my-auto h-8.5 w-auto sm:h-[38px]"
-                    src={'/assets/images/ca2025Brand.svg'}
+                    src={'/assets/images/ca2025BrandDark.svg'}
                     alt={`${publicRuntimeConfig?.siteAppName} Primary Brand LOGO Navbar`}
                     height={58}
                     width={170}

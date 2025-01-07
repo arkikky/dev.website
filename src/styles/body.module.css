@@ -1,6 +1,9 @@
 ::selection {
   @apply bg-black-900/40 text-white;
 }
+html {
+  @apply scroll-smooth;
+}
 body {
   @apply bg-dark;
   @apply font-bevietnamPro text-base font-normal;

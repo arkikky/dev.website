@@ -25,7 +25,7 @@ const EmptyCart = ({}) => {
           Secure your tickets now and don’t miss out!
         </p>
         <Link
-          href="/"
+          href="/tickets"
           className="mt-7 flex flex-row items-center justify-center gap-x-2 rounded-md text-sm font-medium leading-initial text-black-800 underline"
         >
           Buy Tickets

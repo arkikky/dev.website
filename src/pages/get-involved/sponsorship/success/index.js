@@ -9,12 +9,12 @@ import Container from '@components/Container';
 // @layouts
 import LayoutDefaults from '@layouts/Layouts';
 
-const InterestSuccessfullySubmitted = ({ mode }) => {
+const SponsorshipSuccessfullySubmitted = ({ mode }) => {
   return (
     <>
       {/* @head */}
       <HeadGraphSeo
-        title={`Interest Successfully Submitted`}
+        title={`Sponsorship Successfully Submitted`}
         otherPage={true}
       />
 
@@ -28,22 +28,25 @@ const InterestSuccessfullySubmitted = ({ mode }) => {
                   🎉
                 </span>
                 <h1 className="sm:px-auto mx-auto mt-4 max-w-full text-[18px] font-semibold uppercase leading-[24px] text-black-900 sm:max-w-[493px] sm:text-2xl">
-                  {`Thank you!`}
+                  {`You're on the list!`}
                 </h1>
               </div>
               <div className="mt-4 flex w-full max-w-full flex-col items-center justify-center text-center sm:max-w-[651px]">
                 <p className="text-balance px-0 text-base font-normal text-black-900 prose-a:font-normal prose-a:text-[#ED4F35] prose-a:underline sm:px-4">
-                  Thank you for your interest. You’ll be the first to know about
-                  Coinfest Asia 2025! Stay tuned!
+                  {`Thank you for your enquiry for sponsorship. Please check your
+                  inbox, you will receive an email within the next 2-3 minutes.`}
                 </p>
                 <div className="mb-10 mt-8">
                   <Link
                     className={`relative mr-2 inline-flex w-[199px] items-center justify-center rounded-[14px] bg-primary px-3 py-4 text-base font-medium text-white outline-none last:mr-0 hover:underline focus-visible:outline-none sm:px-6`}
-                    href={'/'}
-                    title="Coinfest Asia 2025 Back to Home"
+                    href={'https://mail.google.com'}
+                    title="Coinfest Asia 2025 Open Gmail"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
+                    {`Open Gmail`}
                     <svg
-                      className="mr-2 h-6 w-6"
+                      className="ml-2 h-5.5 w-5.5 rotate-180 transform"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="none"
@@ -55,7 +58,6 @@ const InterestSuccessfullySubmitted = ({ mode }) => {
                       <path d="m12 19-7-7 7-7" />
                       <path d="M19 12H5" />
                     </svg>
-                    {`Back to Home`}
                   </Link>
                 </div>
                 <p className="text-balance px-0 text-base font-light text-gray-500">
@@ -71,7 +73,7 @@ const InterestSuccessfullySubmitted = ({ mode }) => {
   );
 };
 
-InterestSuccessfullySubmitted.getLayout = (page, { pageProps }) => {
+SponsorshipSuccessfullySubmitted.getLayout = (page, { pageProps }) => {
   const { mode, layouts } = pageProps;
   if (layouts) {
     return (
@@ -98,4 +100,4 @@ export const getStaticProps = async () => {
     };
   }
 };
-export default InterestSuccessfullySubmitted;
+export default SponsorshipSuccessfullySubmitted;

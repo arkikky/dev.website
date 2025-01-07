@@ -13,7 +13,7 @@ const GetInvolvedFormCards = dynamic(
 // @layouts
 import PartnershipLayouts from '@layouts/PartnershipLayouts';
 
-const GetInvolved = ({ mode, childLayouts, collections }) => {
+const GetInvolved = ({ mode, collections }) => {
   return (
     <>
       {/* @head */}
@@ -45,7 +45,6 @@ const GetInvolved = ({ mode, childLayouts, collections }) => {
             []
           )}
         mode={mode}
-        childLayouts={false}
       >
         <div className="ca25FormGetInvolved-Group flex grid-cols-1 flex-col items-start justify-start gap-x-4 gap-y-4 overflow-x-hidden supports-grid:grid sm:grid-cols-2 sm:gap-x-5 sm:gap-y-5 lg:grid-cols-2 xl:grid-cols-1">
           {collections?.map((rslt, i) => (
@@ -69,7 +68,7 @@ export const getStaticProps = async () => {
   const rsGetInvolved = {
     data: [
       {
-        url: '/',
+        url: '/get-involved/sponsorship',
         title: 'Sponsor',
         shortDesc: `Demonstrate your innovations and solutions in a seamless & measurable manner.`,
         labelBtn: `Send an Inquiry`,
@@ -77,7 +76,7 @@ export const getStaticProps = async () => {
         slotsFull: false,
       },
       {
-        url: '/',
+        url: '/get-involved/speakers',
         title: 'Speak',
         shortDesc: `Show and tell your impact-driven ideas, not just theories, on experiential stages.`,
         labelBtn: `Apply Now`,
@@ -115,7 +114,6 @@ export const getStaticProps = async () => {
     return {
       props: {
         mode: 'light',
-        childLayouts: false,
         collections: rsGetInvolved?.data || [],
       },
       revalidate: 900,

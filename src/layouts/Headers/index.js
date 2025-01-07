@@ -34,7 +34,7 @@ const Headers = ({ mode }) => {
             className={`absolute inset-x-0 inset-y-0 z-[22] mx-auto mb-8 flex w-full flex-col items-center justify-center text-balance text-center sm:mb-12 sm:w-[619.54px] lg:w-[749.54px] xl:w-[1116px]`}
           >
             <div
-              className={`ca25HeadingHero ${mode === 'light' ? 'text-black-900' : 'text-white'} [749.54px] xs:mt-[39px] mt-[49px] block w-full font-medium uppercase sm:-mt-[75px] sm:w-[619.54px] sm:font-semibold lg:w-[749.54px] xl:w-[1116px]`}
+              className={`ca25HeadingHero subpixel-antialiased ${mode === 'light' ? 'text-black-900' : 'text-white'} [749.54px] xs:mt-[39px] mt-[49px] block w-full font-medium uppercase sm:-mt-[75px] sm:w-[619.54px] sm:font-semibold lg:w-[749.54px] xl:w-[1116px]`}
             >
               <div className="float-none pl-0 sm:float-left sm:pl-20">
                 {'WORLD`S'
@@ -62,7 +62,7 @@ const Headers = ({ mode }) => {
                       )
                     )}
                 </div>
-                <div className="hidden w-[285px] pl-7 text-left font-bevietnamPro text-[13px] font-normal leading-[21px] tracking-[14px] sm:block lg:w-[325px] lg:text-[14px] lg:leading-[26px] lg:tracking-[18px] xl:w-[565px] xl:text-[24px] xl:leading-[36px] xl:tracking-[24px]">
+                <div className="hidden w-[285px] pl-7 text-left font-bevietnamPro text-[13px] font-normal leading-[21px] tracking-[14px] subpixel-antialiased sm:block lg:w-[325px] lg:text-[14px] lg:leading-[26px] lg:tracking-[18px] xl:w-[565px] xl:text-[24px] xl:leading-[36px] xl:tracking-[24px]">
                   BALI, <br />
                   21 — 22 AUG 2025
                 </div>

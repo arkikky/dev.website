@@ -9,7 +9,7 @@ import SpeakerCards from '@components/UI/Cards/SpeakerCards';
 const Speakers = ({ mode, result = [] }) => {
   return (
     <>
-      <section className="ca25Speakers relative bg-[linear-gradient(186deg,#1F1F1F_33%,#005AFF_51%,#7AB1F9_71%,#A0CCF7_100%)] pb-11 pt-10 sm:pt-15 sm:pb-13 lg:pb-10 lg:pt-20 xl:pb-16">
+      <section className="ca25Speakers relative bg-[linear-gradient(186deg,#1F1F1F_33%,#005AFF_51%,#7AB1F9_71%,#A0CCF7_100%)] pb-11 pt-10 sm:pb-13 sm:pt-15 lg:pb-10 lg:pt-20 xl:pb-16">
         <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
           <StarryBackground starCount={110} />
         </div>
@@ -64,9 +64,9 @@ const Speakers = ({ mode, result = [] }) => {
                 )}
             </h2>
             <Link
-              className={`relative mx-auto inline-flex w-[174px] items-center justify-center rounded-full bg-[#ED4F35] px-3 py-3 text-sm font-semibold uppercase text-white disabled:pointer-events-none disabled:opacity-90 sm:w-[237px] sm:px-6 sm:py-5`}
+              className={`ca25MoonBtn-Embossed relative mx-auto inline-flex w-[174px] items-center justify-center rounded-full bg-[#ED4F35] px-3 py-3 text-sm font-semibold uppercase text-white disabled:pointer-events-none disabled:opacity-90 sm:w-[237px] sm:px-6 sm:py-5`}
               prefetch={true}
-              href="/"
+              href="/get-involved/speakers"
               title={`Coinfest Asia 2025 Apply As Speaker`}
             >
               {`Apply As Speaker`}

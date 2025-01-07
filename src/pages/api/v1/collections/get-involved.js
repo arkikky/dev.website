@@ -22,7 +22,7 @@ export default function handler(req, res) {
         comingSoon: false,
       },
       {
-        url: '/',
+        url: '/get-involved/sponsorship/',
         images: '/assets/images/get-involved/ca24GetInvolved_2.jpg',
         title: 'Sponsors',
         comingSoon: false,
