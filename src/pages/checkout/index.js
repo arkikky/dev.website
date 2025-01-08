@@ -1224,7 +1224,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       <HeadGraphSeo title={`Checkout`} otherPage={true} />
 
       {/* @main */}
-      <Main className="relative pb-8 pt-[113px] sm:pb-12 sm:pt-[128px] lg:pt-[138px]">
+      <Main className="relative pb-8 pt-6 sm:pb-12 sm:pt-8 lg:pt-10">
         <Container className={'sm:px-auto px-0'}>
           <form
             id="ca25Form_Checkout"
@@ -1697,7 +1697,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             <div className="col-span-full pl-0 xl:col-span-5 xl:pl-6">
               <div className="px-3 sm:px-0">
                 <header
-                  className={`mb-5 block w-full rounded-xl bg-dark px-3 py-4 xl:hidden`}
+                  className={`mb-5 block w-full rounded-xl bg-dark px-4 py-3.5 sm:rounded-2xl sm:px-6 sm:py-6 xl:hidden`}
                 >
                   <h1 className="text-xl font-semibold text-white sm:text-3xl">
                     {`Checkout`}
