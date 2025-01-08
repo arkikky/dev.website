@@ -5,7 +5,7 @@
   @apply text-white;
 }
 .ca2024Footer.ca2024Footer_Light .ca2024FooterEnd .ca2024FooterEnd_Cntent {
-  @apply prose-a:text-[#ED4F35] prose-strong:text-[#ED4F35];
+  @apply prose-a:text-primary prose-strong:text-primary;
 }
 .ca2024Footer.ca2024Footer_Light .hs-tooltip-toggle {
   @apply text-black-900;

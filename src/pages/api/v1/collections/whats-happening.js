@@ -60,7 +60,7 @@ export default function handler(req, res) {
       {
         url: '/',
         images: '/assets/images/whats-happening/ca25WhatsHappening_7.jpg',
-        captions: 'Soapbox Tournament',
+        captions: 'Soapbox Race',
         openUrl: false,
         comingSoon: false,
       },

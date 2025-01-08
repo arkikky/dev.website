@@ -20,7 +20,7 @@ const Abouts = ({ mode, result = [] }) => {
     <>
       <section className="ca25AboutUs relative bg-[linear-gradient(0deg,#1F1F1F_23%,#005AFF_49%,#7AB1F9_77%,#A0CCF7_100%)] pb-3 pt-6 lg:pb-20 lg:pt-[122px]">
         <div className="pointer-events-none absolute inset-x-0 inset-y-0 z-px select-none">
-          <StarryBackground starCount={135} />
+          <StarryBackground starCount={95} />
         </div>
         <Container className={'z-[5]'}>
           <Boards mode={mode} />

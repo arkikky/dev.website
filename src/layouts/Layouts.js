@@ -8,6 +8,7 @@ import Footer from '@layouts/Footer';
 const LayoutDefaults = ({
   isTheme = 'dark',
   isLayouts = true,
+  withNavbar = true,
   isFooterMenu = true,
   children,
 }) => {
@@ -38,7 +39,7 @@ const LayoutDefaults = ({
   return (
     <>
       {/* @navbar */}
-      <NavbarTopDefault theme={isTheme} />
+      {withNavbar ? <NavbarTopDefault theme={isTheme} /> : null}
 
       {/* @main */}
       {children}

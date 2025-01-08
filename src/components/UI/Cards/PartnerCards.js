@@ -8,12 +8,19 @@ const { publicRuntimeConfig } = getConfig();
 // @components
 import ImagesLoads from '@components/ImagesLoads';
 
-const PartnerCards = ({ keyID, url, images, captions = '', openUrl }) => {
+const PartnerCards = ({
+  keyID,
+  url,
+  images,
+  captions = '',
+  mobileSizeUp,
+  openUrl,
+}) => {
   return (
     <>
       {openUrl === true ? (
         <Link
-          className={`xs:h-[122px] relative col-span-2 block h-[132px] w-full overflow-clip rounded-[10px] border border-solid border-white/55 transition-[border] duration-300 ease-in-out hover:border-[#ED4F35] sm:col-span-3 sm:h-[123px] sm:rounded-xl sm:border-2 lg:col-span-2 lg:h-[126px] xl:h-[178px]`}
+          className={`xs:h-[68px] relative col-span-2 flex h-[68px] w-full flex-col items-center justify-center overflow-clip border-white/55 sm:col-span-2 sm:h-[76px] sm:rounded-xl lg:col-span-2 lg:h-[94px] xl:h-[120px]`}
           prefetch={true}
           href={url}
           title={`${publicRuntimeConfig?.siteAppName} ${captions}`}
@@ -22,6 +29,7 @@ const PartnerCards = ({ keyID, url, images, captions = '', openUrl }) => {
           key={keyID}
         >
           <ImagesLoads
+            customGroup={`${mobileSizeUp === true ? 'inset-x-auto sm:inset-x-0 xs:w-[151px] w-[143px] sm:w-full' : 'inset-x-0 sm:inset-x-0 w-full'} absolute inset-y-0 block`}
             classname={
               'aspect-auto h-full w-full grayscale object-cover object-center'
             }
@@ -33,13 +41,14 @@ const PartnerCards = ({ keyID, url, images, captions = '', openUrl }) => {
         </Link>
       ) : (
         <Link
-          className={`relative col-span-2 block h-[122px] w-full overflow-clip rounded-[10px] border border-solid border-white/55 transition-[border] duration-300 ease-in-out hover:border-[#ED4F35] sm:col-span-3 sm:h-[123px] sm:rounded-xl sm:border-2 lg:col-span-2 lg:h-[126px] xl:h-[178px]`}
+          className={`xs:h-[68px] relative col-span-2 flex h-[68px] w-full flex-col items-center justify-center overflow-clip border-white/55 sm:col-span-2 sm:h-[76px] sm:rounded-xl lg:col-span-2 lg:h-[94px] xl:h-[120px]`}
           prefetch={true}
           href={url}
           title={`${publicRuntimeConfig?.siteAppName} ${captions}`}
           key={keyID}
         >
           <ImagesLoads
+            customGroup={`${mobileSizeUp === true ? 'inset-x-auto sm:inset-x-0 xs:w-[151px] w-[143px] sm:w-full' : 'inset-x-0 sm:inset-x-0 w-full'} absolute inset-y-0 block`}
             classname={
               'aspect-auto h-full w-full grayscale object-cover object-center'
             }

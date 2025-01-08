@@ -264,7 +264,7 @@ const Home = ({ mode, collections, products }) => {
         <Abouts mode={mode} result={isCollections?.aboutus} />
 
         {/* @tickets */}
-        <section className="ca25Ticket-Section pb-24 pt-[92px] sm:pt-32">
+        <section className="ca25Ticket-Section pb-24 pt-[92px] sm:pt-24">
           <Container className={'relative'}>
             <div className="ca25MoonRckt !pointer-events-none absolute inset-x-0 inset-y-0 z-px mx-auto w-full !select-none"></div>
 
@@ -315,7 +315,7 @@ const Home = ({ mode, collections, products }) => {
         <Partners mode={mode} result={isCollections?.partners} />
 
         {/* @getinvolved & whats-happening */}
-        <div className="ca25Group relative bg-transparent pb-4 sm:pb-20">
+        <div className="ca25Group relative bg-transparent pb-0 sm:pb-12">
           {/* @getinvolved */}
           <GetInvolved mode={mode} result={isCollections?.getinvolved} />
 

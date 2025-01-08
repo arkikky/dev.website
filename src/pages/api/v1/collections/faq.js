@@ -16,19 +16,69 @@ export default function handler(req, res) {
   const rslt = {
     data: [
       {
-        title: 'What is Coinfest Asia?',
-        shortDesc: `Coinfest Asia is a major Web3 and crypto festival in Asia, bringing together industry leaders, developers, investors, and enthusiasts to explore blockchain, DeFi, Web3, and more.`,
+        label: 'General',
+        listQuestions: [
+          {
+            questions: 'What is Coinfest Asia?',
+            answer: `Coinfest Asia is the largest crypto festival in the world, bringing together industry leaders, developers, investors, and enthusiasts to celebrate true crypto culture.`,
+          },
+          {
+            questions: 'When and where is Coinfest Asia 2025?',
+            answer: `Coinfest Asia 2025 will be held in Bali, Indonesia from August 21st to 22nd. Stay tuned for the venue detail!`,
+          },
+          {
+            questions: 'Who should attend?',
+            answer: `Everyone who wants to celebrate crypto shall come! Crypto enthusiasts, developers and engineers, investors, web3 and crypto companies, government reps, media and influencers, and YOU!`,
+          },
+        ],
       },
       {
-        title: 'When and where is Coinfest Asia 2025?',
-        shortDesc: `Coinfest Asia 2025 will be held in Bali, Indonesia from August 21st to 22nd. Stay tuned for the venue detail!`,
+        label: 'Tickets',
+        listQuestions: [
+          {
+            questions: 'How can I register?',
+            answer: `Buy your tickets on our <a href='/tickets' title='Coinfest Asia 2025 Tickets'>Ticket page</a>.`,
+          },
+          {
+            questions: 'What tickets are available?',
+            answer: `
+            Festival ticket: Perfect for you who wants to celebrate crypto <br/>
+            Group package: Perfect for you who wants to bring 5 people <br/>
+            Bull ticket: Perfect for you who wants to level up your network with key industry players.`,
+          },
+        ],
       },
       {
-        title: 'Who should attend?',
-        shortDesc: `Everyone who wants to celebrate crypto shall come! Crypto enthusiasts, developers and engineers, investors, web3 and crypto companies, government reps, media and influencers, and YOU!`,
+        label: 'Get Involved',
+        listQuestions: [
+          {
+            questions: 'How can my company become a sponsor or exhibitor?',
+            answer: `Fill in the form on our <a href='/get-involved/sponsorship' title='Coinfest Asia 2025 Sponsorship Inquiry'>Sponsorship Inquiry</a> and our sponsorship team will get in touch with you.`,
+          },
+          {
+            questions: 'Can I become a speaker?',
+            answer: `Yes! Submit your application through our <a href='/get-involved/speakers' title='Coinfest Asia 2025 Speaker Submission'>Speaker Submission</a> page. Our program team will be in touch with you if you passed their review.`,
+          },
+          {
+            questions: 'Can I partner with Coinfest Asia in other ways?',
+            answer: `You can take part as our Programming Co-host, Travel partner, Media partner, Community partner. If you’re looking to collaborate in other form, send us an inquiry through <a href='mailto:hi@coinfest.asia' title='Coinfest Asia 2025 Email' target='_blank'>partner@coinfest.asia.</a>`,
+          },
+        ],
+      },
+      {
+        label: 'Contact',
+        listQuestions: [
+          {
+            questions: 'How can I stay updated?',
+            answer: `Follow us on social media and subscribe to our newsletter for updates.`,
+          },
+          {
+            questions: 'How can I contact you?',
+            answer: `For further inquiries and assistance, reach out to us through <a href='mailto:hi@coinfest.asia' title='Coinfest Asia 2025 Email' target='_blank'>hi@coinfest.asia.</a>`,
+          },
+        ],
       },
     ],
   };
-
   res?.status(200).json(rslt);
 }

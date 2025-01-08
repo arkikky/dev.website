@@ -256,21 +256,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       return;
     }
   }, [isCart]);
-  // @hook(calulate qty)
-  const calculateTotalQty = useCallback(() => {
-    const toQty = isCart?.reduce((acc, item) => {
-      return acc + item?.quantity;
-    }, 0);
-    if (toQty >= 15) {
-      const newQty = 15;
-      setStore((prev) => ({ ...prev, totalQty: newQty }));
-    } else {
-      setStore((prev) => ({ ...prev, totalQty: toQty }));
-    }
-  }, [isCart]);
   useEffect(() => {
     hndleHookProducts();
-    calculateTotalQty();
     return () => {
       undefined;
     };
@@ -549,8 +536,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
         );
         if (isCart && rsCustomer) {
           const setIdCustomer = rsCustomer?.data.documentId;
-          // const qtyProducts = isStore?.totalQty;
-
           // @discount&customer
           const [getCoupon, rsCustomerDtl] = await Promise.all([
             fetch('/api/data/coupons?sv=coinfestasia', {
@@ -970,6 +955,45 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     ),
                     hbSptKey
                   );
+
+                  // @coupon
+                  const coupon =
+                    updateStatusOrder?.data.coupons.length > 0
+                      ? updateStatusOrder?.data?.coupons[0].couponCode
+                      : null;
+
+                  // @discount&customer
+                  const [getCoupon] = await Promise.all([
+                    fetch('/api/data/coupons?sv=coinfestasia', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({ data: encodeData(coupon) }),
+                    }).then((rs) => rs?.json()),
+                  ]);
+                  const setIsCoupon =
+                    getCoupon?.data?.length > 0 ? getCoupon?.data[0] : null;
+                  const checkCoupon =
+                    setIsCoupon !== null &&
+                    setIsCoupon !== 'null' &&
+                    setIsCoupon !== undefined;
+                  // @update-stock(Coupon)
+                  if (checkCoupon) {
+                    const isLimitUsageCoupon =
+                      parseInt(setIsCoupon?.limitUsage) - 1;
+                    const isUsageCoupon = parseInt(setIsCoupon?.usage) + 1;
+                    const rsUpdateCouponData = await updateData(
+                      `/api/coupons/${setIsCoupon?.documentId}`,
+                      {
+                        data: {
+                          limitUsage: isLimitUsageCoupon?.toString(),
+                          usage: isUsageCoupon?.toString(),
+                        },
+                      }
+                    );
+                  }
+
                   // @send(Invoice)
                   const rsInvoice = await fetch('/api/invoice/send-invoice', {
                     method: 'POST',
@@ -1040,7 +1064,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                             ]);
                           const isFullname = `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`;
                           const qrCodeUrl = await QRCode.toDataURL(
-                            `http://coinfest-2025.vercel.app/perview?att=${rsAttendee?.data.documentId}`,
+                            `http://coinfest.asia/perview?att=${rsAttendee?.data.documentId}`,
                             {
                               width: 256,
                             }
@@ -1151,8 +1175,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 }));
                 dispatch(order(null));
                 dispatch(orderSession(null));
-                reset();
-                router.replace(`/checkout/order-received?process=${isOrder}`);
+                // reset();
+                // router.replace(`/checkout/order-received?process=${isOrder}`);
                 clearInterval(pollingInterval);
                 return;
               }
@@ -1182,7 +1206,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       };
       const pollingInterval = setInterval(() => {
         fetchOrderPayment(isFormCheckouts?.isFields, isStore?.products);
-      }, 16000);
+        // }, 16000);
+      }, 6000);
 
       return () => {
         clearInterval(pollingInterval);
@@ -1315,7 +1340,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                         <div
                           id={`ca25StoreProductSticky_${groupName}`}
                           className={twMerge(
-                            `ca25StoreProductSticky sticky inset-x-0 top-[75px] mt-1 ${gtRslt?.quantity > 1 ? 'h-[78px] sm:h-[94px]' : 'h-[45px] sm:h-[59px]'} z-60 flex w-full flex-col items-start justify-between transition-[height] duration-300 ease-in-out sm:top-[88px]`,
+                            `ca25StoreProductSticky sticky inset-x-0 top-0 mt-1 ${gtRslt?.quantity > 1 ? 'h-[78px] sm:h-[94px]' : 'h-[45px] sm:h-[59px]'} z-60 flex w-full flex-col items-start justify-between transition-[height] duration-300 ease-in-out sm:top-0`,
                             gtRslt?.documentId === 'rc33x0dgm6tm707jghffuip4'
                               ? 'bg-vip45_Sticky'
                               : 'bg-regular45_Sticky'
@@ -1626,7 +1651,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 {/* @submit(Form) */}
                 <button
                   id="ca25Form_SubmitMobileCheckout"
-                  className={`!pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-black-900 px-8 py-5 text-sm font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 sm:text-base`}
+                  className={`!pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-sm font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 sm:text-base`}
                   type="submit"
                   role="button"
                   aria-label="Coinfest Asia 2025 Submit Mobile Checkout"
@@ -1716,7 +1741,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   {/* @submit(Form) */}
                   <button
                     id="ca25Form_SubmitDesktopCheckout"
-                    className={`!pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-black-900 px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
+                    className={`!pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
                     type="submit"
                     role="button"
                     aria-label="Coinfest Asia 2025 Submit Desktop Checkout"
@@ -1780,10 +1805,15 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 };
 
 Checkout.getLayout = (page, { pageProps }) => {
-  const { mode, layouts } = pageProps;
+  const { mode, layouts, withoutNavbar } = pageProps;
   if (layouts) {
     return (
-      <LayoutDefaults isTheme={mode} layoutStore={layouts} isFooterMenu={false}>
+      <LayoutDefaults
+        isTheme={mode}
+        layoutStore={layouts}
+        withNavbar={withoutNavbar}
+        isFooterMenu={false}
+      >
         {page}
       </LayoutDefaults>
     );
@@ -1818,6 +1848,7 @@ export const getServerSideProps = async (context) => {
       props: {
         mode: 'light',
         layouts: isLayouts || false,
+        withoutNavbar: false,
         ipAddress: rsIpAddress || [],
         country: sortedCountries || [],
         coupons: rsCoupons || [],

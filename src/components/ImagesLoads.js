@@ -10,6 +10,7 @@ const { publicRuntimeConfig } = getConfig();
 import Loading from '@components/UI/Loading/Loading';
 
 const ImagesLoads = ({
+  customGroup = 'absolute inset-x-0 inset-y-0 block',
   classname = '',
   src = '',
   alt = '',
@@ -35,7 +36,7 @@ const ImagesLoads = ({
 
   return (
     <>
-      <div ref={ref} className="absolute inset-x-0 inset-y-0 block">
+      <div ref={ref} className={`${customGroup}`}>
         {isLoading ? (
           <Image
             className={

@@ -16,22 +16,22 @@ export default function handler(req, res) {
   const rslt = {
     data: [
       {
-        images: '/assets/images/about-us/ca25AboutUs-EmergingMarkets.jpg',
+        images: '/assets/images/about-us/ca25AboutUs-1.jpg',
         title: 'Dive into Emerging Markets',
         shortDesc:
           'Get connected in Southeast Asia; the fastest-growing Web3 region in the world!',
       },
       {
-        images: '/assets/images/about-us/ca25AboutUs-Adoption.jpg',
+        images: '/assets/images/about-us/ca25AboutUs-2.jpg',
         title: 'Jump Straight to Adoption',
         shortDesc:
-          'Foster collaborations directly in Indonesia where there are ??? new crypto users each month',
+          'Foster collaborations directly in Indonesia where there are 22 million users',
       },
       {
-        images: '/assets/images/about-us/ca25AboutUs-Engaging.jpg',
+        images: '/assets/images/about-us/ca25AboutUs-3.jpg',
         title: 'Unconventionally Engaging',
         shortDesc:
-          'Our immersive programming, setting, sessions and side events leave you with more memory markers than any other event',
+          'Our immersive programming, setting, and sessions leave you with more memory markers than any other event',
       },
     ],
   };

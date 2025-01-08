@@ -21,7 +21,7 @@ const BoardCards = ({ count, title, children }) => {
           },
           snap: { innerText: 1 },
           onUpdate: () => {
-            rfCounter.current.textContent = `${Math.floor(rfCounter.current.innerText)}+`;
+            rfCounter.current.textContent = `${Math.floor(rfCounter.current?.innerText)}+`;
           },
         });
       }

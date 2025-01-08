@@ -32,7 +32,7 @@ const Breadcrumb = ({ theme = 'default', listBreadcrumb = [] }) => {
                     isPage
                   )}
                   href={gtRslt.url}
-                  title={`${gtRslt.label} breadcrumb for Coinfest Asia 2025`}
+                  title={`Coinfest Asia 2025 ${gtRslt.label} Breadcrumb`}
                 >
                   {gtRslt.label}
                 </Link>

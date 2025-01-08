@@ -393,7 +393,7 @@ const CustomerTickets = ({
                   </Column>
                   <Column
                     align="left"
-                    className={`splitColumn2 splitColumn2_Content ${gtRslt?.attendee.product?.documentId === 'rc33x0dgm6tm707jghffuip4' ? 'bg-vip45' : 'bg-regular45'} align-top text-white`}
+                    className={`splitColumn2 splitColumn2_Content ${gtRslt?.attendee.product?.documentId === 'rc33x0dgm6tm707jghffuip4' ? 'bg-[#1F1F1F]' : 'bg-[#005AFF]'} align-top text-white`}
                     style={(styles.splitColumn2, styles.splitColumn2_Content)}
                   >
                     <Heading
@@ -493,10 +493,7 @@ const CustomerTickets = ({
                 </Heading>
                 <Text className="!mb-0 !mt-0 text-xs">
                   <ul className="!list-decimal text-balance !pl-6 text-xs">
-                    <li>
-                      Check-in starts at 1 PM (GMT+8), All attendees checked in
-                      on both Day 1 and Day 2 of the event.
-                    </li>
+                    <li>Check-in starts at 1 PM (GMT+8).</li>
                     <li>
                       The name on this ticket must match a government-issued ID
                       to access the event.

@@ -21,7 +21,7 @@ const EventBoard = dynamic(() => import('@components/UI/EventBoard'), {
 const NavbarTopDefault = ({ theme = 'dark' }) => {
   return (
     <>
-      <nav className="fixed inset-x-0 bottom-auto top-0 z-base flex h-auto w-full flex-col items-center justify-center py-2">
+      <nav className="fixed inset-x-0 bottom-auto top-0 z-base flex h-auto w-full flex-col items-center justify-center py-6">
         <Container>
           <div
             className={`flex flex-row items-center justify-between gap-y-6 rounded-xl border-2 border-solid border-gray-400/[0.18] ${theme == 'light' ? 'bg-gray-200/45' : 'bg-black-700/35'} px-1 py-1 backdrop-blur-md sm:gap-y-0 sm:rounded-2xl sm:px-1.5 sm:py-1.5`}

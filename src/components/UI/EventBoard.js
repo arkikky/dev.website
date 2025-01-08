@@ -26,7 +26,7 @@ const EventBoard = ({ id }) => {
   return (
     <>
       <div
-        className={`pointer-events-none relative flex h-[57px] w-full min-w-[178px] max-w-[178px] cursor-default flex-col overflow-hidden rounded-lg bg-primary px-2.5 py-1.5 sm:h-[64px] sm:min-w-[221px] sm:max-w-[221px] sm:rounded-xl sm:px-3 sm:py-2`}
+        className={`pointer-events-none relative flex h-[53px] w-full min-w-[168px] max-w-[168px] cursor-default flex-col overflow-hidden rounded-lg bg-primary px-2 py-1.5 sm:h-[56px] sm:min-w-[172px] sm:max-w-[172px] sm:rounded-lg sm:px-2.5 sm:py-1.5`}
       >
         <Splide
           ref={(slider) => (rfMainSplde.current = slider)}
@@ -58,7 +58,7 @@ const EventBoard = ({ id }) => {
                 {`Event Date`}
               </span>
               <div
-                className={`absolute inset-x-0 bottom-1 top-auto min-w-max font-bevietnamPro text-base font-normal leading-inherit text-white sm:bottom-0 sm:text-xl`}
+                className={`absolute inset-x-0 bottom-[7px] top-auto min-w-max text-base font-normal leading-initial text-white sm:bottom-[5px] sm:text-base sm:leading-initial`}
               >
                 {`21-22 August 2025`}
               </div>
@@ -70,7 +70,7 @@ const EventBoard = ({ id }) => {
                 {`Starting in`}
               </span>
               <div
-                className={`absolute inset-x-0 bottom-1 top-auto min-w-max font-bevietnamPro text-base font-normal leading-inherit text-white sm:bottom-0 sm:text-xl`}
+                className={`absolute inset-x-0 bottom-[7px] top-auto min-w-max text-base font-normal leading-initial text-white sm:bottom-[5px] sm:text-base sm:leading-initial`}
               >
                 {`${isCountdown?.days}d ${isCountdown?.hours}h ${isCountdown?.minutes}m ${isCountdown?.seconds}s`}
               </div>

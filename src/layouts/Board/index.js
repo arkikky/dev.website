@@ -1,12 +1,15 @@
 import React from 'react';
 import getConfig from 'next/config';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
 
 // @components
-import BoardCards from '@components/UI/Cards/BoardCards';
+const BoardCards = dynamic(() => import('@components/UI/Cards/BoardCards'), {
+  ssr: false,
+});
 
 const Boards = ({ mode }) => {
   return (

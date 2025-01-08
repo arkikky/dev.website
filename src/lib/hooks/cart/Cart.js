@@ -1,9 +1,51 @@
+import React, { useState, useEffect, useCallback } from 'react';
+
 // @redux
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { updateQuantity } from '@reduxState/slices';
+
+// @lib/controller & helper
+import { getCombineMerged, encodeData } from '@lib/helper/Configuration';
 
 export function useCart() {
   const dispatch = useDispatch();
+  const { data: isCart } = useSelector((state) => state.cart);
+  const [isStore, setStore] = useState({
+    cart: [],
+    totalQty: 0,
+  });
+
+  // @initialize(store)
+  const hndleHookProducts = useCallback(async () => {
+    if (!isCart || isCart?.length > 3) return;
+    try {
+      const allProducts = await Promise.all(
+        isCart?.map(async (data) => {
+          const rsHook = await fetch('/api/data/products?sv=coinfestasia', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: encodeData(data?.id_product) }),
+          }).then((res) => res?.json());
+          return {
+            id: rsHook?.id,
+            documentId: rsHook?.documentId,
+            productId: rsHook?.productId,
+            name: rsHook?.name,
+            price: rsHook?.price,
+            priceSale: rsHook?.priceSale,
+            stock: parseInt(rsHook?.stock),
+          };
+        })
+      );
+      // @hook(combine merged)
+      const setMerged = getCombineMerged(allProducts, isCart);
+      if (setMerged) setStore((prev) => ({ ...prev, cart: setMerged }));
+    } catch (err) {
+      return;
+    }
+  }, [isCart]);
 
   // @total(Cart)
   const checkTotalQtyCart = (items, type) => {
@@ -37,6 +79,28 @@ export function useCart() {
     }
   };
 
+  // @calculate(total qty)
+  const calculateTotalQty = useCallback(() => {
+    const toQty = isCart?.reduce((acc, item) => {
+      return acc + item?.quantity;
+    }, 0);
+    if (toQty >= 15) {
+      const newQty = 15;
+      setStore((prev) => ({ ...prev, totalQty: newQty }));
+    } else {
+      setStore((prev) => ({ ...prev, totalQty: toQty }));
+    }
+  }, [isCart]);
+
+  //  @hook(store)
+  useEffect(() => {
+    hndleHookProducts();
+    calculateTotalQty();
+    return () => {
+      undefined;
+    };
+  }, [isCart]);
+
   // @total(store)
   const getTotalCart = (data) => {
     const total = data?.reduce((acc, i) => {
@@ -52,8 +116,10 @@ export function useCart() {
   };
 
   return {
+    getStore: isStore?.cart,
     checkTotalQtyCart,
     updateCartQuantity,
+    getTotalItems: isStore?.totalQty,
     getTotalCart,
   };
 }

@@ -66,7 +66,7 @@ const Speakers = ({ mode, result = [] }) => {
             <Link
               className={`ca25MoonBtn-Embossed relative mx-auto inline-flex w-[174px] items-center justify-center rounded-full bg-[#ED4F35] px-3 py-3 text-sm font-semibold uppercase text-white disabled:pointer-events-none disabled:opacity-90 sm:w-[237px] sm:px-6 sm:py-5`}
               prefetch={true}
-              href="/get-involved/speakers"
+              href="/get-involved"
               title={`Coinfest Asia 2025 Apply As Speaker`}
             >
               {`Apply As Speaker`}

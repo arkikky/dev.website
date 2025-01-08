@@ -9,6 +9,7 @@ import { updateQuantity, applyCoupon, removeCoupon } from '@reduxState/slices';
 
 // @lib/controller & helper
 import { getFetch } from '@lib/controller/API';
+import { useCart } from '@lib/hooks/cart/Cart';
 import {
   currencyConverter,
   converterTotalCart,
@@ -29,7 +30,7 @@ const style = {
 };
 
 const OrderDetailCheckouts = ({
-  items: { products, coupons, totalQty, isSubmited },
+  items: { products, coupons, isSubmited },
   stepForm,
   register,
   setValue,
@@ -39,6 +40,7 @@ const OrderDetailCheckouts = ({
 }) => {
   const dispatch = useDispatch();
   const { coupon: isCoupon } = useSelector((state) => state.cart);
+  const { getTotalItems } = useCart();
   const [isUseCoupon, setUseCoupon] = useState({
     coupon: null,
     discount: 0,
@@ -372,17 +374,13 @@ const OrderDetailCheckouts = ({
       <section
         className={`relative block h-auto min-h-[auto] w-full xl:h-full xl:min-h-full ${isSubmited === true ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'}`}
       >
-        <div className="mb-4 block w-full px-2.5 sm:px-0">
-          <h2 className="text-xl font-medium capitalize">{`Order summary`}</h2>
-          <span className="mt-1.5 text-sm font-light text-gray-400">
-            {`Checkout your ticket for better experience.`}
-          </span>
-        </div>
-
         {/* @group(sticky) */}
         <div
-          className={`relative top-auto z-[2] block xl:sticky xl:top-[109px] ${isSubmited === true ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'}`}
+          className={`relative top-auto z-[2] block xl:sticky xl:top-4.5 ${isSubmited === true ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'}`}
         >
+          <div className="mb-4 block w-full px-2.5 sm:px-0">
+            <h2 className="text-xl font-medium capitalize">{`Order summary`}</h2>
+          </div>
           <div className="my-3 flex w-full border-t border-dashed border-gray-200 px-2.5"></div>
           <div className="relative mb-7 block w-full px-2.5 sm:mb-6 sm:px-0">
             <div
@@ -479,7 +477,7 @@ const OrderDetailCheckouts = ({
                                 type="button"
                                 aria-label="Button for Quantity(Max - Checkouts)"
                                 disabled={
-                                  gtRslt?.quantity >= 15 || totalQty >= 15
+                                  gtRslt?.quantity >= 15 || getTotalItems >= 15
                                 }
                                 onClick={(e) => {
                                   e.preventDefault();
@@ -560,7 +558,7 @@ const OrderDetailCheckouts = ({
             {/* @products(Empty) */}
             {products?.length <= 0 && <EmptyCheckouts />}
           </div>
-          {products?.length > 0 && (
+          {/* {products?.length > 0 && (
             <>
               <div className="mx-0 my-4 flex w-full border-t border-dashed border-gray-200"></div>
               <div className="relative mb-6 block w-full">
@@ -580,7 +578,7 @@ const OrderDetailCheckouts = ({
                 />
               </div>
             </>
-          )}
+          )} */}
 
           {/* @coupon */}
           <div
@@ -617,7 +615,7 @@ const OrderDetailCheckouts = ({
               aria-label="Coinfest Asia 2025 (Dropdown - Coupon Code)"
               data-hs-collapse="#hsCA25CollapseCouponCodeCheckouts"
             >
-              Enter code
+              {`Enter code`}
             </button>
           </div>
 

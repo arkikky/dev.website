@@ -8,7 +8,14 @@ const { publicRuntimeConfig } = getConfig();
 // @components
 import ImagesLoads from '@components/ImagesLoads';
 
-const GetInvolvedCards = ({ keyID, url, images, title = '', comingSoon }) => {
+const GetInvolvedCards = ({
+  keyID,
+  url,
+  images,
+  title = '',
+  position,
+  comingSoon,
+}) => {
   return (
     <>
       {comingSoon ? (
@@ -17,9 +24,7 @@ const GetInvolvedCards = ({ keyID, url, images, title = '', comingSoon }) => {
           key={keyID}
         >
           <ImagesLoads
-            classname={
-              'aspect-auto h-full w-full group-hover:scale-105 object-center transition-[transform] transform duration-300 ease-in-out object-cover'
-            }
+            classname={`aspect-auto h-full w-full group-hover:scale-105 ${position === 'normal' ? 'object-center' : 'object-[-37px]'} transition-[transform] transform duration-300 ease-in-out object-cover`}
             src={images}
             alt={`${title} Get Involved`}
             height={180}
@@ -55,9 +60,7 @@ const GetInvolvedCards = ({ keyID, url, images, title = '', comingSoon }) => {
           key={keyID}
         >
           <ImagesLoads
-            classname={
-              'aspect-auto h-full w-full group-hover:scale-105 object-center transition-[transform] transform duration-300 ease-in-out object-cover'
-            }
+            classname={`aspect-auto h-full w-full group-hover:scale-105 ${position === 'normal' ? 'object-center' : 'object-[-37px]'} transition-[transform] transform duration-300 ease-in-out object-cover`}
             src={images}
             alt={`${title} Get Involved`}
             height={180}

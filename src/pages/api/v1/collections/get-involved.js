@@ -16,27 +16,31 @@ export default function handler(req, res) {
   const rslt = {
     data: [
       {
-        url: '/',
+        url: '/get-involved/speakers',
         images: '/assets/images/get-involved/ca24GetInvolved_1.jpg',
         title: 'Speakers',
+        position: 'normal',
         comingSoon: false,
       },
       {
         url: '/get-involved/sponsorship/',
         images: '/assets/images/get-involved/ca24GetInvolved_2.jpg',
         title: 'Sponsors',
+        position: 'normal',
         comingSoon: false,
       },
       {
         url: '/get-involved',
         images: '/assets/images/get-involved/ca24GetInvolved_3.jpg',
         title: 'Co-Host Program',
+        position: 'normal',
         comingSoon: true,
       },
       {
         url: '/get-involved',
         images: '/assets/images/get-involved/ca24GetInvolved_4.jpg',
         title: 'Partner as Media',
+        position: 'left',
         comingSoon: true,
       },
     ],

@@ -1,31 +1,16 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-// @redux
-import { useSelector } from 'react-redux';
-
 // @lib/controller & helper
-import { getCombineMerged, encodeData } from '@lib/helper/Configuration';
 import { useMethod } from '@lib/hooks/Method';
 
 // @layouts
-import NavbarTop from '@layouts/Navbar/NavbarTopStore';
-import NavbarBottom from '@layouts/Navbar/NavbarBottomStore';
+import NavbarStore from '@layouts/Navbar/NavbarStore';
 import Footer from '@layouts/Footer';
 
-const LayoutStore = ({
-  isTheme = 'light',
-  isLayouts = false,
-  cartStore = [],
-  children,
-}) => {
+const LayoutStore = ({ isTheme = 'light', isLayouts = false, children }) => {
   const router = useRouter();
   const { toggleOverlayPopUp } = useMethod();
-  const { data: isCart } = useSelector((state) => state.cart);
-  const [isStore, setCartProducts] = useState({
-    products: cartStore,
-    cart: [],
-  });
 
   // @hndle(background change)
   useEffect(() => {
@@ -51,54 +36,11 @@ const LayoutStore = ({
     };
   }, [isTheme, router?.events]);
 
-  // @initialize(store)
-  const hndleHookProducts = useCallback(async () => {
-    if (!isCart || isCart.length > 3) return;
-    try {
-      const allProducts = await Promise.all(
-        isCart?.map(async (data) => {
-          const rsHook = await fetch('/api/data/products?sv=coinfestasia', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ data: encodeData(data?.id_product) }),
-          }).then((res) => res?.json());
-          return {
-            id: rsHook?.id,
-            documentId: rsHook?.documentId,
-            productId: rsHook?.productId,
-            name: rsHook?.name,
-            price: rsHook?.price,
-            priceSale: rsHook?.priceSale,
-            stock: parseInt(rsHook?.stock),
-          };
-        })
-      );
-      // @hook(combine merged)
-      const setMerged = getCombineMerged(allProducts, isCart);
-      if (setMerged) setCartProducts((prev) => ({ ...prev, cart: setMerged }));
-    } catch (err) {
-      return;
-    }
-  }, [isCart]);
-  //  @hook(store)
-  useEffect(() => {
-    hndleHookProducts();
-    return () => {
-      undefined;
-    };
-  }, [isCart]);
-
   return (
     <>
       {/* @navbar */}
-      <NavbarTop
-        isTheme={isTheme}
-        nonStore={false}
-        cartProducts={isStore?.cart}
-      />
-      <NavbarBottom cartProducts={isStore?.cart} />
+      <NavbarStore isTheme={isTheme} nonStore={false} />
+      {/* <NavbarBottom /> */}
 
       {/* @main */}
       {children}

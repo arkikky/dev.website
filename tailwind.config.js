@@ -19,7 +19,7 @@ module.exports = {
         transparent: 'transparent',
         current: 'currentColor',
         primary: '#015AFD',
-        secondary: '#DEE813',
+        secondary: '#F3D747',
         success: '#188035',
         danger: '#D64A4A',
         warning: '#F2B124',
