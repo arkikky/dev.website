@@ -83,7 +83,7 @@ const NavbarStore = ({ isTheme = 'dark', nonStore = true }) => {
               {nonStore === false && (
                 <div className="relative mr-2.5 hidden flex-col items-start justify-center lg:flex">
                   <button
-                    className={`relative flex h-[80%] flex-row items-center justify-center rounded-lg bg-secondary px-3 py-3 text-sm leading-initial text-black-900 transition-[width] duration-200 ease-in-out sm:h-15 ${getStore?.length > 0 ? 'w-[84px]' : 'w-15'} sm:rounded-[10px] sm:text-base`}
+                    className={`relative flex h-[80%] w-[84px] flex-row items-center justify-center rounded-lg bg-secondary px-3 py-3 text-sm leading-initial text-black-900 transition-[opacity] duration-200 ease-in-out sm:h-15 ${getStore?.length > 0 ? 'opacity-100' : 'opacity-0'} sm:rounded-[10px] sm:text-base`}
                     type="button"
                     tabIndex={-1}
                     role="button"
@@ -127,13 +127,15 @@ const NavbarStore = ({ isTheme = 'dark', nonStore = true }) => {
                     </span>
                   </button>
 
-                  <CartStore
-                    id="ca2025CartPopUp_General"
-                    backdrop=".ca2025BckdrpOverflay_PopUpGeneral"
-                    type="general"
-                    store={getStore}
-                    totalCart={getTotalCart(getStore)}
-                  />
+                  {getStore?.length > 0 && (
+                    <CartStore
+                      id="ca2025CartPopUp_General"
+                      backdrop=".ca2025BckdrpOverflay_PopUpGeneral"
+                      type="general"
+                      store={getStore}
+                      totalCart={getTotalCart(getStore)}
+                    />
+                  )}
                 </div>
               )}
 
@@ -148,21 +150,25 @@ const NavbarStore = ({ isTheme = 'dark', nonStore = true }) => {
       <nav
         className={`ca25NavbarBottom pointer-events-auto fixed inset-x-0 bottom-0 top-auto z-base flex h-auto w-full flex-col items-center justify-center pb-2 opacity-100 lg:pointer-events-none lg:hidden lg:opacity-0`}
       >
-        <CartStore
-          id="ca2025CartPopUp_Mobile"
-          type="mobile"
-          backdrop=".ca2025BckdrpOverflay_PopUpMobile"
-          store={getStore}
-          totalCart={getTotalCart(getStore)}
-          loading={isLoading}
-        />
+        {getStore?.length > 0 && (
+          <CartStore
+            id="ca2025CartPopUp_Mobile"
+            type="mobile"
+            backdrop=".ca2025BckdrpOverflay_PopUpMobile"
+            store={getStore}
+            totalCart={getTotalCart(getStore)}
+            loading={isLoading}
+          />
+        )}
 
         <Container className={'relative'}>
-          <div className="relative mx-auto flex w-full flex-row items-center justify-between gap-y-6 rounded-xl border-2 border-solid border-gray-400/[0.18] bg-gray-300/25 px-1 py-1 backdrop-blur-md sm:gap-y-0 sm:rounded-2xl sm:px-1.5 sm:py-1.5 lg:max-w-[677px]">
+          <div
+            className={`relative mx-auto ${getStore?.length > 0 ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} flex w-full transform flex-row items-center justify-between gap-y-6 rounded-xl border-2 border-solid border-gray-400/[0.18] bg-gray-300/25 px-1 py-1 backdrop-blur-md transition-[transform,opacity] duration-300 ease-in-out sm:gap-y-0 sm:rounded-2xl sm:px-1.5 sm:py-1.5 lg:max-w-[677px]`}
+          >
             <div className="flex w-full flex-row items-center justify-between sm:w-max">
               <button
                 id="ca25BtnCartStore_Mobile"
-                className={`relative flex h-[80%] flex-row items-center justify-center rounded-lg bg-secondary px-3 py-3 text-sm leading-initial text-black-900 transition-[width] duration-300 ease-in-out sm:h-15 ${getStore?.length > 0 ? 'w-19' : 'w-13'} sm:rounded-[10px] sm:text-base`}
+                className={`relative flex h-[80%] w-19 flex-row items-center justify-center rounded-lg bg-secondary px-3 py-3 text-sm leading-initial text-black-900 sm:h-15 sm:rounded-[10px] sm:text-base`}
                 type="button"
                 tabIndex={-1}
                 role="button"
@@ -199,17 +205,13 @@ const NavbarStore = ({ isTheme = 'dark', nonStore = true }) => {
                     ></path>
                   </svg>
                 </span>
-                <span
-                  className={`ml-0.5 font-medium ${getStore?.length > 0 ? 'block w-[22px] opacity-100' : 'hidden w-0 opacity-0'} transition-[opacity,width] delay-[2.2s] ease-in-out`}
-                >
-                  ({getTotalItems})
-                </span>
+                <span className={`ml-0.5 font-medium`}>({getTotalItems})</span>
               </button>
             </div>
             <div className="block w-max">
               <button
                 id="ca25BtnCartStore_Checkout"
-                className={`h-[46px] w-[106px] ${getStore?.length > 0 ? 'opacity-100' : 'opacity-0'} cursor-pointer rounded-lg bg-primary px-5 py-3.5 text-sm leading-initial text-white transition-[opacity] duration-300 ease-in-out disabled:cursor-not-allowed disabled:bg-primary/80 disabled:text-white/40 sm:h-[56px] sm:w-[138px] sm:rounded-[10px] sm:px-6 sm:py-0 sm:text-base lg:py-4`}
+                className={`h-[46px] w-[106px] cursor-pointer rounded-lg bg-primary px-5 py-3.5 text-sm leading-initial text-white disabled:cursor-not-allowed disabled:bg-primary/80 disabled:text-white/40 sm:h-[56px] sm:w-[138px] sm:rounded-[10px] sm:px-6 sm:py-0 sm:text-base lg:py-4`}
                 type="button"
                 tabIndex={-1}
                 aria-label="Coinfest Asia 2025 Button on Processed Checkout"

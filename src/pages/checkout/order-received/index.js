@@ -10,6 +10,7 @@ import { removeCart } from '@reduxState/slices';
 import { getFetch } from '@lib/controller/API';
 import {
   currencyConverter,
+  converterTotalCart,
 } from '@lib/helper/CalculateCartContext';
 
 // @components
@@ -33,6 +34,8 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
     fullname: `${isOrderRecived ? isOrderRecived?.order?.customer.firstName : ''} ${isOrderRecived ? isOrderRecived?.order?.customer.lastName : ''}`,
     company: `${isOrderRecived ? isOrderRecived?.order?.customer.company : 'N/A'}`,
   };
+
+  console.log(isOrderRecived?.order?.paymentStatus);
 
   const hndleIntzCoupon = async () => {
     const isPrice =
@@ -100,78 +103,46 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
             <div className="col-span-full flex flex-col items-start justify-between pl-0 xl:col-span-6 xl:pr-[114px]">
               <div className="block w-full">
                 <div className="inline-flex flex-row items-center space-x-2">
-                  {isOrderRecived?.order?.paymentStatus === 'Success' ? (
+                  <svg
+                    className="-ml-[5px] h-12 w-12 sm:ml-0 sm:h-16 sm:w-16"
+                    viewBox="0 0 56 56"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      opacity="0.5"
+                      d="M37.0428 45.4706L37.4639 45.1792C38.7823 44.2678 39.4417 43.8118 40.0313 43.323C43.2354 40.6674 45.3877 36.9656 46.104 32.8778C46.2359 32.1256 46.3042 31.3299 46.4412 29.7381L46.5121 28.9151C46.7389 26.2808 46.7163 23.6308 46.4447 21.0005L46.3605 20.1866C45.8852 15.5836 43.0593 11.5493 38.8838 9.51214C32.0184 6.16262 23.9819 6.16262 17.1165 9.51214C12.941 11.5493 10.1152 15.5836 9.63978 20.1866L9.55571 21.0005C9.28402 23.6308 9.26141 26.2808 9.48819 28.9151L9.55903 29.7381C9.69602 31.3299 9.76452 32.1256 9.89636 32.8778C10.6126 36.9656 12.7648 40.6674 15.969 43.323C16.5587 43.8118 17.2181 44.2678 18.5363 45.1794L18.9576 45.4706C20.7499 46.7098 21.6461 47.3298 22.5442 47.7603C25.9919 49.4132 30.0085 49.4132 33.456 47.7603C34.3543 47.3298 35.2505 46.7101 37.0428 45.4706Z"
+                      stroke="#00A725"
+                      strokeWidth="5.25"
+                    ></path>
+                    <path
+                      d="M46.4412 29.7381L46.5121 28.9151C46.7389 26.2808 46.7163 23.6308 46.4447 21.0005L46.3605 20.1866C45.8852 15.5836 43.0593 11.5493 38.8838 9.51214C32.0184 6.16262 23.9819 6.16262 17.1165 9.51214C12.941 11.5493 10.1152 15.5836 9.63978 20.1866L9.55571 21.0005C9.28402 23.6308 9.26141 26.2808 9.48819 28.9151L9.55903 29.7381C9.69602 31.3299 9.76452 32.1256 9.89636 32.8778C10.6126 36.9656 12.7648 40.6674 15.969 43.323C16.5587 43.8118 17.2181 44.2678 18.5363 45.1794L18.9576 45.4706C20.7499 46.7098 21.6461 47.3298 22.5442 47.7603"
+                      stroke="#00A725"
+                      strokeWidth="5.25"
+                      strokeLinecap="round"
+                    ></path>
+                    <path
+                      opacity="0.5"
+                      d="M21.5835 27.4152L26.2502 32.0819L34.4168 23.3319"
+                      stroke="#00A725"
+                      strokeWidth="5.25"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                  <h1 className="text-xl font-bold sm:text-2xl">
+                    {`YOUR ORDER IS COMPLETE!`}
+                  </h1>
+                  {/* {isOrderRecived?.order?.paymentStatus === 'Success' ? (
                     <>
-                      <svg
-                        className="-ml-[5px] h-12 w-12 sm:ml-0 sm:h-16 sm:w-16"
-                        viewBox="0 0 56 56"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          opacity="0.5"
-                          d="M37.0428 45.4706L37.4639 45.1792C38.7823 44.2678 39.4417 43.8118 40.0313 43.323C43.2354 40.6674 45.3877 36.9656 46.104 32.8778C46.2359 32.1256 46.3042 31.3299 46.4412 29.7381L46.5121 28.9151C46.7389 26.2808 46.7163 23.6308 46.4447 21.0005L46.3605 20.1866C45.8852 15.5836 43.0593 11.5493 38.8838 9.51214C32.0184 6.16262 23.9819 6.16262 17.1165 9.51214C12.941 11.5493 10.1152 15.5836 9.63978 20.1866L9.55571 21.0005C9.28402 23.6308 9.26141 26.2808 9.48819 28.9151L9.55903 29.7381C9.69602 31.3299 9.76452 32.1256 9.89636 32.8778C10.6126 36.9656 12.7648 40.6674 15.969 43.323C16.5587 43.8118 17.2181 44.2678 18.5363 45.1794L18.9576 45.4706C20.7499 46.7098 21.6461 47.3298 22.5442 47.7603C25.9919 49.4132 30.0085 49.4132 33.456 47.7603C34.3543 47.3298 35.2505 46.7101 37.0428 45.4706Z"
-                          stroke="#00A725"
-                          strokeWidth="5.25"
-                        ></path>
-                        <path
-                          d="M46.4412 29.7381L46.5121 28.9151C46.7389 26.2808 46.7163 23.6308 46.4447 21.0005L46.3605 20.1866C45.8852 15.5836 43.0593 11.5493 38.8838 9.51214C32.0184 6.16262 23.9819 6.16262 17.1165 9.51214C12.941 11.5493 10.1152 15.5836 9.63978 20.1866L9.55571 21.0005C9.28402 23.6308 9.26141 26.2808 9.48819 28.9151L9.55903 29.7381C9.69602 31.3299 9.76452 32.1256 9.89636 32.8778C10.6126 36.9656 12.7648 40.6674 15.969 43.323C16.5587 43.8118 17.2181 44.2678 18.5363 45.1794L18.9576 45.4706C20.7499 46.7098 21.6461 47.3298 22.5442 47.7603"
-                          stroke="#00A725"
-                          strokeWidth="5.25"
-                          strokeLinecap="round"
-                        ></path>
-                        <path
-                          opacity="0.5"
-                          d="M21.5835 27.4152L26.2502 32.0819L34.4168 23.3319"
-                          stroke="#00A725"
-                          strokeWidth="5.25"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        ></path>
-                      </svg>
-                      <h1 className="text-xl font-bold sm:text-2xl">
-                        {`YOUR ORDER IS COMPLETE!`}
-                      </h1>
                     </>
-                  ) : isOrderRecived?.order?.paymentStatus === 'Pending' ? (
-                    <>
-                      <svg
-                        className="-ml-[5px] h-16 w-16 sm:ml-0"
-                        viewBox="0 0 56 56"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          opacity="0.5"
-                          d="M37.0428 45.4706L37.4639 45.1792C38.7823 44.2678 39.4417 43.8118 40.0313 43.323C43.2354 40.6674 45.3877 36.9656 46.104 32.8778C46.2359 32.1256 46.3042 31.3299 46.4412 29.7381L46.5121 28.9151C46.7389 26.2808 46.7163 23.6308 46.4447 21.0005L46.3605 20.1866C45.8852 15.5836 43.0593 11.5493 38.8838 9.51214C32.0184 6.16262 23.9819 6.16262 17.1165 9.51214C12.941 11.5493 10.1152 15.5836 9.63978 20.1866L9.55571 21.0005C9.28402 23.6308 9.26141 26.2808 9.48819 28.9151L9.55903 29.7381C9.69602 31.3299 9.76452 32.1256 9.89636 32.8778C10.6126 36.9656 12.7648 40.6674 15.969 43.323C16.5587 43.8118 17.2181 44.2678 18.5363 45.1794L18.9576 45.4706C20.7499 46.7098 21.6461 47.3298 22.5442 47.7603C25.9919 49.4132 30.0085 49.4132 33.456 47.7603C34.3543 47.3298 35.2505 46.7101 37.0428 45.4706Z"
-                          stroke="#DC2626"
-                          strokeWidth="5.25"
-                        ></path>
-                        <path
-                          d="M46.4412 29.7381L46.5121 28.9151C46.7389 26.2808 46.7163 23.6308 46.4447 21.0005L46.3605 20.1866C45.8852 15.5836 43.0593 11.5493 38.8838 9.51214C32.0184 6.16262 23.9819 6.16262 17.1165 9.51214C12.941 11.5493 10.1152 15.5836 9.63978 20.1866L9.55571 21.0005C9.28402 23.6308 9.26141 26.2808 9.48819 28.9151L9.55903 29.7381C9.69602 31.3299 9.76452 32.1256 9.89636 32.8778C10.6126 36.9656 12.7648 40.6674 15.969 43.323C16.5587 43.8118 17.2181 44.2678 18.5363 45.1794L18.9576 45.4706C20.7499 46.7098 21.6461 47.3298 22.5442 47.7603"
-                          stroke="#DC2626"
-                          strokeWidth="5.25"
-                          strokeLinecap="round"
-                        ></path>
-                        <path
-                          opacity="0.5"
-                          d="M21.5835 27.4152L26.2502 32.0819L34.4168 23.3319"
-                          stroke="#DC2626"
-                          strokeWidth="5.25"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        ></path>
-                      </svg>
-                      <h1 className="text-balance pl-2.5 text-xl font-bold sm:text-2xl">
-                        {`YOUR ORDER FAILED. PLEASE TRY AGAIN!`}
-                      </h1>
-                    </>
-                  ) : null}
+                  ) : null} */}
                 </div>
                 <div className="mt-4 text-base font-light text-gray-500 prose-a:text-primary prose-a:underline">
                   <p>
-                    Your payment was unsuccessful, and your order could not be
-                    completed. Please try again or contact{' '}
+                    Your payment was successful, and your order is complete!
+                    Check your email for the receipt and e-ticket. If you don't
+                    receive them within 24 hours, please contact{' '}
                     <Link
                       href="mailto:support@coinfest.asia"
                       title="Coinfest Asia 2025 Email Support"
@@ -179,9 +150,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
                       rel="noopener noreferrer"
                     >
                       {`support@coinfest.asia`}
-                    </Link>{' '}
-                    for assistance. If the payment was deducted, please provide
-                    the transaction details for further investigation.
+                    </Link>
                   </p>
                 </div>
                 {/* <div className="mt-6 hidden w-full flex-row gap-x-4 xl:inline-flex">
@@ -276,20 +245,15 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
                   </div>
                   <div className="my-2 border-t border-dashed border-gray-200"></div>
                   <div className="block w-full space-y-4">
-                    {isOrderRecived?.order?.paymentStatus === 'Success' && (
-                      <div className="grid-cols-1 gap-y-2.5 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
-                        <div className="self-center text-start text-sm font-normal text-gray-600">{`Payment Method`}</div>
-                        <div className="col-span-full flex flex-row items-center pl-0 text-start text-base font-light text-black-900 sm:col-span-2 sm:text-start xl:pl-8">
-                          <span className="mr-2.5 hidden w-max sm:block">
-                            :
-                          </span>
-                          {isOrderRecived?.order?.paymentStatus ===
-                            'Success' && (
-                            <Badge label={`All Support Payment`} type="dark" />
-                          )}
-                        </div>
+                    <div className="grid-cols-1 gap-y-2.5 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
+                      <div className="self-center text-start text-sm font-normal text-gray-600">{`Payment Method`}</div>
+                      <div className="col-span-full flex flex-row items-center pl-0 text-start text-base font-light text-black-900 sm:col-span-2 sm:text-start xl:pl-8">
+                        <span className="mr-2.5 hidden w-max sm:block">:</span>
+                        {isOrderRecived?.order?.paymentStatus === 'Success' && (
+                          <Badge label={`All Support Payment`} type="dark" />
+                        )}
                       </div>
-                    )}
+                    </div>
                     {isOrderRecived?.order?.coupons.length > 0 && (
                       <div className="grid-cols-1 items-start gap-y-1 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
                         <div className="flex flex-col self-center text-start text-sm font-normal text-gray-600">
