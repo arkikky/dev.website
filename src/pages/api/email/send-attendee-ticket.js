@@ -56,7 +56,7 @@ CATEGORIES:Meet Up,Conference
 ORGANIZER;CN="Coinfest Asia (hi@ticket.coinfest.asia)":mailto:hi@ticket.coinfest.asia
 UID:${Date.now()}@coinfest.asia
 SUMMARY:Coinfest Asia 2025
-DESCRIPTION:This is the largest crypto festival in the world!
+DESCRIPTION:<strong>WHAT TO BRING:</strong><br>Ticket & Government-issued ID.<br><br><strong>IMPORTANT NOTE:</strong><br>👕 Attire: We recommend you to come wearing relaxed summer clothes.<br>☀️ Weather: The average temperature is 26°C / 79°F.<br>🚗 Traffic: We recommend you to spare 1-2 hours in traveling to the venue as Bali traffic can be unpredictable.<br>📁 Visa & Immigration: Find out everything you need to know about entry to Indonesia and Indonesia’s travel guidelines on <a href='https://www.indonesia.travel/id/en/general-information/visa-immigration.html'>Indonesia Travel page.</a>
 ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;X-NUM-GUESTS=0:mailto:${toEmail}
 LOCATION:Bali\, Indonesia
 SEQUENCE:0

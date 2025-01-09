@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useRouter } from 'next/router';
 import QRCode from 'qrcode';
+import { Toaster } from 'sonner';
 import { toast } from 'sonner';
 import { useForm } from 'react-hook-form';
 import getConfig from 'next/config';
@@ -51,6 +52,7 @@ import Notifications from '@components/UI/Alerts/Notifications';
 import Badge from '@components/UI/Badge';
 import PaymentProcessModal from '@components/UI/Modal/PaymentProcess';
 import OrderProcessModal from '@components/UI/Modal/OrderProcess';
+import ExpiredOrderModal from '@components/UI/Modal/ExpiredOrder';
 const CopyBillingAttendeeBtn = dynamic(
   () => import('@components/UI/Button/CopyBillingAttendeeBtn'),
   {
@@ -107,9 +109,9 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     totalQty: 0,
     discntAmount: 0,
     totalOrder: 0,
-    isPaymentStatus: null,
     isPaymentProcess: false,
     isOrderProcess: false,
+    isExpiredPayment: false,
   });
   const [currentStepAttendee, setCurrentStepAttendee] = useState(
     isCart?.map(() => 0)
@@ -124,27 +126,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   const style = {
     rc33x0dgm6tm707jghffuip4: 'bg-vip45',
   };
-
-  // @sticky(Scroll)
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const stickyScroll = document.querySelectorAll('.ca25StoreProductSticky');
-  //     const scrollPosition = window.scrollY;
-
-  //     stickyScroll.forEach((el) => {
-  //       const targetOffsetTop = el.getBoundingClientRect().top + window.scrollY;
-  //       if (scrollPosition > targetOffsetTop) {
-  //         el.classList.add('isStickyActive');
-  //       } else {
-  //         el.classList.remove('isStickyActive');
-  //       }
-  //     });
-  //   };
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => {
-  //     window.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, []);
 
   // @btn-step(Attendee)
   const handleTabClick = (e, productIdx, tabIdx) => {
@@ -355,6 +336,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     control,
     formState: { errors, isValid, isSubmitting },
     handleSubmit,
+    trigger,
     setValue,
     getValues,
     reset,
@@ -508,6 +490,147 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     }
   };
 
+  // @hash-validation(attendees)
+  function hashValidateAttendees(groupedData) {
+    const products = groupedData?.products;
+    if (!products || Object.keys(products)?.length === 0) {
+      // toast.error('Tidak ada data produk ditemukan!', {
+      //   position: 'top-right',
+      // });
+      return false;
+    }
+
+    const invalidAttendees = {};
+    let isDataFound = false;
+    Object.entries(products)?.forEach(([productName, attendees]) => {
+      if (attendees && attendees.length > 0) {
+        isDataFound = true;
+        attendees.forEach((attendee, index) => {
+          const isValid = validateFields(attendee, productName, index + 1);
+          if (!isValid) {
+            if (!invalidAttendees[productName]) {
+              invalidAttendees[productName] = [];
+            }
+            invalidAttendees[productName].push(`${index + 1}`);
+          }
+        });
+      }
+    });
+    if (!isDataFound) {
+      // toast.error('Tidak ada attendee ditemukan dalam produk!', {
+      //   position: 'top-right',
+      // });
+      return false;
+    }
+    let hasInvalid = false;
+    Object.entries(invalidAttendees)?.forEach(([productName, attendees]) => {
+      if (attendees?.length > 0) {
+        hasInvalid = true;
+        toast.custom(
+          (t) => (
+            <ToastAlerts
+              id={t}
+              position="top-[0px] inset-x-2.5 sm:inset-x-3 bottom-auto"
+              type="error"
+              visible={true}
+              label={`Attendees <strong>${attendees.join(', ')}</strong> in <strong>${productName} Tickets</strong>,<br> Still have incomplete information.`}
+            />
+          ),
+          { unstyled: true, duration: 123000 }
+        );
+      }
+    });
+    if (hasInvalid) {
+      return false;
+    }
+    // toast.success('Semua data attendee valid!', { position: 'top-right' });
+    return true;
+  }
+
+  function validateFields(att, products, attIdx) {
+    const haveCompanyField = `haveCompanyAttndee${attIdx}_${products}Tickets`;
+    const hasCompany = att[haveCompanyField] === true;
+    const requiredFields = hasCompany
+      ? [
+          'firstname',
+          'lastname',
+          'email',
+          'country',
+          'whatTypeConnectionNetworking',
+          'didYouHearAbout',
+          'companyAttndee',
+          'companyFocusAttndee',
+          'companySize',
+        ]
+      : [
+          'firstname',
+          'lastname',
+          'email',
+          'country',
+          'whatTypeConnectionNetworking',
+          'didYouHearAbout',
+        ];
+
+    let rsAllFields = true;
+    for (const field of requiredFields) {
+      const fieldName = `${field}Attndee${attIdx}_${products}Tickets`;
+      // console.log(`Checking field: ${fieldName}`);
+      // console.log(`Value: ${att[fieldName]}`);
+      if (!att[fieldName] || att[fieldName].trim() === '') {
+        // console.log(`Field ${fieldName} is null!`);
+        rsAllFields = false;
+      }
+    }
+    return rsAllFields;
+  }
+
+  // @validation(error form)
+  const onError = (errors, e) => {
+    const data = getValues();
+    const groupedData = {
+      personalData: {},
+      products: {},
+    };
+    const companyKeys = [
+      'companyAttndee',
+      'jobPositionAttndee',
+      'companyFocusAttndee',
+      'companySizeAttndee',
+    ];
+    const excludeKeys = ['telegramAccountAttndee', ...companyKeys];
+
+    for (let key in data) {
+      if (key.includes('Attndee')) {
+        const matches = key.match(/Attndee(\d+)_(\w+)Tickets/);
+        if (matches) {
+          const attendeeIndex = matches[1];
+          const productName = matches[2];
+
+          if (!groupedData.products[productName]) {
+            groupedData.products[productName] = [];
+          }
+          if (!groupedData.products[productName][attendeeIndex - 1]) {
+            groupedData.products[productName][attendeeIndex - 1] = {};
+          }
+          const isExcludedKey = excludeKeys.some((excludeKey) =>
+            key.startsWith(excludeKey)
+          );
+          if (
+            isExcludedKey &&
+            (key.startsWith('telegramAccountAttndee') ||
+              !data[`haveCompanyAttndee${attendeeIndex}_${productName}Tickets`])
+          ) {
+            continue;
+          }
+          groupedData.products[productName][attendeeIndex - 1][key] = data[key];
+        }
+      } else {
+        groupedData.personalData[key] = data[key];
+      }
+    }
+    hashValidateAttendees(groupedData);
+  };
+
   // @submit(Checkout)
   const onSubmitForm = async (data) => {
     const btnRdrctPymnt_Gtwy = document.querySelector(
@@ -519,7 +642,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       } else if (Math.abs(isStore?.totalOrder) < 1e-10) {
         setStore((prev) => ({ ...prev, isOrderProcess: true }));
       }
-
       setFormCheckouts((prev) => ({
         ...prev,
         isFields: data,
@@ -601,6 +723,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   payerEmail: rsCreateOrder?.data?.customer?.email,
                   fullname: `${rsCreateOrder?.data?.customer?.firstName} ${rsCreateOrder?.data?.customer?.lastName}`,
                   phone: rsCreateOrder?.data?.customer?.phone,
+                  order: setIdOrderRecived,
                 }),
               }).then((res) => res.json());
               if (rsPayment?.data?.invoice_url) {
@@ -722,7 +845,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                       ]);
                       const isFullname = `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`;
                       const qrCodeUrl = await QRCode.toDataURL(
-                        `http://coinfest-2025.vercel.app/perview?att=${rsAttendee?.data.documentId}`,
+                        `http://coinfest.asia/perview?att=${rsAttendee?.data.documentId}`,
                         {
                           width: 256,
                         }
@@ -764,6 +887,12 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                         qrCode: rsQrCodeGenerate[0]?.url,
                       });
                       if (rsAttendee) {
+                        const tickets =
+                          rsAttendee?.data.product.documentId ===
+                          'sn4ujm0d1ebbc8lme1ihzsa9'
+                            ? `Festival Tickets`
+                            : `${rsAttendee?.data.product?.name}`;
+
                         // @send(Email)
                         const rsEmail = await fetch(
                           '/api/email/send-attendee-ticket',
@@ -780,7 +909,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                               attId: rsAttendee?.data.attendeeId,
                               fullname: isFullname,
                               company: `${rsAttendee?.data.company}`,
-                              productTickets: `${rsAttendee?.data.product?.name}`,
+                              productTickets: tickets,
                             }),
                           }
                         ).then((res) => res.json());
@@ -842,16 +971,17 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       isOrderPayment_Session !== null &&
       isOrderPayment_Session !== undefined
     ) {
+      setStore((prev) => ({ ...prev, isPaymentProcess: true }));
       setFormCheckouts((prev) => ({
         ...prev,
         isSubmited: true,
       }));
       const fetchOrderPayment = async (fields, products) => {
         try {
-          // @hubspot(Customer , Attendee)
+          // @hubspot(customer & attendee)
           const hbSptKey = '96572ab0-5958-4cc4-8357-9c65de42cab6';
           const hbSptAttndeeKey = 'c9347ef6-664d-4b7a-892b-a1cabaa2bc30';
-          // @get(Key)
+          // @get(key)
           const { key } = await fetch('/api/env/note', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -885,7 +1015,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             ).then((res) => res.json());
             setStore((prev) => ({
               ...prev,
-              isPaymentStatus: 'EXPIRED',
+              isExpiredPayment: true,
               isPaymentProcess: false,
             }));
             setFormCheckouts((prev) => ({
@@ -894,11 +1024,13 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             }));
             dispatch(order(null));
             dispatch(orderSession(null));
+            reset();
+            router.replace(`/checkout/order-received?process=${isOrder}`);
             clearInterval(pollingInterval);
             return;
           }
 
-          // @process(Payment)
+          // @process(payment)
           if (
             rsPaymentWebhook?.status === 'PAID' ||
             rsPaymentWebhook?.status === 'SETTLED'
@@ -908,7 +1040,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             if (expiryPay < now) {
               setStore((prev) => ({
                 ...prev,
-                isPaymentStatus: 'EXPIRED',
+                isExpiredPayment: false,
                 isPaymentProcess: false,
               }));
               setFormCheckouts((prev) => ({
@@ -923,7 +1055,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               if (isValidationMoreTimeMinutes(rsPaymentWebhook?.paid_at, 6)) {
                 setStore((prev) => ({
                   ...prev,
-                  isPaymentStatus: 'EXPIRED',
                   isPaymentProcess: false,
                 }));
                 setFormCheckouts((prev) => ({
@@ -978,7 +1109,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     setIsCoupon !== null &&
                     setIsCoupon !== 'null' &&
                     setIsCoupon !== undefined;
-                  // @update-stock(Coupon)
+                  // @update-stock(coupon)
                   if (checkCoupon) {
                     const isLimitUsageCoupon =
                       parseInt(setIsCoupon?.limitUsage) - 1;
@@ -994,7 +1125,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     );
                   }
 
-                  // @send(Invoice)
+                  // @send(invoice)
                   const rsInvoice = await fetch('/api/invoice/send-invoice', {
                     method: 'POST',
                     headers: {
@@ -1069,7 +1200,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                               width: 256,
                             }
                           );
-                          // @convertURL to Blob
+                          // @convert(url to blob)
                           const [header, base64Data] = qrCodeUrl?.split(',');
                           const mimeString = header.match(/:(.*?);/)[1];
                           const byteString = atob(base64Data);
@@ -1109,7 +1240,13 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                             qrCode: rsQrCodeGenerate[0]?.url,
                           });
                           if (rsAttendee) {
-                            // @send(Email)
+                            const tickets =
+                              rsAttendee?.data.product.documentId ===
+                              'sn4ujm0d1ebbc8lme1ihzsa9'
+                                ? `Festival Tickets`
+                                : `${rsAttendee?.data.product?.name}`;
+
+                            // @send(email)
                             const rsEmail = await fetch(
                               '/api/email/send-attendee-ticket',
                               {
@@ -1125,7 +1262,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                   attId: rsAttendee?.data.attendeeId,
                                   fullname: isFullname,
                                   company: `${rsAttendee?.data.company}`,
-                                  productTickets: `${rsAttendee?.data.product?.name}`,
+                                  productTickets: tickets,
                                 }),
                               }
                             ).then((res) => res.json());
@@ -1141,7 +1278,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     }
                   }
 
-                  // @send(Ticket Customer)
+                  // @send(ticket customer)
                   if (
                     isStore?.products?.length > 1 ||
                     isStore?.products[0]?.quantity > 1
@@ -1166,7 +1303,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 }
                 setStore((prev) => ({
                   ...prev,
-                  isPaymentStatus: 'SETLED',
+                  isExpiredPayment: false,
                   isPaymentProcess: false,
                 }));
                 setFormCheckouts((prev) => ({
@@ -1175,8 +1312,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 }));
                 dispatch(order(null));
                 dispatch(orderSession(null));
-                // reset();
-                // router.replace(`/checkout/order-received?process=${isOrder}`);
+                reset();
+                router.replace(`/checkout/order-received?process=${isOrder}`);
                 clearInterval(pollingInterval);
                 return;
               }
@@ -1185,9 +1322,15 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             rsPaymentWebhook?.status === 'FAILED' ||
             rsPaymentWebhook?.status === 'EXPIRED'
           ) {
+            //  const rsOrder = await getFetch(
+            //       `/api/orders/${isOrder}?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount`
+            //     );
+            //     if (rsOrder?.data?.paymentStatus === 'Pending') {
+
+            //     }
             setStore((prev) => ({
               ...prev,
-              isPaymentStatus: 'FAILED',
+              isExpiredPayment: true,
               isPaymentProcess: false,
             }));
             setFormCheckouts((prev) => ({
@@ -1196,6 +1339,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             }));
             dispatch(order(null));
             dispatch(orderSession(null));
+            reset();
+            router.replace(`/checkout/order-received?process=${isOrder}`);
             clearInterval(pollingInterval);
             return;
           }
@@ -1206,8 +1351,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       };
       const pollingInterval = setInterval(() => {
         fetchOrderPayment(isFormCheckouts?.isFields, isStore?.products);
-        // }, 16000);
-      }, 6000);
+      }, 16000);
 
       return () => {
         clearInterval(pollingInterval);
@@ -1230,7 +1374,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             id="ca25Form_Checkout"
             className="relative grid-cols-1 gap-x-6 gap-y-12 supports-grid:grid sm:grid-cols-12 sm:gap-y-14 lg:gap-y-20"
             method="POST"
-            onSubmit={handleSubmit(onSubmitForm)}
+            onSubmit={handleSubmit(onSubmitForm, onError)}
           >
             <div className="order-last col-span-full px-2.5 sm:px-0 xl:order-first xl:col-span-7 xl:pr-10">
               <Header media="xl" />
@@ -1259,55 +1403,57 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               </div>
 
               {/* @billing(details) */}
-              <div
-                className={`relative mt-8 flex flex-col items-start rounded-2xl px-1.5 pb-1.5 pt-4 bg-gradient-primary45 sm:px-2 sm:pb-2 ${
-                  isDisabled
-                    ? '!pointer-events-none !select-none'
-                    : '!pointer-events-auto !select-auto'
-                }`}
-              >
-                {isDisabled ? (
-                  <div
-                    className={`absolute inset-x-0 inset-y-0 bg-white/40 ${
-                      isDisabled
-                        ? '!pointer-events-none z-50 !select-none opacity-100 backdrop-blur-[2px]'
-                        : '!pointer-events-auto -z-px !select-auto opacity-0'
-                    }`}
-                  ></div>
-                ) : null}
-                <div className="mb-6 flex w-full flex-col items-start justify-start px-4 sm:mb-4">
-                  <h2 className="text-xl font-medium capitalize text-white">
-                    {`Billing details`}
-                  </h2>
-                  <span className="mt-1 text-sm font-light text-white/70">
-                    {`Please complete your purchase by providing your billing and
-                    payment details.`}
-                  </span>
-                </div>
+              {isStore?.products?.length > 0 ? (
                 <div
-                  className={`relative inline-flex w-full flex-col rounded-xl bg-white ${
+                  className={`relative mt-8 flex flex-col items-start rounded-2xl px-1.5 pb-1.5 pt-4 bg-gradient-primary45 sm:px-2 sm:pb-2 ${
                     isDisabled
                       ? '!pointer-events-none !select-none'
                       : '!pointer-events-auto !select-auto'
-                  } px-3 py-3 sm:px-4 sm:py-4`}
+                  }`}
                 >
-                  <BillingDetailCheckout
-                    ipAddress={
-                      isFormCheckouts?.isIpAddress?.country !== undefined
-                        ? isFormCheckouts?.isIpAddress?.country.toLowerCase()
-                        : 'id'
-                    }
-                    isSubmited={isFormCheckouts?.isSubmited}
-                    watch={haveCompanyAttendee}
-                    register={register}
-                    control={control}
-                    setValue={setValue}
-                    getValues={getValues}
-                    errors={errors}
-                    onValueChange={hndleBilling_Change}
-                  />
+                  {isDisabled ? (
+                    <div
+                      className={`absolute inset-x-0 inset-y-0 bg-white/40 ${
+                        isDisabled
+                          ? '!pointer-events-none z-50 !select-none opacity-100 backdrop-blur-[2px]'
+                          : '!pointer-events-auto -z-px !select-auto opacity-0'
+                      }`}
+                    ></div>
+                  ) : null}
+                  <div className="mb-6 flex w-full flex-col items-start justify-start px-4 sm:mb-4">
+                    <h2 className="text-xl font-medium capitalize text-white">
+                      {`Billing details`}
+                    </h2>
+                    <span className="mt-1 text-sm font-light text-white/70">
+                      {`Please complete your purchase by providing your billing and
+                    payment details.`}
+                    </span>
+                  </div>
+                  <div
+                    className={`relative inline-flex w-full flex-col rounded-xl bg-white ${
+                      isDisabled
+                        ? '!pointer-events-none !select-none'
+                        : '!pointer-events-auto !select-auto'
+                    } px-3 py-3 sm:px-4 sm:py-4`}
+                  >
+                    <BillingDetailCheckout
+                      ipAddress={
+                        isFormCheckouts?.isIpAddress?.country !== undefined
+                          ? isFormCheckouts?.isIpAddress?.country.toLowerCase()
+                          : 'id'
+                      }
+                      isSubmited={isFormCheckouts?.isSubmited}
+                      watch={haveCompanyAttendee}
+                      register={register}
+                      control={control}
+                      setValue={setValue}
+                      getValues={getValues}
+                      errors={errors}
+                      onValueChange={hndleBilling_Change}
+                    />
+                  </div>
                 </div>
-              </div>
+              ) : null}
 
               {/* @attendee(Detail) */}
               <div
@@ -1400,9 +1546,9 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                   <>
                                     <div className="flex w-full flex-col items-start justify-between lg:flex-row">
                                       <div className="flex w-full max-w-[420px] flex-col items-start justify-start">
-                                        <h2 className="text-xl font-medium capitalize">
+                                        <h3 className="text-xl font-medium capitalize">
                                           {`Attendees ${attndIdx + 1}`}{' '}
-                                        </h2>
+                                        </h3>
                                         <span className="mt-1 text-sm font-light text-gray-500">
                                           {`Please complete the form with your attendee details.`}
                                         </span>
@@ -1592,7 +1738,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                               >
                                 <path d="m9 18 6-6-6-6"></path>
                               </svg>
-                              Prev
+                              {'Prev'}
                             </button>
                             <button
                               id={`ca25BtnStepForm_Next${groupName}Checkout`}
@@ -1614,7 +1760,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                 );
                               }}
                             >
-                              Next
+                              {'Next'}
                               <svg
                                 className={
                                   'ml-0.5 size-4.5 shrink-0 text-current'
@@ -1639,58 +1785,60 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               </div>
 
               {/* @submit(mobile) */}
-              <div
-                className={`relative mt-10 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-4 ${
-                  isDisabled
-                    ? '!pointer-events-none !select-none'
-                    : '!pointer-events-auto !select-auto'
-                } sm:px-5 sm:py-5 xl:hidden`}
-              >
-                <BoardSubmitCheckout register={register} errors={errors} />
-
-                {/* @submit(Form) */}
-                <button
-                  id="ca25Form_SubmitMobileCheckout"
-                  className={`!pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-sm font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 sm:text-base`}
-                  type="submit"
-                  role="button"
-                  aria-label="Coinfest Asia 2025 Submit Mobile Checkout"
-                  disabled={isDisabled}
+              {isStore?.products?.length > 0 ? (
+                <div
+                  className={`relative mt-10 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-4 ${
+                    isDisabled
+                      ? '!pointer-events-none !select-none'
+                      : '!pointer-events-auto !select-auto'
+                  } sm:px-5 sm:py-5 xl:hidden`}
                 >
-                  {isFormCheckouts?.isSubmited === false ? (
-                    <>
-                      {isStore?.totalOrder <= 1e-10
-                        ? 'Proceed Order'
-                        : 'Proceed To Payment'}
-                    </>
-                  ) : null}
-                  {isFormCheckouts?.isSubmited === true ? (
-                    <span className="flex flex-row items-center">
-                      <svg
-                        className="mr-3 h-5 w-5 animate-spin text-black-900"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="3"
-                        ></circle>
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                        ></path>
-                      </svg>
-                      Processing ...
-                    </span>
-                  ) : null}
-                </button>
-              </div>
+                  <BoardSubmitCheckout register={register} errors={errors} />
+
+                  {/* @submit(Form) */}
+                  <button
+                    id="ca25Form_SubmitMobileCheckout"
+                    className={`!pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-sm font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 sm:text-base`}
+                    type="submit"
+                    role="button"
+                    aria-label="Coinfest Asia 2025 Submit Mobile Checkout"
+                    disabled={isDisabled}
+                  >
+                    {isFormCheckouts?.isSubmited === false ? (
+                      <>
+                        {isStore?.totalOrder <= 1e-10
+                          ? 'Proceed Order'
+                          : 'Proceed To Payment'}
+                      </>
+                    ) : null}
+                    {isFormCheckouts?.isSubmited === true ? (
+                      <span className="flex flex-row items-center">
+                        <svg
+                          className="mr-3 h-5 w-5 animate-spin text-black-900"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                          ></path>
+                        </svg>
+                        Processing ...
+                      </span>
+                    ) : null}
+                  </button>
+                </div>
+              ) : null}
             </div>
 
             {/* @order-summary */}
@@ -1797,9 +1945,21 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
         </Container>
       </Main>
 
+      {/* @alert(Toast)  */}
+      <Toaster
+        richColors
+        gap="10"
+        dismissible={false}
+        pauseWhenPageIsHidden={true}
+        toastOptions={{
+          className: 'ca25ToastCheckoutAlert',
+        }}
+      />
+
       {/* @modal */}
       {isStore?.isPaymentProcess === true ? <PaymentProcessModal /> : null}
       {isStore?.isOrderProcess === true ? <OrderProcessModal /> : null}
+      {isStore?.isExpiredPayment === true ? <ExpiredOrderModal /> : null}
     </>
   );
 };

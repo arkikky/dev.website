@@ -47,3 +47,10 @@
   @apply absolute inset-x-0 inset-y-0;
   @apply -z-px opacity-80;
 }
+
+.ca25ToastAlert {
+  @apply absolute bottom-2 top-auto xl:bottom-0;
+}
+.ca25ToastCheckoutAlert {
+  @apply absolute bottom-0;
+}

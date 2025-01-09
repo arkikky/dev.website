@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Toaster } from 'sonner';
 import { toast } from 'sonner';
 import getConfig from 'next/config';
 import dynamic from 'next/dynamic';
@@ -12,8 +13,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addItemToCart } from '@reduxState/slices';
 
 // @lib/controller,helper&hook
+import { useCart } from '@lib/hooks/cart/Cart';
 import { getFetch } from '@lib/controller/API';
-import { getCombineMerged, encodeData } from '@lib/helper/Configuration';
 
 // @components
 import HeadGraphSeo from '@components/Head';
@@ -32,10 +33,10 @@ import LayoutStore from '@layouts/LayoutStore';
 
 const Tickets = ({ mode, products }) => {
   const dispatch = useDispatch();
+  const { getStore } = useCart();
   const { data: isCart } = useSelector((state) => state.cart);
   const [isStore, setStore] = useState({
     products: products?.data,
-    cart: [],
     isQty: [],
   });
   // @hook(session product)
@@ -43,45 +44,6 @@ const Tickets = ({ mode, products }) => {
     id_product: null,
     loading: false,
   });
-
-  // @initialize(store)
-  const hndleHookProducts = useCallback(async () => {
-    if (!isCart || isCart?.length > 3) return;
-    try {
-      const allProducts = await Promise.all(
-        isCart?.map(async (data) => {
-          const rsHook = await fetch('/api/data/products?sv=coinfestasia', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ data: encodeData(data?.id_product) }),
-          }).then((res) => res?.json());
-          return {
-            id: rsHook?.id,
-            documentId: rsHook?.documentId,
-            productId: rsHook?.productId,
-            name: rsHook?.name,
-            price: rsHook?.price,
-            priceSale: rsHook?.priceSale,
-            stock: parseInt(rsHook?.stock),
-          };
-        })
-      );
-      // @hook(combine merged)
-      const merged = getCombineMerged(allProducts, isCart);
-      if (merged) setStore((prev) => ({ ...prev, cart: merged }));
-    } catch (err) {
-      return;
-    }
-  }, [isCart]);
-  // @hook(store)
-  useEffect(() => {
-    hndleHookProducts();
-    return () => {
-      undefined;
-    };
-  }, [isCart]);
 
   // @hanlde-change(product)
   const hndleChangeQty = async (idProducts, qtyProduct) => {
@@ -217,7 +179,7 @@ const Tickets = ({ mode, products }) => {
                 return (
                   <TicketProducts
                     data={gtRslt}
-                    cartProducts={isStore?.cart}
+                    cartProducts={getStore}
                     key={gtRslt.documentId}
                     isLoading={isLoading}
                     isSessionLoading={isSessionProducts?.loading}
@@ -230,19 +192,26 @@ const Tickets = ({ mode, products }) => {
           </Container>
         </section>
       </Main>
+
+      {/* @alert(Toast)  */}
+      <Toaster
+        richColors
+        gap="10"
+        dismissible={false}
+        pauseWhenPageIsHidden={true}
+        toastOptions={{
+          className: 'ca25ToastAlert',
+        }}
+      />
     </>
   );
 };
 
 Tickets.getLayout = (page, { pageProps }) => {
-  const { mode, layouts, products } = pageProps;
+  const { mode, layouts } = pageProps;
   if (layouts) {
     return (
-      <LayoutStore
-        isTheme={mode}
-        layoutStore={layouts}
-        cartStore={products?.data}
-      >
+      <LayoutStore isTheme={mode} layoutStore={layouts}>
         {page}
       </LayoutStore>
     );

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Toaster } from 'sonner';
 import getConfig from 'next/config';
 import Head from 'next/head';
 
@@ -64,15 +63,6 @@ const App = ({ Component, pageProps }) => {
         {getLayout(<Component {...pageProps} />, {
           pageProps: pageProps || {},
         })}
-
-        {/* @alert(Toast)  */}
-        <Toaster
-          position="bottom-left"
-          richColors
-          gap="10"
-          dismissible={false}
-          pauseWhenPageIsHidden={true}
-        />
 
         {/* @script */}
         <PrelineScript />

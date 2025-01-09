@@ -413,7 +413,10 @@ const CustomerTickets = ({
                         />
                       </span>
                       <span className="!mt-0.5 font-semibold">
-                        {gtRslt?.attendee.product?.name}
+                        {gtRslt?.attendee.product?.documentId ===
+                        'sn4ujm0d1ebbc8lme1ihzsa9'
+                          ? 'Festival Tickets'
+                          : gtRslt?.attendee.product?.name}
                       </span>
                     </Text>
                     <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
@@ -555,7 +558,7 @@ const CustomerTickets = ({
                   Read the full Terms and Conditions{' '}
                   <Link
                     className="text-primary underline"
-                    href="https://arkikky-dev.vercel.app/terms-and-conditions"
+                    href="https://coinfest.asia/terms-and-conditions"
                     title="Coinfest Asia 2025 (Terms & Conditions)"
                     target="_blank"
                     rel="noopener noreferrer"

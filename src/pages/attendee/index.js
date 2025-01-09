@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { Toaster } from 'sonner';
 import { toast } from 'sonner';
 import { useForm } from 'react-hook-form';
 import getConfig from 'next/config';
@@ -137,7 +138,7 @@ const Attendee = ({}) => {
             className="relative block w-full"
           >
             <div className="flex w-full flex-col items-center justify-center">
-              <div className="bg-gradient-primary45 border-black-700 flex w-full max-w-[568px] flex-col items-start rounded-2xl border-[3px] border-solid px-2 pb-2 pt-4 sm:mt-0">
+              <div className="flex w-full max-w-[568px] flex-col items-start rounded-2xl border-[3px] border-solid border-black-700 px-2 pb-2 pt-4 bg-gradient-primary45 sm:mt-0">
                 <div className="mb-4 flex w-full flex-row items-start justify-between px-2 sm:px-4">
                   <div className="block w-max">
                     <h1 className="text-lg font-normal capitalize leading-initial text-white sm:text-xl">
@@ -273,6 +274,17 @@ const Attendee = ({}) => {
           </form>
         </Container>
       </Main>
+
+      {/* @alert(Toast)  */}
+      <Toaster
+        richColors
+        gap="10"
+        dismissible={false}
+        pauseWhenPageIsHidden={true}
+        toastOptions={{
+          className: 'ca25ToastAlert',
+        }}
+      />
     </>
   );
 };

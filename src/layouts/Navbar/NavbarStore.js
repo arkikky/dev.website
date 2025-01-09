@@ -55,7 +55,7 @@ const NavbarStore = ({ isTheme = 'dark', nonStore = true }) => {
               >
                 {isTheme === 'dark' ? (
                   <Image
-                    className="mx-auto my-auto h-[38px] w-auto sm:h-[48px]"
+                    className="mx-auto my-auto h-[38px] w-auto sm:h-[42px]"
                     src={'/assets/images/ca2025BrandLight.svg'}
                     alt={`${publicRuntimeConfig?.siteAppName} Primary Brand LOGO Navbar`}
                     height={58}
@@ -65,7 +65,7 @@ const NavbarStore = ({ isTheme = 'dark', nonStore = true }) => {
                   />
                 ) : (
                   <Image
-                    className="mx-auto my-auto h-[38px] w-auto sm:h-[48px]"
+                    className="mx-auto my-auto h-[38px] w-auto sm:h-[42px]"
                     src={'/assets/images/ca2025Brand.svg'}
                     alt={`${publicRuntimeConfig?.siteAppName} Primary Brand LOGO Navbar`}
                     height={58}
@@ -83,7 +83,7 @@ const NavbarStore = ({ isTheme = 'dark', nonStore = true }) => {
               {nonStore === false && (
                 <div className="relative mr-2.5 hidden flex-col items-start justify-center lg:flex">
                   <button
-                    className="relative flex h-[80%] flex-row items-center justify-center rounded-lg bg-secondary px-3 py-3 text-sm leading-initial text-black-900 sm:h-15 sm:min-w-15 sm:rounded-[10px] sm:text-base"
+                    className={`relative flex h-[80%] flex-row items-center justify-center rounded-lg bg-secondary px-3 py-3 text-sm leading-initial text-black-900 transition-[width] duration-200 ease-in-out sm:h-15 ${getStore?.length > 0 ? 'w-[84px]' : 'w-15'} sm:rounded-[10px] sm:text-base`}
                     type="button"
                     tabIndex={-1}
                     role="button"
@@ -120,11 +120,11 @@ const NavbarStore = ({ isTheme = 'dark', nonStore = true }) => {
                         ></path>
                       </svg>
                     </span>
-                    {getStore?.length > 0 && (
-                      <span className="ml-1.5 font-medium">
-                        ({getTotalItems})
-                      </span>
-                    )}
+                    <span
+                      className={`ml-0.5 font-medium ${getStore?.length > 0 ? 'block w-[31px] opacity-100' : 'hidden w-0 opacity-0'} transition-all delay-[2.2s] ease-in-out`}
+                    >
+                      ({getTotalItems})
+                    </span>
                   </button>
 
                   <CartStore
@@ -162,7 +162,7 @@ const NavbarStore = ({ isTheme = 'dark', nonStore = true }) => {
             <div className="flex w-full flex-row items-center justify-between sm:w-max">
               <button
                 id="ca25BtnCartStore_Mobile"
-                className="relative flex h-[80%] flex-row items-center justify-center rounded-lg bg-secondary px-3 py-3 text-sm leading-initial text-black-900 sm:h-15 sm:min-w-15 sm:rounded-[10px] sm:text-base"
+                className={`relative flex h-[80%] flex-row items-center justify-center rounded-lg bg-secondary px-3 py-3 text-sm leading-initial text-black-900 transition-[width] duration-300 ease-in-out sm:h-15 ${getStore?.length > 0 ? 'w-19' : 'w-13'} sm:rounded-[10px] sm:text-base`}
                 type="button"
                 tabIndex={-1}
                 role="button"
@@ -199,46 +199,46 @@ const NavbarStore = ({ isTheme = 'dark', nonStore = true }) => {
                     ></path>
                   </svg>
                 </span>
-                {getStore?.length > 0 && (
-                  <span className="ml-1.5 font-medium">({getTotalItems})</span>
-                )}
+                <span
+                  className={`ml-0.5 font-medium ${getStore?.length > 0 ? 'block w-[22px] opacity-100' : 'hidden w-0 opacity-0'} transition-[opacity,width] delay-[2.2s] ease-in-out`}
+                >
+                  ({getTotalItems})
+                </span>
               </button>
             </div>
             <div className="block w-max">
-              {getStore?.length > 0 && (
-                <button
-                  id="ca25BtnCartStore_Checkout"
-                  className={`h-[46px] w-[106px] cursor-pointer rounded-lg bg-primary px-5 py-3.5 text-sm leading-initial text-white disabled:cursor-not-allowed disabled:bg-primary/80 disabled:text-white/40 sm:h-[56px] sm:w-[138px] sm:rounded-[10px] sm:px-6 sm:py-0 sm:text-base lg:py-4`}
-                  type="button"
-                  tabIndex={-1}
-                  aria-label="Coinfest Asia 2025 Button on Processed Checkout"
-                  aria-roledescription="Coinfest Asia 2025 Button on Processed Checkout"
-                  disabled={
-                    (getStore?.length > 0 ? false : true) ||
-                    checkTotalQtyCart(getStore, 'submit') ||
-                    isLoading
-                  }
-                  onClick={(e) => {
-                    e.preventDefault();
-                    reCheckout();
-                  }}
-                >
-                  {isLoading ? (
-                    <>
-                      <div
-                        className="mx-auto block size-5 animate-spin items-center justify-center rounded-full border-[2.5px] border-current border-t-transparent font-medium text-white/60 opacity-80"
-                        role="status"
-                        aria-label="Coinfest Asia 2025 (Loading - Products)"
-                        aria-labelledby="Coinfest Asia 2025 (Loading - Products)"
-                      >
-                        <span className="sr-only">Loading...</span>
-                      </div>
-                    </>
-                  ) : (
-                    'Checkout'
-                  )}
-                </button>
-              )}
+              <button
+                id="ca25BtnCartStore_Checkout"
+                className={`h-[46px] w-[106px] ${getStore?.length > 0 ? 'opacity-100' : 'opacity-0'} cursor-pointer rounded-lg bg-primary px-5 py-3.5 text-sm leading-initial text-white transition-[opacity] duration-300 ease-in-out disabled:cursor-not-allowed disabled:bg-primary/80 disabled:text-white/40 sm:h-[56px] sm:w-[138px] sm:rounded-[10px] sm:px-6 sm:py-0 sm:text-base lg:py-4`}
+                type="button"
+                tabIndex={-1}
+                aria-label="Coinfest Asia 2025 Button on Processed Checkout"
+                aria-roledescription="Coinfest Asia 2025 Button on Processed Checkout"
+                disabled={
+                  (getStore?.length > 0 ? false : true) ||
+                  checkTotalQtyCart(getStore, 'submit') ||
+                  isLoading
+                }
+                onClick={(e) => {
+                  e.preventDefault();
+                  reCheckout();
+                }}
+              >
+                {isLoading ? (
+                  <>
+                    <div
+                      className="mx-auto block size-5 animate-spin items-center justify-center rounded-full border-[2.5px] border-current border-t-transparent font-medium text-white/60 opacity-80"
+                      role="status"
+                      aria-label="Coinfest Asia 2025 (Loading - Products)"
+                      aria-labelledby="Coinfest Asia 2025 (Loading - Products)"
+                    >
+                      <span className="sr-only">Loading...</span>
+                    </div>
+                  </>
+                ) : (
+                  'Checkout'
+                )}
+              </button>
             </div>
           </div>
         </Container>

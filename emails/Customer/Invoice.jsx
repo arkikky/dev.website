@@ -438,8 +438,10 @@ const InvoiceCustomer = ({
                   </span>
                 </Text>
                 <Text className="!mt-0 max-w-[437px] text-xs text-black-900">
-                  Your payment was successful, and your order is complete! If
-                  you have any questions or need further assistance, visit our{' '}
+                  Your payment was successful, and your order is complete!{' '}
+                  <br />
+                  If you have any questions or need further assistance, visit
+                  our{' '}
                   <Link
                     className="text-primary underline"
                     href="mailto:support@coinfest.asia"
@@ -452,7 +454,7 @@ const InvoiceCustomer = ({
                   page. Alternatively, you can reach out to us at{' '}
                   <Link
                     className="text-primary underline"
-                    href="mailto:support@coinfest.asia"
+                    href="mailto:hi@coinfest.asia"
                     title="Link to contact Coinfest Asia 2025 support"
                     target="_blank"
                     rel="noopener noreferrer"

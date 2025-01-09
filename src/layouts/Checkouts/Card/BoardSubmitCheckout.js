@@ -21,7 +21,7 @@ const BoardSubmitCheckout = ({ register, errors }) => {
             </Link>
           </p>
         </div>
-        <div className="block w-full">
+        <div className="block w-full prose-a:font-medium">
           <Checkbox
             label={`I have read and agree to <a href="/privacy-policy" class="hover:text-primary underline">privacy policy</a> <br/>& <a href="/terms-and-conditions" class="hover:text-primary underline">terms and conditions</a>`}
             ariaLabel="I have read and agree - Checkout"

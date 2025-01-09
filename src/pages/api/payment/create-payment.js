@@ -26,8 +26,8 @@ export default async function handler(req, res) {
     return res?.status(405).json(logErr);
   }
   // @data(body)
-  const { extrnlId, amount, payerEmail, fullname, phone } = req?.body;
-  if (!extrnlId || !amount || !payerEmail || !fullname || !phone) {
+  const { extrnlId, amount, payerEmail, fullname, phone, order } = req?.body;
+  if (!extrnlId || !amount || !payerEmail || !fullname || !phone || !order) {
     return res?.status(400).json(logErr);
   }
   try {
@@ -47,6 +47,8 @@ export default async function handler(req, res) {
       },
       callback_url:
         'https://arkikky-dev0.vercel.app/api/payment/webhook-callback',
+      success_redirect_url: `https://arkikky-dev0.vercel.app/checkout/order-received?process=${order}`,
+      failure_redirect_url: `https://arkikky-dev0.vercel.app/checkout/order-received?process=${order}`,
       currency: 'IDR',
       invoice_duration: 900,
       customer_notification_preference: {

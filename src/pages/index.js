@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { Toaster } from 'sonner';
 import { toast } from 'sonner';
 import getConfig from 'next/config';
 import dynamic from 'next/dynamic';
@@ -335,6 +336,17 @@ const Home = ({ mode, collections, products }) => {
         {/* @banner(footer) */}
         <MoonPortalBanner mode={mode} />
       </Main>
+
+      {/* @alert(Toast)  */}
+      <Toaster
+        richColors
+        gap="10"
+        dismissible={false}
+        pauseWhenPageIsHidden={true}
+        toastOptions={{
+          className: 'ca25ToastAlert',
+        }}
+      />
     </>
   );
 };

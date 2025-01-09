@@ -453,7 +453,7 @@ const AttendeeTickets = ({
                   Read the full Terms and Conditions{' '}
                   <Link
                     className="text-primary underline"
-                    href="https://arkikky-dev.vercel.app/terms-and-conditions"
+                    href="https://coinfest.asia/terms-and-conditions"
                     title="Coinfest Asia 2025 (Terms & Conditions)"
                     target="_blank"
                     rel="noopener noreferrer"

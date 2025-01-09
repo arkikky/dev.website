@@ -9,17 +9,17 @@ const ToastAlerts = ({
   id,
   type = 'default',
   label = `A new software update is available. See what's new in version 3.0.7`,
-  position = 'bottom-3 inset-x-2.5 sm:inset-x-3 top-auto',
+  position = 'bottom-0 inset-x-2.5 sm:inset-x-3 top-auto',
   visible,
 }) => {
   const [isCountdown, setCountdown] = useState(5);
 
   const typeStyle = {
-    success: 'bg-green-50 border-green-500/40 text-green-700',
-    info: 'bg-blue-50 border-blue-500/40 text-blue-700',
-    warning: 'bg-yellow-50 border-yellow-700/50 text-yellow-700',
-    error: 'bg-red-50 border-red-500/40 text-red-700',
-    default: 'bg-gray-50 border-gray-200/40',
+    success: 'bg-green-50 border-green-500/10 text-green-700',
+    info: 'bg-blue-50 border-blue-500/10 text-blue-700',
+    warning: 'bg-yellow-50 border-yellow-700/20 text-yellow-700',
+    error: 'bg-red-50 border-red-500/10 text-red-700',
+    default: 'bg-gray-50 border-gray-200/10',
   };
   const isType = typeStyle[type] || typeStyle.default;
   const iconsStyle = {

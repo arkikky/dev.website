@@ -29,7 +29,7 @@ const Notifications = ({
             <div className="shrink-0">{icons}</div>
           )}
           <div
-            className="ms-3 text-sm prose-p:font-light prose-strong:font-medium lg:text-base"
+            className="ms-3 text-balance text-sm prose-p:font-light prose-strong:font-medium lg:text-base"
             dangerouslySetInnerHTML={{ __html: label }}
           ></div>
         </div>

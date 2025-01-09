@@ -69,13 +69,13 @@ const OrderDetailCheckouts = ({
             (t) => (
               <ToastAlerts
                 id={t}
-                position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+                position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
                 type="error"
                 visible={true}
                 label={`<strong>Sorry</strong>, <br/>Coupon usage limit reached!`}
               />
             ),
-            { duration: 5000 }
+            { unstyled: true, duration: 5000 }
           );
           setValue('coupon', '');
           return;
@@ -148,13 +148,13 @@ const OrderDetailCheckouts = ({
             (t) => (
               <ToastAlerts
                 id={t}
-                position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+                position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
                 type="error"
                 visible={true}
                 label={`<strong>Sorry</strong>, reduce steps to change the quantity!`}
               />
             ),
-            { duration: 5000 }
+            { unstyled: true, duration: 5000 }
           );
         }
       }
@@ -164,13 +164,13 @@ const OrderDetailCheckouts = ({
           (t) => (
             <ToastAlerts
               id={t}
-              position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+              position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
               type="error"
               visible={true}
               label={`The product has reached its stock limit!`}
             />
           ),
-          { duration: 5000 }
+          { unstyled: true, duration: 5000 }
         );
         return;
       }
@@ -199,13 +199,13 @@ const OrderDetailCheckouts = ({
           (t) => (
             <ToastAlerts
               id={t}
-              position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+              position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
               type="error"
               visible={true}
               label={`<strong>Sorry</strong>, you already have a coupon in use!`}
             />
           ),
-          { duration: 5000 }
+          { unstyled: true, duration: 5000 }
         );
         return;
       }
@@ -225,13 +225,13 @@ const OrderDetailCheckouts = ({
           (t) => (
             <ToastAlerts
               id={t}
-              position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+              position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
               type="error"
               visible={true}
               label={`<strong>Sorry</strong>, coupon not found or invalid!`}
             />
           ),
-          { duration: 5000 }
+          { unstyled: true, duration: 5000 }
         );
         return;
       }
@@ -243,13 +243,13 @@ const OrderDetailCheckouts = ({
           (t) => (
             <ToastAlerts
               id={t}
-              position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+              position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
               type="error"
               visible={true}
               label={`<strong>Sorry</strong>, coupon has expired!`}
             />
           ),
-          { duration: 5000 }
+          { unstyled: true, duration: 5000 }
         );
         return;
       }
@@ -260,13 +260,13 @@ const OrderDetailCheckouts = ({
           (t) => (
             <ToastAlerts
               id={t}
-              position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+              position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
               type="error"
               visible={true}
               label={`<strong>Sorry</strong>, <br/>Coupon usage limit reached!`}
             />
           ),
-          { duration: 5000 }
+          { unstyled: true, duration: 5000 }
         );
         return;
       }
@@ -283,13 +283,13 @@ const OrderDetailCheckouts = ({
           (t) => (
             <ToastAlerts
               id={t}
-              position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+              position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
               type="error"
               visible={true}
               label={`<strong>Sorry</strong>, coupon is not valid for this product!`}
             />
           ),
-          { duration: 5000 }
+          { unstyled: true, duration: 5000 }
         );
         return;
       }
@@ -300,13 +300,13 @@ const OrderDetailCheckouts = ({
           (t) => (
             <ToastAlerts
               id={t}
-              position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+              position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
               type="error"
               visible={true}
               label={`<strong>Sorry</strong>, Minimum quantity <br/>of <strong>${coupon?.minQtyPromo}</strong> required for this coupon!`}
             />
           ),
-          { duration: 5000 }
+          { unstyled: true, duration: 5000 }
         );
         return;
       }
@@ -333,13 +333,13 @@ const OrderDetailCheckouts = ({
           (t) => (
             <ToastAlerts
               id={t}
-              position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+              position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
               type="success"
               visible={true}
               label={`<strong>Coupon applied!</strong>, <br/> You saved ${discntAmount}%`}
             />
           ),
-          { duration: 5000 }
+          { unstyled: true, duration: 5000 }
         );
       } else {
         // @implement logic for non-percentage coupons if needed
@@ -353,13 +353,13 @@ const OrderDetailCheckouts = ({
         (t) => (
           <ToastAlerts
             id={t}
-            position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+            position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
             type="success"
             visible={true}
             label={`<strong>Sorry</strong>, An error occurred. Please try again...`}
           />
         ),
-        { duration: 5000 }
+        { unstyled: true, duration: 5000 }
       );
       // console.error('[Error] fetching coupons:', error);
     }
@@ -741,6 +741,7 @@ const OrderDetailCheckouts = ({
           </div>
 
           {/* @sub-component's */}
+          {/* {products.length > 0 ? { children } : null} */}
           {children}
         </div>
       </section>

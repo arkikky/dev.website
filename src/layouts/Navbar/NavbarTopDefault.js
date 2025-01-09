@@ -12,7 +12,7 @@ import Container from '@components/Container';
 const EventBoard = dynamic(() => import('@components/UI/EventBoard'), {
   loading: () => (
     <div
-      className={`pointer-events-none relative flex h-[57px] w-full min-w-[178px] max-w-[178px] cursor-default flex-col overflow-hidden rounded-lg bg-primary px-2.5 py-1.5 sm:h-[64px] sm:min-w-[221px] sm:max-w-[221px] sm:rounded-xl sm:px-3 sm:py-2`}
+      className={`pointer-events-none relative flex h-[53px] w-full min-w-[168px] max-w-[168px] cursor-default flex-col overflow-hidden rounded-lg bg-primary px-2 py-1.5 sm:h-[56px] sm:min-w-[172px] sm:max-w-[172px] sm:rounded-lg sm:px-2.5 sm:py-1.5`}
     ></div>
   ),
   ssr: false,
@@ -21,16 +21,19 @@ const EventBoard = dynamic(() => import('@components/UI/EventBoard'), {
 const NavbarTopDefault = ({ theme = 'dark' }) => {
   return (
     <>
-      <nav className="fixed inset-x-0 bottom-auto top-0 z-base flex h-auto w-full flex-col items-center justify-center py-6">
+      <nav className="fixed inset-x-0 bottom-auto top-0 z-base flex h-auto w-full flex-col items-center justify-center py-4 sm:py-6">
         <Container>
           <div
-            className={`flex flex-row items-center justify-between gap-y-6 rounded-xl border-2 border-solid border-gray-400/[0.18] ${theme == 'light' ? 'bg-gray-200/45' : 'bg-black-700/35'} px-1 py-1 backdrop-blur-md sm:gap-y-0 sm:rounded-2xl sm:px-1.5 sm:py-1.5`}
+            className={`flex flex-row items-center justify-between gap-y-6 sm:gap-y-0`}
           >
             <div className="block w-full sm:w-max">
-              <Link className="ml-1.5 block w-max sm:ml-2.5 lg:ml-2.5" href="/">
+              <Link
+                className="ca25BrandLogo-BckBlured relative block w-max"
+                href="/"
+              >
                 {theme === 'dark' ? (
                   <Image
-                    className="mx-auto my-auto h-8.5 w-auto sm:h-[38px]"
+                    className="mx-auto my-auto h-[38px] w-auto sm:h-[42px]"
                     src={'/assets/images/ca2025BrandLight.svg'}
                     alt={`${publicRuntimeConfig?.siteAppName} Primary Brand LOGO Navbar`}
                     height={58}
@@ -40,7 +43,7 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
                   />
                 ) : (
                   <Image
-                    className="mx-auto my-auto h-8.5 w-auto sm:h-[38px]"
+                    className="mx-auto my-auto h-[38px] w-auto sm:h-[42px]"
                     src={'/assets/images/ca2025BrandDark.svg'}
                     alt={`${publicRuntimeConfig?.siteAppName} Primary Brand LOGO Navbar`}
                     height={58}
