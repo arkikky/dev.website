@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Boren';
+  src:
+    url('/fonts/boren.ttf') format('truetype'),
+    url('/fonts/boren.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
