@@ -42,9 +42,9 @@ export default function handler(req, res) {
           {
             questions: 'What tickets are available?',
             answer: `
-            Festival ticket: Perfect for you who wants to celebrate crypto <br/>
-            Group package: Perfect for you who wants to bring 5 people <br/>
-            Bull ticket: Perfect for you who wants to level up your network with key industry players.`,
+            <strong>Festival tickets</strong>: Perfect for you who wants to celebrate crypto <br/>
+            <strong>Group package tickets</strong>: Perfect for you who wants to bring 5 people <br/>
+            <strong>Bull tickets</strong>: Perfect for you who wants to level up your network with key industry players.`,
           },
         ],
       },

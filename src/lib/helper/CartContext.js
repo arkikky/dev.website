@@ -45,56 +45,66 @@ export function calculateDiscountCheckout(setCoupon, totalCart, setPrice) {
 }
 
 // @biling-data
-export function setBillingData(data) {
+export function setBillingData(d, grp) {
   // @sanitize(Fields)
   const sntzeFld = (field) => DOMPurify.sanitize(field || '').trim();
   const rs = {
     data: {
       customerId: sntzeFld(generateCreateOrderCode()),
-      firstName: sntzeFld(data.firstname),
-      lastName: sntzeFld(data.lastname),
-      email: sntzeFld(data.email.toLowerCase()),
-      phone: sntzeFld(data.phone),
-      company: sntzeFld(data.company),
+      firstName: sntzeFld(d?.[`firstnameAttndee1_${grp}`]),
+      lastName: sntzeFld(d?.[`lastnameAttndee1_${grp}`]),
+      email: sntzeFld(d?.[`emailAttndee1_${grp}`].toLowerCase()),
+      phone: sntzeFld(d?.[`phone1_${grp}`]),
+      company: sntzeFld(
+        d?.[`haveCompanyAttndee1_${grp}`]
+          ? d?.[`companyAttndee1_${grp}`]
+            ? d?.[`companyAttndee1_${grp}`]
+            : 'N/A'
+          : 'N/A'
+      ),
       websiteUrl: sntzeFld(
-        data.haveCompany ? (data.websiteUrl ? data.websiteUrl : '-') : '-'
+        d?.[`haveCompanyAttndee1_${grp}`]
+          ? d?.[`websiteUrlAttndee1_${grp}`]
+            ? d?.[`websiteUrlAttndee1_${grp}`]
+            : '-'
+          : '-'
       ),
     },
   };
   return rs;
 }
-export function setHbSptCustomerData(rslt, ip) {
+export function setHbSptCustomerData(d, ip) {
   const rs = {
     fields: [
       {
         objectTypeId: '0-1',
         name: 'firstname',
-        value: rslt?.firstName,
+        value: d?.firstName,
       },
       {
         objectTypeId: '0-1',
         name: 'lastname',
-        value: rslt?.lastName,
+        value: d?.lastName,
       },
       {
         objectTypeId: '0-1',
         name: 'email',
-        value: rslt?.email,
+        value: d?.email,
       },
       {
         objectTypeId: '0-1',
         name: 'phone',
-        value: rslt?.phone,
+        value: d?.phone,
       },
       {
         objectTypeId: '0-2',
         name: 'name',
-        value: rslt?.company,
+        value: d?.company,
       },
       {
         objectTypeId: '0-2',
         name: 'website',
-        value: rslt?.websiteUrl,
+        value: d?.websiteUrl,
       },
     ],
     context: {

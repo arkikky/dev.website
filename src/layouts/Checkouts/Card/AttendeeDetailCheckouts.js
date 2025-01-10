@@ -15,6 +15,7 @@ const AttendeeDetailCheckouts = ({
   watch,
   forms = {},
   items = {},
+  watchFields,
   register,
   control,
   setValue,
@@ -124,6 +125,10 @@ const AttendeeDetailCheckouts = ({
                 {...field}
                 country={forms?.ipAddress}
                 onChange={(value, phone) => {
+                  setValue(
+                    `dialcode-phone${items?.attendee}_${items?.group}`,
+                    value
+                  );
                   setValue(`phone${items?.attendee}_${items?.group}`, value);
                 }}
                 inputProps={{
@@ -319,6 +324,35 @@ const AttendeeDetailCheckouts = ({
           {children}
         </div>
 
+        <div className="mb-4 block">
+          <Label
+            forId={`ca25Form_WebsiteUrlAttndee${items?.attendee}_${items?.group}Checkout`}
+            label="Company Website"
+            required={watch}
+          />
+          <Input
+            id={`ca25Form_WebsiteUrlAttndee${items?.attendee}_${items?.group}Checkout`}
+            type="text"
+            placeholder={`Eg: https://website.com`}
+            ariaLabel="Website Billing - Checkout"
+            disabled={watch === true ? false : true}
+            config={{
+              ...register(
+                `websiteUrlAttndee${items?.attendee}_${items?.group}`,
+                {
+                  required: watch,
+                  maxLength: 255,
+                  pattern: {
+                    value:
+                      /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\w\d\-.\/]*)*\/?$|^N\/A$|^-$/,
+                    message: 'Please enter a valid URL',
+                  },
+                }
+              ),
+            }}
+            errors={errors.websiteUrl}
+          />
+        </div>
         <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
           <div className="block">
             <Label

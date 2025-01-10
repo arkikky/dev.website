@@ -54,3 +54,10 @@
 .ca25ToastCheckoutAlert {
   @apply absolute bottom-0;
 }
+
+.ca25TagsSelect.selected .ca25TagsTitle {
+  @apply text-red-500;
+}
+.ca25TagsSelect.not .ca25TagsTitle {
+  @apply text-gray-400;
+}

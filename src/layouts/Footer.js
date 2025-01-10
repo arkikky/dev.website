@@ -58,7 +58,7 @@ const Footer = ({ nonStore = false, theme = 'light', menuUsage = true }) => {
                 {menuUsage === true ? <FooterMenu isTheme={theme} /> : null}
               </div>
               <div
-                className={`${menuUsage === false ? 'mt-8 lg:mt-10' : 'mt-18 lg:mt-20 xl:mt-24'} block w-full text-balance pr-0 text-sm font-medium sm:text-pretty sm:pr-4 lg:pr-0 xl:text-wrap xl:pr-[98px]`}
+                className={`${menuUsage === false ? 'mt-8 lg:mt-10' : 'mt-18 lg:mt-20 xl:mt-24'} block w-full text-balance pr-0 text-sm font-light sm:text-pretty sm:pr-4 lg:pr-0 xl:text-wrap xl:pr-[98px]`}
               >
                 {`Coinfest Asia adalah acara tertutup yang berfokus pada edukasi
                 dan pengembangan industri, dengan tujuan memberi dampak positif

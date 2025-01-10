@@ -492,11 +492,11 @@ const CustomerTickets = ({
                 </Heading>
                 <Hr className="!my-3 !border !border-dashed !border-[#E5E7EB]" />
                 <Heading as="h4" className="!mb-0 !mt-3 text-start text-sm">
-                  HOW TO CHECK-IN
+                  CHECK-IN AT VENUE
                 </Heading>
                 <Text className="!mb-0 !mt-0 text-xs">
                   <ul className="!list-decimal text-balance !pl-6 text-xs">
-                    <li>Check-in starts at 1 PM (GMT+8).</li>
+                    <li>Check-in starts at 2 PM (GMT+8).</li>
                     <li>
                       The name on this ticket must match a government-issued ID
                       to access the event.

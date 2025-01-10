@@ -9,7 +9,7 @@ import { getCombineMerged, encodeData } from '@lib/helper/Configuration';
 
 export function useCart() {
   const dispatch = useDispatch();
-  const { data: isCart } = useSelector((state) => state.cart);
+  const { data: isCart, coupon: isCoupon } = useSelector((state) => state.cart);
   const [isStore, setStore] = useState({
     cart: [],
     totalQty: 0,
@@ -57,6 +57,7 @@ export function useCart() {
     }
     return false;
   };
+
   // @quantity
   const updateCartQuantity = async (items, store, is) => {
     try {

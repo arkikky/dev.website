@@ -31,7 +31,7 @@ const GetInvolvedCards = ({
             width={424}
           />
           <div className="absolute inset-x-0 bottom-0 top-auto z-[3] flex flex-row items-end justify-between px-2 pb-2 sm:px-3.5 sm:pb-3.5 lg:px-4 lg:pb-4 xl:px-5 xl:pb-5">
-            <h3 className="text-[13px] font-normal leading-[13px] text-white group-hover:underline sm:text-[18px] sm:font-medium sm:leading-[18px] lg:text-[26px] lg:leading-[26px]">
+            <h3 className="text-[13px] font-normal leading-[13px] text-white group-hover:underline sm:text-[18px] sm:font-medium sm:leading-[18px] lg:text-[22px] lg:leading-[22px] xl:text-[26px] xl:leading-[26px]">
               {title}
             </h3>
             <span
@@ -67,7 +67,7 @@ const GetInvolvedCards = ({
             width={424}
           />
           <div className="absolute inset-x-0 bottom-0 top-auto z-[3] flex flex-row items-end justify-between px-2 pb-2 sm:px-3.5 sm:pb-3.5 lg:px-4 lg:pb-4 xl:px-5 xl:pb-5">
-            <h3 className="text-[13px] font-normal leading-[13px] text-white group-hover:underline sm:text-[18px] sm:font-medium sm:leading-[18px] lg:text-[26px] lg:leading-[26px]">
+            <h3 className="text-[13px] font-normal leading-[15px] text-white group-hover:underline sm:text-[18px] sm:font-medium sm:leading-[18px] lg:text-[22px] lg:leading-[22px] xl:text-[26px] xl:leading-[26px]">
               {title}
             </h3>
             <span

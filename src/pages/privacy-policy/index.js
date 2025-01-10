@@ -27,7 +27,7 @@ const PrivacyPolicy = ({ mode }) => {
                   Privacy Policy for Coinfest Asia
                 </h1>
                 <p className="mt-2 font-light text-gray-400">
-                  Last updated: January 07, 2025
+                  Last updated: January 08, 2025
                 </p>
               </div>
               <div
@@ -99,7 +99,8 @@ const PrivacyPolicy = ({ mode }) => {
                   In line with our commitment to prioritizing the protection of
                   children using the internet, we encourage parents and
                   guardians to monitor and guide their children's online
-                  activities. Coinfest Asia does not knowingly collect any
+                  activities. <br></br>
+                  <br></br> Coinfest Asia does not knowingly collect any
                   Personal Identifiable Information from children under the age
                   of 13. If you believe your child has provided such information
                   on our website, please contact us immediately, and we will

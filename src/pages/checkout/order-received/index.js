@@ -85,7 +85,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
         title="Button for Share & Win Competition Coinfest Asia 2025"
         href="/"
       >
-        {`Share your Twibbon`}
+        {`Share your Coinfest badge!`}
       </Link>
     );
   };
@@ -141,7 +141,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
                 <div className="mt-4 text-base font-light text-gray-500 prose-a:text-primary prose-a:underline">
                   <p>
                     Your payment was successful, and your order is complete!
-                    Check your email for the receipt and e-ticket. If you don't
+                    Check your email for the invoice and e-ticket. If you don't
                     receive them within 24 hours, please contact{' '}
                     <Link
                       href="mailto:support@coinfest.asia"
@@ -153,9 +153,9 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
                     </Link>
                   </p>
                 </div>
-                {/* <div className="mt-6 hidden w-full flex-row gap-x-4 xl:inline-flex">
+                <div className="mt-6 hidden w-full flex-row gap-x-4 xl:inline-flex">
                   {elBtnShareWin()}
-                </div> */}
+                </div>
               </div>
               <div className="hidden w-max xl:block">
                 <Link
@@ -313,7 +313,7 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
                     <span className="ml-1 hidden w-max sm:flex">to Home</span>
                   </span>
                 </Link>
-                {/* {elBtnShareWin()} */}
+                {elBtnShareWin()}
               </div>
             </div>
           </div>

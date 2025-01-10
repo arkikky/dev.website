@@ -85,14 +85,6 @@ export const getStaticProps = async () => {
       },
       {
         url: '/',
-        title: 'Co-Host Program',
-        shortDesc: `Strategically position your brand to meet attendees that align with your goals.`,
-        labelBtn: `Send an Inquiry`,
-        comingSoon: true,
-        slotsFull: false,
-      },
-      {
-        url: '/',
         title: 'Partner as Media',
         shortDesc: `Become the main source on the latest Web3 insights and updates in Asia.`,
         labelBtn: `Apply Now`,
@@ -100,9 +92,17 @@ export const getStaticProps = async () => {
         slotsFull: false,
       },
       {
-        url: '/get-involved/interest',
+        url: '/',
         title: 'Become an Affiliator',
         shortDesc: `Earn rewards and grow your influence by promoting the world's largest crypto festival.`,
+        labelBtn: `Apply Now`,
+        comingSoon: true,
+        slotsFull: false,
+      },
+      {
+        url: '/get-involved/interest',
+        title: 'Partner as Community',
+        shortDesc: `Connect with leading Web3 industry players, aspiring startups, and communities from 90+ countries.`,
         labelBtn: `Apply Now`,
         comingSoon: true,
         slotsFull: false,

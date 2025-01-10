@@ -139,32 +139,19 @@ const Tickets = ({ mode, products }) => {
         {/* @tickets */}
         <section className="ca25Ticket-Section from-black bg-gradient-to-t via-blue-700 to-blue-200">
           <Container className={'relative'}>
-            <div className="pointer-events-none absolute -right-[161px] -top-[52px] bottom-auto left-auto z-px sm:-right-[357px] sm:-top-[106px] lg:-right-[497px] lg:-top-[151px]">
-              <Image
-                className="h-[207px] w-auto object-cover sm:h-[433px] lg:h-[543px] xl:h-[593px]"
-                src={'/assets/images/backdrop/ca25Backdrop-TicketStore.png'}
-                alt={`${publicRuntimeConfig?.siteAppName} Ticket Store Backdrop`}
-                height={1764}
-                width={2508}
-                quality="87"
-              />
-            </div>
+            <div className="ca25MoonRckt !pointer-events-none absolute inset-x-0 inset-y-0 z-px mx-auto w-full !select-none"></div>
 
             {/* @header */}
-            <div className="mb-8 flex flex-col text-start sm:mb-12">
-              <h1
-                className={`ca25HeadingTitle w-ful max-w-[208px] text-start font-bold uppercase subpixel-antialiased ${mode === 'light' ? 'text-black-900' : 'text-white'} sm:max-w-[555px]`}
+            <div className="mb-8 flex flex-col items-center justify-center text-center sm:mb-12">
+              <h2
+                className={`ca25HeadingTitle w-full max-w-[569px] text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} text-balance`}
               >
                 {'GET YOUR TICKETS NOW'
                   ?.split('')
                   .map((chr, i) =>
-                    ['E', 'O', 'E', 'O'].includes(chr) ? (
-                      <span key={i}>{chr}</span>
-                    ) : (
-                      chr
-                    )
+                    ['E', 'O'].includes(chr) ? <span key={i}>{chr}</span> : chr
                   )}
-              </h1>
+              </h2>
               <p className="mt-2 font-bevietnamPro text-base font-light text-gray-300 sm:mt-3.5 sm:text-xl">
                 {`Prices exclude VAT`}
               </p>

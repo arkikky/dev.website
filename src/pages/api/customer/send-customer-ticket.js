@@ -55,7 +55,7 @@ CATEGORIES:Meet Up,Conference
 ORGANIZER;CN="Coinfest Asia (hi@ticket.coinfest.asia)":mailto:hi@ticket.coinfest.asia
 UID:${Date.now()}@coinfest.asia
 SUMMARY:Coinfest Asia 2025
-DESCRIPTION:WHAT TO BRING: Ticket & Government-issued ID.<br><br><strong>IMPORTANT NOTE:</strong><br>👕 Attire: Relaxed summer clothes.<br>☀️ Weather: 26°C / 79°F.<br>🚗 Traffic: Spare 1-2 hours.<br>📁 Visa: Check Indonesia Travel page.
+DESCRIPTION:<strong>🌕 Coinfest Asia 2025</strong><br>LOCATION: <a href='/location'>Check here</a><br>AGENDA: <a href='/agenda'>Check here</a><br><br><strong>CHECK-IN AT VENUE:</strong><br>Bring ticket & government-issued ID<br><br><strong>IMPORTANT NOTE:</strong><br>👕 Attire: We recommend you to come wearing relaxed summer clothes.<br>☀️ Weather Conditions: The average temperature is 26°C / 79°F.<br>🚗 Traffic: We recommend you to spare 1-2 hours in traveling to the venue as Bali traffic can be unpredictable.
 ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;X-NUM-GUESTS=0:mailto:${toEmail}
 LOCATION:Bali\, Indonesia
 SEQUENCE:0

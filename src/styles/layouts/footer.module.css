@@ -11,7 +11,7 @@
   @apply text-black-900;
 }
 .ca2024Footer.ca2024Footer_Light .hs-tooltip-toggle .hs-tooltip-content {
-  @apply bg-[#ED4F35] text-white;
+  @apply bg-primary text-white;
   @apply !ml-1.5;
 }
 .ca2024Footer.ca2024Footer_Dark .ca2024FooterEnd .ca2024FooterEnd_Cntent {

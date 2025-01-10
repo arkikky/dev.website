@@ -5,7 +5,12 @@ import dayjs from 'dayjs';
 
 // @redux
 import { useSelector, useDispatch } from 'react-redux';
-import { updateQuantity, applyCoupon, removeCoupon } from '@reduxState/slices';
+import {
+  updateQuantity,
+  removeItemCart,
+  applyCoupon,
+  removeCoupon,
+} from '@reduxState/slices';
 
 // @lib/controller & helper
 import { getFetch } from '@lib/controller/API';
@@ -22,7 +27,7 @@ import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 import EmptyCheckouts from '@components/UI/Cards/EmptyCheckout';
 
 // @layouts
-import PromoCouponCode from '@layouts/Checkouts/PromoCouponCode/PromoCouponCode';
+// import PromoCouponCode from '@layouts/Checkouts/PromoCouponCode/PromoCouponCode';
 
 // @card(theme)
 const style = {
@@ -522,7 +527,7 @@ const OrderDetailCheckouts = ({
                       )}
                     </span>
                   )}
-                  {/* {products?.length > 1 && (
+                  {products?.length > 1 && (
                     <button
                       className="mb-1 ms-3 flex h-8 w-8 flex-col items-center justify-center rounded-lg border border-solid border-red-500 bg-red-500/20 focus-visible:outline-none"
                       type="button"
@@ -550,7 +555,7 @@ const OrderDetailCheckouts = ({
                         <line x1="14" x2="14" y1="11" y2="17" />
                       </svg>
                     </button>
-                  )} */}
+                  )}
                 </div>
               </div>
             ))}
@@ -658,8 +663,8 @@ const OrderDetailCheckouts = ({
                     <div
                       className="block size-5 animate-spin items-center justify-center rounded-full border-[2.5px] border-current border-t-transparent font-medium text-white opacity-80"
                       role="status"
-                      aria-label="Coinfest Asia 2025 (Loading - Coupon Usage)"
-                      aria-labelledby="Coinfest Asia 2025 (Loading - Coupon Usage)"
+                      aria-label="Coinfest Asia 2025 Loading Coupon Usage)"
+                      aria-labelledby="Coinfest Asia 2025 Loading Coupon Usage)"
                     >
                       <span className="sr-only">Loading...</span>
                     </div>
@@ -741,7 +746,6 @@ const OrderDetailCheckouts = ({
           </div>
 
           {/* @sub-component's */}
-          {/* {products.length > 0 ? { children } : null} */}
           {children}
         </div>
       </section>

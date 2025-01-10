@@ -45,10 +45,9 @@ export default async function handler(req, res) {
         email: payerEmail,
         mobile_number: phone,
       },
-      callback_url:
-        'https://arkikky-dev0.vercel.app/api/payment/webhook-callback',
-      success_redirect_url: `https://coinfest-2025.vercel.app/checkout/order-received?process=${order}`,
-      failure_redirect_url: `https://coinfest-2025.vercel.app/checkout/order-received?process=${order}`,
+      callback_url: `${process.env.NEXT_PUBLIC_SITE_URL}/api/payment/webhook-callback`,
+      success_redirect_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/order-received?process=${order}`,
+      failure_redirect_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/order-received?process=${order}`,
       currency: 'IDR',
       invoice_duration: 900,
       customer_notification_preference: {

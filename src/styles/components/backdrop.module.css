@@ -102,7 +102,7 @@
   @apply content-[''];
   @apply inline-block bg-[url('/assets/images/ca25BlueMoonPortal-Primary.svg')];
   @apply bg-cover bg-center bg-no-repeat;
-  @apply absolute inset-x-auto inset-y-0 mx-auto my-auto;
+  @apply absolute inset-x-auto bottom-[16px] top-0 mx-auto my-auto sm:inset-y-0;
   @apply xs:h-[373px] xs:w-[373px] h-[413px] w-[413px];
   @apply sm:h-[659.54px] sm:w-[659.54px];
   @apply lg:h-[827.54px] lg:w-[827.54px];
@@ -114,7 +114,7 @@
   @apply content-[''];
   @apply inline-block bg-[url('/assets/images/ca25BlueMoon.svg')];
   @apply bg-cover bg-center bg-no-repeat;
-  @apply absolute inset-x-auto inset-y-0 mx-auto my-auto;
+  @apply absolute inset-x-auto -top-[15px] bottom-0 mx-auto my-auto sm:inset-y-0;
   @apply xs:h-[284.69px] xs:w-[284.69px] h-[304.69px] w-[304.69px];
   @apply sm:h-[449.54px] sm:w-[449.54px];
   @apply lg:h-[579.54px] lg:w-[579.54px];

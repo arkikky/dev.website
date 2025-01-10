@@ -27,7 +27,7 @@ const TermsAndConditions = ({ mode }) => {
                   Terms & Conditions
                 </h1>
                 <p className="mt-1 font-light text-gray-400 sm:mt-2">
-                  Last updated: January 07, 2025
+                  Last updated: January 08, 2025
                 </p>
               </div>
               <div

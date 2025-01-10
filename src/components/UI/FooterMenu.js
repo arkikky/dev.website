@@ -15,11 +15,11 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               Prepare your trip
             </h2>
             <ul className="mt-6 pl-0">
-              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
+              <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">
                 <button
-                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center font-bevietnamPro text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
+                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
                   type="button"
-                  aria-label="Coinfest Asia 2025 Trabel Deals"
+                  aria-label="Coinfest Asia 2025 Travel Deals"
                 >
                   {`Travel Deals`}
                   <span
@@ -30,24 +30,9 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
                   </span>
                 </button>
               </li>
-              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
+              <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">
                 <button
-                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center font-bevietnamPro text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
-                  type="button"
-                  aria-label="Coinfest Asia 2025 Getting to Coinfest"
-                >
-                  {`Getting to Coinfest`}
-                  <span
-                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] px-2 py-1 text-xs font-normal opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
-                    role="tooltip"
-                  >
-                    {tooltip}
-                  </span>
-                </button>
-              </li>
-              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
-                <button
-                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center font-bevietnamPro text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
+                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
                   type="button"
                   aria-label="Coinfest Asia 2025 FAQ"
                 >
@@ -69,63 +54,36 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               Coinfest asia
             </h2>
             <ul className="mt-6 pl-0">
-              {/* <li className="group mb-4 last:mb-0">
+              <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
-                  href="/guide"
-                  title={`${publicRuntimeConfig?.siteAppName} Guide`}
-                >
-                  Guide
-                </Link>
-              </li>
-              <li className="group mb-4 last:mb-0">
-                <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
-                  href="/activities"
-                  title={`${publicRuntimeConfig?.siteAppName} Activities`}
-                >
-                  Activities
-                </Link>
-              </li>
-              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
-                <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
-                  href="/agenda"
-                  title={`${publicRuntimeConfig?.siteAppName} Agenda`}
-                >
-                  Agenda
-                </Link>
-              </li> */}
-              <li className="group mb-4 last:mb-0">
-                <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
-                  href="/get-involved/sponsorship"
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  href="/sponsor"
                   title={`${publicRuntimeConfig?.siteAppName} Sponsorship Inquiry`}
                 >
                   Sponsorship Inquiry
                 </Link>
               </li>
-              <li className="group mb-4 last:mb-0">
+              <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
-                  href="/get-involved/speakers"
-                  title={`${publicRuntimeConfig?.siteAppName} Apply As Speaker`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  href="/speakers"
+                  title={`${publicRuntimeConfig?.siteAppName} Apply as Speaker`}
                 >
-                  Apply As Speaker
+                  Apply as Speaker
                 </Link>
               </li>
-              <li className="group mb-4 last:mb-0">
+              <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/tickets"
                   title={`${publicRuntimeConfig?.siteAppName} Tickets`}
                 >
                   Tickets
                 </Link>
               </li>
-              <li className="group mb-4 last:mb-0">
+              <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="https://flic.kr/s/aHBqjATP6X"
                   title={`${publicRuntimeConfig?.siteAppName} Gallery`}
@@ -135,9 +93,9 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
                   Gallery
                 </Link>
               </li>
-              {/* <li className="group mb-4 last:mb-0">
+              {/* <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/partners"
                   title={`${publicRuntimeConfig?.siteAppName} Partners`}
                 >
@@ -147,161 +105,141 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
             </ul>
           </div>
         </div>
-        {/* <div className="col-span-full sm:col-span-4 lg:col-span-4 xl:col-span-2">
+        <div className="col-span-full sm:col-span-4 lg:col-span-4 xl:col-span-2">
           <div className="flex flex-col">
             <h2 className="text-base font-semibold capitalize text-current">
-              Coinfest week
+              Coinfest Week
             </h2>
             <ul className="mt-6 pl-0">
-              <li className="group mb-4 last:mb-0">
-                <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
-                  href="/coinfest-week"
-                >
-                  Event List
-                </Link>
-              </li>
-              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
+              <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">
                 <button
+                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
                   type="button"
-                  aria-label="menuSubmitSideEvnetCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
+                  aria-label="Coinfest Asia 2025 Map"
                 >
-                  Submit event
+                  {`Map`}
                   <span
-                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-current px-2.5 py-1 text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] px-2 py-1 text-xs font-normal opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
                     role="tooltip"
                   >
-                    Slots full
+                    {tooltip}
                   </span>
                 </button>
               </li>
-              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
+              <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">
                 <button
+                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
                   type="button"
-                  aria-label="menuCoHostCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
+                  aria-label="Coinfest Asia 2025 Submit Your Side Event"
                 >
-                  Co-host an event
+                  {`Submit Your Side Event`}
                   <span
-                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-current px-2.5 py-1 text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] px-2 py-1 text-xs font-normal opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
                     role="tooltip"
                   >
-                    Slots full
+                    {tooltip}
                   </span>
                 </button>
               </li>
             </ul>
           </div>
-        </div> */}
-        {/* <div className="col-span-full sm:col-span-4 lg:col-span-4 xl:col-span-3">
+        </div>
+        <div className="col-span-full sm:col-span-4 lg:col-span-4 xl:col-span-2">
           <div className="flex flex-col">
             <h2 className="text-base font-semibold capitalize text-current">
               Get Involved
             </h2>
             <ul className="mt-6 pl-0">
-              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
-                <button
-                  type="button"
-                  aria-label="menuGettingCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
+              <li className="group mb-3 last:mb-0">
+                <Link
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  href="/get-involved/speakers"
+                  title={`${publicRuntimeConfig?.siteAppName} Speakers`}
                 >
-                  Apply to speak
+                  Speaker
+                </Link>
+              </li>
+              <li className="group mb-3 last:mb-0">
+                <Link
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  href="/get-involved/sponsorship"
+                  title={`${publicRuntimeConfig?.siteAppName} Sponsors`}
+                >
+                  Sponsor
+                </Link>
+              </li>
+              <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">
+                <button
+                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
+                  type="button"
+                  aria-label="Coinfest Asia 2025 Partner as Media"
+                >
+                  {`Partner as Media`}
                   <span
-                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-current px-2.5 py-1 text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] px-2 py-1 text-xs font-normal opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
                     role="tooltip"
                   >
-                    Slots full
+                    {tooltip}
                   </span>
                 </button>
               </li>
-              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
+              <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">
                 <button
+                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
                   type="button"
-                  aria-label="menuSponsorshipCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
+                  aria-label="Coinfest Asia 2025 Become an Affiliator"
                 >
-                  Enquire for sponsorship
+                  {`Become an Affiliator`}
                   <span
-                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-current px-2.5 py-1 text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] px-2 py-1 text-xs font-normal opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
                     role="tooltip"
                   >
-                    Slots full
+                    {tooltip}
                   </span>
                 </button>
               </li>
-              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
+              <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">
                 <button
+                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
                   type="button"
-                  aria-label="menuMediaPartnerCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
+                  aria-label="Coinfest Asia 2025 Partner as Community"
                 >
-                  Become a media partner
+                  {`Partner as Community`}
                   <span
-                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-current px-2.5 py-1 text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] px-2 py-1 text-xs font-normal opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
                     role="tooltip"
                   >
-                    Slots full
+                    {tooltip}
                   </span>
                 </button>
               </li>
-              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
+              <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">
                 <button
+                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
                   type="button"
-                  aria-label="menuCommunityPartnerCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
+                  aria-label="Coinfest Asia 2025 Send Inquiry"
                 >
-                  Become a community partner
+                  {`Send Inquiry`}
                   <span
-                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-current px-2.5 py-1 text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
+                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] px-2 py-1 text-xs font-normal opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
                     role="tooltip"
                   >
-                    Slots full
-                  </span>
-                </button>
-              </li>
-              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
-                <button
-                  type="button"
-                  aria-label="menuSideEvnetCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
-                >
-                  Co-host a side event
-                  <span
-                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-current px-2.5 py-1 text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
-                    role="tooltip"
-                  >
-                    Slots full
-                  </span>
-                </button>
-              </li>
-              <li className="hs-tooltip group mb-4 [--placement:right] [--trigger:hover] last:mb-0">
-                <button
-                  type="button"
-                  aria-label="menuSubmitSideEvnetCoinfest2024"
-                  className="hs-tooltip-toggle flex flex-row items-center text-base font-extralight capitalize leading-[normal] text-current outline-none focus-visible:outline-none group-hover:text-[#ED4F35] group-hover:underline"
-                >
-                  Submit your side event
-                  <span
-                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] bg-current px-2.5 py-1 text-xs font-normal text-white opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
-                    role="tooltip"
-                  >
-                    Slots full
+                    {tooltip}
                   </span>
                 </button>
               </li>
             </ul>
           </div>
-        </div> */}
+        </div>
         <div className="col-span-full sm:col-span-4 lg:col-span-4 xl:col-span-2">
           <div className="flex flex-col">
             <h2 className="text-base font-semibold capitalize text-current">
-              Previous Editions
+              Previous Events
             </h2>
             <ul className="mt-6 pl-0">
-              <li className="group mb-4 last:mb-0">
+              <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="https://2024.coinfest.asia/"
                   title={`Coinfest Asia 2024`}
@@ -330,9 +268,9 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
                   </svg>
                 </Link>
               </li>
-              <li className="group mb-4 last:mb-0">
+              <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="https://2023.coinfest.asia/"
                   title={`Coinfest Asia 2023`}
@@ -361,9 +299,9 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
                   </svg>
                 </Link>
               </li>
-              <li className="group mb-4 last:mb-0">
+              <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="https://2022.coinfest.asia/"
                   title={`Coinfest Asia 2022`}
@@ -398,12 +336,12 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
         <div className="col-span-full flex flex-col space-y-6 sm:col-span-4 lg:col-span-4 xl:col-span-2">
           <div className="flex flex-col">
             <h2 className="text-base font-semibold capitalize text-current">
-              Other
+              Others
             </h2>
             <ul className="mt-6 pl-0">
-              <li className="group mb-4 last:mb-0">
+              <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="/terms-and-conditions"
                   title={`${publicRuntimeConfig?.siteAppName} Terms & Conditions`}
@@ -411,9 +349,9 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
                   Terms & Conditions
                 </Link>
               </li>
-              <li className="group mb-4 last:mb-0">
+              <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="/privacy-policy"
                   title={`${publicRuntimeConfig?.siteAppName} Privacy Policy`}
@@ -428,9 +366,9 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               Reach Out
             </h2>
             <ul className="mt-3 pl-0">
-              <li className="group mb-4 last:mb-0">
+              <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base lowercase leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-[#ED4F35]'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base lowercase leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="mailto:hi@coinfest.asia"
                   title={`${publicRuntimeConfig?.siteAppName} Email`}
                 >

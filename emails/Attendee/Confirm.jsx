@@ -14,7 +14,7 @@ import {
   Text,
   Link,
 } from '@react-email/components';
-const baseUrl = `https://arkikky-dev.vercel.app`;
+const baseUrl = `https://coinfest.asia`;
 
 const AttendeeConfrim = ({
   name = '{name}',
