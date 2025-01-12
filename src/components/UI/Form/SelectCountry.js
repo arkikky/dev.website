@@ -15,7 +15,7 @@ const SelectCountry = ({
     const elmnt = document.querySelector(id);
     elmnt?.classList.contains('selected') === false &&
       elmnt?.classList.add('selected');
-    setValue(values, e?.target.value);
+    setValue(values, e?.target.value, { shouldValidate: true });
   };
 
   return (

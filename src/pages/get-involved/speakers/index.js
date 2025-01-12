@@ -283,17 +283,20 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                 required={true}
               />
               <Controller
-                name={`dialcode-phone`}
+                name={`dialcode-phoneSpeakers`}
                 control={control}
                 render={({ field }) => (
                   <PhoneInput
                     {...field}
                     onChange={(value, phone) => {
-                      setValue(`phone`, value);
+                      setValue(`dialcode-phoneSpeakers`, value, {
+                        shouldValidate: true,
+                      });
+                      setValue(`phone`, value, { shouldValidate: true });
                     }}
                     inputProps={{
                       required: false,
-                      name: `dialcode-phone`,
+                      name: `dialcode-phoneSpeakers`,
                       autoFocus: false,
                       maxLength: 18,
                     }}
@@ -350,6 +353,8 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                   ariaLabel={`Country - Speakers Forms`}
                   listSelect={isForms?.country}
                   withIcons={true}
+                  values={`countrySpeakers`}
+                  setValue={setValue}
                   config={{
                     ...register(`countrySpeakers`, {
                       required: 'Please select a country',
@@ -410,6 +415,8 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                   ariaLabel={`What topics Speakers`}
                   label="Choose a memecoins..."
                   listSelect={isForms?.fields[5].fields[0].options}
+                  values={`what_topics_are_you_most_able_to_speak_to_authoritatively`}
+                  setValue={setValue}
                   config={{
                     ...register(
                       `what_topics_are_you_most_able_to_speak_to_authoritatively`,
@@ -496,6 +503,8 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                     ariaLabel={`CompanyFocus Speakers`}
                     label="Choose a consulting..."
                     listSelect={isForms?.fields[7]?.fields[0].options}
+                    values={`companyFocusSpeakers`}
+                    setValue={setValue}
                     config={{
                       ...register(`companyFocusSpeakers`, {
                         required: 'Please select a jobtitle speakers',
@@ -518,6 +527,8 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                     ariaLabel={`Jobtitle Speakers`}
                     label="Choose a director..."
                     listSelect={isForms?.fields[7]?.fields[1].options}
+                    values={`jobtitleSpeakers`}
+                    setValue={setValue}
                     config={{
                       ...register(`jobtitleSpeakers`, {
                         required: 'Please select a jobtitle speakers',

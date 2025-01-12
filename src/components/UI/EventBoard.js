@@ -13,7 +13,7 @@ const EventBoard = ({ id }) => {
     seconds: 0,
   });
   // @countdown(Date)
-  const setDate = new Date('2025-08-21T12:00:00').getTime();
+  const setDate = new Date('2025-08-21T12:00:00')?.getTime();
   useEffect(() => {
     const timer = setInterval(() => {
       setCountdown(calculateCountdown(setDate));
@@ -26,7 +26,7 @@ const EventBoard = ({ id }) => {
   return (
     <>
       <div
-        className={`pointer-events-none relative flex h-[53px] w-full min-w-[168px] max-w-[168px] cursor-default flex-col overflow-hidden rounded-lg bg-primary px-2 py-1.5 sm:h-[56px] sm:min-w-[172px] sm:max-w-[172px] sm:rounded-lg sm:px-2.5 sm:py-1.5`}
+        className={`pointer-events-none relative flex h-[55px] w-full min-w-[170px] max-w-[170px] cursor-default flex-col overflow-hidden rounded-lg bg-primary px-2 py-1.5 sm:h-[58px] sm:min-w-[181px] sm:max-w-[181px] sm:rounded-lg sm:px-2.5 sm:py-1.5`}
       >
         <Splide
           ref={(slider) => (rfMainSplde.current = slider)}
@@ -39,7 +39,7 @@ const EventBoard = ({ id }) => {
             updateOnMove: true,
             type: 'loop',
             perPage: 1,
-            autoplay: true,
+            // autoplay: true,
             direction: 'ttb',
             lazyLoad: 'nearby',
             keyboard: false,
@@ -53,12 +53,12 @@ const EventBoard = ({ id }) => {
           className={`ca25MnBoard_SplideWhile w-full`}
         >
           <SplideSlide data-splide-interval="5000" role="listitem">
-            <div className="relative flex h-12 flex-col items-start justify-start overflow-hidden">
+            <div className="relative flex h-12 flex-col items-start justify-start overflow-hidden pt-0.5">
               <span className={`text-sm font-light text-white/60`}>
                 {`Event Date`}
               </span>
               <div
-                className={`absolute inset-x-0 bottom-[7px] top-auto min-w-max text-base font-normal leading-initial text-white sm:bottom-[5px] sm:text-base sm:leading-initial`}
+                className={`absolute inset-x-0 bottom-[7px] top-auto min-w-max text-base font-normal leading-initial text-white sm:bottom-[4px] sm:text-[17px] sm:leading-initial`}
               >
                 {`21-22 August 2025`}
               </div>
@@ -70,7 +70,7 @@ const EventBoard = ({ id }) => {
                 {`Starting in`}
               </span>
               <div
-                className={`absolute inset-x-0 bottom-[7px] top-auto min-w-max text-base font-normal leading-initial text-white sm:bottom-[5px] sm:text-base sm:leading-initial`}
+                className={`absolute inset-x-0 bottom-[7px] top-auto min-w-max text-base font-normal leading-initial text-white sm:bottom-[4px] sm:text-[17px] sm:leading-initial`}
               >
                 {`${isCountdown?.days}d ${isCountdown?.hours}h ${isCountdown?.minutes}m ${isCountdown?.seconds}s`}
               </div>

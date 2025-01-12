@@ -23,7 +23,7 @@ const Footer = ({ nonStore = false, theme = 'light', menuUsage = true }) => {
   return (
     <>
       <footer
-        className={`ca2024Footer ${theme === 'light' ? 'ca2024Footer_Light' : 'ca2024Footer_Dark bg-[linear-gradient(186deg,rgba(31,31,31,1)_35%,rgba(28,37,55,1)_42%,rgba(19,54,119,1)_53%,rgba(0,90,255,1)_75%,rgba(36,116,253,1)_85%,rgba(88,153,251,1)_97%,rgba(122,177,249,1)_100%)]'} relative justify-end overflow-x-hidden ${nonStore === true ? 'pb-6 sm:pb-8' : 'pb-[92px] sm:pb-28 lg:pb-8'} pt-10`}
+        className={`ca2024Footer ${theme === 'light' ? 'ca2024Footer_Light' : 'ca2024Footer_Dark bg-[linear-gradient(186deg,rgba(31,31,31,1)_35%,rgba(28,37,55,1)_42%,rgba(19,54,119,1)_53%,rgba(0,90,255,1)_75%,rgba(36,116,253,1)_85%,rgba(88,153,251,1)_97%,rgba(122,177,249,1)_100%)]'} relative justify-end overflow-x-hidden ${nonStore === true ? 'pb-6 sm:pb-8' : 'pb-[92px] sm:pb-28 lg:pb-8'} pt-0`}
       >
         <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-full select-none">
           <StarryBackground starCount={110} />

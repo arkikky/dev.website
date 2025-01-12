@@ -2,6 +2,7 @@
 
 const nextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
   images: {
     remotePatterns: [
       {
@@ -62,8 +63,16 @@ const nextConfig = {
         source: '/api/:path*',
         headers: [
           {
+            key: 'Access-Control-Allow-Origin',
+            value: process.env.NEXT_PUBLIC_SITE_URL || '*',
+          },
+          {
             key: 'Access-Control-Allow-Methods',
-            value: 'GET',
+            value: 'GET, POST, PUT, DELETE, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, Authorization',
           },
         ],
       },
@@ -76,7 +85,7 @@ const nextConfig = {
           },
           {
             key: 'Access-Control-Allow-Methods',
-            value: 'GET, POST, PUT',
+            value: 'GET, POST, PUT, DELETE, OPTIONS',
           },
           {
             key: 'Cache-Control',
@@ -134,11 +143,20 @@ const nextConfig = {
         ],
       },
       {
-        source: '/checkout',
+        source: '/_next/static/:path*',
         headers: [
           {
-            key: 'Access-Control-Allow-Methods',
-            value: 'GET,POST,PUT',
+            key: 'Cache-Control',
+            value: 'public, max-age=604800, immutable',
+          },
+        ],
+      },
+      {
+        source: '/assets/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=604800, must-revalidate',
           },
         ],
       },

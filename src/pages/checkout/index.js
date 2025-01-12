@@ -368,19 +368,18 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       group: null,
     }
   ) => {
-    const awdCC = `#ca25Form_CountryAttndee${items?.attendee}_${items?.group}CheckoutToggleTags`;
-    const awd = `#ca25Form_WhatTypeOfConnectionsAttndee${items?.attendee}_${items?.group}CheckoutToggleTags`;
-    const awds = `#ca25Form_DidYouHearAboutAttndee${items?.attendee}_${items?.group}CheckoutToggleTags`;
-
-    const awdCCs = document.querySelector(awdCC);
-    awdCCs?.classList.contains('selected') === false &&
-      awdCCs?.classList.add('selected');
-    const elmnt = document.querySelector(awd);
-    elmnt?.classList.contains('selected') === false &&
-      elmnt?.classList.add('selected');
-    const elmnt1 = document.querySelector(awds);
-    elmnt1?.classList.contains('selected') === false &&
-      elmnt1?.classList.add('selected');
+    const slctrs = [
+      `#ca25Form_CountryAttndee${items?.attendee}_${items?.group}CheckoutToggleTags`,
+      `#ca25Form_WhatTypeOfConnectionsAttndee${items?.attendee}_${items?.group}CheckoutToggleTags`,
+      `#ca25Form_DidYouHearAboutAttndee${items?.attendee}_${items?.group}CheckoutToggleTags`,
+    ];
+    const addSelectedClass = (slctr) => {
+      const elmnt = document.querySelector(slctr);
+      if (elmnt && !elmnt.classList.contains('selected')) {
+        elmnt?.classList.add('selected');
+      }
+    };
+    slctrs?.forEach(addSelectedClass);
 
     const reg = [
       `countryAttndee${items?.attendee}_${items?.group}`,
@@ -394,18 +393,20 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     ];
     setValue(
       `dialcode-phone${items?.attendee}_${items?.group}`,
-      getValues(`dialcode-phone1_${items?.firstItems}`)
+      getValues(`dialcode-phone1_${items?.firstItems}`),
+      { shouldValidate: true }
     );
     setValue(
       `phone${items?.attendee}_${items?.group}`,
-      getValues(`phone1_${items?.firstItems}`)
+      getValues(`phone1_${items?.firstItems}`),
+      { shouldValidate: true }
     );
     if (el.length > 0) {
       el?.forEach((id, i) => {
         const elmntInstance = window.HSSelect.getInstance(id);
         if (elmntInstance) {
           elmntInstance?.setValue(vals[i]);
-          setValue(reg[i], vals[i]);
+          setValue(reg[i], vals[i], { shouldValidate: true });
         } else {
           // console.warn(`[Warning] HSSelect instance not found for id: ${id}`);
         }
@@ -439,20 +440,22 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     ];
     setValue(
       `companyAttndee${items?.attendee}_${items?.group}`,
-      getValues(`companyAttndee${values?.activeToggle}_${values?.activeGroup}`)
+      getValues(`companyAttndee${values?.activeToggle}_${values?.activeGroup}`),
+      { shouldValidate: true }
     );
     setValue(
       `websiteUrlAttndee${items?.attendee}_${items?.group}`,
       getValues(
         `websiteUrlAttndee${values?.activeToggle}_${values?.activeGroup}`
-      )
+      ),
+      { shouldValidate: true }
     );
     if (el.length > 0) {
       el?.forEach((id, i) => {
         const elmntInstance = window.HSSelect.getInstance(id);
         if (elmntInstance) {
           elmntInstance.setValue(vals[i]);
-          setValue(reg[i], vals[i]);
+          setValue(reg[i], vals[i], { shouldValidate: true });
         } else {
           // console.warn(`[Warning] HSSelect instance not found for id: ${id}`);
         }

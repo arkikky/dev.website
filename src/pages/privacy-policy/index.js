@@ -22,7 +22,7 @@ const PrivacyPolicy = ({ mode }) => {
             <div className="col-span-full col-start-1 sm:col-span-10 sm:col-start-2">
               <div className="mb-12 flex flex-col items-center justify-center text-center sm:mb-16">
                 <h1
-                  className={`w-full max-w-[416px] text-[28px] font-bold leading-[38px] sm:text-[36px] ${mode === 'light' ? 'text-black-900' : 'text-white'} sm:leading-[48px]`}
+                  className={`w-full max-w-[416px] text-balance text-[28px] font-bold leading-[38px] sm:text-[36px] ${mode === 'light' ? 'text-black-900' : 'text-white'} sm:leading-[48px]`}
                 >
                   Privacy Policy for Coinfest Asia
                 </h1>

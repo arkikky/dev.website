@@ -42,14 +42,14 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
   };
 
   const {
-    watch,
     register,
-    control,
     formState: { errors, isValid, isSubmitting },
     handleSubmit,
+    setValue,
     reset,
   } = useForm({
     mode: 'all',
+    criteriaMode: 'all',
   });
 
   // @submit
@@ -251,6 +251,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
               errors={errors[`email`]}
             />
           </div>
+
           {isForms?.fields && (
             <>
               <div className="mb-4 grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
@@ -267,6 +268,8 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                     ariaLabel={`Jobtitle Sponsorship`}
                     label="Choose a jobtitle..."
                     listSelect={isForms?.fields[3]?.fields[0].options}
+                    values={`jobtitleSponsorship`}
+                    setValue={setValue}
                     config={{
                       ...register(`jobtitleSponsorship`, {
                         required: 'Please select a jobtitle sponsorship',
@@ -287,6 +290,8 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                     ariaLabel={`Country - Sponsorship Forms`}
                     listSelect={isForms?.country}
                     withIcons={true}
+                    values={`countrySponsorship`}
+                    setValue={setValue}
                     config={{
                       ...register(`countrySponsorship`, {
                         required: 'Please select a country',
@@ -337,6 +342,8 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                     ariaLabel={`CompanyFocus Sponsorship`}
                     label="Choose a Company Focus..."
                     listSelect={isForms?.fields[5]?.fields[0].options}
+                    values={`companyFocusSponsorship`}
+                    setValue={setValue}
                     config={{
                       ...register(`companyFocusSponsorship`, {
                         required: 'Please select a jobtitle sponsorship',

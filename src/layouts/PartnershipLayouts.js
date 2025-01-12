@@ -114,7 +114,7 @@ const PartnershipLayouts = ({
               {title}
             </h1>
             {shortDesc && (
-              <span className="mt-2 block text-base font-normal text-white sm:mt-4 sm:text-xl">
+              <span className="mt-2 block max-w-[496px] text-base font-normal text-white sm:mt-4 sm:max-w-[573px] sm:text-xl">
                 {shortDesc}
               </span>
             )}

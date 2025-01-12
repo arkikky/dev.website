@@ -15,7 +15,6 @@ const AttendeeDetailCheckouts = ({
   watch,
   forms = {},
   items = {},
-  watchFields,
   register,
   control,
   setValue,
@@ -24,7 +23,7 @@ const AttendeeDetailCheckouts = ({
   onChangeToggle,
   children,
 }) => {
-  // @hook(Preline)
+  // @hook(preline)
   const handleIntzPreline = useCallback(async () => {
     await import('preline/preline');
     if (window.HSStaticMethods) {
@@ -33,25 +32,29 @@ const AttendeeDetailCheckouts = ({
   }, [watch]);
   useEffect(() => {
     handleIntzPreline();
-    return () => {
-      undefined;
-    };
-  }, [watch]);
+  }, [handleIntzPreline]);
 
-  // @handle(Company Toggle Change)
+  // @handle(company toggle change)
   const handleToggleCompay_Change = (d) => {
-    getValues(d) === true
-      ? setValue(`websiteUrlAttndee${items?.attendee}_${items?.group}`, '')
-      : setValue(`websiteUrlAttndee${items?.attendee}_${items?.group}`, 'N/A');
-    getValues(d) === true
-      ? setValue(`companyAttndee${items?.attendee}_${items?.group}`, '')
-      : setValue(`companyAttndee${items?.attendee}_${items?.group}`, 'N/A');
-    getValues(d) === true &&
-      setValue(`jobPositionAttndee${items?.attendee}_${items?.group}`, '');
-    getValues(d) === true &&
-      setValue(`companyFocusAttndee${items?.attendee}_${items?.group}`, '');
-    getValues(d) === true &&
-      setValue(`companySizeAttndee${items?.attendee}_${items?.group}`, '');
+    const isTrue = getValues(d) === true;
+    const fieldsToSet = {
+      [`websiteUrlAttndee${items?.attendee}_${items?.group}`]: isTrue
+        ? ''
+        : 'N/A',
+      [`companyAttndee${items?.attendee}_${items?.group}`]: isTrue ? '' : 'N/A',
+      [`jobPositionAttndee${items?.attendee}_${items?.group}`]: isTrue
+        ? ''
+        : '',
+      [`companyFocusAttndee${items?.attendee}_${items?.group}`]: isTrue
+        ? ''
+        : '',
+      [`companySizeAttndee${items?.attendee}_${items?.group}`]: isTrue
+        ? ''
+        : '',
+    };
+    Object.entries(fieldsToSet).forEach(([field, value]) => {
+      setValue(field, value, { shouldValidate: true });
+    });
   };
 
   return (
@@ -157,9 +160,12 @@ const AttendeeDetailCheckouts = ({
                 onChange={(value, phone) => {
                   setValue(
                     `dialcode-phone${items?.attendee}_${items?.group}`,
-                    value
+                    value,
+                    { shouldValidate: true }
                   );
-                  setValue(`phone${items?.attendee}_${items?.group}`, value);
+                  setValue(`phone${items?.attendee}_${items?.group}`, value, {
+                    shouldValidate: true,
+                  });
                 }}
                 inputProps={{
                   required: false,
