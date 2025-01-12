@@ -197,8 +197,12 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
           id="formSpeakers"
           method="POST"
           onSubmit={handleSubmit(onSubmit)}
-          className="mt-0 flex flex-col space-y-5 sm:mt-8"
+          className="relative mt-0 flex flex-col space-y-5 sm:mt-8"
         >
+          <div
+            className={`absolute inset-x-0 inset-y-0 bg-white/60 opacity-100 backdrop-blur-[2px] ${isSubmitting ? 'pointer-events-auto z-[15] select-auto' : '!pointer-events-auto -z-px !select-auto'}`}
+          ></div>
+
           <div className="grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
             <div className="block">
               <Label
@@ -643,7 +647,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
           )}
 
           {/* @submit */}
-          <div className="flex flex-col">
+          <div className="z-[18] flex flex-col">
             <button
               id="ca25Submit-Speakers"
               type="submit"

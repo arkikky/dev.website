@@ -40,6 +40,22 @@
   @apply h-6 w-6 min-w-[24px];
 }
 
+/* @layout */
+.ca25BackGroupPrimary::before {
+  @apply content-[''];
+  @apply absolute inset-x-0 bottom-auto top-0;
+  @apply bg-[linear-gradient(180deg,rgba(31,31,31,1)_4%,rgba(30,35,44,1)_17%,rgba(1,87,246,1)_58%,rgba(1,87,246,0)_100%)];
+  @apply h-[600px] w-full;
+  @apply z-[4];
+}
+.ca25BackGroupPrimary::after {
+  @apply content-[''];
+  @apply absolute inset-x-0 bottom-0 top-auto;
+  @apply bg-[linear-gradient(0deg,rgba(31,31,31,1)_4%,rgba(30,35,44,1)_17%,rgba(1,87,246,1)_58%,rgba(1,87,246,0)_100%)];
+  @apply h-[600px] w-full;
+  @apply z-[4];
+}
+
 /* @debug */
 .ca25BrandLogo-BckBlured::before {
   @apply content-[''];
@@ -54,5 +70,3 @@
 .ca25ToastCheckoutAlert {
   @apply absolute bottom-0;
 }
-
-

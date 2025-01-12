@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Label = ({
-  forId = 'tktCA25Form_Label',
+  forId = 'ca25Form_Label',
   isClassName = '',
   label = null,
   helpText = '',

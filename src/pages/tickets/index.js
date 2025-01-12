@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Toaster } from 'sonner';
 import { toast } from 'sonner';
-import getConfig from 'next/config';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
-
-// @get .config
-const { publicRuntimeConfig } = getConfig();
 
 // @redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -67,7 +62,7 @@ const Tickets = ({ mode, products }) => {
   };
   // @hanlde-change(calculate product)
   useEffect(() => {
-    const updatedFake = isStore?.isQty
+    const fakeUpadted = isStore?.isQty
       ?.filter((fakeItems) =>
         isCart?.some((items) => items?.id_product === fakeItems?.id)
       )
@@ -79,11 +74,8 @@ const Tickets = ({ mode, products }) => {
       });
     setStore((prev) => ({
       ...prev,
-      isQty: updatedFake,
+      isQty: fakeUpadted,
     }));
-    return () => {
-      undefined;
-    };
   }, [isCart]);
 
   // @add-items(cart)
@@ -128,7 +120,7 @@ const Tickets = ({ mode, products }) => {
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo />
+      <HeadGraphSeo title={`Tickets`} otherPage={true} />
 
       {/* @main */}
       <Main className="relative overflow-hidden pb-16 pt-[135px] sm:pb-24 sm:pt-[164px] lg:pt-[183px]">

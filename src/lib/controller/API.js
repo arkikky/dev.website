@@ -11,6 +11,7 @@ export async function getFetch(url) {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${tApp}`,
     },
+    credentials: 'include',
   })
     .then((res) => {
       if (res?.ok) {
@@ -29,6 +30,7 @@ export async function getFetchUrl(url) {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
   })
     .then((res) => {
       if (res?.ok) {
@@ -47,6 +49,7 @@ export async function getFetchUrl_FormData(url, data) {
     headers: {
       Authorization: `Bearer ${tApp}`,
     },
+    credentials: 'include',
     body: data,
   })
     .then((res) => {

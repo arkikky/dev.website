@@ -30,9 +30,6 @@ const PartnerCards = ({
     if (inView) {
       setLoading(true);
     }
-    return () => {
-      undefined;
-    };
   }, [inView]);
 
   return (

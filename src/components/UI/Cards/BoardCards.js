@@ -26,9 +26,6 @@ const BoardCards = ({ count, title, children }) => {
         });
       }
     });
-    return () => {
-      undefined;
-    };
   }, []);
 
   return (

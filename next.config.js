@@ -109,7 +109,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: `default-src 'self';script-src 'self' 'unsafe-eval';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://api.coinfest.asia http://coinfest-2025.vercel.app https://api.hsforms.com https://hub.coinvestasi.com https://checkout-staging.xendit.co https://vercel.live;img-src 'self' https://upload.wikimedia.org https://hub.coinvestasi.com http://coinfest-2025.vercel.app https://flagcdn.com https://checkout-staging.xendit.co https://vercel.live data:;frame-src 'none';frame-ancestors 'self';form-action 'self';worker-src 'self';base-uri 'self';`,
+            value: `default-src 'self';script-src 'self' 'unsafe-eval';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://api.coinfest.asia https://api.hsforms.com https://hub.coinvestasi.com https://coinfest.asia https://coinfest-2025.vercel.app https://checkout-staging.xendit.co https://vercel.live;img-src 'self' https://upload.wikimedia.org https://hub.coinvestasi.com https://flagcdn.com https://coinfest.asia https://coinfest-2025.vercel.app https://checkout-staging.xendit.co https://vercel.live data:;frame-src 'none';frame-ancestors 'self';form-action 'self';worker-src 'self';base-uri 'self';`,
           },
           {
             key: 'Permissions-Policy',

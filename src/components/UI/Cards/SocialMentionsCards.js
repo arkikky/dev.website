@@ -21,9 +21,6 @@ const SocialMentionCards = ({ attributes }) => {
     if (inView) {
       setLoading(true);
     }
-    return () => {
-      undefined;
-    };
   }, [inView]);
 
   return (

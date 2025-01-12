@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Toaster } from 'sonner';
 import { toast } from 'sonner';
 import getConfig from 'next/config';
@@ -13,8 +13,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addItemToCart } from '@reduxState/slices';
 
 // @lib/controller & helper
+import { useCart } from '@lib/hooks/cart/Cart';
 import { getFetch, getFetchUrl } from '@lib/controller/API';
-import { getCombineMerged, encodeData } from '@lib/helper/Configuration';
 
 // @components
 import HeadGraphSeo from '@components/Head';
@@ -43,9 +43,9 @@ import MoonPortalBanner from '@layouts/Banner/MoonPortalBanner';
 const Home = ({ mode, collections, products }) => {
   const dispatch = useDispatch();
   const { data: isCart } = useSelector((state) => state.cart);
+  const { getStore } = useCart();
   const [isStore, setStore] = useState({
     products: products?.data,
-    cart: [],
     isQty: [],
   });
   // @hook(session product)
@@ -62,45 +62,6 @@ const Home = ({ mode, collections, products }) => {
     socialMentions: collections?.socialMentions,
     faq: collections?.faq,
   });
-
-  // @initialize(store)
-  const hndleHookProducts = useCallback(async () => {
-    if (!isCart || isCart?.length > 3) return;
-    try {
-      const allProducts = await Promise.all(
-        isCart?.map(async (data) => {
-          const rsHook = await fetch('/api/data/products?sv=coinfestasia', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ data: encodeData(data?.id_product) }),
-          }).then((res) => res?.json());
-          return {
-            id: rsHook?.id,
-            documentId: rsHook?.documentId,
-            productId: rsHook?.productId,
-            name: rsHook?.name,
-            price: rsHook?.price,
-            priceSale: rsHook?.priceSale,
-            stock: parseInt(rsHook?.stock),
-          };
-        })
-      );
-      // @hook(combine merged)
-      const merged = getCombineMerged(allProducts, isCart);
-      if (merged) setStore((prev) => ({ ...prev, cart: merged }));
-    } catch (err) {
-      return;
-    }
-  }, [isCart]);
-  // @hook(store)
-  useEffect(() => {
-    hndleHookProducts();
-    return () => {
-      undefined;
-    };
-  }, [isCart]);
 
   // @hanlde-change(product)
   const hndleChangeQty = async (idProducts, qtyProduct) => {
@@ -123,7 +84,7 @@ const Home = ({ mode, collections, products }) => {
   };
   // @hanlde-change(calculate product)
   useEffect(() => {
-    const updatedFake = isStore?.isQty
+    const fakeUpdated = isStore?.isQty
       ?.filter((fakeItems) =>
         isCart?.some((items) => items?.id_product === fakeItems?.id)
       )
@@ -135,11 +96,8 @@ const Home = ({ mode, collections, products }) => {
       });
     setStore((prev) => ({
       ...prev,
-      isQty: updatedFake,
+      isQty: fakeUpdated,
     }));
-    return () => {
-      undefined;
-    };
   }, [isCart]);
 
   // @add-items(Cart)
@@ -293,7 +251,7 @@ const Home = ({ mode, collections, products }) => {
                   <TicketProducts
                     useHeading={'h3'}
                     data={gtRslt}
-                    cartProducts={isStore?.cart}
+                    cartProducts={getStore}
                     key={gtRslt.documentId}
                     isLoading={isLoading}
                     isSessionLoading={isSessionProducts?.loading}
@@ -328,7 +286,7 @@ const Home = ({ mode, collections, products }) => {
         <PortalBanner mode={mode} id={'ca25PortalBanner1'} />
 
         {/* @social-mentions */}
-        {/* <SocialMentions mode={mode} result={isCollections?.socialMentions} /> */}
+        <SocialMentions mode={mode} result={isCollections?.socialMentions} />
 
         {/* @faq */}
         <FAQ mode={mode} result={isCollections?.faq} />
@@ -407,13 +365,13 @@ export const getServerSideProps = async (context) => {
         mode: 'dark',
         layouts: isStoreLayouts || false,
         collections: {
-          aboutus: rsAboutUs?.data,
-          speakers: rsSpeakers?.data,
-          partners: rsPartners?.data,
-          getinvolved: rsGetInvolved?.data,
-          whatsHappening: rsWhatsHappening?.data,
-          socialMentions: rsSocialMentions?.data,
-          faq: rsFAQ?.data,
+          aboutus: rsAboutUs?.data || null,
+          speakers: rsSpeakers?.data || null,
+          partners: rsPartners?.data || null,
+          getinvolved: rsGetInvolved?.data || null,
+          whatsHappening: rsWhatsHappening?.data || null,
+          socialMentions: rsSocialMentions?.data || null,
+          faq: rsFAQ?.data || null,
         },
         products: rsProducts || [],
       },

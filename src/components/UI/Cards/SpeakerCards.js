@@ -30,9 +30,6 @@ const SpeakerCards = ({
     if (inView) {
       setLoading(true);
     }
-    return () => {
-      undefined;
-    };
   }, [inView]);
 
   return (

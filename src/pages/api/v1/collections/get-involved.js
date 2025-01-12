@@ -13,39 +13,40 @@ export default function handler(req, res) {
   if (req?.method !== 'GET') {
     return res?.status(405).json(lgErr);
   }
+
   const rslt = {
     data: [
       {
         url: '/get-involved/speakers',
-        images: '/assets/images/get-involved/ca24GetInvolved_1.jpg',
+        images: '/assets/images/get-involved/ca25GetInvolved_1.jpg',
         title: 'Speakers',
         position: 'normal',
         comingSoon: false,
       },
       {
         url: '/get-involved/sponsorship/',
-        images: '/assets/images/get-involved/ca24GetInvolved_2.jpg',
+        images: '/assets/images/get-involved/ca25GetInvolved_2.jpg',
         title: 'Sponsors',
         position: 'normal',
         comingSoon: false,
       },
       {
         url: '/get-involved',
-        images: '/assets/images/get-involved/ca24GetInvolved_3.jpg',
+        images: '/assets/images/get-involved/ca25GetInvolved_3.jpg',
         title: 'Partner as Media',
         position: 'left',
         comingSoon: true,
       },
       {
-        url: '/get-involved',
-        images: '/assets/images/get-involved/ca24GetInvolved_4.jpg',
+        url: '/get-involved/become-an-affiliator',
+        images: '/assets/images/get-involved/ca25GetInvolved_4.jpg',
         title: 'Become an Affiliator',
         position: 'normal',
-        comingSoon: true,
+        comingSoon: false,
       },
       {
         url: '/get-involved',
-        images: '/assets/images/get-involved/ca24GetInvolved_5.jpg',
+        images: '/assets/images/get-involved/ca25GetInvolved_5.jpg',
         title: 'Partner as Community',
         position: 'normal',
         comingSoon: true,

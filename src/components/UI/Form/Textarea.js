@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Input = ({
-  id = 'ca25Form_Input',
+const Textarea = ({
+  id = 'ca25Form_Textarea',
   addClassName = '',
   type = 'text',
-  name = 'ca25Form_Input',
+  name = 'ca25Form_Textarea',
   placeholder = 'Gryok',
   ariaLabel = '',
   value = '',
@@ -26,26 +26,7 @@ const Input = ({
     <>
       <div className="relative">
         {useEvent === true ? (
-          <input
-            id={id}
-            className={`block w-full px-4 py-4 ${
-              Object.keys(errors).length > 0
-                ? 'border-red-500 focus:border-red-500'
-                : 'border-gray-200 focus:border-blue-500'
-            } rounded-lg border border-solid text-sm focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 ${hidden == true && 'hidden'} ${
-              addClassName !== '' && addClassName
-            }`}
-            type={type}
-            placeholder={placeholder}
-            aria-describedby={ariaLabel}
-            disabled={disabled}
-            onKeyUp={(e) => {
-              handleInputChange(e);
-            }}
-            {...config}
-          />
-        ) : (
-          <input
+          <textarea
             id={id}
             className={`block w-full px-4 py-4 ${
               Object.keys(errors).length > 0
@@ -56,15 +37,37 @@ const Input = ({
             }`}
             name={name}
             type={type}
+            rows="5"
+            placeholder={placeholder}
+            aria-describedby={ariaLabel}
+            disabled={disabled}
+            onKeyUp={(e) => {
+              handleInputChange(e);
+            }}
+            {...config}
+          ></textarea>
+        ) : (
+          <textarea
+            id={id}
+            className={`block w-full px-4 py-4 ${
+              Object.keys(errors).length > 0
+                ? 'border-red-500 focus:border-red-500'
+                : 'border-gray-200 focus:border-blue-500'
+            } rounded-lg border border-solid text-sm font-normal focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 ${hidden == true && 'hidden'} ${
+              addClassName !== '' && addClassName
+            }`}
+            name={name}
+            type={type}
+            rows="5"
             placeholder={placeholder}
             aria-describedby={ariaLabel}
             disabled={disabled}
             {...config}
-          />
+          ></textarea>
         )}
 
         {Object.keys(errors).length > 0 && (
-          <div className="pointer-events-none absolute inset-y-0 end-0 flex items-center pe-4">
+          <div className="pointer-events-none absolute bottom-auto end-0 top-3.5 flex items-center pe-4">
             <svg
               className="size-4 shrink-0 text-red-500 sm:size-4.5"
               xmlns="http://www.w3.org/2000/svg"
@@ -88,4 +91,4 @@ const Input = ({
   );
 };
 
-export default Input;
+export default Textarea;

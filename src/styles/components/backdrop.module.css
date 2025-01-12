@@ -33,7 +33,7 @@
 }
 .ca25BgDiamondPortal .ca25PortalBanner_Items::before {
   @apply content-[''];
-  @apply block bg-[url('/assets/images/backdrop/ca25MoonMeme-Portal_Left.svg')];
+  @apply block bg-[url('/assets/images/backdrop/ca25MoonMeme-Portal_Left.png')];
   @apply bg-cover bg-center bg-no-repeat;
   @apply absolute -left-[55px] bottom-[18px] right-auto top-auto sm:-left-[45px] sm:bottom-[35px] lg:-left-[59px] lg:bottom-[75px];
   @apply h-[136.29px] w-[215px];
@@ -44,7 +44,7 @@
 }
 .ca25BgDiamondPortal .ca25PortalBanner_Items::after {
   @apply content-[''];
-  @apply block bg-[url('/assets/images/backdrop/ca25MoonMeme-Portal_Right.svg')];
+  @apply block bg-[url('/assets/images/backdrop/ca25MoonMeme-Portal_Right.png')];
   @apply bg-cover bg-center bg-no-repeat;
   @apply absolute bottom-auto left-auto;
   @apply -right-[109px] -top-[7px];
@@ -113,7 +113,7 @@
 .ca25BckBlueMoon-SpeacialMoon::after {
   @apply content-[''];
   @apply inline-block bg-[url('/assets/images/ca25BlueMoon.svg')];
-  @apply bg-cover bg-center bg-no-repeat;
+  @apply bg-cover bg-center bg-no-repeat drop-shadow-[0_0_23px_rgba(0,149,255,0.4)];
   @apply absolute inset-x-auto -top-[15px] bottom-0 mx-auto my-auto sm:inset-y-0;
   @apply xs:h-[284.69px] xs:w-[284.69px] h-[304.69px] w-[304.69px];
   @apply sm:h-[449.54px] sm:w-[449.54px];
@@ -204,7 +204,7 @@
 .ca25BckBlueMoon::after {
   @apply content-[''];
   @apply inline-block bg-[url('/assets/images/ca25BlueMoon.svg')];
-  @apply bg-cover bg-center bg-no-repeat;
+  @apply bg-cover bg-center bg-no-repeat drop-shadow-[0_0_23px_rgba(0,149,255,0.4)];
   @apply absolute inset-x-auto inset-y-0 mx-auto my-auto;
   @apply h-[236px] w-[236px];
   @apply sm:h-[379.54px] sm:w-[379.54px];
@@ -326,4 +326,71 @@
   @apply sm:h-[173.21px] sm:w-[170.8px];
   @apply lg:h-[233.21px] lg:w-[250.8px];
   @apply xl:h-[321.21px] xl:w-[345.8px];
+}
+
+/* @double-rocket */
+.ca25BackMoon-DoubleRocket::before {
+  @apply content-[''];
+  @apply block bg-[url('/assets/images/backdrop/ca25MoonDoubleRocket.png')];
+  @apply absolute bg-cover bg-center bg-no-repeat;
+  @apply bottom-auto left-auto;
+  @apply xs:-right-[99px] xs:-top-[153px] -right-[85px] -top-[163px];
+  @apply sm:-right-[211px] sm:-top-[133px];
+  @apply lg:-right-[187px] lg:-top-[263px];
+  @apply xl:-right-[207px] xl:-top-[133px];
+  @apply xs:h-[137.39px] xs:w-[235.08px] h-[157.39px] w-[255.08px];
+  @apply sm:h-[267.39px] sm:w-[475.08px];
+  @apply lg:h-[327.39px] lg:w-[545.08px];
+  @apply xl:h-[418.02px] xl:w-[628.88px];
+  @apply z-[7];
+}
+
+/* @404(back moon) */
+.ca25404BackMoon_Items::before {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25MoonFullPortal.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute inset-x-auto inset-y-0 mx-auto my-auto;
+  @apply xs:-left-[401px] -left-[381px] -top-[879px];
+  @apply sm:-left-[369px] sm:-top-[887px];
+  @apply lg:-left-[405px] lg:-top-[1301px];
+  @apply xl:-left-[161px] xl:-top-[729px];
+  @apply h-[731px] w-[731px];
+  @apply sm:h-[931px] sm:w-[931px];
+  @apply lg:h-[1131px] lg:w-[1131px];
+  @apply xl:h-[1131px] xl:w-[1131px];
+  @apply z-[5];
+}
+.ca25404BackMoon_Items::after {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/ca25BlueMoon.svg')];
+  @apply bg-cover bg-center bg-no-repeat drop-shadow-[0_0_23px_rgba(0,149,255,0.4)];
+  @apply absolute inset-x-auto inset-y-0 mx-auto my-auto;
+  @apply xs:-left-[369px] xs:-top-[879px] -left-[339px] -top-[879px];
+  @apply sm:-left-[345px] sm:-top-[965px];
+  @apply lg:-left-[335px] lg:-top-[1255px];
+  @apply xl:-left-[285px] xl:-top-[575px];
+  @apply h-[626.94px] w-[626.94px];
+  @apply sm:h-[716.94px] sm:w-[716.94px];
+  @apply lg:h-[786.94px] lg:w-[786.94px];
+  @apply xl:h-[826.94px] xl:w-[826.94px];
+  @apply z-[5];
+  @apply rotate-[42deg] transform xl:rotate-[27deg];
+}
+
+.ca25BackMoon-404RedPeopleItems::before {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/ca25BackMoon-404RedPeople.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute inset-x-auto inset-y-0 mx-auto my-auto;
+  @apply xs:-right-[349px] -bottom-[985px] -right-[329px];
+  @apply sm:-bottom-[1165px] sm:-right-[409px];
+  @apply lg:-bottom-[1505px] lg:-right-[471px];
+  @apply xl:-bottom-[1105px] xl:-right-[541px];
+  @apply h-[546px] w-[546px];
+  @apply sm:h-[716.94px] sm:w-[716.94px];
+  @apply lg:h-[896.94px] lg:w-[896.94px];
+  @apply xl:h-[976.94px] xl:w-[976.94px];
+  @apply z-[5];
+  @apply -rotate-[9deg] transform sm:-rotate-[11deg] lg:-rotate-[5deg];
 }

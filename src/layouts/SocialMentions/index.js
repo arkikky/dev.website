@@ -19,24 +19,25 @@ const SocialMentions = ({ mode, result = [] }) => {
     <>
       <section
         id="ca25SocialMentions"
-        className="ca25SocialMentions pb-18 pt-20"
+        className="ca25SocialMentions ca25BackGroupPrimary relative bg-primary pb-18 pt-20"
       >
+        <h2
+          className={`ca25HeadingTitle w-full max-w-[525px] text-center font-semibold uppercase sm:font-bold lg:max-w-[855px] ${mode === 'light' ? 'text-black-900' : 'text-white'} relative z-[5] mx-auto mb-4 text-balance sm:mb-7`}
+        >
+          {'SEE WHAT PEOPLE ARE SAYING'
+            ?.split('')
+            ?.map((chr, i) =>
+              ['E', 'A', 'O', '0'].includes(chr) ? (
+                <span key={i}>{chr}</span>
+              ) : (
+                chr
+              )
+            )}
+        </h2>
         <Container className={'relative z-[2]'}>
-          <h2
-            className={`ca25HeadingTitle w-full text-center font-semibold uppercase sm:font-bold ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-4 text-balance sm:mb-7`}
+          <div
+            className={`bckdrpCvrShdow relative mt-24 max-h-[1488px] min-h-[1488px]`}
           >
-            {'SEE WHAT PEOPLE ARE SAYING'
-              ?.split('')
-              ?.map((chr, i) =>
-                ['E', 'A', 'O', '0'].includes(chr) ? (
-                  <span key={i}>{chr}</span>
-                ) : (
-                  chr
-                )
-              )}
-          </h2>
-
-          <div className={`bckdrpCvrShdow relative mt-24`}>
             {result && (
               <Splide
                 tag="section"
