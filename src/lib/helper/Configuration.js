@@ -171,3 +171,27 @@ export function decodeData(ed) {
   const wordArray = CryptoJS.enc.Base64.parse(ed);
   return JSON.parse(CryptoJS.enc.Utf8.stringify(wordArray));
 }
+
+// @convert-url(to blob)
+export function convertQrCodeToBlob(qrCodeUrl, id, attendeeId, fullname) {
+  const [header, base64Data] = qrCodeUrl?.split(',');
+  const mimeString = header.match(/:(.*?);/)[1];
+  const byteString = atob(base64Data);
+  const buffer = Uint8Array.from(byteString, (char) => char?.charCodeAt(0));
+  const pngBlobQrCode = new Blob([buffer], {
+    type: mimeString,
+  });
+  const newImageInformtn = {
+    name: `QrCode_${attendeeId}.png`,
+    alternativeText: `Coinfest Asia 2025 ${fullname} Attendee`,
+    caption: `Coinfest Asia 2025 ${fullname} Attendee`,
+  };
+  const formData = new FormData();
+  formData.append('files', pngBlobQrCode, `QrCode_${attendeeId}.png`);
+  formData.append('fileInfo', JSON.stringify(newImageInformtn));
+  formData.append('ref', 'api::attendee.attendee');
+  formData.append('refId', `${id}`);
+  formData.append('field', `qrCode`);
+
+  return formData;
+}

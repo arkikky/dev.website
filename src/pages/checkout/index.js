@@ -30,6 +30,7 @@ import {
   getCombineMerged,
   isValidationMoreTimeMinutes,
   encodeData,
+  convertQrCodeToBlob,
 } from '@lib/helper/Configuration';
 import {
   getTotalCart,
@@ -253,9 +254,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   }, [isCart]);
   useEffect(() => {
     hndleHookProducts();
-    return () => {
-      undefined;
-    };
   }, [isCart]);
   // @hook(Calculate Total Order)
   const calculateTotalOrder = useCallback(
@@ -311,9 +309,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   // @hook(Product)
   useEffect(() => {
     calculateTotalOrder(isStore?.products);
-    return () => {
-      undefined;
-    };
   }, [isStore?.products, isCoupon]);
   useEffect(() => {
     handleIntzPreline();
@@ -332,15 +327,9 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           );
       })
     );
-    return () => {
-      undefined;
-    };
   }, [isStore?.products]);
   useEffect(() => {
     handleIntzPreline();
-    return () => {
-      undefined;
-    };
   }, [currentStepAttendee]);
 
   // @form-hook(Checkout)
@@ -350,7 +339,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     control,
     formState: { errors, isValid, isSubmitting },
     handleSubmit,
-    trigger,
     setValue,
     getValues,
     reset,
@@ -543,7 +531,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           `whatTypeConnectionNetworking`,
           `didYouHearAbout`,
         ];
-
     // console.log(
     //   'Validating attendee:',
     //   att,
@@ -553,7 +540,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     //   attIdx
     // );
     // console.log('Required fields:', requiredFields);
-
     let rsAllFields = true;
     for (const field of requiredFields) {
       const fieldName = `${field}Attndee${attIdx}_${products}Tickets`;
@@ -566,7 +552,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   }
 
   // @validation(error form)
-  const onError = async (errors, e) => {
+  const onErrorSubmit = async (errors, e) => {
     const data = getValues();
     const groupedData = {
       personalData: {},
@@ -606,7 +592,9 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           // console.warn(`Produk ${productName} not found!.`);
           continue;
         }
-        const cleanedProductName = product.name.replace(/\s*Tickets$/i, '');
+        const cleanedProductName = product.name
+          .replace(/\s*Tickets$/i, '')
+          .replace(/\s+/g, '');
         if (!groupedData.products[cleanedProductName]) {
           groupedData.products[cleanedProductName] = [];
         }
@@ -638,7 +626,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
         ) {
           continue;
         }
-
         // @original-data
         attendeeData[key] = data[key];
       } else {
@@ -651,7 +638,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       const cleanedProductName = product.name.replace(/\s*Tickets$/i, '');
       const attendees = groupedData.products[cleanedProductName] || [];
       const missingAttendees = product.quantity - attendees.length;
-
       // if (missingAttendees > 0) {
       //   console.warn(
       //     `Produk ${cleanedProductName} membutuhkan ${missingAttendees} peserta tambahan.`
@@ -664,7 +650,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
         );
       }
     });
-    // console.log('Grouped Data (Final):', groupedData);
+    // console.log('Grouped Data:', groupedData);
     hashValidateAttendees(groupedData);
   };
 
@@ -718,21 +704,22 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             }),
           }).then((res) => res.json()),
         ]);
-        const setIsCoupon =
-          getCoupon?.data?.length > 0 ? getCoupon?.data[0] : null;
 
         if (rsCustomerDtl) {
-          // @get(Key)
+          // @get(key)
           const { key } = await fetch('/api/env/note', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
           }).then((res) => res.json());
           // @coupon
+          const setIsCoupon =
+            getCoupon?.data?.length > 0 ? getCoupon?.data[0] : null;
           const checkCoupon =
             setIsCoupon !== null &&
             setIsCoupon !== 'null' &&
             setIsCoupon !== undefined;
-          // @create(Order)
+
+          // @create(order)
           const createOrder = getCreateOrder(
             Math.floor(isStore?.totalOrder),
             setIdCustomer,
@@ -743,9 +730,87 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             '/api/orders?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount',
             createOrder
           );
+          const setIdOrderRecived = rsCreateOrder?.data.documentId;
+          const arrAttendees = [];
+
+          for (let i = 0; i < isStore?.products?.length; i++) {
+            const gtRslt = isStore?.products[i];
+            const isIdProducts = gtRslt?.documentId;
+            let groupName = getJoinString(gtRslt?.name);
+            const isStock = gtRslt?.stock - gtRslt?.quantity;
+            // @update-stock(Product)
+            const rsUpdateData = await updateData(
+              `/api/products/${isIdProducts}`,
+              {
+                data: {
+                  stock: isStock?.toString(),
+                },
+              }
+            );
+            // @attendee(with qty)
+            if (gtRslt?.quantity) {
+              if (gtRslt?.quantity > 15) {
+                break;
+              }
+              try {
+                for (
+                  let attndIdx = 0;
+                  attndIdx < gtRslt?.quantity;
+                  attndIdx++
+                ) {
+                  const rsAttendee = await pushSubmitData(
+                    '/api/attendees?populate=*',
+                    {
+                      data: setAttendeeData(
+                        data,
+                        attndIdx + 1,
+                        groupName,
+                        setIdCustomer,
+                        isIdProducts
+                      ),
+                    }
+                  );
+                  if (rsAttendee) {
+                    const rsQrCodeUrl = await QRCode.toDataURL(
+                      `${process.env.NEXT_PUBLIC_SITE_URL}/perview?att=${rsAttendee?.data.documentId}`,
+                      {
+                        width: 256,
+                      }
+                    );
+                    const isFullname = `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`;
+                    const tickets =
+                      rsAttendee?.data.product.documentId ===
+                      'sn4ujm0d1ebbc8lme1ihzsa9'
+                        ? `Festival Tickets`
+                        : `${rsAttendee?.data.product?.name}`;
+
+                    const rsBlobQrCode = convertQrCodeToBlob(
+                      rsQrCodeUrl,
+                      rsAttendee?.data.id,
+                      rsAttendee?.data.attendeeId,
+                      isFullname
+                    );
+                    arrAttendees.push({
+                      attendee: rsAttendee?.data,
+                      blobQrCode: rsBlobQrCode,
+                      fullname: isFullname,
+                      ticketProducts: tickets,
+                      group: groupName,
+                    });
+                  }
+                }
+              } catch (error) {
+                // console.error(
+                //   `[error] submitting attendee ${i + 1}:`,
+                //   error
+                // );
+                break;
+              }
+            }
+          }
+
           // @processing(payment)
           if (rsCreateOrder && Math.abs(isStore?.totalOrder) > 1e-10) {
-            const setIdOrderRecived = rsCreateOrder?.data.documentId;
             const rsPayment = await fetch('/api/payment/create-payment', {
               method: 'POST',
               headers: {
@@ -767,11 +832,13 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             if (rsPayment?.data?.invoice_url) {
               dispatch(order(setIdOrderRecived));
               dispatch(orderSession(rsPayment?.data?.id));
-              btnRdrctPymnt_Gtwy?.setAttribute(
-                'href',
-                `${rsPayment?.data?.invoice_url}`
-              );
-              btnRdrctPymnt_Gtwy?.click();
+              // btnRdrctPymnt_Gtwy?.setAttribute(
+              //   'href',
+              //   `${rsPayment?.data?.invoice_url}`
+              // );
+              // btnRdrctPymnt_Gtwy?.click();
+              reset();
+              router.replace(rsPayment?.data?.invoice_url);
             } else {
               // console.error('Failed to get invoice URL');
               return;
@@ -780,9 +847,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
           // @processing(order)
           if (rsCreateOrder && Math.abs(isStore?.totalOrder) < 1e-10) {
-            const setIdOrderRecived = rsCreateOrder?.data.documentId;
-            const arrAttendees = [];
-            // @update(order)&hubspot(customer)
+            // @update(order)
             const updateStatusOrder = await updateData(
               `/api/orders/${rsCreateOrder?.data?.documentId}?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount`,
               {
@@ -791,14 +856,25 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 },
               }
             );
-            const rsHbSptCustomer = await submitFormHbSpt(
-              setHbSptCustomerData(
-                updateStatusOrder?.data?.customer,
-                isFormCheckouts?.isIpAddress?.ip
+            // @save-to(hubspot)
+            const [updateStatusCustomer, rsHbSptCustomer] = await Promise.all([
+              updateData(
+                `/api/customers/${updateStatusOrder?.data?.customer?.documentId}`,
+                {
+                  data: {
+                    isApproved: true,
+                  },
+                }
               ),
-              hbSptKey
-            );
-            // @update-stock(Coupon)
+              submitFormHbSpt(
+                setHbSptCustomerData(
+                  updateStatusOrder?.data?.customer,
+                  isFormCheckouts?.isIpAddress?.ip
+                ),
+                hbSptKey
+              ),
+            ]);
+            // @update-stock(coupon)
             if (checkCoupon) {
               const isLimitUsageCoupon = parseInt(setIsCoupon?.limitUsage) - 1;
               const isUsageCoupon = parseInt(setIsCoupon?.usage) + 1;
@@ -812,7 +888,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 }
               );
             }
-            // @send(Invoice)
+            // @send(invoice)
             const rsInvoice = await fetch('/api/invoice/send-invoice', {
               method: 'POST',
               headers: {
@@ -832,137 +908,62 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     : null,
               }),
             }).then((rs) => rs?.json());
-            // @attendee
-            for (let i = 0; i < isStore?.products?.length; i++) {
-              const gtRslt = isStore?.products[i];
-              const isIdProducts = gtRslt?.documentId;
-              let groupName = getJoinString(gtRslt?.name);
-              const isStock = gtRslt?.stock - gtRslt?.quantity;
-              // @update-stock(Product)
-              const rsUpdateData = await updateData(
-                `/api/products/${isIdProducts}`,
-                {
-                  data: {
-                    stock: isStock?.toString(),
+
+            // @processed-attendee
+            const procssdEmails = new Set();
+            const arrBlobAttendees = [];
+
+            for (let i = 0; i < arrAttendees?.length; i++) {
+              const gtRslt = arrAttendees[i];
+              // @save-to(hubspot) & @convert-url(to blob)
+              const [updateStatusAttendee, rsHbSptAttendee, rsQrCodeGenerate] =
+                await Promise.all([
+                  updateData(`/api/attendees/${gtRslt?.attendee?.documentId}`, {
+                    data: {
+                      isApproved: true,
+                    },
+                  }),
+                  submitFormHbSpt(
+                    setHbSptAttendeeData(
+                      gtRslt?.attendee,
+                      i + 1,
+                      gtRslt?.group,
+                      isFormCheckouts?.isIpAddress?.ip
+                    ),
+                    hbSptAttndeeKey
+                  ),
+                  getFetchUrl_FormData(
+                    'https://api.coinfest.asia/api/upload?',
+                    gtRslt?.blobQrCode
+                  ),
+                ]);
+
+              if (!procssdEmails?.has(gtRslt?.attendee?.email)) {
+                procssdEmails.add(gtRslt?.attendee?.email);
+                // @send(email)
+                const rsEmail = await fetch('/api/email/send-attendee-ticket', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': key,
                   },
-                }
-              );
-              // @attendee(with qty)
-              if (gtRslt?.quantity) {
-                if (gtRslt?.quantity > 15) {
-                  break;
-                }
-                for (
-                  let attndIdx = 0;
-                  attndIdx < gtRslt?.quantity;
-                  attndIdx++
-                ) {
-                  try {
-                    const [rsAttendee, rsHbSptAttendee] = await Promise.all([
-                      pushSubmitData('/api/attendees?populate=*', {
-                        data: setAttendeeData(
-                          data,
-                          attndIdx + 1,
-                          groupName,
-                          setIdCustomer,
-                          isIdProducts
-                        ),
-                      }),
-                      submitFormHbSpt(
-                        setHbSptAttendeeData(
-                          data,
-                          attndIdx + 1,
-                          groupName,
-                          isFormCheckouts?.isIpAddress?.ip
-                        ),
-                        hbSptAttndeeKey
-                      ),
-                    ]);
-                    const isFullname = `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`;
-                    const qrCodeUrl = await QRCode.toDataURL(
-                      `${process.env.NEXT_PUBLIC_SITE_URL}/perview?att=${rsAttendee?.data.documentId}`,
-                      {
-                        width: 256,
-                      }
-                    );
-                    // @convert-url(to Blob)
-                    const [header, base64Data] = qrCodeUrl?.split(',');
-                    const mimeString = header.match(/:(.*?);/)[1];
-                    const byteString = atob(base64Data);
-                    const buffer = Uint8Array.from(byteString, (char) =>
-                      char?.charCodeAt(0)
-                    );
-                    const pngBlobQrCode = new Blob([buffer], {
-                      type: mimeString,
-                    });
-                    const newImageInformtn = {
-                      name: `QrCode_${rsAttendee?.data.attendeeId}.png`,
-                      alternativeText: `Coinfest Asia 2025 ${isFullname} Attendee`,
-                      caption: `Coinfest Asia 2025 ${isFullname} Attendee`,
-                    };
-                    const formData = new FormData();
-                    formData.append(
-                      'files',
-                      pngBlobQrCode,
-                      `QrCode_${rsAttendee?.data.attendeeId}.png`
-                    );
-                    formData.append(
-                      'fileInfo',
-                      JSON.stringify(newImageInformtn)
-                    );
-                    formData.append('ref', 'api::attendee.attendee');
-                    formData.append('refId', `${rsAttendee?.data.id}`);
-                    formData.append('field', `qrCode`);
-                    const rsQrCodeGenerate = await getFetchUrl_FormData(
-                      'https://api.coinfest.asia/api/upload?',
-                      formData
-                    );
-                    arrAttendees.push({
-                      attendee: rsAttendee?.data,
-                      qrCode: rsQrCodeGenerate[0]?.url,
-                    });
-                    if (rsAttendee) {
-                      const tickets =
-                        rsAttendee?.data.product.documentId ===
-                        'sn4ujm0d1ebbc8lme1ihzsa9'
-                          ? `Festival Tickets`
-                          : `${rsAttendee?.data.product?.name}`;
-                      // @send(Email)
-                      const rsEmail = await fetch(
-                        '/api/email/send-attendee-ticket',
-                        {
-                          method: 'POST',
-                          headers: {
-                            'Content-Type': 'application/json',
-                            'x-api-key': key,
-                          },
-                          body: JSON.stringify({
-                            toEmail: rsAttendee?.data.email,
-                            qrCode: rsQrCodeGenerate[0]?.url,
-                            docId: rsAttendee?.data.product.documentId,
-                            attId: rsAttendee?.data.attendeeId,
-                            fullname: isFullname,
-                            company: `${rsAttendee?.data.company}`,
-                            productTickets: tickets,
-                          }),
-                        }
-                      ).then((res) => res.json());
-                    }
-                  } catch (error) {
-                    // console.error(
-                    //   `[error] submitting attendee ${i + 1}:`,
-                    //   error
-                    // );
-                    break;
-                  }
-                }
+                  body: JSON.stringify({
+                    toEmail: gtRslt?.attendee?.email,
+                    qrCode: rsQrCodeGenerate[0]?.url,
+                    docId: gtRslt?.attendee?.product.documentId,
+                    attId: gtRslt?.attendee?.attendeeId,
+                    fullname: gtRslt?.fullname,
+                    company: gtRslt?.attendee?.company,
+                    productTickets: gtRslt?.ticketProducts,
+                  }),
+                }).then((res) => res.json());
               }
+              arrBlobAttendees.push({
+                blobQrCodeUrl: rsQrCodeGenerate[0]?.url,
+              });
             }
             // @send(ticket-customer)
-            if (
-              isStore?.products?.length > 1 ||
-              isStore?.products[0]?.quantity > 1
-            ) {
+            if (arrAttendees?.length > 1) {
               const rsCustomerEmail = await fetch(
                 '/api/customer/send-customer-ticket',
                 {
@@ -976,6 +977,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     attId: updateStatusOrder?.data?.customer?.customerId,
                     fullname: `${updateStatusOrder?.data?.customer?.firstName} ${updateStatusOrder?.data?.customer?.lastName}`,
                     attendee: arrAttendees,
+                    blobQrCode: arrBlobAttendees,
                   }),
                 }
               ).then((res) => res.json());
@@ -985,7 +987,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             //   ...prev,
             //   isSubmited: false,
             // }));
-            setStore((prev) => ({ ...prev, isOrderProcess: false }));
+            // setStore((prev) => ({ ...prev, isOrderProcess: false }));
             reset();
             router.replace(
               `/checkout/order-received?process=${setIdOrderRecived}`
@@ -998,365 +1000,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     }
   };
 
-  // @check-payment
-  useEffect(() => {
-    if (
-      isOrderPayment_Session !== null &&
-      isOrderPayment_Session !== undefined
-    ) {
-      setStore((prev) => ({ ...prev, isPaymentProcess: true }));
-      setFormCheckouts((prev) => ({
-        ...prev,
-        isSubmited: true,
-      }));
-      const fetchOrderPayment = async (fields, products) => {
-        try {
-          // @hubspot(customer & attendee)
-          const hbSptKey = '96572ab0-5958-4cc4-8357-9c65de42cab6';
-          const hbSptAttndeeKey = 'c9347ef6-664d-4b7a-892b-a1cabaa2bc30';
-          // @get(key)
-          const { key } = await fetch('/api/env/note', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-          }).then((res) => res.json());
-          const rsPaymentWebhook = await fetch('/api/payment/webhook', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'x-api-key': key,
-            },
-            body: JSON.stringify({
-              paymentId: isOrderPayment_Session,
-            }),
-          }).then((res) => res.json());
-          if (
-            isFormCheckouts?.isFields.length <= 0 &&
-            isStore?.products?.length <= 0
-          ) {
-            const rsExpiredPayment = await fetch(
-              '/api/payment/expired-payment',
-              {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'x-api-key': key,
-                },
-                body: JSON.stringify({
-                  paymentId: rsPaymentWebhook?.id,
-                }),
-              }
-            ).then((res) => res.json());
-            dispatch(order(null));
-            dispatch(orderSession(null));
-            reset();
-            router.replace(`/checkout/order-failed/?process=${isOrder}`);
-            clearInterval(pollingInterval);
-            return;
-          }
-
-          // @process(payment)
-          if (
-            rsPaymentWebhook?.status === 'PAID' ||
-            rsPaymentWebhook?.status === 'SETTLED'
-          ) {
-            const expiryPay = new Date(rsPaymentWebhook?.expiry_date);
-            const now = new Date();
-            if (expiryPay < now) {
-              setStore((prev) => ({
-                ...prev,
-                isExpiredPayment: false,
-                isPaymentProcess: false,
-              }));
-              setFormCheckouts((prev) => ({
-                ...prev,
-                isSubmited: false,
-              }));
-              dispatch(order(null));
-              dispatch(orderSession(null));
-              clearInterval(pollingInterval);
-              return;
-            } else {
-              if (isValidationMoreTimeMinutes(rsPaymentWebhook?.paid_at, 6)) {
-                setStore((prev) => ({
-                  ...prev,
-                  isPaymentProcess: false,
-                }));
-                setFormCheckouts((prev) => ({
-                  ...prev,
-                  isSubmited: false,
-                }));
-                dispatch(order(null));
-                dispatch(orderSession(null));
-                clearInterval(pollingInterval);
-                return;
-              } else {
-                // console.log('Belum lebih dari 6 menit!');
-                const rsOrder = await getFetch(
-                  `/api/orders/${isOrder}?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount`
-                );
-                if (rsOrder?.data?.paymentStatus === 'Pending') {
-                  const updateStatusOrder = await updateData(
-                    `/api/orders/${rsOrder?.data?.documentId}?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount`,
-                    {
-                      data: {
-                        paymentStatus: 'Success',
-                      },
-                    }
-                  );
-                  const rsHbSptCustomer = await submitFormHbSpt(
-                    setHbSptCustomerData(
-                      updateStatusOrder?.data?.customer,
-                      isFormCheckouts?.isIpAddress?.ip
-                    ),
-                    hbSptKey
-                  );
-
-                  // @coupon
-                  const coupon =
-                    updateStatusOrder?.data.coupons.length > 0
-                      ? updateStatusOrder?.data?.coupons[0].couponCode
-                      : null;
-
-                  // @discount&customer
-                  const [getCoupon] = await Promise.all([
-                    fetch('/api/data/coupons?sv=coinfestasia', {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify({ data: encodeData(coupon) }),
-                    }).then((rs) => rs?.json()),
-                  ]);
-                  const setIsCoupon =
-                    getCoupon?.data?.length > 0 ? getCoupon?.data[0] : null;
-                  const checkCoupon =
-                    setIsCoupon !== null &&
-                    setIsCoupon !== 'null' &&
-                    setIsCoupon !== undefined;
-                  // @update-stock(coupon)
-                  if (checkCoupon) {
-                    const isLimitUsageCoupon =
-                      parseInt(setIsCoupon?.limitUsage) - 1;
-                    const isUsageCoupon = parseInt(setIsCoupon?.usage) + 1;
-                    const rsUpdateCouponData = await updateData(
-                      `/api/coupons/${setIsCoupon?.documentId}`,
-                      {
-                        data: {
-                          limitUsage: isLimitUsageCoupon?.toString(),
-                          usage: isUsageCoupon?.toString(),
-                        },
-                      }
-                    );
-                  }
-
-                  // @send(invoice)
-                  const rsInvoice = await fetch('/api/invoice/send-invoice', {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json',
-                      'x-api-key': key,
-                    },
-                    body: JSON.stringify({
-                      toEmail: updateStatusOrder?.data?.customer?.email,
-                      attId: updateStatusOrder?.data?.customer?.customerId,
-                      createDate: updateStatusOrder?.data.createdAt,
-                      fullname: `${updateStatusOrder?.data?.customer?.firstName} ${updateStatusOrder?.data?.customer?.lastName}`,
-                      company: `${updateStatusOrder?.data?.customer?.company}`,
-                      products: isStore?.products,
-                      coupon:
-                        updateStatusOrder?.data.coupons.length > 0
-                          ? updateStatusOrder?.data?.coupons[0]
-                          : null,
-                    }),
-                  }).then((rs) => rs?.json());
-                  // @attendee
-                  const arrAttendees = [];
-                  for (let i = 0; i < isStore?.products?.length; i++) {
-                    const gtRslt = isStore?.products[i];
-                    const isIdProducts = gtRslt?.documentId;
-                    let groupName = getJoinString(gtRslt?.name);
-                    const isStock = gtRslt?.stock - gtRslt?.quantity;
-                    // @update-stock(Product)
-                    const rsUpdateData = await updateData(
-                      `/api/products/${isIdProducts}`,
-                      {
-                        data: {
-                          stock: isStock?.toString(),
-                        },
-                      }
-                    );
-                    // @attendee(with qty)
-                    if (gtRslt?.quantity) {
-                      if (gtRslt?.quantity > 15) {
-                        break;
-                      }
-                      for (
-                        let attndIdx = 0;
-                        attndIdx < gtRslt.quantity;
-                        attndIdx++
-                      ) {
-                        try {
-                          const [rsAttendee, rsHbSptAttendee] =
-                            await Promise.all([
-                              pushSubmitData('/api/attendees?populate=*', {
-                                data: setAttendeeData(
-                                  isFormCheckouts?.isFields,
-                                  attndIdx + 1,
-                                  groupName,
-                                  updateStatusOrder?.data?.customer?.documentId,
-                                  isIdProducts
-                                ),
-                              }),
-                              submitFormHbSpt(
-                                setHbSptAttendeeData(
-                                  isFormCheckouts?.isFields,
-                                  attndIdx + 1,
-                                  groupName,
-                                  isFormCheckouts?.isIpAddress?.ip
-                                ),
-                                hbSptAttndeeKey
-                              ),
-                            ]);
-                          const isFullname = `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`;
-                          const qrCodeUrl = await QRCode.toDataURL(
-                            `${process.env.NEXT_PUBLIC_SITE_URL}/perview?att=${rsAttendee?.data.documentId}`,
-                            {
-                              width: 256,
-                            }
-                          );
-                          // @convert(url to blob)
-                          const [header, base64Data] = qrCodeUrl?.split(',');
-                          const mimeString = header.match(/:(.*?);/)[1];
-                          const byteString = atob(base64Data);
-                          const buffer = Uint8Array.from(byteString, (char) =>
-                            char.charCodeAt(0)
-                          );
-                          const pngBlobQrCode = new Blob([buffer], {
-                            type: mimeString,
-                          });
-                          const newImageInformtn = {
-                            name: `QrCode_${rsAttendee?.data.attendeeId}.png`,
-                            alternativeText: `Coinfest Asia 2025 ${isFullname} Attendee`,
-                            caption: `Coinfest Asia 2025 ${isFullname} Attendee`,
-                          };
-
-                          const formData = new FormData();
-                          formData.append(
-                            'files',
-                            pngBlobQrCode,
-                            `QrCode_${rsAttendee?.data.attendeeId}.png`
-                          );
-                          formData.append(
-                            'fileInfo',
-                            JSON.stringify(newImageInformtn)
-                          );
-                          formData.append('ref', 'api::attendee.attendee');
-                          formData.append('refId', `${rsAttendee?.data.id}`);
-                          formData.append('field', `qrCode`);
-
-                          const rsQrCodeGenerate = await getFetchUrl_FormData(
-                            'https://api.coinfest.asia/api/upload?',
-                            formData
-                          );
-
-                          arrAttendees.push({
-                            attendee: rsAttendee?.data,
-                            qrCode: rsQrCodeGenerate[0]?.url,
-                          });
-                          if (rsAttendee) {
-                            const tickets =
-                              rsAttendee?.data.product.documentId ===
-                              'sn4ujm0d1ebbc8lme1ihzsa9'
-                                ? `Festival Tickets`
-                                : `${rsAttendee?.data.product?.name}`;
-
-                            // @send(email)
-                            const rsEmail = await fetch(
-                              '/api/email/send-attendee-ticket',
-                              {
-                                method: 'POST',
-                                headers: {
-                                  'Content-Type': 'application/json',
-                                  'x-api-key': key,
-                                },
-                                body: JSON.stringify({
-                                  toEmail: rsAttendee?.data.email,
-                                  qrCode: rsQrCodeGenerate[0]?.url,
-                                  docId: rsAttendee?.data.product.documentId,
-                                  attId: rsAttendee?.data.attendeeId,
-                                  fullname: isFullname,
-                                  company: `${rsAttendee?.data.company}`,
-                                  productTickets: tickets,
-                                }),
-                              }
-                            ).then((res) => res.json());
-                          }
-                        } catch (error) {
-                          // console.error(
-                          //   `[error] submitting attendee ${i + 1}:`,
-                          //   error
-                          // );
-                          break;
-                        }
-                      }
-                    }
-                  }
-
-                  // @send(ticket customer)
-                  if (
-                    isStore?.products?.length > 1 ||
-                    isStore?.products[0]?.quantity > 1
-                  ) {
-                    const rsCustomerEmail = await fetch(
-                      '/api/customer/send-customer-ticket',
-                      {
-                        method: 'POST',
-                        headers: {
-                          'Content-Type': 'application/json',
-                          'x-api-key': key,
-                        },
-                        body: JSON.stringify({
-                          toEmail: updateStatusOrder?.data?.customer?.email,
-                          attId: updateStatusOrder?.data?.customer?.customerId,
-                          fullname: `${updateStatusOrder?.data?.customer?.firstName} ${updateStatusOrder?.data?.customer?.lastName}`,
-                          attendee: arrAttendees,
-                        }),
-                      }
-                    ).then((res) => res.json());
-                  }
-                }
-                dispatch(order(null));
-                dispatch(orderSession(null));
-                reset();
-                router.replace(`/checkout/order-received?process=${isOrder}`);
-                clearInterval(pollingInterval);
-                return;
-              }
-            }
-          } else if (
-            rsPaymentWebhook?.status === 'FAILED' ||
-            rsPaymentWebhook?.status === 'EXPIRED'
-          ) {
-            dispatch(order(null));
-            dispatch(orderSession(null));
-            reset();
-            router.replace(`/checkout/order-failed/?process=${isOrder}`);
-            clearInterval(pollingInterval);
-            return;
-          }
-        } catch (error) {
-          // console.error('Error during payment processing:', error);
-          return;
-        }
-      };
-      const pollingInterval = setInterval(() => {
-        fetchOrderPayment(isFormCheckouts?.isFields, isStore?.products);
-      }, 12000);
-      return () => {
-        clearInterval(pollingInterval);
-      };
-    }
-  }, [isOrderPayment_Session]);
   const isDisabled =
     !isStore?.products?.length > 0 || isFormCheckouts?.isSubmited === true;
 
@@ -1372,7 +1015,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             id="ca25Form_Checkout"
             className="relative grid-cols-1 gap-x-6 gap-y-12 supports-grid:grid sm:grid-cols-12 sm:gap-y-14 lg:gap-y-20"
             method="POST"
-            onSubmit={handleSubmit(onSubmitForm, onError)}
+            onSubmit={handleSubmit(onSubmitForm, onErrorSubmit)}
           >
             <div className="order-last col-span-full px-2.5 sm:px-0 xl:order-first xl:col-span-7 xl:pr-10">
               <Header media="xl" />

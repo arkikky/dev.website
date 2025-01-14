@@ -39,7 +39,7 @@ export default async function handler(req, res) {
   });
 
   // @get(body)
-  const { toEmail, attId, fullname, attendee } = req?.body;
+  const { toEmail, attId, fullname, attendee, blobQrCode } = req?.body;
   // @invitation(Event)
   const generateICS = () => {
     const icsInvTicketDay = `BEGIN:VCALENDAR
@@ -74,7 +74,11 @@ END:VCALENDAR
   };
   // @render(Email)
   const emailHtml = await render(
-    <CustomerTickets attendeeId={attId} isAttendee={attendee} />
+    <CustomerTickets
+      attendeeId={attId}
+      isAttendee={attendee}
+      isBloQrCode={blobQrCode}
+    />
   );
   const icsInvTickets = generateICS();
 

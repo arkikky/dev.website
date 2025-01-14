@@ -109,6 +109,7 @@ const CustomerTickets = ({
       qrCode: null,
     },
   ],
+  isBloQrCode,
 }) => {
   return (
     <Html lang="en" dir="ltr">
@@ -367,71 +368,76 @@ const CustomerTickets = ({
               </Section>
 
               {/* @ticket(Detail) */}
-              {isAttendee?.map((gtRslt, i) => (
-                <Row
-                  className={`splitGridColumn border-dashed border-gray-400/80 ${i === isAttendee?.length - 1 ? 'border-b-0' : 'border-b'}`}
-                  key={i}
-                >
-                  <Column
-                    align="center"
-                    className="splitColumn1 bg-white pb-5 pt-2 text-black-900"
-                    style={styles.splitColumn1}
+              {isAttendee?.map((gtRslt, i) => {
+                const rsQrCode = isBloQrCode[i];
+                console.log(rsQrCode?.blobQrCodeUrl);
+
+                return (
+                  <Row
+                    className={`splitGridColumn border-dashed border-gray-400/80 ${i === isAttendee?.length - 1 ? 'border-b-0' : 'border-b'}`}
+                    key={i}
                   >
-                    <Img
-                      src={
-                        gtRslt?.qrCode
-                          ? `https://api.coinfest.asia${gtRslt?.qrCode}`
-                          : 'https://api.coinfest.asia/uploads/qr_Code_30174acc7e.png'
-                      }
-                      width="180"
-                      height="180"
-                      alt="QR Code"
-                    />
-                    <Text className="!mb-0 !mt-0 leading-initial">
-                      {gtRslt?.attendee.attendeeId}
-                    </Text>
-                  </Column>
-                  <Column
-                    align="left"
-                    className={`splitColumn2 splitColumn2_Content ${gtRslt?.attendee.product?.documentId === 'rc33x0dgm6tm707jghffuip4' ? 'bg-[#1F1F1F]' : 'bg-[#005AFF]'} align-top text-white`}
-                    style={(styles.splitColumn2, styles.splitColumn2_Content)}
-                  >
-                    <Heading
-                      as="h2"
-                      className="!mb-3 !mt-0 w-max border-[1.5px] border-dashed border-white px-2.5 py-2.5 !text-base !leading-[20px]"
+                    <Column
+                      align="center"
+                      className="splitColumn1 bg-white pb-5 pt-2 text-black-900"
+                      style={styles.splitColumn1}
                     >
-                      <span>Ticket ID [{gtRslt?.attendee.attendeeId}]</span>
-                    </Heading>
-                    <Text className="!mb-4.5 !mt-0 inline-flex !text-[16px] !leading-initial">
-                      <span className="mr-2">
-                        <Img
-                          className="my-auto mt-0 h-6 w-6"
-                          src={`https://api.coinfest.asia/uploads/ca25_Ticket_Icons_16ae30f766.png`}
-                          alt={`Coinfest Asia 2025 (Calendar Board Icons)`}
-                          height={48}
-                          width={48}
-                        />
-                      </span>
-                      <span className="!mt-0.5 font-semibold">
-                        {gtRslt?.attendee.product?.documentId ===
-                        'sn4ujm0d1ebbc8lme1ihzsa9'
-                          ? 'Festival Tickets'
-                          : gtRslt?.attendee.product?.name}
-                      </span>
-                    </Text>
-                    <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
-                      Name :{' '}
-                      {`${gtRslt?.attendee.firstName} ${gtRslt?.attendee.lastName}`}
-                    </Text>
-                    <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
-                      Company : {gtRslt?.attendee.company}
-                    </Text>
-                    {/* <Text className="!mb-1.5 !mt-0 max-w-[128px] !text-[14px] !leading-[20px]">
+                      <Img
+                        src={
+                          rsQrCode?.blobQrCodeUrl
+                            ? `https://api.coinfest.asia${rsQrCode?.blobQrCodeUrl}`
+                            : 'https://api.coinfest.asia/uploads/qr_Code_30174acc7e.png'
+                        }
+                        width="180"
+                        height="180"
+                        alt="QR Code"
+                      />
+                      <Text className="!mb-0 !mt-0 leading-initial">
+                        {gtRslt?.attendee.attendeeId}
+                      </Text>
+                    </Column>
+                    <Column
+                      align="left"
+                      className={`splitColumn2 splitColumn2_Content ${gtRslt?.attendee.product?.documentId === 'rc33x0dgm6tm707jghffuip4' ? 'bg-[#1F1F1F]' : 'bg-[#005AFF]'} align-top text-white`}
+                      style={(styles.splitColumn2, styles.splitColumn2_Content)}
+                    >
+                      <Heading
+                        as="h2"
+                        className="!mb-3 !mt-0 w-max border-[1.5px] border-dashed border-white px-2.5 py-2.5 !text-base !leading-[20px]"
+                      >
+                        <span>Ticket ID [{gtRslt?.attendee.attendeeId}]</span>
+                      </Heading>
+                      <Text className="!mb-4.5 !mt-0 inline-flex !text-[16px] !leading-initial">
+                        <span className="mr-2">
+                          <Img
+                            className="my-auto mt-0 h-6 w-6"
+                            src={`https://api.coinfest.asia/uploads/ca25_Ticket_Icons_16ae30f766.png`}
+                            alt={`Coinfest Asia 2025 (Calendar Board Icons)`}
+                            height={48}
+                            width={48}
+                          />
+                        </span>
+                        <span className="!mt-0.5 font-semibold">
+                          {gtRslt?.attendee.product?.documentId ===
+                          'sn4ujm0d1ebbc8lme1ihzsa9'
+                            ? 'Festival Tickets'
+                            : gtRslt?.attendee.product?.name}
+                        </span>
+                      </Text>
+                      <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
+                        Name :{' '}
+                        {`${gtRslt?.attendee.firstName} ${gtRslt?.attendee.lastName}`}
+                      </Text>
+                      <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
+                        Company : {gtRslt?.attendee.company}
+                      </Text>
+                      {/* <Text className="!mb-1.5 !mt-0 max-w-[128px] !text-[14px] !leading-[20px]">
                       Email : {gtRslt?.attendee.email}
                     </Text> */}
-                  </Column>
-                </Row>
-              ))}
+                    </Column>
+                  </Row>
+                );
+              })}
 
               <Row className="splitGridColumn">
                 <Column className="splitColumn" style={styles.splitColumn}>

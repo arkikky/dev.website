@@ -117,86 +117,68 @@ export function setHbSptCustomerData(d, ip) {
 }
 export function setHbSptAttendeeData(rslt, attendee, group, ip) {
   // @sanitize(Fields)
-  const sntzeFld = (field) => DOMPurify.sanitize(field || '').trim();
   const rs = {
     fields: [
       {
         objectTypeId: '0-1',
         name: 'firstname',
-        value: sntzeFld(rslt[`firstnameAttndee${attendee}_${group}`]),
+        value: rslt?.firstName,
       },
       {
         objectTypeId: '0-1',
         name: 'lastname',
-        value: sntzeFld(rslt[`lastnameAttndee${attendee}_${group}`]),
+        value: rslt?.lastName,
       },
       {
         objectTypeId: '0-1',
         name: 'email',
-        value: sntzeFld(rslt[`emailAttndee${attendee}_${group}`].toLowerCase()),
+        value: rslt?.email,
       },
       {
         objectTypeId: '0-1',
         name: 'phone',
-        value: sntzeFld(rslt[`phone${attendee}_${group}`]),
+        value: rslt?.telephone,
       },
       {
         objectTypeId: '0-1',
         name: 'telegram_account',
-        value: sntzeFld(rslt[`telegramAccountAttndee${attendee}_${group}`]),
+        value: rslt?.telegramAccount ? rslt?.telegramAccount : '-',
       },
       {
         objectTypeId: '0-1',
         name: 'country',
-        value: sntzeFld(rslt[`countryAttndee${attendee}_${group}`]),
+        value: rslt?.country,
       },
       {
         objectTypeId: '0-2',
         name: 'name',
-        value: sntzeFld(
-          rslt[`haveCompanyAttndee${attendee}_${group}`]
-            ? rslt[`companyAttndee${attendee}_${group}`]
-            : 'N/A'
-        ),
+        value: rslt?.company,
       },
       {
         objectTypeId: '0-1',
         name: 'job_title_position',
-        value: sntzeFld(
-          rslt[`haveCompanyAttndee${attendee}_${group}`]
-            ? rslt[`jobPositionAttndee${attendee}_${group}`]
-            : '-'
-        ),
+        value: rslt?.position,
       },
       {
         objectTypeId: '0-2',
         name: 'company_focus',
-        value: sntzeFld(
-          rslt[`haveCompanyAttndee${attendee}_${group}`]
-            ? rslt[`companyFocusAttndee${attendee}_${group}`]
-            : '-'
-        ),
+        value: rslt?.companyFocus,
       },
       {
         objectTypeId: '0-1',
         name: 'company_size',
-        value: sntzeFld(
-          rslt[`haveCompanyAttndee${attendee}_${group}`]
-            ? rslt[`companySizeAttndee${attendee}_${group}`]
-            : '-'
-        ),
+        value: rslt?.companySize,
       },
       {
         objectTypeId: '0-1',
         name: 'what_type_of_connections_and_networking_do_you_hope_to_achieve_at_coinfest_asia_',
-        value: sntzeFld(
-          rslt[`whatTypeConnectionNetworkingAttndee${attendee}_${group}`]
-        ),
+        value:
+          rslt?.whatTypeOfConnectionsAndNetworkingDoYouHopeToAchieveAtTheEvent,
       },
       {
         objectTypeId: '0-1',
         name: 'where_did_you_hear_about_coinfest_asia_2024_',
-        value: sntzeFld(rslt[`didYouHearAboutAttndee${attendee}_${group}`]),
+        value: rslt?.whereDidYouHearAboutCoinfestAsia2024,
       },
     ],
     context: {

@@ -51,9 +51,7 @@ export default async function handler(req, res) {
       currency: 'IDR',
       invoice_duration: 900,
       customer_notification_preference: {
-        invoice_created: ['email', 'whatsapp'],
-        invoice_reminder: ['whatsapp'],
-        invoice_paid: ['whatsapp'],
+        invoice_created: ['email'],
       },
       should_authenticate_credit_card: true,
     };

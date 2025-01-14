@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-const XENDIT_CALLBACK_TOKEN =
-  'etsOhRnOhPe8PbuMY66KdubpE4Y9KA5aYa3NZj8jIUbha9Qa';
+const XENDIT_CALLBACK_TOKEN = process.env.XENDIT_CALLBACK_TOKEN;
 
 export default async function handler(req, res) {
   // @notification(Log Error)
@@ -22,6 +21,9 @@ export default async function handler(req, res) {
     let message;
 
     const callbackToken = req?.headers['x-callback-token'];
+    console.log('callbackToken');
+    console.log(callbackToken);
+
     if (callbackData?.status === 'PAID') {
       message = 'Payment successful!';
     } else if (callbackData?.status === 'EXPIRED') {
