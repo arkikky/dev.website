@@ -33,7 +33,7 @@ import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
 import Badge from '@components/UI/Badge';
-import OrderLoadingProcessModal from '@components/UI/Modal/OrderLoadingProcess';
+import OrderProcessLoadingModal from '@components/UI/Modal/OrderProcessLoading';
 
 // @layouts
 import LayoutDefaults from '@layouts/Layouts';
@@ -241,7 +241,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                     const rsAttendee = isGrpdAttendee?.attendees[a];
                     if (rsAttendee?.isApproved === null) {
                       const rsQrCodeUrl = await QRCode.toDataURL(
-                        `${process.env.NEXT_PUBLIC_SITE_URL}/perview?att=${rsAttendee?.documentId}`,
+                        `${process.env.NEXT_PUBLIC_SITE_URL}perview?att=${rsAttendee?.documentId}`,
                         {
                           width: 256,
                         }
@@ -618,7 +618,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
 
       {/* @modal */}
       {isOrderRecived?.order?.paymentStatus !== 'Success' && (
-        <OrderLoadingProcessModal />
+        <OrderProcessLoadingModal />
       )}
     </>
   );

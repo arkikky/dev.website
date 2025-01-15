@@ -76,7 +76,7 @@ export default async function handler(req, res) {
         isTotalCart,
         setPrice
       );
-      
+
       discntAmount = totalDiscount;
       totalOrder = totalAfterDiscount;
     } else {

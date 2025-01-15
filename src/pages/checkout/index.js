@@ -50,16 +50,7 @@ import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 import Breadcrumb from '@components/UI/Breadcrumb';
 import Notifications from '@components/UI/Alerts/Notifications';
 import Badge from '@components/UI/Badge';
-import PaymentProcessModal from '@components/UI/Modal/PaymentProcess';
-import OrderProcessModal from '@components/UI/Modal/OrderProcess';
-import ExpiredOrderModal from '@components/UI/Modal/ExpiredOrder';
-// const CopyBillingAttendeeBtn = dynamic(
-//   () => import('@components/UI/Button/CopyBillingAttendeeBtn'),
-//   {
-//     loading: () => '',
-//     ssr: false,
-//   }
-// );
+import OrderProcessModal from '@components/UI/Modal/OrderProcessModal';
 const CopyOtherDetailBtn = dynamic(
   () => import('@components/UI/Button/CopyOtherDetailBtn'),
   {
@@ -71,13 +62,6 @@ const CopyOtherDetailBtn = dynamic(
 // @layouts
 import LayoutDefaults from '@layouts/Layouts';
 import Header from '@layouts/Checkouts/Header';
-// const BillingDetailCheckout = dynamic(
-//   () => import('@layouts/Checkouts//Card/BillingDetailCheckout'),
-//   {
-//     loading: () => <p>Loading...</p>,
-//     ssr: false,
-//   }
-// );
 import AttendeeDetailCheckouts from '@layouts/Checkouts/Card/AttendeeDetailCheckouts';
 import OrderDetailCheckouts from '@layouts/Checkouts//Card/OrderDetailCheckouts';
 import BoardSubmitCheckout from '@layouts/Checkouts/Card/BoardSubmitCheckout';
@@ -111,7 +95,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     totalOrder: 0,
     isPaymentProcess: false,
     isOrderProcess: false,
-    isExpiredPayment: false,
   });
   const [currentStepAttendee, setCurrentStepAttendee] = useState(
     isCart?.map(() => 0)
@@ -191,9 +174,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
         isToggleCompany: false,
       }));
     }
-    return () => {
-      undefined;
-    };
   }, [isStepToggledCompany]);
 
   // @handle(Button Prev & Next)
@@ -454,9 +434,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   function hashValidateAttendees(groupedData) {
     const products = groupedData?.products;
     if (!products || Object.keys(products)?.length === 0) {
-      // toast.error('Tidak ada data produk ditemukan!', {
-      //   position: 'top-right',
-      // });
       return false;
     }
     const invalidAttendees = {};
@@ -476,9 +453,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       }
     });
     if (!isDataFound) {
-      // toast.error('Tidak ada attendee ditemukan dalam produk!', {
-      //   position: 'top-right',
-      // });
       return false;
     }
     let hasInvalid = false;
@@ -544,7 +518,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       const errorMessage = `Fields (${missingFields.join(',')}) are required for Attendee ${attIdx} at the ${products} Tickets!`;
       // toast.error(errorMessage, {
       //   duration: 6000,
-      //   style: { maxWidth: '500px', fontSize: '0.875rem' }, // Font kecil untuk tampilan rapi
+      //   style: { maxWidth: '500px', fontSize: '0.875rem' },
       // });
     }
     return rsAllFields;
@@ -552,8 +526,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
   // @validation(error form)
   const onErrorSubmit = async (errors, e) => {
-    console.log(errors);
-
     const data = getValues();
     const groupedData = {
       personalData: {},
@@ -763,7 +735,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   );
                   if (rsAttendee) {
                     const rsQrCodeUrl = await QRCode.toDataURL(
-                      `${process.env.NEXT_PUBLIC_SITE_URL}/perview?att=${rsAttendee?.data.documentId}`,
+                      `${process.env.NEXT_PUBLIC_SITE_URL}perview?att=${rsAttendee?.data.documentId}`,
                       {
                         width: 256,
                       }
@@ -976,11 +948,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               ).then((res) => res.json());
             }
             // @last(proccesing)
-            // setFormCheckouts((prev) => ({
-            //   ...prev,
-            //   isSubmited: false,
-            // }));
-            // setStore((prev) => ({ ...prev, isOrderProcess: false }));
             reset();
             router.replace(
               `/checkout/order-received?process=${setIdOrderRecived}`
@@ -1001,7 +968,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       <HeadGraphSeo title={`Checkout`} otherPage={true} />
 
       {/* @main */}
-      <Main className="relative pb-8 pt-6 sm:pb-12 sm:pt-8 lg:pt-10">
+      <Main className="relative pb-19 pt-6 sm:pb-19 sm:pt-8 lg:pt-10">
         <Container className={'sm:px-auto px-0'}>
           <form
             id="ca25Form_Checkout"
@@ -1040,11 +1007,11 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               >
                 {isDisabled ? (
                   <div
-                    className={`absolute inset-x-0 inset-y-0 bg-white/40 ${
+                    className={`absolute inset-x-0 inset-y-0 bg-white/60 backdrop-blur-[2px] ${
                       !isStore?.products?.length > 0 ||
                       isFormCheckouts?.isSubmited === true
-                        ? '!pointer-events-none z-[255] !select-none opacity-100 backdrop-blur-[2px]'
-                        : '!pointer-events-auto -z-px !select-auto opacity-0'
+                        ? 'z-[255] opacity-100'
+                        : '-z-px opacity-0'
                     }`}
                   ></div>
                 ) : null}
@@ -1189,76 +1156,78 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                       errors={errors}
                                       onChangeToggle={handleToggleChange}
                                     >
-                                      <div
-                                        className={`mr-0 mt-3 sm:mt-0 ${
-                                          getValues(
-                                            `haveCompanyAttndee${attndIdx + 1}_${groupName}`
-                                          ) === true && !isFirstToggleTrue
-                                            ? '!pointer-events-auto opacity-100'
-                                            : 'pointer-events-none opacity-0'
-                                        } transition-[opacity] duration-300 ease-in-out`}
-                                      >
-                                        <button
-                                          id="ca25Btn_CopyCompanyDetailCheckout"
-                                          type="button"
-                                          aria-label="Button Copy Company Detail"
-                                          aria-labelledby="Button Copy Company Detail"
-                                          onClick={(e) => {
-                                            e.preventDefault();
-                                            hndleCopyCompany(
-                                              [
-                                                `#ca25Form_CompanyFocusAttndee${attndIdx + 1}_${groupName}Checkout`,
-                                                `#ca25Form_CompanySizeAttndee${attndIdx + 1}_${groupName}Checkout`,
-                                              ],
-                                              {
-                                                attendee: attndIdx + 1,
-                                                group: groupName,
-                                              },
-                                              {
-                                                activeGroup: getJoinString(
-                                                  isStore?.products[
+                                      {!isFirstToggleTrue && (
+                                        <div
+                                          className={`mr-0 mt-3 sm:mt-0 ${
+                                            getValues(
+                                              `haveCompanyAttndee${attndIdx + 1}_${groupName}`
+                                            ) === true
+                                              ? '!pointer-events-auto opacity-100'
+                                              : 'pointer-events-none opacity-0'
+                                          } transition-[opacity] duration-300 ease-in-out`}
+                                        >
+                                          <button
+                                            id={`ca25Btn_CopyCompany${attndIdx + 1}DetailCheckout`}
+                                            type="button"
+                                            aria-label={`Coinfest Asia 2025 Button Copy Company ${attndIdx + 1} Detail`}
+                                            aria-labelledby={`Coinfest Asia 2025 Button Copy Company ${attndIdx + 1} Detail`}
+                                            onClick={(e) => {
+                                              e.preventDefault();
+                                              hndleCopyCompany(
+                                                [
+                                                  `#ca25Form_CompanyFocusAttndee${attndIdx + 1}_${groupName}Checkout`,
+                                                  `#ca25Form_CompanySizeAttndee${attndIdx + 1}_${groupName}Checkout`,
+                                                ],
+                                                {
+                                                  attendee: attndIdx + 1,
+                                                  group: groupName,
+                                                },
+                                                {
+                                                  activeGroup: getJoinString(
+                                                    isStore?.products[
+                                                      isFormCheckouts
+                                                        ?.firstToggleCompany
+                                                        ?.product
+                                                    ]?.name
+                                                  ),
+                                                  activeToggle:
                                                     isFormCheckouts
                                                       ?.firstToggleCompany
-                                                      ?.product
-                                                  ]?.name
-                                                ),
-                                                activeToggle:
-                                                  isFormCheckouts
-                                                    ?.firstToggleCompany
-                                                    ?.attendee + 1,
+                                                      ?.attendee + 1,
+                                                }
+                                              );
+                                            }}
+                                          >
+                                            <Badge
+                                              label="Same As above"
+                                              type="secondary"
+                                              withHover={true}
+                                              icons={
+                                                <svg
+                                                  className="size-4 shrink-0"
+                                                  xmlns="http://www.w3.org/2000/svg"
+                                                  viewBox="0 0 24 24"
+                                                  fill="none"
+                                                  stroke="currentColor"
+                                                  strokeWidth="2"
+                                                  strokeLinecap="round"
+                                                  strokeLinejoin="round"
+                                                >
+                                                  <rect
+                                                    width="14"
+                                                    height="14"
+                                                    x="8"
+                                                    y="8"
+                                                    rx="2"
+                                                    ry="2"
+                                                  />
+                                                  <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                                                </svg>
                                               }
-                                            );
-                                          }}
-                                        >
-                                          <Badge
-                                            label="Same As above"
-                                            type="secondary"
-                                            withHover={true}
-                                            icons={
-                                              <svg
-                                                className="size-4 shrink-0"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                              >
-                                                <rect
-                                                  width="14"
-                                                  height="14"
-                                                  x="8"
-                                                  y="8"
-                                                  rx="2"
-                                                  ry="2"
-                                                />
-                                                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-                                              </svg>
-                                            }
-                                          />
-                                        </button>
-                                      </div>
+                                            />
+                                          </button>
+                                        </div>
+                                      )}
                                     </AttendeeDetailCheckouts>
                                   </>
                                 </div>
@@ -1428,6 +1397,10 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                           url: '/',
                         },
                         {
+                          label: 'Tickets',
+                          url: '/tickets',
+                        },
+                        {
                           label: 'Checkout',
                           url: '/checkout',
                         },
@@ -1520,9 +1493,56 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       />
 
       {/* @modal */}
-      {isStore?.isPaymentProcess === true ? <PaymentProcessModal /> : null}
-      {isStore?.isOrderProcess === true ? <OrderProcessModal /> : null}
-      {isStore?.isExpiredPayment === true ? <ExpiredOrderModal /> : null}
+      {isStore?.isPaymentProcess === true ? (
+        <OrderProcessModal
+          icons={
+            <div className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary/20 sm:h-22 sm:w-22">
+              <svg
+                className="h-11 w-11 fill-[#2458F1] sm:h-14 sm:w-14"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="current"
+              >
+                <path d="M1.25 4.5C1.25 4.08579 1.58579 3.75 2 3.75H8.75736C9.75192 3.75 10.7057 4.14509 11.409 4.84835L14.5303 7.96967C14.8232 8.26256 14.8232 8.73744 14.5303 9.03033C14.2374 9.32322 13.7626 9.32322 13.4697 9.03033L10.3483 5.90901C9.92639 5.48705 9.3541 5.25 8.75736 5.25H2C1.58579 5.25 1.25 4.91421 1.25 4.5Z" />
+                <path d="M1.25 13.5C1.25 13.0858 1.58579 12.75 2 12.75H5C5.41421 12.75 5.75 13.0858 5.75 13.5C5.75 13.9142 5.41421 14.25 5 14.25H2C1.58579 14.25 1.25 13.9142 1.25 13.5Z" />
+                <path d="M7.96971 6.96967C8.26261 6.67678 8.73748 6.67678 9.03037 6.96967L11.0304 8.96967C11.8756 9.81485 11.8756 11.1852 11.0304 12.0303C10.1852 12.8755 8.81489 12.8755 7.96972 12.0303L6.93726 10.9979C5.84236 11.6676 4.41926 11.6269 3.35299 10.8272L3.05004 10.6C2.71867 10.3515 2.65152 9.88137 2.90004 9.55C3.14857 9.21863 3.61867 9.15147 3.95004 9.4L4.25299 9.62721C4.92816 10.1336 5.87294 10.0664 6.46971 9.46967C6.76261 9.17678 7.23748 9.17678 7.53037 9.46967L9.03038 10.9697C9.28977 11.2291 9.71032 11.2291 9.96972 10.9697C10.2291 10.7103 10.2291 10.2897 9.96971 10.0303L7.96971 8.03033C7.67682 7.73744 7.67682 7.26256 7.96971 6.96967Z" />
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M21.9445 8.55546C21.4891 8.09999 20.9223 7.91432 20.2945 7.82992C19.6997 7.74995 18.9505 7.74997 18.0521 7.75H18.052H18.052L9.5 7.75C9.19666 7.75 8.92318 7.93274 8.80709 8.21299C8.69101 8.49325 8.75518 8.81584 8.96967 9.03033L9.96967 10.0303C10.2291 10.2897 10.2291 10.7103 9.96968 10.9697C9.71028 11.2291 9.28973 11.2291 9.03034 10.9697L7.53033 9.46967C7.23744 9.17678 6.76257 9.17678 6.46967 9.46967C6.0943 9.84505 5.58133 10.0113 5.08251 9.95609C4.87053 9.93263 4.65858 10.0005 4.4997 10.1428C4.34081 10.2851 4.25 10.4883 4.25 10.7015L4.25 15.552V15.552V15.5521C4.24997 16.4505 4.24995 17.1997 4.32992 17.7945C4.41432 18.4223 4.59999 18.9891 5.05546 19.4445C5.51093 19.9 6.07773 20.0857 6.70552 20.1701C7.3003 20.2501 8.04951 20.25 8.94798 20.25H8.94801L18.052 20.25H18.052C18.9505 20.25 19.6997 20.2501 20.2945 20.1701C20.9223 20.0857 21.4891 19.9 21.9445 19.4445C22.4 18.9891 22.5857 18.4223 22.6701 17.7945C22.7501 17.1997 22.75 16.4505 22.75 15.552L22.75 12.448C22.75 11.5495 22.7501 10.8003 22.6701 10.2055C22.5857 9.57773 22.4 9.01093 21.9445 8.55546ZM13.5 16C14.6046 16 15.5 15.1045 15.5 14C15.5 12.8954 14.6046 12 13.5 12C12.3954 12 11.5 12.8954 11.5 14C11.5 15.1045 12.3954 16 13.5 16Z"
+                />
+              </svg>
+            </div>
+          }
+          label={`Processing Your Order...`}
+          shortDesc={`If nothing happens, check your email to complete the payment.`}
+        />
+      ) : null}
+      {isStore?.isOrderProcess === true ? (
+        <OrderProcessModal
+          icons={
+            <div className="flex h-20 w-20 flex-col items-center justify-center rounded-full bg-primary/20 sm:h-22 sm:w-22">
+              <svg
+                className="h-11 w-11 fill-[#2458F1] sm:h-14 sm:w-14"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="current"
+              >
+                <path d="M1.25 4.5C1.25 4.08579 1.58579 3.75 2 3.75H8.75736C9.75192 3.75 10.7057 4.14509 11.409 4.84835L14.5303 7.96967C14.8232 8.26256 14.8232 8.73744 14.5303 9.03033C14.2374 9.32322 13.7626 9.32322 13.4697 9.03033L10.3483 5.90901C9.92639 5.48705 9.3541 5.25 8.75736 5.25H2C1.58579 5.25 1.25 4.91421 1.25 4.5Z" />
+                <path d="M1.25 13.5C1.25 13.0858 1.58579 12.75 2 12.75H5C5.41421 12.75 5.75 13.0858 5.75 13.5C5.75 13.9142 5.41421 14.25 5 14.25H2C1.58579 14.25 1.25 13.9142 1.25 13.5Z" />
+                <path d="M7.96971 6.96967C8.26261 6.67678 8.73748 6.67678 9.03037 6.96967L11.0304 8.96967C11.8756 9.81485 11.8756 11.1852 11.0304 12.0303C10.1852 12.8755 8.81489 12.8755 7.96972 12.0303L6.93726 10.9979C5.84236 11.6676 4.41926 11.6269 3.35299 10.8272L3.05004 10.6C2.71867 10.3515 2.65152 9.88137 2.90004 9.55C3.14857 9.21863 3.61867 9.15147 3.95004 9.4L4.25299 9.62721C4.92816 10.1336 5.87294 10.0664 6.46971 9.46967C6.76261 9.17678 7.23748 9.17678 7.53037 9.46967L9.03038 10.9697C9.28977 11.2291 9.71032 11.2291 9.96972 10.9697C10.2291 10.7103 10.2291 10.2897 9.96971 10.0303L7.96971 8.03033C7.67682 7.73744 7.67682 7.26256 7.96971 6.96967Z" />
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M21.9445 8.55546C21.4891 8.09999 20.9223 7.91432 20.2945 7.82992C19.6997 7.74995 18.9505 7.74997 18.0521 7.75H18.052H18.052L9.5 7.75C9.19666 7.75 8.92318 7.93274 8.80709 8.21299C8.69101 8.49325 8.75518 8.81584 8.96967 9.03033L9.96967 10.0303C10.2291 10.2897 10.2291 10.7103 9.96968 10.9697C9.71028 11.2291 9.28973 11.2291 9.03034 10.9697L7.53033 9.46967C7.23744 9.17678 6.76257 9.17678 6.46967 9.46967C6.0943 9.84505 5.58133 10.0113 5.08251 9.95609C4.87053 9.93263 4.65858 10.0005 4.4997 10.1428C4.34081 10.2851 4.25 10.4883 4.25 10.7015L4.25 15.552V15.552V15.5521C4.24997 16.4505 4.24995 17.1997 4.32992 17.7945C4.41432 18.4223 4.59999 18.9891 5.05546 19.4445C5.51093 19.9 6.07773 20.0857 6.70552 20.1701C7.3003 20.2501 8.04951 20.25 8.94798 20.25H8.94801L18.052 20.25H18.052C18.9505 20.25 19.6997 20.2501 20.2945 20.1701C20.9223 20.0857 21.4891 19.9 21.9445 19.4445C22.4 18.9891 22.5857 18.4223 22.6701 17.7945C22.7501 17.1997 22.75 16.4505 22.75 15.552L22.75 12.448C22.75 11.5495 22.7501 10.8003 22.6701 10.2055C22.5857 9.57773 22.4 9.01093 21.9445 8.55546ZM13.5 16C14.6046 16 15.5 15.1045 15.5 14C15.5 12.8954 14.6046 12 13.5 12C12.3954 12 11.5 12.8954 11.5 14C11.5 15.1045 12.3954 16 13.5 16Z"
+                />
+              </svg>
+            </div>
+          }
+          label={`Order in Progress...`}
+          shortDesc={`This may take a moment. Please wait while we process your order.`}
+        />
+      ) : null}
     </>
   );
 };

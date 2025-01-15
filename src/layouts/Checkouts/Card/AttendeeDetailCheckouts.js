@@ -179,7 +179,7 @@ const AttendeeDetailCheckouts = ({
                 inputClass={`ca25Form_PhoneInput ${errors[`phoneAttndee${items?.attendee}_${items?.group}`] && 'errors'}`}
                 buttonClass={`ca25Form_PhoneInputBtn ${errors[`phoneAttndee${items?.attendee}_${items?.group}`] && 'errors'}`}
                 dropdownClass="ca25Form_PhoneInputDropdown"
-                countryCodeEditable={false}
+                countryCodeEditable={true}
                 enableSearch={true}
                 disableSearchIcon={true}
                 searchPlaceholder="Search..."
@@ -213,14 +213,14 @@ const AttendeeDetailCheckouts = ({
         <div className="block">
           <Label
             forId={`ca25Form_TelegramAccountAttndee${items?.attendee}_${items?.group}Checkout`}
-            label="Telegram Account"
+            label="Telegram Username (Optional)"
             required={false}
           />
           <Input
             id={`ca25Form_TelegramAccountAttndee${items?.attendee}_${items?.group}Checkout`}
             addClassName="lowercase"
             type="text"
-            placeholder="Optional"
+            placeholder=""
             ariaLabel={`Telegram Account Attendee${items?.attendee}_${items?.group} - Checkout`}
             disabled={forms?.isSubmited === true ? true : false}
             config={{

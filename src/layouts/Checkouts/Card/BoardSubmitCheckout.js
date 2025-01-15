@@ -2,31 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 
 const BoardSubmitCheckout = ({ register, setValue, getValues, errors }) => {
-  // const [isChecked, setIsChecked] = useState(false);
-  // const handleCheckboxChange = (e, id) => {
-  //   setIsChecked(e?.target.checked);
-  //   console.log(isChecked);
-  // };
-  // useEffect(() => {
-  //   console.log(getValues('i_have_read_and_agree'));
-  // }, [isChecked]);
-
   return (
     <>
       <div className="mb-6 block w-full space-y-4">
         <div className="block w-full prose-a:font-normal">
-          {/* <Checkbox
-            label={`I have read and agree to <a href="/privacy-policy" class="hover:text-primary underline">privacy policy</a> <br/>& <a href="/terms-and-conditions" class="hover:text-primary underline">terms and conditions</a>`}
-            ariaLabel="I have read and agree - Checkout"
-            size="sm"
-            value={true}
-            config={{
-              ...register(`i_have_read_and_agree`, {
-                required: true,
-              }),
-            }}
-            errors={errors[`i_have_read_and_agree`]}
-          /> */}
           <label
             htmlFor={`ca25Form_IHaveReadAndAgree`}
             className={`flex w-full cursor-pointer items-start`}
