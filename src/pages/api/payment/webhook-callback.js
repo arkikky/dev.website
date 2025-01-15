@@ -19,11 +19,7 @@ export default async function handler(req, res) {
   try {
     const callbackData = req?.body;
     let message;
-
     const callbackToken = req?.headers['x-callback-token'];
-    console.log('callbackToken');
-    console.log(callbackToken);
-
     if (callbackData?.status === 'PAID') {
       message = 'Payment successful!';
     } else if (callbackData?.status === 'EXPIRED') {

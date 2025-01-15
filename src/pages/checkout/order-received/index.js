@@ -1,14 +1,32 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import QRCode from 'qrcode';
 import dayjs from 'dayjs';
 import Link from 'next/link';
+import getConfig from 'next/config';
+
+// # @get .config
+const { serverRuntimeConfig } = getConfig();
 
 // @redux
 import { useDispatch } from 'react-redux';
 import { removeCart } from '@reduxState/slices';
 
 // @lib/controller & helper
-import { getFetch } from '@lib/controller/API';
+import {
+  getFetch,
+  getFetchUrl,
+  getFetchUrl_FormData,
+  updateData,
+} from '@lib/controller/API';
+import { submitFormHbSpt } from '@lib/controller/HubSpot';
 import { currencyConverter } from '@lib/helper/CalculateCartContext';
+import { encodeData, convertQrCodeToBlob } from '@lib/helper/Configuration';
+import {
+  setHbSptCustomerData,
+  setHbSptAttendeeData,
+  setGroupedAttendees,
+} from '@lib/helper/CartContext';
 
 // @components
 import HeadGraphSeo from '@components/Head';
@@ -20,11 +38,13 @@ import OrderLoadingProcessModal from '@components/UI/Modal/OrderLoadingProcess';
 // @layouts
 import LayoutDefaults from '@layouts/Layouts';
 
-const OrderReceived = ({ orderReceived, orderCustomer }) => {
+const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const [isOrderRecived, setOrderRecived] = useState({
+    isIpAddress: ipAddress,
     order: orderReceived ? orderReceived.data : [],
-    customer: orderCustomer?.data?.attendees.length,
+    customer: orderCustomer?.data,
     discount: 0,
   });
   const isCustomer = {
@@ -81,12 +101,12 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
           const hbSptKey = '96572ab0-5958-4cc4-8357-9c65de42cab6';
           const hbSptAttndeeKey = 'c9347ef6-664d-4b7a-892b-a1cabaa2bc30';
           // @get(key)
-          console.log(isOrderRecived?.order?.documentId);
-
           const { key } = await fetch('/api/env/note', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
           }).then((res) => res.json());
+
+          // @webhook-callback
           const rsPaymentWebhook = await fetch('/api/payment/webhook', {
             method: 'POST',
             headers: {
@@ -94,33 +114,237 @@ const OrderReceived = ({ orderReceived, orderCustomer }) => {
               'x-api-key': key,
             },
             body: JSON.stringify({
-              paymentId: isOrderRecived?.order?.documentId,
+              paymentId: isOrderRecived?.order?.order_session,
             }),
           }).then((res) => res.json());
-          console.log(rsPaymentWebhook);
-
           // @process(payment)
           if (
             rsPaymentWebhook?.status === 'PAID' ||
             rsPaymentWebhook?.status === 'SETTLED'
           ) {
-            console.log('Berhasil');
             clearInterval(pollingInterval);
-            return;
+            // @update(order)
+            const updateStatusOrder = await updateData(
+              `/api/orders/${isOrderRecived?.order?.documentId}`,
+              {
+                data: {
+                  paymentStatus: 'Success',
+                },
+              }
+            );
+            const getCoupon = await fetch('/api/data/coupons?sv=coinfestasia', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                data: encodeData(
+                  isOrderRecived?.order?.coupons.length > 0
+                    ? isOrderRecived?.order?.coupons[0]
+                    : null
+                ),
+              }),
+            }).then((res) => res.json());
+            // @coupon
+            const setIsCoupon =
+              getCoupon?.data?.length > 0 ? getCoupon?.data[0] : null;
+            const checkCoupon =
+              setIsCoupon !== null &&
+              setIsCoupon !== 'null' &&
+              setIsCoupon !== undefined;
+
+            if (isOrderRecived?.customer?.isApproved === null) {
+              const isProducts = isOrderRecived?.order?.products;
+              const isCustomerAttendee = isOrderRecived?.customer;
+
+              // @save-to(hubspot)
+              const [updateStatusCustomer, rsHbSptCustomer] = await Promise.all(
+                [
+                  updateData(
+                    `/api/customers/${isOrderRecived?.customer?.documentId}`,
+                    {
+                      data: {
+                        isApproved: true,
+                      },
+                    }
+                  ),
+                  submitFormHbSpt(
+                    setHbSptCustomerData(
+                      isOrderRecived?.customer,
+                      isOrderRecived?.isIpAddress?.ip
+                    ),
+                    hbSptKey
+                  ),
+                ]
+              );
+
+              // @processed-attendee
+              const procssdEmails = new Set();
+              const arrAttendees = [];
+              const arrBlobAttendees = [];
+              for (let i = 0; i < isCustomerAttendee?.attendees?.length; i++) {
+                const isAttendee = isCustomerAttendee?.attendees[i];
+                const rsAttendee = await getFetch(
+                  `/api/attendees/${isAttendee?.documentId}?populate=*`
+                );
+                arrAttendees.push({ attendee: rsAttendee?.data });
+              }
+
+              if (isProducts && arrAttendees) {
+                const grpAttendee = setGroupedAttendees(
+                  isProducts,
+                  arrAttendees
+                );
+                // @send(invoice)
+                const rsInvoice = await fetch('/api/invoice/send-invoice', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'x-api-key': key,
+                  },
+                  body: JSON.stringify({
+                    toEmail: isCustomerAttendee?.email,
+                    attId: isCustomerAttendee?.customerId,
+                    createDate: isCustomerAttendee?.createdAt,
+                    fullname: `${isCustomerAttendee?.firstName} ${isCustomerAttendee?.lastName}`,
+                    company: `${isCustomerAttendee?.company}`,
+                    products: grpAttendee,
+                    coupon:
+                      isOrderRecived?.order?.coupons.length > 0
+                        ? isOrderRecived?.order?.coupons[0]
+                        : null,
+                  }),
+                }).then((rs) => rs?.json());
+                // @update-stock(coupon)
+                if (checkCoupon) {
+                  const isLimitUsageCoupon =
+                    parseInt(setIsCoupon?.limitUsage) - 1;
+                  const isUsageCoupon = parseInt(setIsCoupon?.usage) + 1;
+                  const rsUpdateCouponData = await updateData(
+                    `/api/coupons/${setIsCoupon?.documentId}`,
+                    {
+                      data: {
+                        limitUsage: isLimitUsageCoupon?.toString(),
+                        usage: isUsageCoupon?.toString(),
+                      },
+                    }
+                  );
+                }
+
+                for (let i = 0; i < grpAttendee?.length; i++) {
+                  const isGrpdAttendee = grpAttendee[i];
+                  const tickets =
+                    isGrpdAttendee?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9'
+                      ? `Festival Tickets`
+                      : `${isGrpdAttendee?.name}`;
+                  for (let a = 0; a < isGrpdAttendee?.attendees?.length; a++) {
+                    const rsAttendee = isGrpdAttendee?.attendees[a];
+                    if (rsAttendee?.isApproved === null) {
+                      const rsQrCodeUrl = await QRCode.toDataURL(
+                        `${process.env.NEXT_PUBLIC_SITE_URL}/perview?att=${rsAttendee?.documentId}`,
+                        {
+                          width: 256,
+                        }
+                      );
+                      const isFullname = `${rsAttendee?.firstName} ${rsAttendee?.lastName}`;
+                      const rsBlobQrCode = convertQrCodeToBlob(
+                        rsQrCodeUrl,
+                        rsAttendee?.id,
+                        rsAttendee?.attendeeId,
+                        isFullname
+                      );
+                      const [
+                        updateStatusAttendee,
+                        rsHbSptAttendee,
+                        rsQrCodeGenerate,
+                      ] = await Promise.all([
+                        updateData(`/api/attendees/${rsAttendee?.documentId}`, {
+                          data: {
+                            isApproved: true,
+                          },
+                        }),
+                        submitFormHbSpt(
+                          setHbSptAttendeeData(
+                            rsAttendee,
+                            isOrderRecived?.isIpAddress?.ip
+                          ),
+                          hbSptAttndeeKey
+                        ),
+                        getFetchUrl_FormData(
+                          'https://api.coinfest.asia/api/upload?',
+                          rsBlobQrCode
+                        ),
+                      ]);
+                      if (!procssdEmails?.has(rsAttendee?.email)) {
+                        procssdEmails.add(rsAttendee?.email);
+                        // @send(email)
+                        const rsEmail = await fetch(
+                          '/api/email/send-attendee-ticket',
+                          {
+                            method: 'POST',
+                            headers: {
+                              'Content-Type': 'application/json',
+                              'x-api-key': key,
+                            },
+                            body: JSON.stringify({
+                              toEmail: rsAttendee?.email,
+                              qrCode: rsQrCodeGenerate[0]?.url,
+                              docId: isGrpdAttendee?.documentId,
+                              attId: rsAttendee?.attendeeId,
+                              fullname: isFullname,
+                              company: rsAttendee?.company,
+                              productTickets: tickets,
+                            }),
+                          }
+                        ).then((res) => res.json());
+                      }
+                      arrBlobAttendees.push({
+                        blobQrCodeUrl: rsQrCodeGenerate[0]?.url,
+                      });
+                    }
+                  }
+                }
+                // @send(ticket-customer)
+                if (arrAttendees?.length > 1) {
+                  const rsCustomerEmail = await fetch(
+                    '/api/customer/send-customer-ticket',
+                    {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': key,
+                      },
+                      body: JSON.stringify({
+                        toEmail: isCustomerAttendee?.email,
+                        attId: isCustomerAttendee?.customerId,
+                        fullname: `${isCustomerAttendee?.firstName} ${isCustomerAttendee?.lastName}`,
+                        attendee: arrAttendees,
+                        blobQrCode: arrBlobAttendees,
+                      }),
+                    }
+                  ).then((res) => res.json());
+                }
+              }
+              window.location.reload();
+            }
           } else if (
             rsPaymentWebhook?.status === 'FAILED' ||
             rsPaymentWebhook?.status === 'EXPIRED'
           ) {
-            console.log('Failed');
             clearInterval(pollingInterval);
+            router.replace(
+              `/checkout/order-failed?process=${isOrderRecived?.order?.documentId}`
+            );
           }
         } catch (error) {
           // console.error('Error during payment processing:', error);
           return;
         }
       };
-      const pollingInterval = setInterval(fetchOrderPayment, 5000); // Polling setiap 5 detik
-      return () => clearInterval(pollingInterval);
+      const pollingInterval = setInterval(fetchOrderPayment, 15000);
+      return () => {
+        clearInterval(pollingInterval);
+      };
     }
   }, []);
 
@@ -428,6 +652,9 @@ export const getServerSideProps = async (context) => {
 
   try {
     const isLayouts = true;
+    const rsIpAddress = await getFetchUrl(
+      `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
+    );
     const rsOrderRecived = await getFetch(
       `/api/orders/${process}?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount`
     );
@@ -443,7 +670,7 @@ export const getServerSideProps = async (context) => {
     // @check-res(Customer)
     const rsCustmrId = rsOrderRecived?.data?.customer.documentId;
     const rsCustmr = await getFetch(
-      `/api/customers/${rsCustmrId}?fields[0]=customerId&populate[attendees][fields][0]=id&populate[attendees][fields][1]=firstName&populate[attendees][fields][2]=firstName&populate[attendees][fields][3]=lastName`
+      `/api/customers/${rsCustmrId}?populate[attendees]=*`
     );
     if (!rsCustmr) {
       return {
@@ -457,6 +684,7 @@ export const getServerSideProps = async (context) => {
       props: {
         mode: 'light',
         layouts: isLayouts || false,
+        ipAddress: rsIpAddress,
         orderReceived: rsOrderRecived || [],
         orderCustomer: rsCustmr || [],
       },

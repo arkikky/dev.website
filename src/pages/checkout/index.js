@@ -13,7 +13,7 @@ const { serverRuntimeConfig } = getConfig();
 
 // @redux
 import { useSelector, useDispatch } from 'react-redux';
-import { order, orderSession } from '@reduxState/slices';
+import { order } from '@reduxState/slices';
 
 // @lib/controller & helper
 import {
@@ -28,7 +28,6 @@ import {
   smoothLeftScroll,
   getJoinString,
   getCombineMerged,
-  isValidationMoreTimeMinutes,
   encodeData,
   convertQrCodeToBlob,
 } from '@lib/helper/Configuration';
@@ -380,13 +379,13 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       getValues(`didYouHearAboutAttndee1_${items?.firstItems}`),
     ];
     setValue(
-      `dialcode-phone${items?.attendee}_${items?.group}`,
-      getValues(`dialcode-phone1_${items?.firstItems}`),
+      `dialcode-phoneAttende${items?.attendee}_${items?.group}`,
+      getValues(`phoneAttndee1_${items?.firstItems}`),
       { shouldValidate: true }
     );
     setValue(
-      `phone${items?.attendee}_${items?.group}`,
-      getValues(`phone1_${items?.firstItems}`),
+      `phoneAttndee${items?.attendee}_${items?.group}`,
+      getValues(`phoneAttndee1_${items?.firstItems}`),
       { shouldValidate: true }
     );
     if (el.length > 0) {
@@ -503,7 +502,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     if (hasInvalid) {
       return false;
     }
-    // toast.success('Semua data attendee valid!', { position: 'top-right' });
     return true;
   }
   function validateFields(att, products, attIdx) {
@@ -517,6 +515,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           `country`,
           `whatTypeConnectionNetworking`,
           `didYouHearAbout`,
+          `phone`,
           `websiteUrl`,
           `company`,
           `jobPosition`,
@@ -530,23 +529,23 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           `country`,
           `whatTypeConnectionNetworking`,
           `didYouHearAbout`,
+          `phone`,
         ];
-    // console.log(
-    //   'Validating attendee:',
-    //   att,
-    //   'Product:',
-    //   products,
-    //   'Index:',
-    //   attIdx
-    // );
-    // console.log('Required fields:', requiredFields);
     let rsAllFields = true;
+    const missingFields = [];
     for (const field of requiredFields) {
       const fieldName = `${field}Attndee${attIdx}_${products}Tickets`;
       if (!att[fieldName] || att[fieldName].trim() === '') {
-        // console.warn(`Field ${fieldName} is invalid or missing!`);
+        missingFields.push(field);
         rsAllFields = false;
       }
+    }
+    if (missingFields.length > 0) {
+      const errorMessage = `Fields (${missingFields.join(',')}) are required for Attendee ${attIdx} at the ${products} Tickets!`;
+      // toast.error(errorMessage, {
+      //   duration: 6000,
+      //   style: { maxWidth: '500px', fontSize: '0.875rem' }, // Font kecil untuk tampilan rapi
+      // });
     }
     return rsAllFields;
   }
@@ -589,7 +588,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             p.name.replace(/\s+/g, '').replace(/Tickets$/i, '') === productName
         );
         if (!product) {
-          // console.warn(`Produk ${productName} not found!.`);
+          // console.warn(`${productName} Products not found!.`);
           continue;
         }
         const cleanedProductName = product.name
@@ -637,16 +636,10 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     isStore?.products.forEach((product) => {
       const cleanedProductName = product.name.replace(/\s*Tickets$/i, '');
       const attendees = groupedData.products[cleanedProductName] || [];
-      const missingAttendees = product.quantity - attendees.length;
-      // if (missingAttendees > 0) {
-      //   console.warn(
-      //     `Produk ${cleanedProductName} membutuhkan ${missingAttendees} peserta tambahan.`
-      //   );
-      // }
-      if (attendees.length > product.quantity) {
+      if (attendees.length > product?.quantity) {
         groupedData.products[cleanedProductName] = attendees.slice(
           0,
-          product.quantity
+          product?.quantity
         );
       }
     });
@@ -656,11 +649,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
   // @submit(Checkout)
   const onSubmitForm = async (data) => {
-    const btnRdrctPymnt_Gtwy = document.querySelector(
-      '#ca25RdcrtPayment.ca25RdcrtPayment'
-    );
     const isFirstItems = getJoinString(isStore?.products[0]?.name);
-
     if (isValid === true && isCart) {
       if (Math.abs(isStore?.totalOrder) > 1e-10) {
         setStore((prev) => ({ ...prev, isPaymentProcess: true }));
@@ -831,12 +820,16 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             }).then((res) => res.json());
             if (rsPayment?.data?.invoice_url) {
               dispatch(order(setIdOrderRecived));
-              dispatch(orderSession(rsPayment?.data?.id));
-              // btnRdrctPymnt_Gtwy?.setAttribute(
-              //   'href',
-              //   `${rsPayment?.data?.invoice_url}`
-              // );
-              // btnRdrctPymnt_Gtwy?.click();
+              // dispatch(orderSession(rsPayment?.data?.id));
+              // @update(order)
+              const updateStatusOrder = await updateData(
+                `/api/orders/${rsCreateOrder?.data?.documentId}`,
+                {
+                  data: {
+                    order_session: rsPayment?.data?.id,
+                  },
+                }
+              );
               reset();
               router.replace(rsPayment?.data?.invoice_url);
             } else {
@@ -853,6 +846,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               {
                 data: {
                   paymentStatus: 'Success',
+                  order_session: 'free',
                 },
               }
             );
@@ -926,8 +920,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   submitFormHbSpt(
                     setHbSptAttendeeData(
                       gtRslt?.attendee,
-                      i + 1,
-                      gtRslt?.group,
                       isFormCheckouts?.isIpAddress?.ip
                     ),
                     hbSptAttndeeKey
@@ -937,7 +929,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     gtRslt?.blobQrCode
                   ),
                 ]);
-
               if (!procssdEmails?.has(gtRslt?.attendee?.email)) {
                 procssdEmails.add(gtRslt?.attendee?.email);
                 // @send(email)
@@ -999,7 +990,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       }
     }
   };
-
   const isDisabled =
     !isStore?.products?.length > 0 || isFormCheckouts?.isSubmited === true;
 
@@ -1365,7 +1355,12 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                       : '!pointer-events-auto !select-auto'
                   } sm:px-5 sm:py-5 xl:hidden`}
                 >
-                  <BoardSubmitCheckout register={register} errors={errors} />
+                  <BoardSubmitCheckout
+                    register={register}
+                    setValue={setValue}
+                    getValues={getValues}
+                    errors={errors}
+                  />
 
                   {/* @submit(Form) */}
                   <button
@@ -1439,7 +1434,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   </div>
                 </header>
               </div>
-
               <OrderDetailCheckouts
                 items={{
                   products: isStore?.products,
@@ -1456,7 +1450,12 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 <div
                   className={`relative hidden w-full rounded-2xl border border-gray-200 bg-white ${isDisabled ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'} px-4 py-4 sm:px-5 sm:py-5 xl:block`}
                 >
-                  <BoardSubmitCheckout register={register} errors={errors} />
+                  <BoardSubmitCheckout
+                    register={register}
+                    setValue={setValue}
+                    getValues={getValues}
+                    errors={errors}
+                  />
 
                   {/* @submit(Form) */}
                   <button
@@ -1504,16 +1503,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               </OrderDetailCheckouts>
             </div>
           </form>
-          <a
-            id="ca25RdcrtPayment"
-            className="ca25RdcrtPayment fixed -bottom-2.5 -left-2.5 right-auto top-auto -z-[2] h-6 w-6 !select-none bg-white"
-            href={'/'}
-            title="Coinfest Asia 2025 Redirect Payment"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            R
-          </a>
         </Container>
       </Main>
 

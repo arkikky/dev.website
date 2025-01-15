@@ -149,9 +149,8 @@ const AttendeeDetailCheckouts = ({
             required={true}
           />
           <Controller
-            name={`dialcode-phone${items?.attendee}_${items?.group}`}
+            name={`dialcode-phoneAttende${items?.attendee}_${items?.group}`}
             control={control}
-            rules={{ required: 'This field is required' }}
             disabled={forms?.isSubmited === true ? true : false}
             render={({ field }) => (
               <PhoneInput
@@ -159,23 +158,26 @@ const AttendeeDetailCheckouts = ({
                 country={forms?.ipAddress}
                 onChange={(value, phone) => {
                   setValue(
-                    `dialcode-phone${items?.attendee}_${items?.group}`,
+                    `dialcode-phoneAttndee${items?.attendee}_${items?.group}`,
                     value,
                     { shouldValidate: true }
                   );
-                  setValue(`phone${items?.attendee}_${items?.group}`, value, {
-                    shouldValidate: true,
-                  });
+                  setValue(
+                    `phoneAttndee${items?.attendee}_${items?.group}`,
+                    value,
+                    {
+                      shouldValidate: true,
+                    }
+                  );
                 }}
                 inputProps={{
                   required: false,
-                  name: `dialcode-phone${items?.attendee}_${items?.group}`,
-                  autoFocus: false,
+                  name: `dialcode-phoneAttndee${items?.attendee}_${items?.group}`,
                   maxLength: 18,
                 }}
                 containerClass="w-full"
-                inputClass={`ca25Form_PhoneInput ${errors[`phone${items?.attendee}_${items?.group}`] && 'errors'}`}
-                buttonClass={`ca25Form_PhoneInputBtn ${errors[`phone${items?.attendee}_${items?.group}`] && 'errors'}`}
+                inputClass={`ca25Form_PhoneInput ${errors[`phoneAttndee${items?.attendee}_${items?.group}`] && 'errors'}`}
+                buttonClass={`ca25Form_PhoneInputBtn ${errors[`phoneAttndee${items?.attendee}_${items?.group}`] && 'errors'}`}
                 dropdownClass="ca25Form_PhoneInputDropdown"
                 countryCodeEditable={false}
                 enableSearch={true}
@@ -195,8 +197,10 @@ const AttendeeDetailCheckouts = ({
             disabled={forms?.isSubmited === true ? true : false}
             hidden={true}
             config={{
-              ...register(`phone${items?.attendee}_${items?.group}`, {
-                value: getValues(`phone${items?.attendee}_${items?.group}`),
+              ...register(`phoneAttndee${items?.attendee}_${items?.group}`, {
+                value: getValues(
+                  `phoneAttndee${items?.attendee}_${items?.group}`
+                ),
                 required: true,
                 maxLength: 18,
                 pattern: {
@@ -226,7 +230,7 @@ const AttendeeDetailCheckouts = ({
                   required: false,
                   maxLength: 55,
                   pattern: {
-                    value: /^@([a-zA-Z][a-zA-Z0-9_\.]{2,55})$/,
+                    value: /^([a-zA-Z][a-zA-Z0-9_\.]{2,55})$/,
                   },
                 }
               ),

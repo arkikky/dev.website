@@ -60,7 +60,6 @@ const CustomerTickets = ({
         qrCode: null,
         localizations: [],
       },
-      qrCode: null,
     },
     {
       attendee: {
@@ -106,7 +105,6 @@ const CustomerTickets = ({
         qrCode: null,
         localizations: [],
       },
-      qrCode: null,
     },
   ],
   isBloQrCode,
@@ -370,8 +368,6 @@ const CustomerTickets = ({
               {/* @ticket(Detail) */}
               {isAttendee?.map((gtRslt, i) => {
                 const rsQrCode = isBloQrCode[i];
-                console.log(rsQrCode?.blobQrCodeUrl);
-
                 return (
                   <Row
                     className={`splitGridColumn border-dashed border-gray-400/80 ${i === isAttendee?.length - 1 ? 'border-b-0' : 'border-b'}`}

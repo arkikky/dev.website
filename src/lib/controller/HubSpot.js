@@ -7,7 +7,6 @@ export async function getFecthHbSpt(url) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Origin: '*',
       Authorization: `Bearer ${tApp}`,
     },
   })
@@ -30,7 +29,6 @@ export async function submitFormHbSpt(data, key) {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Origin: '*',
         Authorization: `Bearer ${tApp}`,
       },
       body: JSON.stringify(data),

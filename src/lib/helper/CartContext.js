@@ -22,7 +22,7 @@ export function getTotalCart(data) {
   return total;
 }
 
-// @calculate(discont)
+// @calculate(discount)
 export function calculateDiscount(setCoupon, totalCart, setPrice) {
   const discountAmount = parseFloat(setCoupon?.amount) || 0;
   const calculatedDiscount =
@@ -44,6 +44,48 @@ export function calculateDiscountCheckout(setCoupon, totalCart, setPrice) {
   return totalWithTax;
 }
 
+// @groupped-attendee
+export function setGroupedAttendees(p, att) {
+  const awd = p?.map((product) => {
+    const attendeesForProduct = att
+      .filter(
+        ({ attendee }) => attendee?.product.documentId === product?.documentId
+      )
+      .map(({ attendee }) => ({
+        id: attendee?.id,
+        documentId: attendee?.documentId,
+        firstName: attendee?.firstName,
+        lastName: attendee?.lastName,
+        email: attendee?.email,
+        telephone: attendee?.telephone,
+        telegramAccount: attendee?.telegramAccount || null,
+        country: attendee?.country,
+        attendeeId: attendee?.attendeeId,
+        position: attendee?.position,
+        company: attendee?.company,
+        companyFocus: attendee?.companyFocus,
+        companySize: attendee?.companySize,
+        whatTypeOfConnectionsAndNetworkingDoYouHopeToAchieveAtTheEvent:
+          attendee?.whatTypeOfConnectionsAndNetworkingDoYouHopeToAchieveAtTheEvent,
+        whereDidYouHearAboutCoinfestAsia2024:
+          attendee?.whereDidYouHearAboutCoinfestAsia2024,
+        isApproved: attendee?.isApproved,
+      }));
+
+    return {
+      attendees: attendeesForProduct,
+      id: product?.id,
+      documentId: product?.documentId,
+      productId: product?.productId,
+      name: product?.name,
+      price: product?.price,
+      priceSale: product?.priceSale,
+      quantity: attendeesForProduct.length,
+    };
+  });
+  return awd;
+}
+
 // @biling-data
 export function setBillingData(d, grp) {
   // @sanitize(Fields)
@@ -54,7 +96,7 @@ export function setBillingData(d, grp) {
       firstName: sntzeFld(d?.[`firstnameAttndee1_${grp}`]),
       lastName: sntzeFld(d?.[`lastnameAttndee1_${grp}`]),
       email: sntzeFld(d?.[`emailAttndee1_${grp}`].toLowerCase()),
-      phone: sntzeFld(d?.[`phone1_${grp}`]),
+      phone: sntzeFld(d?.[`phoneAttndee1_${grp}`]),
       company: sntzeFld(
         d?.[`haveCompanyAttndee1_${grp}`]
           ? d?.[`companyAttndee1_${grp}`]
@@ -115,7 +157,7 @@ export function setHbSptCustomerData(d, ip) {
   };
   return rs;
 }
-export function setHbSptAttendeeData(rslt, attendee, group, ip) {
+export function setHbSptAttendeeData(rslt, ip) {
   // @sanitize(Fields)
   const rs = {
     fields: [
@@ -197,7 +239,7 @@ export function setAttendeeData(data, attendee, group, idCustomer, idProducts) {
     firstName: sntzeFld(data[`firstnameAttndee${attendee}_${group}`]),
     lastName: sntzeFld(data[`lastnameAttndee${attendee}_${group}`]),
     email: sntzeFld(data[`emailAttndee${attendee}_${group}`].toLowerCase()),
-    telephone: sntzeFld(data[`phone${attendee}_${group}`]),
+    telephone: sntzeFld(data[`phoneAttndee${attendee}_${group}`]),
     telegramAccount: sntzeFld(
       data[`telegramAccountAttndee${attendee}_${group}`]
     ),
