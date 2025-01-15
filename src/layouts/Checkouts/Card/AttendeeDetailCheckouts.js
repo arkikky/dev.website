@@ -410,7 +410,7 @@ const AttendeeDetailCheckouts = ({
                 <Input
                   id={`ca25Form_WebsiteUrlAttndee${items?.attendee}_${items?.group}Checkout`}
                   type="text"
-                  placeholder={``}
+                  placeholder={`Include http:// or https://`}
                   ariaLabel="Website Billing - Checkout"
                   disabled={watch ? false : true}
                   config={{

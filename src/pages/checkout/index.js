@@ -552,6 +552,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
   // @validation(error form)
   const onErrorSubmit = async (errors, e) => {
+    console.log(errors);
+
     const data = getValues();
     const groupedData = {
       personalData: {},
@@ -1229,7 +1231,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                           }}
                                         >
                                           <Badge
-                                            label="Copy previous details"
+                                            label="Same As above"
                                             type="secondary"
                                             withHover={true}
                                             icons={

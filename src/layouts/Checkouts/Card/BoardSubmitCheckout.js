@@ -45,7 +45,13 @@ const BoardSubmitCheckout = ({ register, setValue, getValues, errors }) => {
               })}
             />
 
-            <span className="ml-3 text-sm font-normal text-black-900">
+            <span
+              className={`ml-3 text-sm font-normal ${
+                errors[`i_have_read_and_agree`]
+                  ? 'text-red-500'
+                  : 'text-black-900'
+              }`}
+            >
               I have read and agree to{' '}
               <Link
                 href="/privacy-policy"

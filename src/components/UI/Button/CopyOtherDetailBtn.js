@@ -37,7 +37,7 @@ const CopyOtherDetailBtn = ({
           className="text-black-900"
         >
           <Badge
-            label="Some details are the same"
+            label="Copy previous details"
             type="secondary"
             withHover={true}
             icons={
