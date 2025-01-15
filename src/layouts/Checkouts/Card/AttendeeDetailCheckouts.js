@@ -120,7 +120,7 @@ const AttendeeDetailCheckouts = ({
         <Label
           forId={`ca25Form_EmailAttndee${items?.attendee}_${items?.group}Checkout`}
           label="Email"
-          helpText="The email entered must match the information of the attendee who is attending!"
+          helpText="Enter the attendee's correct email to avoid issues!"
           required={true}
         />
         <Input
@@ -220,7 +220,7 @@ const AttendeeDetailCheckouts = ({
             id={`ca25Form_TelegramAccountAttndee${items?.attendee}_${items?.group}Checkout`}
             addClassName="lowercase"
             type="text"
-            placeholder=""
+            placeholder="Optional"
             ariaLabel={`Telegram Account Attendee${items?.attendee}_${items?.group} - Checkout`}
             disabled={forms?.isSubmited === true ? true : false}
             config={{
@@ -368,7 +368,7 @@ const AttendeeDetailCheckouts = ({
         <div className="mb-4 mt-5 flex w-full flex-col items-start justify-between sm:flex-row">
           <div className="flex w-full max-w-[399px] flex-col items-start justify-start">
             <span className="text-balance text-sm font-light text-gray-400">
-              {`Please enter the company information to match the details of the participants in attendance.`}
+              {`Use the company details that correspond with the attendee`}
             </span>
           </div>
           {children}

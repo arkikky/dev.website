@@ -1229,7 +1229,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                           }}
                                         >
                                           <Badge
-                                            label="Same As above"
+                                            label="Copy previous details"
                                             type="secondary"
                                             withHover={true}
                                             icons={
