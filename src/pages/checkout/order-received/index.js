@@ -241,7 +241,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                     const rsAttendee = isGrpdAttendee?.attendees[a];
                     if (rsAttendee?.isApproved === null) {
                       const rsQrCodeUrl = await QRCode.toDataURL(
-                        `${process.env.NEXT_PUBLIC_SITE_URL}perview?att=${rsAttendee?.documentId}`,
+                        `${rsAttendee?.attendeeId}`,
                         {
                           width: 256,
                         }
@@ -354,7 +354,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
       <Link
         className="inline-flex w-[178px] flex-row items-center justify-center rounded-xl bg-primary px-3.5 py-3.5 text-base leading-initial text-white sm:w-max sm:px-8 sm:py-6"
         title="Button for Share & Win Competition Coinfest Asia 2025"
-        href="/"
+        href="https://drive.google.com/uc?export=download&id=1kBt7oGSI0j-1yvAXXavjTK3Ca1QMbVKZ"
       >
         {`Share your Coinfest badge!`}
       </Link>

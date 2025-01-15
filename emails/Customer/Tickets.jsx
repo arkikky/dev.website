@@ -427,9 +427,6 @@ const CustomerTickets = ({
                       <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
                         Company : {gtRslt?.attendee.company}
                       </Text>
-                      {/* <Text className="!mb-1.5 !mt-0 max-w-[128px] !text-[14px] !leading-[20px]">
-                      Email : {gtRslt?.attendee.email}
-                    </Text> */}
                     </Column>
                   </Row>
                 );
@@ -498,7 +495,18 @@ const CustomerTickets = ({
                 </Heading>
                 <Text className="!mb-0 !mt-0 text-xs">
                   <ul className="!list-decimal text-balance !pl-6 text-xs">
-                    <li>Check-in starts at 2 PM (GMT+8).</li>
+                    <li>
+                      Check the Agenda page for your check-in time -{' '}
+                      <Link
+                        className="text-primary underline"
+                        href="https://coinfest.asia/agenda"
+                        title="Coinfest Asia 2025 Agenda"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        click here
+                      </Link>
+                    </li>
                     <li>
                       The name on this ticket must match a government-issued ID
                       to access the event.

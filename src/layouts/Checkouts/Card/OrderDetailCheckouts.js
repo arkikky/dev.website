@@ -13,7 +13,6 @@ import {
 } from '@reduxState/slices';
 
 // @lib/controller & helper
-import { getFetch } from '@lib/controller/API';
 import { useCart } from '@lib/hooks/cart/Cart';
 import {
   currencyConverter,
@@ -240,7 +239,7 @@ const OrderDetailCheckouts = ({
         );
         return;
       }
-      // @check(Expiration Product)
+      // @check(expiration product)
       const { expirationDate = [], type, amount } = coupon;
       if (dayjs().isAfter(dayjs(expirationDate))) {
         setUseCoupon({ ...isUseCoupon, loading: false });
@@ -258,7 +257,7 @@ const OrderDetailCheckouts = ({
         );
         return;
       }
-      // @check(Limit Coupon)
+      // @check(limit coupon)
       if (parseInt(coupon?.usage, 10) >= parseInt(coupon?.limitUsage, 10)) {
         setUseCoupon({ ...isUseCoupon, loading: false });
         toast.custom(
@@ -298,7 +297,6 @@ const OrderDetailCheckouts = ({
         );
         return;
       }
-      // Hitung total kuantitas produk yang termasuk
       if (isTotalCart < coupon?.minQtyPromo) {
         setUseCoupon({ ...isUseCoupon, loading: false });
         toast.custom(
@@ -371,7 +369,14 @@ const OrderDetailCheckouts = ({
     // setUseCoupon({ ...isUseCoupon, loading: false });
   };
 
-  // // @event(remove - coupon)
+  const handleKeyDown = (e) => {
+    if (e?.key === 'Enter') {
+      e?.preventDefault()
+      handleCoupon();
+    }
+  };
+
+  // @event(remove - coupon)
   const clearCoupon = () => dispatch(removeCoupon());
 
   return (
@@ -639,6 +644,7 @@ const OrderDetailCheckouts = ({
                   placeholder="Enter a coupon code..."
                   tabIndex="-1"
                   minLength={1}
+                  onKeyDown={handleKeyDown}
                   {...register(`coupon`, {
                     required: false,
                     maxLength: 255,

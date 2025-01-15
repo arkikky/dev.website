@@ -2,17 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 
 // @components
-import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
 import StarryBackground from '@components/UI/Background/StarryBackground';
 
-const PageIsGone = (props) => {
+const ComingSoon = ({}) => {
   return (
     <>
-      {/* @head */}
-      <HeadGraphSeo title={`404 Page is Gone!`} otherPage={true} />
-
       <Main
         className={
           'fixed inset-x-0 inset-y-0 z-[2] flex min-h-svh flex-col items-start justify-center bg-[linear-gradient(180deg,#1F1F1F_3%,#005AFF_39%,#A0CCF7_65%,#ED4F35_98%,#ED4F35_100%)]'
@@ -32,7 +28,7 @@ const PageIsGone = (props) => {
               <h1
                 className={`ca25HeadingTitle mb-4 w-full text-balance font-semibold uppercase text-white sm:mb-7 sm:font-bold`}
               >
-                {'WhOOPS, THAT PAGE IS GONE!'
+                {'COMING SOON!'
                   ?.split('')
                   ?.map((chr, i) =>
                     ['E', 'O', 'A', '0'].includes(chr) ? (
@@ -61,21 +57,4 @@ const PageIsGone = (props) => {
   );
 };
 
-PageIsGone.getLayout = function PageLayout(page) {
-  return <>{page}</>;
-};
-export const getStaticProps = async () => {
-  try {
-    return {
-      props: {
-        mode: 'dark',
-      },
-      revalidate: 900,
-    };
-  } catch (err) {
-    return {
-      notFound: true,
-    };
-  }
-};
-export default PageIsGone;
+export default ComingSoon;

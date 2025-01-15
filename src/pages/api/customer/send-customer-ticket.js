@@ -40,7 +40,10 @@ export default async function handler(req, res) {
 
   // @get(body)
   const { toEmail, attId, fullname, attendee, blobQrCode } = req?.body;
-  // @invitation(Event)
+  const dtstamp =
+    new Date(Date.now()).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+
+  // @invitation(event)
   const generateICS = () => {
     const icsInvTicketDay = `BEGIN:VCALENDAR
 PRODID:-//coinfest.asia//Google Calendar 70.9054//EN
@@ -48,9 +51,9 @@ VERSION:2.0
 CALSCALE:GREGORIAN
 METHOD:REQUEST
 BEGIN:VEVENT
-DTSTART:20250821T060000Z
-DTEND:20250822T060000Z
-DTSTAMP:20240910T034339Z
+DTSTART;VALUE=DATE:20250821
+DTEND;VALUE=DATE:20250823
+DTSTAMP:${dtstamp}
 CATEGORIES:Meet Up,Conference
 ORGANIZER;CN="Coinfest Asia (hi@ticket.coinfest.asia)":mailto:hi@ticket.coinfest.asia
 UID:${Date.now()}@coinfest.asia
@@ -72,7 +75,8 @@ END:VCALENDAR
         `;
     return icsInvTicketDay;
   };
-  // @render(Email)
+
+  // @render(email)
   const emailHtml = await render(
     <CustomerTickets
       attendeeId={attId}

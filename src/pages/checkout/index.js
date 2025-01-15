@@ -735,7 +735,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   );
                   if (rsAttendee) {
                     const rsQrCodeUrl = await QRCode.toDataURL(
-                      `${process.env.NEXT_PUBLIC_SITE_URL}perview?att=${rsAttendee?.data.documentId}`,
+                      `${rsAttendee?.data.attendeeId}`,
                       {
                         width: 256,
                       }

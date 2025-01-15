@@ -391,7 +391,18 @@ const AttendeeTickets = ({
                 </Heading>
                 <Text className="!mb-0 !mt-0 text-xs">
                   <ul className="!list-decimal text-balance !pl-6 text-xs">
-                    <li>Check-in starts at 2 PM (GMT+8).</li>
+                    <li>
+                      Check the Agenda page for your check-in time -{' '}
+                      <Link
+                        className="text-primary underline"
+                        href="https://coinfest.asia/agenda"
+                        title="Coinfest Asia 2025 Agenda"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        click here
+                      </Link>
+                    </li>
                     <li>
                       The name on this ticket must match a government-issued ID
                       to access the event.
