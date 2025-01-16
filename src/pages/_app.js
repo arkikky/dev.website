@@ -1,6 +1,7 @@
 import React from 'react';
 import getConfig from 'next/config';
 import Head from 'next/head';
+import Script from 'next/script';
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
@@ -57,6 +58,24 @@ const App = ({ Component, pageProps }) => {
             content="#F8FAFC"
           />
           <link rel="manifest" href="/manifest.json" />
+
+          {/* @google-tag (gtag.js) */}
+          <Script
+            strategy="afterInteractive"
+            src="https://www.googletagmanager.com/gtag/js?id=G-QRS401B56Z"
+          />
+          <Script
+            id="google-analytics"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                      window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('js', new Date());
+                      gtag('config', 'G-QRS401B56Z');
+                    `,
+            }}
+          />
         </Head>
 
         {/* @layouts */}

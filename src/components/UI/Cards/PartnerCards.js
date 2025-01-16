@@ -37,7 +37,7 @@ const PartnerCards = ({
       {openUrl === true ? (
         <Link
           ref={ref}
-          className={`xs:h-[68px] relative col-span-2 flex h-[68px] w-full flex-col items-center justify-center overflow-clip border-white/55 grayscale sm:col-span-2 sm:h-[76px] sm:rounded-xl lg:col-span-2 lg:h-[94px] xl:h-[120px]`}
+          className={`xs:h-[60px] relative col-span-2 flex h-[66px] w-full flex-col items-center justify-center overflow-clip border-white/55 grayscale sm:col-span-2 sm:h-[68px] sm:rounded-xl lg:col-span-2 lg:h-[88px] xl:h-[116px]`}
           prefetch={true}
           href={url}
           title={`${publicRuntimeConfig?.siteAppName} ${captions}`}
@@ -64,7 +64,7 @@ const PartnerCards = ({
       ) : (
         <div
           ref={ref}
-          className={`xs:h-[68px] relative col-span-2 flex h-[68px] w-full flex-col items-center justify-center overflow-clip border-white/55 grayscale sm:col-span-2 sm:h-[76px] sm:rounded-xl lg:col-span-2 lg:h-[94px] xl:h-[120px]`}
+          className={`xs:h-[60px] relative col-span-2 flex h-[66px] w-full flex-col items-center justify-center overflow-clip border-white/55 grayscale sm:col-span-2 sm:h-[68px] sm:rounded-xl lg:col-span-2 lg:h-[88px] xl:h-[116px]`}
           key={keyID}
         >
           {isLoading ? (

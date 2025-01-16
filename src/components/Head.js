@@ -24,7 +24,7 @@ const HeadGraphSeo = ({
         <meta name="title" content={title} />
         <meta name="description" content={desc} />
 
-        {/* @open Graph / Facebook */}
+        {/* @open graph / facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={siteUrl} />
         <meta property="og:title" content={title} />

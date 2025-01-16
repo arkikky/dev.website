@@ -8,7 +8,7 @@ import FaqCards from '@components/UI/Cards/FaqCards';
 const FAQ = ({ mode, result = [] }) => {
   return (
     <>
-      <section className="ca25Faq relative pb-16 pt-7 sm:pb-24 lg:pb-24 xl:pt-3.5">
+      <section className="ca25Faq relative z-[4] -mt-[97px] pb-16 pt-7 sm:-mt-[191px] sm:pb-24 lg:-mt-[171px] lg:pb-24 xl:pt-3.5">
         <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[625px] select-none">
           <StarryBackground starCount={90} />
         </div>

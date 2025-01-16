@@ -57,7 +57,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               <li className="group mb-3 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  href="/get-involved/sponsor"
+                  href="/get-involved/sponsorship"
                   title={`${publicRuntimeConfig?.siteAppName} Sponsorship Inquiry`}
                 >
                   Sponsorship Inquiry
@@ -153,19 +153,19 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               <li className="group mb-3 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  href="/get-involved/speakers"
-                  title={`${publicRuntimeConfig?.siteAppName} Speakers`}
+                  href="/get-involved/sponsorship"
+                  title={`${publicRuntimeConfig?.siteAppName} Sponsors`}
                 >
-                  Speaker
+                  Sponsor
                 </Link>
               </li>
               <li className="group mb-3 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  href="/get-involved/sponsorship"
-                  title={`${publicRuntimeConfig?.siteAppName} Sponsors`}
+                  href="/get-involved/speakers"
+                  title={`${publicRuntimeConfig?.siteAppName} Speakers`}
                 >
-                  Sponsor
+                  Speaker
                 </Link>
               </li>
               <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">

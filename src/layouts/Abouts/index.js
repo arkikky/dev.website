@@ -24,7 +24,7 @@ const Abouts = ({ mode, result = [] }) => {
         </div>
         <Container className={'z-[5]'}>
           <Boards mode={mode} />
-          <div className="relative mt-2 w-full min-w-full max-w-full grid-cols-4 gap-x-3 gap-y-3 supports-grid:grid sm:mt-4 sm:grid-cols-12 sm:gap-x-4 sm:gap-y-4 lg:mt-6 lg:grid-cols-12 lg:gap-x-6 lg:gap-y-6 xl:mt-10 xl:gap-x-10 xl:gap-y-10">
+          <div className="relative mt-8 w-full min-w-full max-w-full grid-cols-4 gap-x-3 gap-y-3 supports-grid:grid sm:mt-10 sm:grid-cols-12 sm:gap-x-4 sm:gap-y-4 lg:mt-12 lg:grid-cols-12 lg:gap-x-6 lg:gap-y-6 xl:gap-x-10 xl:gap-y-10">
             {result?.map((rslt, i) => (
               <div
                 className="col-span-full sm:col-span-6 lg:col-span-4"

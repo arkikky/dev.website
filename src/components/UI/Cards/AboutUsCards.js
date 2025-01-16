@@ -21,7 +21,7 @@ const AboutUsCards = ({ images = '', title = '', shortDesc = '' }) => {
             {title}
           </h2>
           <p className="mt-2 text-pretty text-base font-light text-white/90 lg:text-balance">
-            {shortDesc}w
+            {shortDesc}
           </p>
         </div>
       </div>

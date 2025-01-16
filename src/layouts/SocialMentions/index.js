@@ -19,10 +19,10 @@ const SocialMentions = ({ mode, result = [] }) => {
     <>
       <section
         id="ca25SocialMentions"
-        className="ca25SocialMentions ca25BackGroupPrimary relative bg-primary pb-18 pt-20"
+        className="ca25SocialMentions ca25BackGroupPrimary relative z-[2] bg-primary pb-18 pt-16 sm:pt-20"
       >
         <h2
-          className={`ca25HeadingTitle w-full max-w-[525px] text-center font-semibold uppercase sm:font-bold lg:max-w-[855px] ${mode === 'light' ? 'text-black-900' : 'text-white'} relative z-[5] mx-auto mb-4 text-balance sm:mb-7`}
+          className={`ca25HeadingTitle w-full max-w-[525px] text-center font-semibold uppercase sm:font-bold lg:max-w-[855px] ${mode === 'light' ? 'text-black-900' : 'text-white'} relative z-[5] mx-auto mb-0 text-balance lg:mb-7`}
         >
           {'SEE WHAT PEOPLE ARE SAYING'
             ?.split('')
@@ -34,7 +34,7 @@ const SocialMentions = ({ mode, result = [] }) => {
               )
             )}
         </h2>
-        <Container className={'relative z-[2]'}>
+        <Container className={'relative z-[2] -mt-[51px] sm:-mt-[60px]'}>
           <div
             className={`bckdrpCvrShdow relative mt-24 max-h-[1488px] min-h-[1488px]`}
           >

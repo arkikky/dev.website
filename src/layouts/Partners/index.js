@@ -23,7 +23,7 @@ const Partners = ({ mode, result = [] }) => {
                 ['E', 'O', 'A'].includes(chr) ? <span key={i}>{chr}</span> : chr
               )}
           </h2>
-          <div className="relative w-full grid-cols-6 gap-x-1 gap-y-1 supports-grid:grid sm:grid-cols-10 sm:gap-x-3 sm:gap-y-3 lg:grid-cols-10">
+          <div className="relative w-full grid-cols-6 gap-x-1 gap-y-0 px-2.5 supports-grid:grid sm:grid-cols-10 sm:gap-x-3 sm:gap-y-0 sm:px-0 lg:grid-cols-10 lg:gap-x-6 lg:gap-y-0">
             {result?.map((rslt, i) => (
               <PartnerCards
                 keyID={`ca25Partners${i}`}

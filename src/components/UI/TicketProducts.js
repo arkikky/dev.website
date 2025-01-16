@@ -112,7 +112,9 @@ const TicketProducts = ({
             <span className="absolute bottom-auto left-auto right-4.5 top-0 z-[4]">
               <Image
                 className="aspect-auto h-[78px] w-auto sm:h-[88px]"
-                src={'/assets/images/store/ca25SaveTicket_SuperEarlyBird.svg'}
+                src={
+                  '/assets/images/store/ca25SaveTicket_SuperEarlyBird-60.svg'
+                }
                 alt={`${publicRuntimeConfig?.siteAppName} Save Super Early Bird Tickets`}
                 height={96}
                 width={81}

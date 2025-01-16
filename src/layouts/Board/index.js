@@ -15,7 +15,7 @@ const Boards = ({ mode }) => {
   return (
     <>
       <h2
-        className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-8 text-balance sm:mb-6 xl:mb-10`}
+        className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-10 text-balance`}
       >
         {'WHERE INNOVATION MEETS ADOPTION'
           ?.split('')

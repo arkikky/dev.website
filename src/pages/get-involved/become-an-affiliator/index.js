@@ -567,7 +567,7 @@ const BecomeAnAffiliator = ({
           <div className="flex flex-col">
             <Label
               forId={`ca25Form_PlatformsAudience${groupLabel}`}
-              label="In Coinfest Asia 2025, we are interested in?"
+              label="What platforms do you use to engage with your audience? Select all that apply"
               required={true}
             />
             <div className="mt-2 grid space-y-4">
