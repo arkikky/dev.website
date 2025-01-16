@@ -44,12 +44,11 @@ export async function getFetchUrl(url) {
 }
 
 export async function getFetchUrl_FormData(url, data) {
-  const rs = await fetch(`${url}`, {
+  const rs = await fetch(url, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${tApp}`,
     },
-    credentials: 'include',
     body: data,
   })
     .then((res) => {

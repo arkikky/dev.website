@@ -1,5 +1,8 @@
 import CryptoJS from 'crypto-js';
 
+// @lib/controller & helper
+import { getFetchUrl_FormData, updateData } from '@lib/controller/API';
+
 // @smooth-scroll
 export function smoothLeftScroll(container, targetScroll, duration = 1000) {
   const startScroll = container.scrollLeft;
@@ -173,7 +176,13 @@ export function decodeData(ed) {
 }
 
 // @convert-url(to blob)
-export function convertQrCodeToBlob(qrCodeUrl, id, attendeeId, fullname) {
+export async function convertQrCodeToBlob(
+  qrCodeUrl,
+  id,
+  attendeeId,
+  documentId,
+  fullname
+) {
   const [header, base64Data] = qrCodeUrl?.split(',');
   const mimeString = header.match(/:(.*?);/)[1];
   const byteString = atob(base64Data);
@@ -190,8 +199,23 @@ export function convertQrCodeToBlob(qrCodeUrl, id, attendeeId, fullname) {
   formData.append('files', pngBlobQrCode, `QrCode_${attendeeId}.png`);
   formData.append('fileInfo', JSON.stringify(newImageInformtn));
   formData.append('ref', 'api::attendee.attendee');
-  formData.append('refId', `${id}`);
+  formData.append('refId', `${id + 1}`);
   formData.append('field', `qrCode`);
+  const rsQrCodeGenerate = await getFetchUrl_FormData(
+    'https://api.coinfest.asia/api/upload?',
+    formData
+  );
+  if (rsQrCodeGenerate) {
+    const addedQrCode_Attendee = await updateData(
+      `/api/attendees/${documentId}?populate=*`,
+      {
+        data: {
+          qrCodeUID: rsQrCodeGenerate[0]?.hash,
+          qrCode: rsQrCodeGenerate[0]?.id,
+        },
+      }
+    );
+  }
 
-  return formData;
+  return rsQrCodeGenerate;
 }

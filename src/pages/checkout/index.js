@@ -19,7 +19,6 @@ import { order } from '@reduxState/slices';
 import {
   getFetch,
   getFetchUrl,
-  getFetchUrl_FormData,
   updateData,
   pushSubmitData,
 } from '@lib/controller/API';
@@ -734,12 +733,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     }
                   );
                   if (rsAttendee) {
-                    const rsQrCodeUrl = await QRCode.toDataURL(
-                      `${rsAttendee?.data.attendeeId}`,
-                      {
-                        width: 256,
-                      }
-                    );
                     const isFullname = `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`;
                     const tickets =
                       rsAttendee?.data.product.documentId ===
@@ -747,15 +740,9 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                         ? `Festival Tickets`
                         : `${rsAttendee?.data.product?.name}`;
 
-                    const rsBlobQrCode = convertQrCodeToBlob(
-                      rsQrCodeUrl,
-                      rsAttendee?.data.id,
-                      rsAttendee?.data.attendeeId,
-                      isFullname
-                    );
                     arrAttendees.push({
                       attendee: rsAttendee?.data,
-                      blobQrCode: rsBlobQrCode,
+                      // blobQrCode: rsBlobQrCode,
                       fullname: isFullname,
                       ticketProducts: tickets,
                       group: groupName,
@@ -883,9 +870,23 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
             for (let i = 0; i < arrAttendees?.length; i++) {
               const gtRslt = arrAttendees[i];
+
+              const rsQrCodeUrl = await QRCode.toDataURL(
+                `${gtRslt?.attendee?.attendeeId}`,
+                {
+                  width: 256,
+                }
+              );
+              const rsBlobQrCode = convertQrCodeToBlob(
+                rsQrCodeUrl,
+                gtRslt?.attendee?.id,
+                gtRslt?.attendee?.attendeeId,
+                gtRslt?.attendee?.documentId,
+                gtRslt?.fullname
+              );
               // @save-to(hubspot) & @convert-url(to blob)
-              const [updateStatusAttendee, rsHbSptAttendee, rsQrCodeGenerate] =
-                await Promise.all([
+              const [updateStatusAttendee, rsHbSptAttendee] = await Promise.all(
+                [
                   updateData(`/api/attendees/${gtRslt?.attendee?.documentId}`, {
                     data: {
                       isApproved: true,
@@ -898,11 +899,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     ),
                     hbSptAttndeeKey
                   ),
-                  getFetchUrl_FormData(
-                    'https://api.coinfest.asia/api/upload?',
-                    gtRslt?.blobQrCode
-                  ),
-                ]);
+                ]
+              );
               if (!procssdEmails?.has(gtRslt?.attendee?.email)) {
                 procssdEmails.add(gtRslt?.attendee?.email);
                 // @send(email)
@@ -914,7 +912,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   },
                   body: JSON.stringify({
                     toEmail: gtRslt?.attendee?.email,
-                    qrCode: rsQrCodeGenerate[0]?.url,
+                    qrCode: rsBlobQrCode[0]?.url,
                     docId: gtRslt?.attendee?.product.documentId,
                     attId: gtRslt?.attendee?.attendeeId,
                     fullname: gtRslt?.fullname,
@@ -924,7 +922,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 }).then((res) => res.json());
               }
               arrBlobAttendees.push({
-                blobQrCodeUrl: rsQrCodeGenerate[0]?.url,
+                blobQrCodeUrl: rsBlobQrCode[0]?.url,
               });
             }
             // @send(ticket-customer)

@@ -13,12 +13,7 @@ import { useDispatch } from 'react-redux';
 import { removeCart } from '@reduxState/slices';
 
 // @lib/controller & helper
-import {
-  getFetch,
-  getFetchUrl,
-  getFetchUrl_FormData,
-  updateData,
-} from '@lib/controller/API';
+import { getFetch, getFetchUrl, updateData } from '@lib/controller/API';
 import { submitFormHbSpt } from '@lib/controller/HubSpot';
 import { currencyConverter } from '@lib/helper/CalculateCartContext';
 import { encodeData, convertQrCodeToBlob } from '@lib/helper/Configuration';
@@ -251,30 +246,27 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                         rsQrCodeUrl,
                         rsAttendee?.id,
                         rsAttendee?.attendeeId,
+                        rsAttendee?.documentId,
                         isFullname
                       );
-                      const [
-                        updateStatusAttendee,
-                        rsHbSptAttendee,
-                        rsQrCodeGenerate,
-                      ] = await Promise.all([
-                        updateData(`/api/attendees/${rsAttendee?.documentId}`, {
-                          data: {
-                            isApproved: true,
-                          },
-                        }),
-                        submitFormHbSpt(
-                          setHbSptAttendeeData(
-                            rsAttendee,
-                            isOrderRecived?.isIpAddress?.ip
+                      const [updateStatusAttendee, rsHbSptAttendee] =
+                        await Promise.all([
+                          updateData(
+                            `/api/attendees/${rsAttendee?.documentId}`,
+                            {
+                              data: {
+                                isApproved: true,
+                              },
+                            }
                           ),
-                          hbSptAttndeeKey
-                        ),
-                        getFetchUrl_FormData(
-                          'https://api.coinfest.asia/api/upload?',
-                          rsBlobQrCode
-                        ),
-                      ]);
+                          submitFormHbSpt(
+                            setHbSptAttendeeData(
+                              rsAttendee,
+                              isOrderRecived?.isIpAddress?.ip
+                            ),
+                            hbSptAttndeeKey
+                          ),
+                        ]);
                       if (!procssdEmails?.has(rsAttendee?.email)) {
                         procssdEmails.add(rsAttendee?.email);
                         // @send(email)
@@ -288,7 +280,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                             },
                             body: JSON.stringify({
                               toEmail: rsAttendee?.email,
-                              qrCode: rsQrCodeGenerate[0]?.url,
+                              qrCode: rsBlobQrCode[0]?.url,
                               docId: isGrpdAttendee?.documentId,
                               attId: rsAttendee?.attendeeId,
                               fullname: isFullname,
@@ -299,7 +291,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                         ).then((res) => res.json());
                       }
                       arrBlobAttendees.push({
-                        blobQrCodeUrl: rsQrCodeGenerate[0]?.url,
+                        blobQrCodeUrl: rsBlobQrCode[0]?.url,
                       });
                     }
                   }
