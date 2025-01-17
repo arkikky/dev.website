@@ -109,7 +109,7 @@ const nextConfig = {
           },
           {
             key: 'Content-Security-Policy',
-            value: `default-src 'self';script-src 'self' 'unsafe-eval';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://api.coinfest.asia https://api.hsforms.com https://hub.coinvestasi.com https://coinfest.asia https://coinfest-2025.vercel.app https://www.google-analytics.com https://checkout-staging.xendit.co https://vercel.live;img-src 'self' https://upload.wikimedia.org https://hub.coinvestasi.com https://flagcdn.com https://coinfest.asia https://coinfest-2025.vercel.app https://www.google-analytics.com https://checkout-staging.xendit.co https://vercel.live data:;frame-src 'none';frame-ancestors 'self';form-action 'self';worker-src 'self';base-uri 'self';`,
+            value: `default-src 'self';script-src 'self' 'unsafe-eval';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://api.coinfest.asia https://api.hsforms.com https://hub.coinvestasi.com https://coinfest.asia https://coinfest-2025.vercel.app https://www.google-analytics.com https://www.googletagmanager.com https://checkout-staging.xendit.co https://vercel.live;img-src 'self' https://upload.wikimedia.org https://hub.coinvestasi.com https://flagcdn.com https://coinfest.asia https://coinfest-2025.vercel.app https://www.google-analytics.com https://www.googletagmanager.com https://checkout-staging.xendit.co https://vercel.live data:;frame-src 'none';frame-ancestors 'self';form-action 'self';worker-src 'self';base-uri 'self';`,
           },
           {
             key: 'Permissions-Policy',
@@ -139,24 +139,6 @@ const nextConfig = {
           {
             key: 'Expect-CT',
             value: 'enforce, max-age=86400',
-          },
-        ],
-      },
-      {
-        source: '/_next/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=604800, immutable',
-          },
-        ],
-      },
-      {
-        source: '/assets/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=604800, must-revalidate',
           },
         ],
       },

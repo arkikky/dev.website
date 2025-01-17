@@ -97,9 +97,6 @@ export function useCart() {
   useEffect(() => {
     hndleHookProducts();
     calculateTotalQty();
-    return () => {
-      undefined;
-    };
   }, [isCart]);
 
   // @total(store)

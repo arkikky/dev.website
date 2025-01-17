@@ -14,6 +14,12 @@ import { Provider } from 'react-redux';
 import store from '@reduxState/store';
 
 // @script
+import {
+  GOOGLE_ADS_ID,
+  gtagUrl,
+  gtagAdsUrl,
+  gtagScript,
+} from '@lib/helper/GoogleTags';
 import PrelineScript from '@components/Script/PrelineScript';
 
 // @layouts
@@ -60,9 +66,9 @@ const App = ({ Component, pageProps }) => {
           <link rel="manifest" href="/manifest.json" />
 
           {/* @google-tag (gtag.js) */}
-          <Script
+          {/* <Script
             strategy="afterInteractive"
-            src="https://www.googletagmanager.com/gtag/js?id=G-QRS401B56Z"
+            src="https://www.googletagmanager.com/gtag/js?id=G-HC7BZC18HB"
           />
           <Script
             id="google-analytics"
@@ -72,8 +78,34 @@ const App = ({ Component, pageProps }) => {
                       window.dataLayer = window.dataLayer || [];
                       function gtag(){dataLayer.push(arguments);}
                       gtag('js', new Date());
-                      gtag('config', 'G-QRS401B56Z');
+                      gtag('config', 'G-HC7BZC18HB');
                     `,
+            }}
+          /> */}
+          <Script
+            id="google-ads"
+            strategy="afterInteractive"
+            src={gtagAdsUrl}
+          />
+          <Script
+            id="google-analytics"
+            strategy="afterInteractive"
+            src={gtagUrl}
+          />
+          <Script
+            id="gtag-init"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: gtagScript,
+            }}
+          />
+          <Script
+            id="google-ads-remarketing"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+            gtag('config', ${GOOGLE_ADS_ID});
+          `,
             }}
           />
         </Head>
