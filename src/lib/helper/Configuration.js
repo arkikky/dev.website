@@ -35,50 +35,50 @@ export function renderText(t, styLetters, dfltCls, specialCls) {
   );
 }
 // @format(count board)
-export function formatCount(c) {
+export const formatCount = (c) => {
   let formatted = c?.toLocaleString();
   return formatted + '+';
-}
+};
 
 // @dom-count
-export function getDOMParseCount(t) {
+export const getDOMParseCount = (t) => {
   if (typeof t === 'undefined' || t === null) return;
   const parser = new DOMParser();
   const parsedDocument = parser.parseFromString(t, 'text/html');
   const plainText = parsedDocument.body.textContent || '';
   return plainText.trim().length;
-}
+};
 
 // @truncate(text)
-export function truncateText(t, maxLength) {
+export const truncateText = (t, maxLength) => {
   if (t?.length <= maxLength) {
     return t;
   }
   return t?.slice(0, maxLength) + '...';
-}
+};
 
 // @split(string)
-export function getSplitString(d) {
+export const getSplitString = (d) => {
   const getString = d;
   const resString = getString.split(' ').join('_');
   return resString;
-}
-export function getJoinString(d) {
+};
+export const getJoinString = (d) => {
   const getString = d;
   const resString = getString.split(' ').join('');
   return resString;
-}
-export function getSplitStringCapital(d) {
+};
+export const getSplitStringCapital = (d) => {
   const getString = d;
   const resString = getString
     .split(' ')
     .map((s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase())
     .join('');
   return resString;
-}
+};
 
 // @random(characters)
-export function getRandomCharacters(q) {
+export const getRandomCharacters = (q) => {
   const chars =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   // @generate a random 6-character string
@@ -88,28 +88,26 @@ export function getRandomCharacters(q) {
     randomString += chars[rndmIndex];
   }
   return { data: randomString };
-}
-
+};
 // @generate(order code)
-export function generateCreateOrderCode() {
+export const generateCreateOrderCode = () => {
   const randomNumber = Math.floor(100000000000 + Math.random() * 900000000000);
   return `C-${randomNumber}`;
-}
+};
 // @generate(ticket attendee code)
-export function generateTicketAttendeeCode() {
+export const generateTicketAttendeeCode = () => {
   const randomNumber = Math.floor(100000000000 + Math.random() * 900000000000);
   return `A-${randomNumber}`;
-}
-
+};
 // @split-groups
-export function splitIntoGroups(d, grpCount) {
+export const splitIntoGroups = (d, grpCount) => {
   const groups = Array?.from({ length: grpCount }, () => []);
   d?.forEach((items, i) => {
     const groupIndex = i % grpCount;
     groups[groupIndex].push(items);
   });
   return groups;
-}
+};
 
 // @calculat-countdown(date)
 export function calculateCountdown(date) {

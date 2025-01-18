@@ -38,9 +38,6 @@ const nextConfig = {
   serverRuntimeConfig: {
     version: process.env.SITE_APP_VERSION,
     hbSptCheckout: process.env.FORM_CHECKOUT,
-    // @currency
-    currencyUSD: process.env.CURRENCY_USD,
-    // @token
     token_api: process.env.API_TOKEN_KEY,
     hbspot_token_api: process.env.API_TOKEN_HUBSPOT,
     ipAddress_token: process.env.API_IPADDRESS_TOKEN,
@@ -68,7 +65,7 @@ const nextConfig = {
           },
           {
             key: 'Access-Control-Allow-Methods',
-            value: 'GET, POST, PUT, DELETE, OPTIONS',
+            value: 'GET, POST, PUT, DELETE',
           },
           {
             key: 'Access-Control-Allow-Headers',
@@ -81,11 +78,11 @@ const nextConfig = {
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
-            value: '*',
+            value: process.env.NEXT_PUBLIC_SITE_URL || '*',
           },
           {
             key: 'Access-Control-Allow-Methods',
-            value: 'GET, POST, PUT, DELETE, OPTIONS',
+            value: 'GET, POST, PUT, DELETE',
           },
           {
             key: 'Cache-Control',
@@ -106,10 +103,6 @@ const nextConfig = {
           {
             key: 'X-Frame-Options',
             value: 'SAMEORIGIN',
-          },
-          {
-            key: 'Content-Security-Policy',
-            value: `default-src 'self';script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com 'unsafe-eval';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://coinfest.asia https://api.coinfest.asia https://api.hsforms.com https://hub.coinvestasi.com https://www.googletagmanager.com https://www.google-analytics.com https://checkout-staging.xendit.co https://vercel.live;img-src 'self' https://coinfest.asia https://upload.wikimedia.org https://api.coinfest.asia https://hub.coinvestasi.com https://flagcdn.com https://www.googletagmanager.com https://www.google-analytics.com https://checkout-staging.xendit.co https://vercel.live data:;frame-src 'none';frame-ancestors 'self';form-action 'self';worker-src 'self';base-uri 'self';`,
           },
           {
             key: 'Permissions-Policy',

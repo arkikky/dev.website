@@ -3,6 +3,7 @@ import { Toaster } from 'sonner';
 import { toast } from 'sonner';
 import getConfig from 'next/config';
 import dynamic from 'next/dynamic';
+import CryptoJS from 'crypto-js';
 import Script from 'next/script';
 
 // @get .config
@@ -36,7 +37,7 @@ import Speakers from '@layouts/Speakers';
 import PortalBanner from '@layouts/Banner/PortalBanner';
 import GetInvolved from '@layouts/GetInvolved';
 import WhatsHappening from '@layouts/WhatsHappening';
-import SocialMentions from '@layouts/SocialMentions';
+// import SocialMentions from '@layouts/SocialMentions';
 import FAQ from '@layouts/FAQ';
 import MoonPortalBanner from '@layouts/Banner/MoonPortalBanner';
 
@@ -62,6 +63,14 @@ const Home = ({ mode, collections, products }) => {
     socialMentions: collections?.socialMentions,
     faq: collections?.faq,
   });
+
+  const inlineScriptContent = "console.log('This is a secure inline script');";
+  // const hashNonce = CryptoJS.SHA256(inlineScriptContent).toString(
+  //   CryptoJS.enc.Base64
+  // );
+  // const hashNonce = CryptoJS.lib.WordArray.random(16).toString(
+  //   CryptoJS.enc.Base64
+  // );
 
   // @hanlde-change(product)
   const hndleChangeQty = async (idProducts, qtyProduct) => {
@@ -186,6 +195,10 @@ const Home = ({ mode, collections, products }) => {
       },
     ],
   };
+  const hashNonce_SchmaApp = CryptoJS.SHA256(schmaApp).toString(
+    CryptoJS.enc.Base64
+  );
+
   // @schema(brand logo)
   const schmaBrandLogo = {
     '@context': 'https://schema.org',
@@ -199,6 +212,9 @@ const Home = ({ mode, collections, products }) => {
       `https://www.linkedin.com/showcase/coinfest/`,
     ],
   };
+  const hashNonce_SchmaBrandLogo = CryptoJS.SHA256(schmaBrandLogo).toString(
+    CryptoJS.enc.Base64
+  );
 
   return (
     <>
@@ -209,10 +225,12 @@ const Home = ({ mode, collections, products }) => {
       <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schmaApp) }}
+        nonce={hashNonce_SchmaApp}
       />
       <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schmaBrandLogo) }}
+        nonce={hashNonce_SchmaBrandLogo}
       />
 
       {/* @main */}
@@ -286,7 +304,7 @@ const Home = ({ mode, collections, products }) => {
         <PortalBanner mode={mode} id={'ca25PortalBanner1'} />
 
         {/* @social-mentions */}
-        <SocialMentions mode={mode} result={isCollections?.socialMentions} />
+        {/* <SocialMentions mode={mode} result={isCollections?.socialMentions} /> */}
 
         {/* @faq */}
         <FAQ mode={mode} result={isCollections?.faq} />

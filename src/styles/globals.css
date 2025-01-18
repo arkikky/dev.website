@@ -3,13 +3,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @add(Preline) */
+/* @add(preline) */
 @import url('/node_modules/preline/dist/preline.css');
 
 @import url('./body.module.css');
 @import url('./fonts.module.css');
 @import url('./typhography.module.css');
-
+/* @components */
 @import url('./components/animate.module.css');
 @import url('./components/backdrop.module.css');
 @import url('./components/alert.module.css');
@@ -20,7 +20,7 @@
 @import url('./components/mansory.module.css');
 @import url('./components/cards.module.css');
 @import url('./components/products.module.css');
-
+/* @layouts */
 @import url('./layouts/navbar.module.css');
 @import url('./layouts/footer.module.css');
 
