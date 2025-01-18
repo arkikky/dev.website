@@ -17,17 +17,18 @@ const LayoutStore = ({ isTheme = 'light', isLayouts = false, children }) => {
   // @hndle(background change)
   useEffect(() => {
     const hndlChangeTheme = () => {
-      const b = document.body;
-      if (isTheme === 'light') {
-        b?.classList.remove('bg-dark', 'ca25MainApps-Dark');
-        b?.classList.add('bg-white', 'ca25MainApps-Light');
-      } else if (isTheme === 'dark') {
-        b?.classList.remove('bg-white', 'ca25MainApps-Light');
-        b?.classList.add('bg-dark', 'ca25MainApps-Dark');
-      } else {
-        b?.classList.remove('bg-white', 'ca25MainApps-Light');
-        b?.classList.add('bg-dark', 'ca25MainApps-Dark');
-      }
+      const theme =
+        isTheme === 'light'
+          ? ['bg-white', 'ca25MainApps-Light']
+          : ['bg-dark', 'ca25MainApps-Dark'];
+
+      document.body.classList.remove(
+        'bg-white',
+        'ca25MainApps-Light',
+        'bg-dark',
+        'ca25MainApps-Dark'
+      );
+      document.body.classList.add(...theme);
     };
     router?.events.on('routeChangeStart', hndlChangeTheme);
     hndlChangeTheme();

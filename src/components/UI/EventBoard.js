@@ -39,7 +39,7 @@ const EventBoard = ({ id }) => {
             updateOnMove: true,
             type: 'loop',
             perPage: 1,
-            // autoplay: true,
+            autoplay: true,
             direction: 'ttb',
             lazyLoad: 'nearby',
             keyboard: false,

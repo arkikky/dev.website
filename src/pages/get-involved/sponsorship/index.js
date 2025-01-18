@@ -9,6 +9,7 @@ const { serverRuntimeConfig } = getConfig();
 
 // @lib/controller & helper
 import { getFetchUrl } from '@lib/controller/API';
+import { getReduceArray } from '@lib/helper/Configuration';
 import { getFecthHbSpt, submitFormHbSpt } from '@lib/controller/HubSpot';
 
 // @components
@@ -30,27 +31,25 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
     fields: forms || [],
     country: country || [],
   });
-  const [isInterestedOthrs, setInterestedOthrs] = useState([]);
-
-  // @handle-interested-others
-  const handleInterestedChange = (v) => {
-    if (isInterestedOthrs?.includes(v)) {
-      setInterestedOthrs(isInterestedOthrs?.filter((i) => i !== v));
-    } else {
-      setInterestedOthrs([...isInterestedOthrs, v]);
-    }
-  };
 
   const {
+    watch,
     register,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isSubmitting },
     handleSubmit,
     setValue,
     reset,
   } = useForm({
     mode: 'all',
     criteriaMode: 'all',
+    defaultValues: {
+      in_coinfest_asia_2024__we_are_interested_in: [],
+    },
   });
+  const isInterestedOthrs = watch(
+    'in_coinfest_asia_2024__we_are_interested_in',
+    []
+  );
 
   // @submit
   const onSubmit = async (data) => {
@@ -112,7 +111,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
         {
           name: 'if_you_pick__other___tell_us_what_kind_of_activations_you_d_like_to_explore',
           value: sntzeFld(
-            isInterestedOthrs?.includes('Other') === true
+            isInterestedOthrs?.includes('Other')
               ? data?.if_you_pick__other___tell_us_what_kind_of_activations_you_d_like_to_explore
               : '-'
           ),
@@ -125,7 +124,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
       context: {
         pageUri: 'https://coinfest.asia/get-involved/sponsorship',
         pageName: '2025 Sponsorship | Coinfest Asia 2025',
-        ipAddress: ipAddress?.ip,
+        ipAddress: isForms?.ipAddress?.ip,
       },
     };
     const k = 'bf625b40-82e5-4c4f-818d-7a6cfbe47a81';
@@ -271,7 +270,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                     id={`ca25Form_jobtitleSponsorship`}
                     ariaLabel={`Jobtitle Sponsorship`}
                     label="Choose a jobtitle..."
-                    listSelect={isForms?.fields[3]?.fields[0].options}
+                    listSelect={isForms?.fields[0]?.options}
                     values={`jobtitleSponsorship`}
                     setValue={setValue}
                     config={{
@@ -345,7 +344,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                     id={`ca25Form_CompanyFocusSponsorship`}
                     ariaLabel={`CompanyFocus Sponsorship`}
                     label="Choose a Company Focus..."
-                    listSelect={isForms?.fields[5]?.fields[0].options}
+                    listSelect={isForms?.fields[1]?.options}
                     values={`companyFocusSponsorship`}
                     setValue={setValue}
                     config={{
@@ -371,7 +370,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                     required={true}
                   />
                   <div className="mt-2 grid space-y-3">
-                    {isForms?.fields[6]?.fields[0].options?.map((rslt, i) => (
+                    {isForms?.fields[2]?.options?.map((rslt, i) => (
                       <div className="space-y-2" key={i}>
                         <label
                           htmlFor={`radioPreviousSponsorship${rslt?.name}${i}`}
@@ -413,7 +412,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                   required={true}
                 />
                 <div className="mt-2 grid space-y-4">
-                  {isForms?.fields[7].fields[0].options?.map((rslt, i) => (
+                  {isForms?.fields[3]?.options?.map((rslt, i) => (
                     <label
                       htmlFor={`ca25Form_intrestSponsorship${i}`}
                       className={`flex w-full cursor-pointer items-center`}
@@ -427,17 +426,16 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                             ? 'border-red-500'
                             : 'border-gray-500/20'
                         } bg-transparent text-primary outline-none ring-0 focus:outline-none focus-visible:outline-none`}
-                        name="ca25Form_intrestSponsorship[]"
                         value={rslt?.value}
+                        onChange={(e) => {
+                          handleInterestedChange(rslt?.value, 'Other');
+                        }}
                         {...register(
                           'in_coinfest_asia_2024__we_are_interested_in',
                           {
                             required: true,
                           }
                         )}
-                        onChange={(e) => {
-                          handleInterestedChange(rslt?.value);
-                        }}
                       />
 
                       <span className="ml-3 text-sm font-normal text-black-900">
@@ -486,7 +484,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                   required={true}
                 />
                 <div className="mt-2 grid space-y-4">
-                  {isForms?.fields[9].fields[0].options?.map((rslt, i) => (
+                  {isForms?.fields[4]?.options?.map((rslt, i) => (
                     <div className="space-y-3" key={i}>
                       <label
                         htmlFor={`radioBudgetSponsorship${rslt?.name}${i}`}
@@ -572,15 +570,16 @@ export const getStaticProps = async () => {
         `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
       ),
       getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
-      getFecthHbSpt(`/forms/v2/forms/bf625b40-82e5-4c4f-818d-7a6cfbe47a81`),
+      getFecthHbSpt(`/forms/v2/fields/bf625b40-82e5-4c4f-818d-7a6cfbe47a81`),
     ]);
+    const reduceForms = getReduceArray(rsForms, [3, 6, 7, 8, 10]);
 
     return {
       props: {
         mode: 'light',
         ipAddress: rsIpAddress || [],
         country: rsCountry || [],
-        forms: rsForms?.formFieldGroups || [],
+        forms: reduceForms || [],
       },
       revalidate: 900,
     };

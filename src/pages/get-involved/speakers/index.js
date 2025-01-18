@@ -13,6 +13,7 @@ import 'react-phone-input-2/lib/high-res.css';
 
 // @lib/controller & helper
 import { getFetchUrl } from '@lib/controller/API';
+import { getReduceArray } from '@lib/helper/Configuration';
 import { getFecthHbSpt, submitFormHbSpt } from '@lib/controller/HubSpot';
 
 // @components
@@ -39,7 +40,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
     watch,
     register,
     control,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isSubmitting },
     handleSubmit,
     getValues,
     setValue,
@@ -98,7 +99,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
         {
           name: 'if_you_choose__other___tell_us_what_s_in_your_mind',
           value: sntzeFld(
-            data?.if_you_choose__other___tell_us_what_s_in_your_mind !== ''
+            whatTopic === 'Other'
               ? data?.if_you_choose__other___tell_us_what_s_in_your_mind
               : '-'
           ),
@@ -292,6 +293,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                 render={({ field }) => (
                   <PhoneInput
                     {...field}
+                    country={isForms?.ipAddress}
                     onChange={(value, phone) => {
                       setValue(`dialcode-phoneSpeakers`, value, {
                         shouldValidate: true,
@@ -301,7 +303,6 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                     inputProps={{
                       required: false,
                       name: `dialcode-phoneSpeakers`,
-                      autoFocus: false,
                       maxLength: 18,
                     }}
                     containerClass="w-full"
@@ -312,7 +313,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                       errors[`phone`] && 'errors'
                     }`}
                     dropdownClass="ca25Form_PhoneInputDropdown"
-                    countryCodeEditable={false}
+                    countryCodeEditable={true}
                     enableSearch={true}
                     disableSearchIcon={true}
                     searchPlaceholder="Search..."
@@ -373,7 +374,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                   required={true}
                 />
                 <div className="mt-2 grid space-y-3">
-                  {isForms?.fields[4]?.fields[0].options?.map((rslt, i) => (
+                  {isForms?.fields[0]?.options?.map((rslt, i) => (
                     <div className="space-y-2" key={i}>
                       <label
                         htmlFor={`radioWouldYouLikeSpeakers${rslt?.name}${i}`}
@@ -418,7 +419,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                   id={`ca25Form_WhatTopicsSpeakers`}
                   ariaLabel={`What topics Speakers`}
                   label="Choose a memecoins..."
-                  listSelect={isForms?.fields[5].fields[0].options}
+                  listSelect={isForms?.fields[1]?.options}
                   values={`what_topics_are_you_most_able_to_speak_to_authoritatively`}
                   setValue={setValue}
                   config={{
@@ -506,7 +507,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                     id={`ca25Form_CompanyFocusSpeakers`}
                     ariaLabel={`CompanyFocus Speakers`}
                     label="Choose a consulting..."
-                    listSelect={isForms?.fields[7]?.fields[0].options}
+                    listSelect={isForms?.fields[2]?.options}
                     values={`companyFocusSpeakers`}
                     setValue={setValue}
                     config={{
@@ -530,7 +531,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                     id={`ca25Form_jobtitleSpeakers`}
                     ariaLabel={`Jobtitle Speakers`}
                     label="Choose a director..."
-                    listSelect={isForms?.fields[7]?.fields[1].options}
+                    listSelect={isForms?.fields[3]?.options}
                     values={`jobtitleSpeakers`}
                     setValue={setValue}
                     config={{
@@ -701,15 +702,16 @@ export const getStaticProps = async () => {
         `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
       ),
       getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
-      getFecthHbSpt(`/forms/v2/forms/0568d957-8627-4939-8e88-82bbb8c53e52`),
+      getFecthHbSpt(`/forms/v2/fields/0568d957-8627-4939-8e88-82bbb8c53e52`),
     ]);
+    const reduceForms = getReduceArray(rsForms, [5, 6, 9, 10]);
 
     return {
       props: {
         mode: 'light',
         ipAddress: rsIpAddress || [],
         country: rsCountry || [],
-        forms: rsForms?.formFieldGroups || [],
+        forms: reduceForms || [],
       },
       revalidate: 900,
     };

@@ -11,7 +11,6 @@ const PartnershipLayouts = ({
   title,
   shortDesc = null,
   backUrl,
-  btnBack = false,
   children,
 }) => {
   const [isPanelLayouts, setPanelLayouts] = useState({
@@ -34,7 +33,6 @@ const PartnershipLayouts = ({
         }));
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -44,7 +42,7 @@ const PartnershipLayouts = ({
   return (
     <>
       <main className="relative inline-flex w-full flex-grow flex-col bg-white xl:flex-row">
-        <div className="bgGradient-Primary180 relative top-0 flex h-[394px] w-full shrink-0 flex-col overflow-hidden sm:h-[467px] lg:h-[527px] xl:sticky xl:h-svh xl:w-[675px] 2xl:flex-1">
+        <div className="relative top-0 flex h-[394px] w-full shrink-0 flex-col overflow-hidden bgGradient-Primary180 sm:h-[467px] lg:h-[527px] xl:sticky xl:h-svh xl:w-[675px] 2xl:flex-1">
           <div className="fixed inset-x-4 bottom-auto top-4 z-base block sm:inset-x-11 sm:top-5 xl:sticky">
             <Link
               className="ca25BrandLogo-BckBlured relative flex w-max shrink-0 flex-row items-start"
@@ -71,9 +69,9 @@ const PartnershipLayouts = ({
                 </svg>
               </div>
               <Image
-                className="mx-auto my-auto hidden aspect-auto h-auto w-[99px] transition duration-300 ease-in-out sm:w-[147px] xl:block"
+                className="mx-auto my-auto hidden aspect-auto h-[31px] w-auto transition duration-300 ease-in-out sm:h-[45px] xl:block"
                 src={'/assets/images/ca2025BrandLight.svg'}
-                alt={`${publicRuntimeConfig?.siteAppName} Primary Brand LOGO Footer`}
+                alt={`${publicRuntimeConfig?.siteAppName} Brand LOGO Layouts`}
                 height={58}
                 width={170}
                 quality="87"
@@ -100,9 +98,9 @@ const PartnershipLayouts = ({
                 </svg>
               </div>
               <Image
-                className="mx-auto my-auto block aspect-auto h-auto w-[99px] transition duration-300 ease-in-out sm:w-[147px] xl:hidden"
+                className="mx-auto my-auto block aspect-auto h-[31px] w-auto transition duration-300 ease-in-out sm:h-[45px] xl:hidden"
                 src={isPanelLayouts?.images}
-                alt={`${publicRuntimeConfig?.siteAppName} Primary Brand LOGO Footer`}
+                alt={`${publicRuntimeConfig?.siteAppName} Brand LOGO Layouts`}
                 height={58}
                 width={170}
                 quality="87"

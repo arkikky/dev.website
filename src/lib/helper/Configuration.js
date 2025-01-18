@@ -109,8 +109,8 @@ export const splitIntoGroups = (d, grpCount) => {
   return groups;
 };
 
-// @calculat-countdown(date)
-export function calculateCountdown(date) {
+// @calculate-countdown(date)
+export const calculateCountdown = (date) => {
   const mrgdDate = Math.max(0, date - new Date());
   const toTimeUnits = (unit) =>
     Math.floor(mrgdDate / unit) %
@@ -121,13 +121,19 @@ export function calculateCountdown(date) {
     minutes: toTimeUnits(1000 * 60),
     seconds: toTimeUnits(1000),
   };
-}
-
+};
 // @discount-price
-export function getPriceDiscountDisplay(d) {
+export const getPriceDiscountDisplay = (d) => {
   if (!d?.price || !d?.priceSale) return null;
   return d.price;
-}
+};
+
+// @reduce-array
+export const getReduceArray = (arr, selctdIndex) => {
+  const selectedIdx = selctdIndex;
+  const rs = arr?.filter((item, idx) => selectedIdx.includes(idx));
+  return rs;
+};
 
 // @combine(array)
 export function getCombineMerged(data1, data2) {

@@ -13,6 +13,7 @@ import 'react-phone-input-2/lib/high-res.css';
 
 // @lib/controller & helper
 import { getFetchUrl } from '@lib/controller/API';
+import { getReduceArray } from '@lib/helper/Configuration';
 import { getFecthHbSpt, submitFormHbSpt } from '@lib/controller/HubSpot';
 
 // @components
@@ -34,6 +35,7 @@ const BecomeAnAffiliator = ({
   ipAddress,
   country,
   forms,
+  awd,
 }) => {
   const router = useRouter();
   const [isForms, setForms] = useState({
@@ -46,7 +48,7 @@ const BecomeAnAffiliator = ({
     watch,
     register,
     control,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isSubmitting },
     handleSubmit,
     getValues,
     setValue,
@@ -113,27 +115,22 @@ const BecomeAnAffiliator = ({
         {
           name: 'company',
           value: sntzeFld(
-            data?.are_you_submitting_this_inquiry_on_behalf_of_yourself_or_a_company_ ===
-              'Company'
-              ? `${data?.company}${groupLabel}`
-              : '-'
+            submittingInquiry === 'Company' ? data[`company${groupLabel}`] : '-'
           ),
         },
         {
           name: 'company_focus',
           value: sntzeFld(
-            data?.are_you_submitting_this_inquiry_on_behalf_of_yourself_or_a_company_ ===
-              'Company'
-              ? `${data?.company_focus}${groupLabel}`
+            submittingInquiry === 'Company'
+              ? data[`companyFocus${groupLabel}`]
               : '-'
           ),
         },
         {
           name: 'company_website',
           value: sntzeFld(
-            data?.are_you_submitting_this_inquiry_on_behalf_of_yourself_or_a_company_ ===
-              'Company'
-              ? data?.company_website
+            submittingInquiry === 'Company'
+              ? data[`company_website${groupLabel}`]
               : '-'
           ),
         },
@@ -307,6 +304,7 @@ const BecomeAnAffiliator = ({
                 render={({ field }) => (
                   <PhoneInput
                     {...field}
+                    country={isForms?.ipAddress}
                     onChange={(value, phone) => {
                       setValue(`dialcode-phone${groupLabel}`, value, {
                         shouldValidate: true,
@@ -318,7 +316,6 @@ const BecomeAnAffiliator = ({
                     inputProps={{
                       required: false,
                       name: `dialcode-phone${groupLabel}`,
-                      autoFocus: false,
                       maxLength: 18,
                     }}
                     containerClass="w-full"
@@ -329,7 +326,7 @@ const BecomeAnAffiliator = ({
                       errors[`phone${groupLabel}`] && 'errors'
                     }`}
                     dropdownClass="ca25Form_PhoneInputDropdown"
-                    countryCodeEditable={false}
+                    countryCodeEditable={true}
                     enableSearch={true}
                     disableSearchIcon={true}
                     searchPlaceholder="Search..."
@@ -366,12 +363,12 @@ const BecomeAnAffiliator = ({
               className={`"block ${errors[`country${groupLabel}`] && 'error'}`}
             >
               <Label
-                forId={`ca25Form_Country_${groupLabel}`}
+                forId={`ca25Form_Country${groupLabel}`}
                 label="Country"
                 required={true}
               />
               <SelectCountry
-                id={`ca25Form_Country_${groupLabel}`}
+                id={`ca25Form_Country${groupLabel}`}
                 ariaLabel={`Country - Affiliator Forms`}
                 listSelect={isForms?.country}
                 withIcons={true}
@@ -401,7 +398,7 @@ const BecomeAnAffiliator = ({
                     required: true,
                     maxLength: 120,
                     pattern: {
-                      value: /^@([a-zA-Z][a-zA-Z0-9_\.]{2,55})$/,
+                      value: /^([a-zA-Z][a-zA-Z0-9_\.]{2,55})$/,
                     },
                   }),
                 }}
@@ -417,7 +414,7 @@ const BecomeAnAffiliator = ({
               required={true}
             />
             <div className="mt-2 grid space-y-3">
-              {isForms?.fields[4].fields[0].options?.map((rslt, i) => (
+              {isForms?.fields[0]?.options?.map((rslt, i) => (
                 <div className="space-y-3" key={i}>
                   <label
                     htmlFor={`radioSubmittingInquiry${groupLabel}${rslt?.name}${i}`}
@@ -492,10 +489,7 @@ const BecomeAnAffiliator = ({
                       ariaLabel={`CompanyFocus ${groupLabel}`}
                       label="Choose a Company Focus..."
                       withSearch={true}
-                      listSelect={
-                        isForms?.fields[4]?.fields[0].dependentFieldFilters[1]
-                          ?.dependentFormField?.options
-                      }
+                      listSelect={isForms?.fields[1]?.options}
                       values={`companyFocus${groupLabel}`}
                       setValue={setValue}
                       config={{
@@ -509,7 +503,7 @@ const BecomeAnAffiliator = ({
                 <div className="mt-4 block">
                   <Label
                     forId={`ca25Form_CompanyWebsite${groupLabel}`}
-                    label="Please provide the links to your platforms here"
+                    label="Company Website"
                     required={true}
                   />
                   <Input
@@ -571,7 +565,7 @@ const BecomeAnAffiliator = ({
               required={true}
             />
             <div className="mt-2 grid space-y-4">
-              {isForms?.fields[6].fields[0].options?.map((rslt, i) => (
+              {isForms?.fields[2]?.options?.map((rslt, i) => (
                 <label
                   htmlFor={`ca25Form_PlatformsAudience${groupLabel}${i}`}
                   className={`flex w-full cursor-pointer items-center`}
@@ -685,15 +679,16 @@ export const getStaticProps = async () => {
         `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
       ),
       getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
-      getFecthHbSpt(`/forms/v2/forms/24512342-b546-4e92-a869-8b2c9c2bb3dc`),
+      getFecthHbSpt(`/forms/v2/fields/24512342-b546-4e92-a869-8b2c9c2bb3dc`),
     ]);
+    const reduceForms = getReduceArray(rsForms, [6, 8, 11]);
 
     return {
       props: {
         mode: 'light',
         ipAddress: rsIpAddress || [],
         country: rsCountry || [],
-        forms: rsForms?.formFieldGroups || [],
+        forms: reduceForms || [],
       },
       revalidate: 900,
     };
