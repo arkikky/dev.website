@@ -47,16 +47,10 @@ const PortalBanner = ({ id = 'ca25PortalBanner0', mode }) => {
             title={`Coinfest Asia 2025 Send Sponsorship Inquiry`}
           >
             {`Send Sponsorship Inquiry`}
-            <div class="absolute inset-0 flex h-full w-full justify-center blur-md [transform:skew(-13deg)_translateX(-100%)] group-hover:transition-[transform] group-hover:duration-[1.6s] group-hover:[transform:skew(-13deg)_translateX(100%)]">
-              <div class="relative h-full w-12 bg-white/20"></div>
+            <div className="absolute inset-0 flex h-full w-full justify-center blur-md [transform:skew(-13deg)_translateX(-100%)] group-hover:transition-[transform] group-hover:duration-[1.6s] group-hover:[transform:skew(-13deg)_translateX(100%)]">
+              <div className="relative h-full w-12 bg-white/40"></div>
             </div>
           </Link>
-          {/* <button class="group/button relative inline-flex items-center justify-center overflow-hidden rounded-md border border-white/20 bg-gray-800/30 px-6 py-2 text-base font-semibold text-white backdrop-blur-lg transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-xl hover:shadow-gray-600/50">
-            <span class="text-lg">Shimmer</span>
-            <div class="absolute inset-0 flex h-full w-full justify-center blur-md [transform:skew(-13deg)_translateX(-100%)] group-hover/button:duration-1000 group-hover/button:[transform:skew(-13deg)_translateX(100%)]">
-              <div class="relative h-full w-10 bg-white/20"></div>
-            </div>
-          </button> */}
         </div>
       </div>
     </>

@@ -37,7 +37,7 @@ import Speakers from '@layouts/Speakers';
 import PortalBanner from '@layouts/Banner/PortalBanner';
 import GetInvolved from '@layouts/GetInvolved';
 import WhatsHappening from '@layouts/WhatsHappening';
-// import SocialMentions from '@layouts/SocialMentions';
+import SocialMentions from '@layouts/SocialMentions';
 import FAQ from '@layouts/FAQ';
 import MoonPortalBanner from '@layouts/Banner/MoonPortalBanner';
 
@@ -63,14 +63,6 @@ const Home = ({ mode, collections, products }) => {
     socialMentions: collections?.socialMentions,
     faq: collections?.faq,
   });
-
-  const inlineScriptContent = "console.log('This is a secure inline script');";
-  // const hashNonce = CryptoJS.SHA256(inlineScriptContent).toString(
-  //   CryptoJS.enc.Base64
-  // );
-  // const hashNonce = CryptoJS.lib.WordArray.random(16).toString(
-  //   CryptoJS.enc.Base64
-  // );
 
   // @hanlde-change(product)
   const hndleChangeQty = async (idProducts, qtyProduct) => {
@@ -304,7 +296,7 @@ const Home = ({ mode, collections, products }) => {
         <PortalBanner mode={mode} id={'ca25PortalBanner1'} />
 
         {/* @social-mentions */}
-        {/* <SocialMentions mode={mode} result={isCollections?.socialMentions} /> */}
+        <SocialMentions mode={mode} result={isCollections?.socialMentions} />
 
         {/* @faq */}
         <FAQ mode={mode} result={isCollections?.faq} />

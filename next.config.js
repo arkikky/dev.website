@@ -25,7 +25,13 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'flagcdn.com/',
+        hostname: 'flagcdn.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.facebook.com',
         port: '',
         pathname: '/**',
       },

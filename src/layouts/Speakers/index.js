@@ -64,12 +64,15 @@ const Speakers = ({ mode, result = [] }) => {
                 )}
             </h2>
             <Link
-              className={`ca25MoonBtn-Embossed relative mx-auto inline-flex w-[174px] items-center justify-center rounded-full bg-[#ED4F35] px-3 py-3 text-sm font-semibold uppercase text-white disabled:pointer-events-none disabled:opacity-90 sm:w-[237px] sm:px-6 sm:py-5`}
+              className={`ca25MoonBtn-Embossed group relative mx-auto inline-flex w-[174px] items-center justify-center overflow-hidden rounded-full bg-[#ED4F35] px-3 py-3 text-sm font-semibold uppercase text-white disabled:pointer-events-none disabled:opacity-90 sm:w-[237px] sm:px-6 sm:py-5`}
               prefetch={true}
               href="/get-involved"
               title={`Coinfest Asia 2025 Apply As Speaker`}
             >
               {`Apply As Speaker`}
+              <div className="absolute inset-0 flex h-full w-full justify-center blur-md [transform:skew(-13deg)_translateX(-100%)] group-hover:transition-[transform] group-hover:duration-[1.6s] group-hover:[transform:skew(-13deg)_translateX(100%)]">
+                <div className="relative h-full w-12 bg-white/40"></div>
+              </div>
             </Link>
           </div>
         </Container>
