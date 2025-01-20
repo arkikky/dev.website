@@ -117,7 +117,7 @@
   @apply sm:h-[449.54px] sm:w-[449.54px];
   @apply lg:h-[579.54px] lg:w-[579.54px];
   @apply xl:h-[677.94px] xl:w-[677.94px];
-  @apply z-10;
+  @apply z-[32];
 }
 
 /* @blue-moon-special(mini rocket) */
