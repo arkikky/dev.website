@@ -88,7 +88,7 @@ export const getStaticProps = async () => {
         title: 'Partner as Media',
         shortDesc: `Become the main source on the latest Web3 insights and updates in Asia.`,
         labelBtn: `Apply Now`,
-        comingSoon: false,
+        comingSoon: true,
         slotsFull: false,
       },
       {

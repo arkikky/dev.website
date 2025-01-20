@@ -30,12 +30,14 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap"
         />
 
-        {/* @meta-pixel */}
-        <Script
-          id={`meta-pixel`}
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
+        {process.env.NODE_ENV === 'production' && (
+          <>
+            {/* @meta-pixel */}
+            <Script
+              id={`meta-pixel`}
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
               !function(f,b,e,v,n,t,s)
               {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
               n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -47,48 +49,50 @@ export default function Document() {
               fbq('init', '534460966120098');
               fbq('track', 'PageView');
             `,
-          }}
-          nonce={hashNonce}
-        />
-        <noscript>
-          <Image
-            className={`!hidden`}
-            src="https://www.facebook.com/tr?id=534460966120098&ev=PageView&noscript=1"
-            height="1"
-            width="1"
-          />
-        </noscript>
+              }}
+              nonce={hashNonce}
+            />
+            <noscript>
+              <Image
+                className={`!hidden`}
+                src="https://www.facebook.com/tr?id=534460966120098&ev=PageView&noscript=1"
+                height="1"
+                width="1"
+              />
+            </noscript>
 
-        {/* @twitter(conversion-tracking) */}
-        <script
-          id={`twitter-conversion-tracking`}
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
+            {/* @twitter(conversion-tracking) */}
+            <script
+              id={`twitter-conversion-tracking`}
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
               !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
               },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
               a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
               twq('config','o9kyj');
             `,
-          }}
-          nonce={hashNonce}
-        />
+              }}
+              nonce={hashNonce}
+            />
 
-        {/* @google-tag (gtag.js) */}
-        <Script
-          id={`google-analytics`}
-          strategy="afterInteractive"
-          src={gtagUrl}
-          nonce={hashNonce}
-        />
-        <Script
-          id={`gtag-init`}
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: gtagScript,
-          }}
-          nonce={hashNonce}
-        />
+            {/* @google-tag (gtag.js) */}
+            <Script
+              id={`google-analytics`}
+              strategy="afterInteractive"
+              src={gtagUrl}
+              nonce={hashNonce}
+            />
+            <Script
+              id={`gtag-init`}
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: gtagScript,
+              }}
+              nonce={hashNonce}
+            />
+          </>
+        )}
       </Head>
       <body>
         <Main />
