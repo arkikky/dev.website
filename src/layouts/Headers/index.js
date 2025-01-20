@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 // @components
 import StarryBackground from '@components/UI/Background/StarryBackground';
@@ -23,17 +24,27 @@ const Headers = ({ mode }) => {
           >
             <div className="ca25BckBlueMoon-Speacial_MiniRckt absolute inset-x-0 inset-y-0 mx-auto w-full sm:w-[659.54px] xl:w-[1180px]"></div>
           </div>
+
           <div
             className={
-              'ca25BckBlueMoon-SpeacialMoon pointer-events-none absolute inset-x-0 inset-y-0 z-[23] flex select-none flex-row items-center justify-center overflow-hidden mix-blend-hard-light'
+              'ca25BckBlueMoon-SpeacialMoon pointer-events-none flex select-none flex-row items-center justify-center overflow-hidden mix-blend-hard-light'
             }
-          ></div>
+          >
+            <Image
+              className="mx-auto h-full w-full object-cover object-center"
+              src={'/assets/images/ca25BlueMoon.svg'}
+              alt={`Coinfest Asia 2025 Special Blue Moon`}
+              height={606}
+              width={755}
+              quality="80"
+            />
+          </div>
 
           {/* @content(heading) */}
           <div
             className={`absolute inset-x-0 inset-y-0 z-[22] mx-auto mb-8 flex w-full flex-col items-center justify-center text-balance text-center sm:mb-12 sm:w-[619.54px] lg:w-[749.54px] xl:w-[1116px]`}
           >
-            <div
+            {/* <div
               className={`ca25HeadingHero subpixel-antialiased ${mode === 'light' ? 'text-black-900' : 'text-white'} [749.54px] xs:mt-[23px] mt-[39px] block w-full font-medium uppercase sm:-mt-[79px] sm:w-[619.54px] sm:font-semibold lg:w-[749.54px] xl:w-[1116px]`}
             >
               <div className="float-none pl-0 sm:float-left sm:pl-20">
@@ -74,10 +85,10 @@ const Headers = ({ mode }) => {
                     ['A', 'E'].includes(chr) ? <span key={i}>{chr}</span> : chr
                   )}
               </div>
-            </div>
-            <div className="xs:mt-2 mt-4 w-full text-center font-bevietnamPro text-[12px] font-medium leading-[16px] tracking-[5px] text-white sm:hidden">
+            </div> */}
+            {/* <div className="xs:mt-2 mt-4 w-full text-center font-bevietnamPro text-[12px] font-medium leading-[16px] tracking-[5px] text-white sm:hidden">
               {`BALI, 21—22 AUG 2025`}
-            </div>
+            </div> */}
           </div>
         </div>
 

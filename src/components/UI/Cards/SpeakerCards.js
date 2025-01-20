@@ -93,7 +93,7 @@ const SpeakerCards = ({
             <Image
               className="mx-auto h-full w-full object-cover object-center"
               src={'/assets/images/speakers/ca25BckCover-Speakers.svg'}
-              alt={`Coinfest Asia 2025 Empty Speakers)`}
+              alt={`Coinfest Asia 2025 Backcover Speakers)`}
               height={246}
               width={207}
               quality="87"
