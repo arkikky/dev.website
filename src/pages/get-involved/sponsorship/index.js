@@ -172,7 +172,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
           id="formSponsorship"
           method="POST"
           onSubmit={handleSubmit(onSubmit)}
-          className="relative mt-0 flex flex-col space-y-5 sm:mt-8"
+          className="relative mt-0 flex flex-col space-y-5"
         >
           <div
             className={`absolute inset-x-0 inset-y-0 bg-white/60 opacity-100 backdrop-blur-[2px] ${isSubmitting ? 'pointer-events-auto z-[15] select-auto' : '!pointer-events-auto -z-px !select-auto'}`}
@@ -214,7 +214,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                 id={`ca25Form_LastnameSponsorship`}
                 type="text"
                 name={`lastname`}
-                placeholder="Eg: Alexander"
+                placeholder="Eg: Doe"
                 ariaLabel={`Lastname`}
                 disabled={isSubmitting}
                 config={{
@@ -316,7 +316,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                     id={`ca25Form_CompanySponsorship`}
                     type="text"
                     name={`name`}
-                    placeholder="Eg: Alexandre"
+                    placeholder="Eg: Coinfest Asia"
                     ariaLabel={`Company Name - Sponsorship`}
                     config={{
                       ...register(`name`, {

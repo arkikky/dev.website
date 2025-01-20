@@ -20,6 +20,3 @@
   @apply shadow-[inset_0_-4px_8px_rgba(0,0,0,0.3),inset_0_4px_8px_rgba(255,255,255,0.3)];
   @apply transition duration-300 ease-in-out;
 }
-.ca25MoonBtn-Embossed:hover {
-  @apply underline;
-}

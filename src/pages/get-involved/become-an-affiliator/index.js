@@ -35,7 +35,6 @@ const BecomeAnAffiliator = ({
   ipAddress,
   country,
   forms,
-  awd,
 }) => {
   const router = useRouter();
   const [isForms, setForms] = useState({
@@ -90,7 +89,7 @@ const BecomeAnAffiliator = ({
         },
         {
           name: 'phone',
-          value: sntzeFld(`${data?.phone}${groupLabel}`),
+          value: sntzeFld(data[`phone${groupLabel}`]),
         },
         {
           name: 'telegram_username',
@@ -101,8 +100,8 @@ const BecomeAnAffiliator = ({
         {
           name: 'country',
           value: sntzeFld(
-            `${data?.country}${groupLabel}` !== null
-              ? `${data?.country}${groupLabel}`
+            data[`country${groupLabel}`] !== null
+              ? data[`country${groupLabel}`]
               : '-'
           ),
         },
@@ -206,10 +205,10 @@ const BecomeAnAffiliator = ({
         mode={mode}
       >
         <form
-          id="formAffiliator"
+          id={`form${groupLabel}`}
           method="POST"
           onSubmit={handleSubmit(onSubmit)}
-          className="relative mt-0 flex flex-col space-y-5 sm:mt-8"
+          className="relative mt-0 flex flex-col space-y-5"
         >
           <div
             className={`absolute inset-x-0 inset-y-0 bg-white/60 opacity-100 backdrop-blur-[2px] ${isSubmitting ? 'pointer-events-auto z-[15] select-auto' : '!pointer-events-auto -z-px !select-auto'}`}
@@ -251,7 +250,7 @@ const BecomeAnAffiliator = ({
                 id={`ca25Form_Lastname${groupLabel}`}
                 type="text"
                 name={`lastname`}
-                placeholder="Eg: Alexander"
+                placeholder="Eg: Doe"
                 ariaLabel={`Lastname`}
                 disabled={isSubmitting}
                 config={{
@@ -503,7 +502,7 @@ const BecomeAnAffiliator = ({
                 <div className="mt-4 block">
                   <Label
                     forId={`ca25Form_CompanyWebsite${groupLabel}`}
-                    label="Company Website"
+                    label="Company Website Url"
                     required={true}
                   />
                   <Input
@@ -535,7 +534,7 @@ const BecomeAnAffiliator = ({
               required={true}
             />
             <Textarea
-              id="textarea-label"
+              id={`ca25Form_TellUsAbout${groupLabel}`}
               className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
               rows="5"
               placeholder="Describe your audience type, audience size, demographics, engagement metrics, and who you aim to reach."

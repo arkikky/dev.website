@@ -198,13 +198,13 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
           id="formSpeakers"
           method="POST"
           onSubmit={handleSubmit(onSubmit)}
-          className="relative mt-0 flex flex-col space-y-5 sm:mt-8"
+          className="relative mt-0 flex flex-col space-y-5"
         >
           <div
             className={`absolute inset-x-0 inset-y-0 bg-white/60 opacity-100 backdrop-blur-[2px] ${isSubmitting ? 'pointer-events-auto z-[15] select-auto' : '!pointer-events-auto -z-px !select-auto'}`}
           ></div>
 
-          <div className="grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
+          <div className="mt-0 grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
             <div className="block">
               <Label
                 forId={`ca25Form_FirstnameSpeakers`}
@@ -240,7 +240,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                 id={`ca25Form_LastnameSpeakers`}
                 type="text"
                 name={`lastname`}
-                placeholder="Eg: Alexander"
+                placeholder="Eg: Doe"
                 ariaLabel={`Lastname`}
                 disabled={isSubmitting}
                 config={{
@@ -479,7 +479,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                     id={`ca25Form_CompanySpeakers`}
                     type="text"
                     name={`company`}
-                    placeholder="Eg: Indonesia Crypto Network"
+                    placeholder="Eg: Coinfest Asia"
                     ariaLabel={`Company Name - Speakers`}
                     config={{
                       ...register(`company`, {
@@ -551,7 +551,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                     id={`ca25Form_CompanyWebsiteSpeakers`}
                     type="text"
                     name={`company_website`}
-                    placeholder="Eg: https://indonesiacrypto.network"
+                    placeholder="Eg: https://coinfest.asia/"
                     ariaLabel={`company_website - Speakers`}
                     config={{
                       ...register(`company_website`, {
@@ -630,13 +630,13 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                     type="text"
                     name={`telegram_username`}
                     placeholder="Eg: doealex"
-                    ariaLabel={`Lastname - Speakers`}
+                    ariaLabel={`Telegram - Speakers`}
                     config={{
                       ...register(`telegram_username`, {
                         required: true,
                         maxLength: 120,
                         pattern: {
-                          value: /^@([a-zA-Z][a-zA-Z0-9_\.]{2,55})$/,
+                          value: /^([a-zA-Z][a-zA-Z0-9_\.]{2,55})$/,
                         },
                       }),
                     }}

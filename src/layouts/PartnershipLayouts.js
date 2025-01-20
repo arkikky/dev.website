@@ -123,7 +123,7 @@ const PartnershipLayouts = ({
           <div className="ca25MoonPartnershipLayouts-Bottom absolute inset-x-0 bottom-0 top-auto z-[2] select-none"></div>
         </div>
         <div className="relative z-10 -mt-4 flex w-full min-w-full flex-1 flex-col rounded-t-[20px] bg-white px-4 pb-8 pt-10 sm:px-11 sm:pb-13 sm:pt-12 lg:px-17 lg:pb-20 lg:pt-17 xl:mt-0 xl:min-w-[auto] xl:rounded-none xl:py-17">
-          <div className="absolute inset-x-0 bottom-auto top-3.5 mx-auto flex h-1.5 w-[134px] rounded-full bg-gray-200 xl:hidden"></div>
+          <div className="absolute inset-x-0 bottom-auto top-3.5 mx-auto flex h-1 w-[134px] rounded-full bg-gray-200 xl:hidden"></div>
           {children}
         </div>
       </main>

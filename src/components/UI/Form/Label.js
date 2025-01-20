@@ -18,9 +18,10 @@ const Label = ({
           {required === true && <span className="ml-1.5 text-red-500">*</span>}
         </span>
         {helpText !== '' && (
-          <span className="mt-1 text-sm font-light text-gray-400">
-            {helpText}
-          </span>
+          <span
+            className="mt-1 text-sm font-light text-gray-400"
+            dangerouslySetInnerHTML={{ __html: helpText }}
+          ></span>
         )}
       </label>
     </>
