@@ -14,6 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addItemToCart } from '@reduxState/slices';
 
 // @lib/controller & helper
+import { nonceSha256 } from '@lib/helper/TrackingAnalytics';
 import { useCart } from '@lib/hooks/cart/Cart';
 import { getFetch, getFetchUrl } from '@lib/controller/API';
 
@@ -140,6 +141,10 @@ const Home = ({ mode, collections, products }) => {
     }, 700);
   };
 
+  // @hash-schema
+  const hashNonce256 = CryptoJS.SHA256(nonceSha256).toString(
+    CryptoJS.enc.Base64
+  );
   // @schema(homepage)
   const schmaApp = {
     '@context': 'https://schema.org',
@@ -187,10 +192,6 @@ const Home = ({ mode, collections, products }) => {
       },
     ],
   };
-  const hashNonce_SchmaApp = CryptoJS.SHA256(schmaApp).toString(
-    CryptoJS.enc.Base64
-  );
-
   // @schema(brand logo)
   const schmaBrandLogo = {
     '@context': 'https://schema.org',
@@ -204,10 +205,6 @@ const Home = ({ mode, collections, products }) => {
       `https://www.linkedin.com/showcase/coinfest/`,
     ],
   };
-  const hashNonce_SchmaBrandLogo = CryptoJS.SHA256(schmaBrandLogo).toString(
-    CryptoJS.enc.Base64
-  );
-
   return (
     <>
       {/* @head */}
@@ -217,12 +214,12 @@ const Home = ({ mode, collections, products }) => {
       <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schmaApp) }}
-        nonce={hashNonce_SchmaApp}
+        nonce={hashNonce256}
       />
       <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schmaBrandLogo) }}
-        nonce={hashNonce_SchmaBrandLogo}
+        nonce={hashNonce256}
       />
 
       {/* @main */}

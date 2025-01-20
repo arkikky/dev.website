@@ -3,8 +3,21 @@ import CryptoJS from 'crypto-js';
 import Script from 'next/script';
 import Image from 'next/image';
 
+// @lib
+import {
+  nonceSha256,
+  metaPixelScript,
+  hashMetaPixelScript,
+  twtrConversionScript,
+  hashTwtrConversionScript,
+  gTagsAnalyticsScript,
+  hashGTagAnalytics,
+  gTagsScript,
+  hashGTagManager,
+} from '@lib/helper/TrackingAnalytics';
+
 export default function Document() {
-  const hashNonce = CryptoJS.lib.WordArray.random(16).toString(
+  const hashNonce256 = CryptoJS.SHA256(nonceSha256).toString(
     CryptoJS.enc.Base64
   );
   return (
@@ -13,7 +26,7 @@ export default function Document() {
         {/* @content-security-policy */}
         <meta
           httpEquiv="Content-Security-Policy"
-          content={`default-src 'self';script-src 'self' https://connect.facebook.net https://www.googletagmanager.com https://static.ads-twitter.com https://ads-twitter.com https://ads-api.twitter.com https://analytics.twitter.com https://www.google-analytics.com https://static.hotjar.com https://script.hotjar.com 'unsafe-eval' 'nonce-${hashNonce}';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://coinfest.asia https://api.coinfest.asia https://api.hsforms.com https://hub.coinvestasi.com https://www.google.com https://www.google.com/ccm/collect https://connect.facebook.net https://www.facebook.com https://static.ads-twitter.com https://ads-twitter.com https://ads-api.twitter.com https://analytics.twitter.com https://www.googletagmanager.com https://www.google-analytics.com https://static.hotjar.com https://script.hotjar.com https://metrics.hotjar.io https://content.hotjar.io wss://ws.hotjar.com https://checkout-staging.xendit.co https://vercel.live;img-src 'self' https://coinfest.asia https://upload.wikimedia.org https://api.coinfest.asia https://hub.coinvestasi.com https://flagcdn.com https://www.google.com https://www.google.co.id https://connect.facebook.net https://www.facebook.com https://t.co https://static.ads-twitter.com https://ads-twitter.com https://ads-api.twitter.com https://analytics.twitter.com https://www.googletagmanager.com https://www.google-analytics.com https://checkout-staging.xendit.co https://vercel.live data:;frame-src 'self' https://td.doubleclick.net https://www.googletagmanager.com;form-action 'self';worker-src 'self';base-uri 'self';`}
+          content={`default-src 'self';script-src 'self' https://connect.facebook.net https://www.googletagmanager.com https://static.ads-twitter.com https://ads-twitter.com https://ads-api.twitter.com https://analytics.twitter.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://static.hotjar.com https://script.hotjar.com 'unsafe-eval' 'sha256-+VpH0Cw80OuFaR+X1lmYjLkKsip/F2dDslL0JAvwlFA=' 'sha256-+kTPHgSOsYwYaXhSf2xTyBaBK4uVBsD6sgRbu0UKIYU=' 'sha256-h8qdr28t37PRaTPEFJ1DmRLJKbfRzrtcJDuEJUp1FBw=' 'sha256-lH5mF7jetR73rDA8fhru5w2+2TLgjsr3PXRS16nwqpY=' 'sha256-xm8N0GZArBHm4p9Zsd98vsHWVLP7knjZklGdLDzn35M=' 'sha256-63SgcioJg3SzunjNOZishsGbCME4jf2tExf3FX51aAA=' 'sha256-2kGECM9NFHBAhlNMIbyAm0Lu6VdF7TvhbzT9WW86kUI=' 'sha256-ANMpmVf8PLjCGynCggIAiTArAnaTMInBshu95qRJPzg=' 'sha256-BawaB+1tlg+I0FG2NG2/30p/CM96DWlvld7LzrS5/6M=' 'sha256-BzokaaX+EWQs7wVvCr0hpX7jNoWu847XT8ay8gsQVHA=' 'sha256-ciempzB86lmZWo8K/uPbojn0/dfNxls6k0PSaNLRvow=' 'sha256-n/RMhdYdR3bw+fP3SraQjHyjwYYKf9PKqEjbgGfhn+0=' 'sha256-eUnp2iVRt/owvyEacOFIV+gGEV6vsK65zTx3zVwaP7o=' 'sha256-DtxIxVxxirVV7lmJdKrGO2JEAskZPNSx7uZcXvTalWg=' 'sha256-ATLVdlL7dm0+nH5N56U4mqJ2hTLoPfU0SOGf4CSQsRg=' 'sha256-ZPfOsj5SKj5ldrOcWOWm2a5wUFeaCTcpC6Kg+D0A2+w=' 'sha256-9OW5aXYYSnZX5Dvg+19bDiia2eOhw0LCwR4r+V3V5d0=' 'sha256-hMTlXvm+Ql/aRmzjpffxtisA0FskENp0fgY/0O/63Qk=' 'sha256-WnXrrRzgpTOaoj+/CEeJjeYDfYu6qkeJB44k68IPQbs=';style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;font-src 'self' https://fonts.gstatic.com;connect-src 'self' https://coinfest.asia https://api.coinfest.asia https://api.hsforms.com https://hub.coinvestasi.com https://www.google.com https://www.google.com/ccm/collect https://connect.facebook.net https://www.facebook.com https://www.facebook.com/tr/ https://static.ads-twitter.com https://ads-twitter.com https://ads-api.twitter.com https://analytics.twitter.com https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://static.hotjar.com https://script.hotjar.com https://metrics.hotjar.io https://content.hotjar.io wss://ws.hotjar.com https://checkout-staging.xendit.co https://vercel.live;img-src 'self' https://coinfest.asia https://upload.wikimedia.org https://api.coinfest.asia https://hub.coinvestasi.com https://flagcdn.com https://www.google.com https://www.google.co.id https://connect.facebook.net https://www.facebook.com https://www.facebook.com/tr/ https://t.co https://static.ads-twitter.com https://ads-twitter.com https://ads-api.twitter.com https://analytics.twitter.com https://www.googletagmanager.com https://www.google-analytics.com https://checkout-staging.xendit.co https://vercel.live data:;frame-src 'self' https://td.doubleclick.net https://www.googletagmanager.com;form-action 'self';worker-src 'self';base-uri 'self';`}
         />
         {/* @google-fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,24 +45,13 @@ export default function Document() {
           id={`meta-pixel`}
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '534460966120098');
-              fbq('track', 'PageView');
-            `,
+            __html: metaPixelScript,
           }}
-          nonce={hashNonce}
+          nonce={hashMetaPixelScript}
         />
         <noscript>
           <Image
-            className={`!hidden`}
+            className={`!hidden !h-0 !w-0`}
             src="https://www.facebook.com/tr?id=534460966120098&ev=PageView&noscript=1"
             height="1"
             width="1"
@@ -57,18 +59,13 @@ export default function Document() {
         </noscript>
 
         {/* @twitter(conversion-tracking) */}
-        <script
+        <Script
           id={`twitter-conversion-tracking`}
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: `
-              !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
-              },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
-              a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
-              twq('config','o9kyj');
-            `,
+            __html: twtrConversionScript,
           }}
-          nonce={hashNonce}
+          nonce={hashTwtrConversionScript}
         />
 
         {/* @google-tag (gtag.js) */}
@@ -76,30 +73,24 @@ export default function Document() {
           id={`google-analytics`}
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=G-HC7BZC18HB`}
-          nonce={hashNonce}
+          nonce={hashGTagAnalytics}
         />
         <Script
-          id={`gtag-init`}
+          id={`gtag-analytics`}
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || []; function gtag() { window.dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-HC7BZC18HB')`,
+            __html: gTagsAnalyticsScript,
           }}
-          nonce={hashNonce}
+          nonce={hashGTagAnalytics}
         />
         {/* @google-tag-manager */}
         <Script
-          id={`google-tag-manager`}
+          id={`gtag-manager`}
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-TMLM3MB');
-            `,
+            __html: gTagsScript,
           }}
-          nonce={hashNonce}
+          nonce={hashGTagManager}
         />
       </Head>
       <body>
@@ -110,12 +101,12 @@ export default function Document() {
             src={`https://www.googletagmanager.com/ns.html?id=GTM-TMLM3MB`}
             height="0"
             width="0"
-            nonce={hashNonce}
+            nonce={hashGTagManager}
           ></iframe>
         </noscript>
 
         <Main />
-        <NextScript nonce={hashNonce} />
+        <NextScript nonce={hashNonce256} />
       </body>
     </Html>
   );
