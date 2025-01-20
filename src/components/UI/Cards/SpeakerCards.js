@@ -59,7 +59,7 @@ const SpeakerCards = ({
         </div>
 
         {/* @images */}
-        <div className="xs:h-[195px] relative flex h-[221px] w-full min-w-full max-w-min flex-col overflow-hidden rounded-2xl bg-black-900/30 max-[420px]:h-[197px] sm:h-[273px] lg:h-[257px] xl:h-[336px]">
+        <div className="max-[420px]:h-[197px] relative flex h-[221px] w-full min-w-full max-w-min flex-col overflow-hidden rounded-2xl bg-black-900/30 sm:h-[273px] lg:h-[257px] xl:h-[336px] xs:h-[195px]">
           <div className="z-[16] h-full w-full">
             {images ? (
               isLoading ? (
@@ -69,7 +69,7 @@ const SpeakerCards = ({
                   alt={`Coinfest Asia 2025 ${name} Speakers)`}
                   height={336}
                   width={282}
-                  quality="87"
+                  quality="80"
                 />
               ) : (
                 <LoadStreams />
@@ -81,15 +81,24 @@ const SpeakerCards = ({
                 alt={`Coinfest Asia 2025 Empty Speakers)`}
                 height={336}
                 width={282}
-                quality="87"
+                quality="75"
               />
             )}
           </div>
 
           {/* @backdrop (cover) */}
           <div
-            className={`ca25BckCover-Speakers absolute inset-x-0 inset-y-0 z-px rounded-2xl border-2 border-solid border-white opacity-0 transition-[opacity] duration-300 ease-in-out group-hover:opacity-100`}
-          ></div>
+            className={`absolute inset-x-0 inset-y-0 z-px rounded-2xl border-2 border-solid border-white opacity-0 transition-[opacity] duration-300 ease-in-out group-hover:opacity-100`}
+          >
+            <Image
+              className="mx-auto h-full w-full object-cover object-center"
+              src={'/assets/images/speakers/ca25BckCover-Speakers.svg'}
+              alt={`Coinfest Asia 2025 Empty Speakers)`}
+              height={246}
+              width={207}
+              quality="87"
+            />
+          </div>
           <div
             className={`absolute inset-x-0 inset-y-0 z-[18] rounded-2xl border-[3px] border-solid border-white/80 opacity-0 transition-[opacity] duration-300 ease-in-out group-hover:opacity-100`}
           ></div>
