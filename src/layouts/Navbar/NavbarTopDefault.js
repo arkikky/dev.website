@@ -21,68 +21,55 @@ const EventBoard = dynamic(() => import('@components/UI/EventBoard'), {
 const NavbarTopDefault = ({ theme = 'dark' }) => {
   const isOpenNav = (e) => {
     e?.preventDefault();
-    if (e?.target.classList.contains('active') === false) {
-      const allBtnToggleNavMenu = document.querySelectorAll(
-        '.ca25NavMenu-ToggleItems'
-      );
-      allBtnToggleNavMenu.forEach((elmnt) => {
-        if (elmnt?.classList.contains('active')) {
-          elmnt?.classList.remove('active');
-        }
-      });
-      e?.target.classList.add('active');
+    const target = e?.target;
+
+    const allBtnToggleNavMenu = Array.from(
+      document.querySelectorAll('.ca25NavMenu-ToggleItems')
+    );
+    const allGeneralNavMenu = Array.from(
+      document.querySelectorAll('.ca25NavMenuGroup-General .ca25HalfNavMenu')
+    );
+
+    if (!target.classList.contains('active')) {
+      allBtnToggleNavMenu.forEach((btn) => btn.classList.remove('active'));
+      target.classList.add('active');
     } else {
-      e?.target.classList.remove('active');
+      target.classList.remove('active');
     }
 
-    const elmntTarget = e?.target.getAttribute('data-target');
+    const elmntTarget = target.getAttribute('data-target');
     if (elmntTarget) {
       const elmnt = document.querySelector(elmntTarget);
-      if (elmnt?.classList.contains('active') === false) {
-        const allGeneralNavMenu = document.querySelectorAll(
-          '.ca25NavMenuGroup-General .ca25HalfNavMenu'
-        );
-        allGeneralNavMenu.forEach((elmnt) => {
-          if (elmnt?.classList.contains('active')) {
-            elmnt?.classList.remove('active');
-          }
-        });
+      if (!elmnt?.classList.contains('active')) {
+        allGeneralNavMenu.forEach((menu) => menu.classList.remove('active'));
+        elmnt.classList.add('active');
 
-        elmnt?.classList.add('active');
         let backdrop = document.querySelector('.ca25DropdownBackdrop');
         if (!backdrop) {
-          const backdrop = document.createElement('div');
-          backdrop?.classList.add('ca25DropdownBackdrop');
-          backdrop?.setAttribute('id', '#ca25DropdownBackdrop');
-          backdrop.addEventListener('click', (e) => {
-            e?.preventDefault();
-            const allBtnToggleNavMenu = document.querySelectorAll(
-              '.ca25NavMenu-ToggleItems'
+          backdrop = document.createElement('div');
+          backdrop.classList.add('ca25DropdownBackdrop');
+          backdrop.id = 'ca25DropdownBackdrop';
+          backdrop.addEventListener('click', () => {
+            allBtnToggleNavMenu.forEach((btn) =>
+              btn.classList.remove('active')
             );
-            allBtnToggleNavMenu.forEach((elmnt) => {
-              if (elmnt?.classList.contains('active')) {
-                elmnt?.classList.remove('active');
-              }
-            });
-            allGeneralNavMenu.forEach((elmnt) => {
-              if (elmnt?.classList.contains('active')) {
-                elmnt?.classList.remove('active');
-              }
-            });
-            backdrop?.classList.remove('active');
+            allGeneralNavMenu.forEach((menu) =>
+              menu.classList.remove('active')
+            );
+            backdrop.classList.remove('active');
             setTimeout(() => backdrop.remove(), 300);
           });
-
           document.body.appendChild(backdrop);
-          setTimeout(() => backdrop?.classList.add('active'), 50);
+          setTimeout(() => backdrop.classList.add('active'), 50);
         }
       } else {
-        elmnt?.classList.remove('active');
+        elmnt.classList.remove('active');
         const existingBackdrop = document.querySelector(
           '.ca25DropdownBackdrop'
         );
         if (existingBackdrop) {
-          existingBackdrop.remove();
+          existingBackdrop.classList.remove('active');
+          setTimeout(() => existingBackdrop.remove(), 300);
         }
       }
     }

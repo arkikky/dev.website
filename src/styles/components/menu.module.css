@@ -4,7 +4,7 @@
 }
 .ca25NavMenuGroup-General {
   @apply bg-dark/40 px-7 backdrop-blur-[2px];
-  @apply rounded-xl border-2 border-solid border-gray-100/[0.1];
+  @apply rounded-xl border-2 border-solid border-gray-100/[0.06];
 }
 
 /* @nav-menu */
