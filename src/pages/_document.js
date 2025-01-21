@@ -36,6 +36,7 @@ script-src 'self'
   https://analytics.twitter.com 
   https://www.google-analytics.com 
   https://googleads.g.doubleclick.net 
+  https://googleadservices.com/pagead 
   https://static.hotjar.com 
   https://script.hotjar.com 
   'unsafe-eval'
@@ -93,6 +94,7 @@ img-src 'self'
   https://flagcdn.com
   https://www.google.com
   https://www.google.co.id
+  https://www.google.co.id/pagead
   https://connect.facebook.net
   https://www.facebook.com
   https://www.facebook.com/tr
