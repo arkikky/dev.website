@@ -28,17 +28,18 @@ export default function Document() {
           httpEquiv="Content-Security-Policy"
           content={`default-src 'self';
 script-src 'self' 
-  connect.facebook.net 
-  www.googletagmanager.com 
-  static.ads-twitter.com 
-  ads-twitter.com 
-  ads-api.twitter.com 
-  analytics.twitter.com 
-  www.google-analytics.com 
-  googleads.g.doubleclick.net 
-  googleadservices.com/pagead 
-  static.hotjar.com 
-  script.hotjar.com 
+  https://connect.facebook.net 
+  https://www.googletagmanager.com 
+  https://static.ads-twitter.com 
+  https://ads-twitter.com 
+  https://ads-api.twitter.com 
+  https://analytics.twitter.com 
+  https://www.google-analytics.com 
+  https://googleads.g.doubleclick.net 
+  https://googleadservices.com 
+  https://www.googleadservices.com 
+  https://static.hotjar.com 
+  https://script.hotjar.com 
   'unsafe-eval'
   'sha256-+VpH0Cw80OuFaR+X1lmYjLkKsip/F2dDslL0JAvwlFA='
   'sha256-+kTPHgSOsYwYaXhSf2xTyBaBK4uVBsD6sgRbu0UKIYU='
@@ -48,68 +49,65 @@ script-src 'self'
   'sha256-63SgcioJg3SzunjNOZishsGbCME4jf2tExf3FX51aAA='
   'sha256-2kGECM9NFHBAhlNMIbyAm0Lu6VdF7TvhbzT9WW86kUI='
   'sha256-ANMpmVf8PLjCGynCggIAiTArAnaTMInBshu95qRJPzg='
-  'sha256-BawaB+1tlg+I0FG2NG2/30p/CM96DWlvld7LzrS5/6M='
-  'sha256-BzokaaX+EWQs7wVvCr0hpX7jNoWu847XT8ay8gsQVHA='
-  'sha256-ciempzB86lmZWo8K/uPbojn0/dfNxls6k0PSaNLRvow='
-  'sha256-n/RMhdYdR3bw+fP3SraQjHyjwYYKf9PKqEjbgGfhn+0='
-  'sha256-eUnp2iVRt/owvyEacOFIV+gGEV6vsK65zTx3zVwaP7o='
-  'sha256-DtxIxVxxirVV7lmJdKrGO2JEAskZPNSx7uZcXvTalWg='
-  'sha256-ATLVdlL7dm0+nH5N56U4mqJ2hTLoPfU0SOGf4CSQsRg='
-  'sha256-ZPfOsj5SKj5ldrOcWOWm2a5wUFeaCTcpC6Kg+D0A2+w='
-  'sha256-9OW5aXYYSnZX5Dvg+19bDiia2eOhw0LCwR4r+V3V5d0='
-  'sha256-hMTlXvm+Ql/aRmzjpffxtisA0FskENp0fgY/0O/63Qk='
-  'sha256-WnXrrRzgpTOaoj+/CEeJjeYDfYu6qkeJB44k68IPQbs=';
+  'sha256-BawaB+1tlg+I0FG2NG2/30p/CM96DWlvld7LzrS5/6M=' 'sha256-BzokaaX+EWQs7wVvCr0hpX7jNoWu847XT8ay8gsQVHA=' 'sha256-ciempzB86lmZWo8K/uPbojn0/dfNxls6k0PSaNLRvow=' 'sha256-n/RMhdYdR3bw+fP3SraQjHyjwYYKf9PKqEjbgGfhn+0=' 'sha256-eUnp2iVRt/owvyEacOFIV+gGEV6vsK65zTx3zVwaP7o=' 'sha256-DtxIxVxxirVV7lmJdKrGO2JEAskZPNSx7uZcXvTalWg=' 'sha256-ATLVdlL7dm0+nH5N56U4mqJ2hTLoPfU0SOGf4CSQsRg=' 'sha256-ZPfOsj5SKj5ldrOcWOWm2a5wUFeaCTcpC6Kg+D0A2+w=' 'sha256-9OW5aXYYSnZX5Dvg+19bDiia2eOhw0LCwR4r+V3V5d0=' 'sha256-hMTlXvm+Ql/aRmzjpffxtisA0FskENp0fgY/0O/63Qk=' 'sha256-WnXrrRzgpTOaoj+/CEeJjeYDfYu6qkeJB44k68IPQbs=';
 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
 font-src 'self' https://fonts.gstatic.com;
 connect-src 'self'
-  coinfest.asia
-  api.coinfest.asia
-  api.hsforms.com
-  hub.coinvestasi.com
-  www.google.com
-  www.google.com/ccm
-  connect.facebook.net
-  www.facebook.com
-  www.facebook.com/tr
-  static.ads-twitter.com
-  ads-twitter.com
-  ads-api.twitter.com
-  analytics.twitter.com
-  www.googletagmanager.com
-  www.google-analytics.com
-  googleads.g.doubleclick.net
-  www.googleadservices.com/pagead
-  static.hotjar.com
-  script.hotjar.com
-  metrics.hotjar.io
-  content.hotjar.io
+  https://coinfest.asia
+  https://api.coinfest.asia
+  https://api.hsforms.com
+  https://hub.coinvestasi.com
+  https://www.google.com
+  https://www.google.com/ccm
+  https://google.com/pagead
+  https://google.com/pagead/form-data/
+  https://www.google.co.id
+  https://www.google.co.id/pagead
+  https://connect.facebook.net
+  https://www.facebook.com
+  https://www.facebook.com/tr
+  https://static.ads-twitter.com
+  https://ads-twitter.com
+  https://ads-api.twitter.com
+  https://analytics.twitter.com
+  https://www.googletagmanager.com
+  https://www.google-analytics.com
+  https://googleads.g.doubleclick.net
+  https://googleadservices.com
+  https://www.googleadservices.com
+  https://www.googleadservices.com/pagead
+  https://static.hotjar.com
+  https://script.hotjar.com
+  https://metrics.hotjar.io
+  https://content.hotjar.io
   wss://ws.hotjar.com
-  checkout-staging.xendit.co
-  vercel.live;
+  https://checkout-staging.xendit.co
+  https://vercel.live;
 img-src 'self' 
-  coinfest.asia
-  upload.wikimedia.org
-  api.coinfest.asia
-  hub.coinvestasi.com
-  flagcdn.com
-  www.google.com
-  www.google.co.id
-  www.google.co.id/pagead
-  connect.facebook.net
-  www.facebook.com
-  www.facebook.com/tr
-  t.co
-  static.ads-twitter.com
-  ads-twitter.com
-  ads-api.twitter.com
-  analytics.twitter.com
-  www.googletagmanager.com
-  www.google-analytics.com
-  checkout-staging.xendit.co
-  vercel.live
+  https://coinfest.asia
+  https://upload.wikimedia.org
+  https://api.coinfest.asia
+  https://hub.coinvestasi.com
+  https://flagcdn.com
+  https://www.google.com
+  https://www.google.co.id
+  https://www.google.co.id/pagead
+  https://connect.facebook.net
+  https://www.facebook.com
+  https://www.facebook.com/tr
+  https://t.co
+  https://static.ads-twitter.com
+  https://ads-twitter.com
+  https://ads-api.twitter.com
+  https://analytics.twitter.com
+  https://www.googletagmanager.com
+  https://www.google-analytics.com
+  https://googleads.g.doubleclick.net
+  https://checkout-staging.xendit.co
+  https://vercel.live
   data:;
-frame-src 'self' https://td.doubleclick.net https://www.googletagmanager.com;
-form-action 'self';
+frame-src 'self' https://www.facebook.com https://td.doubleclick.net https://www.googletagmanager.com;
+form-action 'self' https://www.facebook.com https://www.facebook.com/tr/;
 worker-src 'self';
 base-uri 'self';`}
         />
