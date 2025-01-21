@@ -29,9 +29,8 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
     const allGeneralNavMenu = Array.from(
       document.querySelectorAll('.ca25NavMenuGroup-General .ca25HalfNavMenu')
     );
-
     if (!target.classList.contains('active')) {
-      allBtnToggleNavMenu.forEach((btn) => btn.classList.remove('active'));
+      allBtnToggleNavMenu.forEach((btn) => btn?.classList.remove('active'));
       target.classList.add('active');
     } else {
       target.classList.remove('active');
@@ -41,7 +40,7 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
     if (elmntTarget) {
       const elmnt = document.querySelector(elmntTarget);
       if (!elmnt?.classList.contains('active')) {
-        allGeneralNavMenu.forEach((menu) => menu.classList.remove('active'));
+        allGeneralNavMenu.forEach((menu) => menu?.classList.remove('active'));
         elmnt.classList.add('active');
 
         let backdrop = document.querySelector('.ca25DropdownBackdrop');
@@ -60,7 +59,7 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
             setTimeout(() => backdrop.remove(), 300);
           });
           document.body.appendChild(backdrop);
-          setTimeout(() => backdrop.classList.add('active'), 50);
+          setTimeout(() => backdrop?.classList.add('active'), 50);
         }
       } else {
         elmnt.classList.remove('active');
@@ -126,6 +125,7 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
               <ul className="ca25NavMenu">
                 <li className="ca25NavMenu-Items">
                   <button
+                    id={`ca25NavBtnToggle_GetInvolved`}
                     className="ca25NavMenu-ToggleItems"
                     data-target={'.caNavMenu-GetInvolved'}
                     onClick={(e) => isOpenNav(e)}
@@ -175,6 +175,7 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
                 </li>
                 <li className="ca25NavMenu-Items">
                   <button
+                    id={`ca25NavBtnToggle_Speakers`}
                     className="ca25NavMenu-ToggleItems"
                     data-target={'.caNavMenu-Speakers'}
                     onClick={(e) => isOpenNav(e)}
