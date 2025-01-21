@@ -23,11 +23,11 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
     e?.preventDefault();
     const target = e?.target;
 
-    const allBtnToggleNavMenu = Array.from(
-      document.querySelectorAll('.ca25NavMenu-ToggleItems')
+    const allBtnToggleNavMenu = document.querySelectorAll(
+      '.ca25NavMenu-ToggleItems'
     );
-    const allGeneralNavMenu = Array.from(
-      document.querySelectorAll('.ca25NavMenuGroup-General .ca25HalfNavMenu')
+    const allGeneralNavMenu = document.querySelectorAll(
+      '.ca25NavMenuGroup-General .ca25HalfNavMenu'
     );
     if (!target.classList.contains('active')) {
       allBtnToggleNavMenu.forEach((btn) => btn?.classList.remove('active'));
@@ -42,49 +42,48 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
       if (!elmnt?.classList.contains('active')) {
         allGeneralNavMenu.forEach((menu) => menu?.classList.remove('active'));
         elmnt.classList.add('active');
-
-        let backdrop = document.querySelector('.ca25DropdownBackdrop');
-        if (!backdrop) {
-          backdrop = document.createElement('div');
-          backdrop.classList.add('ca25DropdownBackdrop');
-          backdrop.id = 'ca25DropdownBackdrop';
-          backdrop.addEventListener('click', () => {
-            allBtnToggleNavMenu.forEach((btn) =>
-              btn.classList.remove('active')
-            );
-            allGeneralNavMenu.forEach((menu) =>
-              menu.classList.remove('active')
-            );
-            backdrop.classList.remove('active');
-            setTimeout(() => backdrop.remove(), 300);
-          });
-          document.body.appendChild(backdrop);
-          setTimeout(() => backdrop?.classList.add('active'), 50);
-        }
+        // let backdrop = document.querySelector('.ca25DropdownBackdrop');
+        // if (!backdrop) {
+        //   backdrop = document.createElement('div');
+        //   backdrop.classList.add('ca25DropdownBackdrop');
+        //   backdrop.id = 'ca25DropdownBackdrop';
+        //   backdrop.addEventListener('click', () => {
+        //     allBtnToggleNavMenu.forEach((btn) =>
+        //       btn.classList.remove('active')
+        //     );
+        //     allGeneralNavMenu.forEach((menu) =>
+        //       menu.classList.remove('active')
+        //     );
+        //     backdrop.classList.remove('active');
+        //     setTimeout(() => backdrop.remove(), 300);
+        //   });
+        //   document.body.appendChild(backdrop);
+        //   setTimeout(() => backdrop?.classList.add('active'), 50);
+        // }
       } else {
         elmnt.classList.remove('active');
         const existingBackdrop = document.querySelector(
           '.ca25DropdownBackdrop'
         );
-        if (existingBackdrop) {
-          existingBackdrop.classList.remove('active');
-          setTimeout(() => existingBackdrop.remove(), 300);
-        }
+        // if (existingBackdrop) {
+        //   existingBackdrop.classList.remove('active');
+        //   setTimeout(() => existingBackdrop.remove(), 300);
+        // }
       }
     }
   };
-  const isOpenNavMobile = (e) => {
-    e?.preventDefault();
-    const elmntTarget = e?.target.getAttribute('data-target');
-    if (elmntTarget) {
-      const elmnt = document.querySelector(elmntTarget);
-      if (!elmnt?.classList.contains('active')) {
-        elmnt?.classList.add('active');
-      } else {
-        elmnt?.classList.remove('active');
-      }
-    }
-  };
+  // const isOpenNavMobile = (e) => {
+  //   e?.preventDefault();
+  //   const elmntTarget = e?.target.getAttribute('data-target');
+  //   if (elmntTarget) {
+  //     const elmnt = document.querySelector(elmntTarget);
+  //     if (!elmnt?.classList.contains('active')) {
+  //       elmnt?.classList.add('active');
+  //     } else {
+  //       elmnt?.classList.remove('active');
+  //     }
+  //   }
+  // };
 
   return (
     <>
@@ -235,7 +234,7 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
       </nav>
 
       {/* @mobile */}
-      <div className="ca25NavMenuGroup-Mobile">
+      {/* <div className="ca25NavMenuGroup-Mobile">
         <ul className="ca25NavMenu">
           <li className="ca25NavMenu-Items">
             <button
@@ -326,7 +325,7 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
             </ul>
           </li>
         </ul>
-      </div>
+      </div> */}
     </>
   );
 };
