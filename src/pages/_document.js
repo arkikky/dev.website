@@ -124,7 +124,7 @@ base-uri 'self';`}
         />
 
         {/* @meta-pixel */}
-        <Script
+        {/* <Script
           id={`meta-pixel`}
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -139,20 +139,20 @@ base-uri 'self';`}
             height="1"
             width="1"
           />
-        </noscript>
+        </noscript> */}
 
         {/* @twitter(conversion-tracking) */}
-        <Script
+        {/* <Script
           id={`twitter-conversion-tracking`}
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: twtrConversionScript,
           }}
           nonce={hashTwtrConversionScript}
-        />
+        /> */}
 
         {/* @google-tag (gtag.js) */}
-        <Script
+        {/* <Script
           id={`google-analytics`}
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=G-HC7BZC18HB`}
@@ -165,20 +165,20 @@ base-uri 'self';`}
             __html: gTagsAnalyticsScript,
           }}
           nonce={hashGTagAnalytics}
-        />
+        /> */}
         {/* @google-tag-manager */}
-        <Script
+        {/* <Script
           id={`gtag-manager`}
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: gTagsScript,
           }}
           nonce={hashGTagManager}
-        />
+        /> */}
       </Head>
       <body>
         {/* @google-tag-manager(noscript) */}
-        <noscript>
+        {/* <noscript>
           <iframe
             className={`!hidden !h-0 !w-0`}
             src={`https://www.googletagmanager.com/ns.html?id=GTM-TMLM3MB`}
@@ -186,7 +186,7 @@ base-uri 'self';`}
             width="0"
             nonce={hashGTagManager}
           ></iframe>
-        </noscript>
+        </noscript> */}
 
         <Main />
         <NextScript nonce={hashNonce256} />

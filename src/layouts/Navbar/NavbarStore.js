@@ -55,7 +55,7 @@ const NavbarStore = ({ isTheme = 'dark', nonStore = true }) => {
               >
                 {isTheme === 'dark' ? (
                   <Image
-                    className="mx-auto my-auto h-[38px] w-auto sm:h-[42px]"
+                    className="mx-auto my-auto h-[38px] w-auto sm:h-[44px]"
                     src={'/assets/images/ca2025BrandLight.svg'}
                     alt={`${publicRuntimeConfig?.siteAppName} Primary Brand LOGO Navbar`}
                     height={58}
@@ -65,7 +65,7 @@ const NavbarStore = ({ isTheme = 'dark', nonStore = true }) => {
                   />
                 ) : (
                   <Image
-                    className="mx-auto my-auto h-[38px] w-auto sm:h-[42px]"
+                    className="mx-auto my-auto h-[38px] w-auto sm:h-[44px]"
                     src={'/assets/images/ca2025Brand.svg'}
                     alt={`${publicRuntimeConfig?.siteAppName} Primary Brand LOGO Navbar`}
                     height={58}

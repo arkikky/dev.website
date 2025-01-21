@@ -19,12 +19,93 @@ const EventBoard = dynamic(() => import('@components/UI/EventBoard'), {
 });
 
 const NavbarTopDefault = ({ theme = 'dark' }) => {
+  const isOpenNav = (e) => {
+    e?.preventDefault();
+    if (e?.target.classList.contains('active') === false) {
+      const allBtnToggleNavMenu = document.querySelectorAll(
+        '.ca25NavMenu-ToggleItems'
+      );
+      allBtnToggleNavMenu.forEach((elmnt) => {
+        if (elmnt?.classList.contains('active')) {
+          elmnt?.classList.remove('active');
+        }
+      });
+      e?.target.classList.add('active');
+    } else {
+      e?.target.classList.remove('active');
+    }
+
+    const elmntTarget = e?.target.getAttribute('data-target');
+    if (elmntTarget) {
+      const elmnt = document.querySelector(elmntTarget);
+      if (elmnt?.classList.contains('active') === false) {
+        const allGeneralNavMenu = document.querySelectorAll(
+          '.ca25NavMenuGroup-General .ca25HalfNavMenu'
+        );
+        allGeneralNavMenu.forEach((elmnt) => {
+          if (elmnt?.classList.contains('active')) {
+            elmnt?.classList.remove('active');
+          }
+        });
+
+        elmnt?.classList.add('active');
+        let backdrop = document.querySelector('.ca25DropdownBackdrop');
+        if (!backdrop) {
+          const backdrop = document.createElement('div');
+          backdrop?.classList.add('ca25DropdownBackdrop');
+          backdrop?.setAttribute('id', '#ca25DropdownBackdrop');
+          backdrop.addEventListener('click', (e) => {
+            e?.preventDefault();
+            const allBtnToggleNavMenu = document.querySelectorAll(
+              '.ca25NavMenu-ToggleItems'
+            );
+            allBtnToggleNavMenu.forEach((elmnt) => {
+              if (elmnt?.classList.contains('active')) {
+                elmnt?.classList.remove('active');
+              }
+            });
+            allGeneralNavMenu.forEach((elmnt) => {
+              if (elmnt?.classList.contains('active')) {
+                elmnt?.classList.remove('active');
+              }
+            });
+            backdrop?.classList.remove('active');
+            setTimeout(() => backdrop.remove(), 300);
+          });
+
+          document.body.appendChild(backdrop);
+          setTimeout(() => backdrop?.classList.add('active'), 50);
+        }
+      } else {
+        elmnt?.classList.remove('active');
+        const existingBackdrop = document.querySelector(
+          '.ca25DropdownBackdrop'
+        );
+        if (existingBackdrop) {
+          existingBackdrop.remove();
+        }
+      }
+    }
+  };
+  const isOpenNavMobile = (e) => {
+    e?.preventDefault();
+    const elmntTarget = e?.target.getAttribute('data-target');
+    if (elmntTarget) {
+      const elmnt = document.querySelector(elmntTarget);
+      if (!elmnt?.classList.contains('active')) {
+        elmnt?.classList.add('active');
+      } else {
+        elmnt?.classList.remove('active');
+      }
+    }
+  };
+
   return (
     <>
       <nav className="fixed inset-x-0 bottom-auto top-0 z-base block h-auto w-full py-4 sm:py-6">
         <Container>
           <div
-            className={`flex flex-row items-start justify-between gap-y-6 sm:gap-y-0`}
+            className={`flex h-[58px] flex-row items-start justify-between gap-y-6 sm:gap-y-0`}
           >
             <div className="block w-full sm:w-max">
               <Link
@@ -33,7 +114,7 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
               >
                 {theme === 'dark' ? (
                   <Image
-                    className="mx-auto my-auto h-[38px] w-auto sm:h-[42px]"
+                    className="mx-auto my-auto h-[38px] w-auto sm:h-[44px]"
                     src={'/assets/images/ca2025BrandLight.svg'}
                     alt={`${publicRuntimeConfig?.siteAppName} Primary Brand LOGO Navbar`}
                     height={58}
@@ -43,7 +124,7 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
                   />
                 ) : (
                   <Image
-                    className="mx-auto my-auto h-[38px] w-auto sm:h-[42px]"
+                    className="mx-auto my-auto h-[38px] w-auto sm:h-[44px]"
                     src={'/assets/images/ca2025BrandDark.svg'}
                     alt={`${publicRuntimeConfig?.siteAppName} Primary Brand LOGO Navbar`}
                     height={58}
@@ -54,13 +135,210 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
                 )}
               </Link>
             </div>
+            <div className="ca25NavMenuGroup ca25NavMenuGroup-General">
+              <ul className="ca25NavMenu">
+                <li className="ca25NavMenu-Items">
+                  <button
+                    className="ca25NavMenu-ToggleItems"
+                    data-target={'.caNavMenu-GetInvolved'}
+                    onClick={(e) => isOpenNav(e)}
+                  >
+                    {` Get Involved`}{' '}
+                    <svg
+                      className="ca25NavMenu-ToggleIcons ml-1 size-4 lg:ml-1.5 lg:size-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="m18 15-6-6-6 6" />
+                    </svg>
+                  </button>
+                  <ul className="ca25HalfNavMenu caNavMenu-GetInvolved">
+                    <li>
+                      <Link href={'/'}>Speaker</Link>
+                    </li>
+                    <li>
+                      <Link href={'/'}>Sponsor</Link>
+                    </li>
+                    <li>
+                      <Link href={'/'}>Partner as Media</Link>
+                    </li>
+                    <li>
+                      <Link href={'/'}>Become an Affiliator</Link>
+                    </li>
+                    <li>
+                      <Link href={'/'}>Partner as Community</Link>
+                    </li>
+                    <li>
+                      <Link href={'/'}>Send Inquiry</Link>
+                    </li>
+                  </ul>
+                </li>
+                <li className="ca25NavMenu-Items ca25NavMenu-LabelItems">
+                  <Link
+                    href="/tickets"
+                    title={`${publicRuntimeConfig?.siteAppName} Tickets`}
+                  >
+                    {`Tickets`}
+                  </Link>
+                </li>
+                <li className="ca25NavMenu-Items">
+                  <button
+                    className="ca25NavMenu-ToggleItems"
+                    data-target={'.caNavMenu-Speakers'}
+                    onClick={(e) => isOpenNav(e)}
+                  >
+                    {` Get Involved`}{' '}
+                    <svg
+                      className="ca25NavMenu-ToggleIcons ml-1 size-4 lg:ml-1.5 lg:size-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="m18 15-6-6-6 6" />
+                    </svg>
+                  </button>
+                  <ul className="ca25HalfNavMenu caNavMenu-Speakers">
+                    <li>
+                      <Link href={'/'}>Speaker</Link>
+                    </li>
+                    <li>
+                      <Link href={'/'}>Sponsor</Link>
+                    </li>
+                    <li>
+                      <Link href={'/'}>Partner as Media</Link>
+                    </li>
+                    <li>
+                      <Link href={'/'}>Become an Affiliator</Link>
+                    </li>
+                    <li>
+                      <Link href={'/'}>Partner as Community</Link>
+                    </li>
+                    <li>
+                      <Link href={'/'}>Send Inquiry</Link>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
             {/* @event(date) */}
-            <div className="flex w-max flex-row">
+            <div className="hidden w-max flex-row sm:flex">
               <EventBoard id={'ca25MnBoard_Insights'} />
+            </div>
+            <div className="flex w-max flex-col sm:hidden">
+              <button
+                className="flex h-10 w-10 flex-col bg-red-600"
+                data-target={'.ca25NavMenuGroup-Mobile'}
+                onClick={(e) => isOpenNavMobile(e)}
+              >
+                TO
+              </button>
             </div>
           </div>
         </Container>
       </nav>
+
+      {/* @mobile */}
+      <div className="ca25NavMenuGroup-Mobile">
+        <ul className="ca25NavMenu">
+          <li className="ca25NavMenu-Items">
+            <button
+              className="ca25NavMenu-ToggleItems"
+              data-target={'.caNavMenu-GetInvolved'}
+            >
+              {` Get Involved`}{' '}
+              <svg
+                className="ml-1.5 size-[28px]"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m18 15-6-6-6 6" />
+              </svg>
+            </button>
+            <ul className="ca25HalfMobileNavMenuItems caNavMenuMobile-GetInvolved">
+              <li>
+                <Link href={'/'}>Speaker</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Sponsor</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Partner as Media</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Become an Affiliator</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Partner as Community</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Send Inquiry</Link>
+              </li>
+            </ul>
+          </li>
+          <li className="ca25NavMenu-Items">
+            <Link
+              href="/events"
+              title={`${publicRuntimeConfig?.siteAppName} Tickets`}
+            >
+              Tickets
+            </Link>
+          </li>
+          <li className="ca25NavMenu-Items">
+            <button
+              className="ca25NavMenu-ToggleItems"
+              data-target={'.caNavMenu-Speakers'}
+            >
+              {` Get Involved`}{' '}
+              <svg
+                className="ml-1.5 size-[28px]"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m18 15-6-6-6 6" />
+              </svg>
+            </button>
+            <ul className="ca25HalfMobileNavMenuItems caNavMenuMobile-Speakers">
+              <li>
+                <Link href={'/'}>Speaker</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Sponsor</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Partner as Media</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Become an Affiliator</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Partner as Community</Link>
+              </li>
+              <li>
+                <Link href={'/'}>Send Inquiry</Link>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </>
   );
 };

@@ -20,6 +20,7 @@
 @import url('./components/mansory.module.css');
 @import url('./components/cards.module.css');
 @import url('./components/products.module.css');
+@import url('./components/menu.module.css');
 /* @layouts */
 @import url('./layouts/navbar.module.css');
 @import url('./layouts/footer.module.css');
