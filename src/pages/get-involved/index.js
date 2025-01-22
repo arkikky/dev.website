@@ -88,7 +88,7 @@ export const getStaticProps = async () => {
         title: 'Partner as Media',
         shortDesc: `Become the main source on the latest Web3 insights and updates in Asia.`,
         labelBtn: `Apply Now`,
-        comingSoon: true,
+        comingSoon: false,
         slotsFull: false,
       },
       {
@@ -100,11 +100,11 @@ export const getStaticProps = async () => {
         slotsFull: false,
       },
       {
-        url: '/get-involved/interest',
+        url: '/get-involved/partner-as-community',
         title: 'Partner as Community',
         shortDesc: `Connect with leading Web3 industry players, aspiring startups, and communities from 90+ countries.`,
         labelBtn: `Apply Now`,
-        comingSoon: true,
+        comingSoon: false,
         slotsFull: false,
       },
     ],

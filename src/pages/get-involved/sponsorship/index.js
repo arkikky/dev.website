@@ -182,7 +182,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
             <div className="block">
               <Label
                 forId={`ca25Form_FirstnameSponsorship`}
-                label="Firstname"
+                label="First name"
                 required={true}
               />
               <Input

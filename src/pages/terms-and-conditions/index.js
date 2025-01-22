@@ -16,7 +16,7 @@ const TermsAndConditions = ({ mode }) => {
       <HeadGraphSeo title={`Terms And Conditions`} otherPage={true} />
 
       {/* @main */}
-      <Main className="relative flex flex-col pb-16 pt-[141px] sm:pb-24 sm:pt-[161px]">
+      <Main className="relative flex flex-col pb-16 pt-[141px] overflow-hidden sm:pb-24 sm:pt-[161px]">
         <Container className={'pb-20 sm:pb-28'}>
           <div className="relative grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-full col-start-1 sm:col-span-10 sm:col-start-2">

@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DOMPurify from 'dompurify';
 import { useRouter } from 'next/router';
-import { useForm, Controller } from 'react-hook-form';
-import PhoneInput from 'react-phone-input-2';
+import { useForm } from 'react-hook-form';
 import getConfig from 'next/config';
 import Link from 'next/link';
 
@@ -44,16 +43,29 @@ const PartnerCommunity = ({
   });
 
   const {
+    watch,
     register,
-    control,
     formState: { errors, isSubmitting },
     handleSubmit,
-    getValues,
     setValue,
     reset,
   } = useForm({
     mode: 'all',
   });
+  const isAgree = watch(
+    `coinfest_asia_2025_community_partner_agreement_to_form_submission`
+  );
+
+  // @hook(Preline)
+  const handleIntzPreline = async () => {
+    await import('preline/preline');
+    if (window.HSStaticMethods) {
+      window.HSStaticMethods.autoInit();
+    }
+  };
+  useEffect(() => {
+    handleIntzPreline();
+  }, [isAgree]);
 
   // @submit
   const onSubmit = async (data) => {
@@ -156,29 +168,29 @@ const PartnerCommunity = ({
       ],
       context: {
         pageUri: 'https://coinfest.asia/get-involved/partner-as-community',
-        pageName: '2025 Partner Community | Coinfest Asia 2025',
+        pageName: '2025 Partner As Community | Coinfest Asia 2025',
         ipAddress: isForms?.ipAddress?.ip,
       },
     };
-    const k = '28116348-7f30-4b66-86c2-59cb28f08190/';
-    // const rs = await submitFormHbSpt(d, k);
+    const k = '28116348-7f30-4b66-86c2-59cb28f08190';
+    const rs = await submitFormHbSpt(d, k);
 
     // @debug
-    console.log(d);
-    // if (rs === true) {
-    //   reset();
-    //   router.replace('/get-involved/partner-as-community/success');
-    // }
+    // console.log(d);
+    if (rs === true) {
+      reset();
+      router.replace('/get-involved/partner-as-community/success');
+    }
   };
 
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo title={`Partner As Media`} otherPage={true} />
+      <HeadGraphSeo title={`Partner As Community`} otherPage={true} />
 
       {/* @main */}
       <PartnershipLayouts
-        title={'COINFEST ASIA 2025 PARTNER AS COMMUNITY SUBMISSION'
+        title={'COINFEST ASIA 2025 PARTNER AS COMMUNITY'
           ?.split(' ')
           .map((w, i) =>
             w
@@ -348,9 +360,9 @@ const PartnerCommunity = ({
             <div className="mt-4 flex flex-col last:mb-0">
               <label
                 htmlFor={`ca25Form_YesIAGree${groupLabel}`}
-                className={`mb-2 flex flex-col text-sm font-medium text-black-900`}
+                className={`mb-2 mt-3 flex flex-col text-sm font-medium text-black-900`}
               >
-                <span className="block w-full text-start prose-a:text-primary prose-a:underline">
+                <strong className="block w-full text-start prose-a:text-primary prose-a:underline">
                   I have read, understood, and agree to the Terms & Conditions
                   above and on{' '}
                   <Link
@@ -361,7 +373,7 @@ const PartnerCommunity = ({
                   >
                     the complete terms page.
                   </Link>
-                </span>
+                </strong>
               </label>
               <div className="mt-2 grid space-y-3">
                 {isForms?.fields[0]?.options?.map((rslt, i) => (
@@ -397,437 +409,446 @@ const PartnerCommunity = ({
                 ))}
               </div>
             </div>
-            <div
-              className={`ca25Article_Frmatt ca25Article_FrmattNormal text-base`}
-            >
-              <p>
-                <span className="mb-2">
-                  <strong>
-                    Enter Your Ticket Number
-                    <br />
-                  </strong>
-                </span>
-                <span>
-                  Check your email for your Coinfest Asia ticket. You’ll find a
-                  QR code with a series of random numbers and letters below it.
-                  Copy and paste those characters into the fields below.
-                </span>
-              </p>
-            </div>
-            <div className="grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
-              <div className="block">
-                <Label
-                  forId={`ca25Form_Ticket1${groupLabel}`}
-                  label="Ticket 1"
-                  required={true}
-                />
-                <Input
-                  id={`ca25Form_Ticket1${groupLabel}`}
-                  type="text"
-                  name={`community_submission_ticket_1`}
-                  placeholder=""
-                  ariaLabel={`Ticket 1`}
-                  disabled={isSubmitting}
-                  config={{
-                    ...register(`community_submission_ticket_1`, {
-                      required: true,
-                      maxLength: 120,
-                      pattern: {
-                        value: /^[a-zA-Z0-9\s-_]{2,120}$/,
-                      },
-                    }),
-                  }}
-                  errors={errors[`community_submission_ticket_1`]}
-                />
-              </div>
-              <div className="block">
-                <Label
-                  forId={`ca25Form_Ticket2${groupLabel}`}
-                  label="Ticket 2"
-                  required={true}
-                />
-                <Input
-                  id={`ca25Form_Ticket2${groupLabel}`}
-                  type="text"
-                  name={`community_submission_ticket_2`}
-                  placeholder=""
-                  ariaLabel={`Ticket 2`}
-                  disabled={isSubmitting}
-                  config={{
-                    ...register(`community_submission_ticket_2`, {
-                      required: true,
-                      maxLength: 120,
-                      pattern: {
-                        value: /^[a-zA-Z0-9\s-_]{2,120}$/,
-                      },
-                    }),
-                  }}
-                  errors={errors[`community_submission_ticket_2`]}
-                />
-              </div>
-            </div>
           </div>
 
-          <div className="block w-full space-y-5 pt-3">
-            <h2 className="mb-2.5 flex w-max flex-col pt-4 text-xl font-semibold text-black-900 sm:text-[28px] sm:font-bold sm:leading-[34px]">
-              {`Personal Details`}
-            </h2>
-
-            <div className="grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
-              <div className="block">
-                <Label
-                  forId={`ca25Form_Firstname${groupLabel}`}
-                  label="Firstname"
-                  required={true}
-                />
-                <Input
-                  id={`ca25Form_Firstname${groupLabel}`}
-                  type="text"
-                  name={`firstname`}
-                  placeholder="Eg: Alexander"
-                  ariaLabel={`Firstname`}
-                  disabled={isSubmitting}
-                  config={{
-                    ...register(`firstname`, {
-                      required: true,
-                      maxLength: 120,
-                      pattern: {
-                        value: /^[a-zA-Z0-9\s-_]{2,120}$/,
-                      },
-                    }),
-                  }}
-                  errors={errors[`firstname`]}
-                />
-              </div>
-              <div className="block">
-                <Label
-                  forId={`ca25Form_Lastname${groupLabel}`}
-                  label="Lastname"
-                  required={true}
-                />
-                <Input
-                  id={`ca25Form_Lastname${groupLabel}`}
-                  type="text"
-                  name={`lastname`}
-                  placeholder="Eg: Doe"
-                  ariaLabel={`Lastname`}
-                  disabled={isSubmitting}
-                  config={{
-                    ...register(`lastname`, {
-                      required: true,
-                      maxLength: 120,
-                      pattern: {
-                        value: /^[a-zA-Z0-9\s-_]{2,120}$/,
-                      },
-                    }),
-                  }}
-                  errors={errors[`lastname`]}
-                />
-              </div>
-            </div>
-            <div className="grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
-              <div className="block">
-                <Label
-                  forId={`ca25Form_Email${groupLabel}`}
-                  label="Email"
-                  required={true}
-                />
-                <Input
-                  id={`ca25Form_Email${groupLabel}`}
-                  type="email"
-                  placeholder="Eg: example@email.com"
-                  ariaLabel={`Email ${groupLabel}`}
-                  disabled={isSubmitting}
-                  config={{
-                    ...register(`email`, {
-                      required: true,
-                      maxLength: 120,
-                      pattern: {
-                        value:
-                          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                      },
-                    }),
-                  }}
-                  errors={errors[`email`]}
-                />
-              </div>
-              <div className="block">
-                <Label
-                  forId={`ca25Form_Telegram${groupLabel}`}
-                  label="Telegram Username"
-                  required={true}
-                />
-                <Input
-                  id={`ca25Form_Telegram${groupLabel}`}
-                  type="text"
-                  name={`telegram_username`}
-                  placeholder="Eg: doealex"
-                  ariaLabel={`Lastname - ${groupLabel}`}
-                  config={{
-                    ...register(`telegram_username`, {
-                      required: true,
-                      maxLength: 120,
-                      pattern: {
-                        value: /^([a-zA-Z][a-zA-Z0-9_\.]{2,55})$/,
-                      },
-                    }),
-                  }}
-                  errors={errors[`telegram_username`]}
-                />
-              </div>
-            </div>
-            <div className="mb-6 flex flex-col last:mb-0">
-              <Label
-                forId={`ca25Form_PreviouslyCoinfestAsia${groupLabel}`}
-                label="Did your community support Coinfest Asia previously?"
-                required={true}
-              />
-              <div className="mt-2 grid space-y-3">
-                {isForms?.fields[1]?.options?.map((rslt, i) => (
-                  <div className="space-y-2" key={i}>
-                    <label
-                      htmlFor={`radioPreviousCoinfestAsia${rslt?.name}_${groupLabel}${i}`}
-                      className={`flex w-full cursor-pointer items-center`}
-                    >
-                      <input
-                        id={`radioPreviousCoinfestAsia${rslt?.name}_${groupLabel}${i}`}
-                        type="radio"
-                        className={`boxShadow-none form-radio pointer-events-none mt-px h-4.5 w-4.5 shrink-0 rounded-full border border-solid ${
-                          errors[
-                            `did_your_community_support_coinfest_asia_previously_`
-                          ]
-                            ? 'border-red-500'
-                            : 'border-gray-500/20'
-                        } bg-transparent text-primary outline-none ring-0 focus:outline-none focus-visible:outline-none`}
-                        name={`radioPreviousCoinfestAsia${rslt?.name}_${groupLabel}`}
-                        value={rslt?.value}
-                        {...register(
-                          'did_your_community_support_coinfest_asia_previously_',
-                          {
-                            required: true,
-                          }
-                        )}
-                      />
-                      <span className="ml-3 text-sm font-normal text-black-900">
-                        {rslt?.label}
-                      </span>
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="block w-full space-y-5 pt-3">
-            <h2 className="mb-2.5 flex w-max flex-col pt-4 text-xl font-semibold text-black-900 sm:text-[28px] sm:font-bold sm:leading-[34px]">
-              {`About Community`}
-            </h2>
-
-            <div className="grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
-              <div className="block">
-                <Label
-                  forId={`ca25Form_CommunityName${groupLabel}`}
-                  label={`Community Name`}
-                  required={true}
-                />
-                <Input
-                  id={`ca25Form_CommunityName${groupLabel}`}
-                  type="text"
-                  name={`company`}
-                  placeholder=""
-                  ariaLabel={`Community Name ${groupLabel}`}
-                  disabled={isSubmitting}
-                  config={{
-                    ...register(`company`, {
-                      required: true,
-                      maxLength: 120,
-                      pattern: {
-                        value: /^[a-zA-Z0-9\s-_]{2,120}$/,
-                      },
-                    }),
-                  }}
-                  errors={errors[`company`]}
-                />
-              </div>
-              <div
-                className={`"block ${errors[`country${groupLabel}`] && 'error'}`}
-              >
-                <Label
-                  forId={`ca25Form_Country${groupLabel}`}
-                  label="Country/Region"
-                  required={true}
-                />
-                <SelectCountry
-                  id={`ca25Form_Country${groupLabel}`}
-                  ariaLabel={`Country - ${groupLabel} Forms`}
-                  listSelect={isForms?.country}
-                  withIcons={true}
-                  values={`country${groupLabel}`}
-                  setValue={setValue}
-                  config={{
-                    ...register(`country${groupLabel}`, {
-                      required: 'Please select a country',
-                    }),
-                  }}
-                />
-              </div>
-            </div>
-            <div className="mt-4 flex flex-col last:mb-0">
-              <Label
-                forId={`ca25Form_CommunityFocus${groupLabel}`}
-                label="Are you submitting this inquiry on behalf of yourself or a company?"
-                required={true}
-              />
-              <div className="mt-2 grid space-y-3">
-                {isForms?.fields[2]?.options?.map((rslt, i) => (
-                  <div className="space-y-3" key={i}>
-                    <label
-                      htmlFor={`radioCommunityFocus${groupLabel}${rslt?.name}${i}`}
-                      className={`flex w-full cursor-pointer items-center`}
-                    >
-                      <input
-                        id={`radioCommunityFocus${groupLabel}${rslt?.name}${i}`}
-                        type="radio"
-                        className={`boxShadow-none form-radio pointer-events-none mt-px h-4.5 w-4.5 shrink-0 rounded-full border border-solid ${
-                          errors[`ca25_community_focus`]
-                            ? 'border-red-500'
-                            : 'border-gray-500/20'
-                        } bg-transparent text-primary outline-none ring-0 focus:outline-none focus-visible:outline-none`}
-                        name={`radioCommunityFocus${groupLabel}${rslt?.name}`}
-                        value={rslt?.value}
-                        {...register('ca25_community_focus', {
+          {isAgree === 'I agree' && (
+            <>
+              <div className="block w-full space-y-5 pt-4.5">
+                <div
+                  className={`ca25Article_Frmatt ca25Article_FrmattNormal pt-3 text-base`}
+                >
+                  <p>
+                    <span className="mb-2">
+                      <strong>
+                        Enter Your Ticket Number
+                        <br />
+                      </strong>
+                    </span>
+                    <span>
+                      Check your email for your Coinfest Asia ticket. You’ll
+                      find a QR code with a series of random numbers and letters
+                      below it. Copy and paste those characters into the fields
+                      below.
+                    </span>
+                  </p>
+                </div>
+                <div className="grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
+                  <div className="block">
+                    <Label
+                      forId={`ca25Form_Ticket1${groupLabel}`}
+                      label="Ticket 1"
+                      required={true}
+                    />
+                    <Input
+                      id={`ca25Form_Ticket1${groupLabel}`}
+                      type="text"
+                      name={`community_submission_ticket_1`}
+                      placeholder=""
+                      ariaLabel={`Ticket 1`}
+                      disabled={isSubmitting}
+                      config={{
+                        ...register(`community_submission_ticket_1`, {
                           required: true,
-                        })}
-                      />
-                      <span className="ml-3 text-sm font-normal text-black-900">
-                        {rslt?.label}
-                      </span>
-                    </label>
+                          maxLength: 120,
+                          pattern: {
+                            value: /^[a-zA-Z0-9\s-_]{2,120}$/,
+                          },
+                        }),
+                      }}
+                      errors={errors[`community_submission_ticket_1`]}
+                    />
                   </div>
-                ))}
+                  <div className="block">
+                    <Label
+                      forId={`ca25Form_Ticket2${groupLabel}`}
+                      label="Ticket 2"
+                      required={true}
+                    />
+                    <Input
+                      id={`ca25Form_Ticket2${groupLabel}`}
+                      type="text"
+                      name={`community_submission_ticket_2`}
+                      placeholder=""
+                      ariaLabel={`Ticket 2`}
+                      disabled={isSubmitting}
+                      config={{
+                        ...register(`community_submission_ticket_2`, {
+                          required: true,
+                          maxLength: 120,
+                          pattern: {
+                            value: /^[a-zA-Z0-9\s-_]{2,120}$/,
+                          },
+                        }),
+                      }}
+                      errors={errors[`community_submission_ticket_2`]}
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="block">
-              <Label
-                forId={`ca25Form_TellUsAboutYourMission${groupLabel}`}
-                label="Tell us a bit about your community—what you're all about and your mission!"
-                required={true}
-              />
-              <Textarea
-                id={`ca25Form_TellUsAboutYourMission${groupLabel}`}
-                className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                rows="5"
-                placeholder=""
-                config={{
-                  ...register(
-                    `describe_your_community_activities_in_bullet_points`,
-                    {
-                      required: true,
-                      maxLength: 550,
-                      pattern: {
-                        value: /^[a-zA-Z0-9\s-_]{2,120}$/,
-                      },
-                    }
-                  ),
-                }}
-                errors={
-                  errors[`describe_your_community_activities_in_bullet_points`]
-                }
-              />
-            </div>
-            <div className="mt-4 block">
-              <Label
-                forId={`ca25Form_CommunityChannel${groupLabel}`}
-                label="Community channel(s)"
-                required={true}
-              />
-              <Input
-                id={`ca25Form_CommunityChannel${groupLabel}`}
-                type="url"
-                name={`community_channel_link_s_${groupLabel}`}
-                placeholder={``}
-                ariaLabel={`Community Channel(s) ${groupLabel}`}
-                config={{
-                  ...register(`community_channel_link_s_${groupLabel}`, {
-                    required: true,
-                    maxLength: 255,
-                    pattern: {
-                      value:
-                        /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\w\d\-.\/]*)*\/?$|^N\/A$|^-$/,
-                      message: 'Please enter a valid URL',
-                    },
-                  }),
-                }}
-                errors={errors[`community_channel_link_s_${groupLabel}`]}
-              />
-            </div>
-            <div className="mt-4 block">
-              <Label
-                forId={`ca25Form_LogoUrl${groupLabel}`}
-                label="Link to your media partner logo"
-                helpText={`Make sure your logo fits these criteria: <br/> - Minimum size 500x500 px <br/> - Format is SVG and/or PNG`}
-                required={true}
-              />
-              <Input
-                id={`ca25Form_LogoUrl${groupLabel}`}
-                type="url"
-                name={`logo_url${groupLabel}`}
-                placeholder={``}
-                ariaLabel={`Logo Url Link ${groupLabel}`}
-                config={{
-                  ...register(`logo_url${groupLabel}`, {
-                    required: true,
-                    maxLength: 255,
-                    pattern: {
-                      value:
-                        /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\w\d\-.\/]*)*\/?$|^N\/A$|^-$/,
-                      message: 'Please enter a valid URL',
-                    },
-                  }),
-                }}
-                errors={errors[`logo_url${groupLabel}`]}
-              />
-            </div>
-          </div>
+              <div className="block w-full space-y-5 pt-3">
+                <h2 className="mb-2.5 flex w-max flex-col pt-4 text-xl font-semibold text-black-900 sm:text-[28px] sm:font-bold sm:leading-[34px]">
+                  {`Personal Details`}
+                </h2>
 
-          {/* @submit */}
-          <div className="relative z-[18] mt-3 flex flex-col">
-            <button
-              id={`ca25Submit-${groupLabel}`}
-              type="submit"
-              className={`mt-6 flex w-full flex-col items-center justify-center rounded-[14px] bg-black-900 py-6 text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
-              aria-label={`Submit ${groupLabel} Forms`}
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <span className="flex flex-row items-center">
-                  <svg
-                    className="mr-3 h-5 w-5 animate-spin text-black-900"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
+                <div className="grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
+                  <div className="block">
+                    <Label
+                      forId={`ca25Form_Firstname${groupLabel}`}
+                      label="First name"
+                      required={true}
+                    />
+                    <Input
+                      id={`ca25Form_Firstname${groupLabel}`}
+                      type="text"
+                      name={`firstname`}
+                      placeholder="Eg: Alexander"
+                      ariaLabel={`Firstname`}
+                      disabled={isSubmitting}
+                      config={{
+                        ...register(`firstname`, {
+                          required: true,
+                          maxLength: 120,
+                          pattern: {
+                            value: /^[a-zA-Z0-9\s-_]{2,120}$/,
+                          },
+                        }),
+                      }}
+                      errors={errors[`firstname`]}
+                    />
+                  </div>
+                  <div className="block">
+                    <Label
+                      forId={`ca25Form_Lastname${groupLabel}`}
+                      label="Last name"
+                      required={true}
+                    />
+                    <Input
+                      id={`ca25Form_Lastname${groupLabel}`}
+                      type="text"
+                      name={`lastname`}
+                      placeholder="Eg: Doe"
+                      ariaLabel={`Lastname`}
+                      disabled={isSubmitting}
+                      config={{
+                        ...register(`lastname`, {
+                          required: true,
+                          maxLength: 120,
+                          pattern: {
+                            value: /^[a-zA-Z0-9\s-_]{2,120}$/,
+                          },
+                        }),
+                      }}
+                      errors={errors[`lastname`]}
+                    />
+                  </div>
+                </div>
+                <div className="grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
+                  <div className="block">
+                    <Label
+                      forId={`ca25Form_Email${groupLabel}`}
+                      label="Email"
+                      required={true}
+                    />
+                    <Input
+                      id={`ca25Form_Email${groupLabel}`}
+                      type="email"
+                      placeholder="Eg: example@email.com"
+                      ariaLabel={`Email ${groupLabel}`}
+                      disabled={isSubmitting}
+                      config={{
+                        ...register(`email`, {
+                          required: true,
+                          maxLength: 120,
+                          pattern: {
+                            value:
+                              /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                          },
+                        }),
+                      }}
+                      errors={errors[`email`]}
+                    />
+                  </div>
+                  <div className="block">
+                    <Label
+                      forId={`ca25Form_Telegram${groupLabel}`}
+                      label="Telegram Username"
+                      required={true}
+                    />
+                    <Input
+                      id={`ca25Form_Telegram${groupLabel}`}
+                      type="text"
+                      name={`telegram_username`}
+                      placeholder="Eg: doealex"
+                      ariaLabel={`Lastname - ${groupLabel}`}
+                      config={{
+                        ...register(`telegram_username`, {
+                          required: true,
+                          maxLength: 120,
+                          pattern: {
+                            value: /^([a-zA-Z][a-zA-Z0-9_\.]{2,55})$/,
+                          },
+                        }),
+                      }}
+                      errors={errors[`telegram_username`]}
+                    />
+                  </div>
+                </div>
+                <div className="mb-6 flex flex-col last:mb-0">
+                  <Label
+                    forId={`ca25Form_PreviouslyCoinfestAsia${groupLabel}`}
+                    label="Did your community support Coinfest Asia previously?"
+                    required={true}
+                  />
+                  <div className="mt-2 grid space-y-3">
+                    {isForms?.fields[1]?.options?.map((rslt, i) => (
+                      <div className="space-y-2" key={i}>
+                        <label
+                          htmlFor={`radioPreviousCoinfestAsia${rslt?.name}_${groupLabel}${i}`}
+                          className={`flex w-full cursor-pointer items-center`}
+                        >
+                          <input
+                            id={`radioPreviousCoinfestAsia${rslt?.name}_${groupLabel}${i}`}
+                            type="radio"
+                            className={`boxShadow-none form-radio pointer-events-none mt-px h-4.5 w-4.5 shrink-0 rounded-full border border-solid ${
+                              errors[
+                                `did_your_community_support_coinfest_asia_previously_`
+                              ]
+                                ? 'border-red-500'
+                                : 'border-gray-500/20'
+                            } bg-transparent text-primary outline-none ring-0 focus:outline-none focus-visible:outline-none`}
+                            name={`radioPreviousCoinfestAsia${rslt?.name}_${groupLabel}`}
+                            value={rslt?.value}
+                            {...register(
+                              'did_your_community_support_coinfest_asia_previously_',
+                              {
+                                required: true,
+                              }
+                            )}
+                          />
+                          <span className="ml-3 text-sm font-normal text-black-900">
+                            {rslt?.label}
+                          </span>
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="block w-full space-y-5 pt-3">
+                <h2 className="mb-2.5 flex w-max flex-col pt-4 text-xl font-semibold text-black-900 sm:text-[28px] sm:font-bold sm:leading-[34px]">
+                  {`About Community`}
+                </h2>
+
+                <div className="grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
+                  <div className="block">
+                    <Label
+                      forId={`ca25Form_CommunityName${groupLabel}`}
+                      label={`Community name`}
+                      required={true}
+                    />
+                    <Input
+                      id={`ca25Form_CommunityName${groupLabel}`}
+                      type="text"
+                      name={`company`}
+                      placeholder=""
+                      ariaLabel={`Community Name ${groupLabel}`}
+                      disabled={isSubmitting}
+                      config={{
+                        ...register(`company`, {
+                          required: true,
+                          maxLength: 120,
+                          pattern: {
+                            value: /^[a-zA-Z0-9\s-_]{2,120}$/,
+                          },
+                        }),
+                      }}
+                      errors={errors[`company`]}
+                    />
+                  </div>
+                  <div
+                    className={`"block ${errors[`country${groupLabel}`] && 'error'}`}
                   >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="3"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                    ></path>
-                  </svg>
-                  Processing ...
-                </span>
-              ) : (
-                'Submit'
-              )}
-            </button>
-          </div>
+                    <Label
+                      forId={`ca25Form_Country${groupLabel}`}
+                      label="Country/Region"
+                      required={true}
+                    />
+                    <SelectCountry
+                      id={`ca25Form_Country${groupLabel}`}
+                      ariaLabel={`Country - ${groupLabel} Forms`}
+                      listSelect={isForms?.country}
+                      withIcons={true}
+                      values={`country${groupLabel}`}
+                      setValue={setValue}
+                      config={{
+                        ...register(`country${groupLabel}`, {
+                          required: 'Please select a country',
+                        }),
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="mt-4 flex flex-col last:mb-0">
+                  <Label
+                    forId={`ca25Form_CommunityFocus${groupLabel}`}
+                    label="Community focus"
+                    required={true}
+                  />
+                  <div className="mt-2 grid space-y-3">
+                    {isForms?.fields[2]?.options?.map((rslt, i) => (
+                      <div className="space-y-3" key={i}>
+                        <label
+                          htmlFor={`radioCommunityFocus${groupLabel}${rslt?.name}${i}`}
+                          className={`flex w-full cursor-pointer items-center`}
+                        >
+                          <input
+                            id={`radioCommunityFocus${groupLabel}${rslt?.name}${i}`}
+                            type="radio"
+                            className={`boxShadow-none form-radio pointer-events-none mt-px h-4.5 w-4.5 shrink-0 rounded-full border border-solid ${
+                              errors[`ca25_community_focus`]
+                                ? 'border-red-500'
+                                : 'border-gray-500/20'
+                            } bg-transparent text-primary outline-none ring-0 focus:outline-none focus-visible:outline-none`}
+                            name={`radioCommunityFocus${groupLabel}${rslt?.name}`}
+                            value={rslt?.value}
+                            {...register('ca25_community_focus', {
+                              required: true,
+                            })}
+                          />
+                          <span className="ml-3 text-sm font-normal text-black-900">
+                            {rslt?.label}
+                          </span>
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="block">
+                  <Label
+                    forId={`ca25Form_TellUsAboutYourMission${groupLabel}`}
+                    label="Tell us a bit about your community—what you're all about and your mission!"
+                    required={true}
+                  />
+                  <Textarea
+                    id={`ca25Form_TellUsAboutYourMission${groupLabel}`}
+                    className="block w-full rounded-lg border-gray-200 px-4 py-3 text-sm focus:border-blue-500 focus:ring-blue-500 disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                    rows="5"
+                    placeholder=""
+                    config={{
+                      ...register(
+                        `describe_your_community_activities_in_bullet_points`,
+                        {
+                          required: true,
+                          maxLength: 550,
+                          pattern: {
+                            value: /^[a-zA-Z0-9\s-_]{2,120}$/,
+                          },
+                        }
+                      ),
+                    }}
+                    errors={
+                      errors[
+                        `describe_your_community_activities_in_bullet_points`
+                      ]
+                    }
+                  />
+                </div>
+                <div className="mt-4 block">
+                  <Label
+                    forId={`ca25Form_CommunityChannel${groupLabel}`}
+                    label="Community channel(s)"
+                    required={true}
+                  />
+                  <Input
+                    id={`ca25Form_CommunityChannel${groupLabel}`}
+                    type="url"
+                    name={`community_channel_link_s_${groupLabel}`}
+                    placeholder={``}
+                    ariaLabel={`Community Channel(s) ${groupLabel}`}
+                    config={{
+                      ...register(`community_channel_link_s_${groupLabel}`, {
+                        required: true,
+                        maxLength: 255,
+                        pattern: {
+                          value:
+                            /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\w\d\-.\/]*)*\/?$|^N\/A$|^-$/,
+                          message: 'Please enter a valid URL',
+                        },
+                      }),
+                    }}
+                    errors={errors[`community_channel_link_s_${groupLabel}`]}
+                  />
+                </div>
+                <div className="mt-4 block">
+                  <Label
+                    forId={`ca25Form_LogoUrl${groupLabel}`}
+                    label="Link to your community logo"
+                    helpText={`Make sure your logo fits these criteria: <br/> - Minimum size 500x500 px <br/> - Format is SVG and/or PNG`}
+                    required={true}
+                  />
+                  <Input
+                    id={`ca25Form_LogoUrl${groupLabel}`}
+                    type="url"
+                    name={`logo_url${groupLabel}`}
+                    placeholder={``}
+                    ariaLabel={`Logo Url Link ${groupLabel}`}
+                    config={{
+                      ...register(`logo_url${groupLabel}`, {
+                        required: true,
+                        maxLength: 255,
+                        pattern: {
+                          value:
+                            /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\w\d\-.\/]*)*\/?$|^N\/A$|^-$/,
+                          message: 'Please enter a valid URL',
+                        },
+                      }),
+                    }}
+                    errors={errors[`logo_url${groupLabel}`]}
+                  />
+                </div>
+              </div>
+
+              {/* @submit */}
+              <div className="relative z-[18] mt-3 flex flex-col">
+                <button
+                  id={`ca25Submit-${groupLabel}`}
+                  type="submit"
+                  className={`mt-6 flex w-full flex-col items-center justify-center rounded-[14px] bg-black-900 py-6 text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
+                  aria-label={`Submit ${groupLabel} Forms`}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <span className="flex flex-row items-center">
+                      <svg
+                        className="mr-3 h-5 w-5 animate-spin text-black-900"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                        ></path>
+                      </svg>
+                      Processing ...
+                    </span>
+                  ) : (
+                    'Submit'
+                  )}
+                </button>
+              </div>
+            </>
+          )}
         </form>
       </PartnershipLayouts>
     </>

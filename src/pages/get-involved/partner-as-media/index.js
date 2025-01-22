@@ -23,7 +23,7 @@ import HeadGraphSeo from '@components/Head';
 import Label from '@components/UI/Form/Label';
 import Input from '@components/UI/Form/Input';
 import Textarea from '@components/UI/Form/Textarea';
-import SelectCountry from '@components/UI/Form/SelectCountry';
+import Select from '@components/UI/Form/Select';
 
 // @layouts
 import PartnershipLayouts from '@layouts/PartnershipLayouts';
@@ -82,36 +82,28 @@ const PartnerMedia = ({
           ),
         },
         {
-          name: 'job_position',
-          value: sntzeFld(data?.job_position !== '' ? data?.job_position : '-'),
+          name: 'company',
+          value: sntzeFld(data?.company !== '' ? data?.company : '-'),
         },
         {
-          name: 'company',
-          value: sntzeFld(data?.media_name !== '' ? data?.media_name : '-'),
+          name: 'position',
+          value: sntzeFld(data?.position !== '' ? data?.position : '-'),
         },
         {
           name: 'website',
-          value: sntzeFld(
-            data?.outlet_affiliation !== '' ? data?.outlet_affiliation : '-'
-          ),
-        },
-        {
-          name: 'country',
-          value: sntzeFld(
-            data[`country${groupLabel}`] !== ''
-              ? data[`country${groupLabel}`]
-              : '-'
-          ),
+          value: sntzeFld(data?.website !== '' ? data?.website : '-'),
         },
         {
           name: 'media_focus',
           value: sntzeFld(data?.media_focus.join(';')),
         },
         {
+          objectTypeId: '0-2',
           name: 'outlet_affiliation_social_media',
           value: sntzeFld(data?.outlet_affiliation_social_media.join(';')),
         },
         {
+          objectTypeId: '0-2',
           name: 'distribution',
           value: sntzeFld(data?.distribution.join(';')),
         },
@@ -125,6 +117,14 @@ const PartnerMedia = ({
           ),
         },
         {
+          name: 'logo_url',
+          value: sntzeFld(
+            data[`logo_url${groupLabel}`] !== ''
+              ? data[`logo_url${groupLabel}`]
+              : '-'
+          ),
+        },
+        {
           name: 'all_of_the_information_i_have_provided_above_is_correct_and_up_to_date_',
           value: sntzeFld(
             data?.all_of_the_information_i_have_provided_above_is_correct_and_up_to_date_
@@ -133,19 +133,19 @@ const PartnerMedia = ({
       ],
       context: {
         pageUri: 'https://coinfest.asia/get-involved/partner-as-media',
-        pageName: '2025 Partner Media | Coinfest Asia 2025',
+        pageName: '2025 Partner As Media | Coinfest Asia 2025',
         ipAddress: isForms?.ipAddress?.ip,
       },
     };
-    const k = '916e0562-05ac-4891-aef2-aac194fb75cd/';
-    // const rs = await submitFormHbSpt(d, k);
+    const k = '916e0562-05ac-4891-aef2-aac194fb75cd';
+    const rs = await submitFormHbSpt(d, k);
 
     // @debug
     // console.log(d);
-    // if (rs === true) {
-    //   reset();
-    //   router.replace('/get-involved/partner-as-media/success');
-    // }
+    if (rs === true) {
+      reset();
+      router.replace('/get-involved/partner-as-media/success');
+    }
   };
 
   return (
@@ -155,7 +155,7 @@ const PartnerMedia = ({
 
       {/* @main */}
       <PartnershipLayouts
-        title={'COINFEST ASIA 2025 PARTNER AS MEDIA SUBMISSION'
+        title={'COINFEST ASIA 2025 PARTNER AS MEDIA'
           ?.split(' ')
           .map((w, i) =>
             w
@@ -197,7 +197,7 @@ const PartnerMedia = ({
               <div className="block">
                 <Label
                   forId={`ca25Form_Firstname${groupLabel}`}
-                  label="Firstname"
+                  label="First name"
                   required={true}
                 />
                 <Input
@@ -222,13 +222,13 @@ const PartnerMedia = ({
               <div className="block">
                 <Label
                   forId={`ca25Form_Lastname${groupLabel}`}
-                  label="Lastname"
+                  label="Last name"
                   required={true}
                 />
                 <Input
                   id={`ca25Form_Lastname${groupLabel}`}
                   type="text"
-                  name={`lastname`}
+                  name={`last name`}
                   placeholder="Eg: Doe"
                   ariaLabel={`Lastname`}
                   disabled={isSubmitting}
@@ -359,58 +359,6 @@ const PartnerMedia = ({
                 />
               </div>
             </div>
-            <div className="grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
-              <div className="block">
-                <Label
-                  forId={`ca25Form_JobPosition${groupLabel}`}
-                  label="Job Position"
-                  required={false}
-                />
-                <Input
-                  id={`ca25Form_JobPosition${groupLabel}`}
-                  type="text"
-                  name={`job_position`}
-                  placeholder=""
-                  ariaLabel={`Job Position ${groupLabel}`}
-                  disabled={isSubmitting}
-                  config={{
-                    ...register(`job_position`, {
-                      required: false,
-                      maxLength: 120,
-                      pattern: {
-                        value: /^[a-zA-Z0-9\s-_]{2,120}$/,
-                      },
-                    }),
-                  }}
-                  errors={errors[`job_position`]}
-                />
-              </div>
-              <div className="block">
-                <Label
-                  forId={`ca25Form_MediaName${groupLabel}`}
-                  label="Media Name"
-                  required={true}
-                />
-                <Input
-                  id={`ca25Form_MediaName${groupLabel}`}
-                  type="text"
-                  name={`media_name`}
-                  placeholder="Eg: Coinfest Asia"
-                  ariaLabel={`Media Name ${groupLabel}`}
-                  disabled={isSubmitting}
-                  config={{
-                    ...register(`media_name`, {
-                      required: true,
-                      maxLength: 120,
-                      pattern: {
-                        value: /^[a-zA-Z0-9\s-_]{2,120}$/,
-                      },
-                    }),
-                  }}
-                  errors={errors[`media_name`]}
-                />
-              </div>
-            </div>
           </div>
           <div className="mt-5 block w-full pt-4">
             <h2 className="text-xl font-semibold">
@@ -418,19 +366,66 @@ const PartnerMedia = ({
             </h2>
 
             <div className="block w-full space-y-5">
-              <div className="mt-4 block">
+              <div className="mt-4 grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
+                <div className="block">
+                  <Label
+                    forId={`ca25Form_MediaName${groupLabel}`}
+                    label="Outlet Name"
+                    required={true}
+                  />
+                  <Input
+                    id={`ca25Form_MediaName${groupLabel}`}
+                    type="text"
+                    name={`company`}
+                    placeholder="Eg: Coinfest Asia"
+                    ariaLabel={`Outlet Name ${groupLabel}`}
+                    disabled={isSubmitting}
+                    config={{
+                      ...register(`company`, {
+                        required: true,
+                        maxLength: 120,
+                        pattern: {
+                          value: /^[a-zA-Z0-9\s-_]{2,120}$/,
+                        },
+                      }),
+                    }}
+                    errors={errors[`company`]}
+                  />
+                </div>
+                <div className={`"block ${errors[`position`] && 'error'}`}>
+                  <Label
+                    forId={`ca25Form_JobPosition${groupLabel}`}
+                    label="Position"
+                    required={false}
+                  />
+                  <Select
+                    id={`ca25Form_JobPosition${groupLabel}`}
+                    ariaLabel={`Jobtitle Speakers`}
+                    label="Choose a director..."
+                    listSelect={isForms?.fields[0]?.options}
+                    values={`position`}
+                    setValue={setValue}
+                    config={{
+                      ...register(`position`, {
+                        required: 'Please select a jobtitle speakers',
+                      }),
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="block">
                 <Label
                   forId={`ca25Form_OutletAffiliation${groupLabel}`}
-                  label="Outlet/Affiliation URL"
+                  label="Outlet URL"
                   required={true}
                 />
                 <Input
                   id={`ca25Form_OutletAffiliation${groupLabel}`}
                   type="url"
                   placeholder={`Eg: https://coinfest.asia/`}
-                  ariaLabel="Provice Link Platforms Affiliator"
+                  ariaLabel="Outlet URL"
                   config={{
-                    ...register(`outlet_affiliation`, {
+                    ...register(`website`, {
                       required: true,
                       maxLength: 255,
                       pattern: {
@@ -440,31 +435,10 @@ const PartnerMedia = ({
                       },
                     }),
                   }}
-                  errors={errors[`outlet_affiliation`]}
+                  errors={errors[`website`]}
                 />
               </div>
-              <div
-                className={`"block ${errors[`country${groupLabel}`] && 'error'}`}
-              >
-                <Label
-                  forId={`ca25Form_Country${groupLabel}`}
-                  label="Country/Region"
-                  required={true}
-                />
-                <SelectCountry
-                  id={`ca25Form_Country${groupLabel}`}
-                  ariaLabel={`Country - ${groupLabel} Forms`}
-                  listSelect={isForms?.country}
-                  withIcons={true}
-                  values={`country${groupLabel}`}
-                  setValue={setValue}
-                  config={{
-                    ...register(`country${groupLabel}`, {
-                      required: 'Please select a country',
-                    }),
-                  }}
-                />
-              </div>
+
               <div className="flex flex-col">
                 <Label
                   forId={`ca25Form_MediaFocus${groupLabel}`}
@@ -472,7 +446,7 @@ const PartnerMedia = ({
                   required={true}
                 />
                 <div className="mt-2 grid space-y-4">
-                  {isForms?.fields[0]?.options?.map((rslt, i) => (
+                  {isForms?.fields[1]?.options?.map((rslt, i) => (
                     <label
                       htmlFor={`ca25Form_MediaFocus${groupLabel}${i}`}
                       className={`flex w-full cursor-pointer items-center`}
@@ -507,7 +481,7 @@ const PartnerMedia = ({
                   required={true}
                 />
                 <div className="mt-2 grid space-y-4">
-                  {isForms?.fields[1]?.options?.map((rslt, i) => (
+                  {isForms?.fields[2]?.options?.map((rslt, i) => (
                     <label
                       htmlFor={`ca25Form_SocialMedia${groupLabel}${i}`}
                       className={`flex w-full cursor-pointer items-center`}
@@ -542,7 +516,7 @@ const PartnerMedia = ({
                   required={true}
                 />
                 <div className="mt-2 grid space-y-4">
-                  {isForms?.fields[2]?.options?.map((rslt, i) => (
+                  {isForms?.fields[3]?.options?.map((rslt, i) => (
                     <label
                       htmlFor={`ca25Form_Distribution${groupLabel}${i}`}
                       className={`flex w-full cursor-pointer items-center`}
@@ -633,7 +607,7 @@ const PartnerMedia = ({
                   required={true}
                 />
                 <div className="mt-2 grid space-y-3">
-                  {isForms?.fields[3]?.options?.map((rslt, i) => (
+                  {isForms?.fields[4]?.options?.map((rslt, i) => (
                     <div className="space-y-3" key={i}>
                       <label
                         htmlFor={`radioYesIAGree${groupLabel}${rslt?.name}${i}`}
@@ -726,7 +700,7 @@ export const getStaticProps = async () => {
       getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
       getFecthHbSpt(`/forms/v2/fields/916e0562-05ac-4891-aef2-aac194fb75cd/`),
     ]);
-    const reduceForms = getReduceArray(rsForms, [9, 10, 11, 14]);
+    const reduceForms = getReduceArray(rsForms, [6, 8, 9, 10, 13]);
 
     return {
       props: {

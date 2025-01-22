@@ -31,11 +31,11 @@ export default function handler(req, res) {
         comingSoon: false,
       },
       {
-        url: '/get-involved',
+        url: '/get-involved/partner-as-media',
         images: '/assets/images/get-involved/ca25GetInvolved_3.jpg',
         title: 'Partner as Media',
         position: 'left',
-        comingSoon: true,
+        comingSoon: false,
       },
       {
         url: '/get-involved/become-an-affiliate',
@@ -45,11 +45,11 @@ export default function handler(req, res) {
         comingSoon: false,
       },
       {
-        url: '/get-involved',
+        url: '/get-involved/partner-as-community',
         images: '/assets/images/get-involved/ca25GetInvolved_5.jpg',
         title: 'Partner as Community',
         position: 'normal',
-        comingSoon: true,
+        comingSoon: false,
       },
     ],
   };

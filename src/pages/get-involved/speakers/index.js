@@ -208,7 +208,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
             <div className="block">
               <Label
                 forId={`ca25Form_FirstnameSpeakers`}
-                label="Firstname"
+                label="First name"
                 required={true}
               />
               <Input
@@ -233,7 +233,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
             <div className="block">
               <Label
                 forId={`ca25Form_LastnameSpeakers`}
-                label="Lastname"
+                label="Last name"
                 required={true}
               />
               <Input

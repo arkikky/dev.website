@@ -218,7 +218,7 @@ const BecomeAnAffiliate = ({
             <div className="block">
               <Label
                 forId={`ca25Form_Firstname${groupLabel}`}
-                label="Firstname"
+                label="First name"
                 required={true}
               />
               <Input
@@ -243,7 +243,7 @@ const BecomeAnAffiliate = ({
             <div className="block">
               <Label
                 forId={`ca25Form_Lastname${groupLabel}`}
-                label="Lastname"
+                label="Last name"
                 required={true}
               />
               <Input

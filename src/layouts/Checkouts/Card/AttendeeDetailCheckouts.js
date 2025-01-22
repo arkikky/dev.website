@@ -63,7 +63,7 @@ const AttendeeDetailCheckouts = ({
         <div className="block">
           <Label
             forId={`ca25Form_FirstnameAttndee${items?.attendee}_${items?.group}Checkout`}
-            label="Firstname"
+            label="First name"
             required={true}
           />
           <Input
@@ -93,7 +93,7 @@ const AttendeeDetailCheckouts = ({
         <div className="block">
           <Label
             forId={`ca25Form_LastnameAttndee${items?.attendee}_${items?.group}Checkout`}
-            label="Lastname"
+            label="Last name"
             required={true}
           />
           <Input
