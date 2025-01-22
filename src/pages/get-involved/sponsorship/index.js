@@ -357,11 +357,9 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
               </div>
 
               <div className="flex flex-col">
-                <div className="mb-2.5 flex w-max flex-col pt-4">
-                  <h2 className="text-xl font-semibold text-black-900 sm:text-[28px] sm:font-bold sm:leading-[34px]">
-                    Exhibiting at Coinfest Asia
-                  </h2>
-                </div>
+                <h2 className="mb-2.5 flex w-max flex-col pt-4 text-xl font-semibold text-black-900 sm:text-[28px] sm:font-bold sm:leading-[34px]">
+                  Exhibiting at Coinfest Asia
+                </h2>
 
                 <div className="mb-6 flex flex-col last:mb-0">
                   <Label

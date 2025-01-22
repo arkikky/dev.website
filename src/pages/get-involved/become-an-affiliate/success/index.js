@@ -9,12 +9,12 @@ import Container from '@components/Container';
 // @layouts
 import LayoutDefaults from '@layouts/Layouts';
 
-const AffiliatorSuccessfullySubmitted = ({ mode }) => {
+const AffiliateSuccessfullySubmitted = ({ mode }) => {
   return (
     <>
       {/* @head */}
       <HeadGraphSeo
-        title={`Affiliator Successfully Submitted`}
+        title={`Affiliate Successfully Submitted`}
         otherPage={true}
       />
 
@@ -72,7 +72,7 @@ const AffiliatorSuccessfullySubmitted = ({ mode }) => {
   );
 };
 
-AffiliatorSuccessfullySubmitted.getLayout = (page, { pageProps }) => {
+AffiliateSuccessfullySubmitted.getLayout = (page, { pageProps }) => {
   const { mode, layouts } = pageProps;
   if (layouts) {
     return (
@@ -99,4 +99,4 @@ export const getStaticProps = async () => {
     };
   }
 };
-export default AffiliatorSuccessfullySubmitted;
+export default AffiliateSuccessfullySubmitted;

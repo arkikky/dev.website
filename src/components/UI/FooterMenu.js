@@ -186,10 +186,10 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               <li className="group mb-3 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  href="/get-involved/become-an-affiliator"
-                  title={`${publicRuntimeConfig?.siteAppName} Become an Affiliator`}
+                  href="/get-involved/become-an-affiliate"
+                  title={`${publicRuntimeConfig?.siteAppName} Become an Affliate`}
                 >
-                  Become an Affiliator
+                  Become an Affliate
                 </Link>
               </li>
               <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">
@@ -212,6 +212,8 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
                   className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="mailto:partner@coinfest.asia"
                   title={`${publicRuntimeConfig?.siteAppName} Send Inquiry`}
+                  target={'_blank'}
+                  rel={'noopener noreferrer'}
                 >
                   Send Inquiry
                 </Link>

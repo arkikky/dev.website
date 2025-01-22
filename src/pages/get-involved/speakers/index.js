@@ -150,7 +150,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
       context: {
         pageUri: 'https://coinfest.asia/get-involved/speakers',
         pageName: '2025 Speakers | Coinfest Asia 2025',
-        ipAddress: ipAddress?.ip,
+        ipAddress: isForms?.ipAddress?.ip,
       },
     };
     const k = '0568d957-8627-4939-8e88-82bbb8c53e52';
@@ -293,7 +293,9 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                 render={({ field }) => (
                   <PhoneInput
                     {...field}
-                    country={isForms?.ipAddress}
+                    country={
+                      (isForms?.ipAddress?.country).toLowerCase() ?? 'id'
+                    }
                     onChange={(value, phone) => {
                       setValue(`dialcode-phoneSpeakers`, value, {
                         shouldValidate: true,

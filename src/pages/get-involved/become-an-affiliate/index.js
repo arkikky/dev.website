@@ -29,9 +29,9 @@ import SelectCountry from '@components/UI/Form/SelectCountry';
 // @layouts
 import PartnershipLayouts from '@layouts/PartnershipLayouts';
 
-const BecomeAnAffiliator = ({
+const BecomeAnAffiliate = ({
   mode,
-  groupLabel = 'Affiliator',
+  groupLabel = 'Affiliate',
   ipAddress,
   country,
   forms,
@@ -162,7 +162,7 @@ const BecomeAnAffiliator = ({
       context: {
         pageUri: 'https://coinfest.asia/get-involved/become-an-affiliator',
         pageName: '2025 Become An Affiliator | Coinfest Asia 2025',
-        ipAddress: ipAddress?.ip,
+        ipAddress: isForms?.ipAddress?.ip,
       },
     };
     const k = '24512342-b546-4e92-a869-8b2c9c2bb3dc';
@@ -303,7 +303,9 @@ const BecomeAnAffiliator = ({
                 render={({ field }) => (
                   <PhoneInput
                     {...field}
-                    country={isForms?.ipAddress}
+                    country={
+                      (isForms?.ipAddress?.country).toLowerCase() ?? 'id'
+                    }
                     onChange={(value, phone) => {
                       setValue(`dialcode-phone${groupLabel}`, value, {
                         shouldValidate: true,
@@ -667,7 +669,7 @@ const BecomeAnAffiliator = ({
   );
 };
 
-BecomeAnAffiliator.getLayout = (page, { pageProps }) => {
+BecomeAnAffiliate.getLayout = (page, { pageProps }) => {
   const { mode } = pageProps;
   return page;
 };
@@ -697,4 +699,4 @@ export const getStaticProps = async () => {
     };
   }
 };
-export default BecomeAnAffiliator;
+export default BecomeAnAffiliate;

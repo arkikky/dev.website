@@ -54,11 +54,6 @@ const PartnerMedia = ({
     mode: 'all',
   });
 
-  // @validation(error form)
-  const onErrorSubmit = async (errors, e) => {
-    console.log(errors);
-  };
-
   // @submit
   const onSubmit = async (data) => {
     const sntzeFld = (field) => DOMPurify.sanitize(field || '').trim();
@@ -139,7 +134,7 @@ const PartnerMedia = ({
       context: {
         pageUri: 'https://coinfest.asia/get-involved/partner-as-media',
         pageName: '2025 Partner Media | Coinfest Asia 2025',
-        ipAddress: ipAddress?.ip,
+        ipAddress: isForms?.ipAddress?.ip,
       },
     };
     const k = '916e0562-05ac-4891-aef2-aac194fb75cd/';
@@ -186,7 +181,7 @@ const PartnerMedia = ({
         <form
           id={`form${groupLabel}`}
           method="POST"
-          onSubmit={handleSubmit(onSubmit, onErrorSubmit)}
+          onSubmit={handleSubmit(onSubmit)}
           className="relative mt-0 flex w-full flex-col"
         >
           <div
@@ -287,7 +282,9 @@ const PartnerMedia = ({
                   render={({ field }) => (
                     <PhoneInput
                       {...field}
-                      country={isForms?.ipAddress}
+                      country={
+                        (isForms?.ipAddress?.country).toLowerCase() ?? 'id'
+                      }
                       onChange={(value, phone) => {
                         setValue(`dialcode-phone${groupLabel}`, value, {
                           shouldValidate: true,
@@ -308,7 +305,7 @@ const PartnerMedia = ({
                       buttonClass={`ca25Form_PhoneInputBtn ${
                         errors[`phone${groupLabel}`] && 'errors'
                       }`}
-                      dropdownClass="ca25Form_PhoneInputDropdown"
+                      dropdownClass={`ca25Form_PhoneInputDropdown`}
                       countryCodeEditable={true}
                       enableSearch={true}
                       disableSearchIcon={true}
@@ -374,7 +371,7 @@ const PartnerMedia = ({
                   type="text"
                   name={`job_position`}
                   placeholder=""
-                  ariaLabel={`Job Position`}
+                  ariaLabel={`Job Position ${groupLabel}`}
                   disabled={isSubmitting}
                   config={{
                     ...register(`job_position`, {
@@ -399,7 +396,7 @@ const PartnerMedia = ({
                   type="text"
                   name={`media_name`}
                   placeholder="Eg: Coinfest Asia"
-                  ariaLabel={`Media Name`}
+                  ariaLabel={`Media Name ${groupLabel}`}
                   disabled={isSubmitting}
                   config={{
                     ...register(`media_name`, {

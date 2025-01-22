@@ -11,3 +11,11 @@
 .ca25Article_Frmatt.ca25Article_FrmattDark {
   @apply prose-a:text-[#ED4F35];
 }
+
+.ca25Article_Frmatt.ca25Article_FrmattNormal {
+  @apply font-normal;
+  @apply prose-h1:font-bold;
+  @apply prose-h2:font-bold;
+  @apply prose-p:font-normal prose-strong:font-bold;
+  @apply prose-a:font-normal prose-li:font-normal;
+}

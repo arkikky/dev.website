@@ -38,9 +38,9 @@ export default function handler(req, res) {
         comingSoon: true,
       },
       {
-        url: '/get-involved/become-an-affiliator',
+        url: '/get-involved/become-an-affiliate',
         images: '/assets/images/get-involved/ca25GetInvolved_4.jpg',
-        title: 'Become an Affiliator',
+        title: 'Become an Affiliate',
         position: 'normal',
         comingSoon: false,
       },

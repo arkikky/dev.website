@@ -108,7 +108,7 @@ const PartnershipLayouts = ({
             </Link>
           </div>
           <div className="absolute inset-x-0 inset-y-0 z-10 block h-full w-full overflow-hidden px-5 pt-[103px] sm:px-11 sm:pt-[136px] lg:pt-[166px] xl:pt-[183px]">
-            <h1 className="ca25Fonts-PartnershipCustom w-full max-w-[496px] uppercase text-white sm:max-w-[573px]">
+            <h1 className="ca25Fonts-PartnershipCustom w-full max-w-[496px] uppercase text-white sm:max-w-[583px]">
               {title}
             </h1>
             {shortDesc && (

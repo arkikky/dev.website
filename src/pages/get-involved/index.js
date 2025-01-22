@@ -92,8 +92,8 @@ export const getStaticProps = async () => {
         slotsFull: false,
       },
       {
-        url: '/get-involved/become-an-affiliator',
-        title: 'Become an Affiliator',
+        url: '/get-involved/become-an-affiliate',
+        title: 'Become an Affiliate',
         shortDesc: `Earn rewards and grow your influence by promoting the world's largest crypto festival.`,
         labelBtn: `Apply Now`,
         comingSoon: false,
