@@ -153,10 +153,6 @@ const PartnerCommunity = ({
               : '-'
           ),
         },
-        // {
-        //   name: 'distribution',
-        //   value: sntzeFld(data?.distribution.join(';')),
-        // },
       ],
       context: {
         pageUri: 'https://coinfest.asia/get-involved/partner-as-community',
