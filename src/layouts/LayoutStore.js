@@ -9,7 +9,12 @@ import { useMethod } from '@lib/hooks/Method';
 import NavbarStore from '@layouts/Navbar/NavbarStore';
 import Footer from '@layouts/Footer';
 
-const LayoutStore = ({ isTheme = 'light', isLayouts = false, children }) => {
+const LayoutStore = ({
+  isTheme = 'light',
+  isMenu = true,
+  isLayouts = false,
+  children,
+}) => {
   const router = useRouter();
   const { getStore } = useCart();
   const { toggleOverlayPopUp } = useMethod();
@@ -42,7 +47,7 @@ const LayoutStore = ({ isTheme = 'light', isLayouts = false, children }) => {
   return (
     <>
       {/* @navbar */}
-      <NavbarStore isTheme={isTheme} nonStore={false} />
+      <NavbarStore isTheme={isTheme} navMenu={isMenu} nonStore={false} />
       {/* <NavbarBottom /> */}
 
       {/* @main */}

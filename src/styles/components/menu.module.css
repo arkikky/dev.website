@@ -87,7 +87,7 @@ ul.ca25NavMenu
 
 /* @half-menu */
 ul.ca25NavMenu ul.ca25HalfNavMenu {
-  @apply rounded-b-xl bg-[linear-gradient(7deg,#005AFF_0%,#1F1F1F_67%)];
+  @apply rounded-xl bg-[linear-gradient(7deg,#005AFF_0%,#1F1F1F_67%)];
   @apply inline-flex flex-col gap-y-4;
   @apply absolute bottom-auto left-0 right-auto top-full;
   @apply px-6 py-6;
@@ -131,6 +131,11 @@ ul.ca25NavMenu ul.ca25HalfNavMenu li:hover a {
 .ca25NavMenuGroup-Mobile.active {
   @apply sm:invisible sm:-z-px sm:opacity-0;
   @apply visible z-[929] opacity-100;
+}
+@screen sm {
+  .ca25NavMenuGroup-Mobile.active {
+    @apply invisible -z-px opacity-0;
+  }
 }
 
 /* @nav-mobile(menu) */

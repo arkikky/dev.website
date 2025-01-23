@@ -187,10 +187,10 @@ const Tickets = ({ mode, products }) => {
 };
 
 Tickets.getLayout = (page, { pageProps }) => {
-  const { mode, layouts } = pageProps;
+  const { mode, menu, layouts } = pageProps;
   if (layouts) {
     return (
-      <LayoutStore isTheme={mode} layoutStore={layouts}>
+      <LayoutStore isTheme={mode} isMenu={menu} layoutStore={layouts}>
         {page}
       </LayoutStore>
     );
@@ -212,6 +212,7 @@ export const getServerSideProps = async (context) => {
     return {
       props: {
         mode: 'dark',
+        menu: false,
         layouts: isStoreLayouts || false,
         products: isProducts || [],
       },
