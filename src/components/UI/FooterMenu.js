@@ -169,19 +169,13 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
                 </Link>
               </li>
               <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">
-                <button
-                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
-                  type="button"
-                  aria-label="Coinfest Asia 2025 Partner as Media"
+                <Link
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  href="/get-involved/partner-as-media"
+                  title={`${publicRuntimeConfig?.siteAppName} Partner as Media`}
                 >
-                  {`Partner as Media`}
-                  <span
-                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] px-2 py-1 text-xs font-normal opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
-                    role="tooltip"
-                  >
-                    {tooltip}
-                  </span>
-                </button>
+                  Partner as Media
+                </Link>
               </li>
               <li className="group mb-3 last:mb-0">
                 <Link
@@ -193,19 +187,13 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
                 </Link>
               </li>
               <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">
-                <button
-                  className="hs-tooltip-toggle leading-[normal flex flex-row items-center text-base font-light capitalize outline-none focus-visible:outline-none group-hover:underline"
-                  type="button"
-                  aria-label="Coinfest Asia 2025 Partner as Community"
+                <Link
+                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  href="/get-involved/partner-as-community"
+                  title={`${publicRuntimeConfig?.siteAppName} Partner as Community`}
                 >
-                  {`Partner as Community`}
-                  <span
-                    className="hs-tooltip-content invisible absolute z-10 inline-block rounded-[7px] px-2 py-1 text-xs font-normal opacity-0 transition-opacity duration-[0.3s] ease-in-out hs-tooltip-shown:visible hs-tooltip-shown:opacity-100"
-                    role="tooltip"
-                  >
-                    {tooltip}
-                  </span>
-                </button>
+                  Partner as Community
+                </Link>
               </li>
               <li className="group mb-3 last:mb-0">
                 <Link
