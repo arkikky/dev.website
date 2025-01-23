@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import getConfig from 'next/config';
 import Head from 'next/head';
 
@@ -19,6 +20,32 @@ import PrelineScript from '@components/Script/PrelineScript';
 import LayoutDefaults from '@layouts/Layouts';
 
 const App = ({ Component, pageProps }) => {
+  const router = useRouter();
+  // @hndle(change route navbar)
+  useEffect(() => {
+    const hndlChangeRoute = () => {
+      const toggleClass = (selector, className, action = 'remove') => {
+        const el = document.querySelector(selector);
+        if (el) {
+          el.classList[action](className);
+        }
+        return el;
+      };
+      toggleClass('.cs-button-nav', 'deactive', 'remove');
+      toggleClass('[data-nav-mobile]', 'active', 'remove');
+
+      const backdrop = toggleClass('.cs-backdrop', 'active', 'remove');
+      if (backdrop) {
+        setTimeout(() => backdrop.remove(), 300);
+      }
+    };
+    router.events.on('routeChangeComplete', hndlChangeRoute);
+    hndlChangeRoute();
+    return () => {
+      router.events.off('routeChangeComplete', hndlChangeRoute);
+    };
+  }, [router.events]);
+
   // @with-layouts
   const getLayout =
     Component.getLayout ||

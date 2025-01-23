@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
 import getConfig from 'next/config';
 import Link from 'next/link';
 
@@ -10,31 +9,6 @@ const { publicRuntimeConfig } = getConfig();
 import DropdownMenuMobile from '@components/UI/Nav/DropdownMenuMobile';
 
 const NavMenuMobile = ({ id = 'ca25NavMenuMobile' }) => {
-  const router = useRouter();
-  // @hndle(change route)
-  useEffect(() => {
-    const hndlChangeRoute = () => {
-      const elBtn = document.querySelector('.cs-button-nav');
-      if (elBtn?.classList.contains('deactive')) {
-        elBtn?.classList.remove('deactive');
-      }
-      const navMobile = document.querySelector('[data-nav-mobile]');
-      if (navMobile) {
-        navMobile?.classList.remove('active');
-      }
-      let backdrop = document.querySelector('.cs-backdrop');
-      if (backdrop) {
-        backdrop?.classList.remove('active');
-        setTimeout(() => backdrop?.remove(), 300);
-      }
-    };
-    router.events.on('routeChangeComplete', hndlChangeRoute);
-    hndlChangeRoute();
-    return () => {
-      router.events.off('routeChangeComplete', hndlChangeRoute);
-    };
-  }, [router.events]);
-
   return (
     <>
       <ul id={id} className="ca25NavMenuMobile">
