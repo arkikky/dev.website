@@ -12,6 +12,14 @@ const NavMenu = () => {
   return (
     <>
       <ul className="ca25NavMenu">
+        <li className="ca25NavMenu-Items ca25NavMenu-LabelItems">
+          <Link
+            href="/get-involved/sponsorship"
+            title={`${publicRuntimeConfig?.siteAppName} Enquire for Sponsorship`}
+          >
+            {`Enquire for Sponsorship`}
+          </Link>
+        </li>
         <li className="ca25NavMenu-Items">
           <DropdownNavMenuNavbar
             id="ca25NavBtnToggle-GetInvolved"
@@ -24,8 +32,8 @@ const NavMenu = () => {
                 type: 'link',
               },
               {
-                url: '/get-involved/sponsorship',
-                label: 'Enquire for Sponsorship',
+                url: '/get-involved/sponsor',
+                label: 'Sponsor',
                 type: 'link',
               },
               {

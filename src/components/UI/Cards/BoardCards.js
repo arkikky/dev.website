@@ -9,9 +9,8 @@ const BoardCards = ({ count, title, children }) => {
     if (typeof window === 'undefined') return;
     import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
       gsap.registerPlugin(ScrollTrigger);
-
       if (rfCounter?.current) {
-        gsap.to(rfCounter?.current, {
+        gsap.to(rfCounter.current, {
           innerText: count,
           duration: 1.7,
           scrollTrigger: {
@@ -21,7 +20,9 @@ const BoardCards = ({ count, title, children }) => {
           },
           snap: { innerText: 1 },
           onUpdate: () => {
-            rfCounter.current.textContent = `${Math.floor(rfCounter.current?.innerText)}+`;
+            if (rfCounter?.current) {
+              rfCounter.current.textContent = `${Math.floor(rfCounter.current?.innerText)}+`;
+            }
           },
         });
       }
@@ -30,7 +31,7 @@ const BoardCards = ({ count, title, children }) => {
 
   return (
     <>
-      <div className="relative overflow-clip rounded-[10px] border border-solid border-white/55 bg-black-900/[0.24] px-4 py-4 max-[420px]:px-3 max-[420px]:py-3.5 sm:rounded-[20px] sm:border-2 sm:px-6 sm:py-6 lg:rounded-[28px] lg:px-8 lg:py-8 xl:px-10 xl:py-10">
+      <div className="max-[420px]:px-3 max-[420px]:py-3.5 relative overflow-clip rounded-[10px] border border-solid border-white/55 bg-black-900/[0.24] px-4 py-4 sm:rounded-[20px] sm:border-2 sm:px-6 sm:py-6 lg:rounded-[28px] lg:px-8 lg:py-8 xl:px-10 xl:py-10">
         {children}
 
         <span
