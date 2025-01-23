@@ -4,6 +4,8 @@ const SelectCountry = ({
   id = 'ca25Form_InputCountrySelect',
   addClassName = '',
   ariaLabel = '',
+  label = 'Choose a country...',
+  widthPlaceholder = true,
   listSelect = [],
   withIcons = false,
   disabled = false,
@@ -32,7 +34,10 @@ const SelectCountry = ({
             'block w-full text-sm border border-solid border-gray-200 rounded-lg focus:ring-0 focus:outline-none before:absolute before:inset-0 before:z-[1] py-2 px-3',
           searchWrapperClasses: 'bg-white sticky py-2 top-0 inset-x-0',
           searchNoResultClasses: 'text-gray-400 text-sm',
-          placeholder: 'Choose a country...',
+          // placeholder: 'Choose a country...',
+          placeholder: widthPlaceholder
+            ? label
+            : '<span class="h-5 block"></span>',
           toggleTag: `<button id="${id}ToggleTags" type="button" aria-expanded="false"><span class="me-1.5" data-icon></span><span class="ca25Select-ToggleTagsTitle" data-title></span></button>`,
           toggleClasses:
             'ca25Select-ToggleTags hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 hs-error:border-red-500 relative py-4 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 font-normal rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500',

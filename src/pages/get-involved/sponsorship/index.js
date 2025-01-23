@@ -189,7 +189,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                 id={`ca25Form_FirstnameSponsorship`}
                 type="text"
                 name={`firstname`}
-                placeholder="Eg: Alexander"
+                placeholder=""
                 ariaLabel={`Firstname`}
                 disabled={isSubmitting}
                 config={{
@@ -213,8 +213,8 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
               <Input
                 id={`ca25Form_LastnameSponsorship`}
                 type="text"
-                name={`lastname`}
-                placeholder="Eg: Doe"
+                name={`last name`}
+                placeholder=""
                 ariaLabel={`Lastname`}
                 disabled={isSubmitting}
                 config={{
@@ -239,7 +239,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
             <Input
               id={`ca25Form_EmailSponsorship`}
               type="email"
-              placeholder="Eg: example@email.com"
+              placeholder=""
               ariaLabel={`Email Sponsorship`}
               disabled={isSubmitting}
               config={{
@@ -270,6 +270,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                     id={`ca25Form_jobtitleSponsorship`}
                     ariaLabel={`Jobtitle Sponsorship`}
                     label="Choose a jobtitle..."
+                    widthPlaceholder={false}
                     listSelect={isForms?.fields[0]?.options}
                     values={`jobtitleSponsorship`}
                     setValue={setValue}
@@ -291,6 +292,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                   <SelectCountry
                     id={`ca25Form_Country_Sponsorship`}
                     ariaLabel={`Country - Sponsorship Forms`}
+                    widthPlaceholder={false}
                     listSelect={isForms?.country}
                     withIcons={true}
                     values={`countrySponsorship`}
@@ -316,7 +318,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                     id={`ca25Form_CompanySponsorship`}
                     type="text"
                     name={`name`}
-                    placeholder="Eg: Coinfest Asia"
+                    placeholder=""
                     ariaLabel={`Company Name - Sponsorship`}
                     config={{
                       ...register(`name`, {
@@ -344,6 +346,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                     id={`ca25Form_CompanyFocusSponsorship`}
                     ariaLabel={`CompanyFocus Sponsorship`}
                     label="Choose a Company Focus..."
+                    widthPlaceholder={false}
                     listSelect={isForms?.fields[1]?.options}
                     values={`companyFocusSponsorship`}
                     setValue={setValue}
