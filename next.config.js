@@ -63,23 +63,6 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/api/:path*',
-        headers: [
-          {
-            key: 'Access-Control-Allow-Origin',
-            value: process.env.NEXT_PUBLIC_SITE_URL || '*',
-          },
-          {
-            key: 'Access-Control-Allow-Methods',
-            value: 'GET, POST, PUT, DELETE',
-          },
-          {
-            key: 'Access-Control-Allow-Headers',
-            value: 'Content-Type, Authorization',
-          },
-        ],
-      },
-      {
         source: '/(.*)',
         headers: [
           {
@@ -91,16 +74,8 @@ const nextConfig = {
             value: 'GET, POST, PUT, DELETE',
           },
           {
-            key: 'Cache-Control',
-            value: 'private, stale-while-revalidate=59',
-          },
-          {
             key: 'Access-Control-Allow-Headers',
             value: 'Content-Type, Authorization',
-          },
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
           },
           {
             key: 'Strict-Transport-Security',
@@ -111,11 +86,6 @@ const nextConfig = {
             value: 'SAMEORIGIN',
           },
           {
-            key: 'Permissions-Policy',
-            value:
-              'display-capture=(self), microphone=(), payment=(self), geolocation=(self)',
-          },
-          {
             key: 'X-Content-Type-Options',
             value: 'nosniff',
           },
@@ -124,12 +94,29 @@ const nextConfig = {
             value: 'strict-origin-when-cross-origin',
           },
           {
+            key: 'Permissions-Policy',
+            value:
+              'display-capture=(self), microphone=(), payment=(self), geolocation=(self)',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: `default-src 'self'; base-uri 'self'; script-src 'self' 'unsafe-eval' https: https://www.googletagmanager.com https://www.google-analytics.com wss: wss://*.hotjar.com wss://ws.hotjar.com ws.hotjar.com 'sha256-+VpH0Cw80OuFaR+X1lmYjLkKsip/F2dDslL0JAvwlFA=' 'sha256-+kTPHgSOsYwYaXhSf2xTyBaBK4uVBsD6sgRbu0UKIYU=' 'sha256-h8qdr28t37PRaTPEFJ1DmRLJKbfRzrtcJDuEJUp1FBw=' 'sha256-lH5mF7jetR73rDA8fhru5w2+2TLgjsr3PXRS16nwqpY=' 'sha256-xm8N0GZArBHm4p9Zsd98vsHWVLP7knjZklGdLDzn35M=' 'sha256-63SgcioJg3SzunjNOZishsGbCME4jf2tExf3FX51aAA=' 'sha256-2kGECM9NFHBAhlNMIbyAm0Lu6VdF7TvhbzT9WW86kUI=' 'sha256-ANMpmVf8PLjCGynCggIAiTArAnaTMInBshu95qRJPzg=' 'sha256-BawaB+1tlg+I0FG2NG2/30p/CM96DWlvld7LzrS5/6M=' 'sha256-BzokaaX+EWQs7wVvCr0hpX7jNoWu847XT8ay8gsQVHA=' 'sha256-ciempzB86lmZWo8K/uPbojn0/dfNxls6k0PSaNLRvow=' 'sha256-n/RMhdYdR3bw+fP3SraQjHyjwYYKf9PKqEjbgGfhn+0=' 'sha256-eUnp2iVRt/owvyEacOFIV+gGEV6vsK65zTx3zVwaP7o=' 'sha256-DtxIxVxxirVV7lmJdKrGO2JEAskZPNSx7uZcXvTalWg=' 'sha256-ATLVdlL7dm0+nH5N56U4mqJ2hTLoPfU0SOGf4CSQsRg=' 'sha256-ZPfOsj5SKj5ldrOcWOWm2a5wUFeaCTcpC6Kg+D0A2+w=' 'sha256-9OW5aXYYSnZX5Dvg+19bDiia2eOhw0LCwR4r+V3V5d0=' 'sha256-hMTlXvm+Ql/aRmzjpffxtisA0FskENp0fgY/0O/63Qk=' 'sha256-WnXrrRzgpTOaoj+/CEeJjeYDfYu6qkeJB44k68IPQbs=' 'report-sample'; style-src 'self' 'unsafe-inline' https:* https://fonts.googleapis.com; font-src 'self' https:* https://fonts.gstatic.com; connect-src 'self' https: https://coinfest.asia https://api.coinfest.asia https://api.hsforms.com https://hub.coinvestasi.com https://www.googletagmanager.com https://www.google-analytics.com https://*.hotjar.com https://checkout-staging.xendit.co https://vercel.live wss: wss://*.hotjar.com wss://ws.hotjar.com ws.hotjar.com; img-src 'self' https: https://coinfest.asia https://upload.wikimedia.org https://api.coinfest.asia https://hub.coinvestasi.com https://flagcdn.com https://*.hotjar.com https://checkout-staging.xendit.co https://vercel.live data: blob:; frame-src 'self' https: https://*.facebook.com https://*.doubleclick.net https://www.googletagmanager.com; form-action 'self' https: https://*.facebook.com https://*.facebook.com/*; object-src 'none'; worker-src 'self';`,
+          },
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'require-corp',
+          },
+          {
             key: 'Cross-Origin-Resource-Policy',
             value: 'same-site',
           },
           {
-            key: 'Cross-Origin-Embedder-Policy',
-            value: 'same-origin',
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'private, stale-while-revalidate=59',
           },
           {
             key: 'X-XSS-Protection',

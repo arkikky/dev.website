@@ -49,7 +49,7 @@ const GetInvolved = ({ mode, result = [] }) => {
                 >
                   <div className="absolute inset-x-0 inset-y-0 z-[3] flex flex-row items-center justify-center">
                     <h3 className="-ml-[5px] max-w-[62px] text-balance text-[13px] font-normal uppercase leading-[15px] text-white group-hover:underline sm:-ml-[42px] sm:max-w-[99px] sm:text-[20px] sm:font-medium sm:leading-[26px] lg:-ml-[56px] lg:text-[22px] lg:leading-[28px] xl:-ml-[112px] xl:max-w-[127px] xl:text-[26px] xl:leading-[32px]">
-                      Send inquiry
+                      Send General Inquiry
                     </h3>
                     <svg
                       className="h-[22px] w-[22px] stroke-white sm:h-[36px] sm:w-[36px] lg:h-[42px] lg:w-[42px]"

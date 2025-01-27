@@ -28,12 +28,12 @@ const NavMenu = () => {
             listItems={[
               {
                 url: '/get-involved/speakers',
-                label: 'Speaker',
+                label: 'Apply to Speak',
                 type: 'link',
               },
               {
-                url: '/get-involved/sponsor',
-                label: 'Sponsor',
+                url: '/get-involved/sponsorship',
+                label: 'Inquire to Sponsor',
                 type: 'link',
               },
               {

@@ -736,7 +736,9 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     const isFullname = `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`;
                     const tickets =
                       rsAttendee?.data.product.documentId ===
-                      'sn4ujm0d1ebbc8lme1ihzsa9'
+                        'sn4ujm0d1ebbc8lme1ihzsa9' &&
+                      rsAttendee?.data.product.documentId ===
+                        'g1ukadil4n4a3r0ndly7jl42'
                         ? `Festival Tickets`
                         : `${rsAttendee?.data.product?.name}`;
 

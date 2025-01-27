@@ -32,7 +32,7 @@ export default function handler(req, res) {
       {
         url: '/',
         images: '/assets/images/whats-happening/ca25WhatsHappening_3.jpg',
-        captions: 'Paintball Tournament',
+        captions: 'Tournaments',
         openUrl: false,
         comingSoon: false,
       },
@@ -46,7 +46,7 @@ export default function handler(req, res) {
       {
         url: '/',
         images: '/assets/images/whats-happening/ca25WhatsHappening_5.jpg',
-        captions: 'Esport Tournament',
+        captions: 'E-Sports Tournaments',
         openUrl: false,
         comingSoon: false,
       },
@@ -74,7 +74,7 @@ export default function handler(req, res) {
       {
         url: '/',
         images: '/assets/images/whats-happening/ca25WhatsHappening_9.jpg',
-        captions: 'Board Tournament',
+        captions: 'Board Tournaments',
         openUrl: false,
         comingSoon: false,
       },

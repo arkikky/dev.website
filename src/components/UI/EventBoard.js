@@ -13,7 +13,7 @@ const EventBoard = ({ id }) => {
     seconds: 0,
   });
   // @countdown(Date)
-  const setDate = new Date('2025-08-21T12:00:00')?.getTime();
+  const setDate = new Date('2025-03-31T12:00:00')?.getTime();
   useEffect(() => {
     const timer = setInterval(() => {
       setCountdown(calculateCountdown(setDate));
@@ -67,7 +67,7 @@ const EventBoard = ({ id }) => {
           <SplideSlide data-splide-interval="6000" role="listitem">
             <div className="relative flex h-12 flex-col items-start justify-start overflow-hidden">
               <span className={`text-sm font-light text-white/60`}>
-                {`Starting in`}
+                {`Super early bird ends in`}
               </span>
               <div
                 className={`absolute inset-x-0 bottom-[7px] top-auto min-w-max text-base font-normal leading-initial text-white sm:bottom-[4px] sm:text-[17px] sm:leading-initial`}

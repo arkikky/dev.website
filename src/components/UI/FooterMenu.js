@@ -156,7 +156,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
                   href="/get-involved/sponsorship"
                   title={`${publicRuntimeConfig?.siteAppName} Sponsors`}
                 >
-                  Sponsor
+                  Inquire to Sponsor
                 </Link>
               </li>
               <li className="group mb-3 last:mb-0">
@@ -165,7 +165,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
                   href="/get-involved/speakers"
                   title={`${publicRuntimeConfig?.siteAppName} Speakers`}
                 >
-                  Speaker
+                  Apply to Speak
                 </Link>
               </li>
               <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">

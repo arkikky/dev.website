@@ -229,7 +229,8 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                 for (let i = 0; i < grpAttendee?.length; i++) {
                   const isGrpdAttendee = grpAttendee[i];
                   const tickets =
-                    isGrpdAttendee?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9'
+                    isGrpdAttendee?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9' &&
+                    isGrpdAttendee?.documentId === 'g1ukadil4n4a3r0ndly7jl42'
                       ? `Festival Tickets`
                       : `${isGrpdAttendee?.name}`;
                   for (let a = 0; a < isGrpdAttendee?.attendees?.length; a++) {

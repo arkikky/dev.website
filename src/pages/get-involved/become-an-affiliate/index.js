@@ -160,8 +160,8 @@ const BecomeAnAffiliate = ({
         },
       ],
       context: {
-        pageUri: 'https://coinfest.asia/get-involved/become-an-affiliator',
-        pageName: '2025 Become An Affiliator | Coinfest Asia 2025',
+        pageUri: 'https://coinfest.asia/get-involved/become-an-affiliate',
+        pageName: '2025 Become An Affiliatte | Coinfest Asia 2025',
         ipAddress: isForms?.ipAddress?.ip,
       },
     };
@@ -172,18 +172,18 @@ const BecomeAnAffiliate = ({
     // console.log(d);
     if (rs === true) {
       reset();
-      router.replace('/get-involved/become-an-affiliator/success');
+      router.replace('/get-involved/become-an-affiliate/success');
     }
   };
 
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo title={`Become An Affiliator`} otherPage={true} />
+      <HeadGraphSeo title={`Become An Affiliate`} otherPage={true} />
 
       {/* @main */}
       <PartnershipLayouts
-        title={'COINFEST ASIA 2025 BECOME AN AFFILIATOR'
+        title={'COINFEST ASIA 2025 BECOME AN AFFILIATE'
           ?.split(' ')
           .map((w, i) =>
             w
@@ -370,7 +370,7 @@ const BecomeAnAffiliate = ({
               />
               <SelectCountry
                 id={`ca25Form_Country${groupLabel}`}
-                ariaLabel={`Country - Affiliator Forms`}
+                ariaLabel={`Country - Affiliatte Forms`}
                 widthPlaceholder={false}
                 listSelect={isForms?.country}
                 withIcons={true}
@@ -497,7 +497,7 @@ const BecomeAnAffiliate = ({
                       setValue={setValue}
                       config={{
                         ...register(`companyFocus${groupLabel}`, {
-                          required: 'Please select a jobtitle Affiliator',
+                          required: 'Please select a jobtitle Affiliatte',
                         }),
                       }}
                     />
@@ -513,7 +513,7 @@ const BecomeAnAffiliate = ({
                     id={`ca25Form_CompanyWebsite${groupLabel}`}
                     type="url"
                     placeholder={``}
-                    ariaLabel="Provice Link Platforms Affiliator"
+                    ariaLabel="Provice Link Platforms Affiliatte"
                     config={{
                       ...register(`company_website${groupLabel}`, {
                         required: true,
@@ -611,7 +611,7 @@ const BecomeAnAffiliate = ({
               id={`ca25Form_ProvideLinkPlatform${groupLabel}`}
               type="url"
               placeholder={``}
-              ariaLabel="Provice Link Platforms Affiliator"
+              ariaLabel="Provice Link Platforms Affiliate"
               config={{
                 ...register(`please_provide_the_links_to_your_platforms_here`, {
                   required: true,
@@ -630,10 +630,10 @@ const BecomeAnAffiliate = ({
           {/* @submit */}
           <div className="z-[18] flex flex-col">
             <button
-              id="ca25Submit-Affiliator"
+              id="ca25Submit-Affiliatte"
               type="submit"
               className={`mt-6 flex w-full flex-col items-center justify-center rounded-[14px] bg-black-900 py-6 text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
-              aria-label="Submit Affiliator Forms"
+              aria-label="Submit Affiliatte Forms"
               disabled={isSubmitting}
             >
               {isSubmitting ? (
