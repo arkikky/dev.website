@@ -112,7 +112,7 @@ const nextConfig = {
           },
           {
             key: 'Cross-Origin-Resource-Policy',
-            value: 'cross-origin',
+            value: 'same-origin',
           },
           {
             key: 'X-DNS-Prefetch-Control',
@@ -129,6 +129,10 @@ const nextConfig = {
           {
             key: 'Expect-CT',
             value: 'enforce, max-age=86400',
+          },
+          {
+            key: 'X-Permitted-Cross-Domain-Policies',
+            value: 'none',
           },
         ],
       },
