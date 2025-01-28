@@ -52,7 +52,7 @@ const NavMenuMobile = ({ id = 'ca25NavMenuMobile' }) => {
               },
               {
                 url: 'mailto:partner@coinfest.asia',
-                label: 'Send Inquiry',
+                label: 'Send General Inquiry',
                 type: 'open-link',
               },
             ]}

@@ -23,11 +23,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        {/* @content-security-policy */}
-        {/* <meta
-          httpEquiv="Content-Security-Policy"
-          content={``}
-        /> */}
         {/* @google-fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -71,8 +66,7 @@ export default function Document() {
           id={`gtag-analytics`}
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            // __html: gTagsAnalyticsScript,
-            __html: `window.dataLayer = window.dataLayer || []; function gtag() { window.dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-HC7BZC18HB');`,
+            __html: gTagsAnalyticsScript,
           }}
           nonce={hashGTagAnalytics}
         />
@@ -81,8 +75,7 @@ export default function Document() {
           id={`gtag-manager`}
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            // __html: gTagsScript,
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TMLM3MB');`,
+            __html: gTagsScript,
           }}
           nonce={hashGTagManager}
         />

@@ -203,7 +203,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
                   target={'_blank'}
                   rel={'noopener noreferrer'}
                 >
-                  Send Inquiry
+                  Send General Inquiry
                 </Link>
               </li>
             </ul>

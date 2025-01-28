@@ -67,7 +67,7 @@ const EventBoard = ({ id }) => {
           <SplideSlide data-splide-interval="6000" role="listitem">
             <div className="relative flex h-12 flex-col items-start justify-start overflow-hidden">
               <span className={`text-sm font-light text-white/60`}>
-                {`Super early bird ends in`}
+                {`Pre-sale ends in`}
               </span>
               <div
                 className={`absolute inset-x-0 bottom-[7px] top-auto min-w-max text-base font-normal leading-initial text-white sm:bottom-[4px] sm:text-[17px] sm:leading-initial`}

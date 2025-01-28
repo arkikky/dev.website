@@ -53,7 +53,7 @@ const NavMenu = () => {
               },
               {
                 url: 'mailto:partner@coinfest.asia',
-                label: 'Send Inquiry',
+                label: 'Send General Inquiry',
                 type: 'open-link',
               },
             ]}
