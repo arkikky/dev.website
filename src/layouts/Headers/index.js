@@ -22,6 +22,7 @@ const Headers = ({ mode }) => {
               'ca25BckBlueMoon-Speacial pointer-events-none absolute inset-x-0 inset-y-0 z-[2] flex select-none flex-row items-center justify-center overflow-hidden'
             }
           >
+            <div className="ca25BckBlueMoon-Speacial_MemeItems absolute inset-x-0 inset-y-0 mx-auto w-full sm:w-[659.54px] xl:w-[1180px]"></div>
             <div className="ca25BckBlueMoon-Speacial_MiniRckt absolute inset-x-0 inset-y-0 mx-auto w-full sm:w-[659.54px] xl:w-[1180px]"></div>
           </div>
 

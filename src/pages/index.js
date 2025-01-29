@@ -21,6 +21,7 @@ import { getFetch, getFetchUrl } from '@lib/controller/API';
 // @components
 import HeadGraphSeo from '@components/Head';
 import MainSmoothScroll from '@components/MainSmoothScroll';
+import Main from '@components/Main';
 import Container from '@components/Container';
 import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 import TicketProductsSkeleton from '@components/Skeleton/Products/TicketProducts';

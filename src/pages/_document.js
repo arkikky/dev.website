@@ -82,7 +82,7 @@ export default function Document() {
       </Head>
       <body>
         <Main />
-
+        <NextScript nonce={hashNonce256} />
         {/* @meta-pixel */}
         <Image
           className={`!hidden !h-0 !w-0`}
@@ -98,7 +98,6 @@ export default function Document() {
           width="0"
           nonce={hashGTagManager}
         ></iframe>
-        <NextScript nonce={hashNonce256} />
       </body>
     </Html>
   );

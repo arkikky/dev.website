@@ -103,7 +103,7 @@
   @apply inline-block bg-[url('/assets/images/ca25BlueMoonPortal-Primary.svg')];
   @apply bg-cover bg-center bg-no-repeat;
   @apply absolute inset-x-auto bottom-[16px] top-0 mx-auto my-auto sm:inset-y-0;
-  @apply h-[413px] w-[413px] xs:h-[373px] xs:w-[373px];
+  @apply h-[523px] w-[523px] xs:h-[483px] xs:w-[483px];
   @apply sm:h-[659.54px] sm:w-[659.54px];
   @apply lg:h-[827.54px] lg:w-[827.54px];
   @apply xl:h-[1180px] xl:w-[1180px];
@@ -118,6 +118,41 @@
   @apply lg:h-[579.54px] lg:w-[579.54px];
   @apply xl:h-[677.94px] xl:w-[677.94px];
   @apply z-[32];
+  @apply animate-spin-slow;
+}
+
+/* @blue-moon-special(meme) */
+.ca25BckBlueMoon-Speacial .ca25BckBlueMoon-Speacial_MemeItems::before {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25MemeItems_Right.svg')] drop-shadow-[0_0_23px_rgba(255,0,0,0.4)];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute right-auto top-auto;
+  @apply left-[10px] top-[241px] xs:left-[5px] xs:top-[187px];
+  @apply sm:-left-[11px] sm:top-[351px];
+  @apply lg:-left-[101px] lg:top-[343px];
+  @apply xl:-left-[39px] xl:top-[313px];
+  @apply h-[55.04px] w-[58px];
+  @apply sm:h-[65.04px] sm:w-[68px];
+  @apply lg:h-[75.04px] lg:w-[78px];
+  @apply xl:h-[102.04px] xl:w-[105px];
+  transform: rotateY(180deg);
+  @apply z-[4];
+}
+.ca25BckBlueMoon-Speacial .ca25BckBlueMoon-Speacial_MemeItems::after {
+  @apply content-[''];
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25MemeItems_Left.svg')];
+  @apply bg-cover bg-center bg-no-repeat;
+  @apply absolute left-auto top-auto;
+  @apply right-[10px] top-[229px] xs:right-[5px] xs:top-[181px];
+  @apply sm:right-[27px] sm:top-[311px];
+  @apply lg:-right-[51px] lg:top-[263px];
+  @apply xl:right-[15px] xl:top-[207px];
+  @apply h-[55.04px] w-[58px];
+  @apply sm:h-[57.04px] sm:w-[61px];
+  @apply lg:h-[75.04px] lg:w-[81px];
+  @apply xl:h-[102.04px] xl:w-[111px];
+  transform: rotateY(180deg);
+  @apply z-[4];
 }
 
 /* @blue-moon-special(mini rocket) */
