@@ -10,24 +10,29 @@ const BoardCards = ({ count, title, children }) => {
     import('gsap/ScrollTrigger').then(({ default: ScrollTrigger }) => {
       gsap.registerPlugin(ScrollTrigger);
       if (rfCounter?.current) {
-        gsap.to(rfCounter.current, {
-          innerText: count,
-          duration: 1.7,
-          scrollTrigger: {
-            trigger: rfCounter?.current,
-            start: 'top center+=195',
-            once: true,
-          },
-          snap: { innerText: 1 },
-          onUpdate: () => {
-            if (rfCounter?.current) {
-              rfCounter.current.textContent = `${Math.floor(rfCounter.current?.innerText)}+`;
-            }
-          },
-        });
+        gsap.fromTo(
+          rfCounter?.current,
+          { innerText: 0 },
+          {
+            innerText: count,
+            duration: 1.7,
+            ease: 'power1.out',
+            scrollTrigger: {
+              trigger: rfCounter?.current,
+              start: 'top center+=195',
+              once: true,
+            },
+            snap: { innerText: 1 },
+            onUpdate: () => {
+              if (rfCounter?.current) {
+                rfCounter.current.textContent = `${Math.floor(rfCounter.current.innerText)}+`;
+              }
+            },
+          }
+        );
       }
     });
-  }, []);
+  }, [count]);
 
   return (
     <>

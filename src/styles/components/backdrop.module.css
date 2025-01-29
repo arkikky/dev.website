@@ -118,7 +118,6 @@
   @apply lg:h-[579.54px] lg:w-[579.54px];
   @apply xl:h-[677.94px] xl:w-[677.94px];
   @apply z-[32];
-  @apply animate-spin-slow;
 }
 
 /* @blue-moon-special(meme) */

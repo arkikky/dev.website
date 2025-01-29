@@ -1,10 +1,29 @@
-import React from 'react';
+'use client';
+import React, { useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
 import Image from 'next/image';
 
 // @components
 import StarryBackground from '@components/UI/Background/StarryBackground';
 
 const Headers = ({ mode }) => {
+  // @animation(rotate)
+  const elBlueMoonSpecial = useRef(null);
+  useEffect(() => {
+    const elRotate = () => {
+      gsap.to('#ca25BlueMoonSpecial', {
+        rotation: 360,
+        duration: 10,
+        repeat: -1,
+        ease: 'linear',
+      });
+    };
+    elRotate();
+    return () => {
+      gsap.killTweensOf(elBlueMoonSpecial?.current);
+    };
+  }, []);
+
   return (
     <>
       <header id="ca25Headers" className="relative block w-full">
@@ -27,6 +46,8 @@ const Headers = ({ mode }) => {
           </div>
 
           <div
+            ref={elBlueMoonSpecial}
+            id={'ca25BlueMoonSpecial'}
             className={
               'ca25BckBlueMoon-SpeacialMoon pointer-events-none flex select-none flex-row items-center justify-center overflow-hidden mix-blend-hard-light'
             }
@@ -37,7 +58,7 @@ const Headers = ({ mode }) => {
               alt={`Coinfest Asia 2025 Special Blue Moon`}
               height={606}
               width={755}
-              quality="80"
+              quality="75"
             />
           </div>
 
