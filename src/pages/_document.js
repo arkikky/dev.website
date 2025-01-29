@@ -81,28 +81,23 @@ export default function Document() {
         />
       </Head>
       <body>
-        {/* @meta-pixel */}
-        <noscript>
-          <Image
-            className={`!hidden !h-0 !w-0`}
-            src="https://www.facebook.com/tr?id=534460966120098&ev=PageView&noscript=1"
-            height="1"
-            width="1"
-          />
-        </noscript>
-
-        {/* @google-tag-manager(noscript) */}
-        <noscript>
-          <iframe
-            className={`!hidden !h-0 !w-0`}
-            src={`https://www.googletagmanager.com/ns.html?id=GTM-TMLM3MB`}
-            height="0"
-            width="0"
-            nonce={hashGTagManager}
-          ></iframe>
-        </noscript>
-
         <Main />
+
+        {/* @meta-pixel */}
+        <Image
+          className={`!hidden !h-0 !w-0`}
+          src="https://www.facebook.com/tr?id=534460966120098&ev=PageView&noscript=1"
+          height="1"
+          width="1"
+        />
+        {/* @google-tag-manager(noscript) */}
+        <iframe
+          className={`!hidden !h-0 !w-0`}
+          src={`https://www.googletagmanager.com/ns.html?id=GTM-TMLM3MB`}
+          height="0"
+          width="0"
+          nonce={hashGTagManager}
+        ></iframe>
         <NextScript nonce={hashNonce256} />
       </body>
     </Html>

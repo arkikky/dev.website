@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 // @components
 import HeadGraphSeo from '@components/Head';
-import Main from '@components/Main';
+import MainSmoothScroll from '@components/MainSmoothScroll';
 import Container from '@components/Container';
 
 // @layouts
@@ -16,7 +16,7 @@ const PrivacyPolicy = ({ mode }) => {
       <HeadGraphSeo title={`Privacy Policy`} otherPage={true} />
 
       {/* @main */}
-      <Main className="relative flex flex-col overflow-hidden pb-16 pt-[141px] sm:pb-24 sm:pt-[161px]">
+      <MainSmoothScroll className="relative flex flex-col overflow-hidden pb-16 pt-[141px] sm:pb-24 sm:pt-[161px]">
         <Container className={'pb-20 sm:pb-28'}>
           <div className="relative grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-full col-start-1 sm:col-span-10 sm:col-start-2">
@@ -131,7 +131,7 @@ const PrivacyPolicy = ({ mode }) => {
 
         {/* @banner(footer) */}
         <MoonPortalBanner mode={mode} />
-      </Main>
+      </MainSmoothScroll>
     </>
   );
 };

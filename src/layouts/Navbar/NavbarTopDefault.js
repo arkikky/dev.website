@@ -40,7 +40,7 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
 
   return (
     <>
-      <nav className="fixed inset-x-0 bottom-auto top-0 z-base block h-auto w-full py-4 sm:py-6">
+      <nav className="fixed inset-x-0 bottom-auto top-0 z-base block h-auto w-full py-4">
         <Container>
           <div
             className={`flex h-[58px] flex-row items-start justify-between gap-y-6 sm:gap-y-0`}

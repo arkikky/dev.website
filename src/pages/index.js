@@ -20,7 +20,7 @@ import { getFetch, getFetchUrl } from '@lib/controller/API';
 
 // @components
 import HeadGraphSeo from '@components/Head';
-import Main from '@components/Main';
+import MainSmoothScroll from '@components/MainSmoothScroll';
 import Container from '@components/Container';
 import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 import TicketProductsSkeleton from '@components/Skeleton/Products/TicketProducts';
@@ -32,7 +32,7 @@ const TicketProducts = dynamic(() => import('@components/UI/TicketProducts'), {
 // @layouts
 import LayoutStore from '@layouts/LayoutStore';
 import Headers from '@layouts/Headers';
-import Abouts from '@layouts/Abouts';
+// import Abouts from '@layouts/Abouts';
 import Partners from '@layouts/Partners';
 import Speakers from '@layouts/Speakers';
 import PortalBanner from '@layouts/Banner/PortalBanner';
@@ -223,11 +223,11 @@ const Home = ({ mode, collections, products }) => {
       />
 
       {/* @main */}
-      <Main className="relative overflow-hidden pb-16 sm:pb-24">
+      <MainSmoothScroll className="relative overflow-hidden pb-16 sm:pb-24">
         <Headers />
 
         {/* @about-us */}
-        <Abouts mode={mode} result={isCollections?.aboutus} />
+        {/* <Abouts mode={mode} result={isCollections?.aboutus} /> */}
 
         {/* @tickets */}
         <section className="ca25Ticket-Section pb-24 pt-[92px] sm:pt-24">
@@ -300,7 +300,7 @@ const Home = ({ mode, collections, products }) => {
 
         {/* @banner(footer) */}
         <MoonPortalBanner mode={mode} />
-      </Main>
+      </MainSmoothScroll>
 
       {/* @alert(Toast)  */}
       <Toaster
