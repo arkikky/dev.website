@@ -111,7 +111,7 @@
   @apply z-[2];
 }
 .ca25BckBlueMoon-SpeacialMoon {
-  @apply bg-cover bg-center bg-no-repeat drop-shadow-[0_0_23px_rgba(0,149,255,0.4)];
+  @apply bg-cover bg-center bg-no-repeat;
   @apply absolute inset-x-auto -top-[15px] bottom-0 mx-auto my-auto sm:inset-y-0;
   @apply h-[304.69px] w-[304.69px] xs:h-[284.69px] xs:w-[284.69px];
   @apply sm:h-[449.54px] sm:w-[449.54px];
@@ -123,7 +123,7 @@
 /* @blue-moon-special(meme) */
 .ca25BckBlueMoon-Speacial .ca25BckBlueMoon-Speacial_MemeItems::before {
   @apply content-[''];
-  @apply inline-block bg-[url('/assets/images/backdrop/ca25MemeItems_Right.svg')] drop-shadow-[0_0_23px_rgba(255,0,0,0.4)];
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25MemeItems_Right.svg')] drop-shadow-[0px_0px_29px_rgba(1,90,253,1)];
   @apply bg-cover bg-center bg-no-repeat;
   @apply absolute right-auto top-auto;
   @apply left-[10px] top-[241px] xs:left-[5px] xs:top-[187px];
@@ -139,7 +139,7 @@
 }
 .ca25BckBlueMoon-Speacial .ca25BckBlueMoon-Speacial_MemeItems::after {
   @apply content-[''];
-  @apply inline-block bg-[url('/assets/images/backdrop/ca25MemeItems_Left.svg')];
+  @apply inline-block bg-[url('/assets/images/backdrop/ca25MemeItems_Left.svg')] drop-shadow-[0px_0px_33px_rgba(249,142,50,0.85)];
   @apply bg-cover bg-center bg-no-repeat;
   @apply absolute left-auto top-auto;
   @apply right-[10px] top-[229px] xs:right-[5px] xs:top-[181px];
