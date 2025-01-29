@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 
-// @lib/controller & helper
-import { truncateText } from '@lib/helper/Configuration';
-
 // @components
 import LoadStreams from '../Loading/LoadStreams';
 
@@ -59,7 +56,7 @@ const SpeakerCards = ({
         </div>
 
         {/* @images */}
-        <div className="max-[420px]:h-[197px] relative flex h-[221px] w-full min-w-full max-w-min flex-col overflow-hidden rounded-2xl bg-black-900/30 sm:h-[273px] lg:h-[257px] xl:h-[336px] xs:h-[195px]">
+        <div className="max-[420px]:h-[197px] relative flex h-[221px] w-full min-w-full max-w-min flex-col overflow-hidden rounded-2xl bg-black-900/30 sm:h-[273px] lg:h-[257px] xl:h-[336px] 2xl:h-[362px] xs:h-[195px]">
           <div className="z-[16] h-full w-full">
             {images ? (
               isLoading ? (

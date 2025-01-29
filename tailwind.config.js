@@ -156,7 +156,7 @@ module.exports = {
             maxWidth: '1295px',
           },
           '@screen 2xl': {
-            maxWidth: '1295px',
+            maxWidth: '1324px',
           },
         },
       });
