@@ -84,12 +84,14 @@ export default function Document() {
         <Main />
         <NextScript nonce={hashNonce256} />
         {/* @meta-pixel */}
-        <Image
-          className={`!hidden !h-0 !w-0`}
-          src="https://www.facebook.com/tr?id=534460966120098&ev=PageView&noscript=1"
-          height="1"
-          width="1"
-        />
+        <noscript>
+          <Image
+            className={`!hidden !h-0 !w-0`}
+            src="https://www.facebook.com/tr?id=534460966120098&ev=PageView&noscript=1"
+            height="1"
+            width="1"
+          />
+        </noscript>
         {/* @google-tag-manager(noscript) */}
         <iframe
           className={`!hidden !h-0 !w-0`}

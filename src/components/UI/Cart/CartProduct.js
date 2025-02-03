@@ -22,25 +22,25 @@ const CartProduct = ({ cartStore, products }) => {
 
   return (
     <>
-      <div className="flex w-full flex-row justify-between space-x-3">
-        <div
-          className={twMerge(
-            `flex h-[94px] w-full max-w-[235px] flex-row space-x-3 rounded-xl px-3 py-2`,
-            style[products?.documentId] || 'bg-regular45'
-          )}
-        >
-          <div className="flex w-full flex-col justify-between">
-            <h3 className="text-lg font-medium text-white">{products?.name}</h3>
-            <div className="mb-1 flex flex-row items-center justify-between gap-x-3">
-              <span className="text-lg font-medium text-white">
-                {currencyConverter(products?.priceSale ?? products?.price)}
-              </span>
-              <div className="flex flex-row items-center">
-                {products?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9' && (
-                  <span className="mr-2 text-sm text-white">Qty :</span>
-                )}
-                <QuantityCart productsQty={products} cartStoreQty={cartStore} />
-              </div>
+      <div
+        className={twMerge(
+          `flex h-[105px] w-full max-w-[235px] flex-row space-x-3 rounded-xl px-3 py-2`,
+          style[products?.documentId] || 'bg-regular45'
+        )}
+      >
+        <div className="flex w-full flex-col justify-between">
+          <h3 className="text-lg font-medium leading-initial text-white">
+            {products?.name}
+          </h3>
+          <div className="mb-1 flex flex-row items-center justify-between gap-x-3">
+            <span className="text-lg font-medium text-white">
+              {currencyConverter(products?.priceSale ?? products?.price)}
+            </span>
+            <div className="flex flex-row items-center">
+              {products?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9' && (
+                <span className="mr-2 text-sm text-white">Qty :</span>
+              )}
+              <QuantityCart productsQty={products} cartStoreQty={cartStore} />
             </div>
           </div>
         </div>

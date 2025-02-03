@@ -1583,7 +1583,6 @@ export const getServerSideProps = async (context) => {
         getFetch(`/api/coupons?filters[isPublic][$eq]=true&populate=*`),
         getFecthHbSpt(`/forms/v2/forms/${serverRuntimeConfig?.hbSptCheckout}`),
       ]);
-
     const sortedCountries = rsCountry.sort((a, b) =>
       a?.name.common.localeCompare(b?.name.common)
     );
