@@ -104,7 +104,7 @@ const nextConfig = {
           },
           {
             key: 'Cross-Origin-Embedder-Policy',
-            value: 'same-origin',
+            value: 'require-corp',
           },
           {
             key: 'Cross-Origin-Opener-Policy',
