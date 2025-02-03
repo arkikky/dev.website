@@ -3,7 +3,7 @@
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
 const nextSitemapConfig = {
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
+  siteUrl: baseUrl,
   changefreq: 'daily',
   priority: 0.7,
   generateRobotsTxt: true,

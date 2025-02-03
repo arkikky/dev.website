@@ -21,7 +21,7 @@ const Speakers = ({ mode }) => {
             <h1
               className={`ca25HeadingTitle w-full text-center font-semibold uppercase sm:font-bold ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-4 text-balance sm:mb-7`}
             >
-              {'PREVIOUS SPEAKERS'
+              {'SPEAKERS'
                 ?.split('')
                 ?.map((chr, i) =>
                   ['E', 'O', 'A', '0'].includes(chr) ? (
