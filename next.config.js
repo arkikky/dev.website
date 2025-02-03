@@ -104,15 +104,15 @@ const nextConfig = {
           },
           {
             key: 'Cross-Origin-Embedder-Policy',
-            value: 'credentialless',
+            value: 'same-origin',
           },
           {
             key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin',
+            value: 'same-origin-allow-popups',
           },
           {
             key: 'Cross-Origin-Resource-Policy',
-            value: 'same-origin',
+            value: 'same-site',
           },
           {
             key: 'X-DNS-Prefetch-Control',
