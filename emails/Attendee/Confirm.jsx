@@ -202,7 +202,7 @@ const AttendeeConfrim = ({
 
               <Button
                 className="rounded-xl bg-black-900 px-5 py-4 text-center text-sm font-semibold text-white hover:underline"
-                href={`${baseUrl}/attendee/update?vw=${docId}`}
+                href={`${baseUrl}/attendee-detail?vw=${docId}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -213,11 +213,11 @@ const AttendeeConfrim = ({
                 or copy and paste this URL into your browser: <br />
                 <Link
                   className="text-primary underline"
-                  href={`${baseUrl}/attendee/update?vw=${docId}`}
+                  href={`${baseUrl}/attendee-detail?vw=${docId}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {`${baseUrl}/attendee/update?vw=${docId}`}
+                  {`${baseUrl}/attendee-detail?vw=${docId}`}
                 </Link>
               </Text>
             </Section>

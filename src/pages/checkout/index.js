@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { twMerge } from 'tailwind-merge';
 import { useRouter } from 'next/router';
+import { twMerge } from 'tailwind-merge';
 import QRCode from 'qrcode';
 import { Toaster } from 'sonner';
 import { toast } from 'sonner';
@@ -103,7 +103,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       Array.from({ length: gtRslt?.quantity || 0 }, () => false)
     )
   );
-
   // @card(theme)
   const style = {
     rc33x0dgm6tm707jghffuip4: 'bg-vip45',
@@ -736,7 +735,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     const isFullname = `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`;
                     const tickets =
                       rsAttendee?.data.product.documentId ===
-                        'sn4ujm0d1ebbc8lme1ihzsa9' &&
+                        'sn4ujm0d1ebbc8lme1ihzsa9' ||
                       rsAttendee?.data.product.documentId ===
                         'g1ukadil4n4a3r0ndly7jl42'
                         ? `Festival Tickets`

@@ -1,17 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
 
-const BoardSubmitCheckout = ({ register, errors }) => {
+const BoardSubmitAttendee = ({ register, errors }) => {
   return (
     <>
       <div className="mb-6 block w-full space-y-4">
         <div className="block w-full prose-a:font-normal">
           <label
-            htmlFor={`ca25Form_IHaveReadAndAgree`}
+            htmlFor={`ca25Form_IHaveReadAndAgreeAttendeeDetail`}
             className={`flex w-full cursor-pointer items-start`}
           >
             <input
-              id={`ca25Form_IHaveReadAndAgree`}
+              id={`ca25Form_IHaveReadAndAgreeAttendeeDetail`}
               className={`boxShadow-none form-checkbox mt-px h-4.5 w-4.5 shrink-0 rounded border border-solid ${
                 errors[`i_have_read_and_agree`]
                   ? 'border-red-500'
@@ -50,7 +50,7 @@ const BoardSubmitCheckout = ({ register, errors }) => {
         </div>
         <div className="block w-full space-y-4 text-sm font-light text-gray-500">
           <p className="font-light">
-            {`Your data will be used to process your order and to improve your experience. By choosing this payment method, you consent to having your order data processed by the payment processor.`}
+            {`Your data will be used to update your information and enhance your experience. By proceeding, you agree that your data will be updated.`}
           </p>
         </div>
       </div>
@@ -58,4 +58,4 @@ const BoardSubmitCheckout = ({ register, errors }) => {
   );
 };
 
-export default BoardSubmitCheckout;
+export default BoardSubmitAttendee;
