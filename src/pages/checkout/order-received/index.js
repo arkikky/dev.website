@@ -141,7 +141,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
               }),
             }).then((res) => res.json());
             // @coupon
-            const setIsCoupon = getCoupon?.data?.length > 0 ? getCoupon : null;
+            const setIsCoupon = getCoupon?.length > 0 ? getCoupon : null;
             const checkCoupon =
               setIsCoupon !== null &&
               setIsCoupon !== 'null' &&
@@ -544,9 +544,9 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                     {isOrderRecived?.order?.coupons.length > 0 && (
                       <div className="grid-cols-1 items-start gap-y-1 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
                         <div className="flex flex-col self-center text-start text-sm font-normal text-gray-600">
-                          {`Discount Coupon`}
+                          {`Discount :`}
                           <span className="font-semibold uppercase text-primary">
-                            ({isOrderRecived?.order?.coupons[0].couponCode})
+                            ({`${isOrderRecived?.order?.coupons[0].amount}%`})
                           </span>
                         </div>
                         <div className="col-span-full flex flex-row items-center pl-0 text-start text-base font-light sm:col-span-2 sm:text-start xl:pl-8">

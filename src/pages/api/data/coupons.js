@@ -53,7 +53,27 @@ export default async function handler(req, res) {
     const rsVldCoupon = rsCoupon?.data?.find(
       (i) => i?.couponCode.toLowerCase() === decodeData(data)?.toLowerCase()
     );
-    res?.status(200).json(rsVldCoupon);
+    const rs = await fetch(
+      `${baseUrl}/api/coupons?populate=*&filters[couponCode][$eq]=${decodeData(data)}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${tokenApp}`,
+        },
+        cache: 'no-store',
+      }
+    )
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .catch(() => {
+        return false;
+      });
+    res?.status(200).json(rsVldCoupon ?? null);
   } catch (error) {
     return res?.status(500).json(logErr);
   }

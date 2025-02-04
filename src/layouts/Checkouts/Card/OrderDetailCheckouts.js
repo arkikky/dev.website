@@ -63,49 +63,55 @@ const OrderDetailCheckouts = ({
           },
           body: JSON.stringify({ data: encodeData(isCoupon) }),
         }).then((res) => res.json());
-        const isDataCoupon = getDataCoupon;
-        // @check(Limit Coupon)
-        if (
-          parseInt(isDataCoupon?.usage, 10) >=
-          parseInt(isDataCoupon?.limitUsage, 10)
-        ) {
-          toast.custom(
-            (t) => (
-              <ToastAlerts
-                id={t}
-                position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
-                type="error"
-                visible={true}
-                label={`<strong>Sorry</strong>, <br/>Coupon usage limit reached!`}
-              />
-            ),
-            { unstyled: true, duration: 5000 }
+        const isDataCoupon = getDataCoupon !== null ? getDataCoupon : null;
+
+        if (isDataCoupon !== null) {
+          // @check(limit Coupon)
+          if (
+            parseInt(isDataCoupon?.usage, 10) >=
+            parseInt(isDataCoupon?.limitUsage, 10)
+          ) {
+            toast.custom(
+              (t) => (
+                <ToastAlerts
+                  id={t}
+                  position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
+                  type="error"
+                  visible={true}
+                  label={`<strong>Sorry</strong>, <br/>Coupon usage limit reached!`}
+                />
+              ),
+              { unstyled: true, duration: 5000 }
+            );
+            setValue('coupon', '');
+            return;
+          }
+          // @check(includes Product)
+          const includedProductIds = isDataCoupon?.includedProducts?.map(
+            (product) => product.documentId
           );
+          const validProducts = products?.filter((product) =>
+            includedProductIds?.includes(product.documentId)
+          );
+          if (validProducts?.length > 0) {
+            const isPrice =
+              validProducts[0]?.priceSale ?? validProducts[0]?.price;
+            const isSubTotal = getTotalCart(products);
+            const discntAmount = parseFloat(isDataCoupon?.amount) || 0;
+            const calculatedDiscount =
+              parseInt(isDataCoupon?.amount) >= 100
+                ? isSubTotal * (discntAmount / 100)
+                : isPrice * (discntAmount / 100);
+            const totalAfterDiscount = isSubTotal - calculatedDiscount;
+            setUseCoupon({
+              ...isUseCoupon,
+              discount: calculatedDiscount,
+              totalWithDiscount: totalAfterDiscount,
+            });
+          }
+        } else {
           setValue('coupon', '');
-          return;
-        }
-        // @check(includes Product)
-        const includedProductIds = isDataCoupon?.includedProducts?.map(
-          (product) => product.documentId
-        );
-        const validProducts = products?.filter((product) =>
-          includedProductIds?.includes(product.documentId)
-        );
-        if (validProducts?.length > 0) {
-          const isPrice =
-            validProducts[0]?.priceSale ?? validProducts[0]?.price;
-          const isSubTotal = getTotalCart(products);
-          const discntAmount = parseFloat(isDataCoupon?.amount) || 0;
-          const calculatedDiscount =
-            parseInt(isDataCoupon?.amount) >= 100
-              ? isSubTotal * (discntAmount / 100)
-              : isPrice * (discntAmount / 100);
-          const totalAfterDiscount = isSubTotal - calculatedDiscount;
-          setUseCoupon({
-            ...isUseCoupon,
-            discount: calculatedDiscount,
-            totalWithDiscount: totalAfterDiscount,
-          });
+          dispatch(removeCoupon());
         }
       }
     } catch (error) {
@@ -186,7 +192,7 @@ const OrderDetailCheckouts = ({
   const decreaseQty = (cartItems, i) => updateCartQuantity(cartItems, i, false);
   const increaseQty = (cartItems, i) => updateCartQuantity(cartItems, i, true);
 
-  // // @handle(change - coupon)
+  // @handle(change - coupon)
   const handleCoupon = async (data) => {
     const getData = data;
 
@@ -413,7 +419,7 @@ const OrderDetailCheckouts = ({
               >
                 <div
                   className={twMerge(
-                    `flex h-[105px] w-full max-w-[245px] flex-col justify-between rounded-xl px-3 py-2`,
+                    `flex h-[113px] w-full max-w-[245px] flex-col justify-between rounded-xl px-3 py-2`,
                     style[gtRslt.documentId] || 'bg-regular45'
                   )}
                 >
