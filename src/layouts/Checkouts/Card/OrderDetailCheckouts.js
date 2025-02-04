@@ -371,7 +371,7 @@ const OrderDetailCheckouts = ({
 
   const handleKeyDown = (e) => {
     if (e?.key === 'Enter') {
-      e?.preventDefault()
+      e?.preventDefault();
       handleCoupon();
     }
   };
@@ -413,105 +413,101 @@ const OrderDetailCheckouts = ({
               >
                 <div
                   className={twMerge(
-                    `flex w-full max-w-[245px] flex-row space-x-3 rounded-xl px-3 py-2`,
+                    `flex h-[105px] w-full max-w-[245px] flex-col justify-between rounded-xl px-3 py-2`,
                     style[gtRslt.documentId] || 'bg-regular45'
                   )}
                 >
-                  <div className="mb-1 flex w-full flex-col">
-                    <h3 className="mb-2.5 text-lg font-medium text-white">
-                      {gtRslt.name}
-                    </h3>
-                    <div className="flex flex-row items-center justify-between gap-x-3">
-                      <span className="text-lg font-medium text-white">
-                        {currencyConverter(gtRslt.priceSale ?? gtRslt.price)}
-                      </span>
-                      <div className="flex flex-row items-center">
-                        {gtRslt.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9' && (
-                          <span className="mr-2.5 text-sm text-white">
-                            Qty :{' '}
-                          </span>
-                        )}
-                        <div
-                          className="hs-dropdown-menu duration mt-0 rounded-[10px] border border-gray-200 bg-gray-50 px-1 py-1 opacity-100 *:flex"
-                          role="menu"
-                          aria-orientation="vertical"
-                          aria-labelledby="hsCA25Dropdown_UpdatedQty"
-                        >
-                          <div className="inline-flex flex-row gap-x-1.5">
-                            {gtRslt.documentId !==
-                            'sn4ujm0d1ebbc8lme1ihzsa9' ? (
-                              <button
-                                id="tcktCa25Btn_MinQtyCheckouts"
-                                className={`ca25BtnQtyDark`}
-                                type="button"
-                                aria-label="Button for Quantity(Min - Checkouts)"
-                                disabled={
-                                  gtRslt.quantity >= 1 && gtRslt.quantity <= 1
-                                }
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  decreaseQty(gtRslt, i);
-                                }}
+                  <h3 className="mb-2.5 text-lg font-medium leading-initial text-white">
+                    {gtRslt.name}
+                  </h3>
+                  <div className="flex flex-row items-center justify-between gap-x-3">
+                    <span className="text-lg font-medium text-white">
+                      {currencyConverter(gtRslt.priceSale ?? gtRslt.price)}
+                    </span>
+                    <div className="flex flex-row items-center">
+                      {gtRslt.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9' && (
+                        <span className="mr-2.5 text-sm text-white">
+                          Qty :{' '}
+                        </span>
+                      )}
+                      <div
+                        className="hs-dropdown-menu duration mt-0 rounded-[10px] border border-gray-200 bg-gray-50 px-1 py-1 opacity-100 *:flex"
+                        role="menu"
+                        aria-orientation="vertical"
+                        aria-labelledby="hsCA25Dropdown_UpdatedQty"
+                      >
+                        <div className="inline-flex flex-row gap-x-1.5">
+                          {gtRslt.documentId !== 'sn4ujm0d1ebbc8lme1ihzsa9' ? (
+                            <button
+                              id="tcktCa25Btn_MinQtyCheckouts"
+                              className={`ca25BtnQtyDark`}
+                              type="button"
+                              aria-label="Button for Quantity(Min - Checkouts)"
+                              disabled={
+                                gtRslt.quantity >= 1 && gtRslt.quantity <= 1
+                              }
+                              onClick={(e) => {
+                                e.preventDefault();
+                                decreaseQty(gtRslt, i);
+                              }}
+                            >
+                              <svg
+                                className="size-3.5 shrink-0"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                               >
-                                <svg
-                                  className="size-3.5 shrink-0"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="24"
-                                  height="24"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                >
-                                  <path d="M5 12h14"></path>
-                                </svg>
-                              </button>
-                            ) : null}
-                            <input
-                              className={`w-5 cursor-default border-0 bg-transparent p-0 text-center text-sm font-light text-gray-800 focus:ring-0 focus-visible:outline-none focus-visible:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none`}
-                              type="number"
-                              value={gtRslt?.quantity}
-                              tabIndex="-1"
-                              maxLength="5"
-                              minLength={gtRslt?.quantity || 1}
-                              readOnly={true}
-                              disabled={true}
-                            />
-                            {gtRslt?.documentId !==
-                            'sn4ujm0d1ebbc8lme1ihzsa9' ? (
-                              <button
-                                id="tcktCa25Btn_MaxQtyCheckouts"
-                                className={`ca25BtnQtyDark`}
-                                type="button"
-                                aria-label="Button for Quantity(Max - Checkouts)"
-                                disabled={
-                                  gtRslt?.quantity >= 15 || getTotalItems >= 15
-                                }
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  increaseQty(gtRslt, i);
-                                }}
+                                <path d="M5 12h14"></path>
+                              </svg>
+                            </button>
+                          ) : null}
+                          <input
+                            className={`w-5 cursor-default border-0 bg-transparent p-0 text-center text-sm font-light text-gray-800 focus:ring-0 focus-visible:outline-none focus-visible:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none`}
+                            type="number"
+                            value={gtRslt?.quantity}
+                            tabIndex="-1"
+                            maxLength="5"
+                            minLength={gtRslt?.quantity || 1}
+                            readOnly={true}
+                            disabled={true}
+                          />
+                          {gtRslt?.documentId !== 'sn4ujm0d1ebbc8lme1ihzsa9' ? (
+                            <button
+                              id="tcktCa25Btn_MaxQtyCheckouts"
+                              className={`ca25BtnQtyDark`}
+                              type="button"
+                              aria-label="Button for Quantity(Max - Checkouts)"
+                              disabled={
+                                gtRslt?.quantity >= 15 || getTotalItems >= 15
+                              }
+                              onClick={(e) => {
+                                e.preventDefault();
+                                increaseQty(gtRslt, i);
+                              }}
+                            >
+                              <svg
+                                className="size-3.5 shrink-0"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
                               >
-                                <svg
-                                  className="size-3.5 shrink-0"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="24"
-                                  height="24"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="2"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                >
-                                  <path d="M5 12h14"></path>
-                                  <path d="M12 5v14"></path>
-                                </svg>
-                              </button>
-                            ) : null}
-                          </div>
+                                <path d="M5 12h14"></path>
+                                <path d="M12 5v14"></path>
+                              </svg>
+                            </button>
+                          ) : null}
                         </div>
                       </div>
                     </div>

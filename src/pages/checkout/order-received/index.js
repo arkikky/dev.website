@@ -229,7 +229,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                 for (let i = 0; i < grpAttendee?.length; i++) {
                   const isGrpdAttendee = grpAttendee[i];
                   const tickets =
-                    isGrpdAttendee?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9' &&
+                    isGrpdAttendee?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9' ||
                     isGrpdAttendee?.documentId === 'g1ukadil4n4a3r0ndly7jl42'
                       ? `Festival Tickets`
                       : `${isGrpdAttendee?.name}`;
@@ -243,7 +243,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                         }
                       );
                       const isFullname = `${rsAttendee?.firstName} ${rsAttendee?.lastName}`;
-                      const rsBlobQrCode = convertQrCodeToBlob(
+                      const rsBlobQrCode = await convertQrCodeToBlob(
                         rsQrCodeUrl,
                         rsAttendee?.id,
                         rsAttendee?.attendeeId,
@@ -281,7 +281,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                             },
                             body: JSON.stringify({
                               toEmail: rsAttendee?.email,
-                              qrCode: rsBlobQrCode[0]?.url,
+                              qrCode: rsBlobQrCode?.url,
                               docId: isGrpdAttendee?.documentId,
                               attId: rsAttendee?.attendeeId,
                               fullname: isFullname,
@@ -292,7 +292,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                         ).then((res) => res.json());
                       }
                       arrBlobAttendees.push({
-                        blobQrCodeUrl: rsBlobQrCode[0]?.url,
+                        blobQrCodeUrl: rsBlobQrCode?.url,
                       });
                     }
                   }

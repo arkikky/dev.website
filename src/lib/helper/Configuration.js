@@ -219,7 +219,6 @@ export async function convertQrCodeToBlob(
         },
       }
     );
+    return rsQrCodeGenerate[0];
   }
-
-  return rsQrCodeGenerate;
 }

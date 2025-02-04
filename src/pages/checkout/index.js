@@ -878,7 +878,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   width: 256,
                 }
               );
-              const rsBlobQrCode = convertQrCodeToBlob(
+              const rsBlobQrCode = await convertQrCodeToBlob(
                 rsQrCodeUrl,
                 gtRslt?.attendee?.id,
                 gtRslt?.attendee?.attendeeId,
@@ -913,7 +913,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   },
                   body: JSON.stringify({
                     toEmail: gtRslt?.attendee?.email,
-                    qrCode: rsBlobQrCode[0]?.url,
+                    qrCode: rsBlobQrCode?.url,
                     docId: gtRslt?.attendee?.product.documentId,
                     attId: gtRslt?.attendee?.attendeeId,
                     fullname: gtRslt?.fullname,
@@ -923,7 +923,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 }).then((res) => res.json());
               }
               arrBlobAttendees.push({
-                blobQrCodeUrl: rsBlobQrCode[0]?.url,
+                blobQrCodeUrl: rsBlobQrCode?.url,
               });
             }
             // @send(ticket-customer)
@@ -948,9 +948,9 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             }
             // @last(proccesing)
             reset();
-            router.replace(
-              `/checkout/order-received?process=${setIdOrderRecived}`
-            );
+            // router.replace(
+            //   `/checkout/order-received?process=${setIdOrderRecived}`
+            // );
           }
         }
       } catch (error) {
