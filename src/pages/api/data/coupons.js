@@ -32,18 +32,15 @@ export default async function handler(req, res) {
     if (!data) {
       return res?.status(400).json(logErr);
     }
-    const rs = await fetch(
-      `${baseUrl}/api/coupons?populate=*&filters[couponCode][$eq]=${decodeData(data)}`,
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${tokenApp}`,
-        },
-        cache: 'no-store',
-      }
-    )
+    const rsCoupon = await fetch(`${baseUrl}/api/coupons?populate=*`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${tokenApp}`,
+      },
+      cache: 'no-store',
+    })
       .then((res) => {
         if (res.ok) {
           return res.json();
@@ -52,7 +49,11 @@ export default async function handler(req, res) {
       .catch(() => {
         return false;
       });
-    res?.status(200).json(rs);
+
+    const rsVldCoupon = rsCoupon?.data?.find(
+      (i) => i?.couponCode.toLowerCase() === decodeData(data)?.toLowerCase()
+    );
+    res?.status(200).json(rsVldCoupon);
   } catch (error) {
     return res?.status(500).json(logErr);
   }

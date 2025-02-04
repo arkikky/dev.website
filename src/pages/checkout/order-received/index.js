@@ -141,8 +141,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
               }),
             }).then((res) => res.json());
             // @coupon
-            const setIsCoupon =
-              getCoupon?.data?.length > 0 ? getCoupon?.data[0] : null;
+            const setIsCoupon = getCoupon?.data?.length > 0 ? getCoupon : null;
             const checkCoupon =
               setIsCoupon !== null &&
               setIsCoupon !== 'null' &&

@@ -243,7 +243,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
         },
         body: JSON.stringify({ data: encodeData(isCoupon) }),
       }).then((res) => res.json());
-      const setCoupon = getCoupon?.data?.length > 0 ? getCoupon?.data[0] : null;
+      const setCoupon = getCoupon?.data?.length > 0 ? getCoupon : null;
       const checkCoupon =
         setCoupon !== null && setCoupon !== 'null' && setCoupon !== undefined;
       if (checkCoupon) {
@@ -673,8 +673,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             headers: { 'Content-Type': 'application/json' },
           }).then((res) => res.json());
           // @coupon
-          const setIsCoupon =
-            getCoupon?.data?.length > 0 ? getCoupon?.data[0] : null;
+          const setIsCoupon = getCoupon?.data?.length > 0 ? getCoupon : null;
           const checkCoupon =
             setIsCoupon !== null &&
             setIsCoupon !== 'null' &&

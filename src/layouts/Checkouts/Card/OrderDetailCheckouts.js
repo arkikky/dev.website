@@ -63,7 +63,7 @@ const OrderDetailCheckouts = ({
           },
           body: JSON.stringify({ data: encodeData(isCoupon) }),
         }).then((res) => res.json());
-        const isDataCoupon = getDataCoupon?.data[0];
+        const isDataCoupon = getDataCoupon;
         // @check(Limit Coupon)
         if (
           parseInt(isDataCoupon?.usage, 10) >=
@@ -141,7 +141,7 @@ const OrderDetailCheckouts = ({
                 body: JSON.stringify({ data: encodeData(isCoupon) }),
               }
             ).then((res) => res.json());
-            const isDataCoupon = getDataCoupon?.data[0];
+            const isDataCoupon = getDataCoupon;
             if (isTotalCart < isDataCoupon?.minQtyPromo) {
               dispatch(removeCoupon());
             }
@@ -222,7 +222,7 @@ const OrderDetailCheckouts = ({
         },
         body: JSON.stringify({ data: encodeData(getCouponCode) }),
       }).then((res) => res.json());
-      const coupon = checkDataCoupon?.data[0];
+      const coupon = checkDataCoupon;
       if (!coupon) {
         setUseCoupon({ ...isUseCoupon, loading: false });
         toast.custom(
