@@ -58,7 +58,7 @@ const Headers = ({ mode }) => {
               alt={`Coinfest Asia 2025 Special Blue Moon`}
               height={606}
               width={755}
-              quality="75"
+              quality="65"
             />
           </div>
 
@@ -95,10 +95,6 @@ const Headers = ({ mode }) => {
                       )
                     )}
                 </div>
-                <div className="hidden w-[285px] pl-7 text-left font-bevietnamPro text-[13px] font-normal leading-[21px] tracking-[14px] subpixel-antialiased sm:block lg:w-[325px] lg:text-[14px] lg:leading-[26px] lg:tracking-[18px] xl:w-[565px] xl:text-[24px] xl:leading-[36px] xl:tracking-[24px]">
-                  BALI, <br />
-                  21 — 22 AUG 2025
-                </div>
               </div>
               <div className="float-none pr-0 sm:float-right sm:pr-3">
                 {'FESTIVAL'
@@ -112,6 +108,7 @@ const Headers = ({ mode }) => {
               {`BALI, 21—22 AUG 2025`}
             </div>
           </div>
+          <div className="absolute inset-x-0 bottom-[304px] top-auto mx-auto hidden w-max text-[12px] font-medium leading-[16px] text-white sm:bottom-[341px] sm:block sm:text-[32px] sm:leading-initial lg:bottom-[291px] xl:bottom-[111px] xl:text-[40px]">{`BALI, 21—22 AUG 2025`}</div>
         </div>
 
         <div className="ca25BckBlueMoon-Speacial_Rckt !pointer-events-none absolute inset-x-0 inset-y-0 mx-auto w-full !select-none sm:w-[659.54px] xl:w-[1180px]"></div>

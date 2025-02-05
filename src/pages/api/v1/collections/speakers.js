@@ -64,8 +64,8 @@ export default function handler(req, res) {
       {
         url: '/',
         images: '/assets/images/speakers/as-speaker/ca25Speakers_6.png',
-        name: 'Thomas France',
-        position: 'Co-Founder',
+        name: 'John Patrick Mullin',
+        position: 'Founder & CEO at MANTRA',
         shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_6.svg',
         comingSoon: true,

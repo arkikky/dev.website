@@ -146,6 +146,15 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/deck',
+        destination: 'https://hubs.ly/Q0359gjM0',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
