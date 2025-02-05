@@ -65,55 +65,31 @@ const PromoCouponCode = ({
           );
           return (
             <SplideSlide className="" key={i}>
-              {/* <div
-                className={`w-[237px] max-w-[237px] rounded-lg border-2 border-solid border-gray-200 px-3 py-3 sm:rounded-xl ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'pointer-events-none opacity-60' : 'pointer-events-auto opacity-100'}`}
-              >
-                <div className="mb-4 flex flex-col">
-                  <span className="mb-1 text-xl font-semibold leading-initial">
-                    {`${gtRslt?.amount}% Off`}
-                  </span>
-                  <span className="text-balance text-sm font-normal leading-[20px] text-gray-500">
-                    {`Min. purchase ${currencyConverter(gtRslt?.minQtyPromo)} for ${gtRslt?.includedProducts[0]?.name}`}
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  className="block w-full rounded-lg bg-primary px-3.5 py-3 text-sm leading-initial text-white transition duration-300 ease-in-out disabled:bg-gray-200 disabled:text-gray-600"
-                  disabled={
-                    !isApplicable ||
-                    totalProducts < gtRslt?.minQtyPromo ||
-                    items?.couponCart !== null
-                  }
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleClickCoupon(gtRslt?.couponCode);
-                  }}
-                >
-                  Apply
-                </button>
-              </div> */}
               <div
-                className={`relative w-[237px] max-w-[237px] overflow-hidden rounded-lg bg-white px-3 py-3 sm:rounded-xl ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'pointer-events-none opacity-60' : 'pointer-events-auto opacity-100'}`}
+                className={`relative w-[237px] max-w-[237px] overflow-hidden rounded-lg px-3 py-3 sm:rounded-xl ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'pointer-events-none bg-white opacity-60' : 'pointer-events-auto bg-primary opacity-100'}`}
               >
                 <div
-                  className={`absolute inset-x-0 inset-y-0 rounded-lg border-2 border-gray-200 sm:rounded-xl`}
+                  className={`absolute inset-x-0 inset-y-0 rounded-lg border-2 ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'border-gray-200' : 'border-primary'} sm:rounded-xl`}
                 />
 
                 {/* @left & right notch */}
                 <div
-                  className={`clip-[rect(0px.12px.24px,0px)] absolute -left-1 bottom-[28%] z-[2] h-6 w-4.5 -translate-y-1/2 rounded-r-full border border-2 border-solid border-gray-200 bg-white`}
+                  className={`clip-[rect(0px.12px.24px,0px)] absolute -left-1 bottom-[28%] z-[2] h-6 w-4.5 -translate-y-1/2 rounded-r-full border border-2 border-solid ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'border-gray-200' : 'border-primary'} bg-white`}
                 />
                 <div
-                  className={`clip-[rect(0px.12px.24px,0px)] absolute -right-1 bottom-[28%] z-[2] h-6 w-4.5 -translate-y-1/2 rounded-l-full border border-2 border-solid border-gray-200 bg-white`}
+                  className={`clip-[rect(0px.12px.24px,0px)] absolute -right-1 bottom-[28%] z-[2] h-6 w-4.5 -translate-y-1/2 rounded-l-full border border-2 border-solid ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'border-gray-200' : 'border-primary'} bg-white`}
                 />
 
                 <div className="relative z-10 flex flex-col space-y-4">
                   <div className="mb-3.5 block w-full">
-                    <h3 className="mb-1 text-xl font-semibold leading-initial">
+                    <h3
+                      className={`mb-1 text-xl font-semibold leading-initial ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'text-black-900' : 'text-white'}`}
+                    >
                       {`${gtRslt?.amount}% Off`}
                     </h3>
-                    <span className="text-balance text-sm font-normal leading-[20px] text-gray-500">
+                    <span
+                      className={`text-balance text-sm font-normal leading-[20px] ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'text-gray-500' : 'text-white'}`}
+                    >
                       {' '}
                       {`Min. purchase ${currencyConverter(gtRslt?.minQtyPromo)} for ${gtRslt?.includedProducts[0]?.name}`}
                     </span>
@@ -121,7 +97,7 @@ const PromoCouponCode = ({
 
                   <button
                     type="button"
-                    className="block w-full rounded-lg bg-primary px-3.5 py-3 text-sm leading-initial text-white transition duration-300 ease-in-out disabled:bg-gray-200 disabled:text-gray-600"
+                    className={`block w-full rounded-lg ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'bg-primary text-white' : 'bg-white text-primary'} px-3.5 py-3 text-sm leading-initial transition duration-300 ease-in-out disabled:bg-gray-200 disabled:text-gray-600`}
                     disabled={
                       !isApplicable ||
                       totalProducts < gtRslt?.minQtyPromo ||

@@ -26,7 +26,7 @@ import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 import EmptyCheckouts from '@components/UI/Cards/EmptyCheckout';
 
 // @layouts
-import PromoCouponCode from '@layouts/Checkouts/PromoCouponCode/PromoCouponCode';
+// import PromoCouponCode from '@layouts/Checkouts/PromoCouponCode/PromoCouponCode';
 
 // @card(theme)
 const style = {
@@ -570,7 +570,7 @@ const OrderDetailCheckouts = ({
             {/* @products(Empty) */}
             {products?.length <= 0 && <EmptyCheckouts />}
           </div>
-          {products?.length > 0 && (
+          {/* {products?.length > 0 && (
             <>
               <div className="mx-0 my-4 flex w-full border-t border-dashed border-gray-200"></div>
               <div className="relative mb-6 block w-full">
@@ -590,7 +590,7 @@ const OrderDetailCheckouts = ({
                 />
               </div>
             </>
-          )}
+          )} */}
 
           {/* @coupon */}
           <div

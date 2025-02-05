@@ -125,11 +125,11 @@ const TicketProducts = ({
           <div className="flex w-full flex-col items-start pb-18 lg:pb-0">
             <div className="relative block w-full">
               {useHeading === 'h2' ? (
-                <h2 className="mb-1.5 text-xl font-normal leading-initial sm:mb-2 sm:text-[22px] sm:leading-initial">
+                <h2 className="mb-1.5 text-xl font-normal uppercase leading-initial sm:mb-2 sm:text-[22px] sm:leading-initial">
                   {data?.name || 'Ticket Products'}
                 </h2>
               ) : (
-                <h3 className="mb-1.5 text-xl font-normal leading-initial sm:mb-2 sm:text-[22px] sm:leading-initial">
+                <h3 className="mb-1.5 text-xl font-normal uppercase leading-initial sm:mb-2 sm:text-[22px] sm:leading-initial">
                   {data?.name || 'Ticket Products'}
                 </h3>
               )}

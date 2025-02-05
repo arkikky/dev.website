@@ -198,7 +198,11 @@ Tickets.getLayout = (page, { pageProps }) => {
   return page;
 };
 export const getServerSideProps = async (context) => {
-  if (Object.keys(context?.query).length > 0) {
+  const blockedQueries = ['badParam1', 'badParam2'];
+  const hasBlockedQuery = Object.keys(context?.query).some((k) =>
+    blockedQueries.includes(k)
+  );
+  if (hasBlockedQuery) {
     return {
       redirect: {
         destination: '/',

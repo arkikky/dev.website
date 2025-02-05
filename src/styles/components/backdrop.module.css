@@ -68,7 +68,7 @@
   @apply pointer-events-none select-none;
 }
 .ca25BckMemeItems::before {
-  @apply block bg-[url('/assets/images/backdrop/ca25MemeItems_Left.svg')];
+  @apply block bg-[url('/assets/images/backdrop/ca25MemeItems_Left.svg')] drop-shadow-[0px_0px_33px_rgba(249,142,50,0.85)];
   @apply -left-[59px] -top-[11px] bottom-auto right-auto sm:-left-[49px] sm:-top-[37px] lg:-left-[61px] lg:-top-[5px] xl:-left-[85px] xl:top-[31px];
   @apply h-[126.14px] w-[122.68px];
   @apply sm:h-[146.14px] sm:w-[142.68px];
@@ -76,7 +76,7 @@
   @apply xl:h-[226.14px] xl:w-[242.68px];
 }
 .ca25BckMemeItems::after {
-  @apply block bg-[url('/assets/images/backdrop/ca25MemeItems_Right.svg')];
+  @apply block bg-[url('/assets/images/backdrop/ca25MemeItems_Right.svg')] drop-shadow-[0px_0px_29px_rgba(1,90,253,1)];
   @apply -right-[63px] bottom-[109px] left-auto top-auto sm:-right-[69px] sm:bottom-[101px] lg:-right-[69px] lg:bottom-[115px] xl:-right-[103px] xl:bottom-[81px];
   @apply h-[116.14px] w-[122.68px];
   @apply sm:h-[156.14px] sm:w-[162.68px];

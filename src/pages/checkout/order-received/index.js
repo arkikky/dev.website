@@ -127,6 +127,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                 },
               }
             );
+
             const getCoupon = await fetch('/api/data/coupons?sv=coinfestasia', {
               method: 'POST',
               headers: {
@@ -135,17 +136,33 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
               body: JSON.stringify({
                 data: encodeData(
                   isOrderRecived?.order?.coupons.length > 0
-                    ? isOrderRecived?.order?.coupons[0]
+                    ? isOrderRecived?.order?.coupons[0]?.couponCode
                     : null
                 ),
               }),
             }).then((res) => res.json());
+
             // @coupon
-            const setIsCoupon = getCoupon?.length > 0 ? getCoupon : null;
+            const setIsCoupon = getCoupon !== null ? getCoupon : null;
             const checkCoupon =
               setIsCoupon !== null &&
               setIsCoupon !== 'null' &&
               setIsCoupon !== undefined;
+
+            // @update-stock(coupon)
+            if (checkCoupon) {
+              const isLimitUsageCoupon = parseInt(setIsCoupon?.limitUsage) - 1;
+              const isUsageCoupon = parseInt(setIsCoupon?.usage) + 1;
+              const rsUpdateCouponData = await updateData(
+                `/api/coupons/${setIsCoupon?.documentId}`,
+                {
+                  data: {
+                    limitUsage: isLimitUsageCoupon?.toString(),
+                    usage: isUsageCoupon?.toString(),
+                  },
+                }
+              );
+            }
 
             if (isOrderRecived?.customer?.isApproved === null) {
               const isProducts = isOrderRecived?.order?.products;
@@ -209,21 +226,6 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                         : null,
                   }),
                 }).then((rs) => rs?.json());
-                // @update-stock(coupon)
-                if (checkCoupon) {
-                  const isLimitUsageCoupon =
-                    parseInt(setIsCoupon?.limitUsage) - 1;
-                  const isUsageCoupon = parseInt(setIsCoupon?.usage) + 1;
-                  const rsUpdateCouponData = await updateData(
-                    `/api/coupons/${setIsCoupon?.documentId}`,
-                    {
-                      data: {
-                        limitUsage: isLimitUsageCoupon?.toString(),
-                        usage: isUsageCoupon?.toString(),
-                      },
-                    }
-                  );
-                }
 
                 for (let i = 0; i < grpAttendee?.length; i++) {
                   const isGrpdAttendee = grpAttendee[i];

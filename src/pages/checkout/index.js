@@ -676,11 +676,11 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           }).then((res) => res.json());
           // @coupon
           const setIsCoupon = getCoupon !== null ? getCoupon : null;
+
           const checkCoupon =
             setIsCoupon !== null &&
             setIsCoupon !== 'null' &&
             setIsCoupon !== undefined;
-
           // @create(order)
           const createOrder = getCreateOrder(
             Math.floor(isStore?.totalOrder),
