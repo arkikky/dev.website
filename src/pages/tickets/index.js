@@ -123,7 +123,7 @@ const Tickets = ({ mode, products }) => {
       <HeadGraphSeo title={`Tickets`} otherPage={true} />
 
       {/* @main */}
-      <Main className="relative overflow-hidden pb-16 pt-[135px] sm:pb-24 sm:pt-[164px] lg:pt-[183px]">
+      <Main className="relative overflow-hidden pb-16 pt-[135px] sm:pb-24 sm:pt-[214px] lg:pt-[277px]">
         <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 -z-px h-[425px] select-none">
           <StarryBackground starCount={60} />
         </div>
@@ -131,12 +131,12 @@ const Tickets = ({ mode, products }) => {
         {/* @tickets */}
         <section className="ca25Ticket-Section from-black bg-gradient-to-t via-blue-700 to-blue-200">
           <Container className={'relative'}>
-            <div className="ca25MoonRckt !pointer-events-none absolute inset-x-0 inset-y-0 z-px mx-auto w-full !select-none"></div>
+            <div className="ca25MoonRckt pointer-events-none absolute inset-x-0 inset-y-0 z-px mx-auto w-full select-none"></div>
 
             {/* @header */}
             <div className="mb-8 flex flex-col items-center justify-center text-center sm:mb-12">
               <h2
-                className={`ca25HeadingTitle w-full max-w-[569px] text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} text-balance`}
+                className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} text-balance`}
               >
                 {'GET YOUR TICKETS NOW'
                   ?.split('')

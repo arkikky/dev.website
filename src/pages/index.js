@@ -230,13 +230,13 @@ const Home = ({ mode, collections, products }) => {
         <Abouts mode={mode} result={isCollections?.aboutus} />
 
         {/* @tickets */}
-        <section className="ca25Ticket-Section pb-24 pt-[92px] sm:pt-24">
+        <section className="ca25Ticket-Section pb-24 pt-[92px] sm:pt-32 lg:pt-28 xl:pt-[144px]">
           <Container className={'relative'}>
             <div className="ca25MoonRckt !pointer-events-none absolute inset-x-0 inset-y-0 z-px mx-auto w-full !select-none"></div>
 
             <div className="mb-8 flex flex-col items-center justify-center text-center sm:mb-12">
               <h2
-                className={`ca25HeadingTitle w-full max-w-[569px] text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} text-balance`}
+                className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} text-balance`}
               >
                 {'GET YOUR TICKETS NOW'
                   ?.split('')

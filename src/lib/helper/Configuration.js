@@ -1,4 +1,5 @@
 import CryptoJS from 'crypto-js';
+import { getCookie, setCookie } from 'cookies-next';
 
 // @lib/controller & helper
 import { getFetchUrl_FormData, updateData } from '@lib/controller/API';
@@ -112,23 +113,25 @@ export const splitIntoGroups = (d, grpCount) => {
 // @calculate-countdown(date)
 export const calculateCountdown = (date) => {
   const now = new Date();
-  let storedDate = sessionStorage.getItem('countdownTarget');
+  let storedDate = getCookie('prSle_trgtSession');
   let targetDate = storedDate ? new Date(storedDate) : null;
-  // @last-days
+
+  // @check-last-day
   const lastMonday = new Date(now);
   lastMonday.setDate(now.getDate() - ((now.getDay() + 6) % 7));
 
-  // @target 7 days after last
+  // @make-target
   if (!targetDate || targetDate < now) {
     targetDate = new Date(lastMonday);
     targetDate.setDate(targetDate.getDate() + 7);
-    sessionStorage.setItem('countdownTarget', targetDate.toISOString());
+    setCookie('prSle_trgtSession', targetDate.toISOString(), {
+      maxAge: 60 * 60 * 24 * 7,
+    });
   }
   const mrgdDate = Math.max(0, targetDate - now);
   const toTimeUnits = (unit) =>
     Math.floor(mrgdDate / unit) %
     (unit === 1000 * 60 * 60 * 24 ? Infinity : 24);
-
   return {
     days: toTimeUnits(1000 * 60 * 60 * 24),
     hours: toTimeUnits(1000 * 60 * 60),
