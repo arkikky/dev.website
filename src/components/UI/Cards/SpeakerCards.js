@@ -129,7 +129,7 @@ const SpeakerCards = ({
             </h3>
           )}
           {position && (
-            <p className="line-break-anyware mt-0.5 line-clamp-1 text-left text-sm font-normal text-white sm:mt-1 sm:text-base">
+            <p className="mt-0.5 text-left text-sm font-normal leading-initial text-white sm:mt-1 sm:text-base sm:leading-initial">
               {position}
             </p>
           )}
