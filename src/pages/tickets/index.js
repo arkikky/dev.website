@@ -198,18 +198,6 @@ Tickets.getLayout = (page, { pageProps }) => {
   return page;
 };
 export const getServerSideProps = async (context) => {
-  const blockedQueries = ['badParam1', 'badParam2'];
-  const hasBlockedQuery = Object.keys(context?.query).some((k) =>
-    blockedQueries.includes(k)
-  );
-  if (hasBlockedQuery) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: true,
-      },
-    };
-  }
   try {
     const isStoreLayouts = true;
     const isProducts = await getFetch(`/api/products?sort[0]=rank:asc`);

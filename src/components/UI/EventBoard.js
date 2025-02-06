@@ -1,34 +1,44 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Splide, SplideSlide } from '@splidejs/react-splide';
+import React from 'react';
+// import { Splide, SplideSlide } from '@splidejs/react-splide';
 
 // @lib/controller & helper
-import { calculateCountdown } from '@lib/helper/Configuration';
+// import { calculateCountdown } from '@lib/helper/Configuration';
 
 const EventBoard = ({ id }) => {
-  const rfMainSplde = useRef(null);
-  const [isCountdown, setCountdown] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  // const rfMainSplde = useRef(null);
+  // const [isCountdown, setCountdown] = useState({
+  //   days: 0,
+  //   hours: 0,
+  //   minutes: 0,
+  //   seconds: 0,
+  // });
   // @countdown(Date)
-  const setDate = new Date('2025-03-31T12:00:00')?.getTime();
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCountdown(calculateCountdown(setDate));
-    }, 1000);
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  // const setDate = new Date('2025-03-31T12:00:00')?.getTime();
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setCountdown(calculateCountdown(setDate));
+  //   }, 1000);
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  // }, []);
 
   return (
     <>
       <div
         className={`pointer-events-none relative flex h-[55px] w-full min-w-[170px] max-w-[170px] cursor-default flex-col overflow-hidden rounded-lg bg-primary px-2 py-1.5 sm:h-[58px] sm:min-w-[181px] sm:max-w-[181px] sm:rounded-lg sm:px-2.5 sm:py-1.5`}
       >
-        <Splide
+        <div className="relative flex h-15 flex-col items-start justify-start overflow-hidden pt-0.5">
+          <span className={`mb-0.5 text-sm font-light text-white/60`}>
+            {`Event Date`}
+          </span>
+          <div
+            className={`relative text-base font-normal leading-initial text-white sm:text-[17px] sm:leading-initial`}
+          >
+            {`21-22 August 2025`}
+          </div>
+        </div>
+        {/* <Splide
           ref={(slider) => (rfMainSplde.current = slider)}
           id={id ?? 'ca25MnBoard_InsightsStore'}
           tag="section"
@@ -76,7 +86,7 @@ const EventBoard = ({ id }) => {
               </div>
             </div>
           </SplideSlide>
-        </Splide>
+        </Splide> */}
       </div>
     </>
   );

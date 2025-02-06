@@ -32,7 +32,7 @@ export default function handler(req, res) {
       {
         url: '/',
         images: '/assets/images/whats-happening/ca25WhatsHappening_3.jpg',
-        captions: 'Painntball Tournaments',
+        captions: 'Paintball Tournaments',
         openUrl: false,
         comingSoon: false,
       },

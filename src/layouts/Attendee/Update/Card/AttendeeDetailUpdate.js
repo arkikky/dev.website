@@ -327,8 +327,7 @@ const AttendeeDetailUpdate = ({
                   required: watch,
                   maxLength: 255,
                   pattern: {
-                    value:
-                      /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\w\d\-.\/]*)*\/?$|^N\/A$|^-$/,
+                    value: /^(https?:\/\/[^\s/$.?#].[^\s]*)$|^N\/A$|^-$/,
                     message: 'Please enter a valid URL',
                   },
                 }),

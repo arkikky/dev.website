@@ -16,6 +16,9 @@ import { currencyConverter } from '@lib/helper/CalculateCartContext';
 import { useCart } from '@lib/hooks/cart/Cart';
 import { useMethod } from '@lib/hooks/Method';
 
+// @components
+import PreSaleCountdown from '@components/PreSaleCountdown';
+
 const TicketProducts = ({
   useHeading = 'h3',
   data,
@@ -103,33 +106,33 @@ const TicketProducts = ({
     <>
       <div
         className={twMerge(
-          `ca25Products relative flex h-auto flex-col overflow-hidden rounded-2xl bg-transparent sm:rounded-[20px] lg:h-[569px]`,
+          `ca25Products relative flex h-auto flex-col rounded-2xl bg-transparent sm:rounded-[20px] lg:h-[569px]`,
           style[documentId] || ''
         )}
       >
-        <div className="ca25Products_Card relative flex h-full flex-col items-start justify-between px-4 pb-4 pt-4.5 sm:px-4.5 sm:py-4.5 lg:px-6 lg:py-6">
-          {data?.documentId === 'g1ukadil4n4a3r0ndly7jl42' ? (
-            <span className="absolute bottom-auto left-auto right-4.5 top-0 z-[4]">
-              <Image
-                className="aspect-auto h-[78px] w-auto sm:h-[88px]"
-                src={
-                  '/assets/images/store/ca25SaveTicket_SuperEarlyBird-60.svg'
-                }
-                alt={`${publicRuntimeConfig?.siteAppName} Save Super Early Bird Tickets`}
-                height={96}
-                width={81}
-                quality="87"
-              />
-            </span>
-          ) : null}
+        {data?.documentId === 'g1ukadil4n4a3r0ndly7jl42' ? (
+          <div className="absolute inset-x-0 -top-[21px] bottom-auto z-[4] text-center lg:-top-[26px]">
+            <Image
+              className="mx-auto aspect-auto h-[46px] w-auto lg:h-[54px]"
+              src={'/assets/images/store/ca25PreSale-FestivalTicket.svg'}
+              alt={`${publicRuntimeConfig?.siteAppName} Save Super Early Bird Tickets`}
+              height={96}
+              width={81}
+              quality="87"
+            />
+          </div>
+        ) : null}
+        <div
+          className={`ca25Products_Card relative flex h-full flex-col items-start justify-between overflow-hidden rounded-2xl sm:rounded-[20px] ${data?.documentId === 'g1ukadil4n4a3r0ndly7jl42' ? 'ca25BestSaleProducts px-4 pb-4 pt-9 sm:px-4.5 sm:pb-4.5 sm:pt-9 lg:px-6 lg:pb-6 lg:pt-11' : 'px-4 pb-4 pt-4.5 sm:px-4.5 sm:py-4.5 lg:px-6 lg:py-6'}`}
+        >
           <div className="flex w-full flex-col items-start pb-18 lg:pb-0">
             <div className="relative block w-full">
               {useHeading === 'h2' ? (
-                <h2 className="mb-1.5 pr-[82px] text-xl font-normal uppercase leading-initial sm:mb-2 sm:text-[22px] sm:leading-initial">
+                <h2 className="mb-1.5 pr-[82px] text-xl font-bold uppercase leading-initial sm:mb-2 sm:text-[22px] sm:leading-initial">
                   {data?.name || 'Ticket Products'}
                 </h2>
               ) : (
-                <h3 className="mb-1.5 pr-[82px] text-xl font-normal uppercase leading-initial sm:mb-2 sm:text-[22px] sm:leading-initial">
+                <h3 className="mb-1.5 pr-[82px] text-xl font-bold uppercase leading-initial sm:mb-2 sm:text-[22px] sm:leading-initial">
                   {data?.name || 'Ticket Products'}
                 </h3>
               )}
@@ -144,7 +147,17 @@ const TicketProducts = ({
                 )}
               </div>
             </div>
-            <div className="my-4 block w-full border-t border-dashed border-gray-200/70 sm:my-6"></div>
+            {data?.documentId === 'g1ukadil4n4a3r0ndly7jl42' ? (
+              <div className="my-4 inline-flex w-full flex-row justify-between text-sm font-bold uppercase text-[#F3D747] sm:text-base">
+                <span>{`PRICE INCREASE IN`}</span>
+                <span>
+                  <PreSaleCountdown />
+                </span>
+              </div>
+            ) : (
+              <div className="my-4 block w-full border-t border-dashed border-gray-200/70 sm:my-6"></div>
+            )}
+
             <div className="block w-full">
               {documentId === 'rc33x0dgm6tm707jghffuip4' && (
                 <span className="mb-3.5 flex flex-row items-center justify-start text-base font-medium sm:text-lg">
@@ -288,7 +301,7 @@ const TicketProducts = ({
                 <div className="hidden lg:block">
                   <button
                     id={`ca25AddedBtn_Product${data?.name.replace(/\s/g, '')}`}
-                    className={`ca25ProductsBtn relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${isSessionLoading === true ? 'cursor-default' : 'cursor-pointer'}`}
+                    className={`ca25ProductsBtn actived relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${isSessionLoading === true ? 'cursor-default' : 'cursor-pointer'}`}
                     role="button"
                     aria-label={`Button Coinfest Asia 2025 - ${data?.name.replace(/\s/g, '')} Added Products)`}
                     onClick={(e) => {
@@ -305,7 +318,7 @@ const TicketProducts = ({
                 <div className="block lg:hidden">
                   <button
                     id={`ca25AddedBtn_Product${data?.name.replace(/\s/g, '')}`}
-                    className={`ca25ProductsBtn relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${isSessionLoading === true ? 'cursor-default' : 'cursor-pointer'}`}
+                    className={`ca25ProductsBtn actived relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${isSessionLoading === true ? 'cursor-default' : 'cursor-pointer'}`}
                     role="button"
                     aria-label={`Button Coinfest Asia 2025 - ${data?.name.replace(/\s/g, '')} Added Products)`}
                     onClick={(e) => {
@@ -334,7 +347,7 @@ const TicketProducts = ({
               >
                 {isLoading ? (
                   <div
-                    className="ca25ProductsBtn_Loading block size-6 animate-spin items-center justify-center rounded-full border-[2.5px] border-current border-t-transparent font-medium opacity-80"
+                    className={`ca25ProductsBtn_Loading block size-6 animate-spin items-center justify-center rounded-full border-[2.5px] ${data?.documentId === 'g1ukadil4n4a3r0ndly7jl42' ? 'border-black-900' : 'border-white'} border-black-900 border-t-transparent font-medium opacity-80`}
                     role="status"
                     aria-label="Coinfest Asia 2025 (Loading Products)"
                   >
