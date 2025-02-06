@@ -163,7 +163,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
             []
           )}
         shortDesc={
-          'Unlock early access to Coinfest Asia 2025 sponsorships and lock in the best deals before anyone else.'
+          'Fill in the form to receive Coinfest Asia 2025 Prospectus and lock in the best deals before anyone else.'
         }
         backUrl={`/get-involved`}
         mode={mode}
@@ -550,7 +550,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                   Processing ...
                 </span>
               ) : (
-                'Submit'
+                'Send my Prospectus'
               )}
             </button>
           </div>

@@ -72,26 +72,31 @@ const PromoCouponCode = ({
                   className={`absolute inset-x-0 inset-y-0 rounded-lg border-2 ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'border-gray-200' : 'border-primary'} sm:rounded-xl`}
                 />
 
-                {/* @left & right notch */}
                 <div
-                  className={`clip-[rect(0px.12px.24px,0px)] absolute -left-1 bottom-[28%] z-[2] h-6 w-4.5 -translate-y-1/2 rounded-r-full border border-2 border-solid ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'border-gray-200' : 'border-primary'} bg-white`}
-                />
-                <div
-                  className={`clip-[rect(0px.12px.24px,0px)] absolute -right-1 bottom-[28%] z-[2] h-6 w-4.5 -translate-y-1/2 rounded-l-full border border-2 border-solid ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'border-gray-200' : 'border-primary'} bg-white`}
-                />
+                  className={`absolute inset-x-0 bottom-[34%] block -translate-y-1/2`}
+                >
+                  <div
+                    className={`absolute inset-x-0 -top-3 mx-auto block w-[81%] border-t-2 border-dashed ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'border-gray-200' : 'border-white/50'}`}
+                  ></div>
+                  <div
+                    className={`clip-[rect(0px.12px.24px,0px)] absolute -left-1 bottom-0 z-[2] h-6 w-4.5 rounded-r-full border-2 border-solid ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'border-gray-200' : 'border-primary'} bg-white`}
+                  />
+                  <div
+                    className={`clip-[rect(0px.12px.24px,0px)] absolute -right-1 bottom-0 z-[2] h-6 w-4.5 rounded-l-full border-2 border-solid ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'border-gray-200' : 'border-primary'} bg-white`}
+                  />
+                </div>
 
                 <div className="relative z-10 flex flex-col space-y-4">
                   <div className="mb-3.5 block w-full">
                     <h3
-                      className={`mb-1 text-xl font-semibold leading-initial ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'text-black-900' : 'text-white'}`}
+                      className={`mb-1 text-2xl font-bold leading-initial ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'text-black-900' : 'text-white'}`}
                     >
                       {`${gtRslt?.amount}% Off`}
                     </h3>
                     <span
-                      className={`text-balance text-sm font-normal leading-[20px] ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'text-gray-500' : 'text-white'}`}
+                      className={`block text-balance text-sm font-normal leading-[19px] ${!isApplicable || totalProducts < gtRslt?.minQtyPromo || items?.couponCart !== null ? 'text-gray-500' : 'text-white'}`}
                     >
-                      {' '}
-                      {`Min. purchase ${currencyConverter(gtRslt?.minQtyPromo)} for ${gtRslt?.includedProducts[0]?.name}`}
+                      {`Grab your Pre-sale Ticket for only 500K IDR!`}
                     </span>
                   </div>
 

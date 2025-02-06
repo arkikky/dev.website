@@ -71,7 +71,7 @@ export const getStaticProps = async () => {
         url: '/get-involved/sponsorship',
         title: 'Sponsor',
         shortDesc: `Demonstrate your innovations and solutions in a seamless & measurable manner.`,
-        labelBtn: `Send an Inquiry`,
+        labelBtn: `Request Prospectus`,
         comingSoon: false,
         slotsFull: false,
       },

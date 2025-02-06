@@ -1580,7 +1580,7 @@ export const getServerSideProps = async (context) => {
           `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
         ),
         getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
-        getFetch(`/api/coupons?filters[isPublic][$eq]=true&populate=*`),
+        getFetch(`/api/coupons?filters[category][$eq]=promo&populate=*`),
         getFecthHbSpt(`/forms/v2/forms/${serverRuntimeConfig?.hbSptCheckout}`),
       ]);
     const sortedCountries = rsCountry.sort((a, b) =>

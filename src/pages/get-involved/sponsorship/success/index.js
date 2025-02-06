@@ -28,13 +28,12 @@ const SponsorshipSuccessfullySubmitted = ({ mode }) => {
                   🎉
                 </span>
                 <h1 className="sm:px-auto mx-auto mt-4 max-w-full text-[18px] font-semibold uppercase leading-[24px] text-black-900 sm:max-w-[493px] sm:text-2xl">
-                  {`You're on the list!`}
+                  {`YOU’RE ON THE LIST!`}
                 </h1>
               </div>
               <div className="mt-4 flex w-full max-w-full flex-col items-center justify-center text-center sm:max-w-[651px]">
                 <p className="text-balance px-0 text-base font-normal text-black-900 prose-a:font-normal prose-a:text-[#ED4F35] prose-a:underline sm:px-4">
-                  {`Thank you for your enquiry for sponsorship. Please check your
-                  inbox, you will receive an email within the next 2-3 minutes.`}
+                  {`We’ve received your inquiry and will be sending the prospectus your way. Keep an eye on your inbox 👀`}
                 </p>
                 <div className="mb-10 mt-8">
                   <Link
