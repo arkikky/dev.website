@@ -118,7 +118,7 @@ const SpeakerCards = ({
           ) : null}
         </div>
         {/* @content */}
-        <div className="mt-4 flex h-full max-h-[61px] min-h-[61px] w-full flex-col items-start justify-start rounded-xl bg-transparent sm:max-h-[84px] sm:min-h-[84px] sm:pb-4">
+        <div className="mt-4 flex h-full w-full flex-col items-start justify-start rounded-xl bg-transparent sm:pb-4">
           <div>
             {useHeading === 'h2' ? (
               <h2 className="line-break-anyware line-clamp-1 text-left text-base font-medium text-white group-hover:underline sm:text-lg lg:text-xl">
@@ -131,7 +131,7 @@ const SpeakerCards = ({
             )}
           </div>
           {position && (
-            <p className="mt-1.5 text-left text-sm font-normal leading-initial text-white sm:mt-1 sm:text-base sm:leading-[21px]">
+            <p className="mt-1.5 line-clamp-2 text-left text-sm font-normal leading-initial text-white sm:mt-1 sm:text-base sm:leading-[21px]">
               {position}
             </p>
           )}
