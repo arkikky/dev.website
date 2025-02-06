@@ -123,7 +123,7 @@ const TicketProducts = ({
           </div>
         ) : null}
         <div
-          className={`ca25Products_Card relative flex h-full flex-col items-start justify-between overflow-hidden rounded-2xl sm:rounded-[20px] ${data?.documentId === 'g1ukadil4n4a3r0ndly7jl42' ? 'ca25BestSaleProducts px-4 pb-4 pt-9 sm:px-4.5 sm:pb-4.5 sm:pt-9 lg:px-6 lg:pb-6 lg:pt-11' : 'px-4 pb-4 pt-4.5 sm:px-4.5 sm:py-4.5 lg:px-6 lg:py-6'}`}
+          className={`ca25Products_Card relative flex h-full flex-col items-start justify-between overflow-hidden rounded-2xl px-4 pb-4 pt-9 sm:rounded-[20px] sm:px-4.5 sm:pb-4.5 sm:pt-9 lg:px-6 lg:pb-6 lg:pt-11 ${data?.documentId === 'g1ukadil4n4a3r0ndly7jl42' ? 'ca25BestSaleProducts' : null}`}
         >
           <div className="flex w-full flex-col items-start pb-18 lg:pb-0">
             <div className="relative block w-full">

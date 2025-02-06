@@ -111,10 +111,24 @@ export const splitIntoGroups = (d, grpCount) => {
 
 // @calculate-countdown(date)
 export const calculateCountdown = (date) => {
-  const mrgdDate = Math.max(0, date - new Date());
+  const now = new Date();
+  let storedDate = sessionStorage.getItem('countdownTarget');
+  let targetDate = storedDate ? new Date(storedDate) : null;
+  // @last-days
+  const lastMonday = new Date(now);
+  lastMonday.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+
+  // @target 7 days after last
+  if (!targetDate || targetDate < now) {
+    targetDate = new Date(lastMonday);
+    targetDate.setDate(targetDate.getDate() + 7);
+    sessionStorage.setItem('countdownTarget', targetDate.toISOString());
+  }
+  const mrgdDate = Math.max(0, targetDate - now);
   const toTimeUnits = (unit) =>
     Math.floor(mrgdDate / unit) %
     (unit === 1000 * 60 * 60 * 24 ? Infinity : 24);
+
   return {
     days: toTimeUnits(1000 * 60 * 60 * 24),
     hours: toTimeUnits(1000 * 60 * 60),
