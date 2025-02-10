@@ -152,7 +152,7 @@ const TicketProducts = ({
               </div>
             </div>
             {data?.documentId !== 'rc33x0dgm6tm707jghffuip4' ? (
-              <div className="my-4 inline-flex w-full flex-row justify-between text-sm font-bold uppercase text-primaryYellow sm:text-base">
+              <div className="my-4 inline-flex w-full flex-row justify-between text-sm font-bold uppercase text-primaryYellow lg:text-base">
                 <span>{`PRICE INCREASE IN`}</span>
                 <span>
                   <PreSaleCountdown />
@@ -160,12 +160,12 @@ const TicketProducts = ({
               </div>
             ) : (
               // <div className="my-4 block w-full border-t border-dashed border-gray-200/70 sm:my-6"></div>
-              <div className="my-4 inline-flex w-full flex-row justify-between text-sm font-bold uppercase italic text-white sm:text-base">
+              <div className="my-4 inline-flex w-full flex-row justify-between text-sm font-bold uppercase italic text-white lg:text-base">
                 <span>{`BEST DEAL • VERY LIMITED QUANTITY`}</span>
               </div>
             )}
 
-            <div className="block w-full">
+            <div className="block w-full pt-2">
               {documentId === 'rc33x0dgm6tm707jghffuip4' && (
                 <span className="mb-3.5 flex flex-row items-center justify-start text-base font-medium sm:text-lg">
                   <svg
@@ -304,42 +304,21 @@ const TicketProducts = ({
               </div>
             )}
             {isSessionProducts?.checkProduct === true ? (
-              <>
-                <div className="hidden lg:block">
-                  <button
-                    id={`ca25AddedBtn_Product${data?.name.replace(/\s/g, '')}`}
-                    className={`ca25ProductsBtn actived relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${isSessionLoading === true ? 'cursor-default' : 'cursor-pointer'}`}
-                    role="button"
-                    aria-label={`Button Coinfest Asia 2025 - ${data?.name.replace(/\s/g, '')} Added Products)`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      toggleOverlayPopUp(
-                        '.ca2025BckdrpOverflay_PopUpGeneral',
-                        '.ca2025CartPopUp_General'
-                      );
-                    }}
-                  >
-                    {`View Cart`}
-                  </button>
-                </div>
-                <div className="block lg:hidden">
-                  <button
-                    id={`ca25AddedBtn_Product${data?.name.replace(/\s/g, '')}`}
-                    className={`ca25ProductsBtn actived relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${isSessionLoading === true ? 'cursor-default' : 'cursor-pointer'}`}
-                    role="button"
-                    aria-label={`Button Coinfest Asia 2025 - ${data?.name.replace(/\s/g, '')} Added Products)`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      toggleOverlayPopUp(
-                        '.ca2025BckdrpOverflay_PopUpMobile',
-                        '.ca2025CartPopUp_Mobile'
-                      );
-                    }}
-                  >
-                    {`View Cart`}
-                  </button>
-                </div>
-              </>
+              <button
+                id={`ca25AddedBtn_Product${data?.name.replace(/\s/g, '')}`}
+                className={`ca25ProductsBtn actived relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${isSessionLoading === true ? 'cursor-default' : 'cursor-pointer'}`}
+                role="button"
+                aria-label={`Button Coinfest Asia 2025 - ${data?.name.replace(/\s/g, '')} Added Products)`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleOverlayPopUp(
+                    '.ca2025BckdrpOverflay_PopUpMobile',
+                    '.ca2025CartPopUp_Mobile'
+                  );
+                }}
+              >
+                {`View Cart`}
+              </button>
             ) : (
               <button
                 id={`ca25Btn_Product${data?.name.replace(/\s/g, '')}`}

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Toaster } from 'sonner';
-import { toast } from 'sonner';
+import { Toaster, toast } from 'sonner';
 import dynamic from 'next/dynamic';
 
 // @redux
@@ -174,12 +173,14 @@ const Tickets = ({ mode, products }) => {
 
       {/* @alert(Toast)  */}
       <Toaster
+        position="bottom-left"
         richColors
         gap="10"
+        offset={18}
         dismissible={false}
         pauseWhenPageIsHidden={true}
         toastOptions={{
-          className: 'ca25ToastAlert',
+          className: 'ca25ToastAlert-Store',
         }}
       />
     </>

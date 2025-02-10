@@ -60,17 +60,6 @@ const LayoutStore = ({
       {getStore?.length > 0 && (
         <>
           <div
-            id="ca2025BckdrpOverflay_PopUpGeneral"
-            className="ca2025BckdrpOverflay_PopUpGeneral nonActive fixed inset-x-0 inset-y-0 z-[80] block h-svh cursor-pointer bg-black-900/60 backdrop-blur-[3px] transition-[opacity,backdrop-filter] duration-[0.3s] ease-in-out"
-            onClick={(e) => {
-              e.preventDefault();
-              toggleOverlayPopUp(
-                '.ca2025BckdrpOverflay_PopUpGeneral',
-                e?.target.getAttribute('data-target')
-              );
-            }}
-          ></div>
-          <div
             id="ca2025BckdrpOverflay_PopUpMobile"
             className="ca2025BckdrpOverflay_PopUpMobile nonActive fixed inset-x-0 inset-y-0 z-[80] block h-svh cursor-pointer bg-black-900/60 backdrop-blur-[3px] transition-[opacity,backdrop-filter] duration-[0.3s] ease-in-out"
             onClick={(e) => {

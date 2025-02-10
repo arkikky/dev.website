@@ -45,9 +45,9 @@ export default async function handler(req, res) {
         email: payerEmail,
         mobile_number: phone,
       },
-      callback_url: `${process.env.NEXT_PUBLIC_SITE_URL}/api/payment/webhook-callback`,
-      success_redirect_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/order-received?process=${order}`,
-      failure_redirect_url: `${process.env.NEXT_PUBLIC_SITE_URL}/checkout/order-failed?process=${order}`,
+      callback_url: `${process.env.NEXT_PUBLIC_SITE_URL}api/payment/webhook-callback`,
+      success_redirect_url: `${process.env.NEXT_PUBLIC_SITE_URL}checkout/order-received?process=${order}`,
+      failure_redirect_url: `${process.env.NEXT_PUBLIC_SITE_URL}checkout/order-failed?process=${order}`,
       currency: 'IDR',
       invoice_duration: 900,
       customer_notification_preference: {

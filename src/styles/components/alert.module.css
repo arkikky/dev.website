@@ -20,3 +20,7 @@
   @apply items-start;
   @apply !px-2.5 !py-4 sm:px-3 lg:px-4;
 }
+
+.ca25ToastAlert-Store {
+  @apply mb-15 sm:mb-20 lg:mb-0;
+}

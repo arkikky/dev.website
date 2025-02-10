@@ -56,7 +56,7 @@ const cartSlice = createSlice({
           (t) => (
             <ToastAlerts
               id={t}
-              position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
+              position="bottom-0 inset-0 top-auto"
               type="info"
               visible={true}
               label={`<strong>Your Cart is full</strong>, Complete your order or update your Cart!`}
@@ -85,7 +85,7 @@ const cartSlice = createSlice({
         (t) => (
           <ToastAlerts
             id={t}
-            position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
+            position="bottom-0 inset-0 top-auto"
             type="success"
             visible={true}
             label={`The item has been successfully added to your cart.`}

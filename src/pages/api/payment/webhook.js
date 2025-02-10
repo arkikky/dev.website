@@ -32,9 +32,11 @@ export default async function handler(req, res) {
     return res?.status(400).json(logErr);
   }
   try {
-    const basicAuth = Buffer.from(
-      serverRuntimeConfig?.secretXenditToken
-    ).toString('base64');
+    const username = serverRuntimeConfig?.secretTokenEncrypt;
+    // const username =
+    //   'xnd_production_GyzcroKwO3oIhgzwpW9TFhUEsBM8B6N8CYPMEv8LjP1rtoxdPjXPy1dpso2Df3h';
+    const basicAuth = Buffer.from(`${username}:`).toString('base64');
+
     const rsGetWebhook = await fetch(
       `https://api.xendit.co/v2/invoices/${paymentId}`,
       {

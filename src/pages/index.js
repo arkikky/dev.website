@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Toaster } from 'sonner';
-import { toast } from 'sonner';
+import { Toaster, toast } from 'sonner';
 import getConfig from 'next/config';
 import dynamic from 'next/dynamic';
 import CryptoJS from 'crypto-js';
@@ -20,7 +19,7 @@ import { getFetch, getFetchUrl } from '@lib/controller/API';
 
 // @components
 import HeadGraphSeo from '@components/Head';
-import MainSmoothScroll from '@components/MainSmoothScroll';
+import Main from '@components/Main';
 import Container from '@components/Container';
 import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 import TicketProductsSkeleton from '@components/Skeleton/Products/TicketProducts';
@@ -123,7 +122,7 @@ const Home = ({ mode, collections, products }) => {
           (t) => (
             <ToastAlerts
               id={t}
-              position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
+              position="inset-y-0 inset-x-0"
               type="info"
               visible={true}
               label={`Product stock is invalid or out of stock!`}
@@ -223,7 +222,7 @@ const Home = ({ mode, collections, products }) => {
       />
 
       {/* @main */}
-      <MainSmoothScroll className="relative overflow-hidden pb-16 sm:pb-24">
+      <Main className="relative overflow-hidden pb-16 sm:pb-24">
         <Headers />
 
         {/* @about-us */}
@@ -300,16 +299,18 @@ const Home = ({ mode, collections, products }) => {
 
         {/* @banner(footer) */}
         <MoonPortalBanner mode={mode} />
-      </MainSmoothScroll>
+      </Main>
 
       {/* @alert(Toast)  */}
       <Toaster
+        position="bottom-left"
         richColors
         gap="10"
+        offset={18}
         dismissible={false}
         pauseWhenPageIsHidden={true}
         toastOptions={{
-          className: 'ca25ToastAlert',
+          className: 'ca25ToastAlert-Store',
         }}
       />
     </>

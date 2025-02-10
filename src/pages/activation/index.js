@@ -70,6 +70,8 @@ const Activation = ({ ipAddress }) => {
           return;
         }
 
+        console.log('awdawd');
+
         if (rsCustomer?.data[0]?.orders[0]?.paymentStatus !== 'Success') {
           // @hubspot(customer & attendee)
           const hbSptKey = '96572ab0-5958-4cc4-8357-9c65de42cab6';
@@ -510,10 +512,13 @@ const Activation = ({ ipAddress }) => {
 
       {/* @alert(Toast)  */}
       <Toaster
+        position="bottom-left"
         richColors
-        gap="10"
-        dismissible={false}
+        expand={false}
         pauseWhenPageIsHidden={true}
+        dismissible={false}
+        gap="10"
+        offset={'24px'}
         toastOptions={{
           className: 'ca25ToastAlert',
         }}

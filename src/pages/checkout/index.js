@@ -2,8 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { twMerge } from 'tailwind-merge';
 import QRCode from 'qrcode';
-import { Toaster } from 'sonner';
-import { toast } from 'sonner';
+import { Toaster, toast } from 'sonner';
 import { useForm } from 'react-hook-form';
 import getConfig from 'next/config';
 import dynamic from 'next/dynamic';
@@ -1483,12 +1482,15 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
       {/* @alert(Toast)  */}
       <Toaster
+        position="bottom-left"
         richColors
-        gap="10"
-        dismissible={false}
+        expand={false}
         pauseWhenPageIsHidden={true}
+        dismissible={false}
+        gap="10"
+        offset={18}
         toastOptions={{
-          className: 'ca25ToastCheckoutAlert',
+          className: 'ca25ToastAlert',
         }}
       />
 
@@ -1564,14 +1566,6 @@ Checkout.getLayout = (page, { pageProps }) => {
   return page;
 };
 export const getServerSideProps = async (context) => {
-  // if (Object.keys(context?.query).length > 0) {
-  //   return {
-  //     redirect: {
-  //       destination: '/',
-  //       permanent: true,
-  //     },
-  //   };
-  // }
   try {
     const isLayouts = true;
     const [rsIpAddress, rsCountry, rsCoupons, rsCheckoutHbSpt] =

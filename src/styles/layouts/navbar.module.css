@@ -11,7 +11,7 @@
   backface-visibility: auto;
   @apply pointer-events-auto z-[120] opacity-100;
 }
-@screen lg {
+/* @screen lg {
   .ca2025BckdrpOverflay_PopUpMobile.active {
     backface-visibility: hidden;
     @apply pointer-events-none opacity-0;
@@ -20,19 +20,19 @@
     backface-visibility: auto;
     @apply pointer-events-auto z-[120] opacity-100;
   }
-}
+} */
 
 /* @pop-up(General) */
 .ca2025CartPopUp_General.nonActive {
   backface-visibility: hidden;
   @apply pointer-events-none translate-y-[-80%] opacity-0;
 }
-@screen lg {
+/* @screen lg {
   .ca2025CartPopUp_General.active {
     backface-visibility: visible;
     @apply pointer-events-auto translate-y-[0%] opacity-100;
   }
-}
+} */
 
 /* @pop-up(Mobile */
 .ca2025CartPopUp_Mobile.nonActive {
@@ -43,9 +43,9 @@
   backface-visibility: visible;
   @apply pointer-events-auto translate-y-[0%] opacity-100;
 }
-@screen lg {
+/* @screen lg {
   .ca2025CartPopUp_Mobile.active {
     backface-visibility: visible;
     @apply pointer-events-auto translate-y-[0%] opacity-100;
   }
-}
+} */

@@ -560,9 +560,9 @@ const PartnerMedia = ({
                       `tell_us_about_your_audience_and_who_do_you_aim_to_reach_`,
                       {
                         required: true,
-                        maxLength: 550,
+                        maxLength: 1000,
                         pattern: {
-                          value: /^[a-zA-Z0-9\s-_]{2,120}$/,
+                          value: /^[a-zA-Z0-9\s\-_,.:?'()]+$/,
                         },
                       }
                     ),
@@ -647,7 +647,7 @@ const PartnerMedia = ({
             <button
               id={`ca25Submit-${groupLabel}`}
               type="submit"
-              className={`bg-primaryRed group relative mt-6 flex w-full flex-col items-center justify-center overflow-hidden rounded-[14px] py-6 text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
+              className={`group relative mt-6 flex w-full flex-col items-center justify-center overflow-hidden rounded-[14px] bg-primaryRed py-6 text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
               aria-label={`Submit ${groupLabel} Forms`}
               disabled={isSubmitting}
             >

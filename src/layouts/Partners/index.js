@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import dynamic from 'next/dynamic';
 
 // @components
@@ -25,11 +25,9 @@ const Partners = ({ mode, result = [] }) => {
           </h2>
           <div className="relative w-full grid-cols-6 gap-x-1 gap-y-0 px-2.5 supports-grid:grid sm:grid-cols-10 sm:gap-x-3 sm:gap-y-0 sm:px-0 lg:grid-cols-10 lg:gap-x-6 lg:gap-y-0">
             {result?.map((rslt, i) => (
-              <PartnerCards
-                keyID={`ca25Partners${i}`}
-                {...rslt}
-                key={`ca25Partners${i}`}
-              />
+              <Fragment key={i}>
+                <PartnerCards {...rslt} />
+              </Fragment>
             ))}
           </div>
         </Container>

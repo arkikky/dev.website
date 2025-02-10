@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 
 const GetInvolvedFormCards = ({
-  keyID,
   url = '',
   title,
   shortDesc,
@@ -18,7 +17,6 @@ const GetInvolvedFormCards = ({
           prefetch={true}
           href={url}
           title={`Coinfest Asia 2025 ${title}`}
-          key={`ca25GetInvolved${keyID}`}
         >
           <div className="relative mb-6 block w-full">
             <h2 className="text-2xl font-semibold leading-initial text-black-900">
@@ -35,10 +33,7 @@ const GetInvolvedFormCards = ({
           </span>
         </Link>
       ) : (
-        <div
-          className="ca25FormGetInvolved-Cards disabled group flex h-max w-full flex-col items-start justify-between overflow-hidden rounded-2xl border-2 border-solid border-gray-200 px-6 py-6 transition-[border] duration-300 ease-in-out"
-          key={`ca25GetInvolved${keyID}`}
-        >
+        <div className="ca25FormGetInvolved-Cards disabled group flex h-max w-full flex-col items-start justify-between overflow-hidden rounded-2xl border-2 border-solid border-gray-200 px-6 py-6 transition-[border] duration-300 ease-in-out">
           <div className="relative mb-6 block w-full">
             <h2 className="text-2xl font-semibold leading-initial text-black-900">
               {title}

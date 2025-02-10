@@ -546,9 +546,9 @@ const BecomeAnAffiliate = ({
                   `tell_us_about_your_audience_and_who_do_you_aim_to_reach_`,
                   {
                     required: true,
-                    maxLength: 550,
+                    maxLength: 1000,
                     pattern: {
-                      value: /^[a-zA-Z0-9\s\-_,.]{2,120}$/,
+                      value: /^[a-zA-Z0-9\s\-_,.:?'()]+$/,
                     },
                   }
                 ),

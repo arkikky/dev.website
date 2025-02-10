@@ -29,7 +29,7 @@ const CartProduct = ({ cartStore, products }) => {
         )}
       >
         <div className="flex w-full flex-col justify-between">
-          <h3 className="text-lg font-medium leading-initial text-white">
+          <h3 className="text-lg font-bold uppercase leading-initial text-white">
             {products?.name}
           </h3>
           <div className="mb-1 flex flex-row items-center justify-between gap-x-3">

@@ -91,7 +91,7 @@ const Store = ({
           </div>
           <div className="my-3 block w-full border-t border-dashed border-gray-400/40 sm:my-3.5 sm:mt-3.5"></div>
           <div
-            className={`scrollbar-y my-1 block max-h-[311px] w-full space-y-3 overflow-y-auto ${isLoading === true || loading === true ? '!pointer-events-none !select-none' : '!pointer-events-auto !select-auto'}`}
+            className={`scrollbar-y my-1 flex h-full max-h-[261px] w-full flex-col space-y-3 overflow-y-auto`}
           >
             {store?.length > 0 ? (
               store.map((gtRslt, i) => (

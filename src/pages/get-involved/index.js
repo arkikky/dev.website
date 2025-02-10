@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import dynamic from 'next/dynamic';
 
 // @components
@@ -48,11 +48,9 @@ const GetInvolved = ({ mode, collections }) => {
       >
         <div className="ca25FormGetInvolved-Group flex grid-cols-1 flex-col items-start justify-start gap-x-4 gap-y-4 overflow-x-hidden supports-grid:grid sm:grid-cols-2 sm:gap-x-5 sm:gap-y-5 lg:grid-cols-2 xl:grid-cols-1">
           {collections?.map((rslt, i) => (
-            <GetInvolvedFormCards
-              keyID={`ca25GetInvolved${i}`}
-              {...rslt}
-              key={`ca25GetInvolved${i}`}
-            />
+            <Fragment key={i}>
+              <GetInvolvedFormCards {...rslt} />
+            </Fragment>
           ))}
         </div>
       </PartnershipLayouts>

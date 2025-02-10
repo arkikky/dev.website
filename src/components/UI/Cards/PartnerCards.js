@@ -11,7 +11,6 @@ const { publicRuntimeConfig } = getConfig();
 import Loading from '@components/UI/Loading/Loading';
 
 const PartnerCards = ({
-  keyID,
   url,
   images,
   captions = '',
@@ -37,13 +36,12 @@ const PartnerCards = ({
       {openUrl === true ? (
         <Link
           ref={ref}
-          className={`xs:h-[60px] relative col-span-2 flex h-[66px] w-full flex-col items-center justify-center overflow-clip border-white/55 grayscale sm:col-span-2 sm:h-[68px] sm:rounded-xl lg:col-span-2 lg:h-[88px] xl:h-[116px]`}
+          className={`relative col-span-2 flex h-[66px] w-full flex-col items-center justify-center overflow-clip border-white/55 grayscale sm:col-span-2 sm:h-[68px] sm:rounded-xl lg:col-span-2 lg:h-[88px] xl:h-[116px] xs:h-[60px]`}
           prefetch={true}
           href={url}
           title={`${publicRuntimeConfig?.siteAppName} ${captions}`}
           target="_blank"
           rel="noopener noreferrer"
-          key={keyID}
         >
           {isLoading ? (
             <Image
@@ -64,8 +62,7 @@ const PartnerCards = ({
       ) : (
         <div
           ref={ref}
-          className={`xs:h-[60px] relative col-span-2 flex h-[66px] w-full flex-col items-center justify-center overflow-clip border-white/55 grayscale sm:col-span-2 sm:h-[68px] sm:rounded-xl lg:col-span-2 lg:h-[88px] xl:h-[116px]`}
-          key={keyID}
+          className={`relative col-span-2 flex h-[66px] w-full flex-col items-center justify-center overflow-clip border-white/55 grayscale sm:col-span-2 sm:h-[68px] sm:rounded-xl lg:col-span-2 lg:h-[88px] xl:h-[116px] xs:h-[60px]`}
         >
           {isLoading ? (
             <Image

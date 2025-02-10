@@ -113,19 +113,14 @@ export const splitIntoGroups = (d, grpCount) => {
 // @calculate-countdown(date)
 export const calculateCountdown = (date) => {
   const now = new Date();
-  const nowGMT7 = new Date(
-    now.getTime() + (7 * 60 + now.getTimezoneOffset()) * 60 * 1000
-  );
+  const nowGMT7 = new Date(now.getTime() + 7 * 60 * 60 * 1000);
 
   let storedDate = getCookie('prSle_trgtSession');
   let targetDate = storedDate ? new Date(storedDate) : null;
 
-  // Konversi targetDate dari UTC ke GMT+7
   if (targetDate) {
-    targetDate = new Date(
-      targetDate.getTime() +
-        (7 * 60 + targetDate.getTimezoneOffset()) * 60 * 1000
-    );
+    // @konversion from UTC to GMT+7
+    targetDate = new Date(targetDate.getTime() + 7 * 60 * 60 * 1000);
   }
 
   // @check-last-monday
@@ -140,24 +135,37 @@ export const calculateCountdown = (date) => {
     targetDate.setDate(targetDate.getDate() + 7);
     targetDate.setHours(0, 0, 0, 0);
 
-    setCookie('prSle_trgtSession', targetDate.toISOString(), {
+    const targetDateUTC = new Date(targetDate.getTime() - 7 * 60 * 60 * 1000);
+
+    setCookie('prSle_trgtSession', targetDateUTC.toISOString(), {
       maxAge: 60 * 60 * 24 * 7,
     });
+  } else {
+    // @konversion targetDate from UTC to GMT+7
+    targetDate = new Date(targetDate.getTime() + 7 * 60 * 60 * 1000);
   }
 
   const mrgdDate = Math.max(0, targetDate - nowGMT7);
-  const toTimeUnits = (unit) =>
-    unit === 1000
-      ? Math.round(mrgdDate / unit) % 60
-      : Math.floor(mrgdDate / unit) %
-        (unit === 1000 * 60 * 60 * 24 ? Infinity : 24);
 
-  return {
+  const toTimeUnits = (unit) => {
+    if (unit === 1000) {
+      return Math.floor(mrgdDate / unit) % 60;
+    } else if (unit === 1000 * 60) {
+      return Math.floor(mrgdDate / unit) % 60;
+    } else if (unit === 1000 * 60 * 60) {
+      return Math.floor(mrgdDate / unit) % 24;
+    } else {
+      return Math.floor(mrgdDate / unit);
+    }
+  };
+
+  const countdown = {
     days: toTimeUnits(1000 * 60 * 60 * 24),
     hours: toTimeUnits(1000 * 60 * 60),
     minutes: toTimeUnits(1000 * 60),
     seconds: toTimeUnits(1000),
   };
+  return countdown;
 };
 // @discount-price
 export const getPriceDiscountDisplay = (d) => {
