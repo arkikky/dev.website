@@ -115,7 +115,7 @@ const TicketProducts = ({
             <Image
               className="mx-auto aspect-auto h-[46px] w-auto lg:h-[54px]"
               src={'/assets/images/store/ca25PreSale-FestivalTicket.svg'}
-              alt={`${publicRuntimeConfig?.siteAppName} Save Super Early Bird Tickets`}
+              alt={`${publicRuntimeConfig?.siteAppName} Save Pre Sale Ticket`}
               height={96}
               width={81}
               quality="87"
@@ -130,13 +130,13 @@ const TicketProducts = ({
               {useHeading === 'h2' ? (
                 <h2 className="mb-1.5 text-xl font-bold uppercase leading-initial sm:mb-2 sm:text-[22px] sm:leading-initial">
                   {data?.documentId === 'g1ukadil4n4a3r0ndly7jl42'
-                    ? 'Festival Tickets'
+                    ? 'Festival Ticket'
                     : data?.name || 'Ticket Products'}
                 </h2>
               ) : (
                 <h3 className="mb-1.5 text-xl font-bold uppercase leading-initial sm:mb-2 sm:text-[22px] sm:leading-initial">
                   {data?.documentId === 'g1ukadil4n4a3r0ndly7jl42'
-                    ? 'Festival Tickets'
+                    ? 'Festival Ticket'
                     : data?.name || 'Ticket Products'}
                 </h3>
               )}
@@ -152,7 +152,7 @@ const TicketProducts = ({
               </div>
             </div>
             {data?.documentId !== 'rc33x0dgm6tm707jghffuip4' ? (
-              <div className="text-primaryYellow my-4 inline-flex w-full flex-row justify-between text-sm font-bold uppercase sm:text-base">
+              <div className="my-4 inline-flex w-full flex-row justify-between text-sm font-bold uppercase text-primaryYellow sm:text-base">
                 <span>{`PRICE INCREASE IN`}</span>
                 <span>
                   <PreSaleCountdown />
@@ -161,7 +161,7 @@ const TicketProducts = ({
             ) : (
               // <div className="my-4 block w-full border-t border-dashed border-gray-200/70 sm:my-6"></div>
               <div className="my-4 inline-flex w-full flex-row justify-between text-sm font-bold uppercase italic text-white sm:text-base">
-                <span>{`BEST DEAL VERY LIMITED QUANTITY`}</span>
+                <span>{`BEST DEAL • VERY LIMITED QUANTITY`}</span>
               </div>
             )}
 

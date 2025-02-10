@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Toaster } from 'sonner';
-import { toast } from 'sonner';
+import { Toaster, toast } from 'sonner';
 import { useForm } from 'react-hook-form';
 import getConfig from 'next/config';
 import Image from 'next/image';
@@ -17,6 +16,7 @@ import { getFetch } from '@lib/controller/API';
 import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
+import StarryBackground from '@components/UI/Background/StarryBackground';
 import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 
 // @form
@@ -51,7 +51,6 @@ const Attendee = ({}) => {
             (t) => (
               <ToastAlerts
                 id={t}
-                position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
                 type="info"
                 visible={true}
                 label={`<strong>Invalid ticket id or email</strong>,<br/> Please check and try again.`}
@@ -87,7 +86,6 @@ const Attendee = ({}) => {
             (t) => (
               <ToastAlerts
                 id={t}
-                position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
                 type="success"
                 visible={true}
                 label={`<strong>Thanks</strong>, Email sent successfully!`}
@@ -106,7 +104,6 @@ const Attendee = ({}) => {
             (t) => (
               <ToastAlerts
                 id={t}
-                position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
                 type="error"
                 visible={true}
                 label={`<strong>Sorry</strong>, failed to send email!`}
@@ -130,9 +127,13 @@ const Attendee = ({}) => {
 
       {/* @main */}
       <Main className="fixed inset-x-0 inset-y-0 flex h-svh min-h-svh flex-col items-center justify-center self-center">
+        <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 -z-px h-full select-none">
+          <StarryBackground starCount={115} />
+        </div>
+
         <Container>
           <form
-            id="tktCA25Form_AttendeeConfrim"
+            id="ca25Form_AttendeeConfrim"
             method="POST"
             onSubmit={handleSubmit(onSubmitForm)}
             className="relative block w-full"
@@ -232,7 +233,7 @@ const Attendee = ({}) => {
                     <span className="-ml-1 hidden w-max sm:flex">to Home</span>
                   </Link>
                   <button
-                    id="tktCA25Form_SubmitAttendeeConfrim"
+                    id="ca25Form_SubmitAttendeeConfrim"
                     className={`pointer-events-auto inline-flex w-[169px] cursor-pointer flex-row items-center justify-center rounded-xl bg-black-900 px-4 py-4 text-sm font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-black-900/60 disabled:text-white/50 sm:w-[199px] sm:px-6 sm:py-4 sm:text-base`}
                     type="submit"
                     role="button"
@@ -277,10 +278,13 @@ const Attendee = ({}) => {
 
       {/* @alert(Toast)  */}
       <Toaster
+        position="bottom-left"
         richColors
-        gap="10"
-        dismissible={false}
+        expand={false}
         pauseWhenPageIsHidden={true}
+        dismissible={false}
+        gap="10"
+        offset={'24px'}
         toastOptions={{
           className: 'ca25ToastAlert',
         }}

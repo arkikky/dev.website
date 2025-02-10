@@ -53,7 +53,7 @@ const StarryBackground = ({ starCount = 100, color = 'white' }) => {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-0 select-none"
+      className="pointer-events-none absolute inset-x-0 inset-y-0 -z-px select-none"
       style={{ width: '100%', height: '100%' }}
     />
   );

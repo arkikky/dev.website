@@ -332,14 +332,6 @@ Home.getLayout = (page, { pageProps }) => {
   return page;
 };
 export const getServerSideProps = async (context) => {
-  if (Object.keys(context?.query).length > 0) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: true,
-      },
-    };
-  }
   const baseUrl = process.env.NEXT_PUBLIC_URL;
   try {
     const isStoreLayouts = true;

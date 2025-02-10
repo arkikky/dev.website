@@ -113,25 +113,45 @@ export const splitIntoGroups = (d, grpCount) => {
 // @calculate-countdown(date)
 export const calculateCountdown = (date) => {
   const now = new Date();
+  const nowGMT7 = new Date(
+    now.getTime() + (7 * 60 + now.getTimezoneOffset()) * 60 * 1000
+  );
+
   let storedDate = getCookie('prSle_trgtSession');
   let targetDate = storedDate ? new Date(storedDate) : null;
 
-  // @check-last-day
-  const lastMonday = new Date(now);
-  lastMonday.setDate(now.getDate() - ((now.getDay() + 6) % 7));
+  // Konversi targetDate dari UTC ke GMT+7
+  if (targetDate) {
+    targetDate = new Date(
+      targetDate.getTime() +
+        (7 * 60 + targetDate.getTimezoneOffset()) * 60 * 1000
+    );
+  }
+
+  // @check-last-monday
+  const lastMonday = new Date(nowGMT7);
+  const dayOfWeek = nowGMT7.getDay() === 0 ? 7 : nowGMT7.getDay();
+  lastMonday.setDate(nowGMT7.getDate() - (dayOfWeek - 1));
+  lastMonday.setHours(0, 0, 0, 0);
 
   // @make-target
-  if (!targetDate || targetDate < now) {
+  if (!targetDate || targetDate < nowGMT7) {
     targetDate = new Date(lastMonday);
     targetDate.setDate(targetDate.getDate() + 7);
+    targetDate.setHours(0, 0, 0, 0);
+
     setCookie('prSle_trgtSession', targetDate.toISOString(), {
       maxAge: 60 * 60 * 24 * 7,
     });
   }
-  const mrgdDate = Math.max(0, targetDate - now);
+
+  const mrgdDate = Math.max(0, targetDate - nowGMT7);
   const toTimeUnits = (unit) =>
-    Math.floor(mrgdDate / unit) %
-    (unit === 1000 * 60 * 60 * 24 ? Infinity : 24);
+    unit === 1000
+      ? Math.round(mrgdDate / unit) % 60
+      : Math.floor(mrgdDate / unit) %
+        (unit === 1000 * 60 * 60 * 24 ? Infinity : 24);
+
   return {
     days: toTimeUnits(1000 * 60 * 60 * 24),
     hours: toTimeUnits(1000 * 60 * 60),

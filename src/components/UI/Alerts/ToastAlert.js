@@ -9,7 +9,7 @@ const ToastAlerts = ({
   id,
   type = 'default',
   label = `A new software update is available. See what's new in version 3.0.7`,
-  position = 'bottom-0 inset-x-2.5 sm:inset-x-3 top-auto',
+  position = 'inset-y-0 inset-x-2.5 sm:inset-x-3',
   visible,
 }) => {
   const [isCountdown, setCountdown] = useState(5);

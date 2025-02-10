@@ -141,7 +141,6 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                 ),
               }),
             }).then((res) => res.json());
-
             // @coupon
             const setIsCoupon = getCoupon !== null ? getCoupon : null;
             const checkCoupon =
@@ -232,7 +231,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                   const tickets =
                     isGrpdAttendee?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9' ||
                     isGrpdAttendee?.documentId === 'g1ukadil4n4a3r0ndly7jl42'
-                      ? `Festival Tickets`
+                      ? `Festival Ticket`
                       : `${isGrpdAttendee?.name}`;
                   for (let a = 0; a < isGrpdAttendee?.attendees?.length; a++) {
                     const rsAttendee = isGrpdAttendee?.attendees[a];

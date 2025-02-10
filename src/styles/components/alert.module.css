@@ -1,7 +1,7 @@
 [data-sonner-toaster][data-theme='light'] {
   @apply !z-[120];
 }
-[data-sonner-toaster][data-y-position='bottom'] {
+/* [data-sonner-toaster][data-y-position='bottom'] {
   @apply !bottom-[76px];
 }
 @screen sm {
@@ -13,7 +13,7 @@
   [data-sonner-toaster][data-y-position='bottom'] {
     @apply !bottom-[30px] !left-[32px];
   }
-}
+} */
 
 .ca25Alert {
   @apply border border-solid !border-red-500;

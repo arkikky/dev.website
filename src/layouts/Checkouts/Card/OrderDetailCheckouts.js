@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { toast } from 'sonner';
 import dayjs from 'dayjs';
@@ -53,7 +53,7 @@ const OrderDetailCheckouts = ({
   });
   const [isTotalCart, setTotalCart] = useState(0);
 
-  const hndleIntzCoupon = async () => {
+  const hndleIntzCoupon = useCallback(async () => {
     try {
       if (isCoupon !== null) {
         const getDataCoupon = await fetch('/api/data/coupons?sv=coinfestasia', {
@@ -64,7 +64,6 @@ const OrderDetailCheckouts = ({
           body: JSON.stringify({ data: encodeData(isCoupon) }),
         }).then((res) => res.json());
         const isDataCoupon = getDataCoupon !== null ? getDataCoupon : null;
-
         if (isDataCoupon !== null) {
           // @check(limit Coupon)
           if (
@@ -86,6 +85,7 @@ const OrderDetailCheckouts = ({
             setValue('coupon', '');
             return;
           }
+
           // @check(includes Product)
           const includedProductIds = isDataCoupon?.includedProducts?.map(
             (product) => product.documentId
@@ -108,16 +108,57 @@ const OrderDetailCheckouts = ({
               discount: calculatedDiscount,
               totalWithDiscount: totalAfterDiscount,
             });
+            return;
+          }
+          if (validProducts?.length === 0 || validProducts?.length <= 0) {
+            setUseCoupon({ ...isUseCoupon, loading: false });
+            toast.custom(
+              (t) => (
+                <ToastAlerts
+                  id={t}
+                  position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
+                  type="error"
+                  visible={true}
+                  label={`<strong>Sorry</strong>, coupon is not valid for this product!`}
+                />
+              ),
+              {
+                unstyled: true,
+                duration: 5000,
+                onAutoClose: () => {
+                  setValue('coupon', '');
+                  dispatch(removeCoupon());
+                },
+              }
+            );
+            return;
           }
         } else {
-          setValue('coupon', '');
-          dispatch(removeCoupon());
+          toast.custom(
+            (t) => (
+              <ToastAlerts
+                id={t}
+                position="bottom-0 inset-x-2.5 sm:inset-x-3 top-auto"
+                type="error"
+                visible={true}
+                label={`<strong>Sorry</strong>, coupon not found or invalid!`}
+              />
+            ),
+            {
+              unstyled: true,
+              duration: 5000,
+              onAutoClose: () => {
+                setValue('coupon', '');
+                dispatch(removeCoupon());
+              },
+            }
+          );
         }
       }
     } catch (error) {
-      console.error('[Error] fetching coupon data:', error);
+      // console.error('[Error] fetching coupon data:', error);
     }
-  };
+  }, [isCoupon]);
   // @hook(Init)
   useEffect(() => {
     hndleIntzCoupon();

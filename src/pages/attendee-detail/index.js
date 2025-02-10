@@ -13,9 +13,6 @@ import { getFetch, getFetchUrl, updateSubmitData } from '@lib/controller/API';
 import { getFecthHbSpt } from '@lib/controller/HubSpot';
 import { getJoinString } from '@lib/helper/Configuration';
 
-// @style
-// import 'react-phone-input-2/lib/high-res.css';
-
 // @components
 import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
@@ -88,7 +85,7 @@ const AttendeeUpdate = ({ ipAddress, attendee, country, formCheckout }) => {
     },
   });
 
-  // @submit(Checkout)
+  // @submit(attendee)
   const onSubmitForm = async (data) => {
     if (!isValid === false && isAttendee?.selfEdited === false) {
       try {
@@ -130,7 +127,8 @@ const AttendeeUpdate = ({ ipAddress, attendee, country, formCheckout }) => {
         }).then((res) => res.json());
         router.replace(`/attendee-detail/success`);
       } catch (error) {
-        console.error('[error] processing submission:', error);
+        // console.error('[error] processing submission:', error);
+        return;
       }
     }
   };

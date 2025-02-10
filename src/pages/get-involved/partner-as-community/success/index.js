@@ -28,12 +28,12 @@ const PartnerCommunitySuccessfullySubmitted = ({ mode }) => {
                   🎉
                 </span>
                 <h1 className="sm:px-auto mx-auto mt-4 max-w-full text-[18px] font-semibold uppercase leading-[24px] text-black-900 sm:max-w-[493px] sm:text-2xl">
-                  {`You're on the list!`}
+                  {`YOU'RE ON THE LIST!`}
                 </h1>
               </div>
               <div className="mt-4 flex w-full max-w-full flex-col items-center justify-center text-center sm:max-w-[651px]">
                 <p className="text-balance px-0 text-base font-normal text-black-900 prose-a:font-normal prose-a:text-[#ED4F35] prose-a:underline sm:px-4">
-                  {`Thank you for your interest in Coinfest Asia 2025! You will be among the first to receive the upcoming Coinfest Asia 2025 prospectus deck. Talk soon!`}
+                  {`Thank you for your interest in Coinfest Asia 2025! Your submission is under review, please check your email for further updates`}
                 </p>
                 <div className="mb-10 mt-8">
                   <Link

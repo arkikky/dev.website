@@ -76,7 +76,6 @@ export function setGroupedAttendees(p, att) {
       attendees: attendeesForProduct,
       id: product?.id,
       documentId: product?.documentId,
-      productId: product?.productId,
       name: product?.name,
       price: product?.price,
       priceSale: product?.priceSale,

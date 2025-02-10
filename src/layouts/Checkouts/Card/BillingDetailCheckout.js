@@ -28,7 +28,7 @@ const BillingDetailCheckout = ({
       onValueChange(isVar, '');
     }
   };
-  // @handle(Company Toggle Change)
+  // @handle(company toggle)
   const handleToggleCompay_Change = () => {
     if (getValues('haveCompany') === true) {
       setValue('company', '');
@@ -195,7 +195,7 @@ const BillingDetailCheckout = ({
           >
             <input
               id={`ca25Form_HaveCompanyCheckout`}
-              className="bxShadow-none checked:border-dark checked:text-dark form-checkbox relative h-6 w-12 shrink-0 cursor-pointer rounded-full border border-solid border-gray-200 bg-gray-100 py-0.5 pl-0.5 pr-px text-transparent transition-colors duration-200 ease-in-out before:inline-block before:size-4.5 before:translate-x-0 before:transform before:rounded-full before:border before:border-gray-200 before:bg-white before:ring-0 before:transition before:duration-200 before:ease-in-out checked:bg-none checked:before:translate-x-[130%] checked:before:border-white checked:before:bg-white disabled:pointer-events-none"
+              className="bxShadow-none form-checkbox relative h-6 w-12 shrink-0 cursor-pointer rounded-full border border-solid border-gray-200 bg-gray-100 py-0.5 pl-0.5 pr-px text-transparent transition-colors duration-200 ease-in-out before:inline-block before:size-4.5 before:translate-x-0 before:transform before:rounded-full before:border before:border-gray-200 before:bg-white before:ring-0 before:transition before:duration-200 before:ease-in-out checked:border-dark checked:bg-none checked:text-dark checked:before:translate-x-[130%] checked:before:border-white checked:before:bg-white disabled:pointer-events-none"
               type="checkbox"
               disabled={isSubmited === true ? true : false}
               {...register(`haveCompany`, {

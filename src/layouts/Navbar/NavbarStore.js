@@ -167,7 +167,7 @@ const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
               </div>
               <div className="flex w-max flex-col sm:hidden">
                 <button
-                  className={`hmbrgrStairs cs-button-nav relative flex h-12 w-12 flex-col items-center justify-center rounded-[10px] bg-primary px-3.5 outline-none focus-visible:outline-none sm:h-13 sm:w-13`}
+                  className={`hmbrgrStairs cs-button-nav relative flex h-10 w-10 flex-col items-center justify-center rounded-lg bg-primaryRed px-2.5 outline-none focus-visible:outline-none sm:h-13 sm:w-13`}
                   aria-label="Coinfest Asia 2025 Button Nav Toggle Mobile"
                   onClick={(e) => {
                     e.preventDefault();
@@ -211,7 +211,7 @@ const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
             <div className="flex w-full flex-row items-center justify-between sm:w-max">
               <button
                 id="ca25BtnCartStore_Mobile"
-                className={`relative flex h-[80%] w-19 flex-row items-center justify-center rounded-lg bg-secondary px-3 py-3 text-sm leading-initial text-black-900 sm:h-15 sm:rounded-[10px] sm:text-base`}
+                className={`relative flex h-[80%] w-19 flex-row items-center justify-center rounded-lg bg-primaryRed px-3 py-3 text-sm leading-initial text-black-900 sm:h-15 sm:rounded-[10px] sm:text-base`}
                 type="button"
                 tabIndex={-1}
                 role="button"
@@ -230,7 +230,7 @@ const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
                   {getStore?.length > 0 && (
                     <span className="absolute -right-px end-0 top-px flex size-2">
                       <span className="absolute inline-flex size-full animate-ping rounded-full bg-red-300 opacity-75"></span>
-                      <span className="relative inline-flex size-2 rounded-full bg-red-500"></span>
+                      <span className="relative inline-flex size-2 rounded-full bg-primaryYellow"></span>
                     </span>
                   )}
                   <svg

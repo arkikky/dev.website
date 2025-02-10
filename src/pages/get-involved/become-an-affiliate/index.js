@@ -548,7 +548,7 @@ const BecomeAnAffiliate = ({
                     required: true,
                     maxLength: 550,
                     pattern: {
-                      value: /^[a-zA-Z0-9\s-_]{2,120}$/,
+                      value: /^[a-zA-Z0-9\s\-_,.]{2,120}$/,
                     },
                   }
                 ),
@@ -630,7 +630,7 @@ const BecomeAnAffiliate = ({
             <button
               id="ca25Submit-Affiliatte"
               type="submit"
-              className={`bg-primaryRed group relative mt-6 flex w-full flex-col items-center justify-center overflow-hidden rounded-[14px] py-6 text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
+              className={`group relative mt-6 flex w-full flex-col items-center justify-center overflow-hidden rounded-[14px] bg-primaryRed py-6 text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
               aria-label="Submit Affiliatte Forms"
               disabled={isSubmitting}
             >
@@ -661,7 +661,7 @@ const BecomeAnAffiliate = ({
               ) : (
                 'Submit'
               )}
-              
+
               <div className="absolute inset-0 flex h-full w-full justify-center blur-md [transform:skew(-13deg)_translateX(-100%)] group-hover:transition-[transform] group-hover:duration-[1.6s] group-hover:[transform:skew(-13deg)_translateX(100%)]">
                 <div className="relative h-full w-12 bg-white/40"></div>
               </div>

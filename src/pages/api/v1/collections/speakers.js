@@ -91,7 +91,7 @@ export default function handler(req, res) {
       {
         url: '/',
         images: '/assets/images/speakers/as-speaker/ca25Speakers_9.png',
-        name: 'Rene Michau',
+        name: 'René Michau',
         position: 'Global Head, Digital Assets at Standard',
         shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_9.svg',
@@ -118,7 +118,7 @@ export default function handler(req, res) {
       {
         url: '/',
         images: '/assets/images/speakers/as-speaker/ca25Speakers_12.png',
-        name: 'Nischint Sanghavi',
+        name: 'Nischint S',
         position: 'Head of Digital Currencies, AP at VISA',
         shortDesc: null,
         brandCompany: '/assets/images/speakers/brand/ca25BrandSpeakers_12.svg',

@@ -12,6 +12,7 @@ const FAQ = ({ mode, result = [] }) => {
         <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[625px] select-none">
           <StarryBackground starCount={90} />
         </div>
+
         <Container className={'relative z-[2]'}>
           <h2
             className={`ca25HeadingTitle w-full text-center font-semibold uppercase sm:font-bold ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-4 text-balance sm:mb-7`}

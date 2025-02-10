@@ -469,7 +469,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               label={`Attendees <strong>${attendees.join(', ')}</strong> in <strong>${productName} Tickets</strong>,<br> Still have incomplete information.`}
             />
           ),
-          { unstyled: true, duration: 123000 }
+          { unstyled: true, duration: 12000 }
         );
       }
     });
