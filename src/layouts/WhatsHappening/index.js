@@ -12,7 +12,7 @@ const WhatsHappening = ({ mode, result = [] }) => {
   return (
     <>
       <section className="ca25WhatsHappening relative block w-full pb-14 pt-14 sm:pb-2 xl:pb-11 xl:pt-24">
-        <div className="ca25PointerNone absolute inset-x-0 inset-y-0 z-px">
+        <div className="ca25PointerNone absolute inset-x-0 inset-y-0 z-px h-full">
           <StarryBackground starCount={165} />
         </div>
         <Container className={'z-[2]'}>

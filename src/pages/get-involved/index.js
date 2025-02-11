@@ -69,7 +69,7 @@ export const getStaticProps = async () => {
         url: '/get-involved/sponsorship',
         title: 'Sponsor',
         shortDesc: `Fill in the form to receive Coinfest Asia 2025 Prospectus and lock in the best deals before anyone else.`,
-        labelBtn: `Request Prospectus`,
+        labelBtn: `Apply Now`,
         comingSoon: false,
         slotsFull: false,
       },

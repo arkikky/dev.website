@@ -53,7 +53,7 @@ export default function handler(req, res) {
         listQuestions: [
           {
             questions: 'How can my company become a sponsor or exhibitor?',
-            answer: `Fill in the form on our <a href='/get-involved/sponsorship' title='Coinfest Asia 2025 Sponsorship Inquiry'>Sponsorship Inquiry</a> and our sponsorship team will get in touch with you.`,
+            answer: `Fill in the form on our <a href='/get-involved/sponsorship' title='Coinfest Asia 2025 Request Sponsorship Prospectus'>Request Sponsorship Prospectus</a> and our sponsorship team will get in touch with you.`,
           },
           {
             questions: 'Can I become a speaker?',

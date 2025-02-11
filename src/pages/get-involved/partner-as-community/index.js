@@ -743,7 +743,7 @@ const PartnerCommunity = ({
                           required: true,
                           maxLength: 1000,
                           pattern: {
-                            value: /^[a-zA-Z0-9\s\-_,.:?']+$/,
+                           value: /^[a-zA-Z0-9\s\-_,.:?'()]+$/,
                           },
                         }
                       ),

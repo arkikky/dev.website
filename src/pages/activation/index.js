@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import QRCode from 'qrcode';
-import { Toaster } from 'sonner';
-import { toast } from 'sonner';
+import { Toaster, toast } from 'sonner';
 import { useForm } from 'react-hook-form';
 import getConfig from 'next/config';
 import Image from 'next/image';
@@ -69,8 +68,6 @@ const Activation = ({ ipAddress }) => {
           );
           return;
         }
-
-        console.log('awdawd');
 
         if (rsCustomer?.data[0]?.orders[0]?.paymentStatus !== 'Success') {
           // @hubspot(customer & attendee)

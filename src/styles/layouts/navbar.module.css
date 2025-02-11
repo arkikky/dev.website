@@ -11,16 +11,6 @@
   backface-visibility: auto;
   @apply pointer-events-auto z-[120] opacity-100;
 }
-/* @screen lg {
-  .ca2025BckdrpOverflay_PopUpMobile.active {
-    backface-visibility: hidden;
-    @apply pointer-events-none opacity-0;
-  }
-  .ca2025BckdrpOverflay_PopUpGeneral.active {
-    backface-visibility: auto;
-    @apply pointer-events-auto z-[120] opacity-100;
-  }
-} */
 
 /* @pop-up(General) */
 .ca2025CartPopUp_General.nonActive {

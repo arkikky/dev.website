@@ -27,7 +27,7 @@ const Headers = ({ mode }) => {
   return (
     <>
       <header id="ca25Headers" className="relative block w-full">
-        <div className="ca25Headers_Hero relative flex h-svh w-full flex-col items-center justify-center overflow-x-hidden overflow-y-clip bg-[linear-gradient(180deg,#1F1F1F_37%,#005AFF_69%,#7AB1F9_87%,#A0CCF7_97%)] pt-[135px] sm:h-[1024px] sm:max-h-[1024px] sm:pt-[144px] lg:pt-[183px]">
+        <div className="ca25Headers_Hero relative flex h-[923px] w-full flex-col items-center justify-center overflow-x-hidden overflow-y-clip bg-[linear-gradient(180deg,#1F1F1F_37%,#005AFF_69%,#7AB1F9_87%,#A0CCF7_97%)] pt-[135px] sm:h-[924px] sm:pt-[144px] lg:h-[1024px] lg:pt-[183px] xs:h-[805px]">
           <h1 className="!pointer-events-none absolute inset-x-0 inset-y-0 -top-5 -z-[5] block h-max !select-none">
             {`WORLD'S LARGEST CRYPTO FESTIVAL`}
           </h1>
@@ -108,7 +108,7 @@ const Headers = ({ mode }) => {
               {`BALI, 21—22 AUG 2025`}
             </div>
           </div>
-          <div className="absolute inset-x-0 bottom-[304px] top-auto mx-auto hidden w-max text-[12px] font-medium leading-[16px] text-white sm:bottom-[341px] sm:block sm:text-[32px] sm:leading-initial lg:bottom-[291px] xl:bottom-[111px] xl:text-[40px]">{`BALI, 21—22 AUG 2025`}</div>
+          <div className="absolute inset-x-0 bottom-[304px] top-auto mx-auto hidden w-max text-[12px] font-medium leading-[16px] text-white sm:bottom-[291px] sm:block sm:text-[32px] sm:leading-initial lg:bottom-[291px] xl:bottom-[111px] xl:text-[40px]">{`BALI, 21—22 AUG 2025`}</div>
         </div>
 
         <div className="ca25BckBlueMoon-Speacial_Rckt !pointer-events-none absolute inset-x-0 inset-y-0 mx-auto w-full !select-none sm:w-[659.54px] xl:w-[1180px]"></div>

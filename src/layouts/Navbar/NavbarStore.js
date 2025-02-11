@@ -105,9 +105,9 @@ const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
               <div className="hidden w-max flex-row sm:flex">
                 <EventBoard id={'ca25MnBoard_InsightsStore'} />
               </div>
-              <div className="flex w-max flex-col sm:hidden">
+              <div className="order-first mr-0 flex w-max flex-col sm:mr-3 lg:hidden">
                 <button
-                  className={`hmbrgrStairs cs-button-nav relative flex h-10 w-10 flex-col items-center justify-center rounded-lg bg-primaryRed px-2.5 outline-none focus-visible:outline-none sm:h-13 sm:w-13`}
+                  className={`hmbrgrStairs cs-button-nav relative flex h-10 w-10 flex-col items-center justify-center rounded-lg bg-primaryRed px-2.5 outline-none focus-visible:outline-none sm:h-13 sm:w-13 sm:rounded-xl`}
                   aria-label="Coinfest Asia 2025 Button Nav Toggle Mobile"
                   onClick={(e) => {
                     e.preventDefault();

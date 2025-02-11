@@ -44,9 +44,9 @@ const PortalBanner = ({ id = 'ca25PortalBanner0', mode }) => {
             className={`ca25MoonBtn-Embossed group relative mx-auto inline-flex w-max items-center justify-center overflow-hidden rounded-full bg-[#ED4F35] px-4 py-3 text-sm font-semibold uppercase leading-initial text-white disabled:pointer-events-none disabled:opacity-90 sm:px-7 sm:py-5`}
             prefetch={true}
             href="/get-involved/sponsorship"
-            title={`Coinfest Asia 2025 Send Sponsorship Inquiry`}
+            title={`Coinfest Asia 2025 Request Sponsorship Prospectus`}
           >
-            {`Send Sponsorship Inquiry`}
+            {`Request Sponsorship Prospectus`}
             <div className="absolute inset-0 flex h-full w-full justify-center blur-md [transform:skew(-13deg)_translateX(-100%)] group-hover:transition-[transform] group-hover:duration-[1.6s] group-hover:[transform:skew(-13deg)_translateX(100%)]">
               <div className="relative h-full w-12 bg-white/40"></div>
             </div>

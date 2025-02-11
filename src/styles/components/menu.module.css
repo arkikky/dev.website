@@ -33,7 +33,7 @@
 }
 
 .ca25NavMenuGroup {
-  @apply relative hidden sm:block;
+  @apply relative hidden lg:block;
   @apply h-full w-max;
 }
 .ca25NavMenuGroup-General {
@@ -126,10 +126,10 @@ ul.ca25NavMenu ul.ca25HalfNavMenu li:hover a {
   @apply transition-[opacity,zIndex,backdropBlur] duration-[0.3s] ease-in-out;
 }
 .ca25NavMenuGroup-Mobile.active {
-  @apply sm:invisible sm:-z-px sm:opacity-0;
+  @apply lg:invisible lg:-z-px lg:opacity-0;
   @apply visible z-[929] opacity-100;
 }
-@screen sm {
+@screen lg {
   .ca25NavMenuGroup-Mobile.active {
     @apply invisible -z-px opacity-0;
   }

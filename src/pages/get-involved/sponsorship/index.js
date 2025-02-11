@@ -145,7 +145,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
 
       {/* @main */}
       <PartnershipLayouts
-        title={'COINFEST ASIA 2025 SPONSORSHIP INQUIRY'
+        title={'COINFEST ASIA 2025 REQUEST SPONSORSHIP PROSPECTUS'
           ?.split(' ')
           .map((w, i) =>
             w
@@ -521,7 +521,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
             <button
               id="ca25Submit-Sponsorship"
               type="submit"
-              className={`bg-primaryRed group relative mt-6 flex w-full flex-col items-center justify-center overflow-hidden rounded-[14px] py-6 text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
+              className={`group relative mt-6 flex w-full flex-col items-center justify-center overflow-hidden rounded-[14px] bg-primaryRed py-6 text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
               aria-label="Submit Sponsorship Forms"
               disabled={isSubmitting}
             >

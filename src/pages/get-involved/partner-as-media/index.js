@@ -118,11 +118,7 @@ const PartnerMedia = ({
         },
         {
           name: 'logo_url',
-          value: sntzeFld(
-            data[`logo_url${groupLabel}`] !== ''
-              ? data[`logo_url${groupLabel}`]
-              : '-'
-          ),
+          value: sntzeFld(data[`logo_url`] !== '' ? data[`logo_url`] : '-'),
         },
         {
           name: 'all_of_the_information_i_have_provided_above_is_correct_and_up_to_date_',
@@ -141,7 +137,7 @@ const PartnerMedia = ({
     const rs = await submitFormHbSpt(d, k);
 
     // @debug
-    // console.log(d);
+    console.log(d);
     if (rs === true) {
       reset();
       router.replace('/get-involved/partner-as-media/success');

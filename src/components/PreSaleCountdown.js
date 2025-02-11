@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { deleteCookie } from 'cookies-next';
 
 // @lib/controller & helper
 import { calculateCountdown } from '@lib/helper/Configuration';
 
-const PreSaleCountdown = ({ date = '2025-03-31T12:00:00' }) => {
+const PreSaleCountdown = () => {
   const [isCountdown, setCountdown] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
   });
-  // @countdown(Date)
-  const setDate = new Date(date)?.getTime();
+  // @countdown(date)
   useEffect(() => {
+    deleteCookie('prSle_trgtSession');
+
     const timer = setInterval(() => {
-      setCountdown(calculateCountdown(setDate));
+      setCountdown(calculateCountdown());
     }, 1000);
     return () => {
       clearInterval(timer);

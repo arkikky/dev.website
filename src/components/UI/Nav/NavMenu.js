@@ -15,9 +15,9 @@ const NavMenu = () => {
         <li className="ca25NavMenu-Items ca25NavMenu-LabelItems">
           <Link
             href="/get-involved/sponsorship"
-            title={`${publicRuntimeConfig?.siteAppName} Enquire for Sponsorship`}
+            title={`${publicRuntimeConfig?.siteAppName} Request Sponsorship Prospectus`}
           >
-            {`Enquire for Sponsorship`}
+            {`Request Sponsorship Prospectus`}
           </Link>
         </li>
         <li className="ca25NavMenu-Items">
@@ -33,7 +33,7 @@ const NavMenu = () => {
               },
               {
                 url: '/get-involved/sponsorship',
-                label: 'Inquire to Sponsor',
+                label: 'Request Sponsorship Prospectus',
                 type: 'link',
               },
               {

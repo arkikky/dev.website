@@ -127,7 +127,7 @@
   @apply bg-cover bg-center bg-no-repeat;
   @apply absolute right-auto top-auto;
   @apply left-[10px] top-[241px] xs:left-[5px] xs:top-[187px];
-  @apply sm:-left-[11px] sm:top-[351px];
+  @apply sm:-left-[11px] sm:top-[317px];
   @apply lg:-left-[101px] lg:top-[343px];
   @apply xl:-left-[39px] xl:top-[313px];
   @apply h-[55.04px] w-[58px];
@@ -143,7 +143,7 @@
   @apply bg-cover bg-center bg-no-repeat;
   @apply absolute left-auto top-auto;
   @apply right-[10px] top-[229px] xs:right-[5px] xs:top-[181px];
-  @apply sm:right-[27px] sm:top-[311px];
+  @apply sm:right-[27px] sm:top-[251px];
   @apply lg:-right-[51px] lg:top-[263px];
   @apply xl:right-[15px] xl:top-[207px];
   @apply h-[55.04px] w-[58px];
@@ -160,7 +160,7 @@
   @apply inline-block bg-[url('/assets/images/backdrop/ca25BlueMoonSpecial-MiniLeftRocket.svg')];
   @apply bg-cover bg-center bg-no-repeat;
   @apply absolute right-auto top-auto;
-  @apply bottom-[185px] sm:bottom-[167px] lg:bottom-[95px] xl:bottom-[167px] xs:bottom-[121px];
+  @apply bottom-[185px] sm:bottom-[131px] lg:bottom-[95px] xl:bottom-[167px] xs:bottom-[121px];
   @apply -left-[127px] sm:-left-[273px] lg:-left-[333px] xl:-left-[315px];
   @apply h-[110px] w-[196.05px];
   @apply sm:h-[210px] sm:w-[366.05px];
@@ -173,7 +173,7 @@
   @apply inline-block bg-[url('/assets/images/backdrop/ca25BlueMoonSpecial-MiniRightRocket.svg')];
   @apply bg-cover bg-center bg-no-repeat;
   @apply absolute left-auto top-auto;
-  @apply bottom-[185px] sm:bottom-[185px] lg:bottom-[105px] xl:bottom-[227px] xs:bottom-[131px];
+  @apply bottom-[185px] sm:bottom-[145px] lg:bottom-[105px] xl:bottom-[227px] xs:bottom-[131px];
   @apply -right-[127px] sm:-right-[273px] lg:-right-[349px] xl:-right-[314px];
   @apply h-[110px] w-[196.05px];
   @apply sm:h-[210px] sm:w-[366.05px];
@@ -195,9 +195,9 @@
   @apply inline-block bg-[url('/assets/images/backdrop/ca25BlueMoonSpecial-LeftRocket.svg')];
   @apply right-auto top-auto;
   @apply bottom-[79px] xs:bottom-[25px];
-  @apply sm:-bottom-[25px] lg:-bottom-[149px] xl:-bottom-[223px];
+  @apply sm:-bottom-[65px] lg:-bottom-[149px] xl:-bottom-[223px];
   @apply -left-[133px] xs:-left-[143px];
-  @apply sm:-left-[217px] lg:-left-[317px] xl:-left-[419px];
+  @apply sm:-left-[267px] lg:-left-[317px] xl:-left-[419px];
   @apply h-[167.39px] w-[285.08px] xs:h-[177.39px] xs:w-[295.08px];
   @apply sm:h-[277.39px] sm:w-[475.08px];
   @apply lg:h-[337.39px] lg:w-[565.08px];
@@ -209,9 +209,9 @@
   @apply inline-block bg-[url('/assets/images/backdrop/ca25BlueMoonSpecial-RightRocket.svg')];
   @apply left-auto top-auto;
   @apply bottom-[81px] xs:bottom-[31px];
-  @apply sm:-bottom-[21px] lg:-bottom-[127px] xl:-bottom-[253px];
+  @apply sm:-bottom-[47px] lg:-bottom-[127px] xl:-bottom-[253px];
   @apply -right-[137px] xs:-right-[147px];
-  @apply sm:-right-[223px] lg:-right-[337px] xl:-right-[469px];
+  @apply sm:-right-[263px] lg:-right-[337px] xl:-right-[469px];
   @apply h-[167.39px] w-[285.08px] xs:h-[177.39px] xs:w-[295.08px];
   @apply sm:h-[267.39px] sm:w-[475.08px];
   @apply lg:h-[327.39px] lg:w-[545.08px];

@@ -15,9 +15,9 @@ const NavMenuMobile = ({ id = 'ca25NavMenuMobile' }) => {
         <li className="ca25NavMenu-Items ca25NavMenu-LabelItems">
           <Link
             href="/get-involved/sponsorship"
-            title={`${publicRuntimeConfig?.siteAppName} Enquire for Sponsorship`}
+            title={`${publicRuntimeConfig?.siteAppName} Request Sponsorship Prospectus`}
           >
-            Enquire for Sponsorship
+            Request Sponsorship Prospectus
           </Link>
         </li>
         <li className="ca25NavMenu-Items">
@@ -32,7 +32,7 @@ const NavMenuMobile = ({ id = 'ca25NavMenuMobile' }) => {
               },
               {
                 url: '/get-involved/sponsorship',
-                label: 'Sponsor',
+                label: 'Request Sponsorship Prospectus',
                 type: 'link',
               },
               {

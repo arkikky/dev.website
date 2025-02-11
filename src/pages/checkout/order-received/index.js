@@ -345,11 +345,15 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
   const elBtnShareWin = () => {
     return (
       <Link
-        className="inline-flex w-[178px] flex-row items-center justify-center rounded-xl bg-primary px-3.5 py-3.5 text-base leading-initial text-white sm:w-max sm:px-8 sm:py-6"
+        className="group relative inline-flex w-[178px] flex-row items-center justify-center rounded-xl bg-primaryRed px-3.5 py-3.5 text-base leading-initial text-white sm:w-max sm:px-8 sm:py-6"
         title="Button for Share & Win Competition Coinfest Asia 2025"
         href="https://drive.google.com/uc?export=download&id=1kBt7oGSI0j-1yvAXXavjTK3Ca1QMbVKZ"
       >
         {`Share your Coinfest badge!`}
+
+        <div className="absolute inset-0 flex h-full w-full justify-center blur-md [transform:skew(-13deg)_translateX(-100%)] group-hover:transition-[transform] group-hover:duration-[1.6s] group-hover:[transform:skew(-13deg)_translateX(100%)]">
+          <div className="relative h-full w-12 bg-white/40"></div>
+        </div>
       </Link>
     );
   };
@@ -545,9 +549,9 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                     {isOrderRecived?.order?.coupons.length > 0 && (
                       <div className="grid-cols-1 items-start gap-y-1 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
                         <div className="flex flex-col self-center text-start text-sm font-normal text-gray-600">
-                          {`Discount :`}
+                          {`Discount Coupon :`}
                           <span className="font-semibold uppercase text-primary">
-                            ({`${isOrderRecived?.order?.coupons[0].amount}%`})
+                            {`${isOrderRecived?.order?.coupons[0].amount}% (${isOrderRecived?.order?.coupons[0].couponCode})`}
                           </span>
                         </div>
                         <div className="col-span-full flex flex-row items-center pl-0 text-start text-base font-light sm:col-span-2 sm:text-start xl:pl-8">

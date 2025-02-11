@@ -56,16 +56,16 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
             <ul className="mt-6 pl-0">
               <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/get-involved/sponsorship"
-                  title={`${publicRuntimeConfig?.siteAppName} Sponsorship Inquiry`}
+                  title={`${publicRuntimeConfig?.siteAppName} Request Sponsorship Prospectus`}
                 >
-                  Sponsorship Inquiry
+                  Request Sponsorship Prospectus
                 </Link>
               </li>
               <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/get-involved/speakers"
                   title={`${publicRuntimeConfig?.siteAppName} Apply as Speaker`}
                 >
@@ -74,7 +74,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               </li>
               <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/tickets"
                   title={`${publicRuntimeConfig?.siteAppName} Tickets`}
                 >
@@ -83,7 +83,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               </li>
               <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="https://flic.kr/s/aHBqjATP6X"
                   title={`${publicRuntimeConfig?.siteAppName} Gallery`}
@@ -95,7 +95,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               </li>
               {/* <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/partners"
                   title={`${publicRuntimeConfig?.siteAppName} Partners`}
                 >
@@ -152,16 +152,16 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
             <ul className="mt-6 pl-0">
               <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/get-involved/sponsorship"
-                  title={`${publicRuntimeConfig?.siteAppName} Sponsors`}
+                  title={`${publicRuntimeConfig?.siteAppName} Request Sponsorship Prospectus`}
                 >
-                  Inquire to Sponsor
+                  Request Sponsorship Prospectus
                 </Link>
               </li>
               <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/get-involved/speakers"
                   title={`${publicRuntimeConfig?.siteAppName} Speakers`}
                 >
@@ -170,7 +170,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               </li>
               <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/get-involved/partner-as-media"
                   title={`${publicRuntimeConfig?.siteAppName} Partner as Media`}
                 >
@@ -179,7 +179,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               </li>
               <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/get-involved/become-an-affiliate"
                   title={`${publicRuntimeConfig?.siteAppName} Become an Affliate`}
                 >
@@ -188,7 +188,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               </li>
               <li className="hs-tooltip group mb-3 [--placement:right] [--trigger:hover] last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="/get-involved/partner-as-community"
                   title={`${publicRuntimeConfig?.siteAppName} Partner as Community`}
                 >
@@ -197,7 +197,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               </li>
               <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   href="mailto:partner@coinfest.asia"
                   title={`${publicRuntimeConfig?.siteAppName} Send Inquiry`}
                   target={'_blank'}
@@ -217,7 +217,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
             <ul className="mt-6 pl-0">
               <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="https://2024.coinfest.asia/"
                   title={`Coinfest Asia 2024`}
@@ -248,7 +248,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               </li>
               <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="https://2023.coinfest.asia/"
                   title={`Coinfest Asia 2023`}
@@ -279,7 +279,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               </li>
               <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="https://2022.coinfest.asia/"
                   title={`Coinfest Asia 2022`}
@@ -319,7 +319,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
             <ul className="mt-6 pl-0">
               <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="/terms-and-conditions"
                   title={`${publicRuntimeConfig?.siteAppName} Terms & Conditions`}
@@ -329,7 +329,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               </li>
               <li className="group mb-3 last:mb-0">
                 <Link
-                  className={`flex flex-row items-center text-base capitalize leading-[normal] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
+                  className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
                   prefetch={true}
                   href="/privacy-policy"
                   title={`${publicRuntimeConfig?.siteAppName} Privacy Policy`}

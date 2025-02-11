@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useState } from 'react';
 
 const StarryBackground = ({ starCount = 100, color = 'white' }) => {
   const canvasRef = useRef(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [dimensions, setDimensions] = useState({ width: 0, height: 500 });
 
   useEffect(() => {
     const updateDimensions = () => {
