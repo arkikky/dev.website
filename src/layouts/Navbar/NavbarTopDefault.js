@@ -77,22 +77,24 @@ const NavbarTopDefault = ({ theme = 'dark' }) => {
               <NavMenu />
             </div>
             {/* @event(date) */}
-            <div className={`hidden w-max flex-row sm:flex`}>
-              <EventBoard id={'ca25MnBoard_Insights'} />
-            </div>
-            <div className="flex w-max flex-col sm:hidden">
-              <button
-                className={`hmbrgrStairs cs-button-nav relative flex h-12 w-12 flex-col items-center justify-center rounded-[10px] bg-primary px-3.5 outline-none focus-visible:outline-none sm:h-13 sm:w-13`}
-                aria-label="Coinfest Asia 2025 Button Nav Toggle Mobile"
-                onClick={(e) => {
-                  e.preventDefault();
-                  isNavToggle('cs-button-nav', '.ca25NavMenuGroup-Mobile');
-                }}
-              >
-                <span className="hmbrgrStairsLine"></span>
-                <span className="hmbrgrStairsLine"></span>
-                <span className="hmbrgrStairsLine"></span>
-              </button>
+            <div className="flex w-max flex-row">
+              <div className="hidden w-max flex-row sm:flex">
+                <EventBoard id={'ca25MnBoard_Insights'} />
+              </div>
+              <div className="order-first mr-0 flex w-max flex-col sm:mr-3 lg:hidden">
+                <button
+                  className={`hmbrgrStairs cs-button-nav relative flex h-12 w-12 flex-col items-center justify-center rounded-[10px] bg-primaryRed px-3.5 outline-none focus-visible:outline-none sm:h-13 sm:w-13`}
+                  aria-label="Coinfest Asia 2025 Button Nav Toggle Mobile"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    isNavToggle('cs-button-nav', '.ca25NavMenuGroup-Mobile');
+                  }}
+                >
+                  <span className="hmbrgrStairsLine"></span>
+                  <span className="hmbrgrStairsLine"></span>
+                  <span className="hmbrgrStairsLine"></span>
+                </button>
+              </div>
             </div>
           </div>
         </Container>
