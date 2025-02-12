@@ -112,6 +112,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
               paymentId: isOrderRecived?.order?.order_session,
             }),
           }).then((res) => res.json());
+
           // @process(payment)
           if (
             rsPaymentWebhook?.status === 'PAID' ||

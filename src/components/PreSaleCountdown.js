@@ -14,7 +14,6 @@ const PreSaleCountdown = () => {
   // @countdown(date)
   useEffect(() => {
     deleteCookie('prSle_trgtSession');
-
     const timer = setInterval(() => {
       setCountdown(calculateCountdown());
     }, 1000);

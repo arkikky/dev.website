@@ -625,8 +625,10 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     const isFirstItems = getJoinString(isStore?.products[0]?.name);
     if (isValid === true && isCart) {
       if (Math.abs(isStore?.totalOrder) > 1e-10) {
+        // console.log(isStore?.totalOrder);
         setStore((prev) => ({ ...prev, isPaymentProcess: true }));
       } else if (Math.abs(isStore?.totalOrder) < 1e-10) {
+        // console.log(isStore?.totalOrder);
         setStore((prev) => ({ ...prev, isOrderProcess: true }));
       }
       setFormCheckouts((prev) => ({
@@ -798,6 +800,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               // console.error('Failed to get invoice URL');
               return;
             }
+            return;
           }
 
           // @processing(order)
@@ -951,6 +954,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             router.replace(
               `/checkout/order-received?process=${setIdOrderRecived}`
             );
+            return;
           }
         }
       } catch (error) {

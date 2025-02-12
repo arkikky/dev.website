@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+const baseUrl = 'https://coinfest.asia/';
 
 const nextSitemapConfig = {
   siteUrl: baseUrl,

@@ -32,9 +32,11 @@ export default async function handler(req, res) {
     return res?.status(400).json(logErr);
   }
   try {
-    const username = serverRuntimeConfig?.secretTokenEncrypt;
-    // const username =
-    //   'xnd_production_GyzcroKwO3oIhgzwpW9TFhUEsBM8B6N8CYPMEv8LjP1rtoxdPjXPy1dpso2Df3h';
+    const username =
+      !process.env.NODE_ENV === 'development'
+        ? 'xnd_development_dEnEvDgtjbWIBKv1OJf8llTC2SkTYtaC5ZUWVh34Go7y3cMYlYEMYyC4DNh3a3'
+        : 'xnd_production_GyzcroKwO3oIhgzwpW9TFhUEsBM8B6N8CYPMEv8LjP1rtoxdPjXPy1dpso2Df3h';
+    // const username = serverRuntimeConfig?.secretTokenEncrypt;
     const basicAuth = Buffer.from(`${username}:`).toString('base64');
 
     const rsGetWebhook = await fetch(
