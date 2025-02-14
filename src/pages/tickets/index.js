@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Toaster, toast } from 'sonner';
+import React, { useState, useEffect, Fragment } from 'react';
+import { Toaster } from 'sonner';
 import dynamic from 'next/dynamic';
 
 // @redux
-import { useSelector, useDispatch } from 'react-redux';
-import { addItemToCart } from '@reduxState/slices';
+import { useSelector } from 'react-redux';
 
-// @lib/controller,helper&hook
+// @lib
+import { useStoreContext } from '@lib/context/store/StoreContext';
 import { useCart } from '@lib/hooks/cart/Cart';
 import { getFetch } from '@lib/controller/API';
 
@@ -14,7 +14,6 @@ import { getFetch } from '@lib/controller/API';
 import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
-import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 import StarryBackground from '@components/UI/Background/StarryBackground';
 import TicketProductsSkeleton from '@components/Skeleton/Products/TicketProducts';
 const TicketProducts = dynamic(() => import('@components/UI/TicketProducts'), {
@@ -26,19 +25,13 @@ const TicketProducts = dynamic(() => import('@components/UI/TicketProducts'), {
 import LayoutStore from '@layouts/LayoutStore';
 
 const Tickets = ({ mode, products }) => {
-  const dispatch = useDispatch();
-  const { getStore } = useCart();
   const { data: isCart } = useSelector((state) => state.cart);
+  const { sessionsProducts } = useStoreContext();
+  const { getStore } = useCart();
   const [isStore, setStore] = useState({
     products: products?.data,
     isQty: [],
   });
-  // @hook(session product)
-  const [isSessionProducts, setSessionProducts] = useState({
-    id_product: null,
-    loading: false,
-  });
-
   // @hanlde-change(product)
   const hndleChangeQty = async (idProducts, qtyProduct) => {
     if (qtyProduct > 0) {
@@ -77,45 +70,6 @@ const Tickets = ({ mode, products }) => {
     }));
   }, [isCart]);
 
-  // @add-items(cart)
-  const hndleAddProduct_Cart = async (product, qtyProduct) => {
-    if (isSessionProducts?.loading === true) return;
-    setSessionProducts((prev) => ({
-      ...prev,
-      id_product: product?.documentId,
-      loading: true,
-    }));
-    const products = {
-      id_product: product?.documentId,
-      quantity: qtyProduct,
-    };
-    // @check-stock(Product)
-    const stock = parseInt(product?.stock, 15);
-    if (isNaN(stock) || stock <= 0) {
-      setTimeout(() => {
-        setSessionProducts((prev) => ({ ...prev, loading: false }));
-        toast.custom(
-          (t) => (
-            <ToastAlerts
-              id={t}
-              position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
-              type="info"
-              visible={true}
-              label={`Product stock is invalid or out of stock!`}
-            />
-          ),
-          { duration: 5000 }
-        );
-      }, 700);
-      return;
-    }
-    // @proses(add to cart)
-    setTimeout(() => {
-      setSessionProducts((prev) => ({ ...prev, loading: false }));
-      dispatch(addItemToCart(products));
-    }, 700);
-  };
-
   return (
     <>
       {/* @head */}
@@ -151,19 +105,20 @@ const Tickets = ({ mode, products }) => {
             {/* @products */}
             <div className="mt-4 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:mt-10 sm:grid-cols-2 xl:grid-cols-3">
               {isStore?.products?.slice(0, 6).map((gtRslt, i) => {
-                const isLoading =
-                  isSessionProducts?.id_product === gtRslt.documentId &&
-                  isSessionProducts?.loading === true;
                 return (
-                  <TicketProducts
-                    data={gtRslt}
-                    cartProducts={getStore}
-                    key={gtRslt.documentId}
-                    isLoading={isLoading}
-                    isSessionLoading={isSessionProducts?.loading}
-                    onEventChange={hndleChangeQty}
-                    handleProducts={hndleAddProduct_Cart}
-                  />
+                  <Fragment key={i}>
+                    <TicketProducts
+                      useHeading={'h2'}
+                      data={gtRslt}
+                      cartProducts={getStore}
+                      isLoading={
+                        sessionsProducts?.id_product === gtRslt.documentId &&
+                        sessionsProducts?.loading === true
+                      }
+                      isSessionLoading={sessionsProducts?.loading}
+                      onEventChange={hndleChangeQty}
+                    />
+                  </Fragment>
                 );
               })}
             </div>
@@ -171,7 +126,7 @@ const Tickets = ({ mode, products }) => {
         </section>
       </Main>
 
-      {/* @alert(Toast)  */}
+      {/* @alert(toast)  */}
       <Toaster
         position="bottom-left"
         richColors

@@ -10,7 +10,7 @@ const Speakers = ({ mode, result = [] }) => {
   return (
     <>
       <section className="ca25Speakers relative bg-[linear-gradient(186deg,#1F1F1F_33%,#005AFF_51%,#7AB1F9_71%,#A0CCF7_100%)] pb-11 pt-10 sm:pb-13 sm:pt-15 lg:pb-10 lg:pt-20 xl:pb-16">
-        <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 z-px h-[425px] select-none">
+        <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 -z-px h-[425px] select-none">
           <StarryBackground starCount={110} />
         </div>
         <Container className={'relative z-[2]'}>

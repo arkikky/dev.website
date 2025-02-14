@@ -9,12 +9,14 @@ const { publicRuntimeConfig } = getConfig();
 // @style-css
 import '@styles/globals.css';
 
+// @script
+import PrelineScript from '@components/Script/PrelineScript';
+
 // @redux
 import { Provider } from 'react-redux';
 import store from '@reduxState/store';
-
-// @script
-import PrelineScript from '@components/Script/PrelineScript';
+import { GlobalProvider } from '@lib/context/GlobalContext';
+import { StoreProvider } from '@lib/context/store/StoreContext';
 
 // @layouts
 import LayoutDefaults from '@layouts/Layouts';
@@ -52,9 +54,13 @@ const App = ({ Component, pageProps }) => {
     ((page) => {
       return (
         <>
-          <LayoutDefaults>
-            <Component {...pageProps} />
-          </LayoutDefaults>
+          <GlobalProvider>
+            <StoreProvider>
+              <LayoutDefaults>
+                <Component {...pageProps} />
+              </LayoutDefaults>
+            </StoreProvider>
+          </GlobalProvider>
         </>
       );
     });
@@ -88,9 +94,13 @@ const App = ({ Component, pageProps }) => {
         </Head>
 
         {/* @layouts */}
-        {getLayout(<Component {...pageProps} />, {
-          pageProps: pageProps || {},
-        })}
+        <GlobalProvider>
+          <StoreProvider>
+            {getLayout(<Component {...pageProps} />, {
+              pageProps: pageProps || {},
+            })}
+          </StoreProvider>
+        </GlobalProvider>
 
         {/* @script */}
         <PrelineScript />

@@ -13,8 +13,8 @@ const GetInvolved = ({ mode, result = [] }) => {
   return (
     <>
       <section className="ca25GetInvolved ca25MoonHalf-Cirlce_Portal relative block w-full">
-        <div className="ca25PointerNone absolute inset-x-0 inset-y-0 z-px">
-          <StarryBackground starCount={75} />
+        <div className="ca25PointerNone absolute inset-x-0 inset-y-0 -z-px h-[574px] w-full">
+          <StarryBackground starCount={85} />
         </div>
         <Container
           className={'relative z-[2] pb-5 pt-10 sm:pb-16 sm:pt-18 lg:pt-24'}

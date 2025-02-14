@@ -50,7 +50,7 @@
   @apply -right-[109px] -top-[7px];
   @apply lg:-right-[149px] lg:-top-[65px] xl:-top-[29px];
   @apply h-[143.54px] w-[229.83px] sm:h-[193.54px] sm:w-[289.83px];
-  @apply lg:h-[332.29px] lg:w-[371px] xl:h-[312.29px] xl:w-[501px];
+  @apply lg:h-[332.29px] lg:w-[371px] xl:h-[342.29px] xl:w-[501px];
   @apply -z-px rotate-[21deg] transform lg:rotate-[0deg];
 }
 

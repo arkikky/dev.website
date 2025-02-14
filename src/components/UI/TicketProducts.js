@@ -10,7 +10,9 @@ const { publicRuntimeConfig } = getConfig();
 // @redux
 import { useSelector } from 'react-redux';
 
-// @lib/controller & helper
+// @lib
+import { useStoreContext } from '@lib/context/store/StoreContext';
+import { useTrackingStore } from '@lib/hooks/tracking-store/TrackingStore';
 import { getPriceDiscountDisplay } from '@lib/helper/Configuration';
 import { currencyConverter } from '@lib/helper/CalculateCartContext';
 import { useCart } from '@lib/hooks/cart/Cart';
@@ -24,11 +26,11 @@ const TicketProducts = ({
   data,
   cartProducts = [],
   isLoading,
-  isSessionLoading,
   onEventChange,
-  handleProducts,
 }) => {
   const { data: isCart } = useSelector((state) => state.cart);
+  const { sessionsProducts, handleAddProductCart } = useStoreContext();
+  const { handlePurchase } = useTrackingStore();
   const { checkTotalQtyCart, updateCartQuantity } = useCart();
   const { toggleOverlayPopUp } = useMethod();
   const { documentId } = data;
@@ -306,7 +308,7 @@ const TicketProducts = ({
             {isSessionProducts?.checkProduct === true ? (
               <button
                 id={`ca25AddedBtn_Product${data?.name.replace(/\s/g, '')}`}
-                className={`ca25ProductsBtn actived relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${isSessionLoading === true ? 'cursor-default' : 'cursor-pointer'}`}
+                className={`ca25ProductsBtn actived relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${!sessionsProducts ? 'cursor-default' : 'cursor-pointer'}`}
                 role="button"
                 aria-label={`Button Coinfest Asia 2025 - ${data?.name.replace(/\s/g, '')} Added Products)`}
                 onClick={(e) => {
@@ -322,13 +324,14 @@ const TicketProducts = ({
             ) : (
               <button
                 id={`ca25Btn_Product${data?.name.replace(/\s/g, '')}`}
-                className={`ca25ProductsBtn relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${isSessionLoading === true ? 'cursor-default' : 'cursor-pointer'}`}
+                className={`ca25ProductsBtn relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${!sessionsProducts ? 'cursor-default' : 'cursor-pointer'}`}
                 role="button"
                 aria-label={`Button Coinfest Asia 2025 - ${data?.name.replace(/\s/g, '')} Products)`}
                 disabled={isLoading}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleProducts(data, isSessionProducts?.count);
+                  handleAddProductCart(data, isSessionProducts?.count);
+                  handlePurchase({ products: data });
                 }}
               >
                 {isLoading ? (

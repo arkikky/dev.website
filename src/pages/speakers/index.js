@@ -6,7 +6,7 @@ import { getFetchUrl } from '@lib/controller/API';
 
 // @components
 import HeadGraphSeo from '@components/Head';
-import MainSmoothScroll from '@components/MainSmoothScroll';
+import Main from '@components/Main';
 import Container from '@components/Container';
 import SpeakerCards from '@components/UI/Cards/SpeakerCards';
 
@@ -24,7 +24,7 @@ const Speakers = ({ mode, collections }) => {
       <HeadGraphSeo title={`Speakers`} otherPage={true} />
 
       {/* @main */}
-      <MainSmoothScroll className="relative flex flex-col overflow-hidden pb-16 pt-[141px] sm:pb-24 sm:pt-[161px]">
+      <Main className="relative flex flex-col overflow-hidden pb-16 pt-[141px] sm:pb-24 sm:pt-[161px]">
         <Container className={'z-[4] pb-20 sm:pb-28'}>
           <div className="flex flex-col items-center justify-center text-center">
             <h1
@@ -91,17 +91,19 @@ const Speakers = ({ mode, collections }) => {
 
         {/* @banner(footer) */}
         <MoonPortalBanner mode={mode} />
-      </MainSmoothScroll>
+      </Main>
     </>
   );
 };
 
 export const getStaticProps = async () => {
   const baseUrl = process.env.NEXT_PUBLIC_URL;
+  console.log(`${baseUrl}/api/v1/collections/speakers?sv=coinfestasia`);
+
   try {
     const isStoreLayouts = false;
     const [rsSpeakers] = await Promise.all([
-      getFetchUrl(`${baseUrl}/api/v1/collections/speakers?sv=coinfestasia`),
+      getFetchUrl(`${baseUrl}api/v1/collections/speakers?sv=coinfestasia`),
     ]);
     return {
       props: {

@@ -9,7 +9,6 @@ const nextSitemapConfig = {
   generateRobotsTxt: true,
   sitemapSize: 1000,
   robotsTxtOptions: {
-    additionalSitemaps: [`${baseUrl}server-sitemap.xml`],
     policies: [
       {
         userAgent: '*',

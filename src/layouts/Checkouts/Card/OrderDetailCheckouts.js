@@ -609,9 +609,9 @@ const OrderDetailCheckouts = ({
             ))}
 
             {/* @products(Empty) */}
-            {products?.length <= 0 && <EmptyCheckouts />}
+            {products?.length <= 0 ? <EmptyCheckouts /> : null}
           </div>
-          {products?.length > 0 && (
+          {products?.length > 0 && coupons?.data?.length > 0 ? (
             <>
               <div className="mx-0 my-4 flex w-full border-t border-dashed border-gray-200"></div>
               <div className="relative mb-6 block w-full">
@@ -631,7 +631,7 @@ const OrderDetailCheckouts = ({
                 />
               </div>
             </>
-          )}
+          ) : null}
 
           {/* @coupon */}
           <div
