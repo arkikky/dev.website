@@ -33,7 +33,7 @@ export default async function handler(req, res) {
   }
   try {
     const username =
-      !process.env.NODE_ENV === 'development'
+      process.env.NODE_ENV === 'development'
         ? 'xnd_development_dEnEvDgtjbWIBKv1OJf8llTC2SkTYtaC5ZUWVh34Go7y3cMYlYEMYyC4DNh3a3'
         : 'xnd_production_GyzcroKwO3oIhgzwpW9TFhUEsBM8B6N8CYPMEv8LjP1rtoxdPjXPy1dpso2Df3h';
     // const username = serverRuntimeConfig?.secretTokenEncrypt;

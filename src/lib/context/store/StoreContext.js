@@ -37,7 +37,7 @@ export const StoreProvider = ({ children }) => {
       return;
     }
     setTimeout(() => {
-      // dispatch(addItemToCart({ id_product: items?.documentId, quantity: qty }));
+      dispatch(addItemToCart({ id_product: items?.documentId, quantity: qty }));
       setProductsSession({ id_product: null, loading: false });
     }, 700);
   };

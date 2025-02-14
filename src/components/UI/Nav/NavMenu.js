@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import getConfig from 'next/config';
 import Link from 'next/link';
 
@@ -9,6 +9,17 @@ const { publicRuntimeConfig } = getConfig();
 import DropdownNavMenuNavbar from '@components/UI/Nav/DropdownNavMenuNavbar';
 
 const NavMenu = () => {
+  useEffect(() => {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(...args) {
+      window.dataLayer.push(args);
+    }
+    gtag('event', 'navigation', {
+      event_category: 'Navbar',
+      event_label: 'tickets-nav',
+    });
+  }, []);
+
   return (
     <>
       <ul className="ca25NavMenu">
@@ -63,6 +74,7 @@ const NavMenu = () => {
           <Link
             href="/tickets"
             title={`${publicRuntimeConfig?.siteAppName} Tickets`}
+            data-layer-id="tickets-nav"
           >
             {`Tickets`}
           </Link>
