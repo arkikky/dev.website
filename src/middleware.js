@@ -12,8 +12,6 @@ export function middleware(req) {
     'crawler',
     'spider',
   ];
-
-  // Daftar bot mesin pencari terpercaya yang tidak akan diblokir
   const allowedBots = [
     'googlebot',
     'bingbot',
@@ -23,12 +21,12 @@ export function middleware(req) {
     'yandexbot',
   ];
 
-  // Jika user-agent termasuk dalam daftar mesin pencari terpercaya, izinkan
+  // @trusted-agent
   if (allowedBots.some((agent) => userAgent.includes(agent))) {
     return NextResponse.next();
   }
 
-  // Jika user-agent termasuk dalam daftar terblokir, tolak akses
+  // @block-agent
   const isBlocked = blockedUserAgents.some((agent) =>
     userAgent.includes(agent)
   );
