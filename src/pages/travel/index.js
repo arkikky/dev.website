@@ -13,7 +13,11 @@ const Travel = ({}) => {
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo title={`Travel`} otherPage={true} />
+      <HeadGraphSeo
+        title={`Travel`}
+        canonicalUrl={`${publicRuntimeConfig?.siteUrl}/travel`}
+        otherPage={true}
+      />
 
       {/* @main(coming-soon) */}
       <ComingSoon />

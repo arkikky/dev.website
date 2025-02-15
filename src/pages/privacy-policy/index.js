@@ -13,7 +13,11 @@ const PrivacyPolicy = ({ mode }) => {
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo title={`Privacy Policy`} otherPage={true} />
+      <HeadGraphSeo
+        title={`Privacy Policy`}
+        canonicalUrl={`${publicRuntimeConfig?.siteUrl}/privacy-policy`}
+        otherPage={true}
+      />
 
       {/* @main */}
       <Main className="relative flex flex-col overflow-hidden pb-16 pt-[141px] sm:pb-24 sm:pt-[161px]">

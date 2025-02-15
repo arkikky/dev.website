@@ -13,7 +13,11 @@ const TermsAndConditions = ({ mode }) => {
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo title={`Terms And Conditions`} otherPage={true} />
+      <HeadGraphSeo
+        title={`Terms And Conditions`}
+        canonicalUrl={`${publicRuntimeConfig?.siteUrl}/terms-and-conditions`}
+        otherPage={true}
+      />
 
       {/* @main */}
       <Main className="relative flex flex-col overflow-hidden pb-16 pt-[141px] sm:pb-24 sm:pt-[161px]">

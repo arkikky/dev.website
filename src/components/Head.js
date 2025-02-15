@@ -9,6 +9,7 @@ const HeadGraphSeo = ({
   title = publicRuntimeConfig?.siteTitle,
   desc = publicRuntimeConfig?.siteDesc,
   siteUrl = publicRuntimeConfig?.siteUrl,
+  canonicalUrl = publicRuntimeConfig?.siteUrl,
   siteThunbnails = `${process.env.NEXT_PUBLIC_UPLOAD}uploads/ca25_Thumbnails_Full_The_Moon_64a7262311.png`,
   otherPage = false,
 }) => {
@@ -38,6 +39,7 @@ const HeadGraphSeo = ({
         <meta property="twitter:title" content={title} />
         <meta property="twitter:description" content={desc} />
         <meta property="twitter:image" content={siteThunbnails} />
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
     </>
   );

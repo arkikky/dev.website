@@ -21,7 +21,11 @@ const Speakers = ({ mode, collections }) => {
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo title={`Speakers`} otherPage={true} />
+      <HeadGraphSeo
+        title={`Speakers`}
+        canonicalUrl={`${publicRuntimeConfig?.siteUrl}/speakers`}
+        otherPage={true}
+      />
 
       {/* @main */}
       <Main className="relative flex flex-col overflow-hidden pb-16 pt-[141px] sm:pb-24 sm:pt-[161px]">

@@ -120,7 +120,7 @@ const Home = ({ mode, collections, products }) => {
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo />
+      <HeadGraphSeo canonicalUrl={publicRuntimeConfig?.siteUrl} />
 
       {/* @script(schema) */}
       <Script

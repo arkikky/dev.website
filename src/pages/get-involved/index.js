@@ -17,7 +17,11 @@ const GetInvolved = ({ mode, collections }) => {
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo title={`Get Involved`} otherPage={true} />
+      <HeadGraphSeo
+        title={`Get Involved`}
+        canonicalUrl={`${publicRuntimeConfig?.siteUrl}/get-involved`}
+        otherPage={true}
+      />
 
       {/* @main */}
       <PartnershipLayouts

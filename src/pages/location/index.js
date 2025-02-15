@@ -13,7 +13,11 @@ const Location = ({}) => {
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo title={`Location`} otherPage={true} />
+      <HeadGraphSeo
+        title={`Location`}
+        canonicalUrl={`${publicRuntimeConfig?.siteUrl}/location`}
+        otherPage={true}
+      />
 
       {/* @main(coming-soon) */}
       <ComingSoon />

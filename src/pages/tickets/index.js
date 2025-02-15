@@ -31,7 +31,11 @@ const Tickets = ({ mode, products }) => {
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo title={`Tickets`} otherPage={true} />
+      <HeadGraphSeo
+        title={`Tickets`}
+        canonicalUrl={`${publicRuntimeConfig?.siteUrl}/tickets`}
+        otherPage={true}
+      />
 
       {/* @main */}
       <Main className="relative overflow-hidden pb-16 pt-[135px] sm:pb-24 sm:pt-[214px] lg:pt-[277px]">
