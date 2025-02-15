@@ -1339,12 +1339,13 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
                   {/* @submit(Form) */}
                   <button
-                    id="ca25Form_SubmitMobileCheckout"
+                    id="proceed-payment-btn"
                     className={`!pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-sm font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 sm:text-base`}
                     type="submit"
                     role="button"
                     aria-label="Coinfest Asia 2025 Submit Mobile Checkout"
                     disabled={isDisabled}
+                    data-layer-id={'proceed-payment-btn'}
                   >
                     {isFormCheckouts?.isSubmited === false ? (
                       <>
@@ -1438,12 +1439,13 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
                   {/* @submit(Form) */}
                   <button
-                    id="ca25Form_SubmitDesktopCheckout"
+                    id="proceed-payment-btn"
                     className={`!pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
                     type="submit"
                     role="button"
                     aria-label="Coinfest Asia 2025 Submit Desktop Checkout"
                     disabled={isDisabled}
+                    data-layer-id={'proceed-payment-btn'}
                   >
                     {isFormCheckouts?.isSubmited === false ? (
                       <>
@@ -1579,7 +1581,7 @@ export const getServerSideProps = async (context) => {
           `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
         ),
         getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
-        getFetch(`/api/coupons?filters[category][$eq]=promo&populate=*`),
+        getFetch(`/api/coupons?filters[category][$eq]=dev&populate=*`),
         getFecthHbSpt(`/forms/v2/forms/${serverRuntimeConfig?.hbSptCheckout}`),
       ]);
     const sortedCountries = rsCountry.sort((a, b) =>

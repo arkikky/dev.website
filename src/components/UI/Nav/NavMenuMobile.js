@@ -60,8 +60,10 @@ const NavMenuMobile = ({ id = 'ca25NavMenuMobile' }) => {
         </li>
         <li className="ca25NavMenu-Items ca25NavMenu-LabelItems">
           <Link
+            id={'tickets-nav'}
             href="/tickets"
             title={`${publicRuntimeConfig?.siteAppName} Tickets`}
+            data-layer-id={'tickets-nav'}
           >
             Tickets
           </Link>

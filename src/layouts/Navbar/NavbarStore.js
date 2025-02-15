@@ -11,7 +11,8 @@ const { publicRuntimeConfig } = getConfig();
 // @style-css
 import '@splidejs/react-splide/css/core';
 
-// @lib/controller & helper
+// @lib
+import { useStoreContext } from '@lib/context/store/StoreContext';
 import { useCart } from '@lib/hooks/cart/Cart';
 import { useMethod } from '@lib/hooks/Method';
 
@@ -30,8 +31,8 @@ const EventBoard = dynamic(() => import('@components/UI/EventBoard'), {
 
 const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
   const router = useRouter();
-  const { getStore, checkTotalQtyCart, getTotalItems, getTotalCart } =
-    useCart();
+  const { getStore, checkTotalQty, totalOrder } = useStoreContext();
+  const { getTotalItems } = useCart();
   const { toggleOverlayPopUp } = useMethod();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -139,7 +140,7 @@ const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
             type="mobile"
             backdrop=".ca2025BckdrpOverflay_PopUpMobile"
             store={getStore}
-            totalCart={getTotalCart(getStore)}
+            totalCart={totalOrder(getStore)}
             loading={isLoading}
           />
         )}
@@ -193,16 +194,16 @@ const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
             </div>
             <div className="block w-max">
               <button
-                id="ca25BtnCartStore_Checkout"
+                id="checkout-btn"
                 className={`h-[46px] w-[106px] cursor-pointer rounded-lg bg-primary px-5 py-3.5 text-sm leading-initial text-white disabled:cursor-not-allowed disabled:bg-primary/80 disabled:text-white/40 sm:h-[56px] sm:w-[138px] sm:rounded-[10px] sm:px-6 sm:py-0 sm:text-base lg:py-4`}
                 type="button"
                 tabIndex={-1}
                 aria-label="Coinfest Asia 2025 Button on Processed Checkout"
                 aria-roledescription="Coinfest Asia 2025 Button on Processed Checkout"
+                data-layer-id={'checkout-btn'}
                 disabled={
-                  (getStore?.length > 0 ? false : true) ||
-                  checkTotalQtyCart(getStore, 'submit') ||
-                  isLoading
+                  ((getStore?.length > 0 ? false : true) || checkTotalQty,
+                  totalOrder() || isLoading)
                 }
                 onClick={(e) => {
                   e.preventDefault();
@@ -214,8 +215,8 @@ const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
                     <div
                       className="mx-auto block size-5 animate-spin items-center justify-center rounded-full border-[2.5px] border-current border-t-transparent font-medium text-white/60 opacity-80"
                       role="status"
-                      aria-label="Coinfest Asia 2025 (Loading - Products)"
-                      aria-labelledby="Coinfest Asia 2025 (Loading - Products)"
+                      aria-label="Coinfest Asia 2025 (Loading Checkout)"
+                      aria-labelledby="Coinfest Asia 2025 (Loading Checkout)"
                     >
                       <span className="sr-only">Loading...</span>
                     </div>

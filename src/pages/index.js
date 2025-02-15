@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Toaster } from 'sonner';
 import getConfig from 'next/config';
 import dynamic from 'next/dynamic';
@@ -7,9 +7,6 @@ import Script from 'next/script';
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
-
-// @redux
-import { useSelector } from 'react-redux';
 
 // @lib
 import { useStoreContext } from '@lib/context/store/StoreContext';
@@ -41,12 +38,10 @@ import FAQ from '@layouts/FAQ';
 import MoonPortalBanner from '@layouts/Banner/MoonPortalBanner';
 
 const Home = ({ mode, collections, products }) => {
-  const { data: isCart } = useSelector((state) => state.cart);
   const { sessionsProducts } = useStoreContext();
   const { getStore } = useCart();
-  const [isStore, setStore] = useState({
+  const [isProducts, setProducts] = useState({
     products: products?.data,
-    isQty: [],
   });
   const [isCollections, setCollections] = useState({
     aboutus: collections?.aboutus,
@@ -57,43 +52,6 @@ const Home = ({ mode, collections, products }) => {
     // socialMentions: collections?.socialMentions,
     faq: collections?.faq,
   });
-
-  // @hanlde-change(product)
-  const hndleChangeQty = async (idProducts, qtyProduct) => {
-    if (qtyProduct > 0) {
-      setStore((prev) => {
-        const updatedTotalQty = prev?.isQty?.map((item) =>
-          item?.id === idProducts ? { ...item, qty: qtyProduct } : item
-        );
-        // @check-exts
-        const isIdExist = prev?.isQty?.some((item) => item?.id === idProducts);
-        const newTotalQty = isIdExist
-          ? updatedTotalQty
-          : [...prev?.isQty, { id: idProducts, qty: qtyProduct }];
-        return {
-          ...prev,
-          isQty: newTotalQty,
-        };
-      });
-    }
-  };
-  // @hanlde-change(calculate product)
-  useEffect(() => {
-    const fakeUpdated = isStore?.isQty
-      ?.filter((fakeItems) =>
-        isCart?.some((items) => items?.id_product === fakeItems?.id)
-      )
-      .map((fakeItems) => {
-        const cartItem = isCart?.find(
-          (items) => items?.id_product === fakeItems?.id
-        );
-        return { ...fakeItems, qty: cartItem?.quantity || fakeItems?.qty };
-      });
-    setStore((prev) => ({
-      ...prev,
-      isQty: fakeUpdated,
-    }));
-  }, [isCart]);
 
   // @hash-schema
   const hashNonce256 = CryptoJS.SHA256(nonceSha256).toString(
@@ -204,7 +162,7 @@ const Home = ({ mode, collections, products }) => {
             </div>
             {/* @products */}
             <div className="mt-4 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:mt-10 sm:grid-cols-2 xl:grid-cols-3">
-              {isStore?.products?.slice(0, 6).map((gtRslt, i) => {
+              {isProducts?.products?.slice(0, 6).map((gtRslt, i) => {
                 return (
                   <Fragment key={i}>
                     <TicketProducts
@@ -216,7 +174,6 @@ const Home = ({ mode, collections, products }) => {
                         sessionsProducts?.loading === true
                       }
                       isSessionLoading={sessionsProducts?.loading}
-                      onEventChange={hndleChangeQty}
                     />
                   </Fragment>
                 );

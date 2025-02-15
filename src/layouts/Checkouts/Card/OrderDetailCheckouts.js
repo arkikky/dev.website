@@ -163,9 +163,6 @@ const OrderDetailCheckouts = ({
   useEffect(() => {
     hndleIntzCoupon();
     setTotalCart(getTotalCart(products));
-    return () => {
-      undefined;
-    };
   }, [products]);
 
   // @quantity

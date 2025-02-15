@@ -9,7 +9,7 @@ const ToastAlerts = ({
   id,
   type = 'default',
   label = `A new software update is available. See what's new in version 3.0.7`,
-  position = 'inset-y-0 inset-x-2.5 sm:inset-x-0',
+  position = '',
   visible,
 }) => {
   const [isCountdown, setCountdown] = useState(5);
@@ -56,7 +56,7 @@ const ToastAlerts = ({
       <div
         id="ca25Alert-Card"
         className={twMerge(
-          `w-auto rounded-lg border px-2.5 py-4 text-sm shadow-lg duration-300 ${position} ease-in-out sm:w-[347px] sm:px-3 lg:px-4`,
+          `w-auto rounded-lg border px-2.5 py-4 text-sm shadow-lg duration-300 ease-in-out sm:w-[347px] sm:px-3 lg:px-4`,
           isType
         )}
         role="alert"

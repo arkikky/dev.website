@@ -1,42 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import getConfig from 'next/config';
 import Link from 'next/link';
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
 
-// @lib
-import { useTrackingStore } from '@lib/hooks/tracking-store/TrackingStore';
-
 // @components
 import DropdownNavMenuNavbar from '@components/UI/Nav/DropdownNavMenuNavbar';
 
 const NavMenu = () => {
-  const { eventTicketNav } = useTrackingStore();
-
-  // useEffect(() => {
-  //   const handleClick = () => {
-  //     window.dataLayer = window.dataLayer || [];
-  //     window.dataLayer.push({
-  //       event: 'tickets-nav',
-  //       category: 'Navigation',
-  //       label: 'Tickets Navigation Clicked',
-  //     });
-  //     console.log('Data Layer Pushed: Tickets Clicked');
-  //   };
-
-  //   const button = document.getElementById('tickets-nav');
-  //   if (button) {
-  //     button.addEventListener('click', handleClick);
-  //   }
-
-  //   return () => {
-  //     if (button) {
-  //       button.removeEventListener('click', handleClick);
-  //     }
-  //   };
-  // }, []);
-
   return (
     <>
       <ul className="ca25NavMenu">
@@ -92,11 +64,7 @@ const NavMenu = () => {
             id={'tickets-nav'}
             href="/tickets"
             title={`${publicRuntimeConfig?.siteAppName} Tickets`}
-            data-layer-id="tickets-nav"
-            onClick={(e) => {
-              // e.preventDefault();
-              eventTicketNav();
-            }}
+            data-layer-id={'tickets-nav'}
           >
             {`Tickets`}
           </Link>

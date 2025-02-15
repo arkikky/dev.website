@@ -12,7 +12,6 @@ import { useSelector } from 'react-redux';
 
 // @lib
 import { useStoreContext } from '@lib/context/store/StoreContext';
-import { useTrackingStore } from '@lib/hooks/tracking-store/TrackingStore';
 import { getPriceDiscountDisplay } from '@lib/helper/Configuration';
 import { currencyConverter } from '@lib/helper/CalculateCartContext';
 import { useCart } from '@lib/hooks/cart/Cart';
@@ -22,28 +21,23 @@ import { useMethod } from '@lib/hooks/Method';
 import PreSaleCountdown from '@components/PreSaleCountdown';
 
 const TicketProducts = ({
+  isPage = false,
   useHeading = 'h3',
   data,
   cartProducts = [],
   isLoading,
-  onEventChange,
 }) => {
   const { data: isCart } = useSelector((state) => state.cart);
-  const { sessionsProducts, handleAddProductCart } = useStoreContext();
-  const { handlePurchase } = useTrackingStore();
-  const { checkTotalQtyCart, updateCartQuantity } = useCart();
+  const { sessionsProducts, handleAddProductCart, checkTotalQty } =
+    useStoreContext();
+  const { updateCartQuantity } = useCart();
   const { toggleOverlayPopUp } = useMethod();
-  const { documentId } = data;
-  if (!data?.description) return null;
-
   // @hook(Session Product)
   const [isSessionProducts, setSessionProducts] = useState({
     products: {},
     checkProduct: false,
     count: 1,
-    quantity: 0,
   });
-
   // @card(theme)
   const style = {
     rc33x0dgm6tm707jghffuip4: 'ca25Products_VIP',
@@ -52,64 +46,44 @@ const TicketProducts = ({
   // @discount-price
   const priceDiscountDisplay = getPriceDiscountDisplay(data);
 
-  // @use-effect
+  // @calculate-products
   useEffect(() => {
-    const calculateProducts = cartProducts?.find(
-      (i) => i.documentId === data?.documentId
+    const foundProduct = cartProducts?.find(
+      (item) => item.documentId === data?.documentId
     );
-    if (calculateProducts) {
-      setSessionProducts((prev) => ({
-        ...prev,
-        products: calculateProducts,
-      }));
-    } else {
-      setSessionProducts((prev) => ({
-        ...prev,
-        products: {},
-      }));
-    }
-    return () => {
-      undefined;
-    };
-  }, [cartProducts]);
+    setSessionProducts((prev) => ({
+      ...prev,
+      products: foundProduct || {},
+    }));
+  }, [cartProducts, data?.documentId]);
+
   useEffect(() => {
-    const calculateTotalQty = isCart?.find(
-      (i) => i.id_product === data?.documentId
+    const foundQtyProduct = isCart?.find(
+      (item) => item.id_product === data?.documentId
     );
-    if (calculateTotalQty) {
-      setSessionProducts((prev) => ({
-        ...prev,
-        checkProduct: true,
-        count: calculateTotalQty.quantity,
-      }));
-    } else {
-      setSessionProducts((prev) => ({
-        ...prev,
-        checkProduct: false,
-      }));
-    }
-    return () => {
-      undefined;
+    setSessionProducts((prev) => ({
+      ...prev,
+      checkProduct: !!foundQtyProduct,
+      count: foundQtyProduct?.quantity || 1,
+    }));
+  }, [isCart, data?.documentId]);
+
+  // @tracking-id
+  const trackingButtonId = (documentId, name, isPage) => {
+    const ids = {
+      g1ukadil4n4a3r0ndly7jl42: isPage ? 'fest-buy-tix' : 'fest-buy-hp',
+      sn4ujm0d1ebbc8lme1ihzsa9: isPage ? 'group-buy-tix' : 'group-buy-hp',
+      rc33x0dgm6tm707jghffuip4: isPage ? 'bull-buy-tix' : 'bull-buy-hp',
     };
-  }, [isCart]);
-  useEffect(() => {
-    const calculateQty = isCart?.find((i) => i.id_product === data?.documentId);
-    if (isSessionProducts?.checkProduct === true) {
-      onEventChange(calculateQty?.id_product, calculateQty?.quantity);
-      return;
-    }
-    onEventChange(calculateQty?.id_product, 0);
-    return () => {
-      undefined;
-    };
-  }, [isCart, isSessionProducts?.checkProduct]);
+    return ids[documentId] || `ca25Btn_Product${name.replace(/\s/g, '')}`;
+  };
 
   return (
     <>
       <div
         className={twMerge(
           `ca25Products relative flex h-auto flex-col rounded-2xl bg-transparent sm:rounded-[20px] lg:h-[569px]`,
-          style[documentId] || ''
+          style[data?.documentId] || ''
         )}
       >
         {data?.documentId === 'g1ukadil4n4a3r0ndly7jl42' ? (
@@ -168,7 +142,7 @@ const TicketProducts = ({
             )}
 
             <div className="block w-full pt-2">
-              {documentId === 'rc33x0dgm6tm707jghffuip4' && (
+              {data?.documentId === 'rc33x0dgm6tm707jghffuip4' && (
                 <span className="mb-3.5 flex flex-row items-center justify-start text-base font-medium sm:text-lg">
                   <svg
                     className="ml-[3px] mr-[12px] size-5 shrink-0 sm:ml-[1px] sm:mr-[11px] sm:size-6"
@@ -208,7 +182,7 @@ const TicketProducts = ({
                     {data?.documentId !== 'sn4ujm0d1ebbc8lme1ihzsa9' ? (
                       <>
                         <button
-                          id="tcktCa25Btn_MinQtyCarts"
+                          id="ca25Btn_MinQtyCarts"
                           className="ca25BtnQtyDark"
                           type="button"
                           tabIndex={-1}
@@ -255,14 +229,13 @@ const TicketProducts = ({
                           disabled={true}
                         />
                         <button
-                          id="tcktCa25Btn_MaxQtyCarts"
+                          id="ca25Btn_MaxQtyCarts"
                           className={`ca25BtnQtyDark`}
                           type="button"
                           tabIndex={-1}
                           aria-label="Button update quantity Max Cart (Coinfest Asia 2025)"
                           disabled={
-                            isSessionProducts?.count >= 15 ||
-                            checkTotalQtyCart(cartProducts, 'products')
+                            isSessionProducts?.count >= 15 || checkTotalQty()
                           }
                           onClick={(e) => {
                             e.preventDefault();
@@ -323,20 +296,24 @@ const TicketProducts = ({
               </button>
             ) : (
               <button
-                id={`ca25Btn_Product${data?.name.replace(/\s/g, '')}`}
+                id={trackingButtonId(data?.documentId, data?.name, isPage)}
                 className={`ca25ProductsBtn relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${!sessionsProducts ? 'cursor-default' : 'cursor-pointer'}`}
                 role="button"
                 aria-label={`Button Coinfest Asia 2025 - ${data?.name.replace(/\s/g, '')} Products)`}
                 disabled={isLoading}
+                data-layer-id={trackingButtonId(
+                  data?.documentId,
+                  data?.name,
+                  isPage
+                )}
                 onClick={(e) => {
                   e.preventDefault();
                   handleAddProductCart(data, isSessionProducts?.count);
-                  handlePurchase({ products: data });
                 }}
               >
                 {isLoading ? (
                   <div
-                    className={`ca25ProductsBtn_Loading block size-6 animate-spin items-center justify-center rounded-full border-[2.5px] ${data?.documentId === 'g1ukadil4n4a3r0ndly7jl42' ? 'border-black-900' : 'border-white'} border-black-900 border-t-transparent font-medium opacity-80`}
+                    className={`ca25ProductsBtn_Loading block size-6 animate-spin items-center justify-center rounded-full border-[2.5px] ${data?.documentId === 'rc33x0dgm6tm707jghffuip4' ? 'border-white' : 'border-black-900'} border-t-transparent font-medium opacity-80`}
                     role="status"
                     aria-label="Coinfest Asia 2025 (Loading Products)"
                   >

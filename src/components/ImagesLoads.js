@@ -29,9 +29,6 @@ const ImagesLoads = ({
     if (inView) {
       setLoading(true);
     }
-    return () => {
-      undefined;
-    };
   }, [inView]);
 
   return (

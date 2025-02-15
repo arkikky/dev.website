@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { removeCart } from '@reduxState/slices';
 
 // @lib/controller & helper
+import { useTrackingStore } from '@lib/hooks/tracking-store/TrackingStore';
 import { getFetch, getFetchUrl, updateData } from '@lib/controller/API';
 import { submitFormHbSpt } from '@lib/controller/HubSpot';
 import { currencyConverter } from '@lib/helper/CalculateCartContext';
@@ -35,6 +36,7 @@ import LayoutDefaults from '@layouts/Layouts';
 
 const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
   const router = useRouter();
+  const { trackingPurchase } = useTrackingStore();
   const dispatch = useDispatch();
   const [isOrderRecived, setOrderRecived] = useState({
     isIpAddress: ipAddress,
@@ -73,10 +75,14 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
   useEffect(() => {
     dispatch(removeCart());
     hndleIntzCoupon();
-    return () => {
-      undefined;
-    };
   }, []);
+  // @initialize(tracking-purchase)
+  useEffect(() => {
+    trackingPurchase({
+      transID: isOrderRecived?.order?.documentId,
+      transValue: isOrderRecived?.order?.orderTotal,
+    });
+  }, [trackingPurchase]);
 
   const isDiscount =
     parseInt(

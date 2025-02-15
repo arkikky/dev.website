@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useRouter } from 'next/router';
 
-// @lib/controller & helper
+// @lib
+import { useStoreContext } from '@lib/context/store/StoreContext';
 import { currencyConverter } from '@lib/helper/CalculateCartContext';
-import { useCart } from '@lib/hooks/cart/Cart';
 import { useMethod } from '@lib/hooks/Method';
 
 // @components
@@ -20,7 +20,7 @@ const Store = ({
   loading = false,
 }) => {
   const router = useRouter();
-  const { checkTotalQtyCart } = useCart();
+  const { getStore, checkTotalQty } = useStoreContext();
   const { toggleOverlayPopUp } = useMethod();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,7 +38,7 @@ const Store = ({
   const isStyle = styles[type] || styles.general;
   const isStyleCard = stylesCard[type] || stylesCard.general;
 
-  // @redirect(Checkout)
+  // @redirect(checkout)
   const reCheckout = async () => {
     setIsLoading(true);
     setTimeout(async () => {
@@ -63,7 +63,7 @@ const Store = ({
           )}
         >
           <div className="flex w-full flex-row items-start justify-between">
-            <span className="text-white">{`Cart (${store?.length} items)`}</span>
+            <span className="text-white">{`Cart (${getStore?.length} items)`}</span>
             <button
               id={`ca2024BtnClosePopUpNav`}
               className="relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-sm bg-black-800 outline-none focus-visible:outline-none"
@@ -93,10 +93,10 @@ const Store = ({
           <div
             className={`scrollbar-y my-1 flex h-full max-h-[261px] w-full flex-col space-y-3 overflow-y-auto`}
           >
-            {store?.length > 0 ? (
-              store.map((gtRslt, i) => (
+            {getStore?.length > 0 ? (
+              getStore?.map((gtRslt, i) => (
                 <div className="flex w-full flex-row justify-between" key={i}>
-                  <CartProduct cartStore={store} products={gtRslt} />
+                  <CartProduct cartStore={getStore} products={gtRslt} />
                 </div>
               ))
             ) : (
@@ -171,7 +171,7 @@ const Store = ({
                   aria-roledescription="Button on Processed Checkout (Coinfest Asia 2025)"
                   disabled={
                     (store?.length > 0 ? false : true) ||
-                    checkTotalQtyCart(store, 'submit') ||
+                    checkTotalQty ||
                     isLoading
                   }
                   onClick={(e) => {

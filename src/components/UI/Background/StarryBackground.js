@@ -45,9 +45,6 @@ const StarryBackground = ({ starCount = 100, color = 'white' }) => {
       });
     }
     drawStars();
-    return () => {
-      undefined;
-    };
   }, [dimensions, starCount, color]);
 
   return (

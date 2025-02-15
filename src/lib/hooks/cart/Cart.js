@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 // @redux
 import { useSelector, useDispatch } from 'react-redux';
 import { updateQuantity } from '@reduxState/slices';
 
-// @lib/controller & helper
+// @lib
 import { getCombineMerged, encodeData } from '@lib/helper/Configuration';
 
 export function useCart() {

@@ -167,6 +167,7 @@ export const calculateCountdown = (date) => {
   };
   return countdown;
 };
+
 // @discount-price
 export const getPriceDiscountDisplay = (d) => {
   if (!d?.price || !d?.priceSale) return null;
