@@ -1,5 +1,9 @@
 import React, { Fragment } from 'react';
 import dynamic from 'next/dynamic';
+import getConfig from 'next/config';
+
+// @get .config
+const { publicRuntimeConfig } = getConfig();
 
 // @components
 import HeadGraphSeo from '@components/Head';

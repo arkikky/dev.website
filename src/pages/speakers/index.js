@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import getConfig from 'next/config';
+
+// @get .config
+const { publicRuntimeConfig } = getConfig();
 
 // @lib/controller & helper
 import { getFetchUrl } from '@lib/controller/API';

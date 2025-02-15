@@ -1,6 +1,10 @@
 import React, { useState, Fragment } from 'react';
 import { Toaster } from 'sonner';
 import dynamic from 'next/dynamic';
+import getConfig from 'next/config';
+
+// @get .config
+const { publicRuntimeConfig } = getConfig();
 
 // @lib
 import { useStoreContext } from '@lib/context/store/StoreContext';

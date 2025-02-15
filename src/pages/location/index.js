@@ -1,4 +1,8 @@
 import React from 'react';
+import getConfig from 'next/config';
+
+// @get .config
+const { publicRuntimeConfig } = getConfig();
 
 // @components
 import HeadGraphSeo from '@components/Head';
