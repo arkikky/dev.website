@@ -141,7 +141,7 @@ const OrderDetailCheckouts = ({
         >
           <div className="mb-4 block w-full px-2.5 sm:px-0">
             <h2 className="text-xl font-medium capitalize">
-              {`Order summary`} {totalOrder} {isDiscount?.totalWithDiscount}
+              {`Order summary`}
             </h2>
           </div>
           <div className="my-3 flex w-full border-t border-dashed border-gray-200 px-2.5"></div>
