@@ -16,13 +16,13 @@ import { removeCart } from '@reduxState/slices';
 import { useTrackingStore } from '@lib/hooks/tracking-store/TrackingStore';
 import { getFetch, getFetchUrl, updateData } from '@lib/controller/API';
 import { submitFormHbSpt } from '@lib/controller/HubSpot';
-import { currencyConverter } from '@lib/helper/CalculateCartContext';
+import { currencyConverter } from '@lib/helper/CalculateCart';
 import { encodeData, convertQrCodeToBlob } from '@lib/helper/Configuration';
 import {
   setHbSptCustomerData,
   setHbSptAttendeeData,
   setGroupedAttendees,
-} from '@lib/helper/CartContext';
+} from '@lib/helper/Store';
 
 // @components
 import HeadGraphSeo from '@components/Head';

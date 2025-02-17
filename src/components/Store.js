@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 // @lib
 import { useStoreContext } from '@lib/context/store/StoreContext';
-import { currencyConverter } from '@lib/helper/CalculateCartContext';
+import { currencyConverter } from '@lib/helper/CalculateCart';
 import { useMethod } from '@lib/hooks/Method';
 
 // @components

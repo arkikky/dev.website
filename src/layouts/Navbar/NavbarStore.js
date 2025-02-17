@@ -13,7 +13,6 @@ import '@splidejs/react-splide/css/core';
 
 // @lib
 import { useStoreContext } from '@lib/context/store/StoreContext';
-import { useCart } from '@lib/hooks/cart/Cart';
 import { useMethod } from '@lib/hooks/Method';
 
 // @components
@@ -31,8 +30,7 @@ const EventBoard = dynamic(() => import('@components/UI/EventBoard'), {
 
 const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
   const router = useRouter();
-  const { getStore, checkTotalQty, totalOrder } = useStoreContext();
-  const { getTotalItems } = useCart();
+  const { getStore, checkTotalQty, totalQty, totalOrder } = useStoreContext();
   const { toggleOverlayPopUp } = useMethod();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -140,7 +138,7 @@ const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
             type="mobile"
             backdrop=".ca2025BckdrpOverflay_PopUpMobile"
             store={getStore}
-            totalCart={totalOrder(getStore)}
+            totalCart={totalOrder}
             loading={isLoading}
           />
         )}
@@ -189,7 +187,7 @@ const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
                     ></path>
                   </svg>
                 </span>
-                <span className={`ml-0.5 font-medium`}>({getTotalItems})</span>
+                <span className={`ml-0.5 font-medium`}>({totalQty})</span>
               </button>
             </div>
             <div className="block w-max">
@@ -202,8 +200,9 @@ const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
                 aria-roledescription="Coinfest Asia 2025 Button on Processed Checkout"
                 data-layer-id={'checkout-btn'}
                 disabled={
-                  ((getStore?.length > 0 ? false : true) || checkTotalQty,
-                  totalOrder() || isLoading)
+                  (getStore?.length > 0 ? false : true) ||
+                  checkTotalQty() ||
+                  isLoading
                 }
                 onClick={(e) => {
                   e.preventDefault();

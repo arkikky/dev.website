@@ -13,8 +13,7 @@ import { useSelector } from 'react-redux';
 // @lib
 import { useStoreContext } from '@lib/context/store/StoreContext';
 import { getPriceDiscountDisplay } from '@lib/helper/Configuration';
-import { currencyConverter } from '@lib/helper/CalculateCartContext';
-import { useCart } from '@lib/hooks/cart/Cart';
+import { currencyConverter } from '@lib/helper/CalculateCart';
 import { useMethod } from '@lib/hooks/Method';
 
 // @components
@@ -28,9 +27,12 @@ const TicketProducts = ({
   isLoading,
 }) => {
   const { data: isCart } = useSelector((state) => state.cart);
-  const { sessionsProducts, handleAddProductCart, checkTotalQty } =
-    useStoreContext();
-  const { updateCartQuantity } = useCart();
+  const {
+    sessionsProducts,
+    handleAddProductCart,
+    updateQuantityCart,
+    checkTotalQty,
+  } = useStoreContext();
   const { toggleOverlayPopUp } = useMethod();
   // @hook(Session Product)
   const [isSessionProducts, setSessionProducts] = useState({
@@ -193,7 +195,7 @@ const TicketProducts = ({
                           }
                           onClick={(e) => {
                             e.preventDefault();
-                            updateCartQuantity(
+                            updateQuantityCart(
                               cartProducts,
                               isSessionProducts?.products,
                               false
@@ -239,7 +241,7 @@ const TicketProducts = ({
                           }
                           onClick={(e) => {
                             e.preventDefault();
-                            updateCartQuantity(
+                            updateQuantityCart(
                               cartProducts,
                               isSessionProducts?.products,
                               true

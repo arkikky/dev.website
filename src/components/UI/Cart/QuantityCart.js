@@ -1,10 +1,10 @@
 import React from 'react';
 
-// @lib/controller & helper
-import { useCart } from '@lib/hooks/cart/Cart';
+// @lib
+import { useStoreContext } from '@lib/context/store/StoreContext';
 
 const QuantityCart = ({ productsQty, cartStoreQty }) => {
-  const { checkTotalQtyCart, updateCartQuantity } = useCart();
+  const { checkTotalQty, updateQuantityCart } = useStoreContext();
 
   return (
     <>
@@ -27,7 +27,7 @@ const QuantityCart = ({ productsQty, cartStoreQty }) => {
               }
               onClick={(e) => {
                 e.preventDefault();
-                updateCartQuantity(cartStoreQty, productsQty, false);
+                updateQuantityCart(cartStoreQty, productsQty, false);
               }}
             >
               <svg
@@ -67,11 +67,11 @@ const QuantityCart = ({ productsQty, cartStoreQty }) => {
               aria-label="Coinfest Asia 2025 Button Update Quantity Max Cart"
               disabled={
                 productsQty?.quantity >= 15 ||
-                checkTotalQtyCart(cartStoreQty, 'products')
+                checkTotalQty(cartStoreQty, 'products')
               }
               onClick={(e) => {
                 e.preventDefault();
-                updateCartQuantity(cartStoreQty, productsQty, true);
+                updateQuantityCart(cartStoreQty, productsQty, true);
               }}
             >
               <svg

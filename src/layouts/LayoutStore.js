@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 // @lib/controller & helper
-import { useCart } from '@lib/hooks/cart/Cart';
+import { useStoreContext } from '@lib/context/store/StoreContext';
 import { useMethod } from '@lib/hooks/Method';
 
 // @layouts
@@ -16,7 +16,7 @@ const LayoutStore = ({
   children,
 }) => {
   const router = useRouter();
-  const { getStore } = useCart();
+  const { getStore } = useStoreContext();
   const { toggleOverlayPopUp } = useMethod();
 
   // @hndle(background change)

@@ -1,9 +1,11 @@
 /** @type {import('next-sitemap').IConfig} */
 
 const baseUrl =
-  process.env.NODE_ENV === 'development'
-    ? process.env.NEXT_PUBLIC_SITE_URL || 'https://arkikky-dev0.vercel.app/'
-    : process.env.NEXT_PUBLIC_SITE_URL || 'https://coinfest.asia/';
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.NODE_ENV === 'development'
+    ? 'https://arkikky-dev0.vercel.app/'
+    : 'https://coinfest.asia/');
+
 
 const nextSitemapConfig = {
   siteUrl: baseUrl,

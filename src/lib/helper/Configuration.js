@@ -66,7 +66,7 @@ export const getSplitString = (d) => {
 };
 export const getJoinString = (d) => {
   const getString = d;
-  const resString = getString.split(' ').join('');
+  const resString = getString.replace(/[-\s]/g, '');
   return resString;
 };
 export const getSplitStringCapital = (d) => {

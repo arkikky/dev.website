@@ -18,7 +18,7 @@ import {
   setHbSptCustomerData,
   setHbSptAttendeeData,
   setGroupedAttendees,
-} from '@lib/helper/CartContext';
+} from '@lib/helper/Store';
 
 // @components
 import HeadGraphSeo from '@components/Head';

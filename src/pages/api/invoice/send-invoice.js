@@ -13,7 +13,7 @@ import {
   getTotalCart,
   calculateDiscount,
   calculateDiscountCheckout,
-} from '@lib/helper/CartContext';
+} from '@lib/helper/Store';
 
 export default async function handler(req, res) {
   const headersApiKey = req?.headers['x-api-key'];

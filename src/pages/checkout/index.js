@@ -14,7 +14,8 @@ const { serverRuntimeConfig } = getConfig();
 import { useSelector, useDispatch } from 'react-redux';
 import { order } from '@reduxState/slices';
 
-// @lib/controller & helper
+// @lib
+import { useStoreContext } from '@lib/context/store/StoreContext';
 import {
   getFetch,
   getFetchUrl,
@@ -25,20 +26,16 @@ import { getFecthHbSpt, submitFormHbSpt } from '@lib/controller/HubSpot';
 import {
   smoothLeftScroll,
   getJoinString,
-  getCombineMerged,
   encodeData,
   convertQrCodeToBlob,
 } from '@lib/helper/Configuration';
 import {
-  getTotalCart,
-  calculateDiscount,
-  calculateDiscountCheckout,
   setBillingData,
   setHbSptCustomerData,
   setHbSptAttendeeData,
   setAttendeeData,
   getCreateOrder,
-} from '@lib/helper/CartContext';
+} from '@lib/helper/Store';
 
 // @components
 import HeadGraphSeo from '@components/Head';
@@ -73,6 +70,13 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     order: isOrder,
     orderSession: isOrderPayment_Session,
   } = useSelector((state) => state.cart);
+  const {
+    getStore,
+    hndleHookIntzCoupon,
+    calculateTotalOrder,
+    isDiscount,
+    totalOrder,
+  } = useStoreContext();
   const [isFormCheckouts, setFormCheckouts] = useState({
     isIpAddress: ipAddress,
     isFields: [],
@@ -106,6 +110,14 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   const style = {
     rc33x0dgm6tm707jghffuip4: 'bg-vip45',
   };
+
+  // @hook(init coupon)
+  useEffect(() => {
+    hndleHookIntzCoupon(getStore, totalOrder);
+    return () => {
+      undefined;
+    };
+  }, [getStore]);
 
   // @btn-step(Attendee)
   const handleTabClick = (e, productIdx, tabIdx) => {
@@ -173,7 +185,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     }
   }, [isStepToggledCompany]);
 
-  // @handle(Button Prev & Next)
+  // @handle(button prev & next)
   const handlePrevAttendee = async (prdctIdx) => {
     setCurrentStepAttendee((prev) =>
       prev?.map((a, idx) => (idx === prdctIdx ? Math.max(a - 1, 0) : a))
@@ -187,107 +199,14 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     );
   };
 
-  // @hook(Preline)
+  // @hook(preline)
   const handleIntzPreline = useCallback(async () => {
     await import('preline/preline');
     if (window.HSStaticMethods) {
       window.HSStaticMethods.autoInit();
     }
   }, [isCart]);
-  // @hook(store)
-  const hndleHookProducts = useCallback(async () => {
-    try {
-      const allProducts = await Promise.all(
-        isCart?.map(async (data) => {
-          const rsHook = await fetch('/api/data/products?sv=coinfestasia', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ data: encodeData(data?.id_product) }),
-          }).then((res) => res.json());
-          return {
-            id: rsHook?.id,
-            documentId: rsHook?.documentId,
-            productId: rsHook?.productId,
-            name: rsHook?.name,
-            price: rsHook?.price,
-            priceSale: rsHook?.priceSale,
-            stock: parseInt(rsHook?.stock),
-          };
-        })
-      );
-      // @hook(combine merged)
-      if (allProducts) {
-        const setMerged = getCombineMerged(allProducts.slice(0, 3), isCart);
-        if (setMerged) {
-          setStore((prev) => ({ ...prev, products: setMerged }));
-        }
-      }
-    } catch (err) {
-      return;
-    }
-  }, [isCart]);
-  useEffect(() => {
-    hndleHookProducts();
-  }, [isCart]);
-  // @hook(Calculate Total Order)
-  const calculateTotalOrder = useCallback(
-    async (data) => {
-      const isTotalCart = getTotalCart(data);
-      const getCoupon = await fetch('/api/data/coupons?sv=coinfestasia', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ data: encodeData(isCoupon) }),
-      }).then((res) => res.json());
-      const setCoupon = getCoupon !== null ? getCoupon : null;
 
-      const checkCoupon =
-        setCoupon !== null && setCoupon !== 'null' && setCoupon !== undefined;
-      if (checkCoupon) {
-        const includedProductIds = setCoupon?.includedProducts?.map(
-          (product) => product?.documentId
-        );
-        const validProducts = data?.filter((product) =>
-          includedProductIds?.includes(product?.documentId)
-        );
-        const setPrice = validProducts[0]?.priceSale ?? validProducts[0]?.price;
-
-        const totalDiscount = calculateDiscount(
-          setCoupon,
-          isTotalCart,
-          setPrice
-        );
-        const totalAfterDiscount = calculateDiscountCheckout(
-          setCoupon,
-          isTotalCart,
-          setPrice
-        );
-        setStore((prev) => ({
-          ...prev,
-          discntAmount: totalDiscount,
-          totalOrder: totalAfterDiscount,
-        }));
-      } else {
-        const setTax_Rate = 0.11;
-        const taxAmount = isTotalCart * setTax_Rate;
-        const totalWithTax = isTotalCart + taxAmount;
-
-        setStore((prev) => ({
-          ...prev,
-          discntAmount: 0,
-          totalOrder: totalWithTax,
-        }));
-      }
-    },
-    [isCart, isCoupon]
-  );
-  // @hook(Product)
-  useEffect(() => {
-    calculateTotalOrder(isStore?.products);
-  }, [isStore?.products, isCoupon]);
   useEffect(() => {
     handleIntzPreline();
     // @hook-toogle(company)
@@ -305,7 +224,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           );
       })
     );
-  }, [isStore?.products]);
+  }, [isStore]);
   useEffect(() => {
     handleIntzPreline();
   }, [currentStepAttendee]);
@@ -556,7 +475,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           continue;
         }
         // @find(product)
-        const product = isStore?.products.find(
+        const product = getStore.find(
           (p) =>
             p.name.replace(/\s+/g, '').replace(/Tickets$/i, '') === productName
         );
@@ -606,7 +525,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     }
 
     // @validasi-attendee(products)
-    isStore?.products.forEach((product) => {
+    getStore?.forEach((product) => {
       const cleanedProductName = product.name.replace(/\s*Tickets$/i, '');
       const attendees = groupedData.products[cleanedProductName] || [];
       if (attendees.length > product?.quantity) {
@@ -622,14 +541,14 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
   // @submit(Checkout)
   const onSubmitForm = async (data) => {
-    const isFirstItems = getJoinString(isStore?.products[0]?.name);
+    const isFirstItems = getJoinString(getStore[0]?.name);
     if (isValid === true && isCart) {
-      if (Math.abs(isStore?.totalOrder) > 1e-10) {
-        // console.log(isStore?.totalOrder);
-
+      const isTotalOrder = calculateTotalOrder(
+        isCoupon ? isDiscount?.totalWithDiscount : totalOrder
+      );
+      if (Math.abs(isTotalOrder) > 1e-10) {
         setStore((prev) => ({ ...prev, isPaymentProcess: true }));
-      } else if (Math.abs(isStore?.totalOrder) < 1e-10) {
-        // console.log(isStore?.totalOrder);
+      } else if (Math.abs(isTotalOrder) < 1e-10) {
         setStore((prev) => ({ ...prev, isOrderProcess: true }));
       }
       setFormCheckouts((prev) => ({
@@ -640,7 +559,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       // @hubspot(customer & attendee)
       const hbSptKey = '96572ab0-5958-4cc4-8357-9c65de42cab6';
       const hbSptAttndeeKey = 'c9347ef6-664d-4b7a-892b-a1cabaa2bc30';
-
       try {
         // @customer
         const rsCustomer = await pushSubmitData(
@@ -685,9 +603,9 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             setIsCoupon !== undefined;
           // @create(order)
           const createOrder = getCreateOrder(
-            Math.floor(isStore?.totalOrder),
+            Math.floor(isTotalOrder),
             setIdCustomer,
-            isStore?.products,
+            getStore,
             setIsCoupon
           );
           const rsCreateOrder = await pushSubmitData(
@@ -697,8 +615,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           const setIdOrderRecived = rsCreateOrder?.data.documentId;
           const arrAttendees = [];
 
-          for (let i = 0; i < isStore?.products?.length; i++) {
-            const gtRslt = isStore?.products[i];
+          for (let i = 0; i < getStore?.length; i++) {
+            const gtRslt = getStore[i];
             const isIdProducts = gtRslt?.documentId;
             let groupName = getJoinString(gtRslt?.name);
             const isStock = gtRslt?.stock - gtRslt?.quantity;
@@ -737,12 +655,12 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   if (rsAttendee) {
                     const isFullname = `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`;
                     const tickets =
-                      rsAttendee?.data.product.documentId ===
-                        'sn4ujm0d1ebbc8lme1ihzsa9' ||
-                      rsAttendee?.data.product.documentId ===
-                        'g1ukadil4n4a3r0ndly7jl42'
+                      rsAttendee?.data.product.documentId !==
+                      'rc33x0dgm6tm707jghffuip4'
                         ? `Festival Tickets`
                         : `${rsAttendee?.data.product?.name}`;
+
+                    console.log(tickets);
 
                     arrAttendees.push({
                       attendee: rsAttendee?.data,
@@ -764,7 +682,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           }
 
           // @processing(payment)
-          if (rsCreateOrder && Math.abs(isStore?.totalOrder) > 1e-10) {
+          if (rsCreateOrder && Math.abs(isTotalOrder) > 1e-10) {
             const rsPayment = await fetch('/api/payment/create-payment', {
               method: 'POST',
               headers: {
@@ -776,7 +694,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   /^C-/,
                   ''
                 ),
-                amount: isStore?.totalOrder,
+                amount: isTotalOrder,
                 payerEmail: rsCreateOrder?.data?.customer?.email,
                 fullname: `${rsCreateOrder?.data?.customer?.firstName} ${rsCreateOrder?.data?.customer?.lastName}`,
                 phone: rsCreateOrder?.data?.customer?.phone,
@@ -805,7 +723,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           }
 
           // @processing(order)
-          if (rsCreateOrder && Math.abs(isStore?.totalOrder) < 1e-10) {
+          if (rsCreateOrder && Math.abs(isTotalOrder) < 1e-10) {
             // @update(order)
             const updateStatusOrder = await updateData(
               `/api/orders/${rsCreateOrder?.data?.documentId}?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount`,
@@ -861,7 +779,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 createDate: updateStatusOrder?.data.createdAt,
                 fullname: `${updateStatusOrder?.data?.customer?.firstName} ${updateStatusOrder?.data?.customer?.lastName}`,
                 company: `${updateStatusOrder?.data?.customer?.company}`,
-                products: isStore?.products,
+                products: getStore,
                 coupon:
                   updateStatusOrder?.data.coupons.length > 0
                     ? updateStatusOrder?.data?.coupons[0]
@@ -964,7 +882,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     }
   };
   const isDisabled =
-    !isStore?.products?.length > 0 || isFormCheckouts?.isSubmited === true;
+    !getStore?.length > 0 || isFormCheckouts?.isSubmited === true;
 
   return (
     <>
@@ -1012,7 +930,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                 {isDisabled ? (
                   <div
                     className={`absolute inset-x-0 inset-y-0 bg-white/60 backdrop-blur-[2px] ${
-                      !isStore?.products?.length > 0 ||
+                      !getStore?.length > 0 ||
                       isFormCheckouts?.isSubmited === true
                         ? 'z-[255] opacity-100'
                         : '-z-px opacity-0'
@@ -1020,7 +938,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   ></div>
                 ) : null}
 
-                {isStore?.products?.map((gtRslt, i) => {
+                {getStore?.map((gtRslt, i) => {
                   let groupName = getJoinString(gtRslt?.name);
                   return (
                     <div
@@ -1109,7 +1027,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                         <CopyOtherDetailBtn
                                           items={{
                                             firstItems: getJoinString(
-                                              isStore?.products[0]?.name
+                                              getStore[0]?.name
                                             ),
                                             attendee: attndIdx + 1,
                                             group: groupName,
@@ -1123,7 +1041,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                         <CopyOtherDetailBtn
                                           items={{
                                             firstItems: getJoinString(
-                                              isStore?.products[0]?.name
+                                              getStore[0]?.name
                                             ),
                                             attendee: attndIdx + 1,
                                             group: groupName,
@@ -1188,7 +1106,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                                 },
                                                 {
                                                   activeGroup: getJoinString(
-                                                    isStore?.products[
+                                                    getStore[
                                                       isFormCheckouts
                                                         ?.firstToggleCompany
                                                         ?.product
@@ -1322,7 +1240,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               </div>
 
               {/* @submit(mobile) */}
-              {isStore?.products?.length > 0 ? (
+              {getStore?.length > 0 ? (
                 <div
                   className={`relative mt-10 block w-full rounded-2xl border border-gray-200 bg-white px-4 py-4 ${
                     isDisabled
@@ -1349,7 +1267,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   >
                     {isFormCheckouts?.isSubmited === false ? (
                       <>
-                        {isStore?.totalOrder <= 1e-10
+                        {totalOrder <= 1e-10
                           ? 'Proceed Order'
                           : 'Proceed To Payment'}
                       </>
@@ -1416,9 +1334,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               </div>
               <OrderDetailCheckouts
                 items={{
-                  products: isStore?.products,
                   coupons: isStore?.isCoupons,
-                  totalQty: isStore?.totalQty,
                   isSubmited: isFormCheckouts?.isSubmited,
                 }}
                 stepForm={currentStepAttendee}
@@ -1449,7 +1365,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   >
                     {isFormCheckouts?.isSubmited === false ? (
                       <>
-                        {isStore?.totalOrder <= 1e-10
+                        {totalOrder <= 1e-10
                           ? 'Proceed Order'
                           : 'Proceed To Payment'}
                       </>
@@ -1581,7 +1497,11 @@ export const getServerSideProps = async (context) => {
           `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
         ),
         getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
-        getFetch(`/api/coupons?filters[category][$eq]=dev&populate=*`),
+        getFetch(
+          process.env.NODE_ENV === 'development'
+            ? `/api/coupons?filters[category][$eq]=dev&populate=*`
+            : `/api/coupons?filters[category][$eq]=promo&populate=*`
+        ),
         getFecthHbSpt(`/forms/v2/forms/${serverRuntimeConfig?.hbSptCheckout}`),
       ]);
     const sortedCountries = rsCountry.sort((a, b) =>

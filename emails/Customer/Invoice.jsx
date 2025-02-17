@@ -16,7 +16,7 @@ import {
   Link,
 } from '@react-email/components';
 import dayjs from 'dayjs';
-import { currencyConverter } from '@lib/helper/CalculateCartContext';
+import { currencyConverter } from '@lib/helper/CalculateCart';
 
 const InvoiceCustomer = ({
   customerId = '{customerId}',

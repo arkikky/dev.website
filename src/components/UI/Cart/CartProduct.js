@@ -6,8 +6,8 @@ import { useDispatch } from 'react-redux';
 import { removeItemCart } from '@reduxState/slices';
 
 // @lib/controller & helper
-import { currencyConverter } from '@lib/helper/CalculateCartContext';
-import { getTotalProduct } from '@lib/helper/CartContext';
+import { currencyConverter } from '@lib/helper/CalculateCart';
+import { getTotalProduct } from '@lib/helper/Store';
 
 // @components
 import QuantityCart from '@components/UI/Cart/QuantityCart';

@@ -11,7 +11,6 @@ const { publicRuntimeConfig } = getConfig();
 // @lib
 import { useStoreContext } from '@lib/context/store/StoreContext';
 import { nonceSha256 } from '@lib/helper/TrackingAnalytics';
-import { useCart } from '@lib/hooks/cart/Cart';
 import { getFetch, getFetchUrl } from '@lib/controller/API';
 
 // @components
@@ -38,11 +37,8 @@ import FAQ from '@layouts/FAQ';
 import MoonPortalBanner from '@layouts/Banner/MoonPortalBanner';
 
 const Home = ({ mode, collections, products }) => {
-  const { sessionsProducts } = useStoreContext();
-  const { getStore } = useCart();
-  const [isProducts, setProducts] = useState({
-    products: products?.data,
-  });
+  const { getStore, sessionsProducts } = useStoreContext();
+  const [isProducts, setProducts] = useState(products?.data);
   const [isCollections, setCollections] = useState({
     aboutus: collections?.aboutus,
     speakers: collections?.speakers,
@@ -162,7 +158,7 @@ const Home = ({ mode, collections, products }) => {
             </div>
             {/* @products */}
             <div className="mt-4 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:mt-10 sm:grid-cols-2 xl:grid-cols-3">
-              {isProducts?.products?.slice(0, 6).map((gtRslt, i) => {
+              {isProducts?.slice(0, 6).map((gtRslt, i) => {
                 return (
                   <Fragment key={i}>
                     <TicketProducts

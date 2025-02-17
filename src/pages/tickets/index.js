@@ -8,7 +8,6 @@ const { publicRuntimeConfig } = getConfig();
 
 // @lib
 import { useStoreContext } from '@lib/context/store/StoreContext';
-import { useCart } from '@lib/hooks/cart/Cart';
 import { getFetch } from '@lib/controller/API';
 
 // @components
@@ -26,11 +25,8 @@ const TicketProducts = dynamic(() => import('@components/UI/TicketProducts'), {
 import LayoutStore from '@layouts/LayoutStore';
 
 const Tickets = ({ mode, products }) => {
-  const { sessionsProducts } = useStoreContext();
-  const { getStore } = useCart();
-  const [isProducts, setProducts] = useState({
-    products: products?.data,
-  });
+  const { getStore, sessionsProducts } = useStoreContext();
+  const [isProducts, setProducts] = useState(products?.data);
 
   return (
     <>
@@ -70,7 +66,7 @@ const Tickets = ({ mode, products }) => {
 
             {/* @products */}
             <div className="mt-4 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:mt-10 sm:grid-cols-2 xl:grid-cols-3">
-              {isProducts?.products?.slice(0, 6).map((gtRslt, i) => {
+              {isProducts?.slice(0, 6).map((gtRslt, i) => {
                 return (
                   <Fragment key={i}>
                     <TicketProducts
