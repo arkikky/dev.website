@@ -49,11 +49,11 @@ export function useTrackingStore() {
         //   ],
         // },
         event: 'purchase',
-        transaction_id: 'test-1234',
+        transaction_id: 'test-1234a',
         value: 1000,
         currency: 'IDR',
         ecommerce: {
-          transaction_id: 'test-1234',
+          transaction_id: 'test-123wda4',
           value: 1000,
           currency: 'IDR',
           items: [
