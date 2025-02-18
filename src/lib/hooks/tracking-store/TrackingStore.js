@@ -40,6 +40,24 @@ export function useTrackingStore() {
           ],
         },
       });
+      window.gtag('event', 'purchase_confirmed', {
+        transaction_id: order?.documentId,
+        value: order?.orderTotal,
+        tax: 0.11,
+        shipping: 0,
+        currency: 'IDR',
+        coupon: '-',
+        items: [
+          {
+            item_id: order?.products[0]?.id,
+            item_name: order?.products[0]?.name,
+            item_brand: 'Coinfest Asia 2025',
+            price: order?.products[0]?.priceSale ?? order?.products[0]?.price,
+            item_category: 'Tickets',
+            id: order?.products[0]?.id,
+          },
+        ],
+      });
 
       console.log('DataLayer Event Pushed:', window.dataLayer);
       return;
