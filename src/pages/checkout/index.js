@@ -542,9 +542,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   // @submit(Checkout)
   const onSubmitForm = async (data) => {
     const isFirstItems = getJoinString(getStore[0]?.name);
-    console.log('Click');
-
-    return;
+    // console.log('Click');
+    // return;
     if (isValid === true && isCart) {
       const isTotalOrder = calculateTotalOrder(
         isCoupon ? isDiscount?.totalWithDiscount : totalOrder

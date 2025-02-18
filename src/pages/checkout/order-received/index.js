@@ -110,7 +110,6 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
   // }, [trackingPurchase]);
   useEffect(() => {
     console.log('Tracking...');
-    console.log(isOrderRecived?.order);
 
     handlePurchase(isOrderRecived?.order);
   }, [handlePurchase]);

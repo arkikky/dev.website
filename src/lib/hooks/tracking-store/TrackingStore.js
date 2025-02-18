@@ -46,8 +46,7 @@ export function useTrackingStore() {
           ],
         },
       });
-
-      // console.log('DataLayer Event Pushed:', window.dataLayer);
+      console.log('DataLayer Event Pushed:', window.dataLayer);
       return;
     }
   }, []);
