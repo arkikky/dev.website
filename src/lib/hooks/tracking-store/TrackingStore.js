@@ -20,7 +20,7 @@ export function useTrackingStore() {
 
     if (typeof window !== 'undefined' && window.gtag) {
       window.dataLayer.push({
-        event: 'purchase_confirmed',
+        event: 'purchase',
         datalayer_event_name: 'purchase',
         ecommerce: {
           transaction_id: 'test1' + order?.documentId,
