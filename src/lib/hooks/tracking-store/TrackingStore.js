@@ -18,7 +18,7 @@ export function useTrackingStore() {
     if (typeof window !== 'undefined' && window.gtag) {
       window.dataLayer.push({ ecommerce: null });
       window.dataLayer.push({
-        event: 'purchase_confirmed',
+        event: 'purchase',
         debug_mode: true,
         'value.transID': order?.documentId,
         'value.transValue': order?.orderTotal,
@@ -42,7 +42,7 @@ export function useTrackingStore() {
           ],
         },
       });
-      window.gtag('event', 'purchase_confirmed', {
+      window.gtag('event', 'purchase', {
         transaction_id: order?.documentId,
         value: order?.orderTotal,
         tax: 0.11,
