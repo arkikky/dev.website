@@ -893,6 +893,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             id="ca25Form_Checkout"
             className="relative grid-cols-1 gap-x-6 gap-y-12 supports-grid:grid sm:grid-cols-12 sm:gap-y-14 lg:gap-y-20"
             method="POST"
+            name="form_checkout"
             onSubmit={handleSubmit(onSubmitForm, onErrorSubmit)}
           >
             <div className="order-last col-span-full px-2.5 sm:px-0 xl:order-first xl:col-span-7 xl:pr-10">
@@ -1254,10 +1255,9 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
                   {/* @submit(Form) */}
                   <button
-                    id="proceed-payment-btn"
+                    id="proceed-payment-btn12313"
                     className={`!pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-sm font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900 sm:text-base`}
                     type="submit"
-                    role="button"
                     aria-label="Coinfest Asia 2025 Submit Mobile Checkout"
                     disabled={isDisabled}
                     data-layer-id={'proceed-payment-btn'}
@@ -1355,7 +1355,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     id="proceed-payment-btn"
                     className={`!pointer-events-auto inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
                     type="submit"
-                    role="button"
                     aria-label="Coinfest Asia 2025 Submit Desktop Checkout"
                     disabled={isDisabled}
                     data-layer-id={'proceed-payment-btn'}
