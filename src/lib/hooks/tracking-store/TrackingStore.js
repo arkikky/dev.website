@@ -16,7 +16,6 @@ export function useTrackingStore() {
     console.log(order);
 
     if (typeof window !== 'undefined' && window.gtag) {
-      window.dataLayer.push({ ecommerce: null });
       window.dataLayer.push({
         event: 'purchase_confirmed',
         debug_mode: true,
