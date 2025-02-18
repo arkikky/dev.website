@@ -72,7 +72,7 @@ export function useTrackingStore() {
       // });
 
       window.gtag('event', 'purchase', {
-        transaction_id: order?.documentId,
+        transaction_id: 'test' + order?.documentId,
         value: Number(order?.orderTotal),
         shipping: 0,
         currency: 'IDR',
