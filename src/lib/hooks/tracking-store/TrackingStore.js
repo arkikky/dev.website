@@ -30,11 +30,12 @@ export function useTrackingStore() {
           coupon: '-',
           items: [
             {
-              item_id: order?.products[0]?.productId,
+              item_id: order?.products[0]?.id,
               item_name: order?.products[0]?.name,
               item_brand: 'Coinfest Asia 2025',
-              item_category: 'Events',
               price: order?.products[0]?.priceSale ?? order?.products[0]?.price,
+              item_category: 'Tickets',
+              id: order?.products[0]?.id,
             },
           ],
         },
