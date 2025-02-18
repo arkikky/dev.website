@@ -542,6 +542,9 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   // @submit(Checkout)
   const onSubmitForm = async (data) => {
     const isFirstItems = getJoinString(getStore[0]?.name);
+    console.log('Click');
+
+    return;
     if (isValid === true && isCart) {
       const isTotalOrder = calculateTotalOrder(
         isCoupon ? isDiscount?.totalWithDiscount : totalOrder
@@ -1260,7 +1263,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     type="submit"
                     aria-label="Coinfest Asia 2025 Submit Mobile Checkout"
                     disabled={isDisabled}
-                    data-layer-id={'proceed-payment-btn'}
+                    data-layer-id={'proceed-payment-btn12313'}
                   >
                     {isFormCheckouts?.isSubmited === false ? (
                       <>
