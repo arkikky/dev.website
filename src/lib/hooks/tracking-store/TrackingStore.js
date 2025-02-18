@@ -13,35 +13,55 @@ export function useTrackingStore() {
   }, []);
 
   const handlePurchase = useCallback((order) => {
-    console.log(order);
+    console.log(window.gtag ? 'gtag tersedia' : 'gtag tidak ditemukan');
+    console.log(
+      window.dataLayer ? 'dataLayer tersedia' : 'dataLayer tidak ditemukan'
+    );
 
     if (typeof window !== 'undefined' && window.gtag) {
       window.dataLayer.push({
-        event: 'purchase_confirmed',
-        datalayer_event_name: 'purchase',
-        'value.transID': order?.documentId,
-        'value.transValue': order?.orderTotal,
+        // event: 'purchase_confirmed',
+        // datalayer_event_name: 'purchase',
+        // // 'value.transID': order?.documentId,
+        // // 'value.transValue': order?.orderTotal,
+        // ecommerce: {
+        //   transaction_id: order?.documentId,
+        //   value: Number(order?.orderTotal),
+        //   tax: 0.11,
+        //   shipping: 0,
+        //   currency: 'IDR',
+        //   coupon: '-',
+        //   items: [
+        //     {
+        //       item_id: order?.products[0]?.id,
+        //       item_name: order?.products[0]?.name,
+        //       affiliation: 'coinfest.asia',
+        //       price: Number(order?.products[0]?.priceSale ?? order?.products[0]?.price),
+        //       item_brand: 'Coinfest Asia 2025',
+        //       item_variant: 'Festival Ticket',
+        //       item_variant_id: order?.products[0]?.documentId,
+        //       item_category: 'Tickets',
+        //       currency: 'IDR',
+        //       index: 0,
+        //       quantity: 1,
+        //       google_bussiness_vertical: 'retail',
+        //     },
+        //   ],
+        // },
+        event: 'purchase',
+        transaction_id: 'test-1234',
+        value: 1000,
+        currency: 'IDR',
         ecommerce: {
-          transaction_id: order?.documentId,
-          value: order?.orderTotal,
-          tax: 0.11,
-          shipping: 0,
+          transaction_id: 'test-1234',
+          value: 1000,
           currency: 'IDR',
-          coupon: '',
           items: [
             {
-              item_id: order?.products[0]?.id,
-              item_name: order?.products[0]?.name,
-              affiliation: 'coinfest.asia',
-              price: order?.products[0]?.priceSale ?? order?.products[0]?.price,
-              item_brand: 'Coinfest Asia 2025',
-              item_variant: 'Festival Ticket',
-              item_variant_id: order?.products[0]?.documentId,
-              item_category: 'Tickets',
-              currency: 'IDR',
-              index: 0,
-              quantity: 1,
-              google_bussiness_vertical: 'reatil',
+              item_id: 'test-item',
+              item_name: 'Test Ticket',
+              price: 500,
+              quantity: 2,
             },
           ],
         },
