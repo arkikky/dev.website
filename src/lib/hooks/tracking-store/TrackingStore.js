@@ -88,7 +88,7 @@ export function useTrackingStore() {
       // });
 
       window.gtag('event', 'purchase', {
-        transaction_id: 'test22' + order?.documentId,
+        transaction_id: 'test_2113_' + order?.documentId,
         value: Number(order?.orderTotal),
         shipping: 0,
         currency: 'IDR',
@@ -101,11 +101,8 @@ export function useTrackingStore() {
             price: Number(
               order?.products[0]?.priceSale ?? order?.products[0]?.price
             ),
-            item_brand: 'Coinfest Asia 2025',
-            item_variant: 'Festival Ticket',
-            item_variant_id: order?.products[0]?.documentId,
-            item_category: 'Tickets',
             currency: 'IDR',
+            quantity: 3,
           },
         ],
       });
