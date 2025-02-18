@@ -9,11 +9,7 @@ const { serverRuntimeConfig } = getConfig();
 
 // @lib/controller & helper
 import { getFetch } from '@lib/controller/API';
-import {
-  getTotalCart,
-  calculateDiscount,
-  calculateDiscountCheckout,
-} from '@lib/helper/Store';
+import { getTotalCart } from '@lib/helper/Store';
 
 export default async function handler(req, res) {
   const headersApiKey = req?.headers['x-api-key'];
@@ -55,30 +51,45 @@ export default async function handler(req, res) {
   let totalOrder, discntAmount;
 
   if (isTotalCart) {
-    const getCoupon = await getFetch(
+    const isDataCoupon = await getFetch(
       `/api/coupons?populate=*&filters[couponCode][$eq]=${coupon?.couponCode}`
     );
-    const setCoupon = getCoupon?.data?.length > 0 ? getCoupon?.data[0] : null;
+    const setCoupon =
+      isDataCoupon?.data?.length > 0 ? isDataCoupon?.data[0] : null;
     const checkCoupon =
       setCoupon !== null && setCoupon !== 'null' && setCoupon !== undefined;
 
     if (checkCoupon) {
+      const { type, amount } = setCoupon;
       const includedProductIds = setCoupon?.includedProducts?.map(
-        (product) => product.documentId
+        (p) => p.documentId
       );
       const validProducts = products?.filter((product) =>
         includedProductIds?.includes(product?.documentId)
       );
-      const setPrice = validProducts[0]?.priceSale ?? validProducts[0]?.price;
-      const totalDiscount = calculateDiscount(setCoupon, isTotalCart, setPrice);
-      const totalAfterDiscount = calculateDiscountCheckout(
-        setCoupon,
-        isTotalCart,
-        setPrice
-      );
 
-      discntAmount = totalDiscount;
-      totalOrder = totalAfterDiscount;
+      // @check(valid Product)
+      const discntAmounts = parseFloat(amount) || 0;
+      const isPrices =
+        validProducts[0]?.priceSale ?? validProducts[0]?.price ?? 0;
+      let calculatedDiscounts = 0;
+      if (type === 'percentage') {
+        calculatedDiscounts =
+          parseInt(discntAmounts) >= 100
+            ? Math.min(isTotalCart, isPrices)
+            : isPrices * (discntAmounts / 100);
+      } else if (type === 'fix') {
+        calculatedDiscounts = Math.min(discntAmounts, isTotalCart);
+      } else {
+        // @implement logic for non-percentage coupons if needed
+      }
+
+      const isTotalOrder = isTotalCart - calculatedDiscounts;
+      const taxAmount = Math.floor(isTotalOrder * 0.11);
+      const totalWithTax = isTotalOrder + taxAmount;
+
+      discntAmount = calculatedDiscounts;
+      totalOrder = totalWithTax;
     } else {
       const setTax_Rate = 0.11;
       const taxAmount = isTotalCart * setTax_Rate;

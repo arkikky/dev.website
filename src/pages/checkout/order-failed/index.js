@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 
-// @lib/controller & helper
+// @lib
 import { getFetch } from '@lib/controller/API';
 
 // @components
@@ -12,11 +12,7 @@ import Container from '@components/Container';
 // @layouts
 import LayoutDefaults from '@layouts/Layouts';
 
-const OrderReceivedFailed = ({ orderReceived, orderCustomer }) => {
-  const [isOrderRecived, setOrderRecived] = useState({
-    order: orderReceived ? orderReceived.data : [],
-    customer: orderCustomer?.data?.attendees.length,
-  });
+const OrderReceivedFailed = ({}) => {
   return (
     <>
       {/* @head */}
@@ -105,39 +101,10 @@ OrderReceivedFailed.getLayout = (page, { pageProps }) => {
 };
 export const getServerSideProps = async (context) => {
   const { process } = context?.query;
-  const isValid_Process =
-    typeof process === 'string' &&
-    /^[a-zA-Z0-9]+$/.test(process.trim()) &&
-    process.trim().length <= 31;
-  if (!isValid_Process) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: true,
-      },
-    };
-  }
-
   try {
     const isLayouts = true;
-    const rsOrderRecived = await getFetch(
-      `/api/orders/${process}?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount`
-    );
-    // @check-res(Order Recived)
-    if (!rsOrderRecived) {
-      return {
-        redirect: {
-          destination: '/',
-          permanent: true,
-        },
-      };
-    }
-    // @check-res(Customer)
-    const rsCustmrId = rsOrderRecived?.data?.customer.documentId;
-    const rsCustmr = await getFetch(
-      `/api/customers/${rsCustmrId}?fields[0]=customerId&populate[attendees][fields][0]=id&populate[attendees][fields][1]=firstName&populate[attendees][fields][2]=firstName&populate[attendees][fields][3]=lastName`
-    );
-    if (!rsCustmr) {
+    const rsOrderRecived = await getFetch(`/api/orders/${process}`);
+    if (rsOrderRecived?.data?.paymentStatus === 'Success') {
       return {
         redirect: {
           destination: '/',
@@ -149,8 +116,6 @@ export const getServerSideProps = async (context) => {
       props: {
         mode: 'light',
         layouts: isLayouts || false,
-        orderReceived: rsOrderRecived || [],
-        orderCustomer: rsCustmr || [],
       },
     };
   } catch (error) {

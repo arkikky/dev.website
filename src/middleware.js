@@ -8,28 +8,13 @@ export function middleware(req) {
     'wget',
     'python-requests',
     'scrapy',
-    'bot',
-    'crawler',
     'spider',
   ];
-  const allowedBots = [
-    'googlebot',
-    'bingbot',
-    'yahoo',
-    'duckduckbot',
-    'baiduspider',
-    'yandexbot',
-  ];
 
-  // @trusted-agent
-  if (allowedBots.some((agent) => userAgent.includes(agent))) {
-    return NextResponse.next();
-  }
-
-  // @block-agent
   const isBlocked = blockedUserAgents.some((agent) =>
     userAgent.includes(agent)
   );
+
   if (isBlocked) {
     return new NextResponse('Access Denied', { status: 403 });
   }

@@ -659,9 +659,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                       'rc33x0dgm6tm707jghffuip4'
                         ? `Festival Tickets`
                         : `${rsAttendee?.data.product?.name}`;
-
-                    console.log(tickets);
-
                     arrAttendees.push({
                       attendee: rsAttendee?.data,
                       // blobQrCode: rsBlobQrCode,
@@ -1498,7 +1495,7 @@ export const getServerSideProps = async (context) => {
         ),
         getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
         getFetch(
-          process.env.NODE_ENV === 'development'
+          process.env.NODE_ENV !== 'development'
             ? `/api/coupons?filters[category][$eq]=dev&populate=*`
             : `/api/coupons?filters[category][$eq]=promo&populate=*`
         ),

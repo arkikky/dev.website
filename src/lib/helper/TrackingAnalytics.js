@@ -15,7 +15,7 @@ export const hashTwtrConversionScript = CryptoJS.SHA256(
 ).toString(CryptoJS.enc.Base64);
 
 // @google-tags-analytics
-export const gTagsAnalyticsScript = `window.dataLayer = window.dataLayer || []; function gtag() { window.dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-HC7BZC18HB');`;
+export const gTagsAnalyticsScript = `window.dataLayer = window.dataLayer || []; function gtag() { window.dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-HC7BZC18HB', { debug_mode: true });`;
 export const hashGTagAnalytics = CryptoJS.SHA256(gTagsAnalyticsScript).toString(
   CryptoJS.enc.Base64
 );

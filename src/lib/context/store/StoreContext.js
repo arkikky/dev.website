@@ -165,19 +165,19 @@ export const StoreProvider = ({ children }) => {
             }
             // @check(valid Product)
             const discntAmount = parseFloat(amount) || 0;
+            const isPrice =
+              validProducts[0]?.priceSale ?? validProducts[0]?.price ?? 0;
             let calculatedDiscount = 0;
             if (type === 'percentage') {
               calculatedDiscount =
                 parseInt(discntAmount) >= 100
-                  ? isSubTotal
-                  : (validProducts[0]?.priceSale ?? validProducts[0]?.price) *
-                    (discntAmount / 100);
+                  ? Math.min(isSubTotal, isPrice)
+                  : isPrice * (discntAmount / 100);
             } else if (type === 'fix') {
               calculatedDiscount = Math.min(discntAmount, isSubTotal);
             } else {
               // @implement logic for non-percentage coupons if needed
             }
-            console.log(calculatedDiscount);
 
             setStore((prev) => ({
               ...prev,
@@ -371,13 +371,14 @@ export const StoreProvider = ({ children }) => {
       }
       // @check(valid Product)
       const discntAmount = parseFloat(amount) || 0;
+      const isPrice =
+        validProducts[0]?.priceSale ?? validProducts[0]?.price ?? 0;
       let calculatedDiscount = 0;
       if (type === 'percentage') {
         calculatedDiscount =
           parseInt(discntAmount) >= 100
-            ? total
-            : (validProducts[0]?.priceSale ?? validProducts[0]?.price) *
-              (discntAmount / 100);
+            ? Math.min(total, isPrice)
+            : isPrice * (discntAmount / 100);
       } else if (type === 'fix') {
         calculatedDiscount = Math.min(discntAmount, total);
       } else {

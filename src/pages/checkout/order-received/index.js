@@ -12,7 +12,7 @@ const { serverRuntimeConfig } = getConfig();
 import { useDispatch } from 'react-redux';
 import { removeCart } from '@reduxState/slices';
 
-// @lib/controller & helper
+// @lib
 import { useTrackingStore } from '@lib/hooks/tracking-store/TrackingStore';
 import { getFetch, getFetchUrl, updateData } from '@lib/controller/API';
 import { submitFormHbSpt } from '@lib/controller/HubSpot';
@@ -36,12 +36,13 @@ import LayoutDefaults from '@layouts/Layouts';
 
 const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
   const router = useRouter();
-  const { trackingPurchase } = useTrackingStore();
+  const { trackingPurchase, handlePurchase } = useTrackingStore();
   const dispatch = useDispatch();
   const [isOrderRecived, setOrderRecived] = useState({
     isIpAddress: ipAddress,
     order: orderReceived ? orderReceived.data : [],
     customer: orderCustomer?.data,
+    isCoupon: [],
     discount: 0,
   });
   const isCustomer = {
@@ -51,24 +52,47 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
   };
 
   const hndleIntzCoupon = async () => {
-    const isPrice =
-      isOrderRecived?.order?.products[0].priceSale ??
-      isOrderRecived?.order?.products[0].price;
-    const discntAmount =
-      parseFloat(
-        isOrderRecived?.order?.coupons.length > 0
-          ? isOrderRecived?.order?.coupons[0].amount
-          : 0
-      ) || 0;
-    const calculatedDiscount =
-      parseInt(
-        isOrderRecived?.order?.coupons.length > 0
-          ? isOrderRecived?.order?.coupons[0].amount
-          : 0
-      ) === 100
-        ? isPrice
-        : isPrice * (discntAmount / 100);
-    setOrderRecived({ ...isOrderRecived, discount: calculatedDiscount });
+    if (isOrderRecived?.order?.coupons.length > 0) {
+      const isDataCoupon = await fetch('/api/data/coupons?sv=coinfestasia', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data: encodeData(isOrderRecived?.order?.coupons[0]?.couponCode),
+        }),
+      }).then((res) => res.json());
+      const { type, amount } = isDataCoupon;
+      // @check(includes product)
+      const incldProsductIds = isDataCoupon?.includedProducts?.map(
+        (p) => p?.documentId
+      );
+      const validProducts = isOrderRecived?.order?.products?.filter((p) =>
+        incldProsductIds.includes(p?.documentId)
+      );
+
+      // @check(valid Product)
+      const discntAmounts = parseFloat(amount) || 0;
+      const isPrices = validProducts[0]?.priceSale ?? validProducts[0]?.price;
+      let calculatedDiscounts = 0;
+      if (type === 'percentage') {
+        calculatedDiscounts =
+          parseInt(discntAmounts) >= 100
+            ? isPrices
+            : (validProducts[0]?.priceSale ?? validProducts[0]?.price) *
+              (discntAmounts / 100);
+      } else if (type === 'fix') {
+        calculatedDiscounts = Math.min(discntAmounts, isPrices);
+      } else {
+        // @implement logic for non-percentage coupons if needed
+      }
+
+      setOrderRecived({
+        ...isOrderRecived,
+        discount: calculatedDiscounts,
+        isCoupon: isDataCoupon,
+      });
+    }
   };
 
   // @initialize(store)
@@ -76,22 +100,20 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
     dispatch(removeCart());
     hndleIntzCoupon();
   }, []);
-  // @initialize(tracking-purchase)
-  useEffect(() => {
-    trackingPurchase({
-      transID: isOrderRecived?.order?.documentId,
-      transValue: isOrderRecived?.order?.orderTotal,
-    });
-  }, [trackingPurchase]);
 
-  const isDiscount =
-    parseInt(
-      isOrderRecived?.order?.coupons.length > 0
-        ? isOrderRecived?.order?.coupons[0].amount
-        : 0
-    ) === 100
-      ? currencyConverter(isOrderRecived?.discount)
-      : currencyConverter(isOrderRecived?.discount);
+  // @initialize(tracking-purchase)
+  // useEffect(() => {
+  //   trackingPurchase({
+  //     transID: isOrderRecived?.order?.documentId,
+  //     transValue: isOrderRecived?.order?.orderTotal,
+  //   });
+  // }, [trackingPurchase]);
+  useEffect(() => {
+    console.log('Tracking...');
+    console.log(isOrderRecived?.order);
+
+    handlePurchase(isOrderRecived?.order);
+  }, [handlePurchase]);
 
   // @check-payment
   useEffect(() => {
@@ -558,7 +580,9 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                         <div className="flex flex-col self-center text-start text-sm font-normal text-gray-600">
                           {`Discount Coupon :`}
                           <span className="font-semibold uppercase text-primary">
-                            {`${isOrderRecived?.order?.coupons[0].amount}% (${isOrderRecived?.order?.coupons[0].couponCode})`}
+                            {isOrderRecived?.isCoupon?.type === 'percentage' &&
+                              `${isOrderRecived?.order?.coupons[0].amount}%`}{' '}
+                            ({isOrderRecived?.order?.coupons[0].couponCode})
                           </span>
                         </div>
                         <div className="col-span-full flex flex-row items-center pl-0 text-start text-base font-light sm:col-span-2 sm:text-start xl:pl-8">
@@ -566,7 +590,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                             :
                           </span>
                           <span className="font-medium text-gray-400">
-                            -{isDiscount}
+                            {`-${currencyConverter(isOrderRecived?.discount)}`}
                           </span>
                         </div>
                       </div>
@@ -671,6 +695,7 @@ export const getServerSideProps = async (context) => {
         },
       };
     }
+
     // @check-res(Customer)
     const rsCustmrId = rsOrderRecived?.data?.customer.documentId;
     const rsCustmr = await getFetch(
@@ -684,6 +709,7 @@ export const getServerSideProps = async (context) => {
         },
       };
     }
+
     return {
       props: {
         mode: 'light',
