@@ -18,7 +18,7 @@ export function useTrackingStore() {
     if (typeof window !== 'undefined' && window.gtag) {
       window.dataLayer.push({ ecommerce: null });
       window.dataLayer.push({
-        event: 'purchase',
+        event: 'purchase_confirmed',
         debug_mode: true,
         'value.transID': order?.documentId,
         'value.transValue': order?.orderTotal,
