@@ -19,7 +19,6 @@ export function useTrackingStore() {
       window.dataLayer.push({
         event: 'purchase_confirmed',
         datalayer_event_name: 'purchase',
-        debug_mode: true,
         'value.transID': order?.documentId,
         'value.transValue': order?.orderTotal,
         ecommerce: {
@@ -41,6 +40,7 @@ export function useTrackingStore() {
               item_category: 'Tickets',
               currency: 'IDR',
               index: 0,
+              quantity: 1,
               google_bussiness_vertical: 'reatil',
             },
           ],
