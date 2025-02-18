@@ -16,6 +16,7 @@ export function useTrackingStore() {
     console.log(order);
 
     if (typeof window !== 'undefined' && window.gtag) {
+      window.dataLayer.push({ ecommerce: null });
       window.dataLayer.push({
         event: 'purchase_confirmed',
         debug_mode: true,
@@ -35,6 +36,7 @@ export function useTrackingStore() {
               item_brand: 'Coinfest Asia 2025',
               price: order?.products[0]?.priceSale ?? order?.products[0]?.price,
               item_category: 'Tickets',
+              quantity: 1,
               id: order?.products[0]?.id,
             },
           ],
