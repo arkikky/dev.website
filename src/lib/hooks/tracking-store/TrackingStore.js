@@ -106,7 +106,7 @@ export function useTrackingStore() {
       // });
 
       window.gtag('event', 'purchase', {
-        transaction_id: 'test_223231311231_' + order?.documentId,
+        transaction_id: 'test_832_' + order?.documentId,
         value: Number(order?.orderTotal),
         shipping: 0,
         currency: 'IDR',
@@ -114,7 +114,7 @@ export function useTrackingStore() {
         items: [
           {
             item_id: order?.products[0]?.id,
-            item_name: order?.products[0]?.name,
+            item_name: 'Test Festival',
             affiliation: 'coinfest.asia',
             price: Number(
               order?.products[0]?.priceSale ?? order?.products[0]?.price
