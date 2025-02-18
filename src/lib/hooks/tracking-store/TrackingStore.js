@@ -19,6 +19,7 @@ export function useTrackingStore() {
     );
 
     if (typeof window !== 'undefined' && window.gtag) {
+      window.dataLayer.push({ ecommerce: null });
       window.dataLayer.push({
         event: 'purchase_confirmed',
         datalayer_event_name: 'purchase',
@@ -41,7 +42,7 @@ export function useTrackingStore() {
         //   // // 'value.transID': order?.documentId,
         //   // // 'value.transValue': order?.orderTotal,
         ecommerce: {
-          transaction_id: 'test_2231231_' + order?.documentId,
+          transaction_id: 'test_223231311231_' + order?.documentId,
           value: Number(order?.orderTotal),
           shipping: 0,
           currency: 'IDR',
