@@ -10,16 +10,30 @@ export function useTrackingStore() {
         : items?.name;
 
     if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'view_item', {
-        items: [
-          {
-            id: items?.id,
-            name: items?.name,
-            category: isCategory,
-            price: items?.priceSale ?? items?.price,
-          },
-        ],
-        currency: 'IDR',
+      // window.gtag('event', 'view_item', {
+      //   items: [
+      //     {
+      //       id: items?.id,
+      //       name: items?.name,
+      //       category: isCategory,
+      //       price: Number(items?.priceSale ?? items?.price),
+      //     },
+      //   ],
+      //   currency: 'IDR',
+      // });
+      window.dataLayer.push({
+        event: 'view_item',
+        ecommerce: {
+          items: [
+            {
+              id: items?.id,
+              name: items?.name,
+              category: isCategory,
+              price: Number(items?.priceSale ?? items?.price),
+            },
+          ],
+          currency: 'IDR',
+        },
       });
       console.log('DataL/ayer Event Pushed:', window.dataLayer);
     }
