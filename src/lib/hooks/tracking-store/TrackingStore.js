@@ -9,10 +9,12 @@ export function useTrackingStore() {
   // @view-product
   const trackingViewProduct = useCallback((store, total) => {
     if (typeof window !== 'undefined' && window.gtag) {
-      window.dataLayer.push('event', 'view_item', {
-        currency: 'IDR',
-        value: total,
+      window.dataLayer.push({ ecommerce: null });
+      window.dataLayer.push({
+        event: 'view_item',
         ecommerce: {
+          currency: 'IDR',
+          value: total,
           items:
             store?.map((item, i) => ({
               item_id: item?.id,
