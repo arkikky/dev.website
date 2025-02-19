@@ -46,7 +46,7 @@ export function calculateDiscountCheckout(setCoupon, totalCart, setPrice) {
 
 // @groupped-attendee
 export function setGroupedAttendees(p, att) {
-  const awd = p?.map((product) => {
+  const grpArr = p?.map((product) => {
     const attendeesForProduct = att
       .filter(
         ({ attendee }) => attendee?.product.documentId === product?.documentId
@@ -82,7 +82,7 @@ export function setGroupedAttendees(p, att) {
       quantity: attendeesForProduct.length,
     };
   });
-  return awd;
+  return grpArr;
 }
 
 // @biling-data

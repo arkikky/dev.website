@@ -29,10 +29,12 @@ const TicketProducts = ({
 }) => {
   const { data: isCart } = useSelector((state) => state.cart);
   const {
+    getStore,
     sessionsProducts,
     handleAddProductCart,
     updateQuantityCart,
     checkTotalQty,
+    totalOrder,
   } = useStoreContext();
   const { trackingViewProduct } = useTrackingStore();
   const { toggleOverlayPopUp } = useMethod();
@@ -53,7 +55,7 @@ const TicketProducts = ({
   // @calculate-products
   useEffect(() => {
     const foundProduct = cartProducts?.find(
-      (item) => item.documentId === data?.documentId
+      (i) => i.documentId === data?.documentId
     );
     setSessionProducts((prev) => ({
       ...prev,
@@ -62,15 +64,15 @@ const TicketProducts = ({
   }, [cartProducts, data?.documentId]);
 
   useEffect(() => {
-    const foundQtyProduct = isCart?.find(
-      (item) => item.id_product === data?.documentId
+    const foundQtyProduct = getStore?.find(
+      (i) => i.documentId === data?.documentId
     );
     setSessionProducts((prev) => ({
       ...prev,
       checkProduct: !!foundQtyProduct,
       count: foundQtyProduct?.quantity || 1,
     }));
-  }, [isCart, data?.documentId]);
+  }, [getStore, data?.documentId]);
 
   // @add-tracking-id
   const trackingButtonId = (documentId, name, isPage) => {
@@ -285,15 +287,16 @@ const TicketProducts = ({
             {isSessionProducts?.checkProduct === true ? (
               <button
                 id={`ca25AddedBtn_Product${data?.name.replace(/\s/g, '')}`}
-                className={`ca25ProductsBtn actived relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${!sessionsProducts ? 'cursor-default' : 'cursor-pointer'}`}
+                className={`ca25ProductsBtn ca25DL_ViewProduct actived relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${!sessionsProducts ? 'cursor-default' : 'cursor-pointer'}`}
                 role="button"
-                aria-label={`Button Coinfest Asia 2025 - ${data?.name.replace(/\s/g, '')} Added Products)`}
+                aria-label={`Button ${data?.name.replace(/\s/g, '')} Products Coinfest Asia 2025`}
                 onClick={(e) => {
                   e.preventDefault();
                   toggleOverlayPopUp(
                     '.ca2025BckdrpOverflay_PopUpMobile',
                     '.ca2025CartPopUp_Mobile'
                   );
+                  trackingViewProduct(getStore, totalOrder);
                 }}
               >
                 {`View Cart`}
@@ -301,9 +304,9 @@ const TicketProducts = ({
             ) : (
               <button
                 id={trackingButtonId(data?.documentId, data?.name, isPage)}
-                className={`ca25ProductsBtn ca25DL_ViewProduct relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${!sessionsProducts ? 'cursor-default' : 'cursor-pointer'}`}
+                className={`ca25ProductsBtn relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${!sessionsProducts ? 'cursor-default' : 'cursor-pointer'}`}
                 role="button"
-                aria-label={`Button Coinfest Asia 2025 - ${data?.name.replace(/\s/g, '')} Products)`}
+                aria-label={`Button ${data?.name.replace(/\s/g, '')} Products Coinfest Asia 2025`}
                 data-layer-id={trackingButtonId(
                   data?.documentId,
                   data?.name,
@@ -313,7 +316,6 @@ const TicketProducts = ({
                 onClick={(e) => {
                   e.preventDefault();
                   handleAddProductCart(data, isSessionProducts?.count);
-                  trackingViewProduct(data);
                 }}
               >
                 {isLoading ? (

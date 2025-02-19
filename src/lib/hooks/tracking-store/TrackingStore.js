@@ -1,41 +1,33 @@
 import { useCallback } from 'react';
 
-export function useTrackingStore() {
-  // @view-product
-  const trackingViewProduct = useCallback((items) => {
-    console.log(items);
-    const isCategory =
-      items?.documentId !== 'rc33x0dgm6tm707jghffuip4'
-        ? `Festival Tickets`
-        : items?.name;
+// @lib
+// import { useStoreContext } from '@lib/context/store/StoreContext';
 
+export function useTrackingStore() {
+  // const { getStore } = useStoreContext();
+
+  // @view-product
+  const trackingViewProduct = useCallback((store, total) => {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'view_item', {
-        items: [
-          {
-            id: items?.id,
-            name: items?.name,
-            category: isCategory,
-            price: Number(items?.priceSale ?? items?.price),
-          },
-        ],
         currency: 'IDR',
+        value: total,
+        items:
+          store?.map((item, i) => ({
+            item_id: item?.id,
+            item_name: item?.name,
+            index: i,
+            item_brand: 'Coinfest Asia',
+            item_category:
+              item?.documentId !== 'rc33x0dgm6tm707jghffuip4'
+                ? `Festival Tickets`
+                : item?.name,
+            price: Number(item?.priceSale ?? gtRslt?.price),
+            quantity: item?.quantity,
+          })) || [],
       });
-      // window.dataLayer.push({
-      //   event: 'view_item',
-      //   ecommerce: {
-      //     items: [
-      //       {
-      //         id: items?.id,
-      //         name: items?.name,
-      //         category: isCategory,
-      //         price: Number(items?.priceSale ?? items?.price),
-      //       },
-      //     ],
-      //     currency: 'IDR',
-      //   },
-      // });
-      console.log('DataL/ayer Event Pushed:', window.dataLayer);
+
+      // console.log('DataL/ayer Event Pushed:', window.dataLayer);
     }
   }, []);
 
