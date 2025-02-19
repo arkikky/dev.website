@@ -86,7 +86,6 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
       } else {
         // @implement logic for non-percentage coupons if needed
       }
-
       setOrderRecived({
         ...isOrderRecived,
         discount: calculatedDiscounts,
@@ -99,6 +98,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
   useEffect(() => {
     dispatch(removeCart());
     hndleIntzCoupon();
+    // console.log(isOrderRecived?.customer);
   }, []);
 
   // @initialize(tracking-purchase)
@@ -113,259 +113,259 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
   }, [handlePurchase]);
 
   // @check-payment
-  useEffect(() => {
-    if (isOrderRecived?.order?.paymentStatus !== 'Success') {
-      const fetchOrderPayment = async () => {
-        try {
-          // @hubspot(customer & attendee)
-          const hbSptKey = '96572ab0-5958-4cc4-8357-9c65de42cab6';
-          const hbSptAttndeeKey = 'c9347ef6-664d-4b7a-892b-a1cabaa2bc30';
-          // @get(key)
-          const { key } = await fetch('/api/env/note', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-          }).then((res) => res.json());
+  // useEffect(() => {
+  //   if (isOrderRecived?.order?.paymentStatus !== 'Success') {
+  //     const fetchOrderPayment = async () => {
+  //       try {
+  //         // @hubspot(customer & attendee)
+  //         const hbSptKey = '96572ab0-5958-4cc4-8357-9c65de42cab6';
+  //         const hbSptAttndeeKey = 'c9347ef6-664d-4b7a-892b-a1cabaa2bc30';
+  //         // @get(key)
+  //         const { key } = await fetch('/api/env/note', {
+  //           method: 'POST',
+  //           headers: { 'Content-Type': 'application/json' },
+  //         }).then((res) => res.json());
 
-          // @webhook-callback
-          const rsPaymentWebhook = await fetch('/api/payment/webhook', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'x-api-key': key,
-            },
-            body: JSON.stringify({
-              paymentId: isOrderRecived?.order?.order_session,
-            }),
-          }).then((res) => res.json());
+  //         // @webhook-callback
+  //         const rsPaymentWebhook = await fetch('/api/payment/webhook', {
+  //           method: 'POST',
+  //           headers: {
+  //             'Content-Type': 'application/json',
+  //             'x-api-key': key,
+  //           },
+  //           body: JSON.stringify({
+  //             paymentId: isOrderRecived?.order?.order_session,
+  //           }),
+  //         }).then((res) => res.json());
 
-          // @process(payment)
-          if (
-            rsPaymentWebhook?.status === 'PAID' ||
-            rsPaymentWebhook?.status === 'SETTLED'
-          ) {
-            clearInterval(pollingInterval);
-            // @update(order)
-            const updateStatusOrder = await updateData(
-              `/api/orders/${isOrderRecived?.order?.documentId}`,
-              {
-                data: {
-                  paymentStatus: 'Success',
-                },
-              }
-            );
+  //         // @process(payment)
+  //         if (
+  //           rsPaymentWebhook?.status === 'PAID' ||
+  //           rsPaymentWebhook?.status === 'SETTLED'
+  //         ) {
+  //           clearInterval(pollingInterval);
+  //           // @update(order)
+  //           const updateStatusOrder = await updateData(
+  //             `/api/orders/${isOrderRecived?.order?.documentId}`,
+  //             {
+  //               data: {
+  //                 paymentStatus: 'Success',
+  //               },
+  //             }
+  //           );
 
-            const getCoupon = await fetch('/api/data/coupons?sv=coinfestasia', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                data: encodeData(
-                  isOrderRecived?.order?.coupons.length > 0
-                    ? isOrderRecived?.order?.coupons[0]?.couponCode
-                    : null
-                ),
-              }),
-            }).then((res) => res.json());
-            // @coupon
-            const setIsCoupon = getCoupon !== null ? getCoupon : null;
-            const checkCoupon =
-              setIsCoupon !== null &&
-              setIsCoupon !== 'null' &&
-              setIsCoupon !== undefined;
+  //           const getCoupon = await fetch('/api/data/coupons?sv=coinfestasia', {
+  //             method: 'POST',
+  //             headers: {
+  //               'Content-Type': 'application/json',
+  //             },
+  //             body: JSON.stringify({
+  //               data: encodeData(
+  //                 isOrderRecived?.order?.coupons.length > 0
+  //                   ? isOrderRecived?.order?.coupons[0]?.couponCode
+  //                   : null
+  //               ),
+  //             }),
+  //           }).then((res) => res.json());
+  //           // @coupon
+  //           const setIsCoupon = getCoupon !== null ? getCoupon : null;
+  //           const checkCoupon =
+  //             setIsCoupon !== null &&
+  //             setIsCoupon !== 'null' &&
+  //             setIsCoupon !== undefined;
 
-            // @update-stock(coupon)
-            if (checkCoupon) {
-              const isLimitUsageCoupon = parseInt(setIsCoupon?.limitUsage) - 1;
-              const isUsageCoupon = parseInt(setIsCoupon?.usage) + 1;
-              const rsUpdateCouponData = await updateData(
-                `/api/coupons/${setIsCoupon?.documentId}`,
-                {
-                  data: {
-                    limitUsage: isLimitUsageCoupon?.toString(),
-                    usage: isUsageCoupon?.toString(),
-                  },
-                }
-              );
-            }
+  //           // @update-stock(coupon)
+  //           if (checkCoupon) {
+  //             const isLimitUsageCoupon = parseInt(setIsCoupon?.limitUsage) - 1;
+  //             const isUsageCoupon = parseInt(setIsCoupon?.usage) + 1;
+  //             const rsUpdateCouponData = await updateData(
+  //               `/api/coupons/${setIsCoupon?.documentId}`,
+  //               {
+  //                 data: {
+  //                   limitUsage: isLimitUsageCoupon?.toString(),
+  //                   usage: isUsageCoupon?.toString(),
+  //                 },
+  //               }
+  //             );
+  //           }
 
-            if (isOrderRecived?.customer?.isApproved === null) {
-              const isProducts = isOrderRecived?.order?.products;
-              const isCustomerAttendee = isOrderRecived?.customer;
+  //           if (isOrderRecived?.customer?.isApproved === null) {
+  //             const isProducts = isOrderRecived?.order?.products;
+  //             const isCustomerAttendee = isOrderRecived?.customer;
 
-              // @save-to(hubspot)
-              const [updateStatusCustomer, rsHbSptCustomer] = await Promise.all(
-                [
-                  updateData(
-                    `/api/customers/${isOrderRecived?.customer?.documentId}`,
-                    {
-                      data: {
-                        isApproved: true,
-                      },
-                    }
-                  ),
-                  submitFormHbSpt(
-                    setHbSptCustomerData(
-                      isOrderRecived?.customer,
-                      isOrderRecived?.isIpAddress?.ip
-                    ),
-                    hbSptKey
-                  ),
-                ]
-              );
+  //             // @save-to(hubspot)
+  //             const [updateStatusCustomer, rsHbSptCustomer] = await Promise.all(
+  //               [
+  //                 updateData(
+  //                   `/api/customers/${isOrderRecived?.customer?.documentId}`,
+  //                   {
+  //                     data: {
+  //                       isApproved: true,
+  //                     },
+  //                   }
+  //                 ),
+  //                 submitFormHbSpt(
+  //                   setHbSptCustomerData(
+  //                     isOrderRecived?.customer,
+  //                     isOrderRecived?.isIpAddress?.ip
+  //                   ),
+  //                   hbSptKey
+  //                 ),
+  //               ]
+  //             );
 
-              // @processed-attendee
-              const procssdEmails = new Set();
-              const arrAttendees = [];
-              const arrBlobAttendees = [];
-              for (let i = 0; i < isCustomerAttendee?.attendees?.length; i++) {
-                const isAttendee = isCustomerAttendee?.attendees[i];
-                const rsAttendee = await getFetch(
-                  `/api/attendees/${isAttendee?.documentId}?populate=*`
-                );
-                arrAttendees.push({ attendee: rsAttendee?.data });
-              }
+  //             // @processed-attendee
+  //             const procssdEmails = new Set();
+  //             const arrAttendees = [];
+  //             const arrBlobAttendees = [];
+  //             for (let i = 0; i < isCustomerAttendee?.attendees?.length; i++) {
+  //               const isAttendee = isCustomerAttendee?.attendees[i];
+  //               const rsAttendee = await getFetch(
+  //                 `/api/attendees/${isAttendee?.documentId}?populate=*`
+  //               );
+  //               arrAttendees.push({ attendee: rsAttendee?.data });
+  //             }
 
-              if (isProducts && arrAttendees) {
-                const grpAttendee = setGroupedAttendees(
-                  isProducts,
-                  arrAttendees
-                );
-                // @send(invoice)
-                const rsInvoice = await fetch('/api/invoice/send-invoice', {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'x-api-key': key,
-                  },
-                  body: JSON.stringify({
-                    toEmail: isCustomerAttendee?.email,
-                    attId: isCustomerAttendee?.customerId,
-                    createDate: isCustomerAttendee?.createdAt,
-                    fullname: `${isCustomerAttendee?.firstName} ${isCustomerAttendee?.lastName}`,
-                    company: `${isCustomerAttendee?.company}`,
-                    products: grpAttendee,
-                    coupon:
-                      isOrderRecived?.order?.coupons.length > 0
-                        ? isOrderRecived?.order?.coupons[0]
-                        : null,
-                  }),
-                }).then((rs) => rs?.json());
+  //             if (isProducts && arrAttendees) {
+  //               const grpAttendee = setGroupedAttendees(
+  //                 isProducts,
+  //                 arrAttendees
+  //               );
+  //               // @send(invoice)
+  //               const rsInvoice = await fetch('/api/invoice/send-invoice', {
+  //                 method: 'POST',
+  //                 headers: {
+  //                   'Content-Type': 'application/json',
+  //                   'x-api-key': key,
+  //                 },
+  //                 body: JSON.stringify({
+  //                   toEmail: isCustomerAttendee?.email,
+  //                   attId: isCustomerAttendee?.customerId,
+  //                   createDate: isCustomerAttendee?.createdAt,
+  //                   fullname: `${isCustomerAttendee?.firstName} ${isCustomerAttendee?.lastName}`,
+  //                   company: `${isCustomerAttendee?.company}`,
+  //                   products: grpAttendee,
+  //                   coupon:
+  //                     isOrderRecived?.order?.coupons.length > 0
+  //                       ? isOrderRecived?.order?.coupons[0]
+  //                       : null,
+  //                 }),
+  //               }).then((rs) => rs?.json());
 
-                for (let i = 0; i < grpAttendee?.length; i++) {
-                  const isGrpdAttendee = grpAttendee[i];
-                  const tickets =
-                    isGrpdAttendee?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9' ||
-                    isGrpdAttendee?.documentId === 'g1ukadil4n4a3r0ndly7jl42'
-                      ? `Festival Ticket`
-                      : `${isGrpdAttendee?.name}`;
-                  for (let a = 0; a < isGrpdAttendee?.attendees?.length; a++) {
-                    const rsAttendee = isGrpdAttendee?.attendees[a];
-                    if (rsAttendee?.isApproved === null) {
-                      const rsQrCodeUrl = await QRCode.toDataURL(
-                        `${rsAttendee?.attendeeId}`,
-                        {
-                          width: 256,
-                        }
-                      );
-                      const isFullname = `${rsAttendee?.firstName} ${rsAttendee?.lastName}`;
-                      const rsBlobQrCode = await convertQrCodeToBlob(
-                        rsQrCodeUrl,
-                        rsAttendee?.id,
-                        rsAttendee?.attendeeId,
-                        rsAttendee?.documentId,
-                        isFullname
-                      );
-                      const [updateStatusAttendee, rsHbSptAttendee] =
-                        await Promise.all([
-                          updateData(
-                            `/api/attendees/${rsAttendee?.documentId}`,
-                            {
-                              data: {
-                                isApproved: true,
-                              },
-                            }
-                          ),
-                          submitFormHbSpt(
-                            setHbSptAttendeeData(
-                              rsAttendee,
-                              isOrderRecived?.isIpAddress?.ip
-                            ),
-                            hbSptAttndeeKey
-                          ),
-                        ]);
-                      if (!procssdEmails?.has(rsAttendee?.email)) {
-                        procssdEmails.add(rsAttendee?.email);
-                        // @send(email)
-                        const rsEmail = await fetch(
-                          '/api/email/send-attendee-ticket',
-                          {
-                            method: 'POST',
-                            headers: {
-                              'Content-Type': 'application/json',
-                              'x-api-key': key,
-                            },
-                            body: JSON.stringify({
-                              toEmail: rsAttendee?.email,
-                              qrCode: rsBlobQrCode?.url,
-                              docId: isGrpdAttendee?.documentId,
-                              attId: rsAttendee?.attendeeId,
-                              fullname: isFullname,
-                              company: rsAttendee?.company,
-                              productTickets: tickets,
-                            }),
-                          }
-                        ).then((res) => res.json());
-                      }
-                      arrBlobAttendees.push({
-                        blobQrCodeUrl: rsBlobQrCode?.url,
-                      });
-                    }
-                  }
-                }
-                // @send(ticket-customer)
-                if (arrAttendees?.length > 1) {
-                  const rsCustomerEmail = await fetch(
-                    '/api/customer/send-customer-ticket',
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json',
-                        'x-api-key': key,
-                      },
-                      body: JSON.stringify({
-                        toEmail: isCustomerAttendee?.email,
-                        attId: isCustomerAttendee?.customerId,
-                        fullname: `${isCustomerAttendee?.firstName} ${isCustomerAttendee?.lastName}`,
-                        attendee: arrAttendees,
-                        blobQrCode: arrBlobAttendees,
-                      }),
-                    }
-                  ).then((res) => res.json());
-                }
-              }
-              window.location.reload();
-            }
-          } else if (
-            rsPaymentWebhook?.status === 'FAILED' ||
-            rsPaymentWebhook?.status === 'EXPIRED'
-          ) {
-            clearInterval(pollingInterval);
-            router.replace(
-              `/checkout/order-failed?process=${isOrderRecived?.order?.documentId}`
-            );
-          }
-        } catch (error) {
-          // console.error('Error during payment processing:', error);
-          return;
-        }
-      };
-      const pollingInterval = setInterval(fetchOrderPayment, 15000);
-      return () => {
-        clearInterval(pollingInterval);
-      };
-    }
-  }, []);
+  //               for (let i = 0; i < grpAttendee?.length; i++) {
+  //                 const isGrpdAttendee = grpAttendee[i];
+  //                 const tickets =
+  //                   isGrpdAttendee?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9' ||
+  //                   isGrpdAttendee?.documentId === 'g1ukadil4n4a3r0ndly7jl42'
+  //                     ? `Festival Ticket`
+  //                     : `${isGrpdAttendee?.name}`;
+  //                 for (let a = 0; a < isGrpdAttendee?.attendees?.length; a++) {
+  //                   const rsAttendee = isGrpdAttendee?.attendees[a];
+  //                   if (rsAttendee?.isApproved === null) {
+  //                     const rsQrCodeUrl = await QRCode.toDataURL(
+  //                       `${rsAttendee?.attendeeId}`,
+  //                       {
+  //                         width: 256,
+  //                       }
+  //                     );
+  //                     const isFullname = `${rsAttendee?.firstName} ${rsAttendee?.lastName}`;
+  //                     const rsBlobQrCode = await convertQrCodeToBlob(
+  //                       rsQrCodeUrl,
+  //                       rsAttendee?.id,
+  //                       rsAttendee?.attendeeId,
+  //                       rsAttendee?.documentId,
+  //                       isFullname
+  //                     );
+  //                     const [updateStatusAttendee, rsHbSptAttendee] =
+  //                       await Promise.all([
+  //                         updateData(
+  //                           `/api/attendees/${rsAttendee?.documentId}`,
+  //                           {
+  //                             data: {
+  //                               isApproved: true,
+  //                             },
+  //                           }
+  //                         ),
+  //                         submitFormHbSpt(
+  //                           setHbSptAttendeeData(
+  //                             rsAttendee,
+  //                             isOrderRecived?.isIpAddress?.ip
+  //                           ),
+  //                           hbSptAttndeeKey
+  //                         ),
+  //                       ]);
+  //                     if (!procssdEmails?.has(rsAttendee?.email)) {
+  //                       procssdEmails.add(rsAttendee?.email);
+  //                       // @send(email)
+  //                       const rsEmail = await fetch(
+  //                         '/api/email/send-attendee-ticket',
+  //                         {
+  //                           method: 'POST',
+  //                           headers: {
+  //                             'Content-Type': 'application/json',
+  //                             'x-api-key': key,
+  //                           },
+  //                           body: JSON.stringify({
+  //                             toEmail: rsAttendee?.email,
+  //                             qrCode: rsBlobQrCode?.url,
+  //                             docId: isGrpdAttendee?.documentId,
+  //                             attId: rsAttendee?.attendeeId,
+  //                             fullname: isFullname,
+  //                             company: rsAttendee?.company,
+  //                             productTickets: tickets,
+  //                           }),
+  //                         }
+  //                       ).then((res) => res.json());
+  //                     }
+  //                     arrBlobAttendees.push({
+  //                       blobQrCodeUrl: rsBlobQrCode?.url,
+  //                     });
+  //                   }
+  //                 }
+  //               }
+  //               // @send(ticket-customer)
+  //               if (arrAttendees?.length > 1) {
+  //                 const rsCustomerEmail = await fetch(
+  //                   '/api/customer/send-customer-ticket',
+  //                   {
+  //                     method: 'POST',
+  //                     headers: {
+  //                       'Content-Type': 'application/json',
+  //                       'x-api-key': key,
+  //                     },
+  //                     body: JSON.stringify({
+  //                       toEmail: isCustomerAttendee?.email,
+  //                       attId: isCustomerAttendee?.customerId,
+  //                       fullname: `${isCustomerAttendee?.firstName} ${isCustomerAttendee?.lastName}`,
+  //                       attendee: arrAttendees,
+  //                       blobQrCode: arrBlobAttendees,
+  //                     }),
+  //                   }
+  //                 ).then((res) => res.json());
+  //               }
+  //             }
+  //             window.location.reload();
+  //           }
+  //         } else if (
+  //           rsPaymentWebhook?.status === 'FAILED' ||
+  //           rsPaymentWebhook?.status === 'EXPIRED'
+  //         ) {
+  //           clearInterval(pollingInterval);
+  //           router.replace(
+  //             `/checkout/order-failed?process=${isOrderRecived?.order?.documentId}`
+  //           );
+  //         }
+  //       } catch (error) {
+  //         // console.error('Error during payment processing:', error);
+  //         return;
+  //       }
+  //     };
+  //     const pollingInterval = setInterval(fetchOrderPayment, 15000);
+  //     return () => {
+  //       clearInterval(pollingInterval);
+  //     };
+  //   }
+  // }, []);
 
   // @btn(share)
   const elBtnShareWin = () => {
@@ -642,9 +642,9 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
       </Main>
 
       {/* @modal */}
-      {isOrderRecived?.order?.paymentStatus !== 'Success' && (
+      {/* {isOrderRecived?.order?.paymentStatus !== 'Success' && (
         <OrderProcessLoadingModal />
-      )}
+      )} */}
     </>
   );
 };
@@ -662,18 +662,18 @@ OrderReceived.getLayout = (page, { pageProps }) => {
 };
 export const getServerSideProps = async (context) => {
   const { process } = context?.query;
-  const isValid_Process =
-    typeof process === 'string' &&
-    /^[a-zA-Z0-9]+$/.test(process.trim()) &&
-    process.trim().length <= 31;
-  if (!isValid_Process) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: true,
-      },
-    };
-  }
+  // const isValid_Process =
+  //   typeof process === 'string' &&
+  //   /^[a-zA-Z0-9]+$/.test(process.trim()) &&
+  //   process.trim().length <= 31;
+  // if (!isValid_Process) {
+  //   return {
+  //     redirect: {
+  //       destination: '/',
+  //       permanent: true,
+  //     },
+  //   };
+  // }
 
   try {
     const isLayouts = true;
@@ -683,29 +683,29 @@ export const getServerSideProps = async (context) => {
     const rsOrderRecived = await getFetch(
       `/api/orders/${process}?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount`
     );
-    // @check-res(Order Recived)
-    if (!rsOrderRecived) {
-      return {
-        redirect: {
-          destination: '/',
-          permanent: true,
-        },
-      };
-    }
+    // @check-res(order)
+    // if (!rsOrderRecived) {
+    //   return {
+    //     redirect: {
+    //       destination: '/',
+    //       permanent: true,
+    //     },
+    //   };
+    // }
 
-    // @check-res(Customer)
+    // @check-res(customer)
     const rsCustmrId = rsOrderRecived?.data?.customer.documentId;
     const rsCustmr = await getFetch(
       `/api/customers/${rsCustmrId}?populate[attendees]=*`
     );
-    if (!rsCustmr) {
-      return {
-        redirect: {
-          destination: '/',
-          permanent: true,
-        },
-      };
-    }
+    // if (!rsCustmr) {
+    //   return {
+    //     redirect: {
+    //       destination: '/',
+    //       permanent: true,
+    //     },
+    //   };
+    // }
 
     return {
       props: {

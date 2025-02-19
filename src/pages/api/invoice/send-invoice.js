@@ -85,7 +85,7 @@ export default async function handler(req, res) {
       }
 
       const isTotalOrder = isTotalCart - calculatedDiscounts;
-      const taxAmount = Math.floor(isTotalOrder * 0.11);
+      const taxAmount = isTotalOrder * 0.11;
       const totalWithTax = isTotalOrder + taxAmount;
 
       discntAmount = calculatedDiscounts;
