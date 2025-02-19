@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 
 // @lib
 import { useStoreContext } from '@lib/context/store/StoreContext';
+import { useTrackingStore } from '@lib/hooks/tracking-store/TrackingStore';
 import { getPriceDiscountDisplay } from '@lib/helper/Configuration';
 import { currencyConverter } from '@lib/helper/CalculateCart';
 import { useMethod } from '@lib/hooks/Method';
@@ -33,6 +34,7 @@ const TicketProducts = ({
     updateQuantityCart,
     checkTotalQty,
   } = useStoreContext();
+  const { trackingViewProduct } = useTrackingStore();
   const { toggleOverlayPopUp } = useMethod();
   // @hook(Session Product)
   const [isSessionProducts, setSessionProducts] = useState({
@@ -311,6 +313,7 @@ const TicketProducts = ({
                 onClick={(e) => {
                   e.preventDefault();
                   handleAddProductCart(data, isSessionProducts?.count);
+                  trackingViewProduct(data);
                 }}
               >
                 {isLoading ? (
