@@ -9,22 +9,24 @@ export function useTrackingStore() {
   // @view-product
   const trackingViewProduct = useCallback((store, total) => {
     if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'view_item', {
+      window.dataLayer.push('event', 'view_item', {
         currency: 'IDR',
         value: total,
-        items:
-          store?.map((item, i) => ({
-            item_id: item?.id,
-            item_name: item?.name,
-            index: i,
-            item_brand: 'Coinfest Asia',
-            item_category:
-              item?.documentId !== 'rc33x0dgm6tm707jghffuip4'
-                ? `Festival Tickets`
-                : item?.name,
-            price: Number(item?.priceSale ?? gtRslt?.price),
-            quantity: item?.quantity,
-          })) || [],
+        ecommerce: {
+          items:
+            store?.map((item, i) => ({
+              item_id: item?.id,
+              item_name: item?.name,
+              index: i,
+              item_brand: 'Coinfest Asia',
+              item_category:
+                item?.documentId !== 'rc33x0dgm6tm707jghffuip4'
+                  ? `Festival Tickets`
+                  : item?.name,
+              price: Number(item?.priceSale ?? gtRslt?.price),
+              quantity: item?.quantity,
+            })) || [],
+        },
       });
 
       // console.log('DataL/ayer Event Pushed:', window.dataLayer);
