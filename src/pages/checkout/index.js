@@ -1496,7 +1496,7 @@ export const getServerSideProps = async (context) => {
         ),
         getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
         getFetch(
-          process.env.NODE_ENV !== 'development'
+          process.env.NODE_ENV === 'development'
             ? `/api/coupons?filters[category][$eq]=dev&populate=*`
             : `/api/coupons?filters[category][$eq]=promo&populate=*`
         ),

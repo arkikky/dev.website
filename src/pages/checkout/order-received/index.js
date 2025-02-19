@@ -36,7 +36,7 @@ import LayoutDefaults from '@layouts/Layouts';
 
 const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
   const router = useRouter();
-  const { trackingPurchase, handlePurchase } = useTrackingStore();
+  const { handlePurchase } = useTrackingStore();
   const dispatch = useDispatch();
   const [isOrderRecived, setOrderRecived] = useState({
     isIpAddress: ipAddress,
@@ -109,8 +109,6 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
   //   });
   // }, [trackingPurchase]);
   useEffect(() => {
-    console.log('Tracking...');
-
     handlePurchase(isOrderRecived?.order);
   }, [handlePurchase]);
 
