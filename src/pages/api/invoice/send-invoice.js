@@ -47,10 +47,10 @@ export default async function handler(req, res) {
   // @data(body)
   const { toEmail, attId, createDate, fullname, company, products, coupon } =
     req?.body;
-  const isTotalCart = getTotalCart(products);
+  const isSubTotal = getTotalCart(products);
   let totalOrder, discntAmount;
 
-  if (isTotalCart) {
+  if (isSubTotal) {
     const isDataCoupon = await getFetch(
       `/api/coupons?populate=*&filters[couponCode][$eq]=${coupon?.couponCode}`
     );
@@ -70,30 +70,32 @@ export default async function handler(req, res) {
 
       // @check(valid Product)
       const discntAmounts = parseFloat(amount) || 0;
-      const isPrices =
-        validProducts[0]?.priceSale ?? validProducts[0]?.price ?? 0;
-      let calculatedDiscounts = 0;
-      if (type === 'percentage') {
-        calculatedDiscounts =
-          parseInt(discntAmounts) >= 100
-            ? Math.min(isTotalCart, isPrices)
-            : isPrices * (discntAmounts / 100);
-      } else if (type === 'fix') {
-        calculatedDiscounts = Math.min(discntAmounts, isTotalCart);
-      } else {
-        // @implement logic for non-percentage coupons if needed
-      }
+      let calculateTotalDiscount = 0;
+      validProducts?.forEach((items) => {
+        const isPrice = items?.priceSale ?? items?.price ?? 0;
+        const totalPrice = isPrice * items?.quantity;
+        let calculatedDiscount = 0;
 
-      const isTotalOrder = isTotalCart - calculatedDiscounts;
+        if (type === 'percentage') {
+          calculatedDiscount =
+            parseInt(discntAmounts) >= 100
+              ? Math.min(isSubTotal, totalPrice)
+              : totalPrice * (discntAmounts / 100);
+        } else if (type === 'fix') {
+          calculatedDiscount = Math.min(discntAmounts, isSubTotal);
+        }
+        calculateTotalDiscount += calculatedDiscount;
+      });
+
+      const isTotalOrder = isSubTotal - calculateTotalDiscount;
       const taxAmount = isTotalOrder * 0.11;
       const totalWithTax = isTotalOrder + taxAmount;
-
-      discntAmount = calculatedDiscounts;
+      discntAmount = calculateTotalDiscount;
       totalOrder = totalWithTax;
     } else {
       const setTax_Rate = 0.11;
-      const taxAmount = isTotalCart * setTax_Rate;
-      const totalWithTax = isTotalCart + taxAmount;
+      const taxAmount = isSubTotal * setTax_Rate;
+      const totalWithTax = isSubTotal + taxAmount;
       discntAmount = 0;
       totalOrder = totalWithTax;
     }
@@ -108,7 +110,7 @@ export default async function handler(req, res) {
       email={toEmail}
       company={company}
       products={products}
-      subtotal={isTotalCart}
+      subtotal={isSubTotal}
       discount={discntAmount}
       total={totalOrder}
     />

@@ -16,6 +16,7 @@ import { order } from '@reduxState/slices';
 
 // @lib
 import { useStoreContext } from '@lib/context/store/StoreContext';
+import { useTrackingStore } from '@lib/hooks/tracking-store/TrackingStore';
 import {
   getFetch,
   getFetchUrl,
@@ -70,8 +71,10 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     order: isOrder,
     orderSession: isOrderPayment_Session,
   } = useSelector((state) => state.cart);
+  const { trackingBeginCheckout, trackingCheckoutJourney } = useTrackingStore();
   const {
     getStore,
+    getIsCoupon,
     hndleHookIntzCoupon,
     calculateTotalOrder,
     isDiscount,
@@ -108,7 +111,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   );
   // @card(theme)
   const style = {
-    rc33x0dgm6tm707jghffuip4: 'bg-vip45',
+    rc33x0dgm6tm707jghffuip4: 'bg-primaryDark',
   };
 
   // @hook(init coupon)
@@ -118,6 +121,14 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       undefined;
     };
   }, [getStore]);
+
+  // @tracking(begin checkout)
+  useEffect(() => {
+    const isTotalOrder = calculateTotalOrder(
+      isCoupon ? isDiscount?.totalWithDiscount : totalOrder
+    );
+    trackingBeginCheckout(getStore, getIsCoupon, isTotalOrder);
+  }, [getStore, getIsCoupon]);
 
   // @btn-step(Attendee)
   const handleTabClick = (e, productIdx, tabIdx) => {
@@ -133,7 +144,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       smoothLeftScroll(containerTabs, targetScroll);
     }
   };
-  // @btn-toggle(Attendee)
+  // @btn-toggle(attendee)
   const handleToggleChange = async (productIdx, attendeeIdx) => {
     setIsStepToggledCompany((prev) =>
       prev.map((product, pIdx) =>
@@ -542,12 +553,11 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   // @submit(Checkout)
   const onSubmitForm = async (data) => {
     const isFirstItems = getJoinString(getStore[0]?.name);
-    // console.log('Click');
-    // return;
     if (isValid === true && isCart) {
       const isTotalOrder = calculateTotalOrder(
         isCoupon ? isDiscount?.totalWithDiscount : totalOrder
       );
+      trackingCheckoutJourney(getStore, getIsCoupon, isTotalOrder);
       if (Math.abs(isTotalOrder) > 1e-10) {
         setStore((prev) => ({ ...prev, isPaymentProcess: true }));
       } else if (Math.abs(isTotalOrder) < 1e-10) {
@@ -753,13 +763,11 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             ]);
             // @update-stock(coupon)
             if (checkCoupon) {
-              const isLimitUsageCoupon = parseInt(setIsCoupon?.limitUsage) - 1;
               const isUsageCoupon = parseInt(setIsCoupon?.usage) + 1;
               const rsUpdateCouponData = await updateData(
                 `/api/coupons/${setIsCoupon?.documentId}`,
                 {
                   data: {
-                    limitUsage: isLimitUsageCoupon?.toString(),
                     usage: isUsageCoupon?.toString(),
                   },
                 }
@@ -956,7 +964,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                           className={twMerge(
                             `ca25StoreProductSticky sticky inset-x-0 top-0 mt-1 ${gtRslt?.quantity > 1 ? 'h-[78px] sm:h-[94px]' : 'h-[45px] sm:h-[59px]'} z-60 flex w-full flex-col items-start justify-between transition-[height] duration-300 ease-in-out sm:top-0`,
                             gtRslt?.documentId === 'rc33x0dgm6tm707jghffuip4'
-                              ? 'bg-vip45_Sticky'
+                              ? 'bg-primaryDark'
                               : 'bg-regular45_Sticky'
                           )}
                         >
@@ -1496,7 +1504,7 @@ export const getServerSideProps = async (context) => {
         ),
         getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
         getFetch(
-          process.env.NODE_ENV === 'development'
+          process.env.NODE_ENV !== 'development'
             ? `/api/coupons?filters[category][$eq]=dev&populate=*`
             : `/api/coupons?filters[category][$eq]=promo&populate=*`
         ),

@@ -19,7 +19,7 @@ import HeadGraphSeo from '@components/Head';
 import Label from '@components/UI/Form/Label';
 import Input from '@components/UI/Form/Input';
 import Select from '@components/UI/Form/Select';
-import SelectCountry from '@components/UI/Form/SelectCountry';
+// import SelectCountry from '@components/UI/Form/SelectCountry';
 
 // @layouts
 import PartnershipLayouts from '@layouts/PartnershipLayouts';
@@ -75,12 +75,12 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
             data?.jobtitleSponsorship !== null ? data?.jobtitleSponsorship : '-'
           ),
         },
-        {
-          name: 'country',
-          value: sntzeFld(
-            data?.countrySponsorship !== null ? data?.countrySponsorship : '-'
-          ),
-        },
+        // {
+        //   name: 'country',
+        //   value: sntzeFld(
+        //     data?.countrySponsorship !== null ? data?.countrySponsorship : '-'
+        //   ),
+        // },
         {
           objectTypeId: '0-2',
           name: 'name',
@@ -95,13 +95,13 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
               : '-'
           ),
         },
-        {
-          objectTypeId: '0-2',
-          name: 'did_your_company_sponsor_coinfest_asia_previously_',
-          value: sntzeFld(
-            data?.did_your_company_sponsor_coinfest_asia_previously_
-          ),
-        },
+        // {
+        //   objectTypeId: '0-2',
+        //   name: 'did_your_company_sponsor_coinfest_asia_previously_',
+        //   value: sntzeFld(
+        //     data?.did_your_company_sponsor_coinfest_asia_previously_
+        //   ),
+        // },
         {
           name: 'in_coinfest_asia_2024__we_are_interested_in',
           value: sntzeFld(
@@ -116,10 +116,10 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
               : '-'
           ),
         },
-        {
-          name: 'your_range_of_budget_to_sponsor_coinfest_asia_2024_',
-          value: sntzeFld(data?.budget),
-        },
+        // {
+        //   name: 'your_range_of_budget_to_sponsor_coinfest_asia_2024_',
+        //   value: sntzeFld(data?.budget),
+        // },
       ],
       context: {
         pageUri: 'https://coinfest.asia/get-involved/sponsorship',
@@ -207,7 +207,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
             <div className="block">
               <Label
                 forId={`ca25Form_LastnameSponsorship`}
-                label="Lastname"
+                label="Last name"
                 required={true}
               />
               <Input
@@ -230,34 +230,35 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
               />
             </div>
           </div>
-          <div className="block">
-            <Label
-              forId={`ca25Form_EmailSponsorship`}
-              label="Email"
-              required={true}
-            />
-            <Input
-              id={`ca25Form_EmailSponsorship`}
-              type="email"
-              placeholder=""
-              ariaLabel={`Email Sponsorship`}
-              disabled={isSubmitting}
-              config={{
-                ...register(`email`, {
-                  required: true,
-                  maxLength: 120,
-                  pattern: {
-                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  },
-                }),
-              }}
-              errors={errors[`email`]}
-            />
-          </div>
 
           {isForms?.fields && (
             <>
               <div className="mb-4 grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
+                <div className="block">
+                  <Label
+                    forId={`ca25Form_EmailSponsorship`}
+                    label="Email"
+                    required={true}
+                  />
+                  <Input
+                    id={`ca25Form_EmailSponsorship`}
+                    type="email"
+                    placeholder=""
+                    ariaLabel={`Email Sponsorship`}
+                    disabled={isSubmitting}
+                    config={{
+                      ...register(`email`, {
+                        required: true,
+                        maxLength: 120,
+                        pattern: {
+                          value:
+                            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                        },
+                      }),
+                    }}
+                    errors={errors[`email`]}
+                  />
+                </div>
                 <div
                   className={`"block ${errors[`jobtitleSponsorship`] && 'error'}`}
                 >
@@ -281,7 +282,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                     }}
                   />
                 </div>
-                <div
+                {/* <div
                   className={`"block ${errors[`countrySponsorship`] && 'error'}`}
                 >
                   <Label
@@ -303,7 +304,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                       }),
                     }}
                   />
-                </div>
+                </div> */}
               </div>
 
               {/*  @company */}
@@ -339,7 +340,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                 >
                   <Label
                     forId={`ca25Form_CompanyFocusSponsorship`}
-                    label="Company Focus"
+                    label="Company focus"
                     required={true}
                   />
                   <Select
@@ -360,11 +361,11 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
               </div>
 
               <div className="flex flex-col">
-                <h2 className="mb-2.5 flex w-max flex-col pt-4 text-xl font-semibold text-black-900 sm:text-[28px] sm:font-bold sm:leading-[34px]">
+                {/* <h2 className="mb-2.5 flex w-max flex-col pt-4 text-xl font-semibold text-black-900 sm:text-[28px] sm:font-bold sm:leading-[34px]">
                   Exhibiting at Coinfest Asia
-                </h2>
+                </h2> */}
 
-                <div className="mb-6 flex flex-col last:mb-0">
+                {/* <div className="mb-6 flex flex-col last:mb-0">
                   <Label
                     forId={`ca25Form_PreviouslySponsorship`}
                     label="Did your company sponsor Coinfest Asia previously?"
@@ -403,7 +404,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                       </div>
                     ))}
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className="flex flex-col">
@@ -413,7 +414,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                   required={true}
                 />
                 <div className="mt-2 grid space-y-4">
-                  {isForms?.fields[3]?.options?.map((rslt, i) => (
+                  {isForms?.fields[2]?.options?.map((rslt, i) => (
                     <label
                       htmlFor={`ca25Form_intrestSponsorship${i}`}
                       className={`flex w-full cursor-pointer items-center`}
@@ -478,7 +479,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                 )}
               </div>
 
-              <div className="mt-4 flex flex-col last:mb-0">
+              {/* <div className="mt-4 flex flex-col last:mb-0">
                 <Label
                   forId={`ca25Form_DidYourSponsorship`}
                   label="Your range of budget to sponsor Coinfest Asia 2025?"
@@ -512,7 +513,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
             </>
           )}
 
@@ -528,7 +529,7 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
               {isSubmitting ? (
                 <span className="flex flex-row items-center">
                   <svg
-                    className="mr-3 h-5 w-5 animate-spin text-white"
+                    className="mr-3 h-5 w-5 animate-spin text-black-900"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -577,7 +578,7 @@ export const getStaticProps = async () => {
       getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
       getFecthHbSpt(`/forms/v2/fields/bf625b40-82e5-4c4f-818d-7a6cfbe47a81`),
     ]);
-    const reduceForms = getReduceArray(rsForms, [3, 6, 7, 8, 10]);
+    const reduceForms = getReduceArray(rsForms, [3, 5, 6]);
 
     return {
       props: {

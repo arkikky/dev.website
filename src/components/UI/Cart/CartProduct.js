@@ -17,7 +17,7 @@ const CartProduct = ({ cartStore, products }) => {
 
   // @card(theme)
   const style = {
-    rc33x0dgm6tm707jghffuip4: 'bg-vip45',
+    rc33x0dgm6tm707jghffuip4: 'bg-primaryDark',
   };
 
   return (

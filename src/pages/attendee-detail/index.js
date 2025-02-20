@@ -37,7 +37,7 @@ const AttendeeUpdate = ({ ipAddress, attendee, country, formCheckout }) => {
   });
   // @card(theme)
   const style = {
-    rc33x0dgm6tm707jghffuip4: 'bg-vip45',
+    rc33x0dgm6tm707jghffuip4: 'bg-primaryDark',
   };
 
   // @form-hook(attendee)
@@ -169,7 +169,7 @@ const AttendeeUpdate = ({ ipAddress, attendee, country, formCheckout }) => {
                         `ca25StoreProductSticky relative inset-x-0 top-0 z-60 mt-1 flex h-[45px] w-full flex-col items-start justify-between transition-[height] duration-300 ease-in-out sm:top-0 sm:h-[59px]`,
                         isFormAttendee?.isProducts?.documentId ===
                           'rc33x0dgm6tm707jghffuip4'
-                          ? 'bg-vip45_Sticky'
+                          ? 'bg-primaryDark'
                           : 'bg-regular45_Sticky'
                       )}
                     >

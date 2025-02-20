@@ -274,10 +274,6 @@ const CustomerTickets = ({
                   backgroundImage:
                     'linear-gradient(150deg, #022159 30.46%, #005AFF 102.99%)',
                 },
-                '.bg-vip45': {
-                  backgroundImage:
-                    'linear-gradient(150deg, #D38350 17.54%, #ED4F35 100.53%)',
-                },
               });
             },
           ],
@@ -394,7 +390,7 @@ const CustomerTickets = ({
                     </Column>
                     <Column
                       align="left"
-                      className={`splitColumn2 splitColumn2_Content ${gtRslt?.attendee.product?.documentId === 'rc33x0dgm6tm707jghffuip4' ? 'bg-[#1F1F1F]' : 'bg-[#005AFF]'} align-top text-white`}
+                      className={`splitColumn2 splitColumn2_Content ${gtRslt?.attendee.product?.documentId === 'rc33x0dgm6tm707jghffuip4' ? 'bg-[#111928]' : 'bg-[#005AFF]'} align-top text-white`}
                       style={(styles.splitColumn2, styles.splitColumn2_Content)}
                     >
                       <Heading

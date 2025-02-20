@@ -571,7 +571,7 @@ const PartnerCommunity = ({
                   <div className="block">
                     <Label
                       forId={`ca25Form_Telegram${groupLabel}`}
-                      label="Telegram Username"
+                      label="Telegram username"
                       required={true}
                     />
                     <Input

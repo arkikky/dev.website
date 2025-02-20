@@ -284,7 +284,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
             <div className="block">
               <Label
                 forId={`ca25Form_PhoneSpeakers`}
-                label={`Phone Number`}
+                label={`Phone number`}
                 required={true}
               />
               <Controller
@@ -504,7 +504,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                 >
                   <Label
                     forId={`ca25Form_CompanyFocusSpeakers`}
-                    label="Company Focus"
+                    label="Company focus"
                     required={true}
                   />
                   <Select
@@ -550,7 +550,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                 <div className="block">
                   <Label
                     forId={`ca25Form_CompanyWebsiteSpeakers`}
-                    label="Company Website"
+                    label="Company website"
                     required={true}
                   />
                   <Input
@@ -576,7 +576,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
               <div className="block">
                 <Label
                   forId={`ca25Form_LinkedInSpeakers`}
-                  label="Linkedin Profile"
+                  label="Linkedin profile"
                   required={true}
                 />
                 <Input
@@ -602,7 +602,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                 <div className="block">
                   <Label
                     forId={`ca25Form_TwitterSpeakers`}
-                    label="Twitter Profile"
+                    label="Twitter profile"
                     required={true}
                   />
                   <Input
@@ -626,7 +626,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                 <div className="block">
                   <Label
                     forId={`ca25Form_TelegramSpeakers`}
-                    label="Telegram Username"
+                    label="Telegram username"
                     required={true}
                   />
                   <Input
@@ -656,7 +656,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
             <button
               id="ca25Submit-Speakers"
               type="submit"
-              className={`bg-primaryRed group relative mt-6 flex w-full flex-col items-center justify-center overflow-hidden rounded-[14px] py-6 text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
+              className={`group relative mt-6 flex w-full flex-col items-center justify-center overflow-hidden rounded-[14px] bg-primaryRed py-6 text-base font-normal text-white outline-none transition duration-[0.3] ease-in-out focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-gray-300 disabled:text-black-900`}
               aria-label="Submit Speakers Forms"
               disabled={isSubmitting}
             >

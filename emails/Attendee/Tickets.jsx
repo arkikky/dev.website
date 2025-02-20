@@ -295,7 +295,7 @@ const AttendeeTickets = ({
                 </Column>
                 <Column
                   align="left"
-                  className={`splitColumn2 splitColumn2_Content ${documentId === 'rc33x0dgm6tm707jghffuip4' ? 'bg-[#1F1F1F]' : 'bg-[#005AFF]'} align-top text-white`}
+                  className={`splitColumn2 splitColumn2_Content ${documentId === 'rc33x0dgm6tm707jghffuip4' ? 'bg-[#111928]' : 'bg-[#005AFF]'} align-top text-white`}
                   style={(styles.splitColumn2, styles.splitColumn2_Content)}
                 >
                   <Heading

@@ -7,9 +7,6 @@ import MarkdownRenderer from '@components/MarkdownRenderer';
 // # @get .config
 const { publicRuntimeConfig } = getConfig();
 
-// @redux
-import { useSelector } from 'react-redux';
-
 // @lib
 import { useStoreContext } from '@lib/context/store/StoreContext';
 import { useTrackingStore } from '@lib/hooks/tracking-store/TrackingStore';
@@ -27,7 +24,6 @@ const TicketProducts = ({
   cartProducts = [],
   isLoading,
 }) => {
-  const { data: isCart } = useSelector((state) => state.cart);
   const {
     getStore,
     sessionsProducts,
@@ -36,9 +32,9 @@ const TicketProducts = ({
     checkTotalQty,
     totalOrder,
   } = useStoreContext();
-  const { trackingViewProduct } = useTrackingStore();
+  const { trackingViewProduct, trackingAddToCart } = useTrackingStore();
   const { toggleOverlayPopUp } = useMethod();
-  // @hook(Session Product)
+  // @hook(session product)
   const [isSessionProducts, setSessionProducts] = useState({
     products: {},
     checkProduct: false,
@@ -296,7 +292,7 @@ const TicketProducts = ({
                     '.ca2025BckdrpOverflay_PopUpMobile',
                     '.ca2025CartPopUp_Mobile'
                   );
-                  trackingViewProduct(getStore, totalOrder);
+                  trackingViewProduct(getStore, totalOrder, true);
                 }}
               >
                 {`View Cart`}
@@ -316,6 +312,7 @@ const TicketProducts = ({
                 onClick={(e) => {
                   e.preventDefault();
                   handleAddProductCart(data, isSessionProducts?.count);
+                  trackingAddToCart(data);
                 }}
               >
                 {isLoading ? (

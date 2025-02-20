@@ -131,13 +131,11 @@ const Activation = ({ ipAddress }) => {
 
             // @update-stock(coupon)
             if (checkCoupon) {
-              const isLimitUsageCoupon = parseInt(setIsCoupon?.limitUsage) - 1;
               const isUsageCoupon = parseInt(setIsCoupon?.usage) + 1;
               const rsUpdateCouponData = await updateData(
                 `/api/coupons/${setIsCoupon?.documentId}`,
                 {
                   data: {
-                    limitUsage: isLimitUsageCoupon?.toString(),
                     usage: isUsageCoupon?.toString(),
                   },
                 }

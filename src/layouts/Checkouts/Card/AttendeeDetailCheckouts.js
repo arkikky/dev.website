@@ -145,7 +145,7 @@ const AttendeeDetailCheckouts = ({
         <div className="block">
           <Label
             forId={`ca25Form_PhoneAttende${items?.attendee}_${items?.group}Checkout`}
-            label={`Phone Number`}
+            label={`Phone number`}
             required={true}
           />
           <Controller
@@ -213,7 +213,7 @@ const AttendeeDetailCheckouts = ({
         <div className="block">
           <Label
             forId={`ca25Form_TelegramAccountAttndee${items?.attendee}_${items?.group}Checkout`}
-            label="Telegram Username (Optional)"
+            label="Telegram username (optional)"
             required={false}
           />
           <Input
@@ -377,7 +377,7 @@ const AttendeeDetailCheckouts = ({
         <div className="mb-4 block">
           <Label
             forId={`ca25Form_CompanyAttndee${items?.attendee}_${items?.group}Checkout`}
-            label="Company Name"
+            label="Company name"
             required={watch}
           />
           <Input
@@ -404,7 +404,7 @@ const AttendeeDetailCheckouts = ({
               <div className="block">
                 <Label
                   forId={`ca25Form_WebsiteUrlAttndee${items?.attendee}_${items?.group}Checkout`}
-                  label="Company Website"
+                  label="Company website"
                   required={watch}
                 />
                 <Input
@@ -470,7 +470,7 @@ const AttendeeDetailCheckouts = ({
               >
                 <Label
                   forId={`ca25Form_CompanyFocusAttndee${items?.attendee}_${items?.group}Checkout`}
-                  label="Company Focus"
+                  label="Company focus"
                   required={watch}
                 />
                 <Select
@@ -500,7 +500,7 @@ const AttendeeDetailCheckouts = ({
               >
                 <Label
                   forId={`ca25Form_CompanySizeAttndee${items?.attendee}_${items?.group}Checkout`}
-                  label="Company Size"
+                  label="Company size"
                   required={watch}
                 />
                 <Select

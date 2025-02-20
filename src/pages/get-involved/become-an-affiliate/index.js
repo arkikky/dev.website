@@ -294,7 +294,7 @@ const BecomeAnAffiliate = ({
             <div className="block">
               <Label
                 forId={`ca25Form_Phone${groupLabel}`}
-                label={`Phone Number`}
+                label={`Phone number`}
                 required={true}
               />
               <Controller
@@ -386,7 +386,7 @@ const BecomeAnAffiliate = ({
             <div className="block">
               <Label
                 forId={`ca25Form_Telegram${groupLabel}`}
-                label="Telegram Username"
+                label="Telegram username"
                 required={true}
               />
               <Input
@@ -637,7 +637,7 @@ const BecomeAnAffiliate = ({
               {isSubmitting ? (
                 <span className="flex flex-row items-center">
                   <svg
-                    className="mr-3 h-5 w-5 animate-spin text-white"
+                    className="mr-3 h-5 w-5 animate-spin text-black-900"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"

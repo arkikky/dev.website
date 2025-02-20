@@ -31,9 +31,10 @@ export const StoreProvider = ({ children }) => {
   const dispatch = useDispatch();
   const { data: isCart, coupon: isCoupon } = useSelector((state) => state.cart);
   const [isStore, setStore] = useState({
-    coupon: null,
     cart: [],
     products: isCart,
+    getCoupon: null,
+    coupon: null,
     totalQty: 0,
     totalOrder: 0,
     typeDiscnt: null,
@@ -163,29 +164,32 @@ export const StoreProvider = ({ children }) => {
               );
               return;
             }
-            // @check(valid Product)
+            // @check(valid product)
             const discntAmount = parseFloat(amount) || 0;
-            const isPrice =
-              validProducts[0]?.priceSale ?? validProducts[0]?.price ?? 0;
-            let calculatedDiscount = 0;
-            if (type === 'percentage') {
-              calculatedDiscount =
-                parseInt(discntAmount) >= 100
-                  ? Math.min(isSubTotal, isPrice)
-                  : isPrice * (discntAmount / 100);
-            } else if (type === 'fix') {
-              calculatedDiscount = Math.min(discntAmount, isSubTotal);
-            } else {
-              // @implement logic for non-percentage coupons if needed
-            }
+            let calculateTotalDiscount = 0;
+            validProducts?.forEach((items) => {
+              const isPrice = items?.priceSale ?? items?.price ?? 0;
+              const totalPrice = isPrice * items?.quantity;
+              let calculatedDiscount = 0;
 
+              if (type === 'percentage') {
+                calculatedDiscount =
+                  parseInt(discntAmount) >= 100
+                    ? Math.min(isSubTotal, totalPrice)
+                    : totalPrice * (discntAmount / 100);
+              } else if (type === 'fix') {
+                calculatedDiscount = Math.min(discntAmount, isSubTotal);
+              }
+              calculateTotalDiscount += calculatedDiscount;
+            });
             setStore((prev) => ({
               ...prev,
+              getCoupon: isDataCoupon,
               coupon: isCoupon,
               typeDiscnt: type,
               discntAmount: discntAmount,
-              discntAmountTotal: calculatedDiscount,
-              totalWithDiscount: isSubTotal - calculatedDiscount,
+              discntAmountTotal: calculateTotalDiscount,
+              totalWithDiscount: isSubTotal - calculateTotalDiscount,
             }));
             dispatch(applyCoupon(isCoupon));
             setUseCoupon(false);
@@ -242,7 +246,7 @@ export const StoreProvider = ({ children }) => {
     [isCoupon]
   );
 
-  // @hook(Calculate Total Order)
+  // @hook(calculate total order)
   const calculateTotalOrder = (total) => {
     const taxAmount = total * 0.11;
     const totalWithTax = total + taxAmount;
@@ -371,27 +375,30 @@ export const StoreProvider = ({ children }) => {
       }
       // @check(valid Product)
       const discntAmount = parseFloat(amount) || 0;
-      const isPrice =
-        validProducts[0]?.priceSale ?? validProducts[0]?.price ?? 0;
-      let calculatedDiscount = 0;
-      if (type === 'percentage') {
-        calculatedDiscount =
-          parseInt(discntAmount) >= 100
-            ? Math.min(total, isPrice)
-            : isPrice * (discntAmount / 100);
-      } else if (type === 'fix') {
-        calculatedDiscount = Math.min(discntAmount, total);
-      } else {
-        // @implement logic for non-percentage coupons if needed
-      }
+      let calculateTotalDiscount = 0;
+      validProducts?.forEach((items) => {
+        const isPrice = items?.priceSale ?? items?.price ?? 0;
+        const totalPrice = isPrice * items?.quantity;
+        let calculatedDiscount = 0;
+        if (type === 'percentage') {
+          calculatedDiscount =
+            parseInt(discntAmount) >= 100
+              ? Math.min(isSubTotal, totalPrice)
+              : totalPrice * (discntAmount / 100);
+        } else if (type === 'fix') {
+          calculatedDiscount = Math.min(discntAmount, isSubTotal);
+        }
+        calculateTotalDiscount += calculatedDiscount;
+      });
 
       setStore((prev) => ({
         ...prev,
+        getCoupon: checkCouponUsed,
         coupon: items,
         typeDiscnt: type,
         discntAmount: discntAmount,
-        discntAmountTotal: calculatedDiscount,
-        totalWithDiscount: isSubTotal - calculatedDiscount,
+        discntAmountTotal: calculateTotalDiscount,
+        totalWithDiscount: isSubTotal - calculateTotalDiscount,
       }));
       dispatch(applyCoupon(items));
       setValue('coupon', '');
@@ -529,7 +536,7 @@ export const StoreProvider = ({ children }) => {
     setTimeout(() => {
       dispatch(addItemToCart({ id_product: items?.documentId, quantity: qty }));
       setProductsSession({ id_product: null, loading: false });
-    }, 700);
+    }, 600);
   };
 
   // @quantity-push
@@ -591,8 +598,6 @@ export const StoreProvider = ({ children }) => {
         setStore,
         hndleHookIntzCoupon,
         calculateTotalOrder,
-        getCoupon: isStore?.coupon,
-        usedCoupon: isUseCoupon,
         handleUseCoupon,
         handleRemoveCoupon,
         sessionsProducts: isProductsSession,
@@ -600,13 +605,16 @@ export const StoreProvider = ({ children }) => {
         updateQuantityCart,
         updateQuantityProducts,
         checkTotalQty,
-        totalQty: isStore.totalQty,
+        getIsCoupon: isStore?.getCoupon,
+        getCoupon: isStore?.coupon,
+        usedCoupon: isUseCoupon,
         isDiscount: {
           type: isStore?.typeDiscnt,
           amount: isStore?.discntAmount,
           amountTotal: isStore?.discntAmountTotal,
           totalWithDiscount: isStore?.totalWithDiscount,
         },
+        totalQty: isStore.totalQty,
         subTotal: totalOrder(),
         totalOrder: totalOrder(),
       }}

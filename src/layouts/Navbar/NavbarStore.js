@@ -13,6 +13,7 @@ import '@splidejs/react-splide/css/core';
 
 // @lib
 import { useStoreContext } from '@lib/context/store/StoreContext';
+import { useTrackingStore } from '@lib/hooks/tracking-store/TrackingStore';
 import { useMethod } from '@lib/hooks/Method';
 
 // @components
@@ -31,6 +32,7 @@ const EventBoard = dynamic(() => import('@components/UI/EventBoard'), {
 const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
   const router = useRouter();
   const { getStore, checkTotalQty, totalQty, totalOrder } = useStoreContext();
+  const { trackingViewProduct, trackingAddToCart } = useTrackingStore();
   const { toggleOverlayPopUp } = useMethod();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -162,6 +164,7 @@ const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
                     '.ca2025BckdrpOverflay_PopUpMobile',
                     '.ca2025CartPopUp_Mobile'
                   );
+                  trackingViewProduct(getStore, totalOrder);
                 }}
               >
                 {/* @indicator(store) */}

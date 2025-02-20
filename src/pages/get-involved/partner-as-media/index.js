@@ -269,7 +269,7 @@ const PartnerMedia = ({
               <div className="block">
                 <Label
                   forId={`ca25Form_Phone${groupLabel}`}
-                  label={`Phone Number`}
+                  label={`Phone number`}
                   required={true}
                 />
                 <Controller
@@ -333,7 +333,7 @@ const PartnerMedia = ({
               <div className="block">
                 <Label
                   forId={`ca25Form_Telegram${groupLabel}`}
-                  label="Telegram Username"
+                  label="Telegram username"
                   required={true}
                 />
                 <Input
@@ -366,7 +366,7 @@ const PartnerMedia = ({
                 <div className="block">
                   <Label
                     forId={`ca25Form_MediaName${groupLabel}`}
-                    label="Outlet Name"
+                    label="Outlet name"
                     required={true}
                   />
                   <Input
@@ -413,7 +413,7 @@ const PartnerMedia = ({
               <div className="block">
                 <Label
                   forId={`ca25Form_OutletAffiliation${groupLabel}`}
-                  label="Outlet URL"
+                  label="Outlet url"
                   required={true}
                 />
                 <Input
@@ -438,7 +438,7 @@ const PartnerMedia = ({
               <div className="flex flex-col">
                 <Label
                   forId={`ca25Form_MediaFocus${groupLabel}`}
-                  label="Media Focus"
+                  label="Media focus"
                   required={true}
                 />
                 <div className="mt-2 grid space-y-4">
@@ -473,7 +473,7 @@ const PartnerMedia = ({
               <div className="flex flex-col">
                 <Label
                   forId={`ca25Form_SocialMedia${groupLabel}`}
-                  label="Social Media"
+                  label="Social media"
                   required={true}
                 />
                 <div className="mt-2 grid space-y-4">
