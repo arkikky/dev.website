@@ -5,10 +5,10 @@ import { useForm } from 'react-hook-form';
 import DOMPurify from 'dompurify';
 import getConfig from 'next/config';
 
-// # @get .config
-const { serverRuntimeConfig } = getConfig();
+// @get .config
+const { publicRuntimeConfig, serverRuntimeConfig } = getConfig();
 
-// @lib/controller & helper
+// @lib
 import { getFetch, getFetchUrl, updateSubmitData } from '@lib/controller/API';
 import { getFecthHbSpt } from '@lib/controller/HubSpot';
 import { getJoinString } from '@lib/helper/Configuration';
@@ -35,6 +35,9 @@ const AttendeeUpdate = ({ ipAddress, attendee, country, formCheckout }) => {
     selfEdited: isAttendee ? isAttendee?.selfEdited : false,
     message: null,
   });
+
+  console.log(isAttendee);
+
   // @card(theme)
   const style = {
     rc33x0dgm6tm707jghffuip4: 'bg-primaryDark',
@@ -42,6 +45,7 @@ const AttendeeUpdate = ({ ipAddress, attendee, country, formCheckout }) => {
 
   // @form-hook(attendee)
   const {
+    watch,
     register,
     control,
     formState: { errors, isValid, isSubmitting },
@@ -65,7 +69,8 @@ const AttendeeUpdate = ({ ipAddress, attendee, country, formCheckout }) => {
         ],
       didYouHearAboutAttndeeDetail:
         isAttendee['whereDidYouHearAboutCoinfestAsia2024'],
-
+      haveCompanyAttndeeDetail:
+        isAttendee?.customer['company'] === 'N/A' ? false : true,
       companyAttndeeDetail: isAttendee?.customer['company'],
       websiteUrlAttndeeDetail: isAttendee?.customer['websiteUrl'],
       jobPositionAttndeeDetail: isAttendee['position'],
@@ -81,7 +86,7 @@ const AttendeeUpdate = ({ ipAddress, attendee, country, formCheckout }) => {
       firstName: sntzeFld(data?.firstnameAttndeeDetail),
       lastName: sntzeFld(data?.lastnameAttndeeDetail),
       company: sntzeFld(data?.companyAttndeeDetail),
-      selfEdited: true,
+      // selfEdited: true,
     },
   });
 
@@ -92,7 +97,7 @@ const AttendeeUpdate = ({ ipAddress, attendee, country, formCheckout }) => {
         // @get(key)
         const { key } = await fetch('/api/env/note', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', cache: 'no-store' },
         }).then((res) => res.json());
         const [rsAttendee] = await Promise.all([
           updateSubmitData(
@@ -114,6 +119,7 @@ const AttendeeUpdate = ({ ipAddress, attendee, country, formCheckout }) => {
           headers: {
             'Content-Type': 'application/json',
             'x-api-key': key,
+            cache: 'no-store',
           },
           body: JSON.stringify({
             toEmail: rsAttendee?.data['email'],
@@ -125,7 +131,7 @@ const AttendeeUpdate = ({ ipAddress, attendee, country, formCheckout }) => {
             productTickets: tickets,
           }),
         }).then((res) => res.json());
-        router.replace(`/attendee-detail/success`);
+        // router.replace(`/attendee-detail/success`);
       } catch (error) {
         // console.error('[error] processing submission:', error);
         return;
@@ -186,6 +192,7 @@ const AttendeeUpdate = ({ ipAddress, attendee, country, formCheckout }) => {
                     >
                       <div className={`flex flex-col space-y-4`}>
                         <AttendeeDetailUpdate
+                          watch={watch(`haveCompanyAttndeeDetail`)}
                           forms={{
                             ipAddress:
                               isFormAttendee?.isIpAddress?.country !== undefined

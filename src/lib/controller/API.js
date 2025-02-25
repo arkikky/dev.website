@@ -13,6 +13,7 @@ export async function getFetch(url) {
       Authorization: `Bearer ${tApp}`,
     },
     credentials: 'include',
+    cache: 'no-store',
   })
     .then((res) => {
       if (res?.ok) {
@@ -32,6 +33,7 @@ export async function getFetchUrl(url) {
       'Content-Type': 'application/json',
     },
     credentials: 'include',
+    cache: 'no-store',
   })
     .then((res) => {
       if (res?.ok) {
@@ -56,6 +58,7 @@ export async function getFetchPaginatedData(endpoints) {
         Origin: '*',
       },
       credentials: 'include',
+      cache: 'no-store',
     }
   )
     .then((res) => {
@@ -89,6 +92,7 @@ export async function getFetchUrl_FormData(url, data) {
       Authorization: `Bearer ${tApp}`,
     },
     body: data,
+    cache: 'no-store',
   })
     .then((res) => {
       if (res?.ok) {
@@ -111,6 +115,7 @@ export async function updateData(url, data) {
       Authorization: `Bearer ${tApp}`,
     },
     body: JSON.stringify(data),
+    cache: 'no-store',
   })
     .then((res) => {
       if (res?.ok) {
@@ -131,6 +136,7 @@ export async function updateSubmitData(url, data) {
       Authorization: `Bearer ${tApp}`,
     },
     body: JSON.stringify(data),
+    cache: 'no-store',
   })
     .then((res) => {
       if (res?.ok) {
@@ -153,6 +159,7 @@ export async function pushSubmitData(url, data) {
       Authorization: `Bearer ${tApp}`,
     },
     body: JSON.stringify(data),
+    cache: 'no-store',
   })
     .then((res) => {
       if (res?.ok) {
@@ -173,6 +180,7 @@ export async function submitForm(url, data) {
       Authorization: `Bearer ${tApp}`,
     },
     body: JSON.stringify(data),
+    cache: 'no-store',
   })
     .then((res) => {
       if (res?.ok) {

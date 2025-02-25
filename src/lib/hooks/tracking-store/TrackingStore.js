@@ -295,7 +295,7 @@ export function useTrackingStore() {
           }),
         },
       });
-      // console.log('DataL/ayer Event Pushed:', window.dataLayer);
+      console.log('DataL/ayer Event Pushed:', window.dataLayer);
     }
   };
 

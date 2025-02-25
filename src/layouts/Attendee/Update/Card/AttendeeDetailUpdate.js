@@ -31,7 +31,22 @@ const AttendeeDetailUpdate = ({
   };
   useEffect(() => {
     handleIntzPreline();
-  }, [handleIntzPreline]);
+  }, [handleIntzPreline, watch]);
+
+  // @handle(company toggle change)
+  const handleToggleCompay_Change = (d) => {
+    const isTrue = getValues(d) === true;
+    const fieldsToSet = {
+      [`websiteUrlAttndeeDetail`]: isTrue ? '' : '-',
+      // [`companyAttndeeDetail`]: isTrue ? '' : '',
+      [`jobPositionAttndeeDetail`]: isTrue ? '' : '-',
+      [`companyFocusAttndeeDetail`]: isTrue ? '' : '-',
+      [`companySizeAttndeeDetail`]: isTrue ? '' : '-',
+    };
+    Object.entries(fieldsToSet).forEach(([field, value]) => {
+      setValue(field, value, { shouldValidate: true });
+    });
+  };
 
   return (
     <>
@@ -40,7 +55,7 @@ const AttendeeDetailUpdate = ({
           <Label
             forId={`ca25Form_FirstnameAttndeeDetail`}
             label="First name"
-            required={forms?.selfEdited === true ? false : true}
+            required={forms?.selfEdited ? false : true}
           />
           <Input
             id={`ca25Form_FirstnameAttndeeDetail`}
@@ -48,7 +63,7 @@ const AttendeeDetailUpdate = ({
             name={`firstnameAttndeeDetail`}
             placeholder=""
             ariaLabel={`Firstname Attendee - Detail`}
-            disabled={forms?.selfEdited === true ? true : false}
+            disabled={forms?.selfEdited ? true : false}
             config={{
               ...register(`firstnameAttndeeDetail`, {
                 required: true,
@@ -65,7 +80,7 @@ const AttendeeDetailUpdate = ({
           <Label
             forId={`ca25Form_LastnameAttndeeDetail`}
             label="Last name"
-            required={forms?.selfEdited === true ? false : true}
+            required={forms?.selfEdited ? false : true}
           />
           <Input
             id={`ca25Form_LastnameAttndeeDetail`}
@@ -73,7 +88,7 @@ const AttendeeDetailUpdate = ({
             name={`lastnameAttndeeDetail`}
             placeholder=""
             ariaLabel={`Lastname Attendee - Detail`}
-            disabled={forms?.selfEdited === true ? true : false}
+            disabled={forms?.selfEdited ? true : false}
             config={{
               ...register(`lastnameAttndeeDetail`, {
                 required: true,
@@ -275,28 +290,49 @@ const AttendeeDetailUpdate = ({
       </div>
 
       {/* @company */}
-      <div className={`supports-grid:grid`}>
-        <div className="mb-4 mt-5 flex w-full flex-col items-start justify-between sm:flex-row">
-          <div className="flex w-full max-w-[399px] flex-col items-start justify-start">
-            <span className="text-balance text-sm font-light text-gray-400">
-              {`Use the company details that correspond with the attendee`}
-            </span>
+      <div className={`mt-6 flex flex-row items-center justify-between`}>
+        <Label
+          forId={`ca25Form_HaveCompanyAttndeeDetail`}
+          label="Would you like to update your company information?"
+          required={false}
+        />
+        {!forms?.selfEdited ? (
+          <div
+            className={`relative ${forms?.selfEdited ? 'hidden' : 'inline-block'}`}
+          >
+            <input
+              id={`ca25Form_HaveCompanyAttndeeDetail`}
+              className="bxShadow-none form-checkbox relative h-6 w-12 shrink-0 cursor-pointer rounded-full border border-solid border-gray-200 bg-gray-100 py-0.5 pl-0.5 pr-px text-transparent transition-colors duration-200 ease-in-out before:inline-block before:size-4.5 before:translate-x-0 before:transform before:rounded-full before:border before:border-gray-200 before:bg-white before:ring-0 before:transition before:duration-200 before:ease-in-out checked:border-black-900 checked:bg-none checked:text-black-900 checked:before:translate-x-[130%] checked:before:border-white checked:before:bg-white disabled:pointer-events-none"
+              type="checkbox"
+              {...register(`haveCompanyAttndeeDetail`, {
+                required: false,
+                onChange: (e) => {
+                  handleToggleCompay_Change(`haveCompanyAttndeeDetail`);
+                },
+              })}
+            />
+            <label
+              htmlFor={`ca25Form_HaveCompanyAttndeeDetail`}
+              className="sr-only"
+            >
+              switch
+            </label>
           </div>
-          {children}
-        </div>
-
+        ) : null}
+      </div>
+      <div className={`supports-grid:grid`}>
         <div className="mb-4 block">
           <Label
             forId={`ca25Form_CompanyAttndeeDetail`}
             label="Company Name"
-            required={forms?.selfEdited === true ? false : true}
+            required={forms?.selfEdited ? false : true}
           />
           <Input
             id={`ca25Form_CompanyAttndeeDetail`}
             type="text"
             placeholder=""
             ariaLabel={`Company Attendee - Detail`}
-            disabled={forms?.selfEdited === true ? true : false}
+            disabled={forms?.selfEdited ? true : false}
             config={{
               ...register(`companyAttndeeDetail`, {
                 required: watch === true ? true : false,
@@ -310,18 +346,18 @@ const AttendeeDetailUpdate = ({
           />
         </div>
         <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
-          <div className="pointer-events-none block select-none">
+          <div className={`block`}>
             <Label
               forId={`ca25Form_WebsiteUrlAttndeeDetail`}
               label="Company Website"
-              required={false}
+              required={watch && !forms?.selfEdited}
             />
             <Input
               id={`ca25Form_WebsiteUrlAttndeeDetail`}
               type="text"
               placeholder={`Include http:// or https://`}
               ariaLabel="Website Billing - Detail"
-              disabled={true}
+              disabled={forms?.selfEdited ? true : false}
               config={{
                 ...register(`websiteUrlAttndeeDetail`, {
                   required: watch,
@@ -336,12 +372,12 @@ const AttendeeDetailUpdate = ({
             />
           </div>
           <div
-            className={`"block ${errors[`jobPositionAttndeeDetail`] ? 'error' : ''} ${watch === true && forms?.isSubmited === false ? '' : 'disabled'}`}
+            className={`"block ${errors[`jobPositionAttndeeDetail`] ? 'error' : ''} ${(watch && !forms?.selfEdited) || forms?.isSubmited === false ? '' : 'disabled'}`}
           >
             <Label
               forId={`ca25Form_JobPositionAttndeeDetail`}
               label="Position"
-              required={watch}
+              required={watch && !forms?.selfEdited}
             />
             <Select
               id={`ca25Form_JobPositionAttndeeDetail`}
@@ -357,7 +393,7 @@ const AttendeeDetailUpdate = ({
               setValue={setValue}
               config={{
                 ...register(`jobPositionAttndeeDetail`, {
-                  required: watch,
+                  required: watch && !forms?.selfEdited,
                 }),
               }}
             />
@@ -365,12 +401,12 @@ const AttendeeDetailUpdate = ({
         </div>
         <div className="mt-4 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
           <div
-            className={`block ${errors[`companyFocusAttndeeDetail`] ? 'error' : ''} ${watch === true && forms?.isSubmited === false ? '' : 'disabled'}`}
+            className={`block ${errors[`companyFocusAttndeeDetail`] ? 'error' : ''} ${(watch && !forms?.selfEdited) || forms?.isSubmited === false ? '' : 'disabled'}`}
           >
             <Label
               forId={`ca25Form_CompanyFocusAttndeeDetail`}
               label="Company Focus"
-              required={watch}
+              required={watch && !forms?.selfEdited}
             />
             <Select
               id={`ca25Form_CompanyFocusAttndeeDetail`}
@@ -386,18 +422,18 @@ const AttendeeDetailUpdate = ({
               setValue={setValue}
               config={{
                 ...register(`companyFocusAttndeeDetail`, {
-                  required: watch,
+                  required: watch && !forms?.selfEdited,
                 }),
               }}
             />
           </div>
           <div
-            className={`"block ${errors[`companySizeAttndeeDetail`] ? 'error' : ''} ${watch === true && forms?.isSubmited === false ? '' : 'disabled'}`}
+            className={`"block ${errors[`companySizeAttndeeDetail`] ? 'error' : ''} ${(watch && !forms?.selfEdited) || forms?.isSubmited === false ? '' : 'disabled'}`}
           >
             <Label
               forId={`ca25Form_CompanySizeAttndeeDetail`}
               label="Company Size"
-              required={watch}
+              required={watch && !forms?.selfEdited}
             />
             <Select
               id={`ca25Form_CompanySizeAttndeeDetail`}
@@ -412,7 +448,7 @@ const AttendeeDetailUpdate = ({
               setValue={setValue}
               config={{
                 ...register(`companySizeAttndeeDetail`, {
-                  required: watch,
+                  required: watch && !forms?.selfEdited,
                 }),
               }}
             />

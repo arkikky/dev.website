@@ -71,7 +71,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     order: isOrder,
     orderSession: isOrderPayment_Session,
   } = useSelector((state) => state.cart);
-  const { trackingBeginCheckout, trackingCheckoutJourney } = useTrackingStore();
+  const { trackingBeginCheckout, trackingCheckoutJourney, trackingPurchase } =
+    useTrackingStore();
   const {
     getStore,
     getIsCoupon,

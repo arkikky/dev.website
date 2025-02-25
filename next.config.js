@@ -120,7 +120,11 @@ const nextConfig = {
           },
           {
             key: 'Cache-Control',
-            value: 'private, stale-while-revalidate=59',
+            value: 'no-store, no-cache, must-revalidate, max-age=0',
+          },
+          {
+            key: 'Vercel-CDN-Cache-Control',
+            value: 'no-store',
           },
           {
             key: 'X-XSS-Protection',
