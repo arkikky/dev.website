@@ -16,6 +16,6 @@
   @apply hover:bg-secondary hover:text-black-900;
   @apply hs-tab-active:bg-secondary hs-tab-active:text-black-900;
   @apply disabled:pointer-events-none disabled:opacity-50;
-  @apply w-fill min-w-[189px] px-4 py-5;
+  @apply w-fill min-w-[209px] px-4 py-5;
   @apply transition-[background,color] duration-300 ease-in-out;
 }

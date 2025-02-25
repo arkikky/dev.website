@@ -107,7 +107,7 @@ export default function handler(req, res) {
       },
       {
         url: '/',
-        images: '/assets/images/partners/ca25Partner-16.svg',
+        images: '/assets/images/partners/ca25Partner-16.png',
         captions: '16',
         openUrl: false,
       },

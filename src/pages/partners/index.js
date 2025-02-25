@@ -65,7 +65,7 @@ const Partners = ({ mode, collections }) => {
               {/* @toggle(tabs) */}
               <div className="flex flex-col rounded-2xl border-2 border-solid border-[#333333] bg-transparent px-2 py-2 transition sm:px-4 sm:py-4">
                 <nav
-                  className={`flex w-full space-x-2 overflow-x-auto scrollbar-hide`}
+                  className={`flex w-full space-x-4 overflow-x-auto scrollbar-hide`}
                   aria-label="Tabs"
                   role="tablist"
                 >
