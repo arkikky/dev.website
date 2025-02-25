@@ -455,9 +455,9 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                         `if_you_choose__other___tell_us_what_s_in_your_mind`,
                         {
                           required: true,
-                          maxLength: 120,
+                          maxLength: 500,
                           pattern: {
-                            value: /^[a-zA-Z0-9\s-_]{2,120}$/,
+                            value: /^[\p{L}\p{N}\p{Zs}\-_,.:?'“”()\n]+$/u,
                           },
                         }
                       ),

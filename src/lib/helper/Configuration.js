@@ -1,8 +1,12 @@
 import CryptoJS from 'crypto-js';
 import { getCookie, setCookie } from 'cookies-next';
+import { toast } from 'sonner';
 
-// @lib/controller & helper
+// @lib
 import { getFetchUrl_FormData, updateData } from '@lib/controller/API';
+
+// @components
+import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 
 // @smooth-scroll
 export function smoothLeftScroll(container, targetScroll, duration = 1000) {
@@ -203,6 +207,101 @@ export function getCombineMerged(data1, data2) {
     quantity: product?.quantity >= 15 ? 15 : product?.quantity,
   }));
   return filteredProducts;
+}
+
+// @hash-validation(attendees)
+export function hashValidateAttendees(groupedData) {
+  const products = groupedData?.products;
+  if (!products || Object.keys(products)?.length === 0) {
+    return false;
+  }
+  const invalidAttendees = {};
+  let isDataFound = false;
+  Object.entries(products)?.forEach(([productName, attendees]) => {
+    if (attendees && attendees.length > 0) {
+      isDataFound = true;
+      attendees.forEach((attendee, index) => {
+        const isValid = validateCheckoutFields(
+          attendee,
+          productName,
+          index + 1
+        );
+        if (!isValid) {
+          if (!invalidAttendees[productName]) {
+            invalidAttendees[productName] = [];
+          }
+          invalidAttendees[productName].push(`${index + 1}`);
+        }
+      });
+    }
+  });
+  if (!isDataFound) {
+    return false;
+  }
+  let hasInvalid = false;
+  Object.entries(invalidAttendees)?.forEach(([productName, attendees]) => {
+    if (attendees?.length > 0) {
+      hasInvalid = true;
+      toast.custom(
+        (t) => (
+          <ToastAlerts
+            id={t}
+            type="error"
+            visible={true}
+            label={`Attendees <strong>${attendees.join(', ')}</strong> in <strong>${productName} Tickets</strong>,<br> Still have incomplete information.`}
+          />
+        ),
+        { unstyled: true, duration: 12000 }
+      );
+    }
+  });
+  if (hasInvalid) {
+    return false;
+  }
+  return true;
+}
+
+// @validate-fields
+export function validateCheckoutFields(att, products, attIdx) {
+  const haveCompanyField = `haveCompanyAttndee${attIdx}_${products}Ticket`;
+  const hasCompany = att[haveCompanyField] === true;
+  const requiredFields = hasCompany
+    ? [
+        `firstname`,
+        `lastname`,
+        `email`,
+        `country`,
+        `whatTypeConnectionNetworking`,
+        `didYouHearAbout`,
+        `phone`,
+        `websiteUrl`,
+        `company`,
+        `jobPosition`,
+        `companyFocus`,
+        `companySize`,
+      ]
+    : [
+        `firstname`,
+        `lastname`,
+        `email`,
+        `country`,
+        `whatTypeConnectionNetworking`,
+        `didYouHearAbout`,
+        `phone`,
+      ];
+  let rsAllFields = true;
+  const missingFields = [];
+  for (const field of requiredFields) {
+    const fieldName = `${field}Attndee${attIdx}_${products}Ticket`;
+    if (!att[fieldName] || att[fieldName].trim() === '') {
+      missingFields.push(field);
+      rsAllFields = false;
+    }
+  }
+  // if (missingFields.length > 0) {
+  //   const errorMessage = `Fields (${missingFields.join(',')}) are required for Attendee ${attIdx} at the ${products} Tickets!`;
+  // }
+  return rsAllFields;
 }
 
 // @valid-time(payment)

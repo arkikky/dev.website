@@ -36,7 +36,7 @@ import LayoutDefaults from '@layouts/Layouts';
 
 const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
   const router = useRouter();
-  const { handlePurchase } = useTrackingStore();
+  const { trackingPurchase } = useTrackingStore();
   const dispatch = useDispatch();
   const [isOrderRecived, setOrderRecived] = useState({
     isIpAddress: ipAddress,
@@ -99,18 +99,6 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
     dispatch(removeCart());
     hndleIntzCoupon();
   }, []);
-
-  // @initialize(tracking-purchase)
-  // useEffect(() => {
-  //   trackingPurchase({
-  //     transID: isOrderRecived?.order?.documentId,
-  //     transValue: isOrderRecived?.order?.orderTotal,
-  //   });
-  // }, [trackingPurchase]);
-
-  // useEffect(() => {
-  //   handlePurchase(isOrderRecived?.order);
-  // }, [handlePurchase]);
 
   // @check-payment
   useEffect(() => {
@@ -229,6 +217,15 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                   isProducts,
                   arrAttendees
                 );
+                const isSubTotal = Number(isOrderRecived?.order?.orderTotal);
+
+                // @add-tracking-purchase
+                trackingPurchase(
+                  isOrderRecived?.order?.documentId,
+                  grpAttendee,
+                  setIsCoupon,
+                  isSubTotal
+                );
                 // @send(invoice)
                 const rsInvoice = await fetch('/api/invoice/send-invoice', {
                   method: 'POST',
@@ -253,8 +250,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                 for (let i = 0; i < grpAttendee?.length; i++) {
                   const isGrpdAttendee = grpAttendee[i];
                   const tickets =
-                    isGrpdAttendee?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9' ||
-                    isGrpdAttendee?.documentId === 'g1ukadil4n4a3r0ndly7jl42'
+                    isGrpdAttendee?.documentId !== 'rc33x0dgm6tm707jghffuip4'
                       ? `Festival Ticket`
                       : `${isGrpdAttendee?.name}`;
                   for (let a = 0; a < isGrpdAttendee?.attendees?.length; a++) {

@@ -56,7 +56,7 @@ const ToastAlerts = ({
       <div
         id="ca25Alert-Card"
         className={twMerge(
-          `w-auto rounded-lg border px-2.5 py-4 text-sm shadow-lg duration-300 ease-in-out sm:w-[347px] sm:px-3 lg:px-4`,
+          `w-auto rounded-lg border px-2.5 py-4 text-sm shadow-lg duration-300 ease-in-out sm:w-[367px] sm:px-3 lg:px-4`,
           isType
         )}
         role="alert"
@@ -128,10 +128,12 @@ const ToastAlerts = ({
           <div className="ms-2.5 mt-0 flex w-full flex-row justify-between">
             <div
               id="ca25ToastAlertLabel"
-              className="max-w-[227px] text-balance text-sm prose-strong:font-semibold"
+              className="max-w-[247px] text-balance text-sm prose-strong:font-semibold"
               dangerouslySetInnerHTML={{ __html: label }}
             ></div>
-            <span className="ml-2 font-medium lg:ml-2.5">({isCountdown}s)</span>
+            <span className="ml-2 shrink-0 font-medium lg:ml-2.5">
+              ({isCountdown}s)
+            </span>
           </div>
         </div>
       </div>

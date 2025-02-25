@@ -17,7 +17,7 @@ const SpeakerCards = ({
 }) => {
   const [ref, inView] = useInView({
     threshold: 1,
-    rootMargin: '60% 0% 0% 0%',
+    rootMargin: '80% 0% 0% 0%',
     triggerOnce: true,
   });
   const [isLoading, setLoading] = useState(false);

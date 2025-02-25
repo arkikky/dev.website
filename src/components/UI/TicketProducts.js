@@ -300,7 +300,7 @@ const TicketProducts = ({
             ) : (
               <button
                 id={trackingButtonId(data?.documentId, data?.name, isPage)}
-                className={`ca25ProductsBtn relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${!sessionsProducts ? 'cursor-default' : 'cursor-pointer'}`}
+                className={`ca25ProductsBtn ca25DL_ViewProduct relative inline-flex w-[169px] items-center justify-center rounded-xl px-4 py-4 font-semibold uppercase disabled:pointer-events-none disabled:opacity-90 sm:px-6 sm:py-5 ${!sessionsProducts ? 'cursor-default' : 'cursor-pointer'}`}
                 role="button"
                 aria-label={`Button ${data?.name.replace(/\s/g, '')} Products Coinfest Asia 2025`}
                 data-layer-id={trackingButtonId(

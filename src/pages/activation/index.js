@@ -10,7 +10,8 @@ import Link from 'next/link';
 // @get .config
 const { publicRuntimeConfig, serverRuntimeConfig } = getConfig();
 
-// @lib/controller & helper
+// @lib
+import { useTrackingStore } from '@lib/hooks/tracking-store/TrackingStore';
 import { getFetch, getFetchUrl, updateData } from '@lib/controller/API';
 import { submitFormHbSpt } from '@lib/controller/HubSpot';
 import { encodeData, convertQrCodeToBlob } from '@lib/helper/Configuration';
@@ -32,6 +33,7 @@ import Input from '@components/UI/Form/Input';
 
 const Activation = ({ ipAddress }) => {
   const router = useRouter();
+  const { trackingPurchase } = useTrackingStore();
   const [isSessionAttendee, setSessionAttendee] = useState(false);
 
   // @form-hook(activation)
@@ -184,6 +186,18 @@ const Activation = ({ ipAddress }) => {
                   isProducts,
                   arrAttendees
                 );
+                const isOrderTotal = Number(
+                  rsCustomer?.data[0]?.orders[0]?.orderTotal
+                );
+
+                // @add-tracking-purchase
+                trackingPurchase(
+                  rsCustomer?.data[0]?.orders[0]?.documentId,
+                  grpAttendee,
+                  setIsCoupon,
+                  isOrderTotal
+                );
+
                 // @send(invoice)
                 const rsInvoice = await fetch('/api/invoice/send-invoice', {
                   method: 'POST',
@@ -207,8 +221,7 @@ const Activation = ({ ipAddress }) => {
                 for (let i = 0; i < grpAttendee?.length; i++) {
                   const isGrpdAttendee = grpAttendee[i];
                   const tickets =
-                    isGrpdAttendee?.documentId === 'sn4ujm0d1ebbc8lme1ihzsa9' ||
-                    isGrpdAttendee?.documentId === 'g1ukadil4n4a3r0ndly7jl42'
+                    isGrpdAttendee?.documentId !== 'rc33x0dgm6tm707jghffuip4'
                       ? `Festival Ticket`
                       : `${isGrpdAttendee?.name}`;
                   for (let a = 0; a < isGrpdAttendee?.attendees?.length; a++) {
@@ -306,7 +319,6 @@ const Activation = ({ ipAddress }) => {
               (t) => (
                 <ToastAlerts
                   id={t}
-                  position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
                   type="info"
                   visible={true}
                   label={`<strong>Sorry, Your activation is not valid</strong>, as the payment has not been completed`}
@@ -321,7 +333,6 @@ const Activation = ({ ipAddress }) => {
               (t) => (
                 <ToastAlerts
                   id={t}
-                  position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
                   type="info"
                   visible={true}
                   label={`<strong>Sorry, Your activation is not valid</strong>, as the payment has not been completed`}
@@ -337,7 +348,6 @@ const Activation = ({ ipAddress }) => {
             (t) => (
               <ToastAlerts
                 id={t}
-                position="bottom-[78px] inset-x-2.5 sm:inset-x-3 top-auto"
                 type="info"
                 visible={true}
                 label={`<strong>Sorry, Your data has already been activated</strong>,<br/> Please return to the homepage.`}
@@ -393,7 +403,7 @@ const Activation = ({ ipAddress }) => {
                   <div className="block">
                     <Label
                       forId={`ca25Form_TicketCustomerConfrim`}
-                      label="Customer ID"
+                      label="Order Information"
                       required={true}
                     />
                     <Input

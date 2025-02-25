@@ -465,7 +465,10 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
                           `if_you_pick__other___tell_us_what_kind_of_activations_you_d_like_to_explore`,
                           {
                             required: true,
-                            maxLength: 120,
+                            maxLength: 500,
+                            pattern: {
+                              value: /^[\p{L}\p{N}\p{Zs}\-_,.:?'“”()\n]+$/u,
+                            },
                           }
                         ),
                       }}

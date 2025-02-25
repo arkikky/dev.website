@@ -13,7 +13,10 @@ export function useTrackingStore() {
           items:
             store?.map((item, i) => ({
               item_id: item?.id,
-              item_name: item?.name,
+              item_name:
+                process.env.NODE_ENV === 'development'
+                  ? `Dev ${item?.name}`
+                  : item?.name,
               index: i,
               item_brand: 'Coinfest Asia',
               item_category:
@@ -35,7 +38,10 @@ export function useTrackingStore() {
             items:
               store?.map((item, i) => ({
                 item_id: item?.id,
-                item_name: item?.name,
+                item_name:
+                  process.env.NODE_ENV === 'development'
+                    ? `Dev ${item?.name}`
+                    : item?.name,
                 index: i,
                 item_brand: 'Coinfest Asia',
                 item_category:
@@ -61,7 +67,10 @@ export function useTrackingStore() {
           value: Number(item?.priceSale ?? gtRslt?.price),
           items: {
             item_id: item?.id,
-            item_name: item?.name,
+            item_name:
+              process.env.NODE_ENV === 'development'
+                ? `Dev ${item?.name}`
+                : item?.name,
             item_brand: 'Coinfest Asia',
             item_category:
               item?.documentId !== 'rc33x0dgm6tm707jghffuip4'
@@ -79,7 +88,10 @@ export function useTrackingStore() {
           value: Number(item?.priceSale ?? gtRslt?.price),
           items: {
             item_id: item?.id,
-            item_name: item?.name,
+            item_name:
+              process.env.NODE_ENV === 'development'
+                ? `Dev ${item?.name}`
+                : item?.name,
             item_brand: 'Coinfest Asia',
             item_category:
               item?.documentId !== 'rc33x0dgm6tm707jghffuip4'
@@ -123,7 +135,10 @@ export function useTrackingStore() {
 
             return {
               item_id: item?.id,
-              item_name: item?.name,
+              item_name:
+                process.env.NODE_ENV === 'development'
+                  ? `Dev ${item?.name}`
+                  : item?.name,
               coupon: isDiscounted ? validCoupon?.couponCode : '-',
               discount: isDiscounted ? itemDiscount : '-',
               index: i,
@@ -171,7 +186,10 @@ export function useTrackingStore() {
 
             return {
               item_id: item?.id,
-              item_name: item?.name,
+              item_name:
+                process.env.NODE_ENV === 'development'
+                  ? `Dev ${item?.name}`
+                  : item?.name,
               coupon: isDiscounted ? validCoupon?.couponCode : '-',
               discount: isDiscounted ? itemDiscount : '-',
               index: i,
@@ -207,7 +225,10 @@ export function useTrackingStore() {
 
             return {
               item_id: item?.id,
-              item_name: item?.name,
+              item_name:
+                process.env.NODE_ENV === 'development'
+                  ? `Dev ${item?.name}`
+                  : item?.name,
               coupon: isDiscounted ? validCoupon?.couponCode : '-',
               discount: isDiscounted ? itemDiscount : '-',
               index: i,
@@ -226,42 +247,57 @@ export function useTrackingStore() {
   };
 
   // @purchase
-  const trackingPurchase = useCallback(({ transID, transValue }) => {
-    // if (typeof window !== 'undefined' && window.dataLayer) {
-    //   window.dataLayer.push({
-    //     event: 'purchase_confirmed',
-    //     'value.transID': transID,
-    //     'value.transValue': transValue,
-    //   });
-    // }
-  }, []);
-  const handlePurchase = useCallback((order) => {
-    // if (typeof window !== 'undefined' && window.gtag) {
-    //   window.gtag('event', 'purchase', {
-    //     transaction_id: 'Test_90_' + order?.documentId,
-    //     value: Number(order?.orderTotal),
-    //     shipping: 0,
-    //     currency: 'IDR',
-    //     coupon: '-',
-    //     items: [
-    //       {
-    //         item_id: `T-${order?.products[0]?.id}`,
-    //         item_name: 'Test Festival',
-    //         affiliation: 'Coinfest Asia',
-    //         currency: 'IDR',
-    //         item_brand: 'Coinfest Asia',
-    //         item_category: 'Festival Ticket',
-    //         price: Number(
-    //           order?.products[0]?.priceSale ?? order?.products[0]?.price
-    //         ),
-    //         quantity: 2,
-    //       },
-    //     ],
-    //   });
-    //   // console.log('DataL/ayer Event Pushed:', window.dataLayer);
-    //   return;
-    // }
-  }, []);
+  const trackingPurchase = (transactionId, store, isCoupon, total) => {
+    if (typeof window !== 'undefined' && window.dataLayer) {
+      const validCoupon = isCoupon?.includedProducts?.some((p) =>
+        store?.some((item) => item.documentId === p.documentId)
+      )
+        ? isCoupon
+        : null;
+
+      window.dataLayer.push({ ecommerce: null });
+      window.dataLayer.push({
+        event: 'purchase',
+        ecommerce: {
+          currency: 'IDR',
+          value: Number(total),
+          transaction_id: transactionId,
+          coupon: validCoupon ? validCoupon?.couponCode : '-',
+          items: store?.map((item, i) => {
+            const isDiscounted = validCoupon?.includedProducts?.some(
+              (p) => p.documentId === item.documentId
+            );
+            const itemDiscount = isDiscounted
+              ? validCoupon?.type === 'percentage'
+                ? (Number(item.priceSale) * Number(validCoupon.amount)) / 100
+                : validCoupon?.type === 'fix'
+                  ? Number(validCoupon.amount) / store.length
+                  : 0
+              : 0;
+
+            return {
+              item_id: item?.id,
+              item_name:
+                process.env.NODE_ENV === 'development'
+                  ? `Dev ${item?.name}`
+                  : item?.name,
+              coupon: isDiscounted ? validCoupon?.couponCode : '-',
+              discount: isDiscounted ? itemDiscount : '-',
+              index: i,
+              item_brand: 'Coinfest Asia',
+              item_category:
+                item?.documentId !== 'rc33x0dgm6tm707jghffuip4'
+                  ? `Festival Ticket`
+                  : item?.name,
+              price: Number(item?.priceSale ?? gtRslt?.price),
+              quantity: item?.quantity,
+            };
+          }),
+        },
+      });
+      // console.log('DataL/ayer Event Pushed:', window.dataLayer);
+    }
+  };
 
   return {
     trackingViewProduct,
@@ -269,6 +305,5 @@ export function useTrackingStore() {
     trackingBeginCheckout,
     trackingCheckoutJourney,
     trackingPurchase,
-    handlePurchase,
   };
 }

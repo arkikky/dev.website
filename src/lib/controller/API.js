@@ -9,6 +9,7 @@ export async function getFetch(url) {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      Origin: '*',
       Authorization: `Bearer ${tApp}`,
     },
     credentials: 'include',
@@ -41,6 +42,44 @@ export async function getFetchUrl(url) {
       return false;
     });
   return rs;
+}
+
+// @get-all(paginated)
+export async function getFetchPaginatedData(endpoints) {
+  const rsAll = await fetch(
+    `${process.env.GENERAL_BASEAPI_URL}${endpoints}?sort=rank:asc&populate=*&pagination[page]=1&pagination[pageSize]=100`,
+    {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Origin: '*',
+      },
+      credentials: 'include',
+    }
+  )
+    .then((res) => {
+      if (res?.ok) {
+        return res.json();
+      }
+    })
+    .catch(() => {
+      return false;
+    });
+
+  const tlPages = rsAll?.meta?.pagination.pageCount;
+  const fetchPromises = [];
+
+  for (let i = 1; i <= tlPages; i++) {
+    fetchPromises.push(
+      getFetchUrl(
+        `${process.env.GENERAL_BASEAPI_URL}${endpoints}?sort=rank:asc&populate=*&pagination[page]=${i}&pagination[pageSize]=100`
+      )
+    );
+  }
+
+  const rs = await Promise.all(fetchPromises);
+  return rs.flatMap((rslt) => rslt?.data);
 }
 
 export async function getFetchUrl_FormData(url, data) {

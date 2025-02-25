@@ -548,7 +548,7 @@ const BecomeAnAffiliate = ({
                     required: true,
                     maxLength: 1000,
                     pattern: {
-                      value: /^[a-zA-Z0-9\s\-_,.:?'()]+$/,
+                      value: /^[\p{L}\p{N}\p{Zs}\-_,.:?'“”()\n]+$/u,
                     },
                   }
                 ),

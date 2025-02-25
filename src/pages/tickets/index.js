@@ -90,7 +90,7 @@ const Tickets = ({ mode, products }) => {
 
       {/* @alert(toast)  */}
       <Toaster
-        position="bottom-left"
+        position="bottom-center"
         richColors
         gap="10"
         offset={18}

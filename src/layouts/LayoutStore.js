@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-// @lib/controller & helper
+// @lib
 import { useStoreContext } from '@lib/context/store/StoreContext';
 import { useMethod } from '@lib/hooks/Method';
 

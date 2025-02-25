@@ -4,9 +4,10 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import getConfig from 'next/config';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // # @get .config
-const { serverRuntimeConfig } = getConfig();
+const { publicRuntimeConfig, serverRuntimeConfig } = getConfig();
 
 // @style
 import 'react-phone-input-2/lib/high-res.css';
@@ -417,20 +418,44 @@ const PartnerCommunity = ({
                 <div
                   className={`ca25Article_Frmatt ca25Article_FrmattNormal pt-3 text-base`}
                 >
-                  <p>
-                    <span className="mb-2">
-                      <strong>
-                        Enter Your Ticket Number
-                        <br />
-                      </strong>
-                    </span>
-                    <span>
-                      Check your email for your Coinfest Asia ticket. You’ll
-                      find a QR code with a series of random numbers and letters
-                      below it. Copy and paste those characters into the fields
-                      below.
-                    </span>
-                  </p>
+                  <span className="mb-2">
+                    <strong>
+                      Enter Your Ticket Number
+                      <br />
+                    </strong>
+                  </span>
+                  <ul className="-ml-2 mt-2 list-decimal prose-li:relative">
+                    <li>
+                      <span className="">
+                        Open your email and find your Coinfest Asia 2025 ticket
+                      </span>
+                    </li>
+                    <li>
+                      <span className="">
+                        Copy the code below the QR (see red box in the image).
+                      </span>
+                    </li>
+                    <li>
+                      <span className="">
+                        Paste it into Ticket 1 and Ticket 2 fields.
+                      </span>
+                    </li>
+                  </ul>
+                  <div className="mt-4 h-auto w-full border-2 border-solid border-gray-200 sm:h-[565px] lg:h-[743px] xl:h-[599px]">
+                    <Image
+                      className={
+                        'aspect-auto h-full w-full object-cover object-bottom'
+                      }
+                      src={
+                        '/assets/images/forms/ca25PartnerCommunity_QRCodeInstruction.jpeg'
+                      }
+                      alt={`Banner QR Code Instruction Coinfest Asia 2025 Community Partners`}
+                      height={1184}
+                      width={1254}
+                      quality="75"
+                      fetchPriority="auto"
+                    />
+                  </div>
                 </div>
                 <div className="grid-cols-1 gap-x-4 gap-y-4 last:mb-0 supports-grid:grid sm:grid-cols-2">
                   <div className="block">
@@ -743,7 +768,7 @@ const PartnerCommunity = ({
                           required: true,
                           maxLength: 1000,
                           pattern: {
-                           value: /^[a-zA-Z0-9\s\-_,.:?'()]+$/,
+                            value: /^[\p{L}\p{N}\p{Zs}\-_,.:?'“”()\n]+$/u,
                           },
                         }
                       ),

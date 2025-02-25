@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Fragment } from 'react';
 import { useRouter } from 'next/router';
 import { twMerge } from 'tailwind-merge';
 import QRCode from 'qrcode';
-import { Toaster, toast } from 'sonner';
+import { Toaster } from 'sonner';
 import { useForm } from 'react-hook-form';
 import getConfig from 'next/config';
 import dynamic from 'next/dynamic';
@@ -27,6 +27,7 @@ import { getFecthHbSpt, submitFormHbSpt } from '@lib/controller/HubSpot';
 import {
   smoothLeftScroll,
   getJoinString,
+  hashValidateAttendees,
   encodeData,
   convertQrCodeToBlob,
 } from '@lib/helper/Configuration';
@@ -42,7 +43,6 @@ import {
 import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
-import ToastAlerts from '@components/UI/Alerts/ToastAlert';
 import Breadcrumb from '@components/UI/Breadcrumb';
 import Notifications from '@components/UI/Alerts/Notifications';
 import Badge from '@components/UI/Badge';
@@ -130,10 +130,11 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     trackingBeginCheckout(getStore, getIsCoupon, isTotalOrder);
   }, [getStore, getIsCoupon]);
 
-  // @btn-step(Attendee)
+  // @btn-step(attendee)
   const handleTabClick = (e, productIdx, tabIdx) => {
     const btnAttendeeTabs = e?.currentTarget;
     const containerTabs = btnAttendeeTabs?.parentElement;
+
     if (btnAttendeeTabs && containerTabs) {
       setCurrentStepAttendee((prev) =>
         prev?.map((attendee, idx) => (idx === productIdx ? tabIdx : attendee))
@@ -310,7 +311,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     }
   };
 
-  // @handle-copy(Company - Attendee)
+  // @handle-copy(company - attendee)
   const hndleCopyCompany = (
     el = [],
     items = {
@@ -359,120 +360,26 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     }
   };
 
-  // @hash-validation(attendees)
-  function hashValidateAttendees(groupedData) {
-    const products = groupedData?.products;
-    if (!products || Object.keys(products)?.length === 0) {
-      return false;
-    }
-    const invalidAttendees = {};
-    let isDataFound = false;
-    Object.entries(products)?.forEach(([productName, attendees]) => {
-      if (attendees && attendees.length > 0) {
-        isDataFound = true;
-        attendees.forEach((attendee, index) => {
-          const isValid = validateFields(attendee, productName, index + 1);
-          if (!isValid) {
-            if (!invalidAttendees[productName]) {
-              invalidAttendees[productName] = [];
-            }
-            invalidAttendees[productName].push(`${index + 1}`);
-          }
-        });
-      }
-    });
-    if (!isDataFound) {
-      return false;
-    }
-    let hasInvalid = false;
-    Object.entries(invalidAttendees)?.forEach(([productName, attendees]) => {
-      if (attendees?.length > 0) {
-        hasInvalid = true;
-        toast.custom(
-          (t) => (
-            <ToastAlerts
-              id={t}
-              position="top-[0px] inset-x-2.5 sm:inset-x-3 bottom-auto"
-              type="error"
-              visible={true}
-              label={`Attendees <strong>${attendees.join(', ')}</strong> in <strong>${productName} Tickets</strong>,<br> Still have incomplete information.`}
-            />
-          ),
-          { unstyled: true, duration: 12000 }
-        );
-      }
-    });
-    if (hasInvalid) {
-      return false;
-    }
-    return true;
-  }
-  function validateFields(att, products, attIdx) {
-    const haveCompanyField = `haveCompanyAttndee${attIdx}_${products}Tickets`;
-    const hasCompany = att[haveCompanyField] === true;
-    const requiredFields = hasCompany
-      ? [
-          `firstname`,
-          `lastname`,
-          `email`,
-          `country`,
-          `whatTypeConnectionNetworking`,
-          `didYouHearAbout`,
-          `phone`,
-          `websiteUrl`,
-          `company`,
-          `jobPosition`,
-          `companyFocus`,
-          `companySize`,
-        ]
-      : [
-          `firstname`,
-          `lastname`,
-          `email`,
-          `country`,
-          `whatTypeConnectionNetworking`,
-          `didYouHearAbout`,
-          `phone`,
-        ];
-    let rsAllFields = true;
-    const missingFields = [];
-    for (const field of requiredFields) {
-      const fieldName = `${field}Attndee${attIdx}_${products}Tickets`;
-      if (!att[fieldName] || att[fieldName].trim() === '') {
-        missingFields.push(field);
-        rsAllFields = false;
-      }
-    }
-    if (missingFields.length > 0) {
-      const errorMessage = `Fields (${missingFields.join(',')}) are required for Attendee ${attIdx} at the ${products} Tickets!`;
-      // toast.error(errorMessage, {
-      //   duration: 6000,
-      //   style: { maxWidth: '500px', fontSize: '0.875rem' },
-      // });
-    }
-    return rsAllFields;
-  }
-
   // @validation(error form)
   const onErrorSubmit = async (errors, e) => {
     const data = getValues();
     const groupedData = {
-      personalData: {},
       products: {},
     };
     const companyKeys = [
-      'websiteUrlAttndee',
       'companyAttndee',
+      'websiteUrlAttndee',
       'jobPositionAttndee',
       'companyFocusAttndee',
       'companySizeAttndee',
     ];
+
     const excludeKeys = [...companyKeys];
     for (let key in data) {
       if (key.includes('Attndee')) {
-        const matches = key.match(/Attndee(\d+)_(\w+)Tickets/);
+        const matches = key.match(/Attndee(\d+)_(\w+)Ticket/);
         if (!matches) {
-          // console.warn(`Key ${key} tidak cocok dengan pola yang diharapkan.`);
+          console.warn(`Key ${key} tidak cocok dengan pola yang diharapkan.`);
           continue;
         }
         const attendeeIndex = matches[1];
@@ -480,7 +387,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
         // @skip(telegramAccount{attendee}_{product})
         if (
           key.includes(
-            `telegramAccountAttndee${attendeeIndex}_${productName}Tickets`
+            `telegramAccountAttndee${attendeeIndex}_${productName}Ticket`
           )
         ) {
           continue;
@@ -488,14 +395,18 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
         // @find(product)
         const product = getStore.find(
           (p) =>
-            p.name.replace(/\s+/g, '').replace(/Tickets$/i, '') === productName
+            p.name
+              .replace(/Ticket$/i, '')
+              .replace(/-/g, ' ')
+              .replace(/\s+/g, '') === productName
         );
         if (!product) {
           // console.warn(`${productName} Products not found!.`);
           continue;
         }
         const cleanedProductName = product.name
-          .replace(/\s*Tickets$/i, '')
+          .replace(/Ticket$/i, '')
+          .replace(/-/g, ' ')
           .replace(/\s+/g, '');
         if (!groupedData.products[cleanedProductName]) {
           groupedData.products[cleanedProductName] = [];
@@ -507,7 +418,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
           groupedData.products[cleanedProductName][attendeeIndex - 1];
         if (
           key.includes(
-            `haveCompanyAttndee${attendeeIndex}_${productName}Tickets`
+            `haveCompanyAttndee${attendeeIndex}_${productName}Ticket`
           ) &&
           data[key] === false
         ) {
@@ -516,7 +427,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             delete attendeeData[`${companyKey}${attendeeIndex}`];
           });
         }
-
         // @excludeKeys
         const isExcludedKey = excludeKeys.some((excludeKey) =>
           key.startsWith(excludeKey)
@@ -524,20 +434,23 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
         // @skip(telegramAccountAttndee or haveCompany)
         if (
           isExcludedKey &&
-          !data[`haveCompanyAttndee${attendeeIndex}_${productName}Tickets`]
+          !data[`haveCompanyAttndee${attendeeIndex}_${productName}Ticket`]
         ) {
           continue;
         }
         // @original-data
         attendeeData[key] = data[key];
-      } else {
-        groupedData.personalData[key] = data[key];
       }
     }
 
     // @validasi-attendee(products)
     getStore?.forEach((product) => {
-      const cleanedProductName = product.name.replace(/\s*Tickets$/i, '');
+      const cleanedProductName = product.name
+        .replace(/\s*Ticket$/i, '')
+        .replace(/-/g, ' ')
+        .replace(/\s+/g, '');
+      // console.log(cleanedProductName);
+
       const attendees = groupedData.products[cleanedProductName] || [];
       if (attendees.length > product?.quantity) {
         groupedData.products[cleanedProductName] = attendees.slice(
@@ -550,7 +463,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     hashValidateAttendees(groupedData);
   };
 
-  // @submit(Checkout)
+  // @submit(checkout)
   const onSubmitForm = async (data) => {
     const isFirstItems = getJoinString(getStore[0]?.name);
     if (isValid === true && isCart) {
@@ -730,7 +643,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
             }
             return;
           }
-
           // @processing(order)
           if (rsCreateOrder && Math.abs(isTotalOrder) < 1e-10) {
             // @update(order)
@@ -979,21 +891,22 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                   {Array.from({
                                     length: gtRslt?.quantity || 0,
                                   }).map((_, tabIdx) => (
-                                    <button
-                                      id={`ca25TabAttendee${tabIdx}_${groupName}`}
-                                      className={`ca25TabAttendee ${
-                                        currentStepAttendee[i] === tabIdx
-                                          ? 'isActive'
-                                          : 'nonActive'
-                                      }`}
-                                      onClick={(e) => {
-                                        e.preventDefault();
-                                        handleTabClick(e, i, tabIdx);
-                                      }}
-                                      key={tabIdx}
-                                    >
-                                      {`Attendee ${tabIdx + 1}`}
-                                    </button>
+                                    <Fragment key={tabIdx}>
+                                      <button
+                                        id={`ca25TabAttendee${tabIdx}_${groupName}`}
+                                        className={`ca25TabAttendee ${
+                                          currentStepAttendee[i] === tabIdx
+                                            ? 'isActive'
+                                            : 'nonActive'
+                                        }`}
+                                        onClick={(e) => {
+                                          e.preventDefault();
+                                          handleTabClick(e, i, tabIdx);
+                                        }}
+                                      >
+                                        {`Attendee ${tabIdx + 1}`}
+                                      </button>
+                                    </Fragment>
                                   ))}
                                 </div>
                               )}
@@ -1409,9 +1322,9 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
         </Container>
       </Main>
 
-      {/* @alert(Toast)  */}
+      {/* @alert(toast)  */}
       <Toaster
-        position="bottom-left"
+        position="bottom-center"
         richColors
         expand={false}
         pauseWhenPageIsHidden={true}
