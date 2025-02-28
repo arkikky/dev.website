@@ -302,7 +302,6 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                             body: JSON.stringify({
                               toEmail: rsAttendee?.email,
                               qrCode: rsBlobQrCode?.url,
-                              idAttndee: rsAttendee?.documentId,
                               docId: isGrpdAttendee?.documentId,
                               attId: rsAttendee?.attendeeId,
                               fullname: isFullname,

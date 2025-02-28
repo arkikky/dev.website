@@ -1,5 +1,5 @@
 import CryptoJS from 'crypto-js';
-import { getCookie, setCookie } from 'cookies-next';
+import { parseCookies, getCookie, setCookie } from 'cookies-next';
 import { toast } from 'sonner';
 
 // @lib
@@ -141,8 +141,14 @@ export const calculateCountdown = (date) => {
 
     const targetDateUTC = new Date(targetDate.getTime() - 7 * 60 * 60 * 1000);
 
+    // setCookie('prSle_trgtSession', targetDateUTC.toISOString(), {
+    //   maxAge: 60 * 60 * 24 * 7,
+    // });
     setCookie('prSle_trgtSession', targetDateUTC.toISOString(), {
       maxAge: 60 * 60 * 24 * 7,
+      path: '/',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'development' ? 'Lax' : 'Strict',
     });
   } else {
     // @konversion targetDate from UTC to GMT+7
@@ -150,7 +156,6 @@ export const calculateCountdown = (date) => {
   }
 
   const mrgdDate = Math.max(0, targetDate - nowGMT7);
-
   const toTimeUnits = (unit) => {
     if (unit === 1000) {
       return Math.floor(mrgdDate / unit) % 60;

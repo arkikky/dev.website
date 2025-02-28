@@ -15,6 +15,7 @@ const AttendeeDetailUpdate = ({
   watch,
   forms = {},
   items = {},
+  haveCompany = false,
   register,
   control,
   setValue,
@@ -38,10 +39,10 @@ const AttendeeDetailUpdate = ({
     const isTrue = getValues(d) === true;
     const fieldsToSet = {
       [`websiteUrlAttndeeDetail`]: isTrue ? '' : '-',
-      // [`companyAttndeeDetail`]: isTrue ? '' : '',
-      [`jobPositionAttndeeDetail`]: isTrue ? '' : '-',
-      [`companyFocusAttndeeDetail`]: isTrue ? '' : '-',
-      [`companySizeAttndeeDetail`]: isTrue ? '' : '-',
+      [`companyAttndeeDetail`]: isTrue ? '' : 'N/A',
+      [`jobPositionAttndeeDetail`]: !isTrue ? '' : '-',
+      [`companyFocusAttndeeDetail`]: !isTrue ? '' : '-',
+      [`companySizeAttndeeDetail`]: !isTrue ? '' : '-',
     };
     Object.entries(fieldsToSet).forEach(([field, value]) => {
       setValue(field, value, { shouldValidate: true });
@@ -290,49 +291,52 @@ const AttendeeDetailUpdate = ({
       </div>
 
       {/* @company */}
-      <div className={`mt-6 flex flex-row items-center justify-between`}>
-        <Label
-          forId={`ca25Form_HaveCompanyAttndeeDetail`}
-          label="Would you like to update your company information?"
-          required={false}
-        />
-        {!forms?.selfEdited ? (
-          <div
-            className={`relative ${forms?.selfEdited ? 'hidden' : 'inline-block'}`}
-          >
-            <input
-              id={`ca25Form_HaveCompanyAttndeeDetail`}
-              className="bxShadow-none form-checkbox relative h-6 w-12 shrink-0 cursor-pointer rounded-full border border-solid border-gray-200 bg-gray-100 py-0.5 pl-0.5 pr-px text-transparent transition-colors duration-200 ease-in-out before:inline-block before:size-4.5 before:translate-x-0 before:transform before:rounded-full before:border before:border-gray-200 before:bg-white before:ring-0 before:transition before:duration-200 before:ease-in-out checked:border-black-900 checked:bg-none checked:text-black-900 checked:before:translate-x-[130%] checked:before:border-white checked:before:bg-white disabled:pointer-events-none"
-              type="checkbox"
-              {...register(`haveCompanyAttndeeDetail`, {
-                required: false,
-                onChange: (e) => {
-                  handleToggleCompay_Change(`haveCompanyAttndeeDetail`);
-                },
-              })}
-            />
-            <label
-              htmlFor={`ca25Form_HaveCompanyAttndeeDetail`}
-              className="sr-only"
+      {!haveCompany ? (
+        <div className={`mt-6 flex flex-row items-center justify-between`}>
+          <Label
+            forId={`ca25Form_HaveCompanyAttndeeDetail`}
+            label="Would you like to update your company information?"
+            required={false}
+          />
+          {!forms?.selfEdited ? (
+            <div
+              className={`relative ${forms?.selfEdited ? 'hidden' : 'inline-block'}`}
             >
-              switch
-            </label>
-          </div>
-        ) : null}
-      </div>
+              <input
+                id={`ca25Form_HaveCompanyAttndeeDetail`}
+                className="bxShadow-none form-checkbox relative h-6 w-12 shrink-0 cursor-pointer rounded-full border border-solid border-gray-200 bg-gray-100 py-0.5 pl-0.5 pr-px text-transparent transition-colors duration-200 ease-in-out before:inline-block before:size-4.5 before:translate-x-0 before:transform before:rounded-full before:border before:border-gray-200 before:bg-white before:ring-0 before:transition before:duration-200 before:ease-in-out checked:border-black-900 checked:bg-none checked:text-black-900 checked:before:translate-x-[130%] checked:before:border-white checked:before:bg-white disabled:pointer-events-none"
+                type="checkbox"
+                {...register(`haveCompanyAttndeeDetail`, {
+                  required: false,
+                  onChange: (e) => {
+                    handleToggleCompay_Change(`haveCompanyAttndeeDetail`);
+                  },
+                })}
+              />
+              <label
+                htmlFor={`ca25Form_HaveCompanyAttndeeDetail`}
+                className="sr-only"
+              >
+                switch
+              </label>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
       <div className={`supports-grid:grid`}>
         <div className="mb-4 block">
           <Label
             forId={`ca25Form_CompanyAttndeeDetail`}
             label="Company Name"
-            required={forms?.selfEdited ? false : true}
+            required={watch && !forms?.selfEdited}
           />
           <Input
             id={`ca25Form_CompanyAttndeeDetail`}
             type="text"
             placeholder=""
             ariaLabel={`Company Attendee - Detail`}
-            disabled={forms?.selfEdited ? true : false}
+            disabled={!watch && !forms?.selfEdited}
             config={{
               ...register(`companyAttndeeDetail`, {
                 required: watch === true ? true : false,
@@ -345,115 +349,119 @@ const AttendeeDetailUpdate = ({
             errors={errors[`companyAttndeeDetail`]}
           />
         </div>
-        <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
-          <div className={`block`}>
-            <Label
-              forId={`ca25Form_WebsiteUrlAttndeeDetail`}
-              label="Company Website"
-              required={watch && !forms?.selfEdited}
-            />
-            <Input
-              id={`ca25Form_WebsiteUrlAttndeeDetail`}
-              type="text"
-              placeholder={`Include http:// or https://`}
-              ariaLabel="Website Billing - Detail"
-              disabled={forms?.selfEdited ? true : false}
-              config={{
-                ...register(`websiteUrlAttndeeDetail`, {
-                  required: watch,
-                  maxLength: 255,
-                  pattern: {
-                    value: /^(https?:\/\/[^\s/$.?#].[^\s]*)$|^N\/A$|^-$/,
-                    message: 'Please enter a valid URL',
-                  },
-                }),
-              }}
-              errors={errors[`websiteUrlAttndeeDetail`]}
-            />
-          </div>
-          <div
-            className={`"block ${errors[`jobPositionAttndeeDetail`] ? 'error' : ''} ${(watch && !forms?.selfEdited) || forms?.isSubmited === false ? '' : 'disabled'}`}
-          >
-            <Label
-              forId={`ca25Form_JobPositionAttndeeDetail`}
-              label="Position"
-              required={watch && !forms?.selfEdited}
-            />
-            <Select
-              id={`ca25Form_JobPositionAttndeeDetail`}
-              ariaLabel={`Job Position Attendee - Detail`}
-              label=""
-              widthPlaceholder={false}
-              listSelect={
-                forms?.fieldForm !== undefined &&
-                forms?.fieldForm[4].fields[1].options
-              }
-              withSearch={true}
-              values={`jobPositionAttndeeDetail`}
-              setValue={setValue}
-              config={{
-                ...register(`jobPositionAttndeeDetail`, {
-                  required: watch && !forms?.selfEdited,
-                }),
-              }}
-            />
-          </div>
-        </div>
-        <div className="mt-4 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
-          <div
-            className={`block ${errors[`companyFocusAttndeeDetail`] ? 'error' : ''} ${(watch && !forms?.selfEdited) || forms?.isSubmited === false ? '' : 'disabled'}`}
-          >
-            <Label
-              forId={`ca25Form_CompanyFocusAttndeeDetail`}
-              label="Company Focus"
-              required={watch && !forms?.selfEdited}
-            />
-            <Select
-              id={`ca25Form_CompanyFocusAttndeeDetail`}
-              ariaLabel={`Company Focus Attendee - Detail`}
-              label="Choose a company focus..."
-              widthPlaceholder={false}
-              listSelect={
-                forms?.fieldForm !== undefined &&
-                forms?.fieldForm[5].fields[0].options
-              }
-              withSearch={true}
-              values={`companyFocusAttndeeDetail`}
-              setValue={setValue}
-              config={{
-                ...register(`companyFocusAttndeeDetail`, {
-                  required: watch && !forms?.selfEdited,
-                }),
-              }}
-            />
-          </div>
-          <div
-            className={`"block ${errors[`companySizeAttndeeDetail`] ? 'error' : ''} ${(watch && !forms?.selfEdited) || forms?.isSubmited === false ? '' : 'disabled'}`}
-          >
-            <Label
-              forId={`ca25Form_CompanySizeAttndeeDetail`}
-              label="Company Size"
-              required={watch && !forms?.selfEdited}
-            />
-            <Select
-              id={`ca25Form_CompanySizeAttndeeDetail`}
-              ariaLabel={`Company Focus Attendee - Detail`}
-              label=""
-              widthPlaceholder={false}
-              listSelect={
-                forms?.fieldForm !== undefined &&
-                forms?.fieldForm[5].fields[1].options
-              }
-              values={`companySizeAttndeeDetail`}
-              setValue={setValue}
-              config={{
-                ...register(`companySizeAttndeeDetail`, {
-                  required: watch && !forms?.selfEdited,
-                }),
-              }}
-            />
-          </div>
-        </div>
+        {watch ? (
+          <>
+            <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
+              <div className={`block`}>
+                <Label
+                  forId={`ca25Form_WebsiteUrlAttndeeDetail`}
+                  label="Company Website"
+                  required={watch && !forms?.selfEdited}
+                />
+                <Input
+                  id={`ca25Form_WebsiteUrlAttndeeDetail`}
+                  type="text"
+                  placeholder={`Include http:// or https://`}
+                  ariaLabel="Website Billing - Detail"
+                  disabled={!watch && !forms?.selfEdited}
+                  config={{
+                    ...register(`websiteUrlAttndeeDetail`, {
+                      required: watch && !forms?.selfEdited,
+                      maxLength: 255,
+                      pattern: {
+                        value: /^(https?:\/\/[^\s/$.?#].[^\s]*)$|^N\/A$|^-$/,
+                        message: 'Please enter a valid URL',
+                      },
+                    }),
+                  }}
+                  errors={errors[`websiteUrlAttndeeDetail`]}
+                />
+              </div>
+              <div
+                className={`"block ${errors[`jobPositionAttndeeDetail`] ? 'error' : ''} ${(watch && !forms?.selfEdited) || forms?.isSubmited === false ? '' : 'disabled'}`}
+              >
+                <Label
+                  forId={`ca25Form_JobPositionAttndeeDetail`}
+                  label="Position"
+                  required={watch && !forms?.selfEdited}
+                />
+                <Select
+                  id={`ca25Form_JobPositionAttndeeDetail`}
+                  ariaLabel={`Job Position Attendee - Detail`}
+                  label=""
+                  widthPlaceholder={false}
+                  listSelect={
+                    forms?.fieldForm !== undefined &&
+                    forms?.fieldForm[4].fields[1].options
+                  }
+                  withSearch={true}
+                  values={`jobPositionAttndeeDetail`}
+                  setValue={setValue}
+                  config={{
+                    ...register(`jobPositionAttndeeDetail`, {
+                      required: watch && !forms?.selfEdited,
+                    }),
+                  }}
+                />
+              </div>
+            </div>
+            <div className="mt-4 grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
+              <div
+                className={`block ${errors[`companyFocusAttndeeDetail`] ? 'error' : ''} ${(watch && !forms?.selfEdited) || forms?.isSubmited === false ? '' : 'disabled'}`}
+              >
+                <Label
+                  forId={`ca25Form_CompanyFocusAttndeeDetail`}
+                  label="Company Focus"
+                  required={watch && !forms?.selfEdited}
+                />
+                <Select
+                  id={`ca25Form_CompanyFocusAttndeeDetail`}
+                  ariaLabel={`Company Focus Attendee - Detail`}
+                  label="Choose a company focus..."
+                  widthPlaceholder={false}
+                  listSelect={
+                    forms?.fieldForm !== undefined &&
+                    forms?.fieldForm[5].fields[0].options
+                  }
+                  withSearch={true}
+                  values={`companyFocusAttndeeDetail`}
+                  setValue={setValue}
+                  config={{
+                    ...register(`companyFocusAttndeeDetail`, {
+                      required: watch && !forms?.selfEdited,
+                    }),
+                  }}
+                />
+              </div>
+              <div
+                className={`"block ${errors[`companySizeAttndeeDetail`] ? 'error' : ''} ${(watch && !forms?.selfEdited) || forms?.isSubmited === false ? '' : 'disabled'}`}
+              >
+                <Label
+                  forId={`ca25Form_CompanySizeAttndeeDetail`}
+                  label="Company Size"
+                  required={watch && !forms?.selfEdited}
+                />
+                <Select
+                  id={`ca25Form_CompanySizeAttndeeDetail`}
+                  ariaLabel={`Company Focus Attendee - Detail`}
+                  label=""
+                  widthPlaceholder={false}
+                  listSelect={
+                    forms?.fieldForm !== undefined &&
+                    forms?.fieldForm[5].fields[1].options
+                  }
+                  values={`companySizeAttndeeDetail`}
+                  setValue={setValue}
+                  config={{
+                    ...register(`companySizeAttndeeDetail`, {
+                      required: watch && !forms?.selfEdited,
+                    }),
+                  }}
+                />
+              </div>
+            </div>
+          </>
+        ) : null}
       </div>
     </>
   );

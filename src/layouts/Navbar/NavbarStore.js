@@ -132,7 +132,7 @@ const NavbarStore = ({ isTheme = 'dark', navMenu = true, nonStore = true }) => {
 
       {/* @nav(mobile) */}
       <nav
-        className={`ca25NavbarBottom pointer-events-auto fixed inset-x-0 bottom-0 top-auto z-[878] flex h-auto w-full flex-col items-center justify-center pb-2 opacity-100`}
+        className={`ca25NavbarBottom pointer-events-auto fixed inset-x-0 bottom-0 top-auto flex h-auto w-full flex-col items-center justify-center pb-2 ${getStore?.length > 0 ? 'z-[878] opacity-100 visible' : '-z-px opacity-0 invisible'}`}
       >
         {getStore?.length > 0 && (
           <CartStore

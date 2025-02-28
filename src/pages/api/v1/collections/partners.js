@@ -107,18 +107,6 @@ export default function handler(req, res) {
       },
       {
         url: '/',
-        images: '/assets/images/partners/ca25Partner-016.png',
-        captions: '16',
-        openUrl: false,
-      },
-      {
-        url: '/',
-        images: '/assets/images/partners/ca25Partner-17.svg',
-        captions: '17',
-        openUrl: false,
-      },
-      {
-        url: '/',
         images: '/assets/images/partners/ca25Partner-18.svg',
         captions: '18',
         openUrl: false,
@@ -127,18 +115,6 @@ export default function handler(req, res) {
         url: '/',
         images: '/assets/images/partners/ca25Partner-19.svg',
         captions: '19',
-        openUrl: false,
-      },
-      {
-        url: '/',
-        images: '/assets/images/partners/ca25Partner-20.svg',
-        captions: '20',
-        openUrl: false,
-      },
-      {
-        url: '/',
-        images: '/assets/images/partners/ca25Partner-21.png',
-        captions: '21',
         openUrl: false,
       },
       {
@@ -173,42 +149,6 @@ export default function handler(req, res) {
       },
       {
         url: '/',
-        images: '/assets/images/partners/ca25Partner-27.svg',
-        captions: '27',
-        openUrl: false,
-      },
-      {
-        url: '/',
-        images: '/assets/images/partners/ca25Partner-28.svg',
-        captions: '28',
-        openUrl: false,
-      },
-      {
-        url: '/',
-        images: '/assets/images/partners/ca25Partner-29.png',
-        captions: '29',
-        openUrl: false,
-      },
-      {
-        url: '/',
-        images: '/assets/images/partners/ca25Partner-30.svg',
-        captions: '30',
-        openUrl: false,
-      },
-      {
-        url: '/',
-        images: '/assets/images/partners/ca25Partner-31.png',
-        captions: '31',
-        openUrl: false,
-      },
-      {
-        url: '/',
-        images: '/assets/images/partners/ca25Partner-32.svg',
-        captions: '32',
-        openUrl: false,
-      },
-      {
-        url: '/',
         images: '/assets/images/partners/ca25Partner-33.png',
         captions: '33',
         openUrl: false,
@@ -221,62 +161,14 @@ export default function handler(req, res) {
       },
       {
         url: '/',
-        images: '/assets/images/partners/ca25Partner-35.svg',
-        captions: '35',
-        openUrl: false,
-      },
-      {
-        url: '/',
         images: '/assets/images/partners/ca25Partner-36.png',
         captions: '36',
         openUrl: false,
       },
       {
         url: '/',
-        images: '/assets/images/partners/ca25Partner-37.svg',
-        captions: '37',
-        openUrl: false,
-      },
-      {
-        url: '/',
-        images: '/assets/images/partners/ca25Partner-38.svg',
-        captions: '38',
-        openUrl: false,
-      },
-      {
-        url: '/',
-        images: '/assets/images/partners/ca25Partner-39.png',
-        captions: '39',
-        openUrl: false,
-      },
-      {
-        url: '/',
         images: '/assets/images/partners/ca25Partner-40.svg',
         captions: '40',
-        openUrl: false,
-      },
-      {
-        url: '/',
-        images: '/assets/images/partners/ca25Partner-41.png',
-        captions: '41',
-        openUrl: false,
-      },
-      {
-        url: '/',
-        images: '/assets/images/partners/ca25Partner-42.svg',
-        captions: '42',
-        openUrl: false,
-      },
-      {
-        url: '/',
-        images: '/assets/images/partners/ca25Partner-43.png',
-        captions: '43',
-        openUrl: false,
-      },
-      {
-        url: '/',
-        images: '/assets/images/partners/ca25Partner-44.png',
-        captions: '44',
         openUrl: false,
       },
       {

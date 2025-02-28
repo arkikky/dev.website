@@ -3,38 +3,41 @@ import { useRouter } from 'next/router';
 import { twMerge } from 'tailwind-merge';
 import { useForm } from 'react-hook-form';
 import DOMPurify from 'dompurify';
-import dynamic from 'next/dynamic';
 import getConfig from 'next/config';
-import Image from 'next/image';
 
 // @get .config
-const { publicRuntimeConfig, serverRuntimeConfig } = getConfig();
+const { serverRuntimeConfig } = getConfig();
 
 // @lib
-import { getFetch, getFetchUrl, updateSubmitData } from '@lib/controller/API';
+import {
+  getFetch,
+  getFetchUrl,
+  updateSubmitData,
+  updateData,
+  pushSubmitData,
+} from '@lib/controller/API';
 import { getFecthHbSpt } from '@lib/controller/HubSpot';
-import { getJoinString } from '@lib/helper/Configuration';
+import { getJoinString, encodeData } from '@lib/helper/Configuration';
+import {
+  setUpgradeBillingDetailData,
+  getUpgradeCreateOrder,
+  setAttendeeDataDetail,
+} from '@lib/helper/Store';
+import { currencyConverter } from '@lib/helper/CalculateCart';
 
 // @components
 import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
-import UpgradeToBullSkeleton from '@components/Skeleton/Products/UpgradeToBull';
-const UpgradeToBull = dynamic(
-  () => import('@components/UI/Cards/UpgradeToBull'),
-  {
-    loading: () => <UpgradeToBullSkeleton />,
-    ssr: false,
-  }
-);
 
 // @layouts
 import LayoutDefaults from '@layouts/Layouts';
-import Header from '@layouts/Attendee/Update/Header';
+
+import HeaderUpgrade from '@layouts/Attendee/Update/Card/HeaderUpgrade';
 import AttendeeDetailUpdate from '@layouts/Attendee/Update/Card/AttendeeDetailUpdate';
 import BoardSubmitAttendee from '@layouts/Attendee/Update/Card/BoardSubmitAttendee';
 
-const AttendeeUpdate = ({
+const AttendeeUpdateToBull = ({
   ipAddress,
   attendee,
   country,
@@ -50,6 +53,12 @@ const AttendeeUpdate = ({
     fields: formCheckout,
     selfEdited: isAttendee?.selfEdited ?? false,
     message: null,
+  });
+  const [isStore, setStore] = useState({
+    isTotal:
+      (products?.bullTickets?.priceSale ?? products?.bullTickets?.price) -
+      (products?.festivalTickets?.priceSale ??
+        products?.festivalTickets?.price),
   });
 
   // @card(theme)
@@ -102,7 +111,7 @@ const AttendeeUpdate = ({
           firstName: sntzeFld(data?.firstnameAttndeeDetail),
           lastName: sntzeFld(data?.lastnameAttndeeDetail),
           company: sntzeFld(data?.companyAttndeeDetail),
-          selfEdited: true,
+          // selfEdited: true,
         },
       };
     } else {
@@ -115,7 +124,7 @@ const AttendeeUpdate = ({
           companyFocus: sntzeFld(data?.companyFocusAttndeeDetail),
           companySize: sntzeFld(data?.companySizeAttndeeDetail),
           websiteUrl: sntzeFld(data?.websiteUrlAttndeeDetail),
-          selfEdited: true,
+          // selfEdited: true,
         },
       };
     }
@@ -123,47 +132,168 @@ const AttendeeUpdate = ({
 
   // @submit(attendee)
   const onSubmitForm = async (data) => {
+    console.log(data);
+
     if (!isValid === false && isAttendee?.selfEdited === false) {
       try {
         const isChangeCompany = watch(`haveCompanyAttndeeDetail`);
+
         // @get(key)
         const { key } = await fetch('/api/env/note', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', cache: 'no-store' },
         }).then((res) => res.json());
+
+        // @upgrade-bull-price
+        const isTotalUpgradeBull = isStore?.isTotal * 1.11;
+        const isBullProduct = products?.bullTickets?.documentId;
+
         const [rsAttendee] = await Promise.all([
           updateSubmitData(
             `/api/attendees/${isAttendee?.documentId}?populate=*`,
             setAttendeeDetail(isChangeCompany, data)
           ),
         ]);
-        setFormAttendee({ ...isFormAttendee, selfEdited: true });
+
+        // setFormAttendee({ ...isFormAttendee, selfEdited: true });
+        // @customer
+        const rsCustomer = await pushSubmitData(
+          '/api/customers',
+          setUpgradeBillingDetailData(data)
+        );
+        const setIdCustomer = rsCustomer?.data.documentId;
+
+        // @customer
+        const [rsCustomerDtl] = await Promise.all([
+          fetch('/api/data/customer?sv=coinfestasia', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              url: `/api/customers/`,
+              data: encodeData(setIdCustomer),
+            }),
+          }).then((res) => res.json()),
+        ]);
+
+        // @create(order)
+        const createOrder = getUpgradeCreateOrder(
+          Math.floor(isTotalUpgradeBull),
+          setIdCustomer,
+          isBullProduct
+        );
+
+        if (rsCustomerDtl) {
+          const rsCreateOrder = await pushSubmitData(
+            '/api/orders?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount',
+            createOrder
+          );
+          const setIdOrderRecived = rsCreateOrder?.data.documentId;
+          const arrAttendees = [];
+
+          if (rsCreateOrder) {
+            // @update-stock(Product)
+            // const rsUpdateData = await updateData(
+            //   `/api/products/${isBullProduct}`,
+            //   {
+            //     data: {
+            //       stock: isStock?.toString(),
+            //     },
+            //   }
+            // );
+
+            // @attendee(with qty)
+            const rsAttendee = await pushSubmitData(
+              '/api/attendees?populate=*',
+              {
+                data: setAttendeeDataDetail(data, setIdCustomer, isBullProduct),
+              }
+            );
+            if (rsAttendee) {
+              const isFullname = `${rsAttendee?.data.firstName} ${rsAttendee?.data.lastName}`;
+              const tickets =
+                rsAttendee?.data.product.documentId !==
+                'rc33x0dgm6tm707jghffuip4'
+                  ? `Festival Tickets`
+                  : `${rsAttendee?.data.product?.name}`;
+              arrAttendees.push({
+                attendee: rsAttendee?.data,
+                fullname: isFullname,
+                ticketProducts: tickets,
+              });
+            }
+
+            console.log(arrAttendees);
+          }
+
+          // @processing(payment)
+          if (rsCreateOrder && Math.abs(isTotalUpgradeBull) > 1e-10) {
+            const rsPayment = await fetch('/api/payment/create-payment', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': key,
+              },
+              body: JSON.stringify({
+                extrnlId: rsCreateOrder?.data?.customer?.customerId.replace(
+                  /^C-/,
+                  ''
+                ),
+                amount: Math.floor(isTotalUpgradeBull),
+                payerEmail: rsCreateOrder?.data?.customer?.email,
+                fullname: `${rsCreateOrder?.data?.customer?.firstName} ${rsCreateOrder?.data?.customer?.lastName}`,
+                phone: rsCreateOrder?.data?.customer?.phone,
+                order: setIdOrderRecived,
+              }),
+            }).then((res) => res.json());
+            if (rsPayment?.data?.invoice_url) {
+              // @update(order)
+              const updateStatusOrder = await updateData(
+                `/api/orders/${rsCreateOrder?.data?.documentId}`,
+                {
+                  data: {
+                    order_session: rsPayment?.data?.id,
+                  },
+                }
+              );
+              // reset();
+              console.log(rsPayment?.data?.invoice_url);
+              // router.replace(rsPayment?.data?.invoice_url);
+            } else {
+              // console.error('Failed to get invoice URL');
+              return;
+            }
+
+            return;
+          }
+        }
 
         // @send(email)
-        const tickets =
-          rsAttendee?.data?.product['documentId'] ===
-            'sn4ujm0d1ebbc8lme1ihzsa9' ||
-          rsAttendee?.data?.product['documentId'] === 'g1ukadil4n4a3r0ndly7jl42'
-            ? `Festival Tickets`
-            : rsAttendee?.data?.product['name'];
-        const rsEmail = await fetch('/api/email/send-attendee-ticket', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': key,
-            cache: 'no-store',
-          },
-          body: JSON.stringify({
-            toEmail: rsAttendee?.data['email'],
-            qrCode: rsAttendee?.data?.qrCode['url'],
-            docId: rsAttendee?.data?.product['documentId'],
-            attId: rsAttendee?.data['attendeeId'],
-            fullname: `${rsAttendee?.data['firstName']} ${rsAttendee?.data['lastName']}`,
-            company: rsAttendee?.data['company'],
-            productTickets: tickets,
-          }),
-        }).then((res) => res.json());
-        router.replace(`/attendee-detail/success`);
+        // const tickets =
+        //   rsAttendee?.data?.product['documentId'] ===
+        //     'sn4ujm0d1ebbc8lme1ihzsa9' ||
+        //   rsAttendee?.data?.product['documentId'] === 'g1ukadil4n4a3r0ndly7jl42'
+        //     ? `Festival Tickets`
+        //     : rsAttendee?.data?.product['name'];
+        // const rsEmail = await fetch('/api/email/send-attendee-ticket', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //     'x-api-key': key,
+        //     cache: 'no-store',
+        //   },
+        //   body: JSON.stringify({
+        //     toEmail: rsAttendee?.data['email'],
+        //     qrCode: rsAttendee?.data?.qrCode['url'],
+        //     docId: rsAttendee?.data?.product['documentId'],
+        //     attId: rsAttendee?.data['attendeeId'],
+        //     fullname: `${rsAttendee?.data['firstName']} ${rsAttendee?.data['lastName']}`,
+        //     company: rsAttendee?.data['company'],
+        //     productTickets: tickets,
+        //   }),
+        // }).then((res) => res.json());
+        // router.replace(`/attendee-detail/success`);
       } catch (error) {
         // console.error('[error] processing submission:', error);
         return;
@@ -174,7 +304,7 @@ const AttendeeUpdate = ({
   return (
     <>
       {/* @head */}
-      <HeadGraphSeo title={`Attendee Detail`} otherPage={true} />
+      <HeadGraphSeo title={`Attendee Upgrade to Bull`} otherPage={true} />
 
       {/* @main */}
       <Main className="relative pb-19 pt-6 sm:pb-19 sm:pt-8 lg:pt-10">
@@ -186,16 +316,14 @@ const AttendeeUpdate = ({
             onSubmit={handleSubmit(onSubmitForm)}
           >
             <div className="order-last col-span-full px-2.5 sm:px-0 xl:order-first xl:col-span-7 xl:pr-10">
-              <Header media="xl" />
+              <HeaderUpgrade media="xl" />
 
               <div
                 className={`relative mt-6 block w-full space-y-6 ${isFormAttendee?.selfEdited ? 'pointer-events-none select-none' : 'pointer-events-auto select-auto'}`}
               >
                 <div
                   className={twMerge(
-                    `relative mt-8 flex flex-col items-end rounded-[14px] px-1.5 pb-1.5 transition-[height] duration-300 ease-in-out first:mt-0 sm:rounded-2xl sm:px-2 sm:pb-2 ${isFormAttendee?.selfEdited ? 'pointer-events-none select-none' : 'pointer-events-auto select-auto'}`,
-                    style[isFormAttendee?.isProducts?.documentId] ||
-                      'bg-regular45'
+                    `relative mt-8 flex flex-col items-end rounded-[14px] bg-primaryDark px-1.5 pb-1.5 transition-[height] duration-300 ease-in-out first:mt-0 sm:rounded-2xl sm:px-2 sm:pb-2 ${isFormAttendee?.selfEdited ? 'pointer-events-none select-none' : 'pointer-events-auto select-auto'}`
                   )}
                 >
                   <div
@@ -204,17 +332,13 @@ const AttendeeUpdate = ({
                     <div
                       id={`ca25StoreProductSticky_${getJoinString(isFormAttendee?.isProducts?.name)}`}
                       className={twMerge(
-                        `ca25StoreProductSticky relative inset-x-0 top-0 z-60 mt-1 flex h-[45px] w-full flex-col items-start justify-between transition-[height] duration-300 ease-in-out sm:top-0 sm:h-[59px]`,
-                        isFormAttendee?.isProducts?.documentId ===
-                          'rc33x0dgm6tm707jghffuip4'
-                          ? 'bg-primaryDark'
-                          : 'bg-regular45_Sticky'
+                        `ca25StoreProductSticky relative inset-x-0 top-0 z-60 mt-1 flex h-[45px] w-full flex-col items-start justify-between bg-primaryDark transition-[height] duration-300 ease-in-out sm:top-0 sm:h-[59px]`
                       )}
                     >
                       <div className="ca25StoreProductSticky_Cards item-start flex w-full flex-col justify-start text-center">
                         <div className="absolute inset-x-0 -top-0.5 flex flex-col pb-5.5 pt-3 sm:-top-1 sm:pt-4.5">
                           <h2 className="ca25StoreProductSticky_TitleCards mb-2 w-full font-medium capitalize text-white">
-                            {isFormAttendee?.isProducts?.name}
+                            Pre-Sale Festival Ticket Bull Ticket
                           </h2>
                         </div>
                       </div>
@@ -265,7 +389,7 @@ const AttendeeUpdate = ({
 
                 <button
                   id="tktCA25Form_SubmitMobileAttendeeDetail"
-                  className={`inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500`}
+                  className={`inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primaryDark px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500`}
                   type="submit"
                   role="button"
                   aria-label="Submit Attendee for Coinfest Asia 2025"
@@ -296,114 +420,61 @@ const AttendeeUpdate = ({
                       Processing ...
                     </span>
                   ) : (
-                    <>
-                      {isFormAttendee?.selfEdited
-                        ? 'Attendee has been updated'
-                        : 'Update Attendee'}
-                    </>
+                    `Upgrade to Bull Ticket`
                   )}
                 </button>
               </div>
             </div>
             <div className="col-span-full px-4 xl:col-span-5 xl:pl-6">
-              <Header media="sm" />
+              <HeaderUpgrade attendee={isAttendee[`documentId`]} media="sm" />
 
               {/* @purchase */}
               <div className="mb-4 mt-6 flex w-full flex-col px-0 xl:mt-0">
-                <h2 className="text-xl font-semibold capitalize">{`Purchaser Details`}</h2>
+                <h2 className="text-xl font-semibold capitalize">{`Order summary`}</h2>
                 <div className="my-5 flex w-full border-t border-dashed border-gray-200 px-2.5"></div>
-                <div className="flex flex-col gap-y-3">
-                  <div className="grid-cols-1 items-start gap-y-1 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
-                    <div className="flex flex-col self-center text-start text-sm font-normal text-black-900">
-                      {`Name`}
-                    </div>
-                    <div className="col-span-full flex flex-row items-center pl-0 text-start text-sm font-light sm:col-span-2 sm:text-start xl:pl-8">
-                      <span className="mr-2.5 hidden w-max text-black-900 sm:block">
-                        :
-                      </span>
-                      <span className="font-normal text-black-900">
-                        {`${isAttendee?.customer['firstName']} ${isAttendee?.customer['lastName']}`}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="grid-cols-1 items-start gap-y-1 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
-                    <div className="flex flex-col self-center text-start text-sm font-normal text-black-900">
-                      {`Email`}
-                    </div>
-                    <div className="col-span-full flex flex-row items-center pl-0 text-start text-sm font-light sm:col-span-2 sm:text-start xl:pl-8">
-                      <span className="mr-2.5 hidden w-max text-black-900 sm:block">
-                        :
-                      </span>
-                      <span className="font-normal text-black-900">
-                        {isAttendee?.customer['email']}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="grid-cols-1 items-start gap-y-1 supports-grid:grid sm:grid-cols-3 sm:gap-y-0">
-                    <div className="flex flex-col self-center text-start text-sm font-normal text-black-900">
-                      {`Phone`}
-                    </div>
-                    <div className="col-span-full flex flex-row items-center pl-0 text-start text-sm font-light sm:col-span-2 sm:text-start xl:pl-8">
-                      <span className="mr-2.5 hidden w-max text-black-900 sm:block">
-                        :
-                      </span>
-                      <span className="font-normal text-black-900">
-                        {isAttendee?.customer['phone']}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mb-4 mt-6 flex w-full flex-col px-0 xl:mt-0">
                 <div
                   className={`mb-3 flex w-full flex-row items-center justify-between`}
                 >
                   <h2 className="text-start text-base font-medium">
-                    {`Your Ticket Details`}
+                    {`Your Tickets`}
                   </h2>
+                  <span className="text-end text-base font-medium">{`Total`}</span>
                 </div>
-                {/* @products */}
+
                 <div className="mb-3 flex w-full flex-row justify-between last:mb-0">
                   <div
                     className={twMerge(
-                      `flex h-[117px] w-full max-w-[315px] flex-col justify-between rounded-xl px-3 py-3`,
-                      style[isFormAttendee?.isProducts?.documentId] ||
-                        'bg-primaryBlue'
+                      `flex h-[107px] w-full max-w-[245px] flex-col justify-between rounded-xl px-3 py-3`,
+                      style[products?.bullTickets?.documentId] || 'bg-regular45'
                     )}
                   >
                     <h3 className="mb-2.5 text-base font-bold uppercase leading-initial text-white">
-                      {isFormAttendee?.isProducts?.name}
+                      {products?.bullTickets?.name}
                     </h3>
-                    <div className="flex flex-row items-end justify-between gap-x-3">
-                      <span className="text-[13px] leading-initial text-white/65">
-                        {isAttendee['attendeeId']}
-                      </span>
-                      {isAttendee?.qrCode ? (
-                        <Image
-                          className="h-10 w-10 object-cover object-center"
-                          src={
-                            `${process.env.NEXT_PUBLIC_UPLOAD}${(isAttendee?.qrCode?.url).replace(/^\/+/, '')}` ??
-                            ``
-                          }
-                          alt={`QR Code ${isAttendee['firstName']} ${isAttendee['lastName']} ${publicRuntimeConfig?.siteAppName}`}
-                          height={68}
-                          width={68}
-                          quality="75"
-                        />
-                      ) : null}
-                    </div>
+                  </div>
+                  <div className="flex flex-col items-end justify-between pt-1.5">
+                    <span className="text-base font-medium sm:text-lg">
+                      {currencyConverter(
+                        (products?.bullTickets?.priceSale ??
+                          products?.bullTickets?.price) -
+                          (products?.festivalTickets?.priceSale ??
+                            products?.festivalTickets?.price)
+                      )}
+                    </span>
                   </div>
                 </div>
               </div>
 
-              {/* @upgrade-to-bull */}
-              {isAttendee ? (
-                <UpgradeToBull
-                  attendee={isAttendee[`documentId`] ?? ''}
-                  isProducts={products}
-                />
-              ) : null}
+              {/* @order-summary */}
+              <div className="relative mb-0 block space-y-3 px-2.5 sm:px-0 xl:mb-8">
+                {/* @subtotal */}
+                <div className="grid-cols-2 supports-grid:grid">
+                  <span className="text-start text-sm font-normal">{`Subtotal`}</span>
+                  <span className="text-end text-base font-medium">
+                    {/* {currencyConverter(subTotal)} */}
+                  </span>
+                </div>
+              </div>
 
               {/* @submit(Form) */}
               <div
@@ -421,8 +492,8 @@ const AttendeeUpdate = ({
                 />
 
                 <button
-                  id="tktCA25Form_SubmitAttendeeDetail"
-                  className={`inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500`}
+                  id="ca25Form_SubmitAttendeeDetail"
+                  className={`inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primaryDark px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500`}
                   type="submit"
                   role="button"
                   aria-label="Submit Attendee for Coinfest Asia 2025"
@@ -453,11 +524,7 @@ const AttendeeUpdate = ({
                       Processing ...
                     </span>
                   ) : (
-                    <>
-                      {isFormAttendee?.selfEdited
-                        ? 'Attendee has been updated'
-                        : 'Update Attendee'}
-                    </>
+                    `Upgrade to Bull Ticket`
                   )}
                 </button>
               </div>
@@ -469,7 +536,7 @@ const AttendeeUpdate = ({
   );
 };
 
-AttendeeUpdate.getLayout = (page, { pageProps }) => {
+AttendeeUpdateToBull.getLayout = (page, { pageProps }) => {
   const { mode, layouts, withoutNavbar } = pageProps;
   if (layouts) {
     return (
@@ -525,7 +592,6 @@ export async function getServerSideProps(context) {
     const sortedCountries = rsCountry.sort((a, b) =>
       a?.name.common.localeCompare(b?.name.common)
     );
-
     // @check(attendee)
     const isApproved = rsAttendee?.data?.isApproved ?? null;
     const isProducts =
@@ -571,4 +637,4 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default AttendeeUpdate;
+export default AttendeeUpdateToBull;

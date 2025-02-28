@@ -33,8 +33,8 @@ export const StoreProvider = ({ children }) => {
   const [isStore, setStore] = useState({
     cart: [],
     products: isCart,
-    getCoupon: null,
     coupon: null,
+    getCoupon: null,
     totalQty: 0,
     totalOrder: 0,
     typeDiscnt: null,
@@ -455,6 +455,7 @@ export const StoreProvider = ({ children }) => {
     setStore((prev) => ({
       ...prev,
       coupon: null,
+      getCoupon: null,
     }));
   };
 

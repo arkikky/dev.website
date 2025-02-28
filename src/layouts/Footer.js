@@ -35,7 +35,7 @@ const Footer = ({ nonStore = false, theme = 'light', menuUsage = true }) => {
         </div>
 
         <Container>
-          <div className="relative flex flex-col items-start justify-start">
+          <div className="relative z-10 flex flex-col items-start justify-start">
             <div className="block w-full">
               <div className="flex flex-col">
                 <div className="relative block w-max">
@@ -71,7 +71,7 @@ const Footer = ({ nonStore = false, theme = 'light', menuUsage = true }) => {
                 untuk tamu undangan dan peserta yang telah terdaftar.`}
               </div>
             </div>
-            <div className="ca2024FooterEnd mt-8 flex w-full flex-col items-start justify-start sm:mt-10 lg:flex-row lg:items-center lg:justify-between">
+            <div className="ca2024FooterEnd relative z-10 mt-8 flex w-full flex-col items-start justify-start sm:mt-10 lg:flex-row lg:items-center lg:justify-between">
               <div
                 className={`ca2024FooterEnd_Cntent w-full max-w-[567px] text-balance font-bevietnamPro text-sm ${theme === 'light' ? 'font-light' : 'font-extralight'} prose-a:font-normal prose-a:underline prose-strong:font-normal xl:max-w-max`}
               >

@@ -7,6 +7,9 @@
 .ca25Form_PhoneInput.errors {
   @apply !border-red-500 focus:!border-red-500;
 }
+.ca25Form_PhoneInput.disabled {
+  @apply pointer-events-none opacity-50;
+}
 .ca25Form_PhoneInputBtn {
   @apply !bg-gray-100;
   @apply !rounded-s-lg !border-gray-200;
@@ -14,6 +17,9 @@
 }
 .ca25Form_PhoneInputBtn.errors {
   @apply !border-red-500 focus:!border-red-500;
+}
+.ca25Form_PhoneInputBtn.disabled {
+  @apply pointer-events-none opacity-50;
 }
 
 /* @dropdown(flags */

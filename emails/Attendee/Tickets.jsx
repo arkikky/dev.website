@@ -17,6 +17,7 @@ import {
 
 const AttendeeTickets = ({
   qrCode,
+  idAttendee = `{idAttendee}`,
   documentId = null,
   attendeeId = '{attendeeId}',
   ticket = '{ticket}',
@@ -40,6 +41,9 @@ const AttendeeTickets = ({
           .ca25Split_BorderBoard {
             border-left: 1px dashed #E5E7EB;
           }
+          .ca25QRBorderBoard {
+            border-top: 1px dashed #E5E7EB;
+          }
 
           .splitColumn2_TextLink a {
             color: #FFFFFF !important;
@@ -48,6 +52,9 @@ const AttendeeTickets = ({
           @media only screen and (max-width: 640px) {
             .ca25Split_BorderBoard {
               border-left: none;
+              border-top: 1px dashed #E5E7EB;
+            }
+            .ca25QRBorderBoard {
               border-top: 1px dashed #E5E7EB;
             }
 
@@ -216,6 +223,13 @@ const AttendeeTickets = ({
             className="ca25CardEmail mx-auto max-w-[579px] bg-gradient-primary"
             style={styles.ca25CardEmail}
           >
+            {/* @ticket-details */}
+            <Section className="px-0 py-0">
+              <span className="inline-flex w-fill px-4 py-5 text-center text-base font-semibold uppercase tracking-[0.3px] text-white no-underline bg-gradient-primary">
+                <span className="mx-auto inline-flex">Ticket Details</span>
+              </span>
+            </Section>
+
             <Section
               className="ca25CardEmailContent bg-white !py-0 !pb-5"
               style={styles.ca25CardEmailContent}
@@ -274,18 +288,11 @@ const AttendeeTickets = ({
                 </Column>
               </Row>
 
-              {/* @ticket-details */}
-              <Section className="px-0 py-0">
-                <span className="inline-flex w-fill px-4 py-5 text-center text-base font-semibold uppercase tracking-[0.3px] text-white no-underline bg-gradient-primary">
-                  <span className="mx-auto inline-flex">Ticket Details</span>
-                </span>
-              </Section>
-
-              {/* @ticket(Detail) */}
+              {/* @ticket(detail) */}
               <Row className="splitGridColumn">
                 <Column
                   align="center"
-                  className="splitColumn1 bg-white pb-5 pt-2 text-black-900"
+                  className="splitColumn1 ca25QRBorderBoard bg-white pb-5 pt-2 text-black-900"
                   style={styles.splitColumn1}
                 >
                   <Img src={isQrCode} width="180" height="180" alt="QR Code" />
@@ -316,10 +323,10 @@ const AttendeeTickets = ({
                     </span>
                     <span className="!mt-0.5 font-semibold">{ticket}</span>
                   </Text>
-                  <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
+                  <Text className="!mb-1.5 !mt-0 w-max !text-[16px] !leading-initial">
                     Name : {name}
                   </Text>
-                  <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
+                  <Text className="!mb-1.5 !mt-0 w-max !text-[16px] !leading-initial">
                     Company : {company}
                   </Text>
                   {/* <Text className="!mb-1.5 !mt-0 max-w-[128px] !text-[14px] !leading-initial">
@@ -327,6 +334,32 @@ const AttendeeTickets = ({
                   </Text> */}
                 </Column>
               </Row>
+              {/* @ticket-details */}
+              {documentId !== 'rc33x0dgm6tm707jghffuip4' ? (
+                <Section className="px-0 py-0">
+                  <Link
+                    className="inline-flex w-fill bg-[#ED4F35] px-4 py-5.5 text-center align-middle text-sm font-semibold uppercase text-white no-underline"
+                    href={`"https://coinfest.asia//attendee-detail?vw=${idAttendee}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="mx-auto inline-flex">
+                      <span className="!mt-0.5 leading-initial">
+                        Upgarde your ticket to bull
+                      </span>
+                      <span className="ml-3 content-center">
+                        <Img
+                          className="my-auto mt-1 h-3.5 w-3.5"
+                          src={`https://api.coinfest.asia/uploads/ca25_Ticket_Upgrade_To_Bull_ceeb89078d.png`}
+                          alt={`Upgrade to Bull Ticket Coinfest Asia 2025`}
+                          height={96}
+                          width={96}
+                        />
+                      </span>
+                    </span>
+                  </Link>
+                </Section>
+              ) : null}
 
               <Row className="splitGridColumn">
                 <Column className="splitColumn" style={styles.splitColumn}>
@@ -358,7 +391,7 @@ const AttendeeTickets = ({
                   style={styles.splitColumn}
                 >
                   <Link
-                    className="inline-flex w-fill bg-[#ED4F35] px-4 py-5.5 text-center align-middle text-sm font-semibold uppercase text-white no-underline"
+                    className="inline-flex w-fill bg-[#015AFD] px-4 py-5.5 text-center align-middle text-sm font-semibold uppercase text-white no-underline"
                     href="https://coinfest.asia/travel"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -546,6 +579,7 @@ const styles = {
   splitColumn2_Content: {
     paddingTop: '32px',
     paddingLeft: '32px',
+    maxWidth: '-webkit-fill-available',
   },
   ca25CardEmail: {
     borderRadius: '0',

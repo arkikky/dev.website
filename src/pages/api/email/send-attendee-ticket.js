@@ -39,8 +39,16 @@ export default async function handler(req, res) {
   });
 
   // @get(body)
-  const { toEmail, qrCode, docId, attId, fullname, company, productTickets } =
-    req?.body;
+  const {
+    toEmail,
+    qrCode,
+    idAttndee,
+    docId,
+    attId,
+    fullname,
+    company,
+    productTickets,
+  } = req?.body;
   const dtstamp =
     new Date(Date.now()).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
 
@@ -78,6 +86,7 @@ END:VCALENDAR
   const emailHtml = await render(
     <AttendeeTickets
       qrCode={qrCode}
+      idAttendee={idAttndee}
       documentId={docId}
       attendeeId={attId}
       name={fullname}

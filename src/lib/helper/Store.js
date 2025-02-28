@@ -87,7 +87,7 @@ export function setGroupedAttendees(p, att) {
 
 // @biling-data
 export function setBillingData(d, grp) {
-  // @sanitize(Fields)
+  // @sanitize(fields)
   const sntzeFld = (field) => DOMPurify.sanitize(field || '').trim();
   const rs = {
     data: {
@@ -107,6 +107,35 @@ export function setBillingData(d, grp) {
         d?.[`haveCompanyAttndee1_${grp}`]
           ? d?.[`websiteUrlAttndee1_${grp}`]
             ? d?.[`websiteUrlAttndee1_${grp}`]
+            : '-'
+          : '-'
+      ),
+    },
+  };
+  return rs;
+}
+// @biling-data-detail
+export function setUpgradeBillingDetailData(d) {
+  // @sanitize(fields)
+  const sntzeFld = (field) => DOMPurify.sanitize(field || '').trim();
+  const rs = {
+    data: {
+      customerId: sntzeFld(generateCreateOrderCode()),
+      firstName: sntzeFld(d?.[`firstnameAttndeeDetail`]),
+      lastName: sntzeFld(d?.[`lastnameAttndeeDetail`]),
+      email: sntzeFld(d?.[`emailAttndeeDetail`].toLowerCase()),
+      phone: sntzeFld(d?.[`phoneAttndeeDetail`]),
+      company: sntzeFld(
+        d?.[`haveCompanyAttndeeDetail`]
+          ? d?.[`companyAttndeeDetail`]
+            ? d?.[`companyAttndeeDetail`]
+            : 'N/A'
+          : 'N/A'
+      ),
+      websiteUrl: sntzeFld(
+        d?.[`haveCompanyAttndeeDetail`]
+          ? d?.[`websiteUrlAttndeeDetail`]
+            ? d?.[`websiteUrlAttndeeDetail`]
             : '-'
           : '-'
       ),
@@ -274,6 +303,40 @@ export function setAttendeeData(data, attendee, group, idCustomer, idProducts) {
   };
   return rs;
 }
+export function setAttendeeDataDetail(data, idCustomer, idProducts) {
+  // @sanitize(Fields)
+  const sntzeFld = (field) => DOMPurify.sanitize(field || '').trim();
+  const rs = {
+    attendeeId: sntzeFld(generateTicketAttendeeCode()),
+    firstName: sntzeFld(data[`firstnameAttndeeDetail`]),
+    lastName: sntzeFld(data[`lastnameAttndeeDetail`]),
+    email: sntzeFld(data[`emailAttndeeDetail`].toLowerCase()),
+    telephone: sntzeFld(data[`phoneAttndeeDetail`]),
+    telegramAccount: sntzeFld(data[`telegramAccountAttndeeDetail`]),
+    country: sntzeFld(data[`countryAttndeeDetail`]),
+    company: sntzeFld(
+      data[`haveCompanyAttndeeDetail`] ? data[`companyAttndeeDetail`] : 'N/A'
+    ),
+    position: sntzeFld(
+      data[`haveCompanyAttndeeDetail`] ? data[`jobPositionAttndeeDetail`] : '-'
+    ),
+    companyFocus: sntzeFld(
+      data[`haveCompanyAttndeeDetail`] ? data[`companyFocusAttndeeDetail`] : '-'
+    ),
+    companySize: sntzeFld(
+      data[`haveCompanyAttndeeDetail`] ? data[`companySizeAttndeeDetail`] : '-'
+    ),
+    whatTypeOfConnectionsAndNetworkingDoYouHopeToAchieveAtTheEvent: sntzeFld(
+      data[`whatTypeConnectionNetworkingAttndeeDetail`]
+    ),
+    whereDidYouHearAboutCoinfestAsia2024: sntzeFld(
+      data[`didYouHearAboutAttndeeDetail`]
+    ),
+    customer: { connect: [{ documentId: idCustomer }] },
+    product: { connect: [{ documentId: idProducts }] },
+  };
+  return rs;
+}
 
 // @create-order
 export function getCreateOrder(
@@ -295,6 +358,19 @@ export function getCreateOrder(
       coupons: setCoupon
         ? { connect: [{ documentId: setCoupon?.documentId }] }
         : null,
+    },
+  };
+  return rs;
+}
+// @create-order
+export function getUpgradeCreateOrder(totalUpgrade, setIdCustomer, idProducts) {
+  const rs = {
+    data: {
+      paymentStatus: 'Pending',
+      orderTotal: totalUpgrade,
+      customer: { connect: [{ documentId: setIdCustomer }] },
+      products: { connect: [{ documentId: idProducts }] },
+      coupons: null,
     },
   };
   return rs;

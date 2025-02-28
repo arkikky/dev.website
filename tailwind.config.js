@@ -19,6 +19,7 @@ module.exports = {
         transparent: 'transparent',
         current: 'currentColor',
         primary: '#015AFD',
+        primaryBlue: '#005AFF',
         primaryRed: '#ED4F35',
         primaryYellow: '#F3D747',
         primaryDark: '#111928',
@@ -195,6 +196,10 @@ module.exports = {
         '.bg-vip': {
           backgroundImage:
             'linear-gradient(180deg, #D38350 17.54%, #ED4F35 100.53%)',
+        },
+        '.bg-vipV2': {
+          backgroundImage:
+            'linear-gradient(180deg, #FF8335 2.54%, #ED4F35 100%)',
         },
         '.bg-vip45': {
           backgroundImage:

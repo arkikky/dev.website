@@ -76,6 +76,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
   const {
     getStore,
     getIsCoupon,
+    getCoupon,
     hndleHookIntzCoupon,
     calculateTotalOrder,
     isDiscount,
@@ -129,7 +130,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       isCoupon ? isDiscount?.totalWithDiscount : totalOrder
     );
     trackingBeginCheckout(getStore, getIsCoupon, isTotalOrder);
-  }, [getStore, getIsCoupon]);
+  }, [getStore, getCoupon, isDiscount?.totalWithDiscount, totalOrder]);
 
   // @btn-step(attendee)
   const handleTabClick = (e, productIdx, tabIdx) => {
@@ -466,8 +467,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
 
   // @submit(checkout)
   const onSubmitForm = async (data) => {
-    const isFirstItems = getJoinString(getStore[0]?.name);
     if (isValid === true && isCart) {
+      const isFirstItems = getJoinString(getStore[0]?.name);
       const isTotalOrder = calculateTotalOrder(
         isCoupon ? isDiscount?.totalWithDiscount : totalOrder
       );
@@ -756,6 +757,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   body: JSON.stringify({
                     toEmail: gtRslt?.attendee?.email,
                     qrCode: rsBlobQrCode?.url,
+                    idAttndee: gtRslt?.attendee?.documentId,
                     docId: gtRslt?.attendee?.product.documentId,
                     attId: gtRslt?.attendee?.attendeeId,
                     fullname: gtRslt?.fullname,
