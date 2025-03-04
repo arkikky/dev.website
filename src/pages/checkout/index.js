@@ -706,6 +706,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   updateStatusOrder?.data.coupons.length > 0
                     ? updateStatusOrder?.data?.coupons[0]
                     : null,
+                isUpgrade: false,
+                isUpgrageProducts: null,
               }),
             }).then((rs) => rs?.json());
 
