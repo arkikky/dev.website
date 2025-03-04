@@ -1,6 +1,6 @@
 import React from 'react';
 
-const UpgradeToBullSkeleton = ({}) => {
+const UpgradeToBullSkeleton = () => {
   return (
     <>
       <div className="group mt-14 flex h-[325px] w-full flex-col items-center justify-center rounded-2xl bg-gray-100 px-1 py-1 text-center text-black-800">

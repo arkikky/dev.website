@@ -65,7 +65,7 @@ const PartnersTabs = ({
           >
             {`MEDIA PARTNERS`}
           </button>
-          <button
+          {/* <button
             id="ca25Tabs-Item3"
             className="ca25Partner_Tabs"
             type="button"
@@ -78,7 +78,7 @@ const PartnersTabs = ({
             }}
           >
             COMMUNITIES
-          </button>
+          </button> */}
         </nav>
       </div>
 
@@ -109,7 +109,7 @@ const PartnersTabs = ({
             </div>
           </div>
         ) : null}
-        <div
+        {/* <div
           id="ca25Tabs-3"
           className="hidden"
           role="tabpanel"
@@ -122,7 +122,7 @@ const PartnersTabs = ({
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

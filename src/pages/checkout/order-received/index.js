@@ -357,7 +357,7 @@ const OrderReceived = ({
                   ).then((res) => res.json());
                 }
               }
-              window.location.reload();
+              // window.location.reload();
             }
           } else if (
             rsPaymentWebhook?.status === 'FAILED' ||

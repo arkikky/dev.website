@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-const EmptyCart = ({}) => {
+const EmptyCart = () => {
   return (
     <>
       <div className="flex w-full flex-col items-center justify-center rounded-xl bg-gray-100 px-6 py-6 text-center text-black-800">

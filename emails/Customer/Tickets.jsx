@@ -491,7 +491,7 @@ const CustomerTickets = ({
 
                     {gtRslt?.attendee.product?.documentId !==
                     'rc33x0dgm6tm707jghffuip4' ? (
-                      <Section className="px-0 py-0">
+                      <Section className="px-0 py-0" key={i}>
                         <Link
                           className="inline-flex w-fill bg-[#ED4F35] px-4 py-5.5 text-center align-middle text-sm font-semibold uppercase text-white no-underline"
                           href={`https://coinfest.asia/attendee-detail?vw=${gtRslt?.attendee?.documentId}`}

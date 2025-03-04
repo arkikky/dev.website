@@ -58,9 +58,10 @@ export default async function handler(req, res) {
   } = req?.body;
   const isSubTotal = getTotalCart(products);
   let totalOrder, discntAmount;
-  console.log('Log:');
-  console.log(isUpgrade);
-  console.log(isUpgrageProducts);
+  const isPriceUpgradeDiskon =
+    isUpgrageProducts !== null
+      ? (isUpgrageProducts?.priceSale ?? isUpgrageProducts?.price)
+      : null;
 
   if (isSubTotal) {
     const isDataCoupon = await getFetch(
@@ -106,8 +107,12 @@ export default async function handler(req, res) {
       totalOrder = totalWithTax;
     } else {
       const setTax_Rate = 0.11;
-      const taxAmount = isSubTotal * setTax_Rate;
-      const totalWithTax = isSubTotal + taxAmount;
+      const taxAmount = isUpgrade
+        ? (isSubTotal - isPriceUpgradeDiskon) * setTax_Rate
+        : isSubTotal * setTax_Rate;
+      const totalWithTax = isUpgrade
+        ? isSubTotal - isPriceUpgradeDiskon + taxAmount
+        : isSubTotal + taxAmount;
       discntAmount = 0;
       totalOrder = totalWithTax;
     }
@@ -123,7 +128,8 @@ export default async function handler(req, res) {
       company={company}
       products={products}
       subtotal={isSubTotal}
-      discount={discntAmount}
+      discount={isUpgrade ? 0 : discntAmount}
+      priceUpgradeDiskon={isUpgrade ? isPriceUpgradeDiskon : 0}
       total={totalOrder}
     />
   );

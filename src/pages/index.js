@@ -273,7 +273,7 @@ export const getServerSideProps = async (context) => {
       await Promise.all([
         getFetchUrl(`${baseUrl}/api/v1/collections/partners?sv=coinfestasia`),
         getFetchPaginatedData(`/ca-25-media-partners`),
-        getFetchPaginatedData(`/ca-25-communities`),
+        // getFetchPaginatedData(`/ca-25-communities`),
       ]);
 
     return {
@@ -290,7 +290,7 @@ export const getServerSideProps = async (context) => {
           partners: {
             prevPartners: rsPrevPartners?.data || null,
             mediaPartners: rsMediaPartner || null,
-            communityPartners: rsCommunityPartners || null,
+            communityPartners: null,
           },
         },
         products: rsProducts || [],

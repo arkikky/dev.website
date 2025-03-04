@@ -36,6 +36,7 @@ const InvoiceCustomer = ({
   ],
   subtotal = 0,
   discount = 0,
+  priceUpgradeDiskon = 0,
   total = 0,
 }) => {
   return (
@@ -355,7 +356,8 @@ const InvoiceCustomer = ({
                               style={styles.tableText}
                             >
                               {currencyConverter(
-                                gtRslt.priceSale ?? gtRslt.price
+                                (gtRslt.priceSale ?? gtRslt.price) -
+                                  priceUpgradeDiskon
                               )}
                             </td>
                             <td
@@ -381,7 +383,8 @@ const InvoiceCustomer = ({
                               >
                                 {currencyConverter(
                                   (gtRslt.priceSale ?? gtRslt.price) *
-                                    gtRslt.quantity
+                                    gtRslt.quantity -
+                                    priceUpgradeDiskon
                                 )}
                               </td>
                             )}
@@ -402,7 +405,7 @@ const InvoiceCustomer = ({
                       className="orderSummary !my-0 text-right"
                       style={styles.orderSummary}
                     >
-                      {currencyConverter(subtotal)}
+                      {currencyConverter(subtotal - priceUpgradeDiskon)}
                     </Text>
                   </div>
                   {discount > 0 && (
