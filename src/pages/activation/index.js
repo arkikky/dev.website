@@ -384,7 +384,7 @@ const Activation = ({ ipAddress }) => {
                 <div className="mb-4 flex w-full flex-row items-start justify-between px-2 sm:px-4">
                   <div className="block w-max">
                     <h1 className="text-lg font-normal capitalize leading-initial text-white sm:text-xl">
-                      {`Activation`}
+                      {`Receive Ticket`}
                     </h1>
                   </div>
                   <div>
@@ -404,6 +404,7 @@ const Activation = ({ ipAddress }) => {
                     <Label
                       forId={`ca25Form_TicketCustomerConfrim`}
                       label="Order Information"
+                      helpText={`Look for your order number under "Description" in Xendit's email`}
                       required={true}
                     />
                     <Input

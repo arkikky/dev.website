@@ -106,7 +106,6 @@ const Speakers = ({ mode, collections }) => {
 
 export const getStaticProps = async () => {
   const baseUrl = process.env.NEXT_PUBLIC_URL;
-  console.log(`${baseUrl}/api/v1/collections/speakers?sv=coinfestasia`);
 
   try {
     const isStoreLayouts = false;

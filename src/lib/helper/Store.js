@@ -143,7 +143,7 @@ export function setUpgradeBillingDetailData(d) {
   };
   return rs;
 }
-export function setHbSptCustomerData(d, ip) {
+export function setHbSptCustomerData(d, ip, isUpgrade) {
   const rs = {
     fields: [
       {
@@ -176,6 +176,11 @@ export function setHbSptCustomerData(d, ip) {
         name: 'website',
         value: d?.websiteUrl,
       },
+      {
+        objectTypeId: '0-1',
+        name: 'upgrade_ticket',
+        value: isUpgrade,
+      },
     ],
     context: {
       pageUri: 'https://coinfest.asia/checkout',
@@ -185,7 +190,7 @@ export function setHbSptCustomerData(d, ip) {
   };
   return rs;
 }
-export function setHbSptAttendeeData(rslt, ip) {
+export function setHbSptAttendeeData(rslt, ip, isUpgrade) {
   // @sanitize(Fields)
   const rs = {
     fields: [
@@ -250,6 +255,11 @@ export function setHbSptAttendeeData(rslt, ip) {
         name: 'where_did_you_hear_about_coinfest_asia_2024_',
         value: rslt?.whereDidYouHearAboutCoinfestAsia2024,
       },
+      {
+        objectTypeId: '0-1',
+        name: 'upgrade_ticket',
+        value: isUpgrade,
+      },
     ],
     context: {
       pageUri: 'https://coinfest.asia/checkout',
@@ -260,7 +270,7 @@ export function setHbSptAttendeeData(rslt, ip) {
   return rs;
 }
 export function setAttendeeData(data, attendee, group, idCustomer, idProducts) {
-  // @sanitize(Fields)
+  // @sanitize(fields)
   const sntzeFld = (field) => DOMPurify.sanitize(field || '').trim();
   const rs = {
     attendeeId: sntzeFld(generateTicketAttendeeCode()),
@@ -292,6 +302,11 @@ export function setAttendeeData(data, attendee, group, idCustomer, idProducts) {
         ? data[`companySizeAttndee${attendee}_${group}`]
         : '-'
     ),
+    websiteUrl: sntzeFld(
+      data[`haveCompanyAttndee${attendee}_${group}`]
+        ? data[`websiteUrlAttndee${attendee}_${group}`]
+        : '-'
+    ),
     whatTypeOfConnectionsAndNetworkingDoYouHopeToAchieveAtTheEvent: sntzeFld(
       data[`whatTypeConnectionNetworkingAttndee${attendee}_${group}`]
     ),
@@ -304,7 +319,7 @@ export function setAttendeeData(data, attendee, group, idCustomer, idProducts) {
   return rs;
 }
 export function setAttendeeDataDetail(data, idCustomer, idProducts) {
-  // @sanitize(Fields)
+  // @sanitize(fields)
   const sntzeFld = (field) => DOMPurify.sanitize(field || '').trim();
   const rs = {
     attendeeId: sntzeFld(generateTicketAttendeeCode()),
@@ -326,6 +341,9 @@ export function setAttendeeDataDetail(data, idCustomer, idProducts) {
     companySize: sntzeFld(
       data[`haveCompanyAttndeeDetail`] ? data[`companySizeAttndeeDetail`] : '-'
     ),
+    websiteUrl: sntzeFld(
+      data[`haveCompanyAttndeeDetail`] ? data[`websiteUrlAttndeeDetail`] : '-'
+    ),
     whatTypeOfConnectionsAndNetworkingDoYouHopeToAchieveAtTheEvent: sntzeFld(
       data[`whatTypeConnectionNetworkingAttndeeDetail`]
     ),
@@ -334,6 +352,7 @@ export function setAttendeeDataDetail(data, idCustomer, idProducts) {
     ),
     customer: { connect: [{ documentId: idCustomer }] },
     product: { connect: [{ documentId: idProducts }] },
+    isUpgrade: true,
   };
   return rs;
 }

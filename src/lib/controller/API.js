@@ -192,3 +192,26 @@ export async function submitForm(url, data) {
     });
   return rs;
 }
+
+// delete
+export async function deleteData(url, data) {
+  const rs = await fetch(`${bUrl}${url}`, {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${tApp}`,
+    },
+    body: JSON.stringify(data),
+    cache: 'no-store',
+  })
+    .then((res) => {
+      if (res?.ok) {
+        return res.json();
+      }
+    })
+    .catch(() => {
+      return false;
+    });
+  return rs;
+}

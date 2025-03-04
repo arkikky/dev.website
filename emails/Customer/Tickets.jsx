@@ -19,95 +19,149 @@ const CustomerTickets = ({
   isAttendee = [
     {
       attendee: {
-        id: 523,
-        documentId: 'swrsrpchq2u9oh77cur7st5o',
-        firstName: 'Dicky',
-        lastName: 'Pratama',
+        id: 3847,
+        documentId: 'h1bg8oiqibyrpjn312gxctxs',
+        firstName: 'DICKY',
+        lastName: 'ANDREANSYAH',
         email: 'ikky.andreansyah@gmail.com',
         company: 'N/A',
-        telephone: '6212312312312',
+        telephone: '6281918114610',
         country: 'Åland Islands',
         position: '-',
-        whereDidYouHearAboutCoinfestAsia2024: 'Offline ads',
+        whereDidYouHearAboutCoinfestAsia2024: 'Search engine / Website',
         whatTypeOfConnectionsAndNetworkingDoYouHopeToAchieveAtTheEvent:
           'Founders of projects built in Web3',
         companySize: '-',
         companyFocus: '-',
-        telegramAccount: '@arkikky',
-        createdAt: '2024-12-10T03:17:05.647Z',
-        updatedAt: '2024-12-10T03:17:05.647Z',
-        publishedAt: '2024-12-10T03:17:05.682Z',
+        telegramAccount: '',
+        createdAt: '2025-03-03T15:44:46.806Z',
+        updatedAt: '2025-03-03T15:44:46.806Z',
+        publishedAt: '2025-03-03T15:44:46.836Z',
         locale: null,
-        attendeeId: 'A-2913326295',
+        attendeeId: 'A-498741454876',
         selfEdited: false,
         qrCodeUID: null,
-        product: {
-          id: 35,
-          documentId: 'rc33x0dgm6tm707jghffuip4',
-          name: 'Bull Tickets',
-          price: '19150000',
-          priceSale: '10150000',
-          description:
-            '- Fast lane registration\n- Fast lane shuttles to the venue\n- Limited edition networking wallet\n- Access to Bull Areas\n- Exclusive access to the Speakers\n- Premium bar & café\n- Access to Official Networking Party',
-          productId: 'T-BullTickets',
-          createdAt: '2024-10-17T10:44:37.342Z',
-          updatedAt: '2024-12-08T08:22:31.184Z',
-          publishedAt: '2024-12-08T08:22:31.254Z',
+        isApproved: null,
+        description: null,
+        websiteUrl: '-',
+        isUpgrade: null,
+        customer: {
+          id: 3014,
+          documentId: 'rodwrss9xe9ngkfmqlc71b8w',
+          firstName: 'DICKY',
+          createdAt: '2025-03-03T15:44:38.799Z',
+          updatedAt: '2025-03-03T15:44:38.799Z',
+          publishedAt: '2025-03-03T15:44:38.818Z',
           locale: null,
-          stock: null,
+          lastName: 'ANDREANSYAH',
+          phone: '6281918114610',
+          email: 'ikky.andreansyah@gmail.com',
+          websiteUrl: '-',
+          customerId: 'C-340728688634',
+          company: 'N/A',
+          isApproved: null,
+        },
+        product: {
+          id: 853,
+          documentId: 'g1ukadil4n4a3r0ndly7jl42',
+          name: 'Pre-Sale Festival Ticket',
+          price: '3250000',
+          priceSale: '1218750',
+          description:
+            '- 2-day pass to Coinfest Asia\n- Access to all decentralized zones\n- Access to stages & activity areas\n- Access to workshops and meetups\n- Light food & beverage for 2 days\n- Access to official networking party',
+          productId: 'T-FestivalTikets',
+          createdAt: '2024-10-17T10:00:31.262Z',
+          updatedAt: '2025-03-03T15:44:45.429Z',
+          publishedAt: '2025-03-03T15:44:45.466Z',
+          locale: null,
+          stock: '245',
           variant: null,
+          rank: 1,
         },
         qrCode: null,
         localizations: [],
       },
+      fullname: 'DICKY ANDREANSYAH',
+      ticketProducts: 'Festival Ticket',
+      group: 'PreSaleFestivalTicket',
     },
     {
       attendee: {
-        id: 525,
-        documentId: 'qzrapdzr8ulxft7anffferx6',
-        firstName: 'Adit',
-        lastName: 'Pratama',
-        email: 'dickypratamaandreansyah@gmail.com',
+        id: 3849,
+        documentId: 'z609vm0znpgwi25vjg3pbmjc',
+        firstName: 'DICKY',
+        lastName: 'ANDREANSYAH',
+        email: 'ikky.andreansyah@gmail.com',
         company: 'N/A',
-        telephone: '6212312312312',
+        telephone: '6281918114610',
         country: 'Åland Islands',
         position: '-',
-        whereDidYouHearAboutCoinfestAsia2024:
-          'Social media (Twitter, Linkedin, Instagram, etc)',
+        whereDidYouHearAboutCoinfestAsia2024: 'Search engine / Website',
         whatTypeOfConnectionsAndNetworkingDoYouHopeToAchieveAtTheEvent:
-          'Potential business partners for my company',
+          'Founders of projects built in Web3',
         companySize: '-',
         companyFocus: '-',
-        telegramAccount: '@adit',
-        createdAt: '2024-12-10T03:17:09.947Z',
-        updatedAt: '2024-12-10T03:17:09.947Z',
-        publishedAt: '2024-12-10T03:17:09.965Z',
+        telegramAccount: '',
+        createdAt: '2025-03-03T15:44:47.055Z',
+        updatedAt: '2025-03-03T15:44:47.055Z',
+        publishedAt: '2025-03-03T15:44:47.087Z',
         locale: null,
-        attendeeId: 'A-1138618483',
+        attendeeId: 'A-243793345130',
         selfEdited: false,
         qrCodeUID: null,
+        isApproved: null,
+        description: null,
+        websiteUrl: '-',
+        isUpgrade: null,
+        customer: {
+          id: 3014,
+          documentId: 'rodwrss9xe9ngkfmqlc71b8w',
+          firstName: 'DICKY',
+          createdAt: '2025-03-03T15:44:38.799Z',
+          updatedAt: '2025-03-03T15:44:38.799Z',
+          publishedAt: '2025-03-03T15:44:38.818Z',
+          locale: null,
+          lastName: 'ANDREANSYAH',
+          phone: '6281918114610',
+          email: 'ikky.andreansyah@gmail.com',
+          websiteUrl: '-',
+          customerId: 'C-340728688634',
+          company: 'N/A',
+          isApproved: null,
+        },
         product: {
-          id: 36,
+          id: 853,
           documentId: 'g1ukadil4n4a3r0ndly7jl42',
-          name: 'Festival Tickets',
-          price: '2453068',
-          priceSale: null,
+          name: 'Pre-Sale Festival Ticket',
+          price: '3250000',
+          priceSale: '1218750',
           description:
-            '- 2-day pass to Coinfest Asia main venue\n- Access to main stage’s panel discussions &amp; conferences\n- Direct networking with Speakers at Breakout Area\n- Access to workshops, meetups, and side sessions\n- Light food &amp; beverage for 2 days\n- Access to selected Coinfest Week events\n- Access to Official Networking Parties',
+            '- 2-day pass to Coinfest Asia\n- Access to all decentralized zones\n- Access to stages & activity areas\n- Access to workshops and meetups\n- Light food & beverage for 2 days\n- Access to official networking party',
           productId: 'T-FestivalTikets',
           createdAt: '2024-10-17T10:00:31.262Z',
-          updatedAt: '2024-12-10T01:13:44.455Z',
-          publishedAt: '2024-12-10T01:13:44.501Z',
+          updatedAt: '2025-03-03T15:44:45.429Z',
+          publishedAt: '2025-03-03T15:44:45.466Z',
           locale: null,
-          stock: '20',
+          stock: '245',
           variant: null,
+          rank: 1,
         },
         qrCode: null,
         localizations: [],
       },
+      fullname: 'DICKY ANDREANSYAH',
+      ticketProducts: 'Festival Ticket',
+      group: 'PreSaleFestivalTicket',
     },
   ],
-  isBloQrCode,
+  isBloQrCode = [
+    {
+      blobQrCodeUrl: '/uploads/Qr_Code_A_498741454876_cce23b7888.png',
+    },
+    {
+      blobQrCodeUrl: '/uploads/Qr_Code_A_243793345130_7790756a74.png',
+    },
+  ],
 }) => {
   return (
     <Html lang="en" dir="ltr">
@@ -122,6 +176,9 @@ const CustomerTickets = ({
           .ca25Split_BorderBoard {
             border-left: 1px dashed #E5E7EB;
           }
+          .ca25QRBorderBoard {
+            border-top: 1px dashed #E5E7EB;
+          }
 
           .splitColumn2_TextLink a {
             color: #FFFFFF !important;
@@ -130,6 +187,9 @@ const CustomerTickets = ({
           @media only screen and (max-width: 640px) {
             .ca25Split_BorderBoard {
               border-left: none;
+              border-top: 1px dashed #E5E7EB;
+            }
+            .ca25QRBorderBoard {
               border-top: 1px dashed #E5E7EB;
             }
 
@@ -296,6 +356,13 @@ const CustomerTickets = ({
             className="ca25CardEmail mx-auto max-w-[599px] bg-gradient-primary"
             style={styles.ca25CardEmail}
           >
+            {/* @ticket-details */}
+            <Section className="px-0 py-0">
+              <span className="inline-flex w-fill px-4 py-5 text-center text-base font-semibold uppercase tracking-[0.3px] text-white no-underline bg-gradient-primary">
+                <span className="mx-auto inline-flex">Ticket Details</span>
+              </span>
+            </Section>
+
             <Section
               className="ca25CardEmailContent bg-white !py-0 !pb-5"
               style={styles.ca25CardEmailContent}
@@ -354,77 +421,101 @@ const CustomerTickets = ({
                 </Column>
               </Row>
 
-              {/* @ticket-details */}
-              <Section className="px-0 py-0">
-                <span className="inline-flex w-fill !items-center !justify-center px-4 py-5 text-center text-base font-semibold uppercase tracking-[0.3px] text-white no-underline bg-gradient-primary">
-                  <span className="mx-auto inline-flex">Ticket Details</span>
-                </span>
-              </Section>
-
               {/* @ticket(Detail) */}
               {isAttendee?.map((gtRslt, i) => {
                 const rsQrCode = isBloQrCode[i];
                 return (
-                  <Row
-                    className={`splitGridColumn border-dashed border-gray-400/80 ${i === isAttendee?.length - 1 ? 'border-b-0' : 'border-b'}`}
-                    key={i}
-                  >
-                    <Column
-                      align="center"
-                      className="splitColumn1 bg-white pb-5 pt-2 text-black-900"
-                      style={styles.splitColumn1}
+                  <>
+                    <Row
+                      className={`splitGridColumn border-dashed border-gray-400/80 ${i === isAttendee?.length - 1 ? 'border-b-0' : 'border-b'}`}
+                      key={i}
                     >
-                      <Img
-                        src={
-                          rsQrCode?.blobQrCodeUrl
-                            ? `https://api.coinfest.asia${rsQrCode?.blobQrCodeUrl}`
-                            : 'https://api.coinfest.asia/uploads/qr_Code_30174acc7e.png'
-                        }
-                        width="180"
-                        height="180"
-                        alt="QR Code"
-                      />
-                      <Text className="!mb-0 !mt-0 leading-initial">
-                        {gtRslt?.attendee.attendeeId}
-                      </Text>
-                    </Column>
-                    <Column
-                      align="left"
-                      className={`splitColumn2 splitColumn2_Content ${gtRslt?.attendee.product?.documentId === 'rc33x0dgm6tm707jghffuip4' ? 'bg-[#111928]' : 'bg-[#005AFF]'} align-top text-white`}
-                      style={(styles.splitColumn2, styles.splitColumn2_Content)}
-                    >
-                      <Heading
-                        as="h2"
-                        className="!mb-3 !mt-0 w-max border-[1.5px] border-dashed border-white px-2.5 py-2.5 !text-base !leading-[20px]"
+                      <Column
+                        align="center"
+                        className="splitColumn1 ca25QRBorderBoard bg-white pb-5 pt-2 text-black-900"
+                        style={styles.splitColumn1}
                       >
-                        <span>Ticket ID [{gtRslt?.attendee.attendeeId}]</span>
-                      </Heading>
-                      <Text className="!mb-4.5 !mt-0 inline-flex !text-[16px] !leading-initial">
-                        <span className="mr-2">
-                          <Img
-                            className="my-auto mt-0 h-6 w-6"
-                            src={`https://api.coinfest.asia/uploads/ca25_Ticket_Icons_16ae30f766.png`}
-                            alt={`Coinfest Asia 2025 (Calendar Board Icons)`}
-                            height={48}
-                            width={48}
-                          />
-                        </span>
-                        <span className="!mt-0.5 font-semibold">
-                          {gtRslt?.attendee.product?.documentId ===
-                          'sn4ujm0d1ebbc8lme1ihzsa9'
-                            ? 'Festival Tickets'
-                            : gtRslt?.attendee.product?.name}
-                        </span>
-                      </Text>
-                      <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
-                        Name :{' '}
-                        {`${gtRslt?.attendee.firstName} ${gtRslt?.attendee.lastName}`}
-                      </Text>
-                      <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
-                        Company : {gtRslt?.attendee.company}
-                      </Text>
-                    </Column>
-                  </Row>
+                        <Img
+                          src={
+                            rsQrCode?.blobQrCodeUrl
+                              ? `https://api.coinfest.asia${rsQrCode?.blobQrCodeUrl}`
+                              : 'https://api.coinfest.asia/uploads/qr_Code_30174acc7e.png'
+                          }
+                          width="180"
+                          height="180"
+                          alt="QR Code"
+                        />
+                        <Text className="!mb-0 !mt-0 leading-initial">
+                          {gtRslt?.attendee.attendeeId}
+                        </Text>
+                      </Column>
+                      <Column
+                        align="left"
+                        className={`splitColumn2 splitColumn2_Content ${gtRslt?.attendee.product?.documentId === 'rc33x0dgm6tm707jghffuip4' ? 'bg-[#111928]' : 'bg-[#005AFF]'} align-top text-white`}
+                        style={
+                          (styles.splitColumn2, styles.splitColumn2_Content)
+                        }
+                      >
+                        <Heading
+                          as="h2"
+                          className="!mb-3 !mt-0 w-max border-[1.5px] border-dashed border-white px-2.5 py-2.5 !text-base !leading-[20px]"
+                        >
+                          <span>Ticket ID [{gtRslt?.attendee.attendeeId}]</span>
+                        </Heading>
+                        <Text className="!mb-4.5 !mt-0 inline-flex !text-[16px] !leading-initial">
+                          <span className="mr-2">
+                            <Img
+                              className="my-auto mt-0 h-6 w-6"
+                              src={`https://api.coinfest.asia/uploads/ca25_Ticket_Icons_16ae30f766.png`}
+                              alt={`Coinfest Asia 2025 (Calendar Board Icons)`}
+                              height={48}
+                              width={48}
+                            />
+                          </span>
+                          <span className="!mt-0.5 font-semibold">
+                            {gtRslt?.attendee.product?.documentId !==
+                            'rc33x0dgm6tm707jghffuip4'
+                              ? 'Festival Ticket'
+                              : gtRslt?.attendee.product?.name}
+                          </span>
+                        </Text>
+                        <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
+                          Name :{' '}
+                          {`${gtRslt?.attendee.firstName} ${gtRslt?.attendee.lastName}`}
+                        </Text>
+                        <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
+                          Company : {gtRslt?.attendee.company}
+                        </Text>
+                      </Column>
+                    </Row>
+
+                    {gtRslt?.attendee.product?.documentId !==
+                    'rc33x0dgm6tm707jghffuip4' ? (
+                      <Section className="px-0 py-0">
+                        <Link
+                          className="inline-flex w-fill bg-[#ED4F35] px-4 py-5.5 text-center align-middle text-sm font-semibold uppercase text-white no-underline"
+                          href={`https://coinfest.asia/attendee-detail?vw=${gtRslt?.attendee?.documentId}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span className="mx-auto inline-flex">
+                            <span className="!mt-0.5 leading-initial">
+                              Upgarde your ticket to bull
+                            </span>
+                            <span className="ml-3 content-center">
+                              <Img
+                                className="my-auto mt-1 h-3 w-3"
+                                src={`https://api.coinfest.asia/uploads/ca25_Ticket_Upgrade_To_Bull_ceeb89078d.png`}
+                                alt={`Upgrade to Bull Ticket Coinfest Asia 2025`}
+                                height={96}
+                                width={96}
+                              />
+                            </span>
+                          </span>
+                        </Link>
+                      </Section>
+                    ) : null}
+                  </>
                 );
               })}
 
@@ -458,7 +549,7 @@ const CustomerTickets = ({
                   style={styles.splitColumn}
                 >
                   <Link
-                    className="inline-flex w-fill bg-[#ED4F35] px-4 py-5.5 text-center align-middle text-sm font-semibold uppercase text-white no-underline"
+                    className="inline-flex w-fill bg-[#015AFD] px-4 py-5.5 text-center align-middle text-sm font-semibold uppercase text-white no-underline"
                     href="https://coinfest.asia/travel"
                     target="_blank"
                     rel="noopener noreferrer"

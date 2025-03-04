@@ -339,7 +339,7 @@ const AttendeeTickets = ({
                 <Section className="px-0 py-0">
                   <Link
                     className="inline-flex w-fill bg-[#ED4F35] px-4 py-5.5 text-center align-middle text-sm font-semibold uppercase text-white no-underline"
-                    href={`"https://coinfest.asia//attendee-detail?vw=${idAttendee}`}
+                    href={`https://coinfest.asia/attendee-detail?vw=${idAttendee}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -349,7 +349,7 @@ const AttendeeTickets = ({
                       </span>
                       <span className="ml-3 content-center">
                         <Img
-                          className="my-auto mt-1 h-3.5 w-3.5"
+                          className="my-auto mt-1 h-3 w-3"
                           src={`https://api.coinfest.asia/uploads/ca25_Ticket_Upgrade_To_Bull_ceeb89078d.png`}
                           alt={`Upgrade to Bull Ticket Coinfest Asia 2025`}
                           height={96}

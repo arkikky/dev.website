@@ -144,7 +144,7 @@ const AttendeeUpdate = ({
           rsAttendee?.data?.product['documentId'] ===
             'sn4ujm0d1ebbc8lme1ihzsa9' ||
           rsAttendee?.data?.product['documentId'] === 'g1ukadil4n4a3r0ndly7jl42'
-            ? `Festival Tickets`
+            ? `Festival Ticket`
             : rsAttendee?.data?.product['name'];
         const rsEmail = await fetch('/api/email/send-attendee-ticket', {
           method: 'POST',
@@ -532,11 +532,7 @@ export async function getServerSideProps(context) {
       rsAttendee?.data?.product?.documentId === 'rc33x0dgm6tm707jghffuip4' ??
       true;
 
-    if (
-      (rsAttendee?.data === null && !isApproved) ||
-      isApproved === null ||
-      isProducts
-    ) {
+    if (isApproved === false || isProducts) {
       return {
         redirect: {
           destination: '/',

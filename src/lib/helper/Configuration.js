@@ -140,10 +140,6 @@ export const calculateCountdown = (date) => {
     targetDate.setHours(0, 0, 0, 0);
 
     const targetDateUTC = new Date(targetDate.getTime() - 7 * 60 * 60 * 1000);
-
-    // setCookie('prSle_trgtSession', targetDateUTC.toISOString(), {
-    //   maxAge: 60 * 60 * 24 * 7,
-    // });
     setCookie('prSle_trgtSession', targetDateUTC.toISOString(), {
       maxAge: 60 * 60 * 24 * 7,
       path: '/',

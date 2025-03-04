@@ -272,7 +272,13 @@ export function useTrackingStore() {
   };
 
   // @purchase
-  const trackingPurchase = (transactionId, store, isCoupon, total) => {
+  const trackingPurchase = (
+    transactionId,
+    store,
+    isCoupon,
+    total,
+    isUpgrade
+  ) => {
     if (typeof window !== 'undefined' && window.dataLayer) {
       let calculateTotalDiscount = 0;
       const validCoupon = isCoupon?.includedProducts?.some((p) =>
@@ -291,7 +297,6 @@ export function useTrackingStore() {
           );
           const isPrice = (item?.priceSale ?? item?.price) || 0;
           const totalPrice = isPrice * item?.quantity;
-
           let itemDiscount = 0;
           if (validCoupon) {
             if (validCoupon?.type === 'percentage') {
@@ -304,13 +309,16 @@ export function useTrackingStore() {
             }
             calculateTotalDiscount += itemDiscount;
           }
-
           return {
             item_id: item?.id,
             item_name:
               process.env.NODE_ENV === 'development'
-                ? `Dev ${item?.name}`
-                : item?.name,
+                ? isUpgrade
+                  ? `Dev ${item?.name} Upgrade`
+                  : `Dev ${item?.name}`
+                : isUpgrade
+                  ? `${item?.name} Upgrade`
+                  : item?.name,
             coupon: isDiscounted ? validCoupon?.couponCode : '-',
             discount: isDiscounted
               ? Number((itemDiscount / item?.quantity).toFixed(2))

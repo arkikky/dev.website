@@ -40,9 +40,9 @@ const AttendeeDetailUpdate = ({
     const fieldsToSet = {
       [`websiteUrlAttndeeDetail`]: isTrue ? '' : '-',
       [`companyAttndeeDetail`]: isTrue ? '' : 'N/A',
-      [`jobPositionAttndeeDetail`]: !isTrue ? '' : '-',
-      [`companyFocusAttndeeDetail`]: !isTrue ? '' : '-',
-      [`companySizeAttndeeDetail`]: !isTrue ? '' : '-',
+      [`jobPositionAttndeeDetail`]: isTrue ? '' : '-',
+      [`companyFocusAttndeeDetail`]: isTrue ? '' : '-',
+      [`companySizeAttndeeDetail`]: isTrue ? '' : '-',
     };
     Object.entries(fieldsToSet).forEach(([field, value]) => {
       setValue(field, value, { shouldValidate: true });

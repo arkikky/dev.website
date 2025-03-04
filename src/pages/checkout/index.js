@@ -129,7 +129,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
     const isTotalOrder = calculateTotalOrder(
       isCoupon ? isDiscount?.totalWithDiscount : totalOrder
     );
-    trackingBeginCheckout(getStore, getIsCoupon, isTotalOrder);
+    // trackingBeginCheckout(getStore, getIsCoupon, isTotalOrder);
   }, [getStore, getCoupon, isDiscount?.totalWithDiscount, totalOrder]);
 
   // @btn-step(attendee)
@@ -472,7 +472,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
       const isTotalOrder = calculateTotalOrder(
         isCoupon ? isDiscount?.totalWithDiscount : totalOrder
       );
-      trackingCheckoutJourney(getStore, getIsCoupon, isTotalOrder);
+      // trackingCheckoutJourney(getStore, getIsCoupon, isTotalOrder);
       if (Math.abs(isTotalOrder) > 1e-10) {
         setStore((prev) => ({ ...prev, isPaymentProcess: true }));
       } else if (Math.abs(isTotalOrder) < 1e-10) {
@@ -584,7 +584,7 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                     const tickets =
                       rsAttendee?.data.product.documentId !==
                       'rc33x0dgm6tm707jghffuip4'
-                        ? `Festival Tickets`
+                        ? `Festival Ticket`
                         : `${rsAttendee?.data.product?.name}`;
                     arrAttendees.push({
                       attendee: rsAttendee?.data,
@@ -670,7 +670,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
               submitFormHbSpt(
                 setHbSptCustomerData(
                   updateStatusOrder?.data?.customer,
-                  isFormCheckouts?.isIpAddress?.ip
+                  isFormCheckouts?.isIpAddress?.ip,
+                  false
                 ),
                 hbSptKey
               ),
@@ -739,7 +740,8 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                   submitFormHbSpt(
                     setHbSptAttendeeData(
                       gtRslt?.attendee,
-                      isFormCheckouts?.isIpAddress?.ip
+                      isFormCheckouts?.isIpAddress?.ip,
+                      false
                     ),
                     hbSptAttndeeKey
                   ),

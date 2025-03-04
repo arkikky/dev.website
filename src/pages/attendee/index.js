@@ -143,7 +143,7 @@ const Attendee = ({}) => {
                 <div className="mb-4 flex w-full flex-row items-start justify-between px-2 sm:px-4">
                   <div className="block w-max">
                     <h1 className="text-lg font-normal capitalize leading-initial text-white sm:text-xl">
-                      {`Attendee`}
+                      {`Update Ticket`}
                     </h1>
                   </div>
                   <div>
@@ -163,7 +163,6 @@ const Attendee = ({}) => {
                     <Label
                       forId={`tktCAForm_TicketAttendeeConfrim`}
                       label="Ticket ID"
-                      helpText={`The Ticket ID must match the attendee's ticket!`}
                       required={true}
                     />
                     <Input
@@ -187,7 +186,6 @@ const Attendee = ({}) => {
                     <Label
                       forId={`tktCAForm_EmailAttendeeConfrim`}
                       label="Email"
-                      helpText="The email provided must match the attendee's registration details!"
                       required={true}
                     />
                     <Input

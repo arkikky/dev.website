@@ -34,7 +34,12 @@ import OrderProcessLoadingModal from '@components/UI/Modal/OrderProcessLoading';
 // @layouts
 import LayoutDefaults from '@layouts/Layouts';
 
-const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
+const OrderReceived = ({
+  ipAddress,
+  orderReceived,
+  orderCustomer,
+  products,
+}) => {
   const router = useRouter();
   const { trackingPurchase } = useTrackingStore();
   const dispatch = useDispatch();
@@ -105,9 +110,6 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
     if (isOrderRecived?.order?.paymentStatus !== 'Success') {
       const fetchOrderPayment = async () => {
         try {
-          // @hubspot(customer & attendee)
-          const hbSptKey = '96572ab0-5958-4cc4-8357-9c65de42cab6';
-          const hbSptAttndeeKey = 'c9347ef6-664d-4b7a-892b-a1cabaa2bc30';
           // @get(key)
           const { key } = await fetch('/api/env/note', {
             method: 'POST',
@@ -122,7 +124,10 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
               'x-api-key': key,
             },
             body: JSON.stringify({
-              paymentId: isOrderRecived?.order?.order_session,
+              paymentId: (isOrderRecived?.order?.order_session).replace(
+                'isUpgradeBull_',
+                ''
+              ),
             }),
           }).then((res) => res.json());
 
@@ -137,7 +142,7 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
               `/api/orders/${isOrderRecived?.order?.documentId}`,
               {
                 data: {
-                  paymentStatus: 'Success',
+                  paymentStatus: 'Pending',
                 },
               }
             );
@@ -175,10 +180,19 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
               );
             }
 
+            // @check-order-upgrade
+            const isUpgradeBull =
+              updateStatusOrder?.data?.order_session?.includes(
+                'isUpgradeBull_'
+              ) || false;
+
+            // @hubspot(customer & attendee)
+            const hbSptCustomer = '96572ab0-5958-4cc4-8357-9c65de42cab6';
+            const hbSptAttndeeKey = 'c9347ef6-664d-4b7a-892b-a1cabaa2bc30';
+
             if (isOrderRecived?.customer?.isApproved === null) {
               const isProducts = isOrderRecived?.order?.products;
               const isCustomerAttendee = isOrderRecived?.customer;
-
               // @save-to(hubspot)
               const [updateStatusCustomer, rsHbSptCustomer] = await Promise.all(
                 [
@@ -186,16 +200,17 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                     `/api/customers/${isOrderRecived?.customer?.documentId}`,
                     {
                       data: {
-                        isApproved: true,
+                        isApproved: null,
                       },
                     }
                   ),
                   submitFormHbSpt(
                     setHbSptCustomerData(
                       isOrderRecived?.customer,
-                      isOrderRecived?.isIpAddress?.ip
+                      isOrderRecived?.isIpAddress?.ip,
+                      isUpgradeBull
                     ),
-                    hbSptKey
+                    hbSptCustomer
                   ),
                 ]
               );
@@ -211,7 +226,6 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                 );
                 arrAttendees.push({ attendee: rsAttendee?.data });
               }
-
               if (isProducts && arrAttendees) {
                 const grpAttendee = setGroupedAttendees(
                   isProducts,
@@ -236,17 +250,20 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                       isOrderRecived?.order?.coupons.length > 0
                         ? isOrderRecived?.order?.coupons[0]
                         : null,
+                    isUpgrade: isUpgradeBull,
+                    isUpgrageProducts: isUpgradeBull
+                      ? products?.festivalTicket?.data
+                      : null,
                   }),
                 }).then((rs) => rs?.json());
-
                 // @add-tracking-purchase
-                trackingPurchase(
-                  isOrderRecived?.order?.documentId,
-                  grpAttendee,
-                  setIsCoupon,
-                  isSubTotal
-                );
-
+                // trackingPurchase(
+                //   isOrderRecived?.order?.documentId,
+                //   grpAttendee,
+                //   setIsCoupon,
+                //   isSubTotal,
+                //   isUpgradeBull
+                // );
                 for (let i = 0; i < grpAttendee?.length; i++) {
                   const isGrpdAttendee = grpAttendee[i];
                   const tickets =
@@ -276,14 +293,15 @@ const OrderReceived = ({ ipAddress, orderReceived, orderCustomer }) => {
                             `/api/attendees/${rsAttendee?.documentId}`,
                             {
                               data: {
-                                isApproved: true,
+                                isApproved: null,
                               },
                             }
                           ),
                           submitFormHbSpt(
                             setHbSptAttendeeData(
                               rsAttendee,
-                              isOrderRecived?.isIpAddress?.ip
+                              isOrderRecived?.isIpAddress?.ip,
+                              isUpgradeBull
                             ),
                             hbSptAttndeeKey
                           ),
@@ -674,7 +692,6 @@ export const getServerSideProps = async (context) => {
         },
       };
     }
-
     // @check-res(customer)
     const rsCustmrId = rsOrderRecived?.data?.customer.documentId;
     const rsCustmr = await getFetch(
@@ -688,6 +705,9 @@ export const getServerSideProps = async (context) => {
         },
       };
     }
+    const [rsFestivalTickets] = await Promise.all([
+      getFetch(`/api/products/g1ukadil4n4a3r0ndly7jl42`),
+    ]);
 
     return {
       props: {
@@ -696,6 +716,9 @@ export const getServerSideProps = async (context) => {
         ipAddress: rsIpAddress,
         orderReceived: rsOrderRecived || [],
         orderCustomer: rsCustmr || [],
+        products: {
+          festivalTicket: rsFestivalTickets || [],
+        },
       },
     };
   } catch (error) {

@@ -11,7 +11,11 @@ const { publicRuntimeConfig } = getConfig();
 // @lib
 import { useStoreContext } from '@lib/context/store/StoreContext';
 import { nonceSha256 } from '@lib/helper/TrackingAnalytics';
-import { getFetch, getFetchUrl } from '@lib/controller/API';
+import {
+  getFetch,
+  getFetchUrl,
+  getFetchPaginatedData,
+} from '@lib/controller/API';
 
 // @components
 import HeadGraphSeo from '@components/Head';
@@ -42,7 +46,6 @@ const Home = ({ mode, collections, products }) => {
   const [isCollections, setCollections] = useState({
     aboutus: collections?.aboutus,
     speakers: collections?.speakers,
-    partners: collections?.partners,
     getinvolved: collections?.getinvolved,
     whatsHappening: collections?.whatsHappening,
     // socialMentions: collections?.socialMentions,
@@ -185,7 +188,7 @@ const Home = ({ mode, collections, products }) => {
         <Speakers mode={mode} result={isCollections?.speakers} />
 
         {/* @partners */}
-        <Partners mode={mode} result={isCollections?.partners} />
+        <Partners mode={mode} result={collections?.partners} />
 
         {/* @getinvolved & whats-happening */}
         <div className="ca25Group relative bg-transparent pb-0 sm:pb-12">
@@ -248,7 +251,6 @@ export const getServerSideProps = async (context) => {
       rsProducts,
       rsAboutUs,
       rsSpeakers,
-      rsPartners,
       rsGetInvolved,
       rsWhatsHappening,
       rsSocialMentions,
@@ -257,7 +259,6 @@ export const getServerSideProps = async (context) => {
       getFetch(`/api/products?sort[0]=rank:asc`),
       getFetchUrl(`${baseUrl}/api/v1/collections/about-us?sv=coinfestasia`),
       getFetchUrl(`${baseUrl}/api/v1/collections/speakers?sv=coinfestasia`),
-      getFetchUrl(`${baseUrl}/api/v1/collections/partners?sv=coinfestasia`),
       getFetchUrl(`${baseUrl}/api/v1/collections/get-involved?sv=coinfestasia`),
       getFetchUrl(
         `${baseUrl}/api/v1/collections/whats-happening?sv=coinfestasia`
@@ -267,6 +268,13 @@ export const getServerSideProps = async (context) => {
       ),
       getFetchUrl(`${baseUrl}/api/v1/collections/faq?sv=coinfestasia`),
     ]);
+    // @partners
+    const [rsPrevPartners, rsMediaPartner, rsCommunityPartners] =
+      await Promise.all([
+        getFetchUrl(`${baseUrl}/api/v1/collections/partners?sv=coinfestasia`),
+        getFetchPaginatedData(`/ca-25-media-partners`),
+        getFetchPaginatedData(`/ca-25-communities`),
+      ]);
 
     return {
       props: {
@@ -275,11 +283,15 @@ export const getServerSideProps = async (context) => {
         collections: {
           aboutus: rsAboutUs?.data || null,
           speakers: rsSpeakers?.data || null,
-          partners: rsPartners?.data || null,
           getinvolved: rsGetInvolved?.data || null,
           whatsHappening: rsWhatsHappening?.data || null,
           socialMentions: rsSocialMentions?.data || null,
           faq: rsFAQ?.data || null,
+          partners: {
+            prevPartners: rsPrevPartners?.data || null,
+            mediaPartners: rsMediaPartner || null,
+            communityPartners: rsCommunityPartners || null,
+          },
         },
         products: rsProducts || [],
       },

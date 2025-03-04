@@ -15,6 +15,7 @@ import {
   updateSubmitData,
   updateData,
   pushSubmitData,
+  deleteData,
 } from '@lib/controller/API';
 import { getFecthHbSpt } from '@lib/controller/HubSpot';
 import { getJoinString, encodeData } from '@lib/helper/Configuration';
@@ -23,7 +24,10 @@ import {
   getUpgradeCreateOrder,
   setAttendeeDataDetail,
 } from '@lib/helper/Store';
-import { currencyConverter } from '@lib/helper/CalculateCart';
+import {
+  currencyConverter,
+  converterTotalCart,
+} from '@lib/helper/CalculateCart';
 
 // @components
 import HeadGraphSeo from '@components/Head';
@@ -98,7 +102,8 @@ const AttendeeUpdateToBull = ({
       jobPositionAttndeeDetail: isAttendee['position'],
       companyFocusAttndeeDetail: isAttendee['companyFocus'],
       companySizeAttndeeDetail: isAttendee['companySize'],
-      websiteUrlAttndeeDetail: isAttendee['websiteUrl'],
+      websiteUrlAttndeeDetail:
+        isAttendee['websiteUrl'] === null ? '-' : isAttendee['websiteUrl'],
     },
   });
 
@@ -111,7 +116,9 @@ const AttendeeUpdateToBull = ({
           firstName: sntzeFld(data?.firstnameAttndeeDetail),
           lastName: sntzeFld(data?.lastnameAttndeeDetail),
           company: sntzeFld(data?.companyAttndeeDetail),
-          // selfEdited: true,
+          isApproved: false,
+          selfEdited: true,
+          isUpgrade: true,
         },
       };
     } else {
@@ -124,7 +131,9 @@ const AttendeeUpdateToBull = ({
           companyFocus: sntzeFld(data?.companyFocusAttndeeDetail),
           companySize: sntzeFld(data?.companySizeAttndeeDetail),
           websiteUrl: sntzeFld(data?.websiteUrlAttndeeDetail),
-          // selfEdited: true,
+          isApproved: false,
+          selfEdited: true,
+          isUpgrade: true,
         },
       };
     }
@@ -132,11 +141,10 @@ const AttendeeUpdateToBull = ({
 
   // @submit(attendee)
   const onSubmitForm = async (data) => {
-    console.log(data);
-
     if (!isValid === false && isAttendee?.selfEdited === false) {
       try {
         const isChangeCompany = watch(`haveCompanyAttndeeDetail`);
+        const qrCodeId = isAttendee?.qrCode?.id;
 
         // @get(key)
         const { key } = await fetch('/api/env/note', {
@@ -178,6 +186,7 @@ const AttendeeUpdateToBull = ({
         ]);
 
         // @create(order)
+
         const createOrder = getUpgradeCreateOrder(
           Math.floor(isTotalUpgradeBull),
           setIdCustomer,
@@ -185,23 +194,27 @@ const AttendeeUpdateToBull = ({
         );
 
         if (rsCustomerDtl) {
-          const rsCreateOrder = await pushSubmitData(
-            '/api/orders?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount',
-            createOrder
-          );
+          const [rsDeleteQrCode, rsCreateOrder] = await Promise.all([
+            deleteData(`/api/upload/files/${qrCodeId}`),
+            pushSubmitData(
+              '/api/orders?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount',
+              createOrder
+            ),
+          ]);
           const setIdOrderRecived = rsCreateOrder?.data.documentId;
           const arrAttendees = [];
+          const isStock = parseInt(products?.bullTickets?.stock) - 1;
 
-          if (rsCreateOrder) {
+          if (rsCreateOrder?.data !== null) {
             // @update-stock(Product)
-            // const rsUpdateData = await updateData(
-            //   `/api/products/${isBullProduct}`,
-            //   {
-            //     data: {
-            //       stock: isStock?.toString(),
-            //     },
-            //   }
-            // );
+            const rsUpdateData = await updateData(
+              `/api/products/${isBullProduct}`,
+              {
+                data: {
+                  stock: isStock?.toString(),
+                },
+              }
+            );
 
             // @attendee(with qty)
             const rsAttendee = await pushSubmitData(
@@ -215,7 +228,7 @@ const AttendeeUpdateToBull = ({
               const tickets =
                 rsAttendee?.data.product.documentId !==
                 'rc33x0dgm6tm707jghffuip4'
-                  ? `Festival Tickets`
+                  ? `Festival Ticket`
                   : `${rsAttendee?.data.product?.name}`;
               arrAttendees.push({
                 attendee: rsAttendee?.data,
@@ -223,8 +236,6 @@ const AttendeeUpdateToBull = ({
                 ticketProducts: tickets,
               });
             }
-
-            console.log(arrAttendees);
           }
 
           // @processing(payment)
@@ -253,47 +264,18 @@ const AttendeeUpdateToBull = ({
                 `/api/orders/${rsCreateOrder?.data?.documentId}`,
                 {
                   data: {
-                    order_session: rsPayment?.data?.id,
+                    order_session: `isUpgradeBull_${rsPayment?.data?.id}`,
                   },
                 }
               );
-              // reset();
-              console.log(rsPayment?.data?.invoice_url);
-              // router.replace(rsPayment?.data?.invoice_url);
+              router.replace(rsPayment?.data?.invoice_url);
             } else {
               // console.error('Failed to get invoice URL');
               return;
             }
-
             return;
           }
         }
-
-        // @send(email)
-        // const tickets =
-        //   rsAttendee?.data?.product['documentId'] ===
-        //     'sn4ujm0d1ebbc8lme1ihzsa9' ||
-        //   rsAttendee?.data?.product['documentId'] === 'g1ukadil4n4a3r0ndly7jl42'
-        //     ? `Festival Tickets`
-        //     : rsAttendee?.data?.product['name'];
-        // const rsEmail = await fetch('/api/email/send-attendee-ticket', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //     'x-api-key': key,
-        //     cache: 'no-store',
-        //   },
-        //   body: JSON.stringify({
-        //     toEmail: rsAttendee?.data['email'],
-        //     qrCode: rsAttendee?.data?.qrCode['url'],
-        //     docId: rsAttendee?.data?.product['documentId'],
-        //     attId: rsAttendee?.data['attendeeId'],
-        //     fullname: `${rsAttendee?.data['firstName']} ${rsAttendee?.data['lastName']}`,
-        //     company: rsAttendee?.data['company'],
-        //     productTickets: tickets,
-        //   }),
-        // }).then((res) => res.json());
-        // router.replace(`/attendee-detail/success`);
       } catch (error) {
         // console.error('[error] processing submission:', error);
         return;
@@ -454,12 +436,7 @@ const AttendeeUpdateToBull = ({
                   </div>
                   <div className="flex flex-col items-end justify-between pt-1.5">
                     <span className="text-base font-medium sm:text-lg">
-                      {currencyConverter(
-                        (products?.bullTickets?.priceSale ??
-                          products?.bullTickets?.price) -
-                          (products?.festivalTickets?.priceSale ??
-                            products?.festivalTickets?.price)
-                      )}
+                      {currencyConverter(isStore?.isTotal)}
                     </span>
                   </div>
                 </div>
@@ -471,7 +448,14 @@ const AttendeeUpdateToBull = ({
                 <div className="grid-cols-2 supports-grid:grid">
                   <span className="text-start text-sm font-normal">{`Subtotal`}</span>
                   <span className="text-end text-base font-medium">
-                    {/* {currencyConverter(subTotal)} */}
+                    {currencyConverter(isStore?.isTotal)}
+                  </span>
+                </div>
+                {/* @total */}
+                <div className="grid-cols-2 supports-grid:grid">
+                  <span className="text-start text-sm font-normal">{`Total (inc. Tax)`}</span>
+                  <span className="text-end text-base font-medium">
+                    {converterTotalCart(isStore?.isTotal)}
                   </span>
                 </div>
               </div>

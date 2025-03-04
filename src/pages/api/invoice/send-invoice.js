@@ -45,10 +45,22 @@ export default async function handler(req, res) {
   });
 
   // @data(body)
-  const { toEmail, attId, createDate, fullname, company, products, coupon } =
-    req?.body;
+  const {
+    toEmail,
+    attId,
+    createDate,
+    fullname,
+    company,
+    products,
+    coupon,
+    isUpgrade,
+    isUpgrageProducts,
+  } = req?.body;
   const isSubTotal = getTotalCart(products);
   let totalOrder, discntAmount;
+  console.log('Log:');
+  console.log(isUpgrade);
+  console.log(isUpgrageProducts);
 
   if (isSubTotal) {
     const isDataCoupon = await getFetch(
