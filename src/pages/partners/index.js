@@ -65,7 +65,7 @@ export const getStaticProps = async () => {
     const [rsPartner, rsMediaPartner, rsCommunityPartners] = await Promise.all([
       getFetchUrl(`${baseUrl}/api/v1/collections/partners?sv=coinfestasia`),
       getFetchPaginatedData(`/ca-25-media-partners`),
-      // getFetchPaginatedData(`/ca-25-communities`),
+      getFetchPaginatedData(`/ca-25-communities`),
     ]);
 
     return {
@@ -75,7 +75,7 @@ export const getStaticProps = async () => {
         collections: {
           prevPartners: rsPartner?.data || null,
           mediaPartners: rsMediaPartner || null,
-          communityPartners: null,
+          communityPartners: rsCommunityPartners || null,
         },
       },
       revalidate: 900,

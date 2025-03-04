@@ -290,7 +290,7 @@ export const getServerSideProps = async (context) => {
           partners: {
             prevPartners: rsPrevPartners?.data || null,
             mediaPartners: rsMediaPartner || null,
-            communityPartners: null,
+            communityPartners: rsCommunityPartners || null,
           },
         },
         products: rsProducts || [],

@@ -143,8 +143,8 @@ export const calculateCountdown = (date) => {
     setCookie('prSle_trgtSession', targetDateUTC.toISOString(), {
       maxAge: 60 * 60 * 24 * 7,
       path: '/',
-      // secure: process.env.NODE_ENV === 'production',
-      // sameSite: process.env.NODE_ENV === 'development' ? 'Lax' : 'Strict',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'development' ? 'Lax' : 'Strict',
     });
   } else {
     // @konversion targetDate from UTC to GMT+7
