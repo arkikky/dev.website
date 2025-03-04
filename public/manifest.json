@@ -1,0 +1,33 @@
+{
+  "name": "Coinfest Asia 2025",
+  "short_name": "CA25",
+  "description": "The largest crypto festival in the world | Bali, 21-22 August 2025!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1F1F1F",
+  "theme_color": "#1F1F1F",
+  "scope": "/",
+  "orientation": "portrait",
+  "lang": "en",
+  "categories": ["festivals", "events"],
+  "icons": [
+    {
+      "purpose": "any",
+      "sizes": "48x48",
+      "src": "/icons/icon_x48.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "72x72",
+      "src": "/icons/icon_x72.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "128x128",
+      "src": "/icons/icon_x128.png",
+      "type": "image/png"
+    }
+  ]
+}

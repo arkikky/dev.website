@@ -1,0 +1,21 @@
+.ca25TabAttendee {
+  @apply overflow-hidden rounded-lg border-2 border-solid border-white bg-white/30;
+  @apply text-nowrap text-xs leading-initial text-white sm:text-sm sm:leading-initial;
+  @apply px-2.5 py-1.5;
+  @apply opacity-35;
+  @apply w-max min-w-max;
+}
+.ca25TabAttendee.isActive {
+  @apply opacity-100;
+}
+
+/* @partner */
+.ca25Partner_Tabs {
+  @apply inline-flex items-center justify-center gap-x-2 whitespace-nowrap rounded-lg bg-transparent sm:rounded-lg;
+  @apply text-center text-base font-medium leading-[initial] text-white;
+  @apply hover:bg-secondary hover:text-black-900;
+  @apply hs-tab-active:bg-secondary hs-tab-active:text-black-900;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+  @apply w-fill min-w-[209px] px-4 py-5;
+  @apply transition-[background,color] duration-300 ease-in-out;
+}

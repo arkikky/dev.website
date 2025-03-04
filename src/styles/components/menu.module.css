@@ -1,0 +1,227 @@
+/* @hamburger */
+.hmbrgrStairs .hmbrgrStairsLine {
+  @apply bg-white;
+  @apply mb-1.5 last:mb-0;
+  @apply h-0.5 w-2.5;
+
+  @apply visible opacity-100;
+  @apply transition duration-300 ease-in-out;
+}
+
+.hmbrgrStairs .hmbrgrStairsLine:nth-child(1) {
+  @apply ml-auto;
+}
+
+.hmbrgrStairs .hmbrgrStairsLine:nth-child(2) {
+  @apply mx-auto w-full;
+}
+
+.hmbrgrStairs .hmbrgrStairsLine:nth-child(3) {
+  @apply mr-auto;
+}
+
+.hmbrgrStairs.deactive .hmbrgrStairsLine {
+  @apply first:ml-0 first:translate-x-0 first:translate-y-2 first:rotate-[-42deg];
+  @apply last:mr-0 last:-translate-y-2 last:translate-x-0 last:rotate-[43deg];
+  @apply w-[20px];
+}
+
+.hmbrgrStairs.deactive .hmbrgrStairsLine:nth-child(2) {
+  @apply invisible opacity-0;
+  backface-visibility: hidden;
+  @apply -z-px w-0;
+}
+
+.ca25NavMenuGroup {
+  @apply relative hidden lg:block;
+  @apply h-full w-max;
+}
+.ca25NavMenuGroup-General {
+  @apply bg-dark/60 px-7 backdrop-blur-[2px];
+  @apply rounded-xl border-2 border-solid border-transparent;
+  @apply transition-[borderColor] duration-300 ease-in-out;
+}
+
+/* @nav-menu */
+ul.ca25NavMenu {
+  @apply flex h-full flex-row items-center justify-center gap-x-4 lg:gap-x-6;
+}
+ul.ca25NavMenu li.ca25NavMenu-Items {
+  @apply relative inline-flex h-full items-center justify-center;
+}
+ul.ca25NavMenu li.ca25NavMenu-Items:hover .ca25NavMenu-ToggleItems,
+ul.ca25NavMenu li.ca25NavMenu-Items.ca25NavMenu-LabelItems:hover a {
+  @apply text-[#ED4F35] underline;
+}
+ul.ca25NavMenu li.ca25NavMenu-Items a,
+ul.ca25NavMenu li.ca25NavMenu-Items .ca25NavMenu-ToggleItems {
+  @apply flex flex-col items-center justify-center;
+  @apply text-sm leading-initial text-white lg:text-base lg:leading-initial;
+  @apply h-full;
+  @apply transition-[color] duration-300 ease-in-out;
+}
+
+/* @menu-toggle */
+ul.ca25NavMenu li.ca25NavMenu-Items .ca25NavMenu-ToggleItems {
+  @apply inline-flex h-full flex-row items-center justify-center;
+}
+ul.ca25NavMenu
+  li.ca25NavMenu-Items
+  .ca25NavMenu-ToggleItems
+  .ca25NavMenu-ToggleIcons {
+  @apply rotate-180 transform;
+  @apply transition-[transform] duration-200 ease-in-out;
+}
+ul.ca25NavMenu li.ca25NavMenu-Items .ca25NavMenu-ToggleItems.active {
+  @apply text-[#ED4F35] underline;
+}
+ul.ca25NavMenu
+  li.ca25NavMenu-Items
+  .ca25NavMenu-ToggleItems.active
+  .ca25NavMenu-ToggleIcons {
+  @apply rotate-0;
+}
+
+/* @half-menu */
+ul.ca25NavMenu ul.ca25HalfNavMenu {
+  @apply rounded-xl bg-[linear-gradient(7deg,#005AFF_0%,#1F1F1F_67%)];
+  @apply inline-flex flex-col gap-y-4;
+  @apply absolute bottom-auto left-0 right-auto top-full;
+  @apply px-6 py-6;
+  @apply w-[255px];
+  @apply invisible -z-px opacity-0;
+  @apply translate-y-[10px] transform;
+  @apply transition-[display,opacity,zIndex,transform] duration-300 ease-in-out;
+}
+ul.ca25NavMenu ul.ca25HalfNavMenu.active {
+  @apply visible z-[4] opacity-100;
+  @apply translate-y-[2px];
+}
+ul.ca25NavMenu ul.ca25HalfNavMenu li {
+  @apply relative;
+}
+ul.ca25NavMenu ul.ca25HalfNavMenu li a {
+  @apply text-white;
+  @apply block w-full;
+  @apply transition-[color] duration-300 ease-in-out;
+}
+ul.ca25NavMenu ul.ca25HalfNavMenu li:hover a {
+  @apply text-[#ED4F35] underline;
+}
+
+.ca25HalfNavMenuItems {
+  @apply rounded-b-xl bg-[linear-gradient(7deg,#005AFF_0%,#1F1F1F_67%)];
+  @apply absolute bottom-auto left-0 right-auto top-full;
+  @apply px-6 py-6;
+  @apply w-[255px];
+  @apply -z-px;
+}
+
+/* @nav-mobile */
+.ca25NavMenuGroup-Mobile {
+  @apply flex flex-col items-center justify-center;
+  @apply bg-dark/80 backdrop-blur-[2px];
+  @apply fixed inset-x-0 inset-y-0;
+  @apply invisible -z-px opacity-0;
+  @apply transition-[opacity,zIndex,backdropBlur] duration-[0.3s] ease-in-out;
+}
+.ca25NavMenuGroup-Mobile.active {
+  @apply lg:invisible lg:-z-px lg:opacity-0;
+  @apply visible z-[929] opacity-100;
+}
+@screen lg {
+  .ca25NavMenuGroup-Mobile.active {
+    @apply invisible -z-px opacity-0;
+  }
+}
+
+/* @nav-mobile(menu) */
+.ca25NavMenuGroup-Mobile ul.ca25NavMenuMobile {
+  @apply flex-col;
+}
+.ca25NavMenuGroup-Mobile ul.ca25NavMenuMobile ul.ca25HalfMobileNavMenu {
+  @apply flex flex-col gap-y-3;
+  @apply max-h-0;
+  @apply invisible -z-px opacity-0;
+  @apply transition-all duration-300 ease-in-out;
+}
+.ca25NavMenuGroup-Mobile ul.ca25NavMenuMobile ul.ca25HalfMobileNavMenu.active {
+  @apply visible z-px max-h-[300px] opacity-100;
+}
+.ca25NavMenuGroup-Mobile ul.ca25NavMenuMobile .ca25HalfMobileNavMenu {
+  @apply relative top-0;
+}
+
+.ca25NavMenuGroup-Mobile ul.ca25NavMenuMobile li a,
+.ca25NavMenuGroup-Mobile
+  ul.ca25NavMenuMobile
+  li
+  .ca25NavMenuMobile-ToggleItems {
+  @apply inline-flex flex-row items-center justify-center;
+  @apply text-center text-[32px] font-semibold leading-initial text-white;
+  @apply w-full;
+}
+.ca25NavMenuGroup-Mobile .ca25NavMenu-LabelItems {
+  @apply py-2.5;
+}
+
+.ca25NavMenuGroup-Mobile ul.ca25NavMenuMobile li:hover a,
+.ca25NavMenuGroup-Mobile
+  ul.ca25NavMenuMobile
+  li
+  .ca25NavMenuMobile-ToggleItems.active {
+  @apply text-[#ED4F35];
+}
+
+.ca25NavMenuGroup-Mobile
+  ul.ca25NavMenuMobile
+  .ca25NavMenuMobile-ToggleItems
+  .ca24NavMenuMobile-ToggleIcons {
+  @apply rotate-180 transform;
+  @apply transition-[transform] duration-200 ease-in-out;
+}
+.ca25NavMenuGroup-Mobile
+  ul.ca25NavMenuMobile
+  .ca25NavMenuMobile-ToggleItems.active
+  .ca24NavMenuMobile-ToggleIcons {
+  @apply rotate-0;
+}
+
+.ca25NavMenuGroup-Mobile ul.ca25NavMenuMobile ul.ca25HalfMobileNavMenu li a {
+  @apply inline-flex flex-row items-center justify-center;
+  @apply text-center text-[24px] font-normal leading-initial text-white;
+  @apply w-full py-0.5;
+}
+.ca25NavMenuGroup-Mobile
+  ul.ca25NavMenuMobile
+  ul.ca25HalfMobileNavMenu
+  li:hover
+  a {
+  @apply text-[#ED4F35] underline;
+}
+
+.ca25NavMenuGroup-Mobile
+  ul.ca25NavMenuMobile
+  ul.ca25HalfMobileNavMenu
+  li:first-child {
+  @apply mt-1.5;
+}
+.ca25NavMenuGroup-Mobile
+  ul.ca25NavMenuMobile
+  ul.ca25HalfMobileNavMenu
+  li:last-child {
+  @apply mb-2.5;
+}
+
+/* @backdrop */
+.ca25DropdownBackdrop {
+  @apply cursor-pointer;
+  @apply bg-dark/80;
+  @apply fixed inset-x-0 inset-y-0;
+  @apply h-full w-full;
+  @apply -z-[4] opacity-0;
+  @apply transition-[opacity,backgroundColor,zIndex] duration-300 ease-in-out;
+}
+.ca25DropdownBackdrop.active {
+  @apply invisible -z-[4] opacity-0 sm:visible sm:z-[956] sm:opacity-100;
+}
