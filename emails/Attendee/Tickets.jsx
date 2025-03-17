@@ -311,7 +311,7 @@ const AttendeeTickets = ({
                   >
                     <span>Ticket ID [{attendeeId}]</span>
                   </Heading>
-                  <Text className="!mb-4.5 !mt-0 inline-flex !text-[16px] !leading-initial">
+                  <Text className="!mb-3.5 !mt-0 inline-flex !text-[16px] !leading-initial">
                     <span className="mr-2">
                       <Img
                         className="my-auto mt-0 h-6 w-6"
@@ -326,40 +326,39 @@ const AttendeeTickets = ({
                   <Text className="!mb-1.5 !mt-0 w-max !text-[16px] !leading-initial">
                     Name : {name}
                   </Text>
-                  <Text className="!mb-1.5 !mt-0 w-max !text-[16px] !leading-initial">
+                  <Text className="!mb-3 !mt-0 w-max !text-[16px] !leading-initial">
                     Company : {company}
                   </Text>
                   {/* <Text className="!mb-1.5 !mt-0 max-w-[128px] !text-[14px] !leading-initial">
                     Email : {email}
                   </Text> */}
+                  {documentId !== 'rc33x0dgm6tm707jghffuip4' ? (
+                    <div className="!mb-0 !mt-0 w-max px-0 py-0 !text-base !leading-[20px]">
+                      <Link
+                        className="inline-flex w-fill bg-[#F3D747] px-3 py-3 text-center align-middle text-sm font-semibold uppercase text-black-900 no-underline"
+                        href={`https://coinfest.asia/attendee-detail?vw=${idAttendee}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span className="mx-auto inline-flex">
+                          <span className="!mt-0 leading-initial">
+                            Upgarde your ticket to bull
+                          </span>
+                          <span className="ml-2 !pt-[3px] content-center">
+                            <Img
+                              className="my-auto !mt-0 h-[11px] w-[11px]"
+                              src={`https://api.coinfest.asia/uploads/ca25_Ticket_Upgrade_To_Bull_31ec2571b1.png`}
+                              alt={`Upgrade to Bull Ticket Coinfest Asia 2025`}
+                              height={96}
+                              width={96}
+                            />
+                          </span>
+                        </span>
+                      </Link>
+                    </div>
+                  ) : null}
                 </Column>
               </Row>
-              {/* @ticket-details */}
-              {documentId !== 'rc33x0dgm6tm707jghffuip4' ? (
-                <Section className="px-0 py-0">
-                  <Link
-                    className="inline-flex w-fill bg-[#ED4F35] px-4 py-5.5 text-center align-middle text-sm font-semibold uppercase text-white no-underline"
-                    href={`https://coinfest.asia/attendee-detail?vw=${idAttendee}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="mx-auto inline-flex">
-                      <span className="!mt-0.5 leading-initial">
-                        Upgarde your ticket to bull
-                      </span>
-                      <span className="ml-3 content-center">
-                        <Img
-                          className="my-auto mt-1 h-3 w-3"
-                          src={`https://api.coinfest.asia/uploads/ca25_Ticket_Upgrade_To_Bull_ceeb89078d.png`}
-                          alt={`Upgrade to Bull Ticket Coinfest Asia 2025`}
-                          height={96}
-                          width={96}
-                        />
-                      </span>
-                    </span>
-                  </Link>
-                </Section>
-              ) : null}
 
               <Row className="splitGridColumn">
                 <Column className="splitColumn" style={styles.splitColumn}>
@@ -391,7 +390,7 @@ const AttendeeTickets = ({
                   style={styles.splitColumn}
                 >
                   <Link
-                    className="inline-flex w-fill bg-[#015AFD] px-4 py-5.5 text-center align-middle text-sm font-semibold uppercase text-white no-underline"
+                    className="inline-flex w-fill bg-[#ED4F35] px-4 py-5.5 text-center align-middle text-sm font-semibold uppercase text-white no-underline"
                     href="https://coinfest.asia/travel"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -577,8 +576,9 @@ const styles = {
   },
 
   splitColumn2_Content: {
-    paddingTop: '32px',
-    paddingLeft: '32px',
+    paddingTop: '24px',
+    paddingBottom: '24px',
+    paddingLeft: '28px',
     maxWidth: '-webkit-fill-available',
   },
   ca25CardEmail: {

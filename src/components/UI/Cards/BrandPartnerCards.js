@@ -57,7 +57,7 @@ const BrandPartnerCards = ({
         <>
           <div
             ref={ref}
-            className={`relative flex h-[57px] flex-col items-center justify-center overflow-hidden px-0 grayscale transition duration-300 ease-in-out hocus:grayscale-0 sm:h-[81px] lg:h-[100px] xl:h-[120px] xs:h-[51px]`}
+            className={`relative flex h-[57px] flex-col items-center justify-center overflow-hidden px-0 transition duration-300 ease-in-out xs:h-[51px] sm:h-[81px] lg:h-[100px] xl:h-[120px]`}
           >
             {isLoading ? elImages() : <LoadStreams />}
           </div>
@@ -68,7 +68,7 @@ const BrandPartnerCards = ({
         <>
           <Link
             ref={ref}
-            className={`relative flex h-[57px] flex-col items-center justify-center overflow-hidden px-0 grayscale transition duration-300 ease-in-out hocus:grayscale-0 sm:h-[81px] lg:h-[100px] xl:h-[120px] xs:h-[51px]`}
+            className={`relative flex h-[57px] flex-col items-center justify-center overflow-hidden px-0 transition duration-300 ease-in-out xs:h-[51px] sm:h-[81px] lg:h-[100px] xl:h-[120px]`}
             href={attributes?.url ?? ''}
             title={`${`${attributes?.name} Brand Partner` ?? 'Brand Partner'} ${publicRuntimeConfig?.siteAppName}`}
             target="_blank"

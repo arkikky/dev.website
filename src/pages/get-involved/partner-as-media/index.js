@@ -32,14 +32,12 @@ const PartnerMedia = ({
   mode,
   groupLabel = 'PartnerAsMedia',
   ipAddress,
-  country,
   forms,
 }) => {
   const router = useRouter();
   const [isForms, setForms] = useState({
     ipAddress: ipAddress || [],
     fields: forms || [],
-    country: country || [],
   });
 
   const {
@@ -137,7 +135,8 @@ const PartnerMedia = ({
     const rs = await submitFormHbSpt(d, k);
 
     // @debug
-    console.log(d);
+    // console.log(d);
+
     if (rs === true) {
       reset();
       router.replace('/get-involved/partner-as-media/success');
@@ -279,7 +278,7 @@ const PartnerMedia = ({
                     <PhoneInput
                       {...field}
                       country={
-                        (isForms?.ipAddress?.country).toLowerCase() ?? 'id'
+                        isForms?.ipAddress?.country.toLowerCase() ?? 'id'
                       }
                       onChange={(value, phone) => {
                         setValue(`dialcode-phone${groupLabel}`, value, {
@@ -692,11 +691,10 @@ PartnerMedia.getLayout = (page, { pageProps }) => {
 };
 export const getStaticProps = async () => {
   try {
-    const [rsIpAddress, rsCountry, rsForms] = await Promise.all([
+    const [rsIpAddress, rsForms] = await Promise.all([
       getFetchUrl(
         `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
       ),
-      getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
       getFecthHbSpt(`/forms/v2/fields/916e0562-05ac-4891-aef2-aac194fb75cd/`),
     ]);
     const reduceForms = getReduceArray(rsForms, [6, 8, 9, 10, 13]);
@@ -705,7 +703,6 @@ export const getStaticProps = async () => {
       props: {
         mode: 'light',
         ipAddress: rsIpAddress || [],
-        country: rsCountry || [],
         forms: reduceForms || [],
       },
       revalidate: 900,

@@ -4,7 +4,7 @@ import React from 'react';
 import Breadcrumb from '@components/UI/Breadcrumb';
 import Notifications from '@components/UI/Alerts/Notifications';
 
-const HeaderUpgrade = ({ media = 'xl' }) => {
+const HeaderUpgrade = ({ attendeeId = null, media = 'xl' }) => {
   return (
     <>
       <header
@@ -21,6 +21,10 @@ const HeaderUpgrade = ({ media = 'xl' }) => {
                 {
                   label: 'Home',
                   url: '/',
+                },
+                {
+                  label: 'Attendee Detail',
+                  url: `/attendee-detail?vw=${attendeeId}`,
                 },
                 {
                   label: 'Upgrade to Bull',

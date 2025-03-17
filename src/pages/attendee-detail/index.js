@@ -101,6 +101,9 @@ const AttendeeUpdate = ({
         data: {
           firstName: sntzeFld(data?.firstnameAttndeeDetail),
           lastName: sntzeFld(data?.lastnameAttndeeDetail),
+          email: sntzeFld(data?.emailAttndeeDetail),
+          telephone: sntzeFld(data?.phoneAttndeeDetail),
+          telegramAccount: sntzeFld(data?.telegramAccountAttndeeDetail),
           company: sntzeFld(data?.companyAttndeeDetail),
           selfEdited: true,
         },
@@ -110,6 +113,9 @@ const AttendeeUpdate = ({
         data: {
           firstName: sntzeFld(data?.firstnameAttndeeDetail),
           lastName: sntzeFld(data?.lastnameAttndeeDetail),
+          email: sntzeFld(data?.emailAttndeeDetail),
+          telephone: sntzeFld(data?.phoneAttndeeDetail),
+          telegramAccount: sntzeFld(data?.telegramAccountAttndeeDetail),
           company: sntzeFld(data?.companyAttndeeDetail),
           position: sntzeFld(data?.jobPositionAttndeeDetail),
           companyFocus: sntzeFld(data?.companyFocusAttndeeDetail),
@@ -156,6 +162,7 @@ const AttendeeUpdate = ({
           body: JSON.stringify({
             toEmail: rsAttendee?.data['email'],
             qrCode: rsAttendee?.data?.qrCode['url'],
+            idAttndee: rsAttendee?.data['documentId'],
             docId: rsAttendee?.data?.product['documentId'],
             attId: rsAttendee?.data['attendeeId'],
             fullname: `${rsAttendee?.data['firstName']} ${rsAttendee?.data['lastName']}`,
@@ -264,7 +271,7 @@ const AttendeeUpdate = ({
                 />
 
                 <button
-                  id="tktCA25Form_SubmitMobileAttendeeDetail"
+                  id="ca25Form_SubmitMobileAttendeeDetail"
                   className={`inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500`}
                   type="submit"
                   role="button"
@@ -421,7 +428,7 @@ const AttendeeUpdate = ({
                 />
 
                 <button
-                  id="tktCA25Form_SubmitAttendeeDetail"
+                  id="ca25Form_SubmitAttendeeDetail"
                   className={`inline-flex w-full cursor-pointer flex-row items-center justify-center rounded-xl bg-primary px-8 py-5 text-base font-normal capitalize leading-inherit text-white disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500`}
                   type="submit"
                   role="button"
@@ -487,43 +494,30 @@ AttendeeUpdate.getLayout = (page, { pageProps }) => {
 };
 export async function getServerSideProps(context) {
   const { vw } = context.query;
-  if (!vw || typeof vw !== 'string') {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: true,
-      },
-    };
-  }
-  const isValid_Process =
-    /^[a-zA-Z0-9]+$/.test(vw.trim()) && vw.trim().length <= 43;
-  if (!isValid_Process) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: true,
-      },
-    };
-  }
-
   try {
+    const baseUrl = process.env.NEXT_PUBLIC_URL;
     const isLayouts = true;
-    const [rsIpAddress, rsAttendee, rsCountry, rsCoupons, rsCheckoutHbSpt] =
-      await Promise.all([
-        getFetchUrl(
-          `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
-        ),
-        getFetch(`/api/attendees/${vw}?sort[0]=createdAt:desc&populate=*`),
-        getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
-        getFetch(`/api/coupons?filters[isPublic][$eq]=true&populate=*`),
-        getFecthHbSpt(`/forms/v2/forms/${serverRuntimeConfig?.hbSptCheckout}`),
-      ]);
-    const [rsBullTickets, rsFestivalTickets] = await Promise.all([
+    const [
+      rsIpAddress,
+      rsAttendee,
+      rsCountry,
+      rsCoupons,
+      rsCheckoutHbSpt,
+      rsBullTickets,
+      rsFestivalTickets,
+    ] = await Promise.all([
+      getFetchUrl(
+        `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
+      ),
+      getFetch(`/api/attendees/${vw}?sort[0]=createdAt:desc&populate=*`),
+      getFetchUrl(`${baseUrl}/api/v1/countries?sv=coinfestasia`),
+      getFetch(`/api/coupons?filters[isPublic][$eq]=true&populate=*`),
+      getFecthHbSpt(`/forms/v2/forms/${serverRuntimeConfig?.hbSptCheckout}`),
       getFetch(`/api/products/rc33x0dgm6tm707jghffuip4`),
       getFetch(`/api/products/g1ukadil4n4a3r0ndly7jl42`),
     ]);
-    const sortedCountries = rsCountry.sort((a, b) =>
-      a?.name.common.localeCompare(b?.name.common)
+    const rsSortCountry = rsCountry?.data?.sort((a, b) =>
+      a?.name?.common?.localeCompare(b.name.common)
     );
 
     // @check(attendee)
@@ -531,8 +525,12 @@ export async function getServerSideProps(context) {
     const isProducts =
       rsAttendee?.data?.product?.documentId === 'rc33x0dgm6tm707jghffuip4' ??
       true;
-
-    if (isApproved === false || isProducts) {
+    if (
+      !rsAttendee?.data === undefined ||
+      isApproved === false ||
+      isApproved === null ||
+      isProducts
+    ) {
       return {
         redirect: {
           destination: '/',
@@ -547,7 +545,7 @@ export async function getServerSideProps(context) {
         layouts: isLayouts || false,
         withoutNavbar: false,
         ipAddress: rsIpAddress || [],
-        country: sortedCountries || [],
+        country: rsSortCountry || [],
         coupons: rsCoupons || [],
         attendee: rsAttendee || [],
         formCheckout: rsCheckoutHbSpt?.formFieldGroups || [],

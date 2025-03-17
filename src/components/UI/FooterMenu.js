@@ -84,8 +84,7 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               <li className="group mb-3 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  prefetch={true}
-                  href="https://flic.kr/s/aHBqjATP6X"
+                  href="https://flic.kr/s/aHBqjBGLM8"
                   title={`${publicRuntimeConfig?.siteAppName} Gallery`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -218,7 +217,6 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               <li className="group mb-3 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  prefetch={true}
                   href="https://2024.coinfest.asia/"
                   title={`Coinfest Asia 2024`}
                   target="_blank"
@@ -249,7 +247,6 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               <li className="group mb-3 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  prefetch={true}
                   href="https://2023.coinfest.asia/"
                   title={`Coinfest Asia 2023`}
                   target="_blank"
@@ -280,7 +277,6 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               <li className="group mb-3 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  prefetch={true}
                   href="https://2022.coinfest.asia/"
                   title={`Coinfest Asia 2022`}
                   target="_blank"
@@ -320,7 +316,6 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               <li className="group mb-3 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  prefetch={true}
                   href="/terms-and-conditions"
                   title={`${publicRuntimeConfig?.siteAppName} Terms & Conditions`}
                 >
@@ -330,7 +325,6 @@ const FooterMenu = ({ isTheme = 'dark', tooltip = 'Coming Soon' }) => {
               <li className="group mb-3 last:mb-0">
                 <Link
                   className={`flex flex-row items-center text-base capitalize leading-[22px] text-current outline-none transition duration-[0.3s] ease-in-out focus-visible:outline-none ${isTheme === 'dark' ? 'font-extralight group-hover:text-[#ED4F35]' : 'font-light group-hover:text-primary'} group-hover:underline`}
-                  prefetch={true}
                   href="/privacy-policy"
                   title={`${publicRuntimeConfig?.siteAppName} Privacy Policy`}
                 >

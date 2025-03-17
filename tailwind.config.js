@@ -12,7 +12,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        xs: { max: '420px' },
+        xs: '420px',
         '3xl': '1600px',
       },
       colors: {

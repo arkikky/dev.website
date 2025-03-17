@@ -65,7 +65,7 @@ const NavMenuMobile = ({ id = 'ca25NavMenuMobile' }) => {
             title={`${publicRuntimeConfig?.siteAppName} Tickets`}
             data-layer-id={'tickets-nav'}
           >
-            Tickets
+            {`Get Tickets`}
           </Link>
         </li>
       </ul>

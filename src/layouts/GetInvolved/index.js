@@ -44,7 +44,6 @@ const GetInvolved = ({ mode, result = [] }) => {
                 ))}
                 <Link
                   className="group relative col-span-2 flex h-[115px] w-full flex-col items-start justify-start overflow-clip rounded-lg border border-solid border-white/55 bg-black-900/[0.24] transition-[border] duration-300 ease-in-out bg-gradient-primary45 hover:border-[#ED4F35] sm:col-span-2 sm:h-[155px] sm:rounded-2xl sm:border-2 lg:col-span-2 lg:h-[185px] xl:h-[247px]"
-                  prefetch={true}
                   href={'mailto:partner@coinfest.asia'}
                 >
                   <div className="absolute inset-x-0 inset-y-0 z-[3] flex flex-row items-center justify-center">

@@ -36,8 +36,7 @@ const PartnerCards = ({
       {openUrl === true ? (
         <Link
           ref={ref}
-          className={`relative col-span-2 flex h-[66px] w-full flex-col items-center justify-center overflow-clip border-white/55 grayscale sm:col-span-2 sm:h-[68px] sm:rounded-xl lg:col-span-2 lg:h-[88px] xl:h-[116px] xs:h-[60px]`}
-          prefetch={true}
+          className={`relative col-span-2 flex h-[66px] w-full flex-col items-center justify-center overflow-clip border-white/55 xs:h-[60px] sm:col-span-2 sm:h-[68px] sm:rounded-xl lg:col-span-2 lg:h-[88px] xl:h-[116px]`}
           href={url}
           title={`${publicRuntimeConfig?.siteAppName} ${captions}`}
           target="_blank"
@@ -45,9 +44,7 @@ const PartnerCards = ({
         >
           {isLoading ? (
             <Image
-              className={
-                'aspect-auto h-full w-full object-cover object-center grayscale'
-              }
+              className={'aspect-auto h-full w-full object-cover object-center'}
               src={images ?? '/assets/images/partners/ca25BluredPartner.svg'}
               alt={`${captions} Partners`}
               height={120}
@@ -62,13 +59,11 @@ const PartnerCards = ({
       ) : (
         <div
           ref={ref}
-          className={`relative col-span-2 flex h-[66px] w-full flex-col items-center justify-center overflow-clip border-white/55 grayscale sm:col-span-2 sm:h-[68px] sm:rounded-xl lg:col-span-2 lg:h-[88px] xl:h-[116px] xs:h-[60px]`}
+          className={`relative col-span-2 flex h-[66px] w-full flex-col items-center justify-center overflow-clip border-white/55 xs:h-[60px] sm:col-span-2 sm:h-[68px] sm:rounded-xl lg:col-span-2 lg:h-[88px] xl:h-[116px]`}
         >
           {isLoading ? (
             <Image
-              className={
-                'aspect-auto h-full w-full object-cover object-center grayscale'
-              }
+              className={'aspect-auto h-full w-full object-cover object-center'}
               src={images ?? '/assets/images/partners/ca25BluredPartner.svg'}
               alt={`${captions} Partners`}
               height={120}

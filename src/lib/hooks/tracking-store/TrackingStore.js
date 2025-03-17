@@ -4,6 +4,10 @@ export function useTrackingStore() {
   // @view-product
   const trackingViewProduct = (store, total, withAddToCart = false) => {
     if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('consent', 'update', {
+        ad_storage: 'granted',
+        analytics_storage: 'granted',
+      });
       window.gtag('event', 'view_item', {
         currency: 'IDR',
         value: total,
@@ -52,6 +56,10 @@ export function useTrackingStore() {
   // @add-to-cart
   const trackingAddToCart = (item) => {
     if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('consent', 'update', {
+        ad_storage: 'granted',
+        analytics_storage: 'granted',
+      });
       window.gtag('event', 'view_item', {
         currency: 'IDR',
         value: Number(item?.priceSale ?? gtRslt?.price),
@@ -94,6 +102,11 @@ export function useTrackingStore() {
   // @begin_checkout
   const trackingBeginCheckout = (store, isCoupon, total) => {
     if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('consent', 'update', {
+        ad_storage: 'granted',
+        analytics_storage: 'granted',
+      });
+
       let calculateTotalDiscount = 0;
       const validCoupon = isCoupon?.includedProducts?.some((p) =>
         store?.some((item) => item.documentId === p.documentId)
@@ -102,6 +115,7 @@ export function useTrackingStore() {
         : null;
 
       window.gtag('event', 'begin_checkout', {
+        transport_url: '',
         currency: 'IDR',
         value: total,
         coupon: validCoupon ? validCoupon?.couponCode : '-',
@@ -157,6 +171,11 @@ export function useTrackingStore() {
   // @payment-info
   const trackingCheckoutJourney = (store, isCoupon, total) => {
     if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('consent', 'update', {
+        ad_storage: 'granted',
+        analytics_storage: 'granted',
+      });
+
       let calculateTotalDiscount = 0;
       const validCoupon = isCoupon?.includedProducts?.some((p) =>
         store?.some((item) => item.documentId === p.documentId)
@@ -279,7 +298,12 @@ export function useTrackingStore() {
     total,
     isUpgrade
   ) => {
-    if (typeof window !== 'undefined' && window.dataLayer) {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('consent', 'update', {
+        ad_storage: 'granted',
+        analytics_storage: 'granted',
+      });
+
       let calculateTotalDiscount = 0;
       const validCoupon = isCoupon?.includedProducts?.some((p) =>
         store?.some((item) => item.documentId === p.documentId)

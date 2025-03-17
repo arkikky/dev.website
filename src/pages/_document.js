@@ -35,16 +35,6 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap"
         />
 
-        {/* @meta-pixel */}
-        <Script
-          id={`meta-pixel`}
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: metaPixelScript,
-          }}
-          nonce={hashMetaPixelScript}
-        />
-
         {/* @twitter(conversion-tracking) */}
         <Script
           id={`twitter-conversion-tracking`}
@@ -83,7 +73,16 @@ export default function Document() {
       <body>
         <Main />
         <NextScript nonce={hashNonce256} />
+
         {/* @meta-pixel */}
+        <Script
+          id={`meta-pixel`}
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: metaPixelScript,
+          }}
+          nonce={hashMetaPixelScript}
+        />
         <noscript>
           <Image
             className={`!hidden !h-0 !w-0`}

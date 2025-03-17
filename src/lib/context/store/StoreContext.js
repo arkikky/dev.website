@@ -342,6 +342,7 @@ export const StoreProvider = ({ children }) => {
       const validProducts = isStore?.cart?.filter((product) =>
         includedProductIds.includes(product?.documentId)
       );
+
       if (validProducts?.length === 0) {
         setUseCoupon(false);
         toast.custom(

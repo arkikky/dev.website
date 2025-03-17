@@ -48,6 +48,28 @@ const App = ({ Component, pageProps }) => {
     };
   }, [router.events]);
 
+  // @gtags-consent
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('consent', 'default', {
+        ad_storage: 'granted',
+        analytics_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+      });
+    }
+  }, []);
+  // @meta-pixel
+  useEffect(() => {
+    const hndleMetaPixelRouteChange = () => {
+      window.fbq('track', 'PageView');
+    };
+    router.events.on('routeChangeComplete', hndleMetaPixelRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', hndleMetaPixelRouteChange);
+    };
+  }, [router.events]);
+
   // @with-layouts
   const getLayout =
     Component.getLayout ||

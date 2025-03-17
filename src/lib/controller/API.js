@@ -12,7 +12,6 @@ export async function getFetch(url) {
       Origin: '*',
       Authorization: `Bearer ${tApp}`,
     },
-    credentials: 'include',
     cache: 'no-store',
   })
     .then((res) => {
@@ -32,7 +31,6 @@ export async function getFetchUrl(url) {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    credentials: 'include',
     cache: 'no-store',
   })
     .then((res) => {
@@ -57,7 +55,6 @@ export async function getFetchPaginatedData(endpoints) {
         'Content-Type': 'application/json',
         Origin: '*',
       },
-      credentials: 'include',
       cache: 'no-store',
     }
   )

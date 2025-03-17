@@ -24,7 +24,7 @@ const ComingSoon = ({}) => {
           <div className="ca25BackMoon-404RedPeopleItems"></div>
 
           <div className="relative z-[8] flex w-full flex-col items-start justify-between text-start sm:w-[550px] lg:w-[770px]">
-            <div className="xs:pt-0 block pt-[74px] sm:pt-0">
+            <div className="block pt-[74px] xs:pt-0 sm:pt-0">
               <h1
                 className={`ca25HeadingTitle mb-4 w-full text-balance font-semibold uppercase text-white sm:mb-7 sm:font-bold`}
               >
@@ -44,11 +44,14 @@ const ComingSoon = ({}) => {
               </p>
             </div>
             <Link
-              className={`ca25MoonBtn-Embossed relative mr-auto mt-[34px] inline-flex w-max items-center justify-center rounded-full bg-[#ED4F35] px-4.5 py-4 text-sm font-semibold uppercase leading-initial text-white disabled:pointer-events-none disabled:opacity-90 sm:mt-[92px] sm:px-7 sm:py-5 lg:mt-[102px]`}
+              className={`ca25MoonBtn-Embossed group relative mr-auto mt-[34px] inline-flex w-max items-center justify-center overflow-hidden rounded-full bg-[#ED4F35] px-4.5 py-4 text-sm font-semibold uppercase leading-initial text-white disabled:pointer-events-none disabled:opacity-90 sm:mt-[92px] sm:px-7 sm:py-5 lg:mt-[102px]`}
               href="/"
               title={`Coinfest Asia 2025 Go Back Home`}
             >
               {`Go Back Home`}
+              <div className="absolute inset-0 flex h-full w-full justify-center blur-md [transform:skew(-13deg)_translateX(-100%)] group-hover:transition-[transform] group-hover:duration-[1.6s] group-hover:[transform:skew(-13deg)_translateX(100%)]">
+                <div className="relative h-full w-12 bg-white/40"></div>
+              </div>
             </Link>
           </div>
         </Container>

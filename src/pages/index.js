@@ -244,8 +244,8 @@ Home.getLayout = (page, { pageProps }) => {
   return page;
 };
 export const getServerSideProps = async (context) => {
-  const baseUrl = process.env.NEXT_PUBLIC_URL;
   try {
+    const baseUrl = process.env.NEXT_PUBLIC_URL;
     const isStoreLayouts = true;
     const [
       rsProducts,

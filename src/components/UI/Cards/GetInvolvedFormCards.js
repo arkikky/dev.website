@@ -14,7 +14,6 @@ const GetInvolvedFormCards = ({
       {!comingSoon ? (
         <Link
           className="ca25FormGetInvolved-Cards group flex h-max w-full flex-col items-start justify-between overflow-hidden rounded-2xl border-2 border-solid border-gray-200 px-6 py-6 transition-[border] duration-300 ease-in-out"
-          prefetch={true}
           href={url}
           title={`Coinfest Asia 2025 ${title}`}
         >

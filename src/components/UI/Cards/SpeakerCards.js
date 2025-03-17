@@ -56,7 +56,7 @@ const SpeakerCards = ({
         </div>
 
         {/* @images */}
-        <div className="max-[420px]:h-[197px] relative flex h-[221px] w-full min-w-full max-w-min flex-col overflow-hidden rounded-2xl bg-black-900/30 sm:h-[273px] lg:h-[257px] xl:h-[336px] 2xl:h-[362px] xs:h-[195px]">
+        <div className="relative flex h-[221px] w-full min-w-full max-w-min flex-col overflow-hidden rounded-2xl bg-black-900/30 max-[420px]:h-[197px] xs:h-[195px] sm:h-[273px] lg:h-[257px] xl:h-[336px] 2xl:h-[362px]">
           <div className="z-[16] h-full w-full">
             {images ? (
               isLoading ? (
@@ -90,10 +90,10 @@ const SpeakerCards = ({
             <Image
               className="mx-auto h-full w-full object-cover object-center"
               src={'/assets/images/speakers/ca25BckCover-Speakers.svg'}
-              alt={`Coinfest Asia 2025 Backcover Speakers)`}
+              alt={`Coinfest Asia 2025 Backcover Speakers`}
               height={246}
               width={207}
-              quality="87"
+              quality="75"
             />
           </div>
           <div

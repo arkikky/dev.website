@@ -303,9 +303,7 @@ const BecomeAnAffiliate = ({
                 render={({ field }) => (
                   <PhoneInput
                     {...field}
-                    country={
-                      (isForms?.ipAddress?.country).toLowerCase() ?? 'id'
-                    }
+                    country={isForms?.ipAddress?.country.toLowerCase() ?? 'id'}
                     onChange={(value, phone) => {
                       setValue(`dialcode-phone${groupLabel}`, value, {
                         shouldValidate: true,
@@ -679,20 +677,24 @@ BecomeAnAffiliate.getLayout = (page, { pageProps }) => {
 };
 export const getStaticProps = async () => {
   try {
+    const baseUrl = process.env.NEXT_PUBLIC_URL;
     const [rsIpAddress, rsCountry, rsForms] = await Promise.all([
       getFetchUrl(
         `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
       ),
-      getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
+      getFetchUrl(`${baseUrl}/api/v1/countries?sv=coinfestasia`),
       getFecthHbSpt(`/forms/v2/fields/24512342-b546-4e92-a869-8b2c9c2bb3dc`),
     ]);
     const reduceForms = getReduceArray(rsForms, [6, 8, 11]);
+    const rsSortCountry = rsCountry?.data?.sort((a, b) =>
+      a?.name?.common?.localeCompare(b.name.common)
+    );
 
     return {
       props: {
         mode: 'light',
         ipAddress: rsIpAddress || [],
-        country: rsCountry || [],
+        country: rsSortCountry || [],
         forms: reduceForms || [],
       },
       revalidate: 900,

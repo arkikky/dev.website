@@ -33,7 +33,7 @@ const Boards = ({ mode }) => {
               alt={`${publicRuntimeConfig?.siteAppName} Attendees Board`}
               height={108.31}
               width={114.44}
-              quality="87"
+              quality="75"
             />
           </div>
         </BoardCards>
@@ -45,7 +45,7 @@ const Boards = ({ mode }) => {
               alt={`${publicRuntimeConfig?.siteAppName} Speakers Board`}
               height={108.31}
               width={114.44}
-              quality="87"
+              quality="75"
             />
           </div>
         </BoardCards>
@@ -57,7 +57,7 @@ const Boards = ({ mode }) => {
               alt={`${publicRuntimeConfig?.siteAppName} Companies Board`}
               height={108.31}
               width={114.44}
-              quality="87"
+              quality="75"
             />
           </div>
         </BoardCards>
@@ -69,7 +69,7 @@ const Boards = ({ mode }) => {
               alt={`${publicRuntimeConfig?.siteAppName} Countries Board`}
               height={108.31}
               width={114.44}
-              quality="87"
+              quality="75"
             />
           </div>
         </BoardCards>

@@ -9,6 +9,7 @@ const { publicRuntimeConfig } = getConfig();
 import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
+import StarryBackground from '@components/UI/Background/StarryBackground';
 
 // @layouts
 import MoonPortalBanner from '@layouts/Banner/MoonPortalBanner';
@@ -25,17 +26,21 @@ const PrivacyPolicy = ({ mode }) => {
 
       {/* @main */}
       <Main className="relative flex flex-col overflow-hidden pb-16 pt-[141px] sm:pb-24 sm:pt-[161px]">
-        <Container className={'pb-20 sm:pb-28'}>
+        <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 -z-px h-[625px] select-none">
+          <StarryBackground starCount={90} />
+        </div>
+
+        <Container className={'relative z-[4] pb-20 sm:pb-28'}>
           <div className="relative grid-cols-4 gap-x-2 gap-y-2 supports-grid:grid sm:grid-cols-12 lg:grid-cols-12">
             <div className="col-span-full col-start-1 sm:col-span-10 sm:col-start-2">
               <div className="mb-12 flex flex-col items-center justify-center text-center sm:mb-16">
                 <h1
                   className={`w-full max-w-[416px] text-balance text-[28px] font-bold leading-[38px] sm:text-[36px] ${mode === 'light' ? 'text-black-900' : 'text-white'} sm:leading-[48px]`}
                 >
-                  Privacy Policy for Coinfest Asia
+                  {`Privacy Policy for Coinfest Asia`}
                 </h1>
                 <p className="mt-2 font-light text-gray-400">
-                  Last updated: January 08, 2025
+                  {`Last updated: January 08, 2025`}
                 </p>
               </div>
               <div

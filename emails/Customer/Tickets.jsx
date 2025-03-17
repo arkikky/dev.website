@@ -25,15 +25,6 @@ const CustomerTickets = ({
         lastName: 'ANDREANSYAH',
         email: 'ikky.andreansyah@gmail.com',
         company: 'N/A',
-        telephone: '6281918114610',
-        country: 'Åland Islands',
-        position: '-',
-        whereDidYouHearAboutCoinfestAsia2024: 'Search engine / Website',
-        whatTypeOfConnectionsAndNetworkingDoYouHopeToAchieveAtTheEvent:
-          'Founders of projects built in Web3',
-        companySize: '-',
-        companyFocus: '-',
-        telegramAccount: '',
         createdAt: '2025-03-03T15:44:46.806Z',
         updatedAt: '2025-03-03T15:44:46.806Z',
         publishedAt: '2025-03-03T15:44:46.836Z',
@@ -93,15 +84,6 @@ const CustomerTickets = ({
         lastName: 'ANDREANSYAH',
         email: 'ikky.andreansyah@gmail.com',
         company: 'N/A',
-        telephone: '6281918114610',
-        country: 'Åland Islands',
-        position: '-',
-        whereDidYouHearAboutCoinfestAsia2024: 'Search engine / Website',
-        whatTypeOfConnectionsAndNetworkingDoYouHopeToAchieveAtTheEvent:
-          'Founders of projects built in Web3',
-        companySize: '-',
-        companyFocus: '-',
-        telegramAccount: '',
         createdAt: '2025-03-03T15:44:47.055Z',
         updatedAt: '2025-03-03T15:44:47.055Z',
         publishedAt: '2025-03-03T15:44:47.087Z',
@@ -156,10 +138,10 @@ const CustomerTickets = ({
   ],
   isBloQrCode = [
     {
-      blobQrCodeUrl: '/uploads/Qr_Code_A_498741454876_cce23b7888.png',
+      blobQrCodeUrl: '/uploads/qr_Code_30174acc7e.png',
     },
     {
-      blobQrCodeUrl: '/uploads/Qr_Code_A_243793345130_7790756a74.png',
+      blobQrCodeUrl: '/uploads/qr_Code_30174acc7e.png',
     },
   ],
 }) => {
@@ -425,97 +407,92 @@ const CustomerTickets = ({
               {isAttendee?.map((gtRslt, i) => {
                 const rsQrCode = isBloQrCode[i];
                 return (
-                  <>
-                    <Row
-                      className={`splitGridColumn border-dashed border-gray-400/80 ${i === isAttendee?.length - 1 ? 'border-b-0' : 'border-b'}`}
-                      key={i}
+                  <Row
+                    className={`splitGridColumn border-dashed border-gray-400/80 ${i === isAttendee?.length - 1 ? 'border-b-0' : 'border-b'}`}
+                    key={i}
+                  >
+                    <Column
+                      align="center"
+                      className="splitColumn1 ca25QRBorderBoard bg-white pb-5 pt-2 text-black-900"
+                      style={styles.splitColumn1}
                     >
-                      <Column
-                        align="center"
-                        className="splitColumn1 ca25QRBorderBoard bg-white pb-5 pt-2 text-black-900"
-                        style={styles.splitColumn1}
-                      >
-                        <Img
-                          src={
-                            rsQrCode?.blobQrCodeUrl
-                              ? `https://api.coinfest.asia${rsQrCode?.blobQrCodeUrl}`
-                              : 'https://api.coinfest.asia/uploads/qr_Code_30174acc7e.png'
-                          }
-                          width="180"
-                          height="180"
-                          alt="QR Code"
-                        />
-                        <Text className="!mb-0 !mt-0 leading-initial">
-                          {gtRslt?.attendee.attendeeId}
-                        </Text>
-                      </Column>
-                      <Column
-                        align="left"
-                        className={`splitColumn2 splitColumn2_Content ${gtRslt?.attendee.product?.documentId === 'rc33x0dgm6tm707jghffuip4' ? 'bg-[#111928]' : 'bg-[#005AFF]'} align-top text-white`}
-                        style={
-                          (styles.splitColumn2, styles.splitColumn2_Content)
+                      <Img
+                        src={
+                          rsQrCode?.blobQrCodeUrl
+                            ? `https://api.coinfest.asia${rsQrCode?.blobQrCodeUrl}`
+                            : 'https://api.coinfest.asia/uploads/qr_Code_30174acc7e.png'
                         }
+                        width="180"
+                        height="180"
+                        alt="QR Code"
+                      />
+                      <Text className="!mb-0 !mt-0 leading-initial">
+                        {gtRslt?.attendee.attendeeId}
+                      </Text>
+                    </Column>
+                    <Column
+                      align="left"
+                      className={`splitColumn2 splitColumn2_Content ${gtRslt?.attendee.product?.documentId === 'rc33x0dgm6tm707jghffuip4' ? 'bg-[#111928]' : 'bg-[#005AFF]'} align-top text-white`}
+                      style={(styles.splitColumn2, styles.splitColumn2_Content)}
+                    >
+                      <Heading
+                        as="h2"
+                        className="!mb-3 !mt-0 w-max border-[1.5px] border-dashed border-white px-2.5 py-2.5 !text-base !leading-[20px]"
                       >
-                        <Heading
-                          as="h2"
-                          className="!mb-3 !mt-0 w-max border-[1.5px] border-dashed border-white px-2.5 py-2.5 !text-base !leading-[20px]"
-                        >
-                          <span>Ticket ID [{gtRslt?.attendee.attendeeId}]</span>
-                        </Heading>
-                        <Text className="!mb-4.5 !mt-0 inline-flex !text-[16px] !leading-initial">
-                          <span className="mr-2">
-                            <Img
-                              className="my-auto mt-0 h-6 w-6"
-                              src={`https://api.coinfest.asia/uploads/ca25_Ticket_Icons_16ae30f766.png`}
-                              alt={`Coinfest Asia 2025 (Calendar Board Icons)`}
-                              height={48}
-                              width={48}
-                            />
-                          </span>
-                          <span className="!mt-0.5 font-semibold">
-                            {gtRslt?.attendee.product?.documentId !==
-                            'rc33x0dgm6tm707jghffuip4'
-                              ? 'Festival Ticket'
-                              : gtRslt?.attendee.product?.name}
-                          </span>
-                        </Text>
-                        <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
-                          Name :{' '}
-                          {`${gtRslt?.attendee.firstName} ${gtRslt?.attendee.lastName}`}
-                        </Text>
-                        <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
-                          Company : {gtRslt?.attendee.company}
-                        </Text>
-                      </Column>
-                    </Row>
-
-                    {gtRslt?.attendee.product?.documentId !==
-                    'rc33x0dgm6tm707jghffuip4' ? (
-                      <Section className="px-0 py-0" key={i}>
-                        <Link
-                          className="inline-flex w-fill bg-[#ED4F35] px-4 py-5.5 text-center align-middle text-sm font-semibold uppercase text-white no-underline"
-                          href={`https://coinfest.asia/attendee-detail?vw=${gtRslt?.attendee?.documentId}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <span className="mx-auto inline-flex">
-                            <span className="!mt-0.5 leading-initial">
-                              Upgarde your ticket to bull
+                        <span>Ticket ID [{gtRslt?.attendee.attendeeId}]</span>
+                      </Heading>
+                      <Text className="!mb-4.5 !mt-0 inline-flex !text-[16px] !leading-initial">
+                        <span className="mr-2">
+                          <Img
+                            className="my-auto mt-0 h-6 w-6"
+                            src={`https://api.coinfest.asia/uploads/ca25_Ticket_Icons_16ae30f766.png`}
+                            alt={`Coinfest Asia 2025 (Calendar Board Icons)`}
+                            height={48}
+                            width={48}
+                          />
+                        </span>
+                        <span className="!mt-0.5 font-semibold">
+                          {gtRslt?.attendee.product?.documentId !==
+                          'rc33x0dgm6tm707jghffuip4'
+                            ? 'Festival Ticket'
+                            : gtRslt?.attendee.product?.name}
+                        </span>
+                      </Text>
+                      <Text className="!mb-1.5 !mt-0 !text-[16px] !leading-initial">
+                        Name :{' '}
+                        {`${gtRslt?.attendee.firstName} ${gtRslt?.attendee.lastName}`}
+                      </Text>
+                      <Text className="!mb-3 !mt-0 !text-[16px] !leading-initial">
+                        Company : {gtRslt?.attendee.company}
+                      </Text>
+                      {gtRslt?.attendee.product?.documentId !==
+                      'rc33x0dgm6tm707jghffuip4' ? (
+                        <div className="!mb-0 !mt-0 w-max px-0 py-0 !text-base !leading-[20px]">
+                          <Link
+                            className="inline-flex w-fill bg-[#F3D747] px-3 py-3 text-center align-middle text-sm font-semibold uppercase text-black-900 no-underline"
+                            href={`https://coinfest.asia/attendee-detail?vw=${gtRslt?.attendee.documentId}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <span className="mx-auto inline-flex">
+                              <span className="!mt-0 leading-initial">
+                                Upgarde your ticket to bull
+                              </span>
+                              <span className="ml-2 content-center !pt-[3px]">
+                                <Img
+                                  className="my-auto !mt-0 h-[11px] w-[11px]"
+                                  src={`https://api.coinfest.asia/uploads/ca25_Ticket_Upgrade_To_Bull_31ec2571b1.png`}
+                                  alt={`Upgrade to Bull Ticket Coinfest Asia 2025`}
+                                  height={96}
+                                  width={96}
+                                />
+                              </span>
                             </span>
-                            <span className="ml-3 content-center">
-                              <Img
-                                className="my-auto mt-1 h-3 w-3"
-                                src={`https://api.coinfest.asia/uploads/ca25_Ticket_Upgrade_To_Bull_ceeb89078d.png`}
-                                alt={`Upgrade to Bull Ticket Coinfest Asia 2025`}
-                                height={96}
-                                width={96}
-                              />
-                            </span>
-                          </span>
-                        </Link>
-                      </Section>
-                    ) : null}
-                  </>
+                          </Link>
+                        </div>
+                      ) : null}
+                    </Column>
+                  </Row>
                 );
               })}
 
@@ -549,7 +526,7 @@ const CustomerTickets = ({
                   style={styles.splitColumn}
                 >
                   <Link
-                    className="inline-flex w-fill bg-[#015AFD] px-4 py-5.5 text-center align-middle text-sm font-semibold uppercase text-white no-underline"
+                    className="inline-flex w-fill bg-[#ED4F35] px-4 py-5.5 text-center align-middle text-sm font-semibold uppercase text-white no-underline"
                     href="https://coinfest.asia/travel"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -734,8 +711,9 @@ const styles = {
     paddingLeft: '50px',
   },
   splitColumn2_Content: {
-    paddingTop: '32px',
-    paddingLeft: '32px',
+    paddingTop: '24px',
+    paddingBottom: '24px',
+    paddingLeft: '28px',
   },
   ca25CardEmail: {
     borderRadius: '0',

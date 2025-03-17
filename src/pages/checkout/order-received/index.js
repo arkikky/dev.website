@@ -14,10 +14,20 @@ import { removeCart } from '@reduxState/slices';
 
 // @lib
 import { useTrackingStore } from '@lib/hooks/tracking-store/TrackingStore';
-import { getFetch, getFetchUrl, updateData } from '@lib/controller/API';
+import {
+  getFetch,
+  getFetchUrl,
+  updateSubmitData,
+  updateData,
+  deleteData,
+} from '@lib/controller/API';
 import { submitFormHbSpt } from '@lib/controller/HubSpot';
 import { currencyConverter } from '@lib/helper/CalculateCart';
-import { encodeData, convertQrCodeToBlob } from '@lib/helper/Configuration';
+import {
+  encodeData,
+  parseCheckOrderSession,
+  convertQrCodeToBlob,
+} from '@lib/helper/Configuration';
 import {
   setHbSptCustomerData,
   setHbSptAttendeeData,
@@ -115,6 +125,9 @@ const OrderReceived = ({
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
           }).then((res) => res.json());
+          const isCheckOrderSessions = parseCheckOrderSession(
+            isOrderRecived?.order?.order_session
+          );
 
           // @webhook-callback
           const rsPaymentWebhook = await fetch('/api/payment/webhook', {
@@ -124,10 +137,7 @@ const OrderReceived = ({
               'x-api-key': key,
             },
             body: JSON.stringify({
-              paymentId: (isOrderRecived?.order?.order_session).replace(
-                'isUpgradeBull_',
-                ''
-              ),
+              paymentId: isCheckOrderSessions?.isOrder,
             }),
           }).then((res) => res.json());
 
@@ -142,7 +152,7 @@ const OrderReceived = ({
               `/api/orders/${isOrderRecived?.order?.documentId}`,
               {
                 data: {
-                  paymentStatus: 'Pending',
+                  paymentStatus: 'Success',
                 },
               }
             );
@@ -181,10 +191,31 @@ const OrderReceived = ({
             }
 
             // @check-order-upgrade
+            const isUpgradeStatus = parseCheckOrderSession(
+              updateStatusOrder?.data?.order_session
+            );
             const isUpgradeBull =
-              updateStatusOrder?.data?.order_session?.includes(
-                'isUpgradeBull_'
-              ) || false;
+              isUpgradeStatus?.isUpgrade?.includes('isUpgradeBull') || false;
+
+            // @non-active(attendee)
+            if (isUpgradeBull === true) {
+              const rsAttendee = await updateSubmitData(
+                `/api/attendees/${isUpgradeStatus?.isAttendee}?populate=*`,
+                {
+                  data: {
+                    qrCodeUID: '',
+                    isApproved: false,
+                    isUpgrade: true,
+                  },
+                }
+              );
+              const qrCodeId = rsAttendee?.data?.qrCode?.id;
+              if (qrCodeId) {
+                const rsNonActivedAttendee = await deleteData(
+                  `/api/upload/files/${qrCodeId}`
+                );
+              }
+            }
 
             // @hubspot(customer & attendee)
             const hbSptCustomer = '96572ab0-5958-4cc4-8357-9c65de42cab6';
@@ -200,7 +231,7 @@ const OrderReceived = ({
                     `/api/customers/${isOrderRecived?.customer?.documentId}`,
                     {
                       data: {
-                        isApproved: null,
+                        isApproved: true,
                       },
                     }
                   ),
@@ -293,7 +324,7 @@ const OrderReceived = ({
                             `/api/attendees/${rsAttendee?.documentId}`,
                             {
                               data: {
-                                isApproved: null,
+                                isApproved: true,
                               },
                             }
                           ),
@@ -357,13 +388,22 @@ const OrderReceived = ({
                   ).then((res) => res.json());
                 }
               }
-              // window.location.reload();
+              window.location.reload();
             }
           } else if (
             rsPaymentWebhook?.status === 'FAILED' ||
             rsPaymentWebhook?.status === 'EXPIRED'
           ) {
             clearInterval(pollingInterval);
+            // @update(order)
+            const updateStatusOrder = await updateData(
+              `/api/orders/${isOrderRecived?.order?.documentId}`,
+              {
+                data: {
+                  paymentStatus: 'Canceled',
+                },
+              }
+            );
             router.replace(
               `/checkout/order-failed?process=${isOrderRecived?.order?.documentId}`
             );
@@ -683,8 +723,12 @@ export const getServerSideProps = async (context) => {
     const rsOrderRecived = await getFetch(
       `/api/orders/${process}?populate[customer][fields]=*&populate[products][fields][0]=name&populate[products][fields][1]=price&populate[products][fields][2]=priceSale&populate[coupons][fields][0]=couponCode&populate[coupons][fields][1]=amount`
     );
+
     // @check-res(order)
-    if (!rsOrderRecived) {
+    if (
+      !rsOrderRecived?.data === undefined ||
+      rsOrderRecived?.data?.paymentStatus === 'Canceled'
+    ) {
       return {
         redirect: {
           destination: '/',
@@ -697,14 +741,6 @@ export const getServerSideProps = async (context) => {
     const rsCustmr = await getFetch(
       `/api/customers/${rsCustmrId}?populate[attendees]=*`
     );
-    if (!rsCustmr) {
-      return {
-        redirect: {
-          destination: '/',
-          permanent: true,
-        },
-      };
-    }
     const [rsFestivalTickets] = await Promise.all([
       getFetch(`/api/products/g1ukadil4n4a3r0ndly7jl42`),
     ]);

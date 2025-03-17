@@ -24,12 +24,11 @@ import Select from '@components/UI/Form/Select';
 // @layouts
 import PartnershipLayouts from '@layouts/PartnershipLayouts';
 
-const Sponsorship = ({ mode, ipAddress, country, forms }) => {
+const Sponsorship = ({ mode, ipAddress, forms }) => {
   const router = useRouter();
   const [isForms, setForms] = useState({
     ipAddress: ipAddress || [],
     fields: forms || [],
-    country: country || [],
   });
 
   const {
@@ -95,13 +94,6 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
               : '-'
           ),
         },
-        // {
-        //   objectTypeId: '0-2',
-        //   name: 'did_your_company_sponsor_coinfest_asia_previously_',
-        //   value: sntzeFld(
-        //     data?.did_your_company_sponsor_coinfest_asia_previously_
-        //   ),
-        // },
         {
           name: 'in_coinfest_asia_2024__we_are_interested_in',
           value: sntzeFld(
@@ -116,10 +108,6 @@ const Sponsorship = ({ mode, ipAddress, country, forms }) => {
               : '-'
           ),
         },
-        // {
-        //   name: 'your_range_of_budget_to_sponsor_coinfest_asia_2024_',
-        //   value: sntzeFld(data?.budget),
-        // },
       ],
       context: {
         pageUri: 'https://coinfest.asia/get-involved/sponsorship',
@@ -574,11 +562,10 @@ Sponsorship.getLayout = (page, { pageProps }) => {
 };
 export const getStaticProps = async () => {
   try {
-    const [rsIpAddress, rsCountry, rsForms] = await Promise.all([
+    const [rsIpAddress, rsForms] = await Promise.all([
       getFetchUrl(
         `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
       ),
-      getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
       getFecthHbSpt(`/forms/v2/fields/bf625b40-82e5-4c4f-818d-7a6cfbe47a81`),
     ]);
     const reduceForms = getReduceArray(rsForms, [3, 5, 6]);
@@ -587,7 +574,6 @@ export const getStaticProps = async () => {
       props: {
         mode: 'light',
         ipAddress: rsIpAddress || [],
-        country: rsCountry || [],
         forms: reduceForms || [],
       },
       revalidate: 900,

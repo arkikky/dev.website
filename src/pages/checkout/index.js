@@ -1416,13 +1416,14 @@ Checkout.getLayout = (page, { pageProps }) => {
 };
 export const getServerSideProps = async (context) => {
   try {
+    const baseUrl = process.env.NEXT_PUBLIC_URL;
     const isLayouts = true;
     const [rsIpAddress, rsCountry, rsCoupons, rsCheckoutHbSpt] =
       await Promise.all([
         getFetchUrl(
           `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
         ),
-        getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
+        getFetchUrl(`${baseUrl}/api/v1/countries?sv=coinfestasia`),
         getFetch(
           process.env.NODE_ENV === 'development'
             ? `/api/coupons?filters[category][$eq]=dev&populate=*`
@@ -1430,16 +1431,17 @@ export const getServerSideProps = async (context) => {
         ),
         getFecthHbSpt(`/forms/v2/forms/${serverRuntimeConfig?.hbSptCheckout}`),
       ]);
-    const sortedCountries = rsCountry.sort((a, b) =>
-      a?.name.common.localeCompare(b?.name.common)
+    const rsSortCountry = rsCountry?.data?.sort((a, b) =>
+      a?.name?.common?.localeCompare(b.name.common)
     );
+
     return {
       props: {
         mode: 'light',
         layouts: isLayouts || false,
         withoutNavbar: false,
         ipAddress: rsIpAddress || [],
-        country: sortedCountries || [],
+        country: rsSortCountry || [],
         coupons: rsCoupons || [],
         formCheckout: rsCheckoutHbSpt?.formFieldGroups || [],
       },

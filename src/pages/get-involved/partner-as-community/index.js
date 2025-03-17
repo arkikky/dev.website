@@ -476,7 +476,7 @@ const PartnerCommunity = ({
                           required: true,
                           maxLength: 120,
                           pattern: {
-                            value: /^[a-zA-Z0-9\s-_]{2,120}$/,
+                            value: /^[A-T]-\d{8,12}$/,
                           },
                         }),
                       }}
@@ -501,7 +501,7 @@ const PartnerCommunity = ({
                           required: true,
                           maxLength: 120,
                           pattern: {
-                            value: /^[a-zA-Z0-9\s-_]{2,120}$/,
+                            value: /^[A-T]-\d{8,12}$/,
                           },
                         }),
                       }}
@@ -766,9 +766,9 @@ const PartnerCommunity = ({
                         `describe_your_community_activities_in_bullet_points`,
                         {
                           required: true,
-                          maxLength: 1000,
+                          maxLength: 1500,
                           pattern: {
-                            value: /^[\p{L}\p{N}\p{Zs}\-_,.:?'“”()\n]+$/u,
+                            value: /^[\p{L}\p{N}\p{Zs}\-_,.:?'’‘"“”()\n]+$/u,
                           },
                         }
                       ),
@@ -889,20 +889,24 @@ PartnerCommunity.getLayout = (page, { pageProps }) => {
 };
 export const getStaticProps = async () => {
   try {
+    const baseUrl = process.env.NEXT_PUBLIC_URL;
     const [rsIpAddress, rsCountry, rsForms] = await Promise.all([
       getFetchUrl(
         `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
       ),
-      getFetchUrl(`https://restcountries.com/v3.1/all?fields=name,flags`),
+      getFetchUrl(`${baseUrl}/api/v1/countries?sv=coinfestasia`),
       getFecthHbSpt(`/forms/v2/fields/28116348-7f30-4b66-86c2-59cb28f08190/`),
     ]);
     const reduceForms = getReduceArray(rsForms, [0, 7, 10]);
+    const rsSortCountry = rsCountry?.data?.sort((a, b) =>
+      a?.name?.common?.localeCompare(b.name.common)
+    );
 
     return {
       props: {
         mode: 'light',
         ipAddress: rsIpAddress || [],
-        country: rsCountry || [],
+        country: rsSortCountry || [],
         forms: reduceForms || [],
       },
       revalidate: 900,

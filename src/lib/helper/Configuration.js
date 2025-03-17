@@ -114,7 +114,7 @@ export const splitIntoGroups = (d, grpCount) => {
   return groups;
 };
 
-// @calculate-countdown(date)
+// @calculate-countdown(date repeat 7days)
 export const calculateCountdown = (date) => {
   const now = new Date();
   const nowGMT7 = new Date(now.getTime() + 7 * 60 * 60 * 1000);
@@ -163,6 +163,37 @@ export const calculateCountdown = (date) => {
       return Math.floor(mrgdDate / unit);
     }
   };
+  const countdown = {
+    days: toTimeUnits(1000 * 60 * 60 * 24),
+    hours: toTimeUnits(1000 * 60 * 60),
+    minutes: toTimeUnits(1000 * 60),
+    seconds: toTimeUnits(1000),
+  };
+  return countdown;
+};
+
+// @calculate-countdown(date)
+export const calculateCountdownTarget = (
+  date = '2025-01-30T23:59:59+07:00'
+) => {
+  const nowGMT7 = new Date(
+    new Date().toLocaleString('en-US', { timeZone: 'Asia/Bangkok' })
+  );
+
+  // @target
+  const targetDate = new Date(date);
+  const mrgdDate = Math.max(0, targetDate - nowGMT7);
+  const toTimeUnits = (unit) => {
+    if (unit === 1000) {
+      return Math.floor(mrgdDate / unit) % 60;
+    } else if (unit === 1000 * 60) {
+      return Math.floor(mrgdDate / unit) % 60;
+    } else if (unit === 1000 * 60 * 60) {
+      return Math.floor(mrgdDate / unit) % 24;
+    } else {
+      return Math.floor(mrgdDate / unit);
+    }
+  };
 
   const countdown = {
     days: toTimeUnits(1000 * 60 * 60 * 24),
@@ -177,6 +208,14 @@ export const calculateCountdown = (date) => {
 export const getPriceDiscountDisplay = (d) => {
   if (!d?.price || !d?.priceSale) return null;
   return d.price;
+};
+
+export const parseCheckOrderSession = (str) => {
+  if (str.includes('-') && str.includes('_')) {
+    const [isUpgrade, isAttendee, isOrder] = str.split(/[-_]/);
+    return { isUpgrade, isAttendee, isOrder };
+  }
+  return { isUpgrade: null, isAttendee: null, isOrder: str };
 };
 
 // @reduce-array

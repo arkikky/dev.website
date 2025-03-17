@@ -103,18 +103,18 @@ const AttendeeDetailUpdate = ({
           />
         </div>
       </div>
-      <div className="pointer-events-none block select-none">
+      <div className="block">
         <Label
           forId={`ca25Form_EmailAttndeeDetail`}
           label="Email"
-          required={false}
+          required={forms?.selfEdited ? false : true}
         />
         <Input
           id={`ca25Form_EmailAttndeeDetail`}
           type="email"
           placeholder=""
           ariaLabel={`Email Attendee - Detail`}
-          disabled={true}
+          disabled={forms?.selfEdited ? true : false}
           config={{
             ...register(`emailAttndeeDetail`, {
               required: true,
@@ -128,16 +128,16 @@ const AttendeeDetailUpdate = ({
         />
       </div>
       <div className="grid-cols-1 gap-x-4 gap-y-4 supports-grid:grid sm:grid-cols-2">
-        <div className="pointer-events-none block select-none">
+        <div className="block">
           <Label
             forId={`ca25Form_PhoneAttendeDetail`}
             label={`Phone Number`}
-            required={false}
+            required={forms?.selfEdited ? false : true}
           />
           <Controller
             name={`dialcode-phoneAttendeDetail`}
             control={control}
-            disabled={true}
+            disabled={forms?.selfEdited ? true : false}
             render={({ field }) => (
               <PhoneInput
                 {...field}
@@ -146,7 +146,7 @@ const AttendeeDetailUpdate = ({
                   setValue(`dialcode-phoneAttndeeDetail`, value, {
                     shouldValidate: true,
                   });
-                  setValue(`phoneAttndee`, value, {
+                  setValue(`phoneAttndeeDetail`, value, {
                     shouldValidate: true,
                   });
                 }}
@@ -156,8 +156,8 @@ const AttendeeDetailUpdate = ({
                   maxLength: 18,
                 }}
                 containerClass="w-full"
-                inputClass={`ca25Form_PhoneInput ${errors[`phoneAttndeeDetail`] && 'errors'} disabled`}
-                buttonClass={`ca25Form_PhoneInputBtn ${errors[`phoneAttndeeDetail`] && 'errors'} disabled`}
+                inputClass={`ca25Form_PhoneInput ${errors[`phoneAttndeeDetail`] && 'errors'} ${forms?.selfEdited ? 'disabled' : 'non-disabled'}`}
+                buttonClass={`ca25Form_PhoneInputBtn ${errors[`phoneAttndeeDetail`] && 'errors'} ${forms?.selfEdited ? 'disabled' : 'non-disabled'}`}
                 dropdownClass={`ca25Form_PhoneInputDropdown`}
                 countryCodeEditable={true}
                 enableSearch={true}
@@ -200,7 +200,7 @@ const AttendeeDetailUpdate = ({
             type="text"
             placeholder=""
             ariaLabel={`Telegram Account Attendee - Detail`}
-            disabled={true}
+            disabled={forms?.selfEdited ? true : false}
             config={{
               ...register(`telegramAccountAttndeeDetail`, {
                 required: false,
@@ -291,36 +291,34 @@ const AttendeeDetailUpdate = ({
       </div>
 
       {/* @company */}
-      {!haveCompany ? (
+      {!haveCompany && !forms?.selfEdited ? (
         <div className={`mt-6 flex flex-row items-center justify-between`}>
           <Label
             forId={`ca25Form_HaveCompanyAttndeeDetail`}
             label="Would you like to update your company information?"
             required={false}
           />
-          {!forms?.selfEdited ? (
-            <div
-              className={`relative ${forms?.selfEdited ? 'hidden' : 'inline-block'}`}
+          <div
+            className={`relative ${forms?.selfEdited ? 'hidden' : 'inline-block'}`}
+          >
+            <input
+              id={`ca25Form_HaveCompanyAttndeeDetail`}
+              className="bxShadow-none form-checkbox relative h-6 w-12 shrink-0 cursor-pointer rounded-full border border-solid border-gray-200 bg-gray-100 py-0.5 pl-0.5 pr-px text-transparent transition-colors duration-200 ease-in-out before:inline-block before:size-4.5 before:translate-x-0 before:transform before:rounded-full before:border before:border-gray-200 before:bg-white before:ring-0 before:transition before:duration-200 before:ease-in-out checked:border-black-900 checked:bg-none checked:text-black-900 checked:before:translate-x-[130%] checked:before:border-white checked:before:bg-white disabled:pointer-events-none"
+              type="checkbox"
+              {...register(`haveCompanyAttndeeDetail`, {
+                required: false,
+                onChange: (e) => {
+                  handleToggleCompay_Change(`haveCompanyAttndeeDetail`);
+                },
+              })}
+            />
+            <label
+              htmlFor={`ca25Form_HaveCompanyAttndeeDetail`}
+              className="sr-only"
             >
-              <input
-                id={`ca25Form_HaveCompanyAttndeeDetail`}
-                className="bxShadow-none form-checkbox relative h-6 w-12 shrink-0 cursor-pointer rounded-full border border-solid border-gray-200 bg-gray-100 py-0.5 pl-0.5 pr-px text-transparent transition-colors duration-200 ease-in-out before:inline-block before:size-4.5 before:translate-x-0 before:transform before:rounded-full before:border before:border-gray-200 before:bg-white before:ring-0 before:transition before:duration-200 before:ease-in-out checked:border-black-900 checked:bg-none checked:text-black-900 checked:before:translate-x-[130%] checked:before:border-white checked:before:bg-white disabled:pointer-events-none"
-                type="checkbox"
-                {...register(`haveCompanyAttndeeDetail`, {
-                  required: false,
-                  onChange: (e) => {
-                    handleToggleCompay_Change(`haveCompanyAttndeeDetail`);
-                  },
-                })}
-              />
-              <label
-                htmlFor={`ca25Form_HaveCompanyAttndeeDetail`}
-                className="sr-only"
-              >
-                switch
-              </label>
-            </div>
-          ) : null}
+              switch
+            </label>
+          </div>
         </div>
       ) : null}
 
@@ -329,14 +327,14 @@ const AttendeeDetailUpdate = ({
           <Label
             forId={`ca25Form_CompanyAttndeeDetail`}
             label="Company Name"
-            required={watch && !forms?.selfEdited}
+            required={!watch || !forms?.selfEdited}
           />
           <Input
             id={`ca25Form_CompanyAttndeeDetail`}
             type="text"
             placeholder=""
             ariaLabel={`Company Attendee - Detail`}
-            disabled={!watch && !forms?.selfEdited}
+            disabled={!watch || forms?.selfEdited ? true : false}
             config={{
               ...register(`companyAttndeeDetail`, {
                 required: watch === true ? true : false,
@@ -356,17 +354,17 @@ const AttendeeDetailUpdate = ({
                 <Label
                   forId={`ca25Form_WebsiteUrlAttndeeDetail`}
                   label="Company Website"
-                  required={watch && !forms?.selfEdited}
+                  required={watch || !forms?.selfEdited}
                 />
                 <Input
                   id={`ca25Form_WebsiteUrlAttndeeDetail`}
                   type="text"
                   placeholder={`Include http:// or https://`}
                   ariaLabel="Website Billing - Detail"
-                  disabled={!watch && !forms?.selfEdited}
+                  disabled={forms?.selfEdited ? true : false}
                   config={{
                     ...register(`websiteUrlAttndeeDetail`, {
-                      required: watch && !forms?.selfEdited,
+                      required: watch || !forms?.selfEdited,
                       maxLength: 255,
                       pattern: {
                         value: /^(https?:\/\/[^\s/$.?#].[^\s]*)$|^N\/A$|^-$/,

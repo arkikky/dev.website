@@ -11,6 +11,7 @@ import { getFetchUrl, getFetchPaginatedData } from '@lib/controller/API';
 import HeadGraphSeo from '@components/Head';
 import Main from '@components/Main';
 import Container from '@components/Container';
+import StarryBackground from '@components/UI/Background/StarryBackground';
 
 // @layouts
 import PartnersTabs from '@layouts/Partners/tabs';
@@ -28,7 +29,11 @@ const Partners = ({ mode, collections }) => {
 
       {/* @main */}
       <Main className="relative flex flex-col overflow-hidden pb-16 pt-[141px] sm:pb-24 sm:pt-[161px]">
-        <Container className={'z-[4] px-0 pb-20 sm:pb-28'}>
+        <div className="pointer-events-none absolute inset-x-0 bottom-auto top-0 -z-px h-[625px] select-none">
+          <StarryBackground starCount={90} />
+        </div>
+
+        <Container className={'relative z-[4] px-0 pb-20 sm:pb-28'}>
           <div className="flex flex-col items-center justify-center text-center">
             <h1
               className={`ca25HeadingTitle w-full text-center font-semibold uppercase sm:font-bold ${mode === 'light' ? 'text-black-900' : 'text-white'} mb-4 text-balance sm:mb-7`}
