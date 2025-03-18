@@ -70,14 +70,23 @@ export default function Document() {
           nonce={hashGTagManager}
         />
         {/* @meta-pixel */}
-        <Script
+        {/* <Script
           id={`meta-pixel`}
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: metaPixelScript,
           }}
           nonce={hashMetaPixelScript}
+        /> */}
+        <Script
+          id="meta-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: metaPixelScript,
+          }}
+          nonce={hashMetaPixelScript}
         />
+
         <noscript>
           <Image
             className={`!hidden`}
