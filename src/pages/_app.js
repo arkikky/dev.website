@@ -59,16 +59,6 @@ const App = ({ Component, pageProps }) => {
       });
     }
   }, []);
-  // @meta-pixel
-  useEffect(() => {
-    const hndleMetaPixelRouteChange = () => {
-      window.fbq('track', 'PageView');
-    };
-    router.events.on('routeChangeComplete', hndleMetaPixelRouteChange);
-    return () => {
-      router.events.off('routeChangeComplete', hndleMetaPixelRouteChange);
-    };
-  }, [router.events]);
 
   // @with-layouts
   const getLayout =
