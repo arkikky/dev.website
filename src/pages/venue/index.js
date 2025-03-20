@@ -206,6 +206,8 @@ const Vanue = (props) => {
           },
         });
 
+        console.log(`${baseUrl}/assets/venue/CaPatungNuanu-Left.glb`);
+
         map.addSource('model', {
           type: 'geojson',
           data: {
@@ -271,7 +273,7 @@ const Vanue = (props) => {
           paint: {
             'model-color': '#939292',
             'model-opacity': 1,
-            'model-rotation': [0.0, 0.0, -20.0],
+            'model-rotation': [0.0, 0.0, -10.0],
             'model-scale': [14, 14, 30],
             'model-cast-shadows': true,
             'model-cutoff-fade-range': 1,
