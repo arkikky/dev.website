@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
+import { Threebox } from 'threebox-plugin';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -16,6 +17,7 @@ const Vanue = (props) => {
 
   useEffect(() => {
     if (!mapContainerRef.current) return;
+    const baseUrl = process.env.NEXT_PUBLIC_URL;
     mapboxgl.accessToken =
       'pk.eyJ1IjoiZGlja3lpY24iLCJhIjoiY204Y2lqaWxnMGRzbzJsb3drcHJxcjI2dCJ9.bTzPp61FtB4H7vhV49YLhQ';
 
@@ -38,23 +40,6 @@ const Vanue = (props) => {
         });
         map.addControl(new mapboxgl.NavigationControl());
 
-        let feature;
-
-        map.addInteraction('Click-handler', {
-          type: 'click',
-          target: {
-            layerId: 'building',
-          },
-          handler: (e) => {
-            if (feature) {
-              map.setFeatureState(feature, { ['state']: false });
-              feature = null;
-            } else {
-              map.setFeatureState(e.feature, { ['state']: true });
-              feature = e.feature;
-            }
-          },
-        });
         // map.loadImage(
         //   'https://api.coinfest.asia/uploads/ca25_Venue_Bridge_3b916b9a8b.png',
         //   (error, image) => {
@@ -226,7 +211,7 @@ const Vanue = (props) => {
           data: {
             type: 'Feature',
             properties: {
-              'model-uri': '/assets/venue/CaPatungNuanu-Left.glb',
+              'model-uri': `${baseUrl}/assets/venue/CaPatungNuanu-Left.glb`,
             },
             geometry: {
               coordinates: [115.095575693694, -8.628768064489606],
@@ -235,19 +220,47 @@ const Vanue = (props) => {
           },
         });
 
-        // add the clip layer and configure it to also remove symbols and trees.
-        // clipping becomes active from zoom level 16 and below.
+        // // add the clip layer and configure it to also remove symbols and trees.
+        // // clipping becomes active from zoom level 16 and below.
         map.addLayer({
           id: 'eraser',
           type: 'clip',
           source: 'eraser',
           layout: {
-            // specify the layer types to be removed by this clip layer
             'clip-layer-scope': ['basemap'],
           },
         });
+        // map.addLayer({
+        //   id: 'custom-threebox-model',
+        //   type: 'custom',
+        //   renderingMode: '3d',
+        //   onAdd: function () {
+        //     window.tb = new Threebox(map, map.getCanvas().getContext('webgl'), {
+        //       defaultLights: true,
+        //     });
+
+        //     // const scale = { x: 0.5, y: 0.5, z: 0.8 }; // Sesuaikan dengan model sebelumnya
+        //     const scale = 0.3;
+        //     const options = {
+        //       obj: 'http://localhost:3001/assets/venue/cute_toon_tree.glb',
+        //       type: 'gltf',
+        //       scale: { x: scale, y: scale, z: 1 },
+        //       units: 'meters',
+        //       rotation: { x: 90, y: -90, z: 0 },
+        //     };
+        //     window.tb.loadObj(options, (model) => {
+        //       model.setCoords([115.095575693694, -8.628768064489606]); // Koordinat dari kode sebelumnya
+        //       model.setRotation({ x: 0, y: 0, z: 241 });
+        //       window.tb.add(model);
+        //     });
+        //   },
+
+        //   render: function () {
+        //     window.tb.update();
+        //   },
+        // });
         map.addLayer({
-          id: 'tower',
+          id: 'statueNuanu',
           type: 'model',
           slot: 'middle',
           source: 'model',
@@ -256,12 +269,12 @@ const Vanue = (props) => {
             'model-id': ['get', 'model-uri'],
           },
           paint: {
+            'model-color': '#939292',
             'model-opacity': 1,
-            'model-rotation': [0.0, 0.0, 60.0],
-            'model-scale': [0.5, 0.5, 0.8],
-            // 'model-color-mix-intensity': 0,
+            'model-rotation': [0.0, 0.0, -20.0],
+            'model-scale': [14, 14, 30],
             'model-cast-shadows': true,
-            // 'model-emissive-strength': 0.6,
+            'model-cutoff-fade-range': 1,
           },
         });
       } catch (error) {
