@@ -1,5 +1,6 @@
 import React from 'react';
 import getConfig from 'next/config';
+import Image from 'next/image';
 
 // @get .config
 const { publicRuntimeConfig } = getConfig();
@@ -29,20 +30,82 @@ const Travel = ({ mode, accomodation }) => {
       />
 
       {/* @main */}
-      <Main className="relative flex flex-col overflow-hidden pb-16 pt-[141px] sm:pb-24 sm:pt-[161px]">
+      <Main className="relative flex flex-col overflow-hidden pb-16 pt-0 sm:pb-24">
+        <header className="relative flex h-[1024px] w-full flex-col items-center justify-center">
+          <div className="pointer-events-none absolute inset-x-0 inset-y-0 z-px">
+            <Image
+              className="h-full w-full object-cover"
+              src={'/assets/images/travel/ca25Travel-Hero.jpg'}
+              alt={`${publicRuntimeConfig?.siteAppName} Header Hero Travel`}
+              height={1024}
+              width={1440}
+              quality="75"
+            />
+          </div>
+          <div className="absolute inset-x-auto inset-y-auto z-[2] flex w-[629px] flex-col">
+            <h1
+              className={`ca25HeadingTitle w-full text-center font-bold uppercase ${mode === 'light' ? 'text-black-900' : 'text-white'} text-balance`}
+            >
+              <span>
+                {'TRAVELTO BALI'
+                  ?.split('')
+                  .map((chr, i) =>
+                    ['E', 'O'].includes(chr) ? <span key={i}>{chr}</span> : chr
+                  )}
+              </span>
+              <br></br>
+              <span>
+                {'HASSLE-FREE'
+                  ?.split('')
+                  .map((chr, i) =>
+                    ['E', 'O'].includes(chr) ? <span key={i}>{chr}</span> : chr
+                  )}
+              </span>
+            </h1>
+            <p className="text-balance text-center text-white">
+              Pack your bags and get ready to feel the summer heat as Bali will
+              be packed with global Web2 and Web3 institutions & communities.
+              Book your stay for Coinfest Asia 2023 and get special rates from
+              our partners. From luxurious hotels to budget-friendly villas, our
+              partners have you covered.
+            </p>
+          </div>
+        </header>
         <div className="w-full max-w-full grid-cols-1 gap-y-6 supports-grid:grid sm:gap-y-0 lg:grid-cols-2">
           <TravelBoardCards
             images={'/assets/images/travel/ca25Travel-Staynex.png'}
             title={'Travel partner'}
             shortDesc={`Reinvent your travel experience with the Web3 travel subscription membership.`}
             btnLabel={'Learn More'}
-          />
+          >
+            <div className="pointer-events-none absolute -right-[5px] -top-[5px] bottom-auto left-auto z-px sm:-right-[11px] sm:-top-[11px] lg:-right-[15px] lg:-top-[11px]">
+              <Image
+                className="h-[49px] w-auto object-cover sm:h-[107px] lg:h-[93px] xl:h-[131px]"
+                src={'/assets/images/backdrop/ca25MoonBoard-Meme1.svg'}
+                alt={`${publicRuntimeConfig?.siteAppName} Travel Board`}
+                height={108.31}
+                width={114.44}
+                quality="75"
+              />
+            </div>
+          </TravelBoardCards>
           <TravelBoardCards
             images={'/assets/images/travel/ca25Travel-Travala.png'}
             title={'Book Your Itinerary'}
             shortDesc={`Arrange your itinerary and book the right airline and accommodation through our partners’ site`}
             btnLabel={'Claim $50 Travel Credits'}
-          />
+          >
+            <div className="pointer-events-none absolute -right-[5px] -top-[5px] bottom-auto left-auto z-px sm:-right-[11px] sm:-top-[11px] lg:-right-[15px] lg:-top-[11px]">
+              <Image
+                className="h-[49px] w-auto object-cover sm:h-[107px] lg:h-[93px] xl:h-[131px]"
+                src={'/assets/images/backdrop/ca25MoonBoard-Meme2.svg'}
+                alt={`${publicRuntimeConfig?.siteAppName} Travel Board`}
+                height={108.31}
+                width={114.44}
+                quality="75"
+              />
+            </div>
+          </TravelBoardCards>
         </div>
         <div className="pb-20 pt-17">
           <div className="mx-auto block w-max text-center">
@@ -106,19 +169,48 @@ const Travel = ({ mode, accomodation }) => {
             </div>
           </Container>
         </div>
-        <div className="mb-16 w-full max-w-full grid-cols-1 gap-y-6 supports-grid:grid sm:gap-y-0 lg:grid-cols-2">
+        <div className="w-full max-w-full grid-cols-1 gap-y-6 supports-grid:grid sm:gap-y-0 lg:grid-cols-2">
           <TravelBoardCards
             images={'/assets/images/travel/ca25Travel-Beyond.png'}
             title={'Concierge Service'}
             shortDesc={`Elevate your Coinfest Asia 2024 experience with BEYOND, our official concierge service partner.`}
             btnLabel={'Get Special Offers'}
-          />
+          >
+            <div className="pointer-events-none absolute -right-[5px] -top-[5px] bottom-auto left-auto z-px sm:-right-[11px] sm:-top-[15px] lg:-right-[11px] lg:-top-[17px] xl:-right-[17px] xl:-top-[21px]">
+              <Image
+                className="h-[49px] w-auto object-cover sm:h-[107px] lg:h-[91px] xl:h-[131px]"
+                src={'/assets/images/backdrop/ca25MoonBoard-Meme3.svg'}
+                alt={`${publicRuntimeConfig?.siteAppName} Travel Board`}
+                height={108.31}
+                width={114.44}
+                quality="75"
+              />
+            </div>
+          </TravelBoardCards>
           <TravelBoardCards
             images={'/assets/images/travel/ca25Travel-Dent.png'}
             title={'E-SIM'}
             shortDesc={`No hustle bustle for your internet connection and get your mobile data ready with our eSIM partner, DENT. The DENT App is powered by DENTNet, DENT's Layer 1 blockchain.`}
             btnLabel={'Get Free 10GB Data'}
-          />
+          >
+            <div className="pointer-events-none absolute -right-[19px] -top-[19px] bottom-auto left-auto z-px sm:-right-[39px] sm:-top-[41px] lg:-right-[45px] lg:-top-[45px] xl:-right-[59px] xl:-top-[57px]">
+              <Image
+                className="h-[73px] w-auto object-cover sm:h-[161px] lg:h-[155px] xl:h-[207px]"
+                src={'/assets/images/backdrop/ca25MoonBoard-Meme4.svg'}
+                alt={`${publicRuntimeConfig?.siteAppName} Travel Board`}
+                height={108.31}
+                width={114.44}
+                quality="75"
+              />
+            </div>
+          </TravelBoardCards>
+        </div>
+        <div className="relative mb-16 block w-full">
+          <TravelBoardCards
+            images={'/assets/images/travel/ca25Travel-Gojek.png'}
+            title={'Transportation'}
+            shortDesc={`Travel to Coinfest Asia’s main venue with special promo from our official transportation partner.`}
+          ></TravelBoardCards>
         </div>
 
         {/* @banner(footer) */}

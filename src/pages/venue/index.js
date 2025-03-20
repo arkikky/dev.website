@@ -1,0 +1,314 @@
+'use client';
+import React, { useEffect, useRef } from 'react';
+import mapboxgl from 'mapbox-gl';
+
+import 'mapbox-gl/dist/mapbox-gl.css';
+
+// @components
+import HeadGraphSeo from '@components/Head';
+import Main from '@components/Main';
+import Container from '@components/Container';
+import StarryBackground from '@components/UI/Background/StarryBackground';
+
+const Vanue = (props) => {
+  const mapContainerRef = useRef();
+  const mapRef = useRef();
+
+  useEffect(() => {
+    if (!mapContainerRef.current) return;
+    mapboxgl.accessToken =
+      'pk.eyJ1IjoiZGlja3lpY24iLCJhIjoiY204Y2lqaWxnMGRzbzJsb3drcHJxcjI2dCJ9.bTzPp61FtB4H7vhV49YLhQ';
+
+    const initializeMap = async () => {
+      try {
+        const map = new mapboxgl.Map({
+          container: mapContainerRef.current,
+          // style: 'mapbox://styles/mapbox/standard',
+          style: 'mapbox://styles/dickyicn/cm8feauk100uv01se5od193rp',
+          center: [115.09905, -8.6301],
+          zoom: 16.27,
+          pitch: 62,
+          minZoom: 15,
+          maxZoom: 20,
+          antialias: true,
+        });
+        mapRef.current = map;
+        await new Promise((resolve) => {
+          map.on('load', resolve);
+        });
+        map.addControl(new mapboxgl.NavigationControl());
+
+        let feature;
+
+        map.addInteraction('Click-handler', {
+          type: 'click',
+          target: {
+            layerId: 'building',
+          },
+          handler: (e) => {
+            if (feature) {
+              map.setFeatureState(feature, { ['state']: false });
+              feature = null;
+            } else {
+              map.setFeatureState(e.feature, { ['state']: true });
+              feature = e.feature;
+            }
+          },
+        });
+        // map.loadImage(
+        //   'https://api.coinfest.asia/uploads/ca25_Venue_Bridge_3b916b9a8b.png',
+        //   (error, image) => {
+        //     if (error) throw error;
+        //     map.addImage('ca25BridgePoint', image);
+        //     map.addSource('bridgePoint', {
+        //       type: 'geojson',
+        //       data: {
+        //         type: 'FeatureCollection',
+        //         features: [
+        //           {
+        //             type: 'Feature',
+        //             geometry: {
+        //               type: 'Point',
+        //               coordinates: [115.09848082380955, -8.629304799587274],
+        //             },
+        //           },
+        //         ],
+        //       },
+        //     });
+        //     map.addLayer({
+        //       id: 'bridgePoints',
+        //       type: 'symbol',
+        //       source: 'bridgePoint',
+        //       minzoom: 5,
+        //       layout: {
+        //         'icon-image': 'ca25BridgePoint',
+        //         'icon-size': [
+        //           'interpolate',
+        //           ['linear'],
+        //           ['zoom'],
+        //           5,
+        //           0.18,
+        //           12,
+        //           0.16,
+        //         ],
+        //       },
+        //     });
+        //   }
+        // );
+        // map.loadImage(
+        //   'https://api.coinfest.asia/uploads/ca25_Venue_Parking_bb6c617190.png',
+        //   (error, image) => {
+        //     if (error) throw error;
+        //     map.addImage('ca25ParkingPoint', image);
+        //     map.addSource('parkingPoint', {
+        //       type: 'geojson',
+        //       data: {
+        //         type: 'FeatureCollection',
+        //         features: [
+        //           {
+        //             type: 'Feature',
+        //             geometry: {
+        //               type: 'Point',
+        //               coordinates: [115.10030290030966, -8.630316021662736],
+        //             },
+        //           },
+        //         ],
+        //       },
+        //     });
+        //     map.addLayer({
+        //       id: 'points',
+        //       type: 'symbol',
+        //       source: 'parkingPoint',
+        //       minzoom: 5,
+        //       layout: {
+        //         'icon-image': 'ca25ParkingPoint',
+        //         'icon-size': [
+        //           'interpolate',
+        //           ['linear'],
+        //           ['zoom'],
+        //           5,
+        //           0.18,
+        //           12,
+        //           0.16,
+        //         ],
+        //       },
+        //     });
+        //   }
+        // );
+
+        map.addSource('eraser', {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: [
+              {
+                type: 'Feature',
+                properties: {},
+                geometry: {
+                  type: 'Polygon',
+                  coordinates: [
+                    [
+                      [115.09557632815414, -8.628735587720433],
+                      [115.09557317061937, -8.628735741084395],
+                      [115.09557004349338, -8.628736199699306],
+                      [115.09556697689206, -8.628736959148457],
+                      [115.09556400034852, -8.628738012117937],
+                      [115.09556114252847, -8.628739348467075],
+                      [115.09555843095423, -8.628740955326103],
+                      [115.09555589173976, -8.628742817220095],
+                      [115.09555354933913, -8.628744916217995],
+                      [115.09555142631089, -8.628747232105312],
+                      [115.09554954310099, -8.628749742578787],
+                      [115.09554791784576, -8.62875242346119],
+                      [115.09554656619727, -8.628755248934166],
+                      [115.09554550117268, -8.628758191786865],
+                      [115.09554473302875, -8.62876122367801],
+                      [115.09554426916311, -8.628764315408835],
+                      [115.09554411404311, -8.628767437204282],
+                      [115.0955442691626, -8.628770558999754],
+                      [115.09554473302771, -8.628773650730656],
+                      [115.09554550117117, -8.628776682621925],
+                      [115.09554656619535, -8.628779625474792],
+                      [115.0955479178435, -8.62878245094797],
+                      [115.0955495430985, -8.628785131830606],
+                      [115.09555142630825, -8.628787642304335],
+                      [115.09555354933643, -8.628789958191911],
+                      [115.09555589173712, -8.628792057190074],
+                      [115.0955584309517, -8.628793919084316],
+                      [115.0955611425262, -8.628795525943579],
+                      [115.0955640003466, -8.628796862292921],
+                      [115.09556697689057, -8.628797915262567],
+                      [115.09557004349234, -8.628798674711842],
+                      [115.09557317061885, -8.62879913332683],
+                      [115.09557632815414, -8.62879928669082],
+                      [115.09557948568944, -8.62879913332683],
+                      [115.09558261281593, -8.628798674711842],
+                      [115.09558567941772, -8.628797915262567],
+                      [115.09558865596168, -8.628796862292921],
+                      [115.09559151378208, -8.628795525943579],
+                      [115.09559422535658, -8.628793919084316],
+                      [115.09559676457116, -8.628792057190074],
+                      [115.09559910697185, -8.628789958191911],
+                      [115.09560123000003, -8.628787642304335],
+                      [115.09560311320979, -8.628785131830606],
+                      [115.09560473846479, -8.62878245094797],
+                      [115.09560609011292, -8.628779625474792],
+                      [115.0956071551371, -8.628776682621925],
+                      [115.09560792328058, -8.628773650730656],
+                      [115.09560838714567, -8.628770558999754],
+                      [115.09560854226517, -8.628767437204282],
+                      [115.09560838714516, -8.628764315408835],
+                      [115.09560792327953, -8.62876122367801],
+                      [115.0956071551356, -8.628758191786865],
+                      [115.095606090111, -8.628755248934166],
+                      [115.09560473846253, -8.62875242346119],
+                      [115.0956031132073, -8.628749742578787],
+                      [115.09560122999738, -8.628747232105312],
+                      [115.09559910696915, -8.628744916217995],
+                      [115.09559676456851, -8.628742817220095],
+                      [115.09559422535405, -8.628740955326103],
+                      [115.09559151377982, -8.628739348467075],
+                      [115.09558865595976, -8.628738012117937],
+                      [115.09558567941622, -8.628736959148457],
+                      [115.09558261281491, -8.628736199699306],
+                      [115.09557948568892, -8.628735741084395],
+                      [115.09557632815414, -8.628735587720433],
+                    ],
+                  ],
+                },
+              },
+            ],
+          },
+        });
+
+        map.addSource('model', {
+          type: 'geojson',
+          data: {
+            type: 'Feature',
+            properties: {
+              'model-uri': '/assets/venue/CaPatungNuanu-Left.glb',
+            },
+            geometry: {
+              coordinates: [115.095575693694, -8.628768064489606],
+              type: 'Point',
+            },
+          },
+        });
+
+        // add the clip layer and configure it to also remove symbols and trees.
+        // clipping becomes active from zoom level 16 and below.
+        map.addLayer({
+          id: 'eraser',
+          type: 'clip',
+          source: 'eraser',
+          layout: {
+            // specify the layer types to be removed by this clip layer
+            'clip-layer-scope': ['basemap'],
+          },
+        });
+        map.addLayer({
+          id: 'tower',
+          type: 'model',
+          slot: 'middle',
+          source: 'model',
+          minzoom: 15,
+          layout: {
+            'model-id': ['get', 'model-uri'],
+          },
+          paint: {
+            'model-opacity': 1,
+            'model-rotation': [0.0, 0.0, 60.0],
+            'model-scale': [0.5, 0.5, 0.8],
+            // 'model-color-mix-intensity': 0,
+            'model-cast-shadows': true,
+            // 'model-emissive-strength': 0.6,
+          },
+        });
+      } catch (error) {
+        // console.error('Error initializing map:', error);
+      }
+    };
+
+    initializeMap();
+
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.remove();
+      }
+    };
+  }, []);
+
+  return (
+    <>
+      {/* @head */}
+      <HeadGraphSeo title={`404 Page is Gone!`} otherPage={true} />
+
+      <Main className={'fixed inset-x-0 inset-y-0'}>
+        <div
+          id="map"
+          className="z-10 block h-full w-full"
+          ref={mapContainerRef}
+        />
+      </Main>
+    </>
+  );
+};
+
+Vanue.getLayout = function PageLayout(page) {
+  return <>{page}</>;
+};
+export const getStaticProps = async () => {
+  try {
+    return {
+      props: {
+        mode: 'dark',
+      },
+      revalidate: 900,
+    };
+  } catch (err) {
+    return {
+      notFound: true,
+    };
+  }
+};
+export default Vanue;
