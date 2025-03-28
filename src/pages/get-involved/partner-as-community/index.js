@@ -38,7 +38,7 @@ const PartnerCommunity = ({
 }) => {
   const router = useRouter();
   const [isForms, setForms] = useState({
-    ipAddress: ipAddress || [],
+    address: ipAddress || [],
     fields: forms || [],
     country: country || [],
   });
@@ -170,7 +170,7 @@ const PartnerCommunity = ({
       context: {
         pageUri: 'https://coinfest.asia/get-involved/partner-as-community',
         pageName: '2025 Partner As Community | Coinfest Asia 2025',
-        ipAddress: isForms?.ipAddress?.ip,
+        ipAddress: isForms?.address?.ip,
       },
     };
     const k = '28116348-7f30-4b66-86c2-59cb28f08190';

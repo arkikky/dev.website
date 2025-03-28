@@ -38,6 +38,8 @@
     "tempus": "^1.0.0-dev.10"
   },
   "devDependencies": {
+    "@mapbox/mapbox-gl-directions": "^4.3.1",
+    "@mapbox/mapbox-gl-geocoder": "^5.0.3",
     "@popperjs/core": "^2.11.8",
     "@preline/accordion": "2.5.0",
     "@preline/collapse": "^2.5.0",

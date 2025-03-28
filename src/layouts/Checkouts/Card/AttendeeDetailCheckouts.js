@@ -155,7 +155,7 @@ const AttendeeDetailCheckouts = ({
             render={({ field }) => (
               <PhoneInput
                 {...field}
-                country={forms?.ipAddress}
+                country={'id'}
                 onChange={(value, phone) => {
                   setValue(
                     `dialcode-phoneAttndee${items?.attendee}_${items?.group}`,

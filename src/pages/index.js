@@ -36,7 +36,7 @@ import Speakers from '@layouts/Speakers';
 import PortalBanner from '@layouts/Banner/PortalBanner';
 import GetInvolved from '@layouts/GetInvolved';
 import WhatsHappening from '@layouts/WhatsHappening';
-import SocialMentions from '@layouts/SocialMentions';
+// import SocialMentions from '@layouts/SocialMentions';
 import FAQ from '@layouts/FAQ';
 import MoonPortalBanner from '@layouts/Banner/MoonPortalBanner';
 
@@ -48,7 +48,7 @@ const Home = ({ mode, collections, products }) => {
     speakers: collections?.speakers,
     getinvolved: collections?.getinvolved,
     whatsHappening: collections?.whatsHappening,
-    socialMentions: collections?.socialMentions,
+    // // socialMentions: collections?.socialMentions,
     faq: collections?.faq,
   });
 
@@ -203,7 +203,7 @@ const Home = ({ mode, collections, products }) => {
         <PortalBanner mode={mode} id={'ca25PortalBanner1'} />
 
         {/* @social-mentions */}
-        <SocialMentions mode={mode} result={isCollections?.socialMentions} />
+        {/* <SocialMentions mode={mode} result={isCollections?.socialMentions} /> */}
 
         {/* @faq */}
         <FAQ mode={mode} result={isCollections?.faq} />

@@ -277,9 +277,7 @@ const PartnerMedia = ({
                   render={({ field }) => (
                     <PhoneInput
                       {...field}
-                      country={
-                        isForms?.ipAddress?.country.toLowerCase() ?? 'id'
-                      }
+                      country={'id'}
                       onChange={(value, phone) => {
                         setValue(`dialcode-phone${groupLabel}`, value, {
                           shouldValidate: true,

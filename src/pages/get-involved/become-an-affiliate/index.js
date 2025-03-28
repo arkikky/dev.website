@@ -38,7 +38,7 @@ const BecomeAnAffiliate = ({
 }) => {
   const router = useRouter();
   const [isForms, setForms] = useState({
-    ipAddress: ipAddress || [],
+    address: ipAddress || [],
     fields: forms || [],
     country: country || [],
   });
@@ -162,7 +162,7 @@ const BecomeAnAffiliate = ({
       context: {
         pageUri: 'https://coinfest.asia/get-involved/become-an-affiliate',
         pageName: '2025 Become An Affiliatte | Coinfest Asia 2025',
-        ipAddress: isForms?.ipAddress?.ip,
+        ipAddress: isForms?.address?.ip,
       },
     };
     const k = '24512342-b546-4e92-a869-8b2c9c2bb3dc';
@@ -303,7 +303,7 @@ const BecomeAnAffiliate = ({
                 render={({ field }) => (
                   <PhoneInput
                     {...field}
-                    country={isForms?.ipAddress?.country.toLowerCase() ?? 'id'}
+                    country={'id'}
                     onChange={(value, phone) => {
                       setValue(`dialcode-phone${groupLabel}`, value, {
                         shouldValidate: true,

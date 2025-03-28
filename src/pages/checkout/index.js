@@ -982,11 +982,6 @@ const Checkout = ({ ipAddress, country, coupons, formCheckout }) => {
                                     <AttendeeDetailCheckouts
                                       watch={haveCompanyAttendeeGroup}
                                       forms={{
-                                        ipAddress:
-                                          isFormCheckouts?.isIpAddress
-                                            ?.country !== undefined
-                                            ? isFormCheckouts?.isIpAddress?.country.toLowerCase()
-                                            : 'id',
                                         fieldForm: isFormCheckouts?.fields,
                                         country: isFormCheckouts?.isCountry,
                                         isSubmited: isFormCheckouts?.isSubmited,

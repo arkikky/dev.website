@@ -35,7 +35,6 @@ import AttendeeDetailUpdate from '@layouts/Attendee/Update/Card/AttendeeDetailUp
 import BoardSubmitAttendee from '@layouts/Attendee/Update/Card/BoardSubmitAttendee';
 
 const AttendeeUpdate = ({
-  ipAddress,
   attendee,
   country,
   formCheckout,
@@ -45,7 +44,6 @@ const AttendeeUpdate = ({
   const [isAttendee, setAttendee] = useState(attendee.data ?? []);
   const [isFormAttendee, setFormAttendee] = useState({
     isProducts: isAttendee?.product,
-    isIpAddress: ipAddress,
     isCountry: country,
     fields: formCheckout,
     selfEdited: isAttendee?.selfEdited ?? false,
@@ -233,10 +231,7 @@ const AttendeeUpdate = ({
                         <AttendeeDetailUpdate
                           watch={watch(`haveCompanyAttndeeDetail`)}
                           forms={{
-                            ipAddress:
-                              isFormAttendee?.isIpAddress?.country !== undefined
-                                ? isFormAttendee?.isIpAddress?.country.toLowerCase()
-                                : 'id',
+                            ipAddress: 'id',
                             fieldForm: isFormAttendee?.fields,
                             country: isFormAttendee?.isCountry,
                             selfEdited: isFormAttendee?.selfEdited,
@@ -498,7 +493,6 @@ export async function getServerSideProps(context) {
     const baseUrl = process.env.NEXT_PUBLIC_URL;
     const isLayouts = true;
     const [
-      rsIpAddress,
       rsAttendee,
       rsCountry,
       rsCoupons,
@@ -506,9 +500,6 @@ export async function getServerSideProps(context) {
       rsBullTickets,
       rsFestivalTickets,
     ] = await Promise.all([
-      getFetchUrl(
-        `https://ipinfo.io/json?token=${serverRuntimeConfig?.ipAddress_token}`
-      ),
       getFetch(`/api/attendees/${vw}?sort[0]=createdAt:desc&populate=*`),
       getFetchUrl(`${baseUrl}/api/v1/countries?sv=coinfestasia`),
       getFetch(`/api/coupons?filters[isPublic][$eq]=true&populate=*`),
@@ -544,7 +535,6 @@ export async function getServerSideProps(context) {
         mode: 'light',
         layouts: isLayouts || false,
         withoutNavbar: false,
-        ipAddress: rsIpAddress || [],
         country: rsSortCountry || [],
         coupons: rsCoupons || [],
         attendee: rsAttendee || [],

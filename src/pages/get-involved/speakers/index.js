@@ -31,7 +31,7 @@ import PartnershipLayouts from '@layouts/PartnershipLayouts';
 const Speakers = ({ mode, ipAddress, country, forms }) => {
   const router = useRouter();
   const [isForms, setForms] = useState({
-    ipAddress: ipAddress || [],
+    address: ipAddress || [],
     fields: forms || [],
     country: country || [],
   });
@@ -150,7 +150,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
       context: {
         pageUri: 'https://coinfest.asia/get-involved/speakers',
         pageName: '2025 Speakers | Coinfest Asia 2025',
-        ipAddress: isForms?.ipAddress?.ip,
+        ipAddress: isForms?.address?.ip,
       },
     };
     const k = '0568d957-8627-4939-8e88-82bbb8c53e52';
@@ -293,7 +293,7 @@ const Speakers = ({ mode, ipAddress, country, forms }) => {
                 render={({ field }) => (
                   <PhoneInput
                     {...field}
-                    country={isForms?.ipAddress?.country.toLowerCase() ?? 'id'}
+                    country={'id'}
                     onChange={(value, phone) => {
                       setValue(`dialcode-phoneSpeakers`, value, {
                         shouldValidate: true,
