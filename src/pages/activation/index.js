@@ -162,7 +162,8 @@ const Activation = ({ ipAddress }) => {
                   submitFormHbSpt(
                     setHbSptCustomerData(
                       rsOrderRecived?.data?.customer,
-                      ipAddress?.ip
+                      ipAddress?.ip,
+                      false
                     ),
                     hbSptKey
                   ),
@@ -253,7 +254,11 @@ const Activation = ({ ipAddress }) => {
                             }
                           ),
                           submitFormHbSpt(
-                            setHbSptAttendeeData(rsAttendee, ipAddress?.ip),
+                            setHbSptAttendeeData(
+                              rsAttendee,
+                              ipAddress?.ip,
+                              false
+                            ),
                             hbSptAttndeeKey
                           ),
                         ]);

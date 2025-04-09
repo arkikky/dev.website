@@ -86,6 +86,14 @@ export default function Document() {
             width="1"
           />
         </noscript>
+
+        {/* @hubSpot */}
+        <Script
+          id="hs-loader"
+          async
+          defer
+          src="//js.hs-scripts.com/21063184.js"
+        ></Script>
       </Head>
       <body>
         <Main />
