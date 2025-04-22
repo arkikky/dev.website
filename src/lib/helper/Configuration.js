@@ -172,6 +172,64 @@ export const calculateCountdown = (date) => {
   return countdown;
 };
 
+// @calculate-countdown(date repeat 20days)
+export const calculateCountdown20Days = () => {
+  const now = new Date();
+  const nowGMT7 = new Date(now.getTime() + 7 * 60 * 60 * 1000);
+
+  let storedDate = getCookie('prSle_trgtSession');
+  let targetDate = storedDate ? new Date(storedDate) : null;
+
+  if (targetDate) {
+    targetDate = new Date(targetDate.getTime() + 7 * 60 * 60 * 1000);
+  }
+
+  const startDate = new Date('2025-04-01T00:00:00+07:00');
+
+  if (!targetDate || targetDate < nowGMT7) {
+    const diffTime = nowGMT7 - startDate;
+    const cycleDuration = 20 * 24 * 60 * 60 * 1000;
+
+    const cyclesPassed = Math.floor(diffTime / cycleDuration);
+    const nextCycleStart = new Date(
+      startDate.getTime() + (cyclesPassed + 1) * cycleDuration
+    );
+
+    targetDate = nextCycleStart;
+    targetDate.setHours(0, 0, 0, 0);
+
+    const targetDateUTC = new Date(targetDate.getTime() - 7 * 60 * 60 * 1000);
+    setCookie('prSle_trgtSession', targetDateUTC.toISOString(), {
+      maxAge: 60 * 60 * 24 * 20,
+      path: '/',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'development' ? 'Lax' : 'Strict',
+    });
+  } else {
+    targetDate = new Date(targetDate.getTime() + 7 * 60 * 60 * 1000);
+  }
+
+  const mrgdDate = Math.max(0, targetDate - nowGMT7);
+  const toTimeUnits = (unit) => {
+    if (unit === 1000) {
+      return Math.floor(mrgdDate / unit) % 60;
+    } else if (unit === 1000 * 60) {
+      return Math.floor(mrgdDate / unit) % 60;
+    } else if (unit === 1000 * 60 * 60) {
+      return Math.floor(mrgdDate / unit) % 24;
+    } else {
+      return Math.floor(mrgdDate / unit);
+    }
+  };
+  const countdown = {
+    days: toTimeUnits(1000 * 60 * 60 * 24),
+    hours: toTimeUnits(1000 * 60 * 60),
+    minutes: toTimeUnits(1000 * 60),
+    seconds: toTimeUnits(1000),
+  };
+  return countdown;
+};
+
 // @calculate-countdown(date)
 export const calculateCountdownTarget = (
   date = '2025-01-30T23:59:59+07:00'

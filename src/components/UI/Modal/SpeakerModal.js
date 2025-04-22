@@ -1,6 +1,7 @@
 import React from 'react';
 // import Markdown from 'react-markdown';
 import Image from 'next/image';
+import Markdown from 'react-markdown';
 
 const SpeakerModal = ({
   name = 'Sandiaga Uno',
@@ -9,19 +10,21 @@ const SpeakerModal = ({
   aboutMe = "Jeth Soetoyo is the co-founder and CEO of Figma. Dylan studied computer science and mathematics at Brown University where he and his co-founder, Evan Wallace, first started experimenting with design tools built on (and for) the web. With funding from a Thiel fellowship, they began Figma. Prior to Figma, Dylan interned at O'Reilly Media, LinkedIn, and Flipboard.",
   connectWithMe = '',
 }) => {
+  const urlImage = process.env.NEXT_PUBLIC_COINVESTASI;
+
   return (
     <>
       <div
         id={`mdlCA25Speakers`}
-        className="hs-overlay pointer-events-none fixed inset-x-0 inset-y-0 z-[1558] hidden h-full w-full overflow-y-auto overflow-x-hidden bg-black-900/[0.33] opacity-0 transition-all [--body-scroll:true] hs-overlay-open:opacity-100 hs-overlay-open:duration-300 hs-overlay-backdrop-open:bg-dark/40"
+        className="hs-overlay fixed inset-x-0 inset-y-0 z-[1558] hidden h-full w-full overflow-y-auto overflow-x-hidden bg-black-900/[0.33] opacity-0 transition-all [--body-scroll:true] hs-overlay-open:opacity-100 hs-overlay-open:duration-300 hs-overlay-backdrop-open:bg-dark/40"
         aria-haspopup="dialog"
         aria-expanded="false"
         // data-hs-overlay-backdrop-container="#bckdrpModalActve"
       >
         <div className="fixed inset-x-0 inset-y-0 mx-auto flex w-full max-w-full translate-y-8 transform items-center justify-center px-4 opacity-0 transition-all duration-300 ease-out hs-overlay-open:translate-y-0 hs-overlay-open:opacity-100 sm:inset-y-0 sm:max-w-[720px] sm:px-0 lg:max-w-[825px]">
-          <div className="hs-overlay-animation-target pointer-events-auto relative flex w-full flex-col flex-wrap overflow-hidden rounded-[16px] bg-dark py-0 sm:flex-row sm:rounded-[18px]">
+          <div className="mdlCA25Speakers-Cnt hs-overlay-animation-target pointer-events-auto relative flex w-full flex-col flex-wrap overflow-hidden rounded-[16px] bg-dark py-0 sm:flex-row sm:rounded-[18px]">
             <div
-              className={`absolute inset-x-0 inset-y-0 z-[4] rounded-[18px] border-[3px] border-solid border-white opacity-45 transition-[opacity] duration-300 ease-in-out`}
+              className={`pointer-events-none absolute inset-x-0 inset-y-0 z-[4] rounded-[18px] border-[3px] border-solid border-white opacity-45 transition-[opacity] duration-300 ease-in-out`}
             ></div>
 
             <div className="relative w-full min-w-full max-w-full flex-1 bg-gray-500 sm:min-w-[309px] lg:max-w-[309px]">
@@ -59,7 +62,10 @@ const SpeakerModal = ({
               {images && (
                 <Image
                   className="relative z-[3] mx-auto h-[311px] w-full object-cover object-top sm:h-full sm:object-center"
-                  src={images ?? ''}
+                  src={
+                    `${urlImage}${images.data.attributes.formats.small.url}` ??
+                    ''
+                  }
                   alt={`${name} Speakers Coinfest Asia 2025`}
                   height={672}
                   width={564}
@@ -67,7 +73,7 @@ const SpeakerModal = ({
                 />
               )}
             </div>
-            <div className="flex h-full max-h-[291px] w-full flex-1 flex-col overflow-y-auto bg-dark px-4 py-6 sm:max-h-max sm:overflow-hidden sm:px-8 sm:py-10">
+            <div className="flex h-full max-h-[291px] w-full flex-1 flex-col overflow-y-scroll bg-dark px-4 py-6 sm:max-h-max sm:overflow-hidden sm:px-8 sm:py-10">
               <div className="flex flex-col text-start">
                 <div className="flex flex-col">
                   <h2 className="text-base capitalize text-white sm:text-lg">
@@ -79,13 +85,13 @@ const SpeakerModal = ({
                     </span>
                   )}
                 </div>
-                {/* {aboutMe && (
+                {aboutMe && (
                   <div className="mt-4 flex flex-col">
-                    <Markdown className="mt-2  text-base font-light text-[#676767]">
+                    <Markdown className="mt-2 text-base font-light text-[#676767]">
                       {aboutMe}
                     </Markdown>
                   </div>
-                )} */}
+                )}
                 {connectWithMe && (
                   <div className="mt-4 flex flex-col rounded-lg bg-[#ECF1FF] px-4 py-4">
                     <h3 className="text-base font-semibold text-black-900">

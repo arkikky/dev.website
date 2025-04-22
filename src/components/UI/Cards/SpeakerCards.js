@@ -15,6 +15,7 @@ const SpeakerCards = ({
   comingSoon,
   children,
 }) => {
+  const urlImage = process.env.NEXT_PUBLIC_COINVESTASI
   const [ref, inView] = useInView({
     threshold: 1,
     rootMargin: '80% 0% 0% 0%',
@@ -37,11 +38,11 @@ const SpeakerCards = ({
       >
         {/* @brand-company */}
         <div className="mx-auto mb-2 flex w-full flex-col items-center justify-center sm:mb-3">
-          {brandCompany ? (
+          {attributes.companyLogo ? (
             isLoading ? (
               <Image
                 className="mx-auto h-[31px] w-full object-cover object-center grayscale sm:h-[36px] lg:h-[40px]"
-                src={brandCompany}
+                src={`${urlImage}${attributes.companyLogo.data.attributes.formats.small.url}`}
                 alt={`Coinfest Asia 2025 Brand Company - ${name} Speakers)`}
                 height={40}
                 width={282}
@@ -58,12 +59,12 @@ const SpeakerCards = ({
         {/* @images */}
         <div className="relative flex h-[221px] w-full min-w-full max-w-min flex-col overflow-hidden rounded-2xl bg-black-900/30 max-[420px]:h-[197px] xs:h-[195px] sm:h-[273px] lg:h-[257px] xl:h-[336px] 2xl:h-[362px]">
           <div className="z-[16] h-full w-full">
-            {images ? (
+            {attributes.profilePicture ? (
               isLoading ? (
                 <Image
                   className="mx-auto h-full w-full object-cover object-center"
-                  src={images}
-                  alt={`Coinfest Asia 2025 ${name} Speakers)`}
+                  src={`${urlImage}${attributes.profilePicture.data.attributes.formats.small.url}`}
+                  alt={`Coinfest Asia 2025 ${attributes.name} Speakers)`}
                   height={336}
                   width={282}
                   quality="80"
@@ -122,17 +123,17 @@ const SpeakerCards = ({
           <div>
             {useHeading === 'h2' ? (
               <h2 className="line-break-anyware line-clamp-1 text-left text-base font-medium text-white group-hover:underline sm:text-lg lg:text-xl">
-                {name}
+                {attributes.name}
               </h2>
             ) : (
               <h3 className="line-break-anyware line-clamp-1 block text-left text-base font-medium text-white group-hover:underline sm:text-lg lg:text-xl">
-                {name}
+                {attributes.name}
               </h3>
             )}
           </div>
-          {position && (
+          {attributes.position && (
             <p className="mt-1.5 line-clamp-2 text-left text-sm font-normal leading-initial text-white sm:mt-1 sm:text-base sm:leading-[21px]">
-              {position}
+              {attributes.position}
             </p>
           )}
         </div>

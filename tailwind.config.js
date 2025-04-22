@@ -26,6 +26,7 @@ module.exports = {
         secondary: '#F3D747',
         success: '#188035',
         danger: '#D64A4A',
+        secondaryGray: '#DFE4EA',
         warning: '#F2B124',
         info: '#9CADD3',
         dark: '#1F1F1F',
@@ -123,6 +124,18 @@ module.exports = {
       },
       animation: {
         'spin-slow': 'spin 8s linear infinite',
+        'slide-up': 'slideUp 0.3s ease-out forwards',
+        'slide-down': 'slideDown 0.3s ease-in forwards',
+      },
+      keyframes: {
+        slideUp: {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        slideDown: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(100%)' },
+        },
       },
     },
   },

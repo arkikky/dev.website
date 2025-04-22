@@ -86,18 +86,10 @@ export default function Document() {
             width="1"
           />
         </noscript>
-
-        {/* @hubSpot */}
-        <Script
-          id="hs-loader"
-          async
-          defer
-          src="//js.hs-scripts.com/21063184.js"
-        ></Script>
       </Head>
       <body>
         <Main />
-        <NextScript nonce={hashNonce256} />
+
         {/* @google-tag-manager(noscript) */}
         <iframe
           className={`!hidden !h-0 !w-0`}
@@ -106,6 +98,13 @@ export default function Document() {
           width="0"
           nonce={hashGTagManager}
         ></iframe>
+        {/* @hubSpot */}
+        <Script
+          id="hs-loader"
+          strategy="afterInteractive"
+          src="https://js-na1.hs-scripts.com/21063184.js"
+        ></Script>
+        <NextScript nonce={hashNonce256} />
       </body>
     </Html>
   );

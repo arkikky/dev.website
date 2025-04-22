@@ -5,10 +5,10 @@
       "@reduxState/*": ["./src/redux/*"],
       "@email/*": ["./emails/*"],
       "@lib/*": ["./src/lib/*"],
+      "@controller/*": ["./src/lib/controller/*"],
       "@styles/*": ["./src/styles/*"],
       "@layouts/*": ["./src/layouts/*"],
-      "@components/*": ["./src/components/*"],
-      "@controller/*": ["./src/lib/controller/*"]
+      "@components/*": ["./src/components/*"]
     }
   }
 }

@@ -48,7 +48,7 @@ const Home = ({ mode, collections, products }) => {
     speakers: collections?.speakers,
     getinvolved: collections?.getinvolved,
     whatsHappening: collections?.whatsHappening,
-    // // socialMentions: collections?.socialMentions,
+    socialMentions: collections?.socialMentions,
     faq: collections?.faq,
   });
 
@@ -246,6 +246,7 @@ Home.getLayout = (page, { pageProps }) => {
 export const getServerSideProps = async (context) => {
   try {
     const baseUrl = process.env.NEXT_PUBLIC_URL;
+    const generalBaseAPI = process.env.GENERAL_BASEAPI_URL;
     const isStoreLayouts = true;
     const [
       rsProducts,
@@ -258,7 +259,7 @@ export const getServerSideProps = async (context) => {
     ] = await Promise.all([
       getFetch(`/api/products?sort[0]=rank:asc`),
       getFetchUrl(`${baseUrl}/api/v1/collections/about-us?sv=coinfestasia`),
-      getFetchUrl(`${baseUrl}/api/v1/collections/speakers?sv=coinfestasia`),
+      getFetchUrl(`${generalBaseAPI}/ca-25-speakers?populate=*`),
       getFetchUrl(`${baseUrl}/api/v1/collections/get-involved?sv=coinfestasia`),
       getFetchUrl(
         `${baseUrl}/api/v1/collections/whats-happening?sv=coinfestasia`
@@ -285,7 +286,7 @@ export const getServerSideProps = async (context) => {
           speakers: rsSpeakers?.data || null,
           getinvolved: rsGetInvolved?.data || null,
           whatsHappening: rsWhatsHappening?.data || null,
-          socialMentions: rsSocialMentions?.data || null,
+          // socialMentions: rsSocialMentions?.data || null,
           faq: rsFAQ?.data || null,
           partners: {
             prevPartners: rsPrevPartners?.data || null,
@@ -303,3 +304,5 @@ export const getServerSideProps = async (context) => {
   }
 };
 export default Home;
+
+//trigger deploy//

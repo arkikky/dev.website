@@ -32,6 +32,7 @@ const Speakers = ({ mode, collections }) => {
       id: id,
       images: images,
       name: name,
+      aboutMe: aboutMe
     });
   };
 
@@ -82,11 +83,11 @@ const Speakers = ({ mode, collections }) => {
                         e.preventDefault();
 
                         isModal({
-                          id: 0,
-                          images: rslt.images ?? '',
-                          name: rslt.name ?? '',
-                          // position: rslt.attributes.position,
-                          // aboutMe: rslt.attributes.aboutMe,
+                          id: i,
+                          images: rslt.attributes.profilePicture ?? '',
+                          name: rslt.attributes.name ?? '',
+                          position: rslt.attributes.position,
+                          aboutMe: rslt.attributes.description,
                           // connectWithMe: rslt.attributes.connectWithMe,
                         });
                       }}
@@ -148,12 +149,12 @@ const Speakers = ({ mode, collections }) => {
 };
 
 export const getStaticProps = async () => {
-  const baseUrl = process.env.NEXT_PUBLIC_URL;
+  const generalBaseAPI = process.env.GENERAL_BASEAPI_URL
 
   try {
     const isStoreLayouts = false;
     const [rsSpeakers] = await Promise.all([
-      getFetchUrl(`${baseUrl}api/v1/collections/speakers?sv=coinfestasia`),
+      getFetchUrl(`${generalBaseAPI}/ca-25-speakers?populate=*`),
     ]);
     return {
       props: {
