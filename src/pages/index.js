@@ -135,7 +135,7 @@ const Home = ({ mode, collections, products }) => {
 
       {/* @main */}
       <Main className="relative overflow-hidden pb-16 sm:pb-24">
-        <Headers />
+        {/* <Headers /> */}
 
         {/* @about-us */}
         <Abouts mode={mode} result={isCollections?.aboutus} />
